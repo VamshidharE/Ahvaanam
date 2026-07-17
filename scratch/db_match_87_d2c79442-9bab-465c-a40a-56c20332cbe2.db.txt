@@ -1,0 +1,30 @@
+"use client";       ?
+;import React, { useEffect, useState, useRef } from "react";   I
+Eimport { useInvitationData } from "../context/InvitationDataContext";   X
+Timport { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";   <
+8import { motion, AnimatePresence } from "framer-motion";       )
+%// Import reusable section components   /
++import HeroSection from "../sections/hero";   3
+/import CoupleSection from "../sections/couple";   9
+5import CountdownSection from "../sections/countdown";   1
+-import StorySection from "../sections/story";   3
+/import EventsSection from "../sections/events";   5
+1import GallerySection from "../sections/gallery";   1
+-import VenueSection from "../sections/venue";   7
+3import FamiliesSection from "../sections/families";   /
++import RSVPSection from "../sections/rsvp";   -
+)import FAQSection from "../sections/faq";   9
+5import DressCodeSecti      
+    qq     6KI  k  r    8 $Kl  1   0" BQa D           =         2d ( bs  1  %  N  =   4( y  W dF    y    L %   =  rY     L n 8   w  ;/ 	N       AN 9	 $  @N           
+ 8g |  = l!      w d,           H    r  I @N 9	 WK@sv      s -C [ f A  O   }         q  # 4    u  B      Y        !   HsAN 9	 $  @N      x  g    } 8     <$ 0s"d :  f A G iR  u   J\    I ,  & y  h :Y    SL"B    r  I  J W>'  Y    W        #H       yJ\ d( V Y@ D  N9 %       9i fT   B  O   ( B*q  #
+ >  c )T  D,  G  W|      0a  h E  7 v:   v u       H    l  ,  q & a<   nj6? 
+]{o2     =H   A N Fcm         l W    j{#]kS  }      > dB    :      ^' ^}  v  =    3    C       1 { )3    5      E >~ 9    r Ph y{ H         b  eo,  B     J"  F{W  D      tt    -mb2v# 0fqN:v   ; 3 vv      P{  9#H J       X_/ w  M]o2  V   >0  x    xO_ d    m  
+   $            [  X8u  uF{_\  ).4    e )2  C  DC     8u    	    w   g s `      ' sW5jwn .:  P jjk     
+u   VZ Hg3  + I WM     ih .  \          P h"	+ BMu    :   eG5  I  V#     N  T#mf    >  N  .  jj     au{ 	:   w"  ;  [ Q m jk          g \_     6     U; aGU z    E/'\     X   f   D=   Y   YM      v     m  |   X m[62     mU UY   &4  c  Z    m    f   >x      c Vt -[wT" O  z e\   * T t  [          :  7   k   vU '  b-    ;    tt   c   
+  o l  uuh  e      H~l? \ k;    G ` k     J  U eG  u5u  <  Tj8 j    vb  jl Z H< Z    	-lgUU   r +      R ;  X     V    h     &l U       ,    Tn  :kP k  H     =i$ !    > :      m  3 >   P     h x  c'v     hh   n    k Vtq  sg     i"M5   f   w  n    n    y Z4 wc      =    {W    K Afag[ Z8 j  R   va  T     F  &4   'Q c+vq WQ_ =q 54 -    EGG   TF  ' B  p>l ^   U   G     k* 9      j[h ,lk v [O  "    Q  A c`  Fl     l 6 N ~  mm lg Z j8 3N              b       S M- b   M U       #       s   M    J[    [ T    -  l{z#Q 55 nT!       lc{  +7  s     w]   
+    1 a  'no  n 0 V B+  $  p<  I Wb  :bq N S | e u   L     RVXHQ    d:  PP   %:   [7P  F3  a b  -x     /@O F       +O< |w   {
+    p  r!PRR   v<  s AgP\V f: 3  $ 4 kQ   5F{;   /  u  Wb^z Y: 8     6:     /=  6    y1    y~4        J4     5  }5 xa   N`   `    9  Z#         z  94    K   ?oi'      a=  
+  z a  :  , )_16   w  U  1. k (	x   K w     W g;^ Kkv XX     l  {  {   u  t n sO> W lca  6  v   x               qy        v1  Uxm f<   4    ]   " Wo  ? x B  ky   3    _   Oaq	 rQV\V   ~  6 d_   R  u T   *   :Y^A!    j      W GG   OcGs/ {j    M   ?I p   ES ;  T  @ x   Q:  U[ @Kt!f  b x  '     ^   F+ Q   5V      [ja Z n[ 3       /*   5X  st  X    `>6  ,^~m    '   6  Nh  hK z|  6oA(     m  x      O _Z   | =  ? p       V.  D ;   vC% n    ^ ~ y      N+j  r[1  ^ ?    h   V   tg5 ~ q    \(tB     e QJ{    a      O=  v Io\  b1
+  5]   B  5x          b   x  ho @         | %   3O?E RK    S/    r   bKU;Zvl    M   e &   <  sx     :l    2 \    s    
+ i<   XQ T  L   _        Bs2 >        c  W  2  rg b     W  i     9  !nk\      xO  ;  k(t 0  G Aa   Jb  ]H  tj }   4      N 7  l #np           8W  2D  f {   [ dN     IK   B+    I   A    r  ?i )      4N   8 ( \4   w FM   G.     1S `  %8   @  E'   P s     B < L  b!     c  G.   f       "H n        Z eG   aCq y `  #apaq G>  p   v   3g | e8          b       0b   [ i Ga  %8r <   4   l|    tr	 <8  s    1z (  ?  '    2    \p   8b .8      Sn   ,,; 8  : '_x>f -      i Y      fM   +  y8l   < p 3g        # cO:        "YXp  L }8 ;  8  3   O`  E   # Y `   0  L      /  #       <    Y: < -  93 c   0   8  e  G.  ICQ0v.4.   O   2, {    
+SF a 1GCw    sq*eY   #O; A  s.   Y  s [   -    b  98z     w FT        S0id V :  &  '_     '?u   ~ N:r   5 K   S # E     +. O K8nK   3P vN 7  /?  ? cN8 Kg   % a    ^>a.>  /       G`    :z &    "      S   &     :   [ cN

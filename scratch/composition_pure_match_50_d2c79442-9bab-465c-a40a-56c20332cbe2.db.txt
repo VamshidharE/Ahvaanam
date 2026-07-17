@@ -1,0 +1,46 @@
+pt to search ALL conversation databases in `C:\Users\Admin\.gemini\antigravity\conversations\` for `SECTION_COMPONENTS`. Since previous sessions had large databases (up to 47MB), they likely contain the original untruncated records of the composition renderer!  
+2 !
+ 48x5kswo write_to_file   {"CodeContent":"const fs = require('fs');\nconst path = require('path');\n\nconst conversationsDir = 'C:\\\\Users\\\\Admin\\\\.gemini\\\\antigravity\\\\conversations';\nconst files = fs.readdirSync(conversationsDir);\n\nfunction scanFile(filePath) {\n  if (!fs.existsSync(filePath)) return;\n  if (!filePath.endsWith('.db') \u0026\u0026 !filePath.endsWith('.db-wal')) return;\n  console.log(`Scanning ${filePath} (${fs.statSync(filePath).size} bytes)...`);\n  const buf = fs.readFileSync(filePath);\n  \n  // Convert buffer to string replacing nulls with spaces\n  let content = '';\n  for (let i = 0; i \u003c buf.length; i++) {\n    const charCode = buf[i];\n    if (charCode === 0) {\n      content += ' ';\n    } else if (charCode \u003e= 32 \u0026\u0026 charCode \u003c= 126) {\n      content += String.fromCharCode(charCode);\n    } else if (charCode === 10 || charCode === 13 || charCode === 9) {\n      content += String.fromCharCode(charCode);\n    } else {\n      content += ' ';\n    }\n  }\n\n  const searchStr = 'SECTION_COMPONENTS';\n  let idx = 0;\n  let matches = 0;\n  const baseName = path.basename(filePath);\n  \n  while ((idx = content.indexOf(searchStr, idx)) !== -1) {       	                                                                                                                                       # m            8 	 
+               "  
+ hc6jrqlh  list_dir   {"DirectoryPath":"c:\\Users\\Admin\\Ahvaanam\\app\\api\\invitation\\[id]","toolAction":"List api/invitation/[id] folders","toolSummary":"Listing files in app/api/invitation/[id] directory"}:     
+    M2 $^  `   B>       Y 6 	 CM m H9  ]0l Z A=! !   ^ {0h0  =   b  D 3         (   F   F  [   7 4    j K +       &c o[o 1 Cg 	   m,  k  X  ( 3  T  ;  g$ i          ;   Y  s   ( :    ^      x   _         u    J tPI   \& . ~ _#  6  5    -  +`rG      x   Z   {  x(  3rM 
+0i     "  ;  T    (     x   U/R a"   \>N *e U  Y}f g  s@   7q   F | B  9 4 6A  @     s K=U}%} B ) K~ ^  3 ?J`    6
+~^        n%        $  B  U\ ^n,`  Y     n     f     sRQ J list_dir*DirectoryPath*
+toolAction* toolSummary2             :             B             X  b$bbea40d5-c694-40df-80e5-b322fdb88ebdj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    /  6
+                 
+                 
+                   2Listing files in app/api/invitation/[id] directory   List api/invitation/[id] folders                	  *  
+               "  
+ hc6jrqlh  list_dir   {"DirectoryPath":"c:\\Users\\Admin\\Ahvaanam\\app\\api\\invitation\\[id]","toolAction":"List api/invitation/[id] folders","toolSummary":"Listing files in app/api/invitation/[id] directory"}:     
+    M2 $^  `   B>       Y 6 	 CM m H9  ]0l Z A=! !   ^ {0h0  =   b  D 3         (   F   F  [   7 4    j K +       &c o[o 1 Cg 	   m,  k  X  ( 3  T  ;  g$ i          ;   Y  s   ( :    ^      x   _         u    J tPI   \& . ~ _#  6  5    -  +`rG      x   Z   {  x(  3rM 
+0i     "  ;  T    (     x   U/R a"   \>N *e U  Y}f g  s@   7q   F | B  9 4 6A  @     s K=U}%} B ) K~ ^  3 ?J`    6
+~^        n%        $  B  U\ ^n,`  Y     n     f     sRQ J list_dir*DirectoryPath*
+toolAction* toolSummary2             :             B             X  b$bbea40d5-c694-40df-80e5-b322fdb88ebdj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    /  6
+                 
+                 
+                   2Listing files in app/api/invitation/[id] directory   List api/invitation/[id] folders               z  
+;file:///c:/Users/Admin/Ahvaanam/app/api/invitation/%5Bid%5D 
+	analytics    
+ edit    
+ pay    
+ publish   
+ route.ts  %  
+ rsvp    
+ view   F l            j   
+               2             :             B             JO         (   0 B!
+	sessionID  -3750763034362895579HaP^Z WpZSatS9CrrojuMPreaJ4AwX  b$bbea40d5-c694-40df-80e5-b322fdb88ebdj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+               2             :             B             JO         (   0 B!
+	sessionID  -3750763034362895579HaP^Z WpZSatS9CrrojuMPreaJ4AwX  b$bbea40d5-c694-40df-80e5-b322fdb88ebdj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+eI will list the folders inside `app/api/invitation/[id]/` to identify the full operations API schema.2(bot-122ae839-f6b2-466d-b68f-ebe80727d1c6:  
+ hc6jrqlh  list_dir   {"DirectoryPath":"c:\\Users\\Admin\\Ahvaanam\\app\\api\\invitation\\[id]","toolAction":"List api/invitation/[id] folders","toolSummary":"Listing files in app/api/invitation/[id] directory"}:     
+    M2 $^  `   B>       Y 6 	 CM m H9  ]0l Z A=! !   ^ {0h0  =   b  D 3         (   F   F  [   7 4    j K +       &c o[o 1 Cg 	   m,  k  X  ( 3  T  ;  g$ i          ;   Y  s   ( :    ^      x   _         u    J tPI   \& . ~ _#  6  5    -  +`rG      x   Z   {  x(  3rM 
+0i     "  ;  T    (     x   U/R a"   \>N *e U  Y}f g  s@   7q   F | B  9 4 6A  @     s K=U}%} B ) K~ ^  3 ?J`    6
+~^        n%        $  B  U\ ^n,`  Y     n     f     sRQ J list_dirBeI will list the folders inside `app/api/invitation/[id]/` to identify the full operations API schema.`      3  3                                                                                                                                                                                                                                                                                                                                                                                                                         

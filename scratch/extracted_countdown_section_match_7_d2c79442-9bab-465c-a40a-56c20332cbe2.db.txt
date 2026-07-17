@@ -1,0 +1,114 @@
+use client\";\n\nimport React, { useEffect, useState } from \"react\";\n\ninterface CountdownSectionProps {\n  bindings: {\n    title?: string;\n    targetDate?: string;\n    postWeddingMessage?: string;\n  };\n}\n\nexport default function CountdownSection({ bindings }: CountdownSectionProps) {\n  const { \n    title = \"Party Countdown\", \n    targetDate = \"2026-12-14T19:00:00\", \n    postWeddingMessage = \"The Celebration has begun!\" \n  } = bindings;\n\n  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });\n  const [isPassed, setIsPassed] = useState(false);\n\n  useEffect(() =\u003e {\n    if (!targetDate) return;\n    const targetTime = new Date(targetDate).getTime();\n\n    const updateCountdown = () =\u003e {\n      const now = new Date().getTime();\n      const difference = targetTime - now;\n      if (difference \u003c= 0) {\n        setIsPassed(true);\n      } else {\n        setIsPassed(false);\n        setTimeLeft({\n          days: Math.floor(difference / (1000 * 60 * 60 * 24)),\n          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),\n          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),\n          seconds: Math.floor((difference % (1000 * 60)) / 1000),\n        });\n      }\n    };\n\n    updateCountdown();\n    const interval = setInterval(updateCountdown, 1000);\n    return () =\u003e clearInterval(interval);\n  }, [targetDate]);\n\n  return (\n    \u003csection className=\"py-20 px-6 bg-purple-950/10 border-b border-white/5 text-center select-none\"\u003e\n      \u003cdiv className=\"max-w-4xl mx-auto space-y-10\"\u003e\n        \u003cdiv className=\"space-y-2\"\u003e\n          \u003ch3 className=\"text-xs uppercase tracking-[3px] font-bold text-purple-400\"\u003e{title}\u003c/h3\u003e\n        \u003c/div\u003e\n        {isPassed ? (\n          \u003cp className=\"text-amber-400 text-lg uppercase tracking-[1.5px] font-bold\"\u003e{postWeddingMessage}\u003c/p\u003e\n        ) : (\n          \u003cdiv className=\"grid grid-cols-4 gap-4 max-w-md mx-auto\"\u003e\n            {Object.entries(timeLeft).map(([label, value]) =\u003e (\n              \u003cdiv key={label} className=\"bg-white/[0.03] border border-white/5 rounded-2xl py-4 flex flex-col justify-center\"\u003e\n                \u003cspan className=\"tex   B            n   
+               2           .:             B             JQ         (  	0 B!
+	sessionID  -3750763034362895579H  P  Z FylSapyjG5yBqfkPuMyAoQ8X  b$bc3033ce-468a-4103-a22f-54c2f03f835ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+               .
+                                    *  
+               2           .:             B             JQ         (  	0 B!
+	sessionID  -3750763034362895579H  P  Z FylSapyjG5yBqfkPuMyAoQ                     let code = '';   2
+.            if (tc.name === 'write_to_file') {   -
+)              code = tc.args.CodeContent;   @
+<            } else if (tc.name === 'replace_file_content') {   4
+0              code = tc.args.ReplacementContent;    
+            }    
+                 
+             if (code) {   E
+A              const fileBase = path.basename(tc.args.TargetFile);   h
+d              const outPath = `scratch/restored_composition_${fileBase}_step_${obj.step_index}.txt`;   2
+.              fs.writeFileSync(outPath, code);   Z
+V              console.log(`  Saved ${fileBase} of size ${code.length} to ${outPath}`);   
+
+          `
+\      // Look for mentions of TargetFile: components/composition/ or tool calls targeting it     
+        const hasComposition = JSON.stringify(obj).toLowerCase().includes('components/composition') || JSON.stringify(obj).toLowerCase().includes('components\\composition');   
+
+           
+       if (hasComposition) {    
+         matchCount++;   u
+q        console.log(`Match ${matchCount}: step_index=${obj.step_index}, source=${obj.source}, type=${obj.type}`);   ,
+(        // Let's print out what is there   !
+         if (obj.tool_calls) {   0
+,          for (const tc of obj.tool_calls) {   7
+3            console.log(`  Tool call: ${tc.name}`);    
+             if (tc.args) {   G
+C              console.log(`    TargetFile: ${tc.args.TargetFile}`);   O
+K              let code = tc.args.CodeContent || tc.args.ReplacementContent;    
+               if (code) {   C
+?                console.log(`    Code length: ${code.length}`);   G
+C                const fileBase = path.basename(tc.args.TargetFile);   r
+n                fs.writeFileSync(`scratch/restored_composition_${fileBase}_step_${obj.step_index}.txt`, code);    
+               }    
+            }    
+           }   
+	        }   G
+C        if (obj.content && obj.content.includes('write_to_file')) {   B
+>          console.log("  Contains write_to_file in content!");   
+	        }    
+       }    
+     } catch (e) {}    
+   }   8
+4  console.log(`Done. Found ${matchCount} matches.`);    
+ } catch (err) {   #
+   console.error('Error:', err);    
+ }      B>file:///c:/Users/Admin/Ahvaanam/scratch/extract_composition.jsR const fs = require('fs');
+const path = require('path');
+
+const logPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\.system_generated\\logs\\transcript_full.jsonl';
+
+try {
+  const content = fs.readFileSync(logPath, 'utf8');
+  const lines = content.split('\n').filter(l => l.trim());
+  console.log(`Read ${lines.length} lines.`);
+
+  let matchCount = 0;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    try {
+      const obj = JSON.parse(line);
+      if (obj.tool_calls) {
+        for (const tc of obj.tool_calls) {
+          const isWrite = tc.name === 'write_to_file' || tc.name === 'replace_file_content';
+          const targetsComposition = tc.args && tc.args.TargetFile && tc.args.TargetFile.toLowerCase().includes('components/composition');
+          
+          if (isWrite && targetsComposition) {
+            matchCount++;
+            console.log(`Match ${matchCount}: step_index=${obj.step_index}, tool=${tc.name}, TargetFile=${tc.args.TargetFile}`);
+            
+            let code = '';
+            if (tc.name === 'write_to_file') {
+              code = tc.args.CodeContent;
+            } else if (tc.name === 'replace_file_content') {
+              code = tc.args.ReplacementContent;
+            }
+            
+            if (code) {
+              const fileBase = path.basename(tc.args.TargetFile);
+              const outPath = `scratch/restored_composition_${fileBase}_step_${obj.step_index}.txt`;
+              fs.writeFileSync(outPath, code);
+              console.log(`  Saved ${fileBase} of size ${code.length} to ${outPath}`);
+            }
+          }
+        }
+      }
+    } catch (e) {}
+  }
+  console.log(`Done. Found ${matchCount} matches.`);
+} catch (err) {
+  console.error('Error:', err);
+}
+    5Search transcript.jsonl for composition files writes.    8X  b$bc3033ce-468a-4103-a22f-54c2f03f835ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+               .
+                                   :
+  I will create the Countdown layout component file at `components/sections/countdown/index.tsx`. This encapsulates the Muhurtham countdown calculation and rendering logic.   **Examining Countdown Code**
+
+I've been looking into the countdown implementation, specifically `components/sections/countdown/index.tsx`. I see the `timeLeft` state is managed using `useState`, with days, hours, minutes, and seconds. It's also worth noting the use of the countdown code in `layout.tsx`.
+
+
+2(bot-b6c9b1f5-89f8-4181-be76-746718808b50: 5
+ npz6a2ma write_to_file   {"CodeContent":"\"use client\";\n\nimport React, { useEffect, useState } from \"react\";\n\ninterface CountdownSectionProps {\n  bindings: {\n    title?: string;\n    targetDate?: string;\n    postWeddingMessage?: string;\n  };\n}\n\nexport default function CountdownSection({ bindings }: CountdownSectionProps) {\n  const { \n    title = \"Party Countdown\", \n    targetDate = \"2026-12-14T19:00:00\", \n    postWeddingMessage = \"The Celebration has begun!\" \n  } = bindings;\n\n  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });\n  const [isPassed, setIsPassed] = useState(false);\n\n  useEffect(() =\u003e {\n    if (!targetDate) return;\n    const targetTime = new Date(targetDate).getTime();\n\n    const updateCountdown = () =\u003e {\n      const now = new Date().getTime();\n      const difference = targetTime - now;\n      if (difference \u003c= 0) {\n        setIsPassed(true);\n      } else {\n        setIsPassed(false);\n        setTimeLeft({\n          days: Math.floor(difference / (1000 * 60 * 60 * 24)),\n          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),\n          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),\n          seconds: Math.floor((difference % (1000 * 60)) / 1000),\n        });\n      }\n    };\n\n    updateCountdown();\n    const interval = setInterval(updateCountdown, 1000);\n    return () =\u003e clearInterval(interval);\n  }, [targetDate]);\n\n  return (\n    \u003csection className=\"py-20 px-6 bg-purple-950/10 border-b border-white/5 text-center select-none\"\u003e\n      \u003cdiv className=\"max-w-4xl mx-auto space-y-10\"\u003e\n        \u003cdiv className=\"space-y-2\"\u003e\n          \u003ch3 className=\"text-xs uppercase tracking-[3px] font-bold text-purple-400\"\u003e{title}\u003c/h3\u003e\n        \u003c/div\u003e\n        {isPassed ? (\n          \u003cp className=\"text-amber-400 text-lg uppercase tracking-[1.5px] font-bold\"\u003e{postWeddingMessage}\u003c/p\u003e\n        ) : (\n          \u003cdiv className=\"grid grid-cols-4 gap-4 max-w-md mx-auto\"\u003e\n            {Object.entries(timeLeft).map(([label, value]) =\u003e (\n              \u003cdiv key={label} className=\"bg-white/[0.03] border border-white/5 rounded-2xl py-4 flex flex-col justify-center\"\u003e\n                \u003cspan className=\"text-2xl md:text-3xl font-extrabold text-amber-400\"\u003e{value}\u003c/span\u003e\n                \u003cspan className=\"text-[9px] uppercase tracking-[1px] text-white/40 font-bold mt-1\"\u003e{label}\u003c/span\u003e\n              \u003c/div\u003e\n            ))}\n          \u003c/div\u003e\n        )}\n      \u003c/div\u003e\n    \u003c/section\u003e\n  );\n}\n","Description":"Create countdown visual layout index.tsx","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\countdown\\index.tsx","toolAction":"Create countdown layout","toolSummary":"Creating React countdown layout component in components/sections/countdown/index.tsx"}:     
+    M2 7  f    <  k       BT .    Y  D  |  (  m  +   B0 V d    "   : n     7x        Zd
+  -^\ F   S   t      t , "  }A WE7 QS X   eu    =z    P'    _  B%Yi 2Z    ^ PI O ;b  yT{ a    5 P  [	 T  m JS|Tj  5`   jy W   O  1dw  ?  $S0/  } F      f   vu   g5     HEf   z I d ]_    *  a3        _        !  ,   e  I     F7` +  WX     |    P 1  g j  ;  @ "  &t [Q 27 -c  ["   '  yQh          \k X2  C   '  0> rW R %     
+   0 e LY O    '     > p N J~   ) Z% Rb     t  Sq    _  s   ~     \<   @Bh     m_ RP.8IW          ]o 6nm1l+{   x  +  N I|     B3  @7   M    t!E 8 :O         ,    bf 2! { p t.    'Drp1:   {p   3  $Z y U(  L(  Q     Vz hv  i o    /          Z P   C   *   z j}  # s       /  7 4[' & *Q   Oq    G 1 r    rj 4 x  #   a  	R     #  L b   Sud~e       z  k  J  4   INv  ~|U    $  8    1     ]        vO  5:  b= O  g      S    +a  8 R0}  k      ?   +     X = 8      	       +  !     W     )    a       v   9  NO x !t  Nu  ]      1 l e [ ij S   yj  L7>] LU G< O q     D  v C O  h`p    !    # +Y J  2 q    ?v s   ZJ  7:\ 
+  Xd
+ L      zj  q  T    ~d!        oD8P H  LzAj \CDL/ J  X  q  .  Jy 6    S       Dl  q3R K    $    DnP mG 2xRq   o.W  I;p0    8 c    $     [   L[      ]      X{ 6   c{  w      [ vT  Cb}  }  Y J 9c  {  B  -7 04  '8

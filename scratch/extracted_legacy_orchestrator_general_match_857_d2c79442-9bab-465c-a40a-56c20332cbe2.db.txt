@@ -1,0 +1,113 @@
+ration shells. All business logic, countdown calculations, date parsing, gallery lightboxes, and music control codes were completely removed from individual layouts and centralized inside the shared [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx).\n\n| Template Layout | Remaining Business Logic | Remaining Duplicated Logic | Remaining Legacy Code | Status |\n| :--- | :--- | :--- | :--- | :--- |\n| **`marigold`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`peacock`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`heritage`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`moonlight`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`grand-mandap`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`modern-birthday`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`birthday-premium`**| None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`royal-temple`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`floral-garden`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`south-indian`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`palace-luxury`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`lotus-serenity`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`housewarming-premium`**| None | None | None | **100% Pure Composition Wrapper** |\n\n---\n\n## 2. Centralized Business Logic Summary\n* **Countdown Timer Calculations**: Moved entirely inside the reusable [CountdownSection](file:///c:/Users/Admin/Ahvaanam/components/sections/countdown/index.tsx).\n* **Date Parsing**: Moved entirely inside [CountdownSection](file:///c:/Users/Admin/Ahvaanam/components/sections/countdown/index.tsx).\n* **Gallery \u0026 Lightbox States**: Managed inside [GallerySection](file:///c:/Users/Admin/Ahvaanam/components/sections/gallery/index.tsx).\n* **Music Audio Elements \u0026 Toggles**: Managed inside [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx).\n* **RSVP Contacts**: Managed inside [RSVPSection](file:///c:/Users/Admin/Ahvaanam/components/sections/rsvp/index.tsx).\n* **Map Embed URL Resolution**: Managed inside [VenueSection](file:///c:/Users/Admin/Ahvaanam/components/sections/venue/index.tsx).\n","Description":"Create template_business_logic_audit.md business logic removal audit report.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\template_business_logic_audit.md","toolAction":"Create t   2emplate_business_logic_audit.md","toolSummary":"Creating business logic audit and refactoring status report in artifact directory"}:     
+    M2     oYgF S  >\e   N        Tw] /      j    :2 U         o* Y  fUI      f  ; ]      1 ] 6 \q" &v    ?  %:     9 !(:BHU         9  'p p  B  m 2   }m      J a  fZ    0Q vx]Cm  "   3 >k7  $  `)J'       + z     % H  f qa .	   bT
+ p  EX           4{  [  )G         l  
+f  ^  D TD  \ z O| 4   8  i >          4     a  	  . M %        <%  S    ]    iw ~D      4H   nE9 3F     E   ,     = %  C   Sgk  x    RW `011    ~x=rt_ 1 j         "} 5        [  }f *   r{  [ V i  c(u   9  $  c      S    _ ,p 1EW     % u\   .  ee8  L    Y"  Oh *   E /   2Q   |a  *  ~ zJwrite_to_file* ArtifactMetadata* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2           J:           JB           fX  b$0ef539b2-c137-4bfb-9f0e-1c27ca854c12j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                I      3
+               J
+               K
+               f  QCreating business logic audit and refactoring status report in artifact directory  'Create template_business_logic_audit.md             JR 6
+     
+  # Template Business Logic Audit Report
+
+This report documents the architectural status of the template `Layout.tsx` components following the **Architecture Cleanup Sprint**.
+
+---
+
+## 1. Audit Status by Template
+
+All 13 template layouts were audited and refactored into thin orchestration shells. All business logic, countdown calculations, date parsing, gallery lightboxes, and music control codes were completely removed from individual layouts and centralized inside the shared [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx).
+
+| Template Layout | Remaining Business Logic | Remaining Duplicated Logic | Remaining Legacy Code | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| **`marigold`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |
+| **`peacock`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |
+| **`heritage`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |
+| **`moonlight`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |
+| **`grand-mandap`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |
+| **`modern-birthday`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |
+| **`birthday-premium`**| None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |
+| **`royal-temple`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |
+| **`floral-garden`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |
+| **`south-indian`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |
+| **`palace-luxury`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |
+| **`lotus-serenity`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |
+| **`housewarming-premium`**| None | None | None | **100% Pure Composition Wrapper** |
+
+---
+
+## 2. Centralized Business Logic Summary
+* **Countdown Timer Calculations**: Moved entirely inside the reusable [CountdownSection](file:///c:/Users/Admin/Ahvaanam/components/sections/countdown/index.tsx).
+* **Date Parsing**: Moved entirely inside [CountdownSection](file:///c:/Users/Admin/Ahvaanam/components/sections/countdown/index.tsx).
+* **Gallery & Lightbox States**: Managed inside [GallerySection](file:///c:/Users/Admin/Ahvaanam/components/sections/gallery/index.tsx).
+* **Music Audio Elements & Toggles**: Managed inside [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx    ).
+* **RSVP Contacts**: Managed inside [RSVPSection](file:///c:/Users/Admin/Ahvaanam/components/sections/rsvp/index.tsx).
+* **Map Embed URL Resolution**: Managed inside [VenueSection](file:///c:/Users/Admin/Ahvaanam/components/sections/venue/index.tsx).
+ x*vfile:///c:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/template_business_logic_audit.md     
+         *
+&# Template Business Logic Audit Report         
+  This report documents the architectural status of the template `Layout.tsx` components following the **Architecture Cleanup Sprint**.        
+ ---       "
+ ## 1. Audit Status by Template         
+  All 13 template layouts were audited and refactored into thin orchestration shells. All business logic, countdown calculations, date parsing, gallery lightboxes, and music control codes were completely removed from individual layouts and centralized inside the shared [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx).       p
+l| Template Layout | Remaining Business Logic | Remaining Duplicated Logic | Remaining Legacy Code | Status |   (
+$| :--- | :--- | :--- | :--- | :--- |   x
+t| **`marigold`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |   w
+s| **`peacock`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |   x
+t| **`heritage`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |   y
+u| **`moonlight`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |   |
+x| **`grand-mandap`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |    
+{| **`modern-birthday`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |    
+{| **`birthday-premium`**| None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |   |
+x| **`royal-temple`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |   }
+y| **`floral-garden`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |   |
+x| **`south-indian`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |   }
+y| **`palace-luxury`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |   ~
+z| **`lotus-serenity`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |   Z
+V| **`housewarming-premium`**| None | None | None | **100% Pure Composition Wrapper** |        
+ ---       ,
+(## 2. Centralized Business Logic Summary     
+  * **Countdown Timer Calculations**: Moved entirely inside the reusable [CountdownSection](file:///c:/Users/Admin/Ahvaanam/components/sections/countdown/index.tsx).     
+  * **Date Parsing**: Moved entirely inside [CountdownSection](file:///c:/Users/Admin/Ahvaanam/components/sections/countdown/index.tsx).     
+  * **Gallery & Lightbox States**: Managed inside [GallerySection](file:///c:/Users/Admin/Ahvaanam/components/sections/gallery/index.tsx).     
+  * **Music Audio Elements & Toggles**: Managed inside [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx).   z
+v* **RSVP Contacts**: Managed inside [RSVPSection](file:///c:/Users/Admin/Ahvaanam/components/sections/rsvp/index.tsx).     
+  * **Map Embed URL Resolution**: Managed inside [VenueSection](file:///c:/Users/Admin/Ahvaanam/components/sections/venue/index.tsx).      Bvfile:///c:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/template_business_logic_audit.mdX             Business logic audit report detailing the removal of countdown calculations, date parsing, lightboxes, and music controls from all template layouts."           I8   LCreate template_business_logic_audit.md business logic removal audit report.    ntdown calculations, date parsing, lightboxes, and music controls\n- `[x]` Refactor all 12 template layouts into thin composition orchestration shells\n- `[x]` Write template business logic audit report at `template_business_logic_audit.md`\n- `[x]` Run TypeScript and build compile checks\n","Description":"Update task checklist to complete for Architecture Cleanup Sprint","Overwrite":true,"TargetFile":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\task.md","toolAction":"Update task.md in artifact folder","toolSummary":"Checking off tasks in task.md within artifact directory"}:     
+    M2    F] f   B  A  @  K~  Q1d-   t   WA    < v, U     9  $" a  E D  ]  w  ` ,  ,z18  U.  0       %?Q      ce n  } x   : ;         0	  7  p i e5 I   - i \A w
+ 1)    u o9r@ $h]    &   MO 8R   @      >2N       )   Du gy  %8o V| o   j     ;8Z  Yz I    O  +W  %B Jwrite_to_file* ArtifactMetadata* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$0ef539b2-c137-4bfb-9f0e-1c27ca854c12j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   7Checking off tasks in task.md within artifact directory  !Update task.md in artifact folder               R  
+     
+  # Architecture Cleanup Sprint Tasks
+
+- `[x]` Audit every template Layout.tsx component
+- `[x]` Build shared LegacyOrchestrator component at `components/shared/LegacyOrchestrator.tsx`
+- `[x]` Centralize countdown calculations, date parsing, lightboxes, and music controls
+- `[x]` Refactor all 12 template layouts into thin composition orchestration shells
+- `[x]` Write template business logic audit report at `template_business_logic_audit.md`
+- `[x]` Run TypeScript and build compile checks
+ _*]file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/task.md     
+    	    	 4
+0# Phase 10: Professional Invitation Editor Tasks   '
+## Architecture Cleanup Sprint Tasks       H
+D- `[x]` Redesign admin editor workspace in `app/admin/[id]/page.tsx`   t
+p- `[x]` Build Figma-like Left Sidebar tabs (Layers list, Media Assets Library, Themes selector, Version History)   v
+r- `[x]` Set up Center Stage Live Preview (responsive scaling, zoom control, Figma Column grids, Safe Area notches)     
+  - `[x]` Build Webflow-like Right Sidebar Properties Inspector (Zod-validated context-aware fields, Typography font families, Spacing padding inputs, Motion presets)   w
+s- `[x]` Implement Media Library Dialog modal (Optimizer compression details, cropping controls, AI Enhance trigger)   5
+1- `[x]` Audit every template Layout.tsx component   c
+_- `[x]` Build shared LegacyOrchestrator component at `components/shared/LegacyOrchestrator.tsx`   [
+W- `[x]` Centralize countdown calculations, date parsing, lightboxes, and music controls   W
+S- `[x]` Refactor all 12 template layouts into thin composition orchestration shells   \
+X- `[x]` Write template business logic audit report at `template_business_logic_audit.md`   3
+/- `[x]` Run TypeScript and build compile checks      B]file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/task.mdR  # Phase 10: Professional Invitation Editor Tasks
+
+- `[x]` Redesign admin editor workspace in `app/admin/[id]/page.tsx`
+- `[x]` Build Figma-like Left Sidebar tabs (Layers list, Media Assets Library, Themes selector, Version History)
+- `[x]` Set up Center Stage Live Preview (responsive scaling, zoom control, Figma Column grids, Safe Area notches)
+- `[x]` Build Webflo

@@ -1,0 +1,121 @@
+use client";
+120: 2: 
+121: 3: import { useEffect, useState } from "react";
+122: 4: import { ToggleLeft, ToggleRight } from "lucide-react";
+123: 5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+124: 6: import { getWeddingComposition } from "@/lib/composition/templates";
+125: 7: import { useInvitationData } from "../../context/InvitationDataContext";
+126: 8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+127: 9: 
+128: 10: // --- TEMPLATE SPECIFIC PARTICLES ---
+129: 11: import React, { useRef }
+The above content shows the entire, complete file contents of the requested file.
+   : x9x7hfqj      H
+(bot-20ed6f9c-4e60-4878-9064-04aa7645aff7     I will write a script to filter the SQLite database match dumps by excluding database log terms like `Preview of    'match`, `Found match`, `CommandLine`, `run_command`, etc. This will filter out the log messages and reveal the actual original source code.   2 ?
+ hh9yn844 write_to_file   {"CodeContent":"const fs = require('fs');\nconst path = require('path');\n\nconst files = fs.readdirSync('scratch');\nlet foundCount = 0;\n\nfor (const file of files) {\n  if (file.startsWith('composition_pure_match_') \u0026\u0026 file.endsWith('.txt')) {\n    const filePath = path.join('scratch', file);\n    const content = fs.readFileSync(filePath, 'utf8');\n    \n    // Core requirements of the CompositionRenderer code\n    const hasExport = content.includes('export default function CompositionRenderer');\n    const hasRegistry = content.includes('SECTION_COMPONENTS');\n    const hasResolve = content.includes('resolveBindingValue');\n    \n    if (hasExport \u0026\u0026 hasRegistry \u0026\u0026 hasResolve) {\n      // Exclude logs/command-outputs\n      const isLogFile = content.includes('Preview of match') || \n                         content.includes('Found match') || \n                         content.includes('run_command') || \n                         content.includes('CommandLine') ||\n                         content.includes('task-') ||\n                         content.includes('step_index') ||\n                         content.includes('\\\"tool_calls\\\"');\n                         \n      if (!isLogFile) {\n        foundCount++;\n        console.log(`[${foundCount}] Found possible REAL code file candidate: ${file} (size: ${content.length})`);\n        \n        let startIdx = content.indexOf('\"use client\";');\n        if (startIdx === -1) startIdx = content.indexOf('use client');\n        if (startIdx !== -1) {\n          let code = content.substring(startIdx);\n          \n          // Try to clean up\n          const endMarkers = ['\",\"Description\"', '\",\\n      \"Description\"', '\", \"Description\"', '\",\"description\"'];\n          for (const marker of endMarkers) {\n            const markerIdx = code.indexOf(marker);\n            if (markerIdx !== -1) {\n              code = code.substring(0, markerIdx);\n            }\n          }\n          \n          // Unescape backslashes and quotes\n          let parsed = code\n            .replace(/\\\\n/g, '\\n')\n            .replace(/\\\\\"/g, '\"')\n            .replace(/\\\\\\\\/g, '\\\\');\n            \n          const lastBrace = parsed.lastIndexOf('}');\n          if (lastBrace !== -1) {\n            parsed = parsed.substring(0, lastBrace + 1);\n          }\n          \n          console.log(\"  Parsed Code length:\", parsed.length);\n          console.log(\"  Code Ends with: \", parsed.substring(parsed.length - 100));\n          \n          // Save it!\n          fs.writeFileSync(`scratch/real_renderer_candidate_${foundCount}.tsx`, parsed);\n        }\n      }\n    }\n  }\n}\nconsole.log('Search complete.');\n","Description":"Extract real CompositionRenderer code by excluding log headers.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\scratch\\extract_real_file.js","toolAction":"Write extract_real_file script","toolSummary":"Creating a script to extract the actual CompositionRenderer code from candidate files"}: '  '
+ '  M2 j   5 b t  8      )v1   |   ]     CN# ' G+ t rG   	_  dN      sdH  6  <    C  YE   H   O  V   Y   Xq         >j v  H ,  @ h  ?X  )    @j &~ -    "  P  !   u$1  k  
+   } ?Hp    :      ' :C     \ f  WA   R    j- !    A V   (   * Q    _ 8      %  3&    0      a  @ pl G *   :  k?^y  ~G ]  &   1H R    K   [o    1  zt b  nu 2 =/  ny  CY  1   ^Q  oJ          z   y ZGQ      l;     :    { C   ~   +   ji    R      ky     $ 3N p      s +/  *      #  Bp^ 4%  d      s ; w =}  !#     CR7    ,       ]  R%X     4  Q g_ P    6      ZM    ? $ !/   w            h    OB  b        y #\ID/  
+ K    A )R@  qMr$ v 1`  p     E u N j = s 0 F/Y `    .    8     f $y y /)    N    ?=E%f g   S@       6 6  5  Ap       #     k B >  D      N    V  {      vi"      / '  =	  V         Q  v&  $  A   [ 6K     :   
+   V t  S  H !  @>  k iG8   Kf Q   I f    v  X ~     E     p of Floral Garden template layout in floral-garden/Layout.tsx  'View floral-garden Layout.tsx top lines               r  
+Mfile:///c:/Users/Admin/Ahvaanam/components/templates/floral-garden/Layout.tsx c"  "use client";
+
+import { useEffect, useState, useRef } from "react";
+import { ToggleLeft, ToggleRight } from "lucide-react";
+import CompositionRenderer from "@/components/composition/CompositionRenderer";
+import { getWeddingComposition, getBirthdayComposition } from "@/lib/composition/templates";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInvitationData } from "../../context/InvitationDataContext";
+import { Calendar, MapPin, Clock, Phone, MessageCircle, Volume2, VolumeX, Grid, ArrowLeft, HelpCircle, Shirt } from "lucide-react";
+import Image from "next/image";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import DeitySymbol from "../../shared/DeitySymbol";
+import GallerySlider from "../../shared/GallerySlider";
+
+// --- FLOWING PETALS PARTICLE EFFECT (CANVAS SENSITIVE) ---
+const FloralPetalParticles = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const particles = Array.from({ length: 30 }).map(() => ({
+      x: Math.random() * width,
+      y: Math.random() * -height,
+      r: Math.random() * 6 + 4,
+      d: Math.random() * 2 + 1,
+      vy: Math.random() * 1.2 + 0.8,
+      vx: Math.random() * 0.8 - 0.2,
+      rotation: Math.random() * 360,
+      rotationSpeed: Math.random() * 1.5 - 0.75,
+      opacity: Math.random() * 0.4 + 0.3,
+    }));
+
+    const resize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener("resize", resize);
+
+    let animationFrameId: number;
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach((p) => {
+        p.y += p.vy;
+        p.x += p.vx;
+        p.rotation += p.rotationSpeed;
+
+        if (p.y > height + 10) {
+          p.y = -20;
+          p.x = Math.random() * width;
+        }
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.beginPath();
+        
+        ctx.moveTo(0, -p.r);
+        ctx.bezierCurveTo(p.r, -p.r, p.r * 1.5, p.r / 2, 0, p.r * 1.5);
+        ctx.bezierCurveTo(-p.r * 1.5, p.r / 2, -p.r, -p.r, 0, -p.r);
+        
+        ctx.fillStyle = `rgba(244, 63, 94, ${p.opacity})`;
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = "#f43f5e";
+        ctx.fill();
+        ctx.restore();
+      });
+      animationFrameId = requestAnimationFrame(draw);
+    };
+    draw();
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0" />;
+};
+
+export default function FloralGardenLayout({ onBackToHub }: { onBackToHub: () => void }) {
+  const { invitationData } = useInvitationData();
+  const getAlignClass = (pos?: string) => {
+    if (pos === "top-left") return "flex flex-col items-start text-left w-full md:items-start";
+    if (pos === "top-right") return "flex flex-col items-end text-right w-full md:items-end";
+    return "flex flex-col items-center text-center w-full justify-center";
+  };
+  const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
+  const [useCompositionRenderer, setUseCompositionRenderer] = useState(false);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setUseCompositionRenderer(localStorage.getItem("useCompositionRenderer") === "true" ||X  `          #ed-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full\"\n          /\u003e\n        \u003c/div\u003e\n        \n        {/* Groom Portrait Image */}\n        \u003cdiv className=\"flex flex-col gap-1.5 w-full\"\u003e\n          \u003clabel className=\"text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]\"\u003eGroom's Portrait Image\u003c/label\u003e\n          \u003cdiv className=\"flex flex-col sm:flex-row gap-2 w-full\"\u003e\n            \u003cinput\n              type=\"text\"\n              value={invitationData.couple.groom.image}\n              onChange={(e) =\u003e updateInvitationData((prev: any) =\u003e ({\n                ...prev,\n                couple: {\n                  ...prev.couple,\n                  groom: { ...prev.couple.groom, image: e.target.value }\n                }\n              }))}\n              className=\"bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] flex-1 w-full\"\n            /\u003e\n            \u003cFileUploader\n              onUploadSuccess={(url) =\u003e updateInvitationData((prev: any) =\u003e ({\n                ...prev,\n                couple: {\n                  ...prev.couple,\n                  groom: { ...prev.couple.groom, image: url }\n                }\n              }))}\n              className=\"w-full sm:w-auto\"\n            /\u003e\n          \u003c/div\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n\n      {/* Bride Info */}\n      \u003cdiv className=\"card-minimal p-4 md:p-5 space-y-4\"\u003e\n        \u003ch3 className=\"text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/50 border-b border-zinc-100 pb-2\"\u003eThe Bride\u003c/h3\u003e\n        \u003cdiv className=\"flex flex-col gap-1 w-full\"\u003e\n          \u003clabel className=\"text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]\"\u003eBride's Name\u003c/label\u003e\n          \u003cinput\n            type=\"text\"\n            value={invitationData.couple.bride.name}\n            onChange={(e) =\u003e updateInvitationData((prev: any) =\u003e ({\n              ...prev,\n              couple: {\n                ...prev.couple,\n                bride: { ...prev.couple.bride, name: e.target.value }\n              }\n            }))}\n            className=\"bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full\"\n          /\u003e\n        \u003c/div\u003e\n        \u003cdiv className=\"flex flex-col gap-1 w-full\"\u003e\n          \u003clabel className=\"text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]\"\u003eBride's Parents\u003c/label\u003e\n          \u003cinput\n            type=\"text\"\n            value={invitationData.couple.bride.parents}\n            onChange={(e) =\u003e updateInvitationData((prev: any) =\u003e ({\n              ...prev,\n              couple: {\n                ...prev.couple,\n                bride: { ...prev.couple.bride, parents: e.target.value }\n              }\n            }))}\n            className=\"bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full\"\n          /\u003e\n        \u003c/div\u003e\n        \n        {/* Bride Portrait Image */}\n        \u003cdiv className=\"flex flex-col gap-1.5 w-full\"\u003e\n          \u003clabel className=\"text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]\"\u003eBride's Portrait Image\u003c/label\u003e\n          \u003cdiv className=\"flex flex-col sm:flex-row gap-2 w-full\"\u003e\n            \u003cinput\n              type=\"text\"\n              value={invitationData.couple.bride.image}\n              onChange={(e) =\u003e updateInvitationData((prev: any) =\u003e ({\n                ...prev,\n                couple: {\n                  ...prev.couple,\n                  bride: { ...prev.couple.bride, image: e.target.value }\n                }\n              }))}\n              className=\"bg-[#FAF9F6] border border   $-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] flex-1 w-full\"\n            /\u003e\n            \u003cFileUploader\n              onUploadSuccess={(url) =\u003e updateInvitationData((prev: any) =\u003e ({\n                ...prev,\n                couple: {\n                  ...prev.couple,\n                  bride: { ...prev.couple.bride, image: url }\n                }\n              }))}\n              className=\"w-full sm:w-auto\"\n            /\u003e\n          \u003c/div\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n    \u003c/div\u003e\n  );\n}\n","Description":"Remove hardcoded inputs from CoupleSettings.tsx and render SectionInspector","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\app\\admin\\[id]\\components\\CoupleSettings.tsx","toolAction":"Refactor CoupleSettings.tsx","toolSummary":"Removing hardcoded Hero settings fields and integrating SectionInspector in CoupleSettings"}:     
+    M2 '   A  ( 78  8F  i=6 )u  4    U } ; .   |   !   Aw   5  J    Q$   V    I '  ^  Y! Z   ) " -   d %,  g hK  ) r  mP   ^  H  US	 Z\a p a\  8  3 	# M1F@    ? [x&a     s I  " l     g=^ a\~     [ |G   Vt    u   Pe`a 9( <    7  q JxjQGu   D=   b    0 T _c  v      &  "  	 R E    [      ]  (W      |7 S     kh L ze &         	 b5=   Q     q=     
+ZFPv B =   }6 }  f   ^ #=  d' e       3h     x  T   I G ~ |^ 6_V $  d  }P h    0 {u fn3 )   M    ;         G      )|  pb    9  u ay   ' (  K  Q   -  Kj w  / $ Bxz   7  u.   > 9 ~g n    LY / i   2} {   '        E  ] V  Aq     <   +  h  f  /   I G     ]%  L < <    A <)P  3   kj  O/    j ^ K R 2p   _     = a    P   V  |  6      W9 ?  d i { [      su  lqC      Oi   u K  xg^  K : j   c   p ]         i     VED s  me      g       Od       /   v]N D+ !TI0V   "  Yos :P ~  x  z$   W xg4$   9      [   \   ,)G  ]K |Qg    P4  S  P  b%Q  L   W   _x n>  Hq 2<   }  < XX s   s   p

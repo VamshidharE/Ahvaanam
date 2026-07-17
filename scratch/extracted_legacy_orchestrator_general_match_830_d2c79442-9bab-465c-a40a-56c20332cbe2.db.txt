@@ -1,0 +1,303 @@
+ault function LegacyOrchestrator({
+  themeId,
+  onBackToHub,
+  particlesComponent: Particles,
+  themeBgClass = "bg-stone-900",
+  loadingTitle = "Invitation",
+  loadingSubtitle = "Celebrating Love"
+}: LegacyOrchestratorProps) {
+  const { invitationData } = useInvitationData();
+  const [loading, setLoading] = useState(true);
+  const [playingMusic, setPlayingMusic] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    if (invitationData) {
+      const timer = setTimeout(() => setLoading(false), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [invitationData]);
+
+  if (!invitationData) return null;
+
+  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+  const invitation = isWrapped ? (invitationData as any).config : invitationData;
+
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+    if (playingMusic) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(() => {});
+    }
+    setPlayingMusic(!playingMusic);
+  };
+
+  const sectionOrder = invitation.sectionOrder || [];
+
+  const renderSectionComponent = (sectionId: string) => {
+    const sectionConfig = invitation[sectionId];
+    const isEnabled = sectionConfig?.enabled !== false;
+    if (!isEnabled) return null;
+
+    const properties = sectionConfig || {};
+    const bindings = sectionConfig || {};
+
+    switch (sectionId) {
+      case "hero":
+        return (
+          <HeroSection
+            key={sectionId}
+            properties={properties}
+            bindings={bindings}
+            themeId={themeId}
+            layoutId="hero-center"
+            motionId="luxury-motion"
+          />
+        );
+      case "couple":
+        return <CoupleSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "countdown":
+        return <CountdownSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "story":
+        return <StorySection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "events":
+        return <EventsSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "gallery":
+        return <GallerySection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "venue":
+        return <VenueSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "families":
+        return <FamiliesSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "rsvp":
+        return <RSVPSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "faq":
+        return <FAQSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "dressCode":
+        return <DressCodeSection key={sectionId} bindings={bindings} layoutId="hero-center" mo    tionId="luxury-motion" />;
+      case "footer":
+        return <FooterSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "celebrant":
+        return <CelebrantSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "houseDetails":
+        return <HouseDetailsSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "owners":
+        return <OwnersSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className={`min-h-screen relative overflow-hidden ${themeBgClass}`}>
+      {invitation.music?.enabled && invitation.music?.file && (
+        <audio ref={audioRef} loop src={invitation.music.file} />
+      )}
+
+      {/* Loading overlay */}
+      <AnimatePresence>
+        {loading && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-[#FFFDF5] flex flex-col items-center justify-center text-center p-6"
+          >
+            <h2 className="text-[#FF8800] text-xs uppercase tracking-[4px] mb-1 font-bold">{loadingTitle}</h2>
+            <p className="text-amber-900/40 text-xs font-semibold">{loadingSubtitle}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Particles canvas overlay */}
+      {invitation.themeSettings?.showParticles && Particles && <Particles />}
+
+      {/* Floating utility buttons */}
+      <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-4">
+        <button
+          onClick={onBackToHub}
+          className="flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40 bg-white/90 text-[#FF8800] backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
+        >
+          <ArrowLeft size={20} />
+        </button>
+        {invitation.music?.enabled && (
+          <button
+            onClick={toggleMusic}
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40 bg-white/90 text-[#FF8800] backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
+          >
+            {playingMusic ? <Volume2 size={20} /> : <VolumeX size={20} />}
+          </button>
+        )}
+      </div>
+
+      {/* Dynamic sections container */}
+      <div className="space-y-12">
+        {sectionOrder.map((sectionId: string) => renderSectionComponent(sectionId))}
+      </div>
+    </div>
+  );
+}
+  j  
+  
+ 	      case "events":
+        return <EventsSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "gallery":
+        return <GallerySection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "venue":
+        return <VenueSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "families":
+        return <FamiliesSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "rsvp":
+        return <RSVPSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "faq":
+        return <FAQSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "dressCode":
+        return <DressCodeSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "footer":
+        return <FooterSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" className="bg-[#FFFDF5]" /> || <FooterSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;         case "events":
+        return <EventsSection key={sectionId} bindings={bindings} />;
+      case "gallery":
+        return <GallerySection key={sectionId} bindings={bindings} />;
+      case "venue"    :
+        return <VenueSection key={sectionId} bindings={bindings} />;
+      case "families":
+        return <FamiliesSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "rsvp":
+        return <RSVPSection key={sectionId} bindings={bindings} />;
+      case "faq":
+        return <FAQSection key={sectionId} bindings={bindings} />;
+      case "dressCode":
+        return <DressCodeSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "footer":
+        return <FooterSection key={sectionId} bindings={bindings} />;0a8s  	      case "events":
+        return <EventsSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "gallery":
+        return <GallerySection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "venue":
+        return <VenueSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "families":
+        return <FamiliesSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "rsvp":
+        return <RSVPSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "faq":
+        return <FAQSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "dressCode":
+        return <DressCodeSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "footer":
+        return <FooterSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "celebrant":
+        return <CelebrantSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />; -%   =( 0 8 J target content not found in fileP X ` z P    D
+ D  D     D  
+"use client";       ?
+;import React, { useEffect, useState, useRef } from "react";   I
+Eimport { useInvitationData } from "../context/InvitationDataContext";   X
+Timport { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";   <
+8import { motion, AnimatePresence } from "framer-motion";       )
+%// Import reusable section components   /
++import HeroSection from "../sections/hero";   3
+/import CoupleSection from "../sections/couple";   9
+5import CountdownSection from "../sections/countdown";   1
+-import StorySection from "../sections/story";   3
+/import EventsSection from "../sections/events";   5
+1import GallerySection from "../sections/gallery";   1
+-import VenueSection from "../sections/venue";   7
+3import FamiliesSection from "../sections/families";   /
++import RSVPSection from "../sections/rsvp";   -
+)import FAQSection from "../sections/faq";   9
+5import DressCodeSection from "../sections/dressCode";   3
+/import FooterSection from "../sections/footer";   9
+5import CelebrantSection from "../sections/celebrant";   ?
+;import HouseDetailsSection from "../sections/houseDetails";   3
+/import OwnersSection from "../sections/owners";       '
+#interface LegacyOrchestratorProps {    
+   themeId: string;    
+   onBackToHub: () => void;   4
+0  particlesComponent?: React.ComponentType<any>;    
+   themeBgClass?: string;    
+   loadingTitle?: string;    
+   loadingSubtitle?: string;    
+ }       0
+,export default function LegacyOrchestrator({    
+
+  themeId,    
+   onBackToHub,   $
+   particlesComponent: Particles,   $
+   themeBgClass = "bg-stone-900",   "
+   loadingTitle = "Invitation",   *
+&  loadingSubtitle = "Celebrating Love"   !
+ }: LegacyOrchestratorProps) {   5
+1  const { invitationData } = useInvitationData();   3
+/  const [loading, setLoading] = useState(true);   >
+:  const [playingMusic, setPlayingMusic] = useState(false);   =
+9  const audioRef = useRef<HTMLAudioElement | null>(null);        
+   useEffect(() => {    
+     if (invitationData) {   B
+>      const timer = setTimeout(() => setLoading(false), 1500);   +
+'      return () => clearTimeout(timer);   	
+     }    
+       }, [invitationData]);       '
+#  if (!invitationData) return null;       e
+a  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;   U
+Q  const invitation = isWrapped ? (invitationData as any).config : invitationData;       !
+   const toggleMusic = () => {   &
+"    if (!audioRef.current) return;    
+     if (playingMusic) {   #
+       audioRef.current.pause();    
+     } else {   2
+.      audioRef.current.play().catch(() => {});   	
+     }   '
+#    setPlayingMusic(!playingMusic);    
+   };       9
+5  const sectionOrder = invitation.sectionOrder || [];       =
+9  const renderSectionComponent = (sectionId: string) => {   4
+0    const sectionConfig = invitation[sectionId];   ;
+7    const isEnabled = sectionConfig?.enabled !== false;   $
+     if (!isEnabled) return null;       /
++    const properties = sectionConfig || {};   -
+)    const bindings = sectionConfig || {};        
+     switch (sectionId) {    
+       case "hero":    
+         return (    
+           <HeroSection    
+             key={sectionId}   '
+#            properties={properties}   #
+             bindings={bindings}   !
+             themeId={themeId}   &
+"            layoutId="hero-center"   (
+$            motionId="luxury-motion"    
+           />    
+
+        );    
+       case "couple":   y
+u        return <CoupleSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;    
+       case "countdown":   |
+x        return <CountdownSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   L
+H        return <CountdownSection key={sectionId} bindings={bindings} />;    
+       case "story":   x
+t        return <StorySection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   H
+D        return <StorySection key={sectionId} bindings={bindings} />;    
+       case "events":   y
+u        return <EventsSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   I
+E        return <EventsSection key={sectionId} bindings={bindings} />;    
+       case "gallery":   z
+v        return <GallerySection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   J
+F        return <GallerySection key={sectionId} bindings={bindings} />;    
+       case "venue":   x
+t        return <VenueSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   H
+D        return <VenueSection key={sectionId} bindings={bindings} />;    
+       case "families":   {
+w        return <FamiliesSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   K
+G        return <FamiliesSection key={sectionId} bindings={bindings} />;    
+       case "rsvp":   w
+s        return <RSVPSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   G
+C        return <RSVPSection key={sectionId} bindings={bindings} />;    
+       case "faq":   v
+r        return <FAQSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   F
+B        return <FAQSection key={sectionId} bindings={bindings} />;    
+       case "dressCode":   |
+x        return <DressCodeSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   L
+H        return <DressCodeSection key={sectionId} bindings={bindings} />;    
+       case "footer":   y
+u        return <FooterSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   I
+E        return <FooterSection key={sectionId} bindings={bindings} />;    
+       case "celebrant":   |
+x 

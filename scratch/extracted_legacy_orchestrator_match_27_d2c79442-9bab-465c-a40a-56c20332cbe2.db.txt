@@ -1,0 +1,226 @@
+use client";
+
+import React, { useState, useEffect } from "react";
+import { useInvitationData } from "../../context/InvitationDataContext";
+
+import AudioOrchestrator from "./AudioOrchestrator";
+import BackgroundEffects from "./BackgroundEffects";
+import LoadingExperience from "./LoadingExperience";
+import SectionPipeline from "./SectionPipeline";
+import TemplateFrame from "./Template    Frame";
+import ScrollController from "./ScrollController";
+import ShareController from "./ShareController";
+
+interface LegacyOrchestratorProps {
+  themeId: string;
+  onBackToHub: () => void;
+  particlesComponent?: React.ComponentType<any>;
+  themeBgClass?: string;
+  loadingTitle?: string;
+  loadingSubtitle?: string;
+}
+
+export default function LegacyOrchestrator({
+  themeId,
+  onBackToHub,
+  particlesComponent,
+  themeBgClass = "bg-stone-900",
+  loadingTitle = "Invitation",
+  loadingSubtitle = "Celebrating Love"
+}: LegacyOrchestratorProps) {
+  const { invitationData } = useInvitationData();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (invitationData) {
+      const timer = setTimeout(() => setLoading(false), 1200);
+      return () => clearTimeout(timer);
+    }
+  }, [invitationData]);
+
+  if (!invitationData) return null;
+
+  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+  const invitation = isWrapped ? (invitationData as any).config : invitationData;
+  const sectionOrder = invitation.sectionOrder || [];
+
+  return (
+    <ScrollController>
+      <TemplateFrame themeBgClass={themeBgClass} onBackToHub={onBackToHub}>
+        {/* Loading overlay screen */}
+        <LoadingExperience loading={loading} title={loadingTitle} subtitle={loadingSubtitle} />
+
+        {/* Particles canvas */}
+        <BackgroundEffects
+          showParticles={invitation.themeSettings?.showParticles}
+          particlesComponent={particlesComponent}
+        />
+
+        {/* Audio background playback */}
+        <AudioOrchestrator
+          musicFile={invitation.music?.file}
+          musicEnabled={invitation.music?.enabled}
+        />
+
+        {/* Share buttons */}
+        <ShareController />
+
+        {/* Sections pipeline render block */}
+        <SectionPipeline
+          sectionOrder={sectionOrder}
+          invitation={invitation}
+          themeId={themeId}
+        />
+      </TemplateFrame>
+    </ScrollController>
+  );
+}
+export { default as AudioOrchestrator } from "./AudioOrchestrator";
+export { default as BackgroundEffects } from "./BackgroundEffects";
+export { default as LoadingExperience } from "./LoadingExperience";
+export { default as SectionPipeline } from "./SectionPipeline";
+export { default as TemplateFrame } from "./TemplateFrame";
+export { default as ScrollController } from "./ScrollController";
+export { default as ShareController } from "./ShareController";
+2             8     
+zfile:///c:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/final_architecture_cleanup_report.md   # Final Architecture Cleanup Report
+
+This report documents the modular file sizes, distinct responsibilities, and resolved technical debt for the split orchestrator architecture under the `components/shared/orchestrator/` folder.
+
+---
+
+## 1. File Sizes & Responsibilities
+
+Each sub-orchestrator component has been designed around the **Single Responsibility Principle (SRP)**:
+
+| Component File Path | Approximate File Size | Direct Architectural Responsibility |
+| :--- | :--- | :--- |
+| **[AudioOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/AudioOrchestrator.tsx)** | **1KB** | Handles background music element mount and play/pause controls. |
+| **[BackgroundEffects.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/BackgroundEffects.tsx)** | **0.5KB** | Mounts and toggles template particles canvas animations. |
+| **[LoadingExperience.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/LoadingExperience.tsx)** | **0.8KB** | Orchestrates fading loading overlays on startup. |
+| **[SectionPipeline.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/SectionPipeline.tsx)** | **3KB** | Maps the ordered list of section IDs directly to their visual components. |
+| **[TemplateFrame.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/TemplateFrame.tsx)** | **0.8KB** | Configures borders, outer layouts, and back-to-hub buttons. |
+| **[ScrollController.tsx](file:///c:/Users/Adm    in/Ahvaanam/components/shared/orchestrator/ScrollController.tsx)** | **0.5KB** | Enforces HTML anchor scroll smoothness options. |
+| **[ShareController.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/ShareController.tsx)** | **0.8KB** | Mounts floating WhatsApp/copy page link controls. |
+| **[index.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/index.tsx)** | **1.8KB** | Coordinates the sub-orchestrators in a clean coordinator component. |
+
+---
+
+## 2. Technical Debt Status
+
+* **Zero Duplication**: Shared layout tasks (countdown math, lightbox gallery state) are completely offloaded to the respective standalone section components.
+* **Refactoring Legacy Code**: The old `LegacyOrchestrator.tsx` now functions solely as a re-export layer to guarantee backwards-compatibility with template layouts, keeping files extremely clean and modular.
+  2             8      
+lfile:///c:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/architectural_audit.md    # Ahvaanam Architectural Audit & Technical Report
+
+This document presents a comprehensive, high-fidelity architectural audit of the **Ahvaanam** platform. It details all subsystems, registries, rendering engines, and data pipelines to serve as a complete guide for senior engineers onboarding onto the codebase.
+
+---
+
+## 1. Tech Stack
+
+### Core Frameworks & Runtime
+* **Framework**: Next.js 16.2.9 (using App Router, Route Handlers, and Turbopack compiler wrapper).
+* **Language**: TypeScript 5.x.
+* **Component Engine**: React 19.2.4 (utilizing Server Components by default, client hooks, and lazy loading).
+
+### Libraries & Utilities
+* **Motion & Physics Engine**: Framer Motion 12.4.2 (handles reveals, hovers, drags, and spring physics), GSAP 3.15.0, and React Scroll Parallax 3.5.0.
+* **Validation**: Zod 4.4.3 (rules engine validating section manifests).
+* **Icons**: Lucide React 1.21.0, React Icons 5.6.0.
+* **Lightbox**: Yet Another React Lightbox 3.32.0.
+
+### State Management
+* **Client State**: Native React Context API. The central coordinator is the `InvitationDataProvider` (context provider), storing local state and exposing methods to update fields and persist changes to Supabase.
+* **Iframe Communication**: HTML5 Web postMessage API. Relays configuration objects in real-time between the parent editor workspace and the child preview iframe.
+
+### Authentication, Database & ORM
+* **Auth**: Supabase Auth (handled via `@supabase/ssr` cookies management).
+* **Database**: Supabase PostgreSQL.
+* **ORM**: None (raw Supabase JS Client `createClient` calling REST endpoints).
+* **Storage**: Supabase Storage Buckets (handles media library uploads).
+
+### Styling
+* **CSS Framework**: Tailwind CSS v4.0.0 (utilizes PostCSS compiling utility rules).
+* **Custom Themes**: Dynamic CSS Variables injected via a custom React `<ThemeProvider>` component.
+
+---
+
+## 2. Project Structure
+
+```
+c:\Users\Admin\Ahvaanam\
+          app/                              # Next.js App Router Page Entrypoints
+                admin/[id]/                   # Figma-like customizer editor workspace
+                      components/               # Editor sidebar & inspector subcomponents
+                      page.tsx                  # Customizer workspace layout coordinator
+                api/                          # Server Route Handlers (CRUD database APIs)
+                      auth/                     # Supabase authentication session callbacks
+                      invitation/               # Invitation transactions, analytics & RSVPs
+                      upload/                   # Storage assets upload handler
+                checkout/[id]/                # Order payment checkpoint flow
+                create/                       # Step-by-step invitation wizard flow
+                dashboard/                    # User console listing invites and analytics
+                invites/[id]/                 # Public view page for guest viewing
+                templates/[slug]/             # Theme selection & landing details
+                layo    ut.tsx                    # Global wrapper
+                page.tsx                      # Ahvaanam marketplace homepage
+          components/                       # Shared React Components
+                composition/                  # Composition Engine (Dynamic Renderers)
+                context/                      # Global State Providers (InvitationDataContext)
+                layouts/                      # Layout wrappers & grids
+                motion/                       # Motion wrappers & spring configurations
+                sections/                     # Modular layout blocks (manifest.json + index.tsx)
+                      hero/                     # Design Language Hero Welcomer
+                      owners/                   # Housewarming owner profiles
+                      families/                 # Category-aware hosts list card
+                shared/                       # Deity icons, sliders, & LegacyOrchestrator
+                theme/                        # Dynamic ThemeProvider CSS variable injector
+          lib/                              # Core Domain Registries & Database Client
+                auth/                         # Supabase Server Auth client init
+                categories/                   # Blueprints, term vocabularies & schemas
+                composition/                  # Composition schemas and template builders
+                db.ts                         # Supabase Database client & SQL transactions
+                registry/                     # Global Component Registry & runtime validator
+                template-manifests/           # Templates manifests & editor navigation maps
+                theme/                        # Themes & color palettes catalogs
+                validation.ts                 # Form validations
+          hooks/                            # Custom React hooks (reduced motion, etc.)
+          scripts/                          # Pre-build scripts (validate-manifests.js)
+          types/                            # Global Typescript type definitions
+          middleware.ts                     # Auth session checkpoints & route protections
+          package.json                      # Dependency manifest
+```
+
+---
+
+## 3. Editor Architecture
+
+The customizer is designed around a **Unidirectional Data Flow** with a nested iframe serving as an isolated preview sandbox.
+
+### Data & State Flow Map
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as Designer/User
+    participant WS as Editor Workspace (Admin Portal)
+    participant DataCtx as InvitationDataContext
+    participant Preview as Live Preview (Iframe sandbox)
+    participant API as Supabase REST API Route
+    participant DB as Postgres Table
+
+    User->>WS: Edits Title / Swaps theme / Drags order
+    WS->>DataCtx: updateInvitationData(updater)
+    Note over DataCtx: React State updates locally
+    DataCtx->>Preview: postMessage({ type: "UPDATE_CONFIG", config })
+    Note over Preview: Iframe catches postMessage<br/>Triggers local React render
+    Preview-->>User: Screen updates instantly (no refresh!)
+    User->>WS: Clicks "Save / Publish"
+    WS->>DataCtx: saveConfig()
+    DataCtx->>API: POST /api/invitation/[id]
+    API->>DB: UPDATE invitations SET config = json
+    DB-->>User: Confetti chimes play!
+```
+
+* **Live Preview Flow**: The live smartphone sandbox renders the invitation at `/invites/[id]`. 

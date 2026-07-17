@@ -1,0 +1,92 @@
+"use client";
+
+import React from "react";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+import MotionWrapper from "@/components/motion/MotionWrapper";
+
+interface FamiliesSectionProps {
+  bindings: {
+    title?: string;
+    brideFamily?: string;
+    groomFamily?: string;
+  };
+  layoutId?: string;
+  motionId?: string;
+}
+
+export default function FamiliesSection({ bindings, layoutId, motionId }: FamiliesSectionProps) {
+  const {
+    title = "Warm Greetings",
+    brideFamily = "",
+    groomFamily = ""
+  } = bindings;
+
+  return (
+    <MotionWrapper
+      motionId={motionId}
+      defaultMotionId="luxury-motion"
+      type="reveal"
+      className="w-full"
+    >
+      <LayoutWrapper
+        layoutId={layoutId}
+        defaultLayoutId="story-stack"
+        className="py-24 px-6 max-w-5xl mx-auto border-b border-white/5 text-center select-none"
+        style={{ 
+          fontFamily: "var(--theme-font-body)",
+          color: "var(--theme-text)"
+        }}
+      >
+        <div className="max-w-2xl mx-auto space-y-3">
+          <h2 
+            className="text-xs uppercase tracking-[3px] font-bold"
+            style={{ color: "var(--theme-accent)" }}
+          >
+            {title}
+          </h2>
+          <p 
+            className="text-3xl md:text-4xl font-extrabold uppercase tracking-[0.5px]"
+            style={{ fontFamily: "var(--theme-font-heading)" }}
+          >
+            With Blessings From
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 w-full">
+          {/* Bride Family */}
+          {brideFamily && (
+            <div 
+              className="border border-white/5 p-8 rounded-3xl space-y-3 text-center"
+              style={{ 
+                backgroundColor: "var(--theme-card-bg)",
+                borderRadius: "var(--theme-radius-card)",
+                borderColor: "var(--theme-border)",
+                boxShadow: "var(--theme-shadow-card)"
+              }}
+            >
+              <h3 className="text-sm font-bold uppercase tracking-[1.5px] text-[#C59B27]" style={{ color: "var(--theme-accent)" }}>Bride's Family</h3>
+              <p className="text-xs text-white/70 whitespace-pre-line leading-relaxed font-sans font-medium">{brideFamily}</p>
+            </div>
+          )}
+
+          {/* Groom Family */}
+          {groomFamily && (
+            <div 
+              className="border border-white/5 p-8 rounded-3xl space-y-3 text-center"
+              style={{ 
+                backgroundColor: "var(--theme-card-bg)",
+                borderRadius: "var(--theme-radius-card)",
+                borderColor: "var(--theme-border)",
+                boxShadow: "var(--theme-shadow-card)"
+              }}
+            >
+              <h3 className="text-sm font-bold uppercase tracking-[1.5px] text-[#C59B27]" style={{ color: "var(--theme-accent)" }}>Groom's Family</h3>
+              <p className="text-xs text-white/70 whitespace-pre-line leading-relaxed font-sans font-medium">{groomFamily}</p>
+            </div>
+          )}
+        </div>
+      </LayoutWrapper>
+    </MotionWrapper>
+  );
+}
+X\`                                                                                                                                                                                                                                                                                                                                                                                                           heroImage: \"/images/themes/royal-temple.jpg\",\n    ctaText: \"RSVP\",\n    surname: \"Vamshidhar Family\",\n    subText: \"Traditions\"\n  }\n};\n\nconst mockComposition: CompositionSchema = {\n  templateId: \"royal-palace-custom\",\n  version: \"1.0.0\",\n  theme: \"royal-temple\",\n  motion: \"reveal\",\n  sections: [\n    {\n      id: \"sec-hero-comp\",\n      type: \"hero\",\n      variant: \"luxury\",\n      bindings: {\n        title: \"hero.title\",\n        subtitle: \"hero.subtitle\"\n      },\n      properties: {\n        enabled: true,\n        showScrollIndicator: true,\n        overlayOpacity: 0.45\n      }\n    },\n    {\n      id: \"sec-skipped-comp\",\n      type: \"hero\",\n      properties: {\n        enabled: false // should be skipped by profiler\n      }\n    }\n  ]\n};\n\nexport default function TestRendererPage() {\n  const handleProfileComplete = (metrics: ProfileMetrics) =\u003e {\n    console.log(\"=== COMPOSITION RENDERER PERFORMANCE PROFILE ===\");\n    console.log(`Re

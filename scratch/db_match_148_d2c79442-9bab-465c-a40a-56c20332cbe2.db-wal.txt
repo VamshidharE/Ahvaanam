@@ -1,0 +1,39 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeMessage: "Weddi
+------------------------
+[35] Found match at index 15569412
+  Preview of match [35]:
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemeProvider from "@/components/theme/ThemeProvider";        
+ const mockHeroBindings = {   #
+   title: "Aishwarya & Karthik",   =
+9  subtitle: "We Invite You to Celebrate Our Sp
+------------------------
+[36] Found match at index 16304688
+  Preview of match [36]:
+"use client";
+
+import React from "react";
+
+interface CelebrantSectionProps {
+  bindings: {
+    name?: string;
+    age?: number;
+  };
+}
+
+export default function CelebrantSection({ bindings }: Celebr        YZ uh \ L       SQLite format 3      @     P              	                                                   P .      	       8   B   @
+N
+ 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                //  -tablebattle_mode_infosbattle_mode_infos CREATE TABLE `battle_mode_infos` (`idx` integer,`data` blob,PRIMARY KEY (`idx`))  	  ==  Otabletrajectory_metadata_blobtrajectory_metadata_blob
+CREATE TABLE `trajectory_metadata_blob` (`id` text DEFAULT "main",`data` blob,PRIMARY KEY (`id`))O
+  c=  indexsqlite_autoindex_trajectory_metadata_blob_1trajectory_metadata_blob     //  -tableparent_referencesparent_references	CREATE TABLE `parent_references` (`idx` integer,`data` blob,PRIMARY KEY (`idx`))    //  -tableexecutor_metadataexecutor_metadata CREATE TABLE `executor_metadata` (`idx` integer,`data` blob,PRIMARY KEY (`idx`))     %%  gtablegen_metadatagen_metadata CREATE TABLE `gen_metadata` (`idx` integer,`data` blob,`size` integer NOT NULL DEFAULT 0,PRIMARY KEY (`idx`))_   3    indexidx_steps_step_typesteps CREATE INDEX `idx_steps_step_type` ON `steps`(`step_type`)U   -  uindexidx_steps_statussteps CREATE INDEX `idx_steps_status` ON `steps`(`status`) i       1tablestepssteps CREATE TAB

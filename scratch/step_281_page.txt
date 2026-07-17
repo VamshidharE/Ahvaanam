@@ -1,0 +1,1 @@
+I will view `walkthrough.md` from yesterday's session to see the exact changes documented during the Builder feature development. This will help us identify every file created or modified for the Builder feature.

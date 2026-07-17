@@ -1,0 +1,86 @@
+use client');
+2:     }
+3:     if (startIdx === -1) continue;
+4:     
+5:     // Try to find if this contains the full component
+6:     const hasComponentExport = content.includes('export default function CompositionRenderer');
+7:     const hasResolveBinding = content.includes('resolveBindingValue');
+8:     const hasSectionComponents = content.includes('SECTION_COMPONENTS');
+9:     
+10:     if (hasComponentExport \u0026\u0026 hasResolveBinding \u0026\u0026 hasSectionComponents) {
+11:       // Let's try to extract the JSON-escaped string
+12:       // It starts with "use client" and should end around the end of the file.
+13:       // Let's find the closing quote if it starts with a double quote
+14:       let parsedCode = '';
+15:       try {
+16:         // If the match starts with double quote (which means it's part of a JSON record)
+17:         if (content.startsWith('"')) {
+18:           // Find the matching end quote
+19:           // Since it's a JSON string, let's find the next unescaped quote that finishes the string
+20:           // We can parse the prefix using JSON.parse
+21:           // Let's find the end of the JSON string
+22:           let endIdx = content.indexOf('","Description"');
+23:           if (endIdx === -1) {
+24:             endIdx = content.indexOf('",\
+25:       "Description"');
+26:           }
+27:           if (endIdx === -1) {
+28:             endIdx = content.indexOf('", "Description"');
+29:           }
+30:           if (endIdx !== -1) {
+31:             const jsonString = content.substring(0, endIdx + 1);
+32:             parsedCode = JSON.parse(jsonString);
+33:           }
+34:         }
+35:       } catch (e) {
+36:         // Fallback: regular string clean up
+37:       }
+38:       
+39:       // If we couldn't parse it as JSON, let's clean it up manually
+40:       if (!parsedCode) {
+41:         let codeContent = content.substring(startIdx);
+42:         // Remove trailing database junk or JSON fields
+43:         // In the database log, it might be followed by description, targetFile, etc.
+44:         const endMarkers = ['","Description"', '",\
+45:       "Description"', '", "Description"'];
+46:         for (const marker of endMarkers) {
+47:           const markerIdx = codeContent.indexOf(marker);
+48:           if (markerIdx !== -1) {
+49:             codeContent = codeContent.substring(0, markerIdx);
+50:           }
+51:         }
+52:         // Unescape newlines and quotes
+53:         parsedCode = codeContent
+54:           .replace(/\\
+55: /g, '\
+56: ')
+57:           .replace(/\\"/g, '"')
+58:           .replace(/\\\\/g, '\\');
+59:       }
+60:       
+61:       // Check if it looks complete (ends with closing bracket of the component)
+62:       if (parsedCode.includes('export default function CompositionRenderer') \u0026\u0026 parsedCode.includes('return') \u0026\u0026 parsedCode.trim().endsWith('}')) {
+63:         console.log(`FOUND PERFECT MATCH in ${file} (length: ${parsedCode.length})`);
+64:         bestMatch = parsedCode;
+65:         bestMatchFile = file;
+66:         break;
+67:       }
+68:     }
+69:   }
+70: }
+71: 
+72: if (bestMatch) {
+73:   const destPath = 'components/composition/CompositionRenderer.tsx';
+74:   fs.mkdirSync(path.dirname(destPath), { recursive: true });
+75:   fs.writeFileSync(destPath, bestMatch);
+76:   console.log(`Successfully restored perfect, complete CompositionRenderer.tsx!`);
+77: } else {
+78:   console.log('No perfect match found,     =z       v     k   s   u I k! x    G ^       8#;    {  ~    w@#   [   f      < [ >  rTPP {       QS]c|X  aL   K               U  $ B   K   	8Y    [  GN  u    c b            iD      jm  D? # % E 4QU \ p         =
+79: 7 G  2 )V +5 # {O      w    g 	^   >\f*  R  7f y A  f1  H  v*2     - "  z   [  ` 6a D K x^   %   _      >      r   'r  < q     p8 w5   G   g     3 \  'lT  >       h )          	j <  hQ0F.  s    yO    +   &D  w QG q" c  v8    v  _r      )  xD   R l" ' SO?- ?   b?Q    7gln  6  z@  _KQ{  <k} j ]  v ~       Nr  WJ   (^    e     	      q p  _    n4[    sgS       E{  ~  	 5      e     	 |    g {  g  ? Y  k ? ' b w      t |          s   '  ~     ~x     ?   U  8 B     E  2R 0  /  aK | o|     .   u  1  ,Q6   6  	 V     vgu   y Vg}  7QT c         : R P   E@ P v3 R   /          wf  ,JH6   dm #  Y E F p     m(u&V  Q d "  36  1f1z  D     ,         ]L XU# >  >E2>   R   (   " r 4R h      u} AtMQ2q 8a. hYCx  DA7   K  s + L,    Y- :   Aw   } V   #DV  .cb  1      Y E 3\     a  (  D9  U  (   "  ( {     [sH ,   : R G      .b2: J 1E      6     [ m >  
+80:  H    & z|  Z _|d1 Q  |+3@  +6e oS>v  UR Z  M  (   " J  L a  <  $1      " _  ]    X   !   d1,mQr;    Q  M    7*   n S Y] Sz	I           f      >  0 ) ]   "  (   " ;   09   P  yH (    z  u }      1  $dt RgHx     E      m x^Fg}       d]  Fk   2 > gu KCc l   K&Ot - B   E@ P   E U h 	3 h  [H  d  / 1FV     V X    X    mK  `   E     WD  y   </   Q  p {  _4.    } ?   YE E x }6  j < J  <$      F U(   "        m d&L6  n  $x n 1 O   ?     0  Rg      d -r c
+81: #2$         u   
+82:  l    D  n# g    h D5     v  {      IDAT  }2y"J /Q  )   "  (  @[# ; fj    I  "S 1W  `  L b     eS  Y  4t" N 	  <[ L? L K  5  U74AF s     7  q     *  <  d   #   O h	    (               l   m      F q4u   b  2:  m 93F    .Jt"1 D e  ( (  <  KT   de  D            :x   :  O2 J   A r @   
+83:    AQq    M  q v    @uM  wl     O         j f j    jC[6 G     , f  K* \]Y         c F         ?  v  -         qr\ SqE 6   5k7   R    5   Hr7,%   :  nZ#   JT   \   d    $      6xl, J     u   A  a  5(      6  O= l   %   *  Rik*PZV   RTH       `   &   e  Mf e U  u(        :  m1 j         H M  a  oF]=  
+84: b&    E` C  &    Kq;  ' /  > H  3z    R  > W   (    G   q}   (  eM 0             8/ +6   ieQ   | -  q4X    !+ F ] A j            k ~ i  b 'oa  "lX      h  w y{  )  7^  k6K U]  _}  >z  
+85: + |   l "L} %,Y  [           . f Wx    D  - 6b    VT  uK       k {  iX      * ,Z  k  q B, X    1  O f fT    >   -      5TQ       -         +  b  U XT& E  p > 2  sUU   L  i | mUu 9}
+The above content shows the entire, complete file c

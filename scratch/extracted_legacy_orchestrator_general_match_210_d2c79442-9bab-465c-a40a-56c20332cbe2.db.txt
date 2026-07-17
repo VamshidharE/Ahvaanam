@@ -1,0 +1,144 @@
+16} className="text-[#C49B27]" />
+50:             <span>Composer Engine</span>
+51:           </button>
+52:         </div>
+53:       </div>
+54:     );
+55:   }
+56: 
+57:   return (
+58:     <>
+59:       <LegacyOrchestrator
+60:         themeId="royal-temple"
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+   : kz9yqx9h       
+(bot-9f549e06-008d-4158-83d7-a7e6f81ea3b7   XI will view `lib/composition/templates.ts` to see how template compositions are defined.   2  
+ uhvcvjl0 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\composition\\templates.ts","StartLine":1,"toolAction":"View lib/composition/templates.ts","toolSummary":"Reading composition templates library file"}: 	  	
+ 	  M2      o :m      R A  g G4\    _Q    6  %1  -L @"  O  L  }+mR `Z; l_t ~ 	b u  M   3?    np S &&X R  C  r    UE    P   /  d   VG   2  g  8    F/WG#n (k             1o  } $    S1Q   \           5   ? : W AM,       t %CC[1     r    5 y    { A @  xO   ?  "     kDx>    KA  2         vu   -V+  H   XJV        S z  r<p   . ~"          !P=    :4pK6   ? w  ,] W9   ug  ` %m\C]       =     rH uLB'c $   g?z        i     c `     | ~ y -]Y X   z  Y `   Yz  33       Y     B l	  9 { :Iy  P C    )   ?#5 .            (! ?rr   ; HuW J $  H K PQ 1    P  S ft9  Mh  N { ]   &sfm e  AL    ;  Y  R~ g? Z  R            :w&4 >   ] Tn  2   W   ]# 6  #  H  |- = o   G"d8~       C      0        Q P       N]  n    8    W      (      Rm    (  ;(      a ,&   &   m  fn"$]        p sf 1    a < C g            "      0}    H ]       V v)  
+ o  S + G )e b  M^   <P   \     ?  G  q     _  {   L>  ^     Sz A # 2D  4 :/ AQ    PB"Yv    A      yP/ \HI bl,c H     ~ Ptz  k       v 6Y`7    C%  #        o @  r X*  K   c   8 	      PLc     R         ?_ )    GO     3      9 ?5  u1Y   \  k   tkX g<     s  ] -  z  N Q%I       %3   %  D-5W b   %    y 1   $;r   aW + 6O @ h  m Z-<   {   ~  /    W FK y    zi  0    .   S M7 U}w
+kJ	view_file      9    9Created At: 2026-07-12T14:11:29Z
+Completed At: 2026-07-12T14:11:29Z
+File Path: `file:///c:/Users/Admin/Ahvaanam/lib/composition/templates.ts`
+Total Lines: 214
+Total Bytes: 5851
+Showing lines 1 to 214
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import { CompositionSchema, SectionData } from "./types";
+2: 
+3: export function getWeddingComposition(config: any): CompositionSchema {
+4:   const sectionsOrder = config.sectionOrder || [
+5:     "hero", "couple", "countdown", "events", "story", "gallery", "venue", "families", "rsvp", "faq", "dressCode"
+6:    er,Line -First 10)
+dcommand(Get-ChildItem -Path "C:\Users\Admin\.gemini\antigravity\brain" | ForEach-Object { $_.Name })
+  command(node -e "const crypto = require\('crypto'\); const salt = '0ffbe4786c6656d0f86943b71838273e'; const hash = crypto\.pbkdf2Sync\('tirumala@123', salt, 1000, 64, 'sha512'\)\.toString\('hex'\); console\.log\(hash === 'fbeb909db3b7d233b576fb6756c3c9f96fb446136d4a0d7271e925fbaafeea044e809467074baa95c82d4c87799e4e497e8eb73694b9777c838b6276c3e0971f'\)")
+  command(Select-String -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript_full.jsonl" -Pattern "app/api/auth" | Select-Object -Property LineNumber,Line -First 10)
+  command(Get-Content -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript_full.jsonl" | Select-Object -Index 305)
+  command(Get-Content -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript_full.jsonl" | Select-Object -Index 305,306,307,308,309,310,311,312)
+  command(Select-String -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript_full.jsonl" -Pattern "app/api/auth" | Where-Object { $_.LineNumber -gt 312 } | Select-Object -Property LineNumber,Line -First 10)
+  command(Select-String -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript_full.jsonl" -Pattern "app/api/auth/login" | Select-Object -Property LineNumber,Line -First 10)
+  command(Get-ChildItem -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs" | ForEach-Object { $_.FullName })
+  command(Get-ChildItem -Recurse -Filter "*.ts*" -Path "app","components","lib","utils" | Select-String -Pattern "signSession" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+?write_file(C:\Users\Admin\Ahvaanam\app\api\auth\login\route.ts)
+@write_file(C:\Users\Admin\Ahvaanam\app\api\auth\logout\route.ts)
+  command(Get-ChildItem -Recurse -Filter "\*\.tsx" -Path "app","components" \| Select-String -Pattern "logo\.png" \| ForEach-Object \{ "\$\(\$_\.Path\):\$\(\$_\.LineNumber\): \$\(\$_\.Line\.Trim\(\)\)" \})
+ command(Copy-Item)
+ command(Copy-Item)
+ command(git checkout)
+ command(Select-String)
+  command(Select-String -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\\.system_generated\\logs\\\*\.jsonl" -Pattern "app/admin/\\\\\\\[id\\\\\\\]/page\.tsx" \| select -first 10)
+  command(Get-Content -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\\.system_generated\\logs\\transcript_full\.jsonl" \| Select-String -Pattern "app/admin/\\\\\\\[id\\\\\\\]/page\.tsx" \| select -first 5)
+  command(Get-Content -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\\.system_generated\\logs\\transcript_full\.jsonl" \| Select-String -Pattern "page\.tsx" \| select -first 5)
+  command(Get-ChildItem -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\" -Filter "page\.tsx" -Recurse -ErrorAction SilentlyContinue \| select FullName, Length)
+  command(Get-Content -Path "C:\Users\Admin\.gemini\antigravity\brain\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\.system_generated\logs\transcript_full.jsonl" | Select-String -Pattern "value={invitationData.couple.groom.name}")
+ command(git log)
+ command(git ls-files)
+  command(Select-String -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\\*\\\.system_generated\\logs\\\*\.jsonl" -Pattern "app/admin/\\\\\\\[id\\\\\\\]/page\.tsx" -SimpleMatch:\$false \| select -first 5)
+&command(git branch -a; git stash list)
+  command(Select-String -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\\*\\\.system_generated\\logs\\\*\.jsonl" -Pattern "write_to_file" \| Select-String -Pattern "admin" \| select -first 10)
+  command(Select-String -Path "c:\\Users\\Admin\\Ahvaanam\\\.next\\\*\*\\\*\.js" -Pattern "AdminPortalConten     	  	                                                                               $ {   	  D     ~  
+               "  
+ cvqm9jsf 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\birthday-premium\\Layout.tsx","EndLine":100,"StartLine":1,"toolAction":"View birthday premium template layout","toolSummary":"Reading top lines of Premium Birthday template layout"}: 
+  
+
+ 
+  M2 N ) E  Z  zP zw   2jT N \C  { tJ  } ) k   ;m V | 4    P B M !    I &  ]f_ *   >    , C	 k  
+ , A +    T   *    2                +D   )        ,} NB 2 j      Q          oLm FG [Bi *%  ]pq    y  & C     ->| <    X   6 dg  T        F   ~ 0       U     *>G]+    I       m" nMv 1 d   0  u  3 "  O &    6V ]  9   4 h   +z@    z  r   @ . Y9  O yG   )tN[  (  ^ "f a{mZ{ m    Z* up       # Z2         "Q   { # ZW    v5RG M  W    3  l =  D    R :`~ `+T Oxt     R      }0  l  \   H`D}C [     P    'G   ]   b  M  yG   3 'mQ   |   ^: G    f _  I N  \ vF   8  Ki  ;I      arZ   o(  H . t   S  cM[      H  v   M  
+8 2 Z t  b        "{  E$e   W <a  C  }G  u    *       96     y sO       Jio Z 9    ~  Bo     E CBn< ` |x G = tg  ~} 0@   7 as   9  U         ` Tj *  ]  ?I   I          ^ D    y -1 (   y   S   S Z >R Gl i A-l $   	 *3)   iB  (     jm |   bb          g  j% 4  H K  >R       )N     7  q  a    H   } 4    ^ y                   9 vQV  Y Z        zw Z FG  !            8 3  *tM    " c  9M   k:R5 [-a " yM e  vE      > l 1 f   F v   y1hZ  1   S   +   $     (v@ u   ,ETc k  n  y       /    V   Z@r i e  ^ %L E  & &;    ]    (>     Xa s z            D   
+           	  2             :             B             JP     ;   (   0 B!
+	sessionID  -3750763034362895579H  PgZ 1DRSau_RF-qqjuMP0ZqduAsX  b$4d494374-7d8c-4205-8fb2-aae7c166e76bj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+           	  2             :             B             JP     ;   (   0 B!
+	sessionID  -3750763034362895579H  PgZ 1DRSau_RF-qqjuMP0ZqduAsX  b$4d494374-7d8c-4205-8fb2-aae7c166e76bj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+yI will view the first 100 lines of `components/templates/birthday-premium/Layout.tsx` to understand the layout structure.2(bot-e15a1abc-e364-4180-8091-5b9d784c1403:  
+ cvqm9jsf 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\birthday-premium\\Layout.tsx","EndLine":100,"StartLine":1,"toolAction":"View birthday premium template layout","toolSummary":"Reading top lines of Premium Birthday template layout"}: 
+  
+
+ 
+  M2 N ) E  Z  zP zw   2jT N \C  { tJ  } ) k   ;m V | 4    P B M !    I &  ]f_ *   >    , C	 k  
+ , A +    T   *    2                +D   )        ,} NB 2 j      Q          oLm FG [Bi *%  ]pq    y  & C     ->| <    X   6 dg  T        F   ~ 0       U     *>G]+    I       m" nMv 1 d   0  u  3 "  O &    6V ]  9   4 h   +z@    z  r   @ . Y9  O yG   )tN[  (  ^ "f a{mZ{ m    Z* up       # Z2         "Q   { # ZW    v5RG M  W    3  l =  D    R :`~ `+T Oxt     R      }0  l  \   H`D}C [     P    'G   ]   b  M  yG   3 'mQ   |   ^: G    f _  I N  \ vF   8  Ki  ;I      arZ   o(  H . t   S  cM[      H  v   M  
+8 2 Z t  b        "{  E$e   W <a  C  }G  u    *       96     y sO       Jio Z 9    ~  Bo     E CBn< ` |x G = tg  ~} 0@   7 as   9  U         ` Tj *  ]  ?I   I          ^ D    y -1 (   y   S   S Z >R Gl i A-l $   	 *3)   iB  (     jm |   bb          g  j% 4  H K  >R       )N     7  q  a    H   } 4    ^ y                   9 vQV  Y Z        zw Z FG  !            8 3  *tM    " c  9M   k:R5 [-a " yM e  vE      > l 1 f   F v   y1hZ  1   S   +   $     (v@ u   ,ETc k  n  y       /    V   Z@r i e  ^ %L E  & &;    ]    (>     Xa    v  |  )i aE      e      9  X             rq t   )   rr    Y   %       c @    p9   Gq  i  ! Hu    g ?       [  !  |17 ^ L}j   7E     JmAx  J	view_fileByI will view the first 100 lines of `components/templates/birthday-premium/Layout.tsx` to understand the layout structure.`     7 v   J  I        g 7 ( N           nx0,       *+ ~-        N ^    }  0   + h e( j  NV    x  x r  \  ^   @    ]L   [ e            2 GN       6    m  =  |* W   w M|t Di M]V  KW   I   5    3  ] FIj  [  '  FI      P       +6 9@ >L  gi!   Z_H       J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2           z:           zB           |X  b$4d494374-7d8c-4205-8fb2-aae7c166e76bj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                z  :  3
+               z
+               {
+               |  0Reading top lines of Royal Temple wedding layout  !View royal temple template layout             z    *  
+               "  
+ v3j9bhwd 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\royal-temple\\Layout.tsx","EndLine":50,"StartLine":1,"toolAction":"View royal temple template layout","toolSummary":"Reading top lines of Royal Temple wedding layout"}:     
+    M2  <l  V  (   >t   r  " X&  :     Z #    lW& yPO Mb D1   \w8  Xh   0    t  : 8oW      W~ ;yp   ^ so{  _    ;cu& Ln    ]  5Vjv        jE[  i r  -A  G  z 4   q P<1   Q  u]   D   i  IYz 7 v   J  I        g 7 ( N           nx0,       *+ ~-        N ^    }  0   + h e( j  NV    x  x r  \  ^   @    ]L   [ e            2 GN       6    m  =  |* W   w M|t Di M]V  KW   I   5    3  ] FIj  [  '  FI      P       +6 9@ >L  gi!   Z_H       J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2           z:           zB           |X  b$4d494374-7d8c-4205-8fb2-aae7c166e76bj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                z  :  3
+               z
+               {
+               |  0Reading top lines of Royal Temple wedding layout  !View royal temple template layout             zr  
+Lfile:///c:/Users/Admin/Ahvaanam/components/templates/royal-temple/Layout.tsx 1"  "use client";
+
+import { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInvitationData } from "../../context/InvitationDataContext";
+import { Calendar, MapPin, Clock, Phone, MessageCircle, Volume2, VolumeX, Grid, ArrowLeft, HelpCircle, Shirt } from "lucide-react";
+import Image from "next/image";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import DeitySymbol from "../../shared/DeitySymbol";
+import GallerySlider from "../../shared/GallerySlider";
+
+// --- TEMPLE ARCH SVG DECORATION ---
+const TempleHeaderArch = () => (
+  <svg viewBox="0 0 1440 200" fill="none" className="w-full text-[#58111A] fill-[#58111A]">
+    <path d="M0 0V80C120 150 240 180 360 180C480 180 600 130 720 130C840 130 960 180 1080 180C1200 180 1320 150 1440 80V0H0Z" />
+    <path d="M0 80C120 150 240 180 360 180C480 180 600 130 720 130C840 130 960 180 1080 180C1200 180 1320 150 1440 80" stroke="#C59B27" strokeWidth="4" />
+    <path d="M0 90C120 155 240 170 360 170C480 170 600 140 720 140C840 140 960 170 1080 170C1200 170 1320 155 1440 90" stroke="#C59B27" strokeWidth="1" strokeDasharray="5,5" />
+  </svg>
+);
+
+// --- GOLD DUST PARTICLE EFFECT ---
+const GoldDustParticles = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const particles = Array.from({ length: 60 }).map(() => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: Math.random() * 1.5 + 0.5,
+      d: Math.random() * 0.4 + 0.1,
+      vy: Math.random() * 0.5 + 0.2,
+      vx: (Math.random() - 0.5) * 0.3,
+      alpha: Math.random() * 0.5 + 0.2,
+    }));
+
+    const resize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.heigh

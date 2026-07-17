@@ -1,0 +1,283 @@
+use client";
+
+import React from "react";
+import DeitySymbol from "@/components/shared/DeitySymbol";
+
+interface HeroSectionProps {
+  properties: {
+    showScrollIndicator?: boolean;
+    overlayOpacity?: number;
+    contentAlign?: "left" | "center" | "right";
+    minHeight?: string;
+  };
+  bindings: {
+    title?: string;
+    subtitle?: string;
+    welcomeMessage?: string;
+    heroImage?: string;
+    ctaText?: string;
+    surname?: string;
+    subText?: string;
+    enableHeaderMedia?: boolean;
+    headerMediaType?: "god" | "symbol";
+    selectedGod?: "ganesha" | "venkateswara" | "lakshmi" | "shiva" | "krishna";
+    selectedSymbol?: "om" | "swastik" | "shree" | "kalash" | "nandi";
+    headerMediaSize?: number;
+    headerMediaSpacing?: number;
+    showSurnameHeading?: boolean;
+    surnameFont?: "cinzel" | "playfair" | "great-vibes";
+    surnameColor?: string;
+  };
+  themeId?: string;
+}
+
+export default function HeroSection({ properties, bindings, themeId }: HeroSectionProps) {
+  const {
+    showScrollIndicator = true,
+    overlayOpacity = 0.45,
+    contentAlign = "center",
+    minHeight = "85vh",
+  } = properties;
+
+  const {
+    title = "",
+    subtitle = "",
+    welcomeMessage = "",
+    heroImage = "",
+    ctaText = "",
+    surname = "",
+    subText = "",
+    enableHeaderMedia = true,
+    headerMediaType = "god",
+    selectedGod = "ganesha",
+    selectedSymbol = "om",
+    headerMediaSize = 80,
+    headerMediaSpacing = 30,
+    showSurnameHeading = true,
+    surnameFont = "cinzel",
+    surnameColor = "var(--theme-accent)",
+  } = bindings;
+
+  const alignmentClass = 
+    contentAlign === "left" ? "text-left items-start" : 
+    contentAlign === "right" ? "text-right items-end" : 
+    "text-center items-center";
+
+  return (
+    <section 
+      className="relative flex flex-col justify-center items-center overflow-hidden w-full select-none"
+      style={{ 
+        minHeight,
+        background: "var(--theme-gradient-backdrop, var(--theme-bg))"
+      }}
+    >
+      {/* Background Cover Image */}
+      {heroImage && (
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-102"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        />
+      )}
+
+      {/* Dark overlay */}
+      <div 
+        className="absolute inset-0 bg-black pointer-events-none"
+        style={{ opacity: overlayOpacity }}
+      />
+
+          {/* Hero content */}
+      <div 
+        className={`relative z-10 w-full max-w-4xl px-6 py-12 flex flex-col ${alignmentClass} space-y-6`}
+        style={{ 
+          color: "var(--theme-text)",
+          fontFamily: "var(--theme-font-body)"
+        }}
+      >
+        {/* Deity Symbol if enabled */}
+        {enableHeaderMedia && (
+          <div 
+            style={{ 
+              marginTop: `${headerMediaSpacing}px`,
+              width: `${headerMediaSize}px`,
+              height: `${headerMediaSize}px` 
+            }}
+            className="flex items-center justify-center shrink-0"
+          >
+            <DeitySymbol
+              type={headerMediaType}
+              selectedGod={selectedGod}
+              selectedSymbol={selectedSymbol}
+              size={headerMediaSize}
+            />
+          </div>
+        )}
+
+        {/* Surname Banner */}
+        {showSurnameHeading && surname && (
+          <div className="animate-fadeIn">
+            <h2 
+              className="text-2xl md:text-3xl font-bold tracking-wider"
+              style={{ 
+                fontFamily: surnameFont === "great-vibes" ? "var(--font-great)" : surnameFont === "playfair" ? "var(--font-playfair)" : "var(--font-cinzel)",
+                color: surnameColor 
+              }}
+            >
+              {surname}
+            </h2>
+            {subText && (
+              <span className="text-[10px] uppercase tracking-[2px] opacity-75 block mt-1" style={{ color: "var(--theme-secondary-text)" }}>
+                {subText}
+              </span>
+            )}
+          </div>
+        )}
+
+        {/* Welcome Tagline */}
+        {welcomeMessage && (
+          <p 
+            className="text-xs uppercase tracking-[3px] font-semibold"
+            style={{ color: "var(--theme-accent)" }}
+          >
+            {welcomeMessage}
+          </p>
+        )}
+
+        {/* Main Title Heading */}
+        {title && (
+          <h1 
+            className="text-4xl md:text-6xl font-extrabold tracking-wide leading-tight max-w-2xl"
+            style={{ fontFamily: "var(--theme-font-heading)" }}
+          >
+            {title}
+          </h1>
+        )}
+
+        {/* Subtitle / Details description */}
+        {subtitle && (
+          <p 
+            className="text-sm max-w-lg leading-relaxed whitespace-pre-line font-medium"
+            style={{ color: "var(--theme-secondary-text)" }}
+          >
+            {subtitle}
+          </p>
+        )}
+
+        {/* Call to Action Button */}
+        {ctaText && (
+          <button 
+            type="button"
+            className="px-8 py-3.5 text-xs font-bold uppercase tracking-[2px] transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 cursor-pointer mt-4"
+            style={{
+              backgroundColor: "var(--theme-accent)",
+              color: "#FFFFFF",
+              borderRadius: "var(--theme-radius-button)",
+              shadow: "var(--theme-shadow-button)",
+              fontFamily: "var(--theme-font-heading)"
+            }}
+          >
+            {ctaText}
+          </button>
+        )}
+      </div>
+
+      {/* Scroll indicator */}
+      {showScrollIndicator && (
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 z-10 animate-bounce opacity-85">
+          <span className="text-[8px] uppercase tracking-[1.5px] text-white/70 font-semibold">Scroll</span>
+          <div className="w-1 h-3 bg-white/60 rounded-full" />
+        </div>
+      )}
+    </section>
+  );
+}
+  j  
+  
+                backgroundColor: "var(--theme-accent)",
+              color: "#FFFFFF",
+              borderRadius: "var(--theme-radius-button)",
+              shadow: "var(--theme-shadow-button)",
+              fontFamily: "var(--theme-font-heading)"                 backgroundColor: "var(--theme-accent)",
+              color: "#FFFFFF",
+              borderRadius: "var(--theme-radius-button)",
+              boxShadow: "var(--theme-shadow-button)",
+              fontFamily: "var(--theme-font-heading)"0  8  (   .Fix shadow CSS variable key name to boxShadow.    
+  
+  p                                                                                                                                                                                                                                                                                                                                                                     O        b H   x   
+           &  "  
+ ak3fo8u9  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running Next.js production build validation check"}:     
+    M2   7g   h  z u _ a p  3    	  D t }d    kI 1l   t    \D  x      1>\ mO    \}  Mt sS   Q   '?P q  8  A  = lvy -   .    N, R~5Ap    H b= 9  wisJ` ]!vO  k 8 |<        ~  2     = @  !K    "      - I   ~    ]?      ' r    	  ' q$2 J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$70fbb39b-6601-464b-9489-155dbf3e1332j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    0  5
+                 
+  	              
+               .  1Running Next.js production build validation check   Test Next.js build                 
+ 
+ command npm run build      *  
+           &  "  
+ ak3fo8u9  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running Next.js production build validation check"}:     
+    M2   7g   h  z u _ a p  3    	  D t }d    kI 1l   t    \D  x      1>\ mO    \}  Mt sS   Q   '?P q  8  A  = lvy -   .    N, R~5Ap    H b= 9  wisJ` ]!vO  k 8 |<        ~  2     = @  !K    "      - I   ~    ]?      ' r    	  ' q$2 J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$70fbb39b-6601-464b-9489-155dbf3e1332j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    0  5
+                 
+  	              
+               .  1Running Next.js production build validation check   Test Next.js build                 <  9
+ 
+ command npm run build  npm run  * Test Next.js build     
+ 
+ command npm run build   	  
+<  9
+ 
+ command npm run build  npm run  * Test Next.js build B
+$e814890c-6b84-44e9-9783-edb10a1bb4dd        " 
+ command(npm run)      c:\Users\Admin\Ahvaanam` N    
+  
+> ahvaanam@0.1.0 build
+> next build
+
+    Next.js 16.2.9 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+  npm run build  npm run build    
+  
+> ahvaanam@0.1.0 build
+> next build
+
+    Next.js 16.2.9 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+ 9              X   
+           G  2           #:             B             JN       w(   0 B!
+	sessionID  -3750763034362895579H$PSZ sDFSaq7GBoWqjuMPucfSsA4X  b$70fbb39b-6601-464b-9489-155dbf3e1332j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+               #
+                                    *  
+           G  2           #:             B             JN       w(   0 B!
+	sessionID  -3750763034362895579H$PSZ sDFSaq7GBoWqjuMPucfSsA4X  b$70fbb39b-6601-464b-9489-155dbf3e1332j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+               #
+                                    
+GI will trigger the Next.js production compiler check in the background.2(bot-70e172b4-2484-4ea7-9ef1-e1d3fa588d84:  
+ ak3fo8u9  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running Next.js production build validation check"}:     
+    M2   7g   h  z u _ a p  3    	  D t }d    kI 1l   t    \D  x      1>\ mO    \}  Mt sS   Q   '?P q  8  A  = lvy -   .    N, R~5Ap    H b= 9  wisJ` ]!vO  k 8 |<        ~  2     = @  !K    "      - I   ~    ]?      ' r    	  ' q$2 J run_commandBGI will trigger the Next.js production compiler check in the background.`           "    if (path === "themeId") {
++        next.themeId = value;
++        if (next.config) {
++          next.config.themeId = value;
++        }
++        return next;
++      }
++      if (path === "status") {
++        next.status = value;
++        return next;
++      }
+       const target = isWrapped ? next.config : next;
+       if (target) {
+         const parts = path.split(".");
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.   : qfagf3em       
+(bot-fbf98438-5efb-4545-b0e9-7cf74b8 j j   R       "$101c0b2b-f569-4b97-a4ec-fbae6db062c1B     1   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   0   1   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2
+     "O     .   (  0 B!
+	sessionID  -3750763034362895579H7PsZ FydSav22C8idjuMPupCdoAw0  : 
+ autoJe              "             (  2          2b16ce172          73ff9f33:       e9c821beB         R     Z         b     ezw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_

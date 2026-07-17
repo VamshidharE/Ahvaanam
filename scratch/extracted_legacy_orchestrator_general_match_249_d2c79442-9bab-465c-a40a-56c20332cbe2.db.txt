@@ -1,0 +1,186 @@
+ command(Get-ChildItem)
+ command(git log)
+  command(Select-String -Path C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\.system_generated\logs\transcript.jsonl -Pattern "LegacyOrchestrator" | Select-Object -First 3)
+  command(Select-String -Path C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\.system_generated\logs\transcript_full.jsonl -Pattern '"step_index":1146' | Select-Object -ExpandProperty Line)
+ c    l" | Select-Object -Index 305)
+  command(Get-Content -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript_full.jsonl" | Select-Object -Index 305,306,307,308,309,310,311,312)
+  command(Select-String -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript_full.jsonl" -Pattern "app/api/auth" | Where-Object { $_.LineNumber -gt 312 } | Select-Object -Property LineNumber,Line -First 10)
+  command(Select-String -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript_full.jsonl" -Pattern "app/api/auth/login" | Select-Object -Property LineNumber,Line -First 10)
+  command(Get-ChildItem -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs" | ForEach-Object { $_.FullName })
+  command(Get-ChildItem -Recurse -Filter "*.ts*" -Path "app","components","lib","utils" | Select-String -Pattern "signSession" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+?write_file(C:\Users\Admin\Ahvaanam\app\api\auth\login\route.ts)
+@write_file(C:\Users\Admin\Ahvaanam\app\api\auth\logout\route.ts)
+  command(Get-ChildItem -Recurse -Filter "\*\.tsx" -Path "app","components" \| Select-String -Pattern "logo\.png" \| ForEach-Object \{ "\$\(\$_\.Path\):\$\(\$_\.LineNumber\): \$\(\$_\.Line\.Trim\(\)\)" \})
+ command(Copy-Item)
+ command(Copy-Item)
+ command(git checkout)
+ command(Select-String)
+  command(Select-String -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\\.system_generated\\logs\\\*\.jsonl" -Pattern "app/admin/\\\\\\\[id\\\\\\\]/page\.tsx" \| select -first 10)
+  command(Get-Content -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\\.system_generated\\logs\\transcript_full\.jsonl" \| Select-String -Pattern "app/admin/\\\\\\\[id\\\\\\\]/page\.tsx" \| select -first 5)
+  command(Get-Content -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\\.system_generated\\logs\\transcript_full\.jsonl" \| Select-String -Pattern "page\.tsx" \| select -first 5)
+  command(Get-ChildItem -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\" -Filter "page\.tsx" -Recurse -ErrorAction SilentlyContinue \| select FullName, Length)
+  command(Get-Content -Path "C:\Users\Admin\.gemini\antigravity\brain\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\.system_generated\logs\transcript_full.jsonl" | Select-String -Pattern "value={invitationData.couple.groom.name}")
+ command(git log)
+ command(git ls-files)
+  command(Select-String -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\\*\\\.system_generated\\logs\\\*\.jsonl" -Pattern "app/admin/\\\\\\\[id\\\\\\\]/page\.tsx" -SimpleMatch:\$false \| select -first 5)
+&command(git branch -a; git stash list)
+  command(Select-String -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\\*\\\.system_generated\\logs\\\*\.jsonl" -Pattern "write_to_file" \| Select-String -Pattern "admin" \| select -first 10)
+  command(Select-String -Path "c:\\Users\\Admin\\Ahvaanam\\\.next\\\*\*\\\*\.js" -Pattern "AdminPortalContent" \| select -first 5)
+  command(Get-ChildItem -Path "c:\\Users\\Admin\\Ahvaanam\\\.next" -Recurse -File \| Select-String -Pattern "Groom's Parents" \| select -first 3)
+  command(Select-String -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\conversations\\011e974d-4561-41c5-89e8-12ee65991b97\.db" -Pattern "AdminPortalContent" \| select -first 3)
+  command(python -c "import sqlite3; conn = sqlite3\.connect\('C:/Users/Admin/\.gemini/antigravity/conversations/011e974d-4561-41c5-89e8-12ee65991b97\.db'\); cursor = conn\.cursor\(\); cursor\.execute\(\\"SELECT name FROM sqlite_master WHERE type='table'\\"\); print\(cursor\.fetchall\(\)\)")
+zcommand(python C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\scratch\\extract\.py)
+zcommand(python C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca1      {% Uu  G>b*   @T C E <   e$   ;       i   c  '  2X   Q  q!    \e^x    s  se F N7z&         < QV  .  
+A P     S         1 R    \ :	pNp   s       c# !    8   |k f p      M'E L   ~ ] 	 Q     hz  - ]  q <    G   t   
+ 1 '   L   Qu     B`  (Jwrite_to_file            Created At: 2026-07-12T14:16:48Z
+Completed At: 2026-07-12T14:16:48Z
+Created file file:///c:/Users/Admin/Ahvaanam/scratch/extract_exact_renderer.js with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission. b: xmxd6hkd       
+(bot-d367c5ee-52e2-4681-9f76-44e58e13817d   ^I will execute the filtering script to restore the complete, untruncated composition renderer. y2  
+ nfsf9ddk  run_command   {"CommandLine":"node scratch/extract_exact_renderer.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run extract_exact_renderer.js","toolSummary":"Executing the match filtering script to restore CompositionRenderer.tsx"}:     
+    M2         ux  /$|>  tYI     g _  hn\ af    Oq N R} Z y  m    0 j M	      
+ x K   < a  5|  tb	   '  z   
+ S: 2         U   %Q  ) E     J run_command            Created At: 2026-07-12T14:16:53Z
+Completed At: 2026-07-12T14:17:12Z
+
+				The command completed successfully.
+				Output:
+				Potential CompositionRenderer match in file: composition_renderer_db_match_31_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  -> FOUND EXCELLENT COMPLETE CODE in composition_renderer_db_match_31_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt (length: 5973)
+Successfully restored perfect CompositionRenderer.tsx!
+
+   : nfsf9ddk       
+(bot-739121bc-c819-4e69-802e-b02b1a65b9e1     I will view the newly restored `components/composition/CompositionRenderer.tsx` to ensure it is complete and correctly formatted.   2  
+ 4gxk2pz2 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\composition\\CompositionRenderer.tsx","EndLine":200,"StartLine":1,"toolAction":"View restored CompositionRenderer","toolSummary":"Viewing restored CompositionRenderer.tsx to verify code integrity"}:     
+    M2   	  o
+c<    P      j` <6 t    r   ]\kq# bG   !    ~   ^ O   u n    d (  5X L w+5    i   q  /z M I Q    wS  un ! e   gR 1 qQ O    yI O  R aF2g% w      _ : C  B aI D   4 fV  h     T QV  7# m% F kD bO    q:U  Ig|>      ih      {    g    . aT	 K,(	      ,  e  cEx  R  6 PT 5)  V   |j  W|q b   S b  ! :    J	view_file      6    6Created At: 2026-07-12T14:17:17Z
+Completed At: 2026-07-12T14:17:18Z
+File Path: `file:///c:/Users/Admin/Ahvaanam/components/composition/CompositionRenderer.tsx`
+Total Lines: 119
+Total Bytes: 5973
+Showing lines 1 to 119
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: "use client";');
+2:     if (startIdx === -1) {
+3:       startIdx = content.indexOf('use client');
+4:     }
+5:     if (startIdx === -1) continue;
+6:     
+7:     // Try to find if this contains the full component
+8:     const hasComponentExport = content.includes('export default function CompositionRenderer');
+9:     const hasResolveBinding = content.includes('resolveBindingValue');
+10:     const hasSectionComponents = content.includes('SECTION_COMPONENTS');
+11:     
+12:     if (hasComponentExport && hasResolveBinding && hasSectionC
+13: ------------------------
+14:    node scratch/extract_from_db.js   node scratch/extract_from_db.js   <     3 S `  o   :  H   7 { useEffect, useState, useRef } from "react";
+15: import { ToggleLeft, ToggleRight } from "lucide-react";
+16: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+17: import { getWeddingComposition, getBirthdayComposition } from "@/lib/composition/templates";
+18: import { motion, AnimatePresence } from "framer-motion";
+19: import { useInvitationData } from "../../context/InvitationDataContext";
+20: import { Calendar, MapPin, Clock, Phone, Volume2, VolumeX, Menu, X
+21: ------------------------
+22: [22] Found match     at index 24245752
+23:   Preview of match [22]:
+24: "use client";
+25: 
+26: import React, { useEffect, useState, useRef } from "react";
+27: import { ToggleLeft, ToggleRight } from "lucide-react";
+28: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+29: import { getWeddingComposition, getBirthdayComposition } from "@/lib/composition/templates";
+30: import { motion, AnimatePresence } from "framer-motion";
+31: import { useInvitationData } from "../../context/InvitationDataContext";
+32: import { Calendar, MapPin, Clock, Phone, Volume2, VolumeX, Menu, X
+33: ------------------------
+34: [23] Found match at index 24247056
+35:   Preview of match [23]:
+36: "use client";
+37: 
+38: import React, { useEffect, useState, useRef } from "react";
+39: import { ToggleLeft, ToggleRight } from "lucide-react";
+40: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+41: import { getWeddingComposition, getBirthdayComposition } from "@/lib/composition/templates";
+42: import { motion, AnimatePresence } from "framer-motion";
+43: import { useInvitationData } from "../../context/InvitationDataContext";
+44: import { Calendar, MapPin, Clock, Phone, Volume2, VolumeX, Menu, X
+45: ------------------------
+46: [24] Found match at index 24248104
+47:   Preview of match [24]:
+48: "use client";
+49: 
+50: import React, { useEffect, useState, useRef } from "react";
+51: import { ToggleLeft, ToggleRight } from "lucide-react";
+52: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+53: import { getWeddingComposition, getBirthdayComposition } from "@/lib/composition/templates";
+54: import { motion, AnimatePresence } from "framer-motion";
+55: import { useInvitationData } from "../../context/InvitationDataContext";
+56: import { Calendar, MapPin, Clock, Phone, Volume2, VolumeX, Menu, X
+57: ------------------------
+58: [25] Found match at index 24248326
+59:   Preview of match [25]:
+60: "use client";
+61: 
+62: import React, { useEffect, useState, useRef } from "react";
+63: import { ToggleLeft, ToggleRight } from "lucide-react";
+64: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+65: import { getWeddingComposition, getBirthdayComposition } from "@/lib/composition/templates";
+66: import { motion, AnimatePresence } from "framer-motion";
+67: import { useInvitationData } from "../../context/InvitationDataContext";
+68: import { Calendar, MapPin, Clock, Phone, Volume2, VolumeX, Menu, X
+69: ------------------------
+70: [26] Found match at index 26906310
+71:   Preview of match [26]:
+72: "use client";
+73: 
+74: import React, { useState, useEffect } from "react";
+75: import { useInvitationData } from "../context/InvitationDataContext";
+76: 
+77: import AudioOrchestrator from "./AudioOrchestrator";
+78: import BackgroundEffects from "./BackgroundEffects";
+79: import LoadingExperience from "./LoadingExperience";
+80: import SectionPipeline from "./SectionPipeline";
+81: import TemplateFrame from "./TemplateFrame";
+82: import ScrollController from "./ScrollController";
+83: import ShareController from "./ShareController";
+84: 
+85: interfac
+86: ------------------------
+87: [27] Found match at index 28640033
+88:   Preview of match [27]:
+89: "use client";
+90: 
+91: import React, { useState, useEffect   B, useRef, use } from "react";
+92: import Link from "next/link";
+93: import { InvitationDataProvider, useInvitationData } from "../../../components/context/InvitationDataContext";
+94: import { getCategory } from "@/lib/categories/utils";
+95: import { getManifest } from "@/lib/template-manifests";
+96: import { getTheme, listThemes } from "@/lib/theme/registry";
+97: import { listMotionPacks } from "@/lib/motion/registry";
+98: import { 
+99:   Sliders, Heart, Calendar, Clock, Ma
+100: ------------------------
+101: [28] Found match at index 28640663
+102:   Preview of match [28]:
+103: "use client";
+104: 
+105: imp   S     3 S `   o1 FP%      b  b                             V    I        $ l       
+106:                "  
+107:  ozljwaiu  run_command   {"CommandLine":"node scratch/extrac    em -Recurse -Path "app" -Filter "*login*" | ForEach-Object { $_.FullName })
+Ccommand(Get-ChildItem -Path "app" | ForEach-Object { $_.FullName })
+Qcommand(Get-ChildItem -Recurse -Path "app\auth" | ForEach-Object { $_.FullName })
+Pcommand(Get-ChildItem -Recurse -Path "app\api" | ForEach-Object { $_.FullName })
+  command(Get-ChildItem -Recurse -Filter "*.tsx" -Path "app","components" | Select-String -Pattern "/api/auth/login" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+ocommand(Get-ChildItem -Path "C:\Users\Admin\Ahvaanam" -Filter "middleware.ts" | ForEach-Object { $_.FullName })
+Scommand(Get-ChildItem -Path "C:\Users\Admin\Ahvaanam" | ForEach-Object { $_.Name })
+Lcommand(Get-ChildItem -Path "prisma","lib" | ForEach-Object { $_.FullName })
+Qcommand(Get-ChildItem -Recurse -Path "lib\auth" | ForEach-Object { $_.FullName })
+ncommand(Select-String -Path ".env" -Pattern "ADMIN|SECRET|PASSWORD" | Select-Object -Property LineNumber,Line)
+`command(Get-ChildItem -Recurse -Filter "*route.ts" -Path "app" | ForEach-Object { $_.FullName })
+  command(Get-ChildItem -Recurse -Filter "*.ts*" -Path "app","components","lib","utils" | Select-String -Pattern "AUTH_CONFIG" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+  command(Get-ChildItem -Recurse -Filter "*.ts*" -Path "app","components","lib","utils" | Select-String -Pattern "ADMIN_EMAIL" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+  command(Get-ChildItem -Recurse -Path "app" -Filter "*.ts*" | Select-String -Pattern "PBKDF2|hash|decrypt|verify" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+  command(Get-ChildItem -Recurse -Path "lib\auth" | Select-String -Pattern "PBKDF2|hash|decrypt|verify" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+  command(Get-ChildItem -Recurse -Filter "*.ts*" -Path "app","components","lib","utils" | Select-String -Pattern "verifyPassword" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+Scommand(Get-ChildItem -Recurse -Filter "*route.*" | ForEach-Object { $_.FullName })
+Wcommand(Get-ChildItem -Recurse -Filter "*middleware*" | ForEach-Object { $_.FullN

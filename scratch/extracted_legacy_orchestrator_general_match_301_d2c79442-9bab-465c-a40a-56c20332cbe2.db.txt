@@ -1,0 +1,130 @@
+to delete the corrupted files and restore the intended versions.
+
+
+**Tracking Build Failures**
+
+I'm now investigating a build failure related to a "Module not found" error, specifically `../../shared/LegacyOrchestrator` within several template layouts. It looks like the issue is with `components/templates/...` being pulled into the build. I'm trying to determine why those untracked files are influencing my session.
+
+
+            Created At: 2026-07-12T08:52:10Z
+Completed At: 2026-07-12T08:52:10Z
+Created file file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/find-wrappers.py with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission. q: a1b3rlun       
+(bot-ebfe3bf3-2472-4756-baac-3550a10912c9   \I will run the wrapper check script to search for the missing helper wrapper file creations.   2  
+ f5cc6zvd  run_command   {"CommandLine":"python \"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\scratch\\find-wrappers.py\"","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run python find-wrappers script","toolSummary":"Running python script to find LayoutWrapper and MotionWrapper writes"}:d b
+`  M2  R   >    k    Q' ;r f| YM    9l  G ec      #   95  v' G    
+n  +R p}   9    l:     o=SqR  J run_command            Created At: 2026-07-12T08:52:13Z
+Completed At: 2026-07-12T08:52:17Z
+
+				The command completed successfully.
+				Output:
+				Scanning transcript for wrapper components...
+Step 666: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\implementation_plan.md
+Step 670: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\task.md
+Step 676: c:\Users\Admin\Ahvaanam\components\layouts\LayoutWrapper.tsx
+Step 686: c:\Users\Admin\Ahvaanam\components\sections\hero\index.tsx
+Step 688: c:\Users\Admin\Ahvaanam\components\sections\celebrant\index.tsx
+Step 690: c:\Users\Admin\Ahvaanam\components\sections\countdown\index.tsx
+Step 702: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\task.md
+Step 704: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\walkthrough.md
+Step 708: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\implementation_plan.md
+Step 712: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\task.md
+Step 718: c:\Users\Admin\Ahvaanam\components\motion\MotionWrapper.tsx
+Step 722: c:\Users\Admin\Ahvaanam\components\sections\hero\index.tsx
+Step 724: c:\Users\Admin\Ahvaanam\components\sections\celebrant\index.tsx
+Step 726: c:\Users\Admin\Ahvaanam\components\sections\countdown\index.tsx
+Step 738: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\task.md
+Step 740: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\walkthrough.md
+Step 744: c:\Users\Admin\Ahvaanam\components\sections\couple\index.tsx
+Step 746: c:\Users\Admin\Ahvaanam\components\sections\families\index.tsx
+Step 748: c:\Users\Admin\Ahvaanam\components\sections\dressCode\index.tsx
+Step 750: c:\Users\Admin\Ahvaanam\components\se    ctions\story\index.tsx
+Step 864: c:\Users\Admin\Ahvaanam\components\sections\houseDetails\index.tsx
+Step 1024: c:\Users\Admin\Ahvaanam\components\sections\owners\index.tsx
+Step 1262: c:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\architectural_audit.md
+Step 1563: c:\Users\Admin\Ahvaanam\components\sections\families\index.tsx
+Step 888: c:\Users\Admin\Ahvaanam\components\sections\families\index.tsx
+Step 678: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\scratch\find-wrappers.py
+
+   : f5cc6zvd      !
+(bot-8c1f2dde-a676-4de2-beda-0de8e4cf9a4b     I will create a python script at `<appDataDir>\brain\<conversation-id>/scratch/recover-wrappers.py` to extract `components/layouts/LayoutWrapper.tsx` and `components/motion/MotionWrapper.tsx` from the transcript logs and write them to their proper paths.   2  
+ 0z9z9dt2 write_to_file   {"CodeContent":"import json\nimport os\n\ntranscript_path = r\"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\.system_generated\\logs\\transcript_full.jsonl\"\nprint(\"Scanning transcript for wrapper files...\")\n\nrecovered = {}\n\nwith open(transcript_path, \"r\", encoding=\"utf-8\") as f:\n    for i, line in enumerate(f):\n        if \"write_to_file\" in line and (\"LayoutWrapper.tsx\" in line or \"MotionWrapper.tsx\" in line):\n            data = json.loads(line)\n            for tc in data.get(\"tool_calls\", []):\n                if tc.get(\"name\") == \"write_to_file\":\n                    args = tc.get(\"args\", {})\n                    tgt = args.get(\"TargetFile\", \"\")\n                    content = args.get(\"CodeContent\", \"\")\n                    \n                    if tgt and content:\n                        tgt_clean = tgt.strip('\"').replace('\\\\\\\\', '\\\\')\n                        recovered[tgt_clean] = content\n\n# Write recovered files\nfor path, code in recovered.items():\n    if isinstance(code, str):\n        if code.startswith('\"') and code.endswith('\"'):\n            code = code[1:-1]\n        code = code.replace('\\\\n', '\\n').replace('\\\\t', '\\t').replace('\\\\\"', '\"').replace('\\\\\\\\', '\\\\')\n    \n    if not os.path.isabs(path):\n        path = os.path.abspath(os.path.join(r\"c:\\Users\\Admin\\Ahvaanam\", path))\n        \n    print(f\"Restoring recovered file: {path}\")\n    os.makedirs(os.path.dirname(path), exist_ok=True)\n    with open(path, \"w\", encoding=\"utf-8\") as out:\n        out.write(code)\n\nprint(\"Wrappers recovery complete!\")\n","Description":"Create python script to recover LayoutWrapper and MotionWrapper","Overwrite":true,"TargetFile":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\scratch\\recover-wrappers.py","toolAction":"Create python script","toolSummary":"Creating script to recover LayoutWrapper and MotionWrapper files from transcript log"}:     
+    M2 #          +  ~   }&    07w  , NA & 	     g   V 
+  =     	 @ _l
+  xsf  G[  a       i / ` v
+ B    h  b|*  	   J + h< e   c_  I  _M <   -  V  W & j &    X  l,e% S  3)e        'y      r~L 9  \   `  _Se        z }  l= o   ^c  / @      a  `  `<g       e   /$ ; lQ -u "  fVT    ew    v@ EEe ),>I r'   oI P H YF    0 V7l D ?  d$ nM O       @  -K	3 #   P   %             C   P }   Sd     A  gf   t  ,o=       j B 4$O D      %Yfl  Q  x ~ t/\   I  @      4  M ~ wuA j$ [@   yzE L;  yN            U ;  V  e= c 4  *     R~ (F   $   >L V   nfgE  n1  q     i) s4      d       @    o8do   Z    m   `  Z _{ |   e  M  hU   /  ]z  YwHQ 6 ,  v 8  1 M |_$
+  p    G1 p c _" \ hp   D :P< 	   v0g    +	 q  n>~   J +        Bk" {Dr rv }  6   `  ' }+	    k $  sT    I  :  Mf6h* q   Z  o  W    0 j6> [         g 4  L   mE ;      N   3 fRE  ^     n Z Z(  ^ 0   y    _x  Sz'  @0  X   '  F Q     P '  ! ? mv 7Ek   _( ns    8^J         V Ek  
+.O  r   c     qn   B&\     8  ) Z$0       	 C " R  N  !   a ^{6 X  ^    TP/   j     ueE   0  C>u   !]$ x < +r  _ W)  l <+   * :   ]     ` V  2 @ B          l7     q  u7]        z   h    5)    n  P G   z$   QM F /  + - goI-'          ; []Y B b? IB m ](c     RK #  >zJ  u K  G       a$ K  s     *     > / DQ  .         5   #     
+ p +    " |q 9 `ED  &Ma  6|  R=  i6[      ] Fl      Xa  VR   nI  w  pD   A H_     c    ]  g 4  6  + r D!        "       l  - H I   9 2s T/*  fZ O   ^1 CA  Ez*  ; :|    hN F    g  O   ~ (_i h  ` e| 6$5uq8# u OXV        I   V+   Z gx)   	v n   k   9         B   z  >VqF   _x D     )~G    Z0  P T /         n  x  N     {b% u   P      C  E O  Q i<    "     1e!  =      2^   X_    FvM?    g     G?   mB    E    7 ZPX1  |  %    u   4 } n   k%     ^;;    ;   y  8 6    M |'      x      U    ! l @ P     ? )W          | 5            h @7E  T    y     O &  C     9 {  .   FI   R M      gZJ   * X~   b &_O   ! 	#  l             s:b 2 n  /  ?    m l  +      2-  )%t i Hk    $   s    P ME   =$  *    ;Jwrite_to_file            Created At: 2026-07-12T08:52:20Z
+Completed At: 2026-07-12T08:52:20Z
+Created file file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/recover-wrappers.py with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission. r: 0z9z9dt2       
+(bot-29033350-e741-4ecb-87a3-bf7851866208   ^I will run the wrapper recovery script to restore `LayoutWrapper.tsx` and `MotionWrapper.tsx`.   2  
+ 7avidesd  run_command   {"CommandLine":"python \"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\scratch\\recover-wrappers.py\"","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run python recovery script","toolSummary":"Running recovery script to restore LayoutWrapper and MotionWrapper files"}:g e
+c  M2 !   l \    @N$ ) 5 Kt~ko   G20 T K    ;Y  H  h          g D-  py  * C     F VdyU $  R1 VL d \|J run_command            Created At: 2026-07-12T08:52:23Z
+Completed At: 2026-07-12T08:52:26Z
+
+				The command completed successfully.
+				Output:
+				Scanning transcript for wrapper files...
+Restoring recovered file: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\implementation_plan.md
+Restoring recovered file: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\task.md
+Restoring recovered file: c:\Users\Admin\Ahvaanam\components\layouts\LayoutWrapper.tsx
+Restoring recovered file: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\walkthrough.md
+Restoring recovered file: c:\Users\Admin\Ahvaanam\components\motion\MotionWrapper.tsx
+Restoring recovered file: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\scratch\recover-wrappers.py
+Wrappers recovery complete!
+
+   : 7avidesd       
+(bot-fccc7b72-fe15-46de-bd48-714eb22cc7f6     I will view the beginning of `components/templates/birthday-premium/Layout.tsx` to inspect its imports and fix the unresolved compiler names.   2  
+ moqhufqq 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\birthday-premium\\Layout.tsx","EndLine":25,"StartLine":1,"toolAction":"View birthday-premium Layout.tsx imports","toolSummary":"Reading imports block of birthday-premium layout file"}:   
+   M2     6 0 J    bB&Q#    G u %    I'  < 2  ^ (  0 |Z   r} ,LU  ]z  J(   & e)M    Y  E<8  @ 
+ q7  41   r   9l> +eGW a   if2Rm0p      M4	 e g o  e   % c A 6. _           4 ;  +md   Ds Wj   ;  6 |A 8k  i 1 L( F    { 7    rtC  cZ    &  ;R oX j P A      y=    /4m   a 7   9  ;@	 |r?      \  g       k    ~ \4 >  c     v    1 L T q 3!  &r /= |[>0 Q    }  (    X  O ynB>  P&z G   ' W Wsn    
+ G   LT      {  `0zD/ J   ^  E   c  '   "o D%QH N  Qv  E]G|    I  a g  AVv  	p  Q% D  ?  93-      C  J  tP 9 |    _w  ]#c
+ i  DVz u  W    Kv  "z\   D3w  m    ( ^      Aw /    7 av_  _ TS pRy     V 3   =  3A|!  PO)=  A z ]:  AP      0 4 qU   	  (    @     HP  C H\ j [ o  tBI> gT           DJT    YT   ;.-  ]c  1K$   . "/   t x:p `  =q   5 @O =    _}            
+    V  _    &F2 9   {  m o ~  	    V _N    k) ` y  ?s@]  =   H   ^  S   8  ?il   \      o#X  bh  )  [(^q]=U  ~ ~ `n    +B S      V   w_ \  L    =X.Wj.u * s R  0S8  	l d > o 3  r    <qqm       5 -   A  %m     B      K  h&y+     0E       $     = ) >   'qZ       !Q l <   M	 9 #g   $/|   {N5M     s  }        *7h  A& y       ,3  /I u    6B U    !M   n d z ~D   n JJE  d&.-    93e   #  ,   e{      p) [  z   8J ,N  @/ (    ^I  C=U Z
+ c  ~  k  v         i[   IE    A h .    xZu  f    7M  6  z ? mz pN+=   ~          EO  #>  q   v    { (W#A0       z   G[   r h     ~u  oX &    zv E  o   3  D O    U|7)e    7 r UH 5~15 K	     2.7  <Fsa k  5  j   FM   x  b " S  >  G ~/  h   t - -     E  0   
+   8   ? v }L    8
+ ~ 2     vDW&\     ; *! CY   ]KN    k    e0TN6 *s       ( \xJ b   *) h Ow N     ] kV      y TPKa    78L  R Q Z      V       9 Gh9t< t T  q      o  t{    ew        8    'V Xn    c    C    A	!d^ ` L    &      X01    s ; D   U^ $ _z   6 4  q #  L G i;   ]   l^ V  @ @ rT   `  V To gt| +!s R k     Y l    QU eZ < X&   Wl%   J	view_file            Created At: 2026-07-12T08:52:29Z
+Completed At: 2026-07-12T08:52:29Z
+File Path: `file:///c:/Users/Admin/Ahvaanam/components/templates/birthday-premium/Layout.tsx`
+Total Lines: 787
+Total Bytes: 34078
+Showing lines 1 to 25
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: "use client";
+2: 
+3: import React, { useEffect, useState, useRef } from "react";
+4: import { motion, AnimatePresence } from "framer-motion";
+5: import { useInvitationData } from "../../context/InvitationDataContext";
+6: import { Calendar, MapPin, Clock, Phone, Volume2, VolumeX, Menu, X, HelpCircle, Sparkles } from "lucide-react";
+7: import Lightbox from "yet-another-react-lightbox";
+8: import "yet-another-react-lightbox/styles.css";
+9: 
+10: // Dynamic Google Fonts configuration for birthday themes
+11: const THEME_FONTS: Record<string, string> = {
+12:   midnight: "Cinzel",
+13:   marble: "Bodoni+Moda",
+14:   emerald: "Cormorant+Garamond",
+15:   navy: "Cinzel",
+16:   burgundy: "Lora",
+17:   champagne: "Cormorant+Garamond",
+18:   glass: "Inter",
+19:   rosegold: "Playfair+Display",
+20:   artdeco: "Cinzel+Decorative",
+21:   botanical: "Lora"
+22: };
+23: 
+24: // Theme configuration mapper
+25: const THEME_CONFIGS: Record<string, any> = {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+   : moqhufqq       
+(bot-e3e65a8a-ab07-4a9c-b223-82532b88cbf2   vI will view lines 260 to 300 of `components/templates/birthday-premium/Layout.tsx` to read the rendering wrapper code.   2  
+ v9bux59m 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\birthday-premium\\Layout.tsx","EndLine":300,"StartLine":260,"toolAction":"View birthday-premium Layout.tsx lines 260-300","toolSummary":"Reading rendering logic in birthday-premium Layout.tsx"}:     
+    M2           -  t 0-Ci   @  6  B @? m  s    d  [N O    W  ;,   ' t?   m   P   R  W ; XX S        , 
+  ; r  u ]  :   : }     FG    8j   	D,LRZ  X   , '1MY  ]     : !  F_;  GF _      I     :;|    y  0 `   \ - {m  %      U  E&p  l ^ !   X r9 u   F ]   wO *     } >s | M      G_ 
+v l 8   3mi +    ;   $a    >  J   8.w   X    /  qHj        | i  x     Zo  R  d :@ L    F  9 U :b  bRs  '@]       
+FI    + /  P   ' B@J	view_file            Created At: 2026-07-12T08:52:32Z
+Completed At: 2026-07-12T08:52:32Z
+File Path: `file:///c:/Users/Admin/Ahvaanam/components/templates/birthday-premium/Layout.tsx`
+Total Li

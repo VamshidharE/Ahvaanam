@@ -1,0 +1,124 @@
+"use client";
+
+import React from "react";
+
+// Reusable section components
+import HeroSection from "../../sections/hero";
+import CoupleSection from "../../sections/couple";
+import CountdownSection from "../../sections/countdown";
+import StorySection from "../../sections/story";
+import EventsSection from "../../sections/events";
+import GallerySection from "../../sections/gallery";
+import VenueSection from "../../sections/venue";
+import FamiliesSection from "../../sections/families";
+import RSVPSection from "../../sections/rsvp";
+import FAQSection from "../../sections/faq";
+import DressCodeSection from "../../sections/dressCode";
+import FooterSection from "../../sections/footer";
+import CelebrantSection from "../../sections/celebrant";
+import HouseDetailsSection from "../../sections/houseDetails";
+import OwnersSection from "../../sections/owners";
+
+interface SectionPipelineProps {
+  sectionOrder: string[];
+  invitation: any;
+  themeId: string;
+}
+
+export default function SectionPipeline({ sectionOrder, invitation, themeId }: SectionPipelineProps) {
+  const renderSectionComponent = (sectionId: string) => {
+    const sectionConfig = invitation[sectionId];
+    const isEnabled = sectionConfig?.enabled !== false;
+    if (!isEnabled) return null;
+
+    const bindings = sectionConfig || {};
+
+    switch (sectionId) {
+      case "hero":
+        return (
+          <HeroSection
+            key={sectionId}
+            properties={bindings}
+            bindings={bindings}
+            themeId={themeId}
+            layoutId="hero-center"
+            motionId="luxury-motion"
+          />
+        );
+      case "couple":
+        return <CoupleSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "countdown":
+        return <CountdownSection key={sectionId} bindings={bindings} />;
+      case "story":
+        return <StorySection key={sectionId} bindings={bindings} />;
+      case "events":
+        return <EventsSection key={sectionId} bindings={bindings} />;
+      case "gallery":
+        return <GallerySection key={sectionId} bindings={bindings} />;
+      case "venue":
+        return <VenueSection key={sectionId} bindings={bindings} /    >;
+      case "families":
+        return <FamiliesSection key={sectionId} bindings={bindings} />;
+      case "rsvp":
+        return <RSVPSection key={sectionId} bindings={bindings} />;
+      case "faq":
+        return <FAQSection key={sectionId} bindings={bindings} />;
+      case "dressCode":
+        return <DressCodeSection key={sectionId} bindings={bindings} />;
+      case "footer":
+        return <FooterSection key={sectionId} bindings={bindings} />;
+      case "celebrant":
+        return <CelebrantSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "houseDetails":
+        return <HouseDetailsSection key={sectionId} bindings={bindings} />;
+      case "owners":
+        return <OwnersSection key={sectionId} bindings={bindings} />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className="space-y-12">
+      {sectionOrder.map((sectionId: string) => renderSectionComponent(sectionId))}
+    </div>
+  );
+}
+2            8     
+Pfile:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/TemplateFrame.tsx   "use client";
+
+import React from "react";
+import { ArrowLeft } from "lucide-react";
+
+interface TemplateFrameProps {
+  themeBgClass?: string;
+  onBackToHub: () => void;
+  children: React.ReactNode;
+}
+
+export default function TemplateFrame({ themeBgClass = "bg-stone-900", onBackToHub, children }: TemplateFrameProps) {
+  return (
+    <div className={`min-h-screen relative overflow-hidden ${themeBgClass}`}>
+      {/* Back to Hub floating utility */}
+      <button
+        onClick={onBackToHub}
+        className="fixed bottom-6 left-6 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40 bg-white/90 text-[#FF8800] backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer select-none"
+      >
+        <ArrowLeft size={20} />
+      </button>
+      {children}
+    </div>
+  );
+}
+2             8     
+Sfile:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/ScrollController.tsx   "use client";
+
+import React, { useEffect } from "react";
+
+interface ScrollControllerProps {
+  children?: React.ReactNode;
+}
+
+export default function ScrollController({ children }: ScrollControllerProps) {
+  useEffect(() => {
+    // Add smooth scroll 

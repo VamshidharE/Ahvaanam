@@ -1,0 +1,207 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeMessage: "Weddi
+------------------------
+[175] Found match at index 4037305
+  Preview of match [175]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[24] Found match at index 5440884
+  Preview of match [24]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[176] Found match at index 4065605
+  Preview of match [176]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[25] Found match at index 5441271
+  Preview of match [25]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeMessage: "Weddi
+------------------------
+[177] Found match at index 4065991
+  Preview of match [177]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[26] Found match at index 5441658
+  Preview of match [26]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[178] Found match at index 4066377
+  Preview of match [178]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[27] Found match at index 5442045
+  Preview of match [27]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/t        YZ uh \      #z'SQLite format 3      @     P              	                                                   P .      	       8   B   @
+N
+ 	          
+------------------------
+[179] Found match at index 4090300
+  Preview of match [179]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[28] Found match at index 5442432
+   node scratch/extract_from_db.js   node scratch/extract_from_db.js         3 Op~1      XY     HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+[185] Found match at index 4121330
+  Preview of match [185]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[15] Found match at index 5436226
+  Preview of match [15]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeMessage: "Weddi
+------------------------
+[186] Found match at index 4121716
+  Preview of match [186]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[16] Found match at index 5436613
+  Preview of match [16]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[187] Found match at index 4122102
+  Preview of match [187]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[17] Found match at index 5437000
+  Preview of match [17]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider"    ;
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You
+------------------------
+[188] Found match at index 4432954
+  Preview of match [188]:
+"use client";
+
+import React from "react";
+import { getTheme } from "@/lib/theme/registry";
+
+interface ThemeProvid
+------------------------
+[18] Found match at index 5438558
+  Preview of match [18]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[170] Found match at index 4005562
+  Preview of match [170]:
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+
+------------------------
+[19] Found match at index 5438958
+  Preview of match [19]:
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemePr

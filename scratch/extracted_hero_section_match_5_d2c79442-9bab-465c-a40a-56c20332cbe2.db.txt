@@ -1,0 +1,200 @@
+| "great-vibes";    
+     surnameColor?: string;    
+   };    
+   themeId?: string;    
+ }       ^
+Zexport default function HeroSection({ properties, bindings, themeId }: HeroSectionProps) {   
+	  const {   #
+     showScrollIndicator = true,    
+     overlayOpacity = 0.45,    
+     contentAlign = "center",    
+     minHeight = "85vh",    
+   } = properties;       
+	  const {    
+     title = "",    
+     subtitle = "",    
+     welcomeMessage = "",    
+     heroImage = "",    
+     ctaText = "",    
+     surname = "",    
+     subText = "",   !
+     enableHeaderMedia = true,    
+     headerMediaType = "god",    
+     selectedGod = "ganesha",    
+     selectedSymbol = "om",    
+     headerMediaSize = 80,    
+     headerMediaSpacing = 30,   "
+     showSurnameHeading = true,    
+     surnameFont = "cinzel",   !
+     surnameColor = "#C59B27",    
+   } = bindings;        
+   const alignmentClass =    <
+8    contentAlign === "left" ? "text-left items-start" :    <
+8    contentAlign === "right" ? "text-right items-end" :    #
+     "text-center items-center";        
+
+  return (    
+    <section    k
+g      cl    assName="relative flex flex-col justify-center items-center overflow-hidden w-full select-none"    
+       style={{ minHeight }}   	
+     >   (
+$      {/* Background Cover Image */}    
+       {heroImage && (    
+        <div    }
+y          className="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-105"   >
+:          style={{ backgroundImage: `url(${heroImage})` }}    
+
+        />    
+       )}        
+       {/* Dark overlay */}    
+       <div    E
+A        className="absolute inset-0 bg-black pointer-events-none"   /
++        style={{ opacity: overlayOpacity }}    
+       />        
+       {/* Hero content */}   |
+x      <div className={`relative z-10 w-full max-w-4xl px-6 py-12 flex flex-col ${alignmentClass} text-white space-y-6`}>   +
+'        {/* Deity Symbol if enabled */}   #
+         {enableHeaderMedia && (    
+           <div     
+             style={{    7
+3              marginTop: `${headerMediaSpacing}px`,   0
+,              width: `${headerMediaSize}px`,   1
+-              height: `${headerMediaSize}px`     
+             }}   E
+A            className="flex items-center justify-center shrink-0"    
+           >    
+             <DeitySymbol   (
+$              type={headerMediaType}   +
+'              selectedGod={selectedGod}   1
+-              selectedSymbol={selectedSymbol}   (
+$              size={headerMediaSize}    
+             />    
+           </div>    
+
+        )}       "
+         {/* Surname Banner */}   /
++        {showSurnameHeading && surname && (   .
+*          <div className="animate-fadeIn">    
+             <h2    K
+G              className="text-2xl md:text-3xl font-bold tracking-wider"    
+               style={{      
+                  fontFamily: surnameFont === "great-vibes" ? "var(--font-great)" : surnameFont === "playfair" ? "var(--font-playfair)" : "var(--font-cinzel)",   (
+$                color: surnameColor     
+               }}    
+            >    
+               {surname}    
+             </h2>    
+             {subText && (   _
+[              <span className="text-[10px] uppercase tracking-[2px] opacity-75 block mt-1">    
+                 {subText}    
+               </span>    
+             )}    
+           </div>    
+
+        )}       #
+         {/* Welcome Tagline */}    
+         {welcomeMessage && (   [
+W          <p className="text-xs uppercase tracking-[3px] text-[#C49B27] font-semibold">    
+             {welcomeMessage}    
+           </p>    
+
+        )}       &
+"        {/* Main Title Heading */}    
+         {title && (   n
+j          <h1 className="text-3xl md:text-5xl font-bold tracking-wide leading-tight max-w-2xl font-serif">    
+             {title}    
+           </h1>    
+
+        )}       2
+.        {/* Subtitle / Details description */}    
+         {subtitle && (   s
+o          <p className="text-sm max-w-lg leading-relaxed opacity-95 whitespace-pre-line font-sans font-medium">    
+             {subtitle}    
+           </p>    
+
+        )}       )
+%        {/* Call to Action Button */}    
+         {ctaText && (    
+           <button     
+             type="button"     
+              className="px-8 py-3.5 bg-[#C49B27] hover:bg-[#B0871B] text-white text-xs font-bold uppercase tracking-[2px] rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 cursor-pointer mt-4"    
+           >    
+             {ctaText}    
+           </button>    
+
+        )}    
+       </div>       "
+       {/* Scroll indicator */}   #
+       {showScrollIndicator && (     
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 z-10 animate-bounce opacity-85">   o
+k          <span className="text-[8px] uppercase tracking-[1.5px] text-white/70 font-semibold">Scroll</span>   B
+>          <div className="w-1 h-3 bg-white/60 rounded-full" />    
+         </div>    
+       )}    
+     </section>    
+   );    
+ }      BBfile:///c:/Users/Admin/Ahvaanam/components/sections/hero/index.tsxX     -Create Hero Section index.tsx React component    	  	  F                                                             }      < H   8   
+               "  
+ o9ypj2vh  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running final production build validation check"}:     
+    M2  <  KG  ,o    -p  Y  . g
+BT$ Y  Bm   -    I  O$1z+  A     6      4 p Xn)t  ) " 3  A  *  : !Ks :   D T Q 7  ?m:   
+`  0   ?   pi 	F   MC u ~v>    G{~vt  X   G > ;m   6Fd l |  V HQ!   >    D  n   c >p  j        =  l  zG z  y]| ~  0  JN   a`    	         }SY B     n  Vu  +      ;   H * Q( 6  |JJ b   p[   vj	t    @
+ Z Y E <  d j V   K    J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$a7eca9b4-c0fd-49c2-a5f5-3bc6a5616aa9j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    /  6
+                 
+  	              
+                   /Running final production build validation check   Test Next.js build                 
+ 
+ command npm run build      *  
+               "  
+ o9ypj2vh  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running final production build validation check"}:     
+    M2  <  KG  ,o    -p  Y  . g
+BT$ Y  Bm   -    I  O$1z+  A     6      4 p Xn)t  ) " 3  A  *  : !Ks :   D T Q 7  ?m:   
+`  0   ?   pi 	F   MC u ~v>    G{~vt  X   G > ;m   6Fd l |  V HQ!   >    D  n   c >p  j        =  l  zG z  y]| ~  0  JN   a`    	         }SY B     n  Vu  +      ;   H * Q( 6  |JJ b   p[   vj	t    @
+ Z Y E <  d j V   K    J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$a7eca9b4-c0fd-49c2-a5f5-3bc6a5616aa9j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    /  6
+                 
+  	              
+                   /Running final production build validation check   Test Next.js build                 <  9
+ 
+ command npm run build  npm run  * Test Next.js build     
+ 
+ command npm run build   	  
+<  9
+ 
+ command npm run build  npm run  * Test Next.js build B
+$e814890c-6b84-44e9-9783-edb10a1bb4dd        " 
+ command(npm run)      c:\Users\Admin\AhvaanamX ` N    
+  
+> ahvaanam@0.1.0 build
+> next build
+
+    Next.js 16.2.9 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+  npm run build  npm run build   |            
+   
+               2             :             B             JO         (  	0 B!
+	sessionID  -3750763034362895579H<P[Z 1SRSatXuIOKsjuMP2IzyuAgX  b$a7eca9b4-c0fd-49c2-a5f5-3bc6a5616aa9j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+               2             :             B             JO         (  	0 B!
+	sessionID  -3750763034362895579H<P[Z 1SRSatXuIOKsjuMP2IzyuAgX  b$a7eca9b4-c0fd-49c2-a5f5-3bc6a5616aa9j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+{I will run the Next.js production build compiling command to verify there are no Turbopack or static rendering regressions.2(bot-e53d46e9-eaf7-466f-910b-48b2ad58d0ba:  
+ o9ypj2vh  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running final production build validation check"}:     
+    M2  <  KG  ,o    -p  Y  . g
+BT$ Y  Bm   -    I  O$1z+  A     6      4 p Xn)t  ) " 3  A  *  : !Ks :   D T Q 7  ?m:   
+`  0   ?   pi 	F   MC u ~v>    G{~vt  X   G > ;m   6Fd l |  V HQ!   >    D  n   c >p  j        =  l  zG z  y]| ~  0  JN   a`    	         }SY B     n  Vu  +      ;   H * Q( 6  |JJ b   p[   vj	t    @
+ Z Y E <  d j V   K    J run_commandB{I will run the Next.js production build compiling command to verify there are no Turbopack or static rendering regressions.`     \n      content += String.fromCharCode(charCode);\n    } else {\n      content += ' ';\n    }\n  }\n\n  const searchStr = 'SECTION_COMPONENTS';\n  let idx = 0;\n  let matches = 0;\n  const baseName = path.basename(filePath);\n  \n  while ((idx = content.indexOf(searchStr, idx)) !== -1) {\n    const surrounding = content.substring(Math.max(0, idx - 1000), idx + 2000);\n    const isOurScript = surrounding.includes('extract_from_db') || \n                        surrounding.includes('extract_exact_renderer') || \n                        surrounding.includes('search_composition_code') ||\n                        surrounding.includes('search_all_logs') ||\n                        surrounding.includes('find_homepage') ||\n                        surrounding.includes('extract_all_matches') ||\n                        surrounding.includes('find_full_composition');\n                        \n    if (!isOurScript) {\n      matches++;\n      console.log(`  [MATCH ${matches}] Found at index ${idx}`);\n      let startIdx = content.lastIndexOf('use client', idx);\n      if (startIdx === -1 || startIdx \u003c idx - 1000) {\n        startIdx = idx - 100;\n      }\n      \n      const slice = content.substring(startIdx, startIdx + 6000);\n      const outName = `scratch/composition_pure_match_${matches}_${baseName}.txt`;\n      fs.writeFileSync(outName, slice);\n      console.log(`    Saved to ${outName}`);\n    }\n    idx += searchStr.length;\n  }\n}\n\nfor (const file of files) {\n  scanFile(path.join(conversationsDir, file));\n}\nconsole.log('All databases scanned.');\n","Description":"Scan all SQLite database files in conversations folder for SECTION_COMPONENTS.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\scratch\\extract_all_matches.js","toolAction":"Write extract_all_matches script","toolSummary":"Updating search script to scan all database files in the conversations directory"}: 
+  
+
+ 
+  M2   m ==T 5   j      $ CyX)           g   V  D_     <       ^  ]h *4 D  B   FT:  H ' h -]= RP              GX  N [     !  j x avG8!r    u 0 .     a  /` @ m  [   %.C (  Tp = &_(   [ M15 K#  ED Pm:  KX   ~  "  6 ) ,     '   u Y-      EM  u wf
+       Jk     J  @ w8" *     - b; s          LA   xC  q    G Y  "   D  P -     ;m  ntdE I  c   e      8   HVR    ;^       i     f &Y =     B   )A[      2   \_  `  r6 m" o 4      	 r-s % I  ,S    ^/G   VHCj $vrv C  $ `4~  }    I4V$  K o U  ^ i}   w   eX   5 Q      Q   Y  07    M   Ol nF       5  	  R '  rV G 7 M:   5  ! LA ;  N  F       J u    2  4q   r     m ws )  cM  #  (h 2v &  %B   |i ,8b>] Xo    }#    {SixWX   >& V FO ;    B  ?} u  : I n" E   w  W  =      & i  k5P     s Y  q ~ ] q  "%i_@         _	 

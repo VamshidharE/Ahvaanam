@@ -1,0 +1,121 @@
+"use client";
+
+import { useEffect, useState, useRef } from "react";
+import { ToggleLeft, ToggleRight } from "lucide-react";
+import CompositionRenderer from "@/components/composition/CompositionRenderer";
+import { getWeddingComposition, getBirthdayComposition } from "@/lib/composition/templates";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInvitatio    nData } from "../../context/InvitationDataContext";
+import { Calendar, MapPin, Clock, Phone, MessageCircle, Volume2, VolumeX, ArrowLeft, HelpCircle, Shirt } from "lucide-react";
+import Image from "next/image";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import DeitySymbol from "../../shared/DeitySymbol";
+import GallerySlider from "../../shared/GallerySlider";
+
+// --- FALLING MARIGOLD BLOOMS PARTICLE EFFECT (CANVAS) ---
+const MarigoldParticles = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const particles = Array.from({ length: 35 }).map(() => ({
+      x: Math.random() * width,
+      y: Math.random() * -height,
+      r: Math.random() * 5 + 4,
+      vy: Math.random() * 1.4 + 0.6,
+      vx: (Math.random() - 0.5) * 0.3,
+      rotation: Math.random() * 360,
+      rotationSpeed: Math.random() * 2 - 1,
+      color: Math.random() > 0.5 ? "#FF8800" : "#FFCC00",
+      alpha: Math.random() * 0.4 + 0.4,
+    }));
+
+    const resize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener("resize", resize);
+
+    let animationFrameId: number;
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach((p) => {
+        p.y += p.vy;
+        p.x += p.vx;
+        p.rotation += p.rotationSpeed;
+
+        if (p.y > height + 20) {
+          p.y = -20;
+          p.x = Math.random() * width;
+        }
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        
+        ctx.beginPath();
+        for (let i = 0; i < 8; i++) {
+          ctx.rotate(Math.PI / 4);
+          ctx.lineTo(p.r, 0);
+          ctx.lineTo(p.r / 2, p.r / 3);
+        }
+        ctx.closePath();
+
+        ctx.fillStyle = p.color;
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = p.color;
+        ctx.fill();
+        ctx.restore();
+      });
+      animationFrameId = requestAnimationFrame(draw);
+    };
+    draw();
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0" />;
+};
+
+export default function MarigoldLayout({ onBackToHub }: { onBackToHub: () => void }) {
+  const { invitationData } = useInvitationData();
+  const getAlignClass = (pos?: string) => {
+    if (pos === "top-left") return "flex flex-col items-start text-left w-full md:items-start";
+    if (pos === "top-right") return "flex flex-col items-end text-right w-full md:items-end";
+    return "flex flex-col items-center text-center w-full justify-center";
+  };
+  const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
+  const [useCompositionRenderer, setUseCompositionRenderer] = useState(false);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setUseCompositionRenderer(localStorage.getItem("useCompositionRenderer") === "true" ||
+        new URLSearchParams(window.location.search).get("useCompositionRenderer") === "true");
+    }
+  }, []);
+  const handleToggleRenderer = () => {
+    const nextVal = !useCompositionRenderer;
+    setUseCompositionRenderer(nextVal);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("useCompositionRenderer", String(nextVal));
+    }
+  };
+
+  const [playingMusic, setPlayingMusic] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  // Countdown t    imer state
+  co

@@ -1,0 +1,150 @@
+ctions/families/
+	components/sections/houseDetails/
+	components/sections/owners/
+	components/sections/story/
+	components/shared/DeitySymbol.tsx
+	components/shared/GallerySlider.tsx
+	components/shared/LegacyOrchestrator.tsx
+	components/shared/PageTransitionWrapper.tsx
+	components/shared/ParallaxProviderWrapper.tsx
+	components/shared/ThemeSelectorHub.tsx
+	components/shared/category-card.tsx
+	components/shared/theme-card.tsx
+	components/templates/
+	components/types/
+	data/
+	lib/
+	prisma/
+	proxy.ts
+	public/images/categories/
+	public/images/deities/
+	public/images/editor-preview.png
+	public/images/hero-invitation.png
+	public/images/img.png
+	public/images/logo.png
+	public/images/themes/
+	public/sample-invitation.pdf
+	public/uploads/
+	scratch/
+	section_specification.md
+	supabase_setup.sql
+	types/
+	utils/
+
+nothing added to commit but untracked files present (use "git add" to track)
+  
+git status  
+git status  	 ents/sections/hero/index.tsx)     A React visual layout primitive that loads inputs, parses alignments, handles dark overlays, and renders the welcome banner.\n\n---\n\n## 2. Manifest Schema Specifications\n\nThe `Hero` schema contains the following configurations:\n1. **Identifier**: `id: \"hero\"`, `name: \"Welcome Hero Banner\"`.\n2. **Category**: `category: \"common\"` (reusable across all invitation types).\n3. **Properties**:\n   * `showScrollIndicator` (boolean)\n   * `overlayOpacity` (number, default: 0.45)\n   * `contentAlign` (select: \"left\" | \"center\" | \"right\")\n   * `minHeight` (string, default: \"85vh\")\n4. **Data Bindings**:\n   * `title` (resolves to `\"hero.title\"`)\n   * `subtitle` (resolves to `\"hero.subtitle\"`)\n   * `welcomeMessage` (resolves to `\"hero.welcomeMessage\"`)\n   * `heroImage` (resolves to `\"hero.heroImage\"`)\n   * `ctaText` (resolves to `\"hero.ctaText\"`)\n   * `surname` (resolves to `\"hero.surname\"`)\n   * `subText` (resolves to `\"hero.subText\"`)\n5. **Supported Themes**: Maps all 15 luxury and modern layouts.\n6. **Supported Motions**: `fade-in-up`, `reveal`, `zoom-in`, `none`.\n\n---\n\n## 3. Verification Test Results\n\n### Type Checking \u0026 Bundle Safety\n* **TypeScript Check (`npx tsc --noEmit`)**: Completed with **0 errors**.\n* **Next.js Production Build (`npm run build`)**: Completed successfully. \n  * Static page generation: **28/28 routes compiled**.\n  * Total compilation time: **13.9 seconds**.\n\n### Compatibility Checks\n* The new components are fully isolated. Existing wedding (`/invites/[id]`) and birthday templates render and operate exactly as before with no visual or backend changes.\n","Description":"Create walkthrough.md walkthrough summary in artifact folder","Overwrite":true,"TargetFile":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\walkthrough.md","toolAction":"Create walkthrough.md in correct directory","toolSummary":"Creating walkthrough of codebase registry foundation achievements inside artifact directory"}:     
+    M2 9   .  p| m D  /  M 5m  ,    o  7  O         Ll b;  <Z       \&  =  Y         Wn // x  y  `     H` t      x  &d   z 9   u   l] U !B   ) K    ! *   {    " sY  T      8H j R 8&  'FI A   m(     '   w o <&o   | rM[   }<   GE F  I    oW   Ew >  ( |  Po WY       dO      c X  q  a T   f<t^9 wA	           T 1 |   `  |          +V  A    f  3H    f UZ Ate45H  c  J            Jo      Jwrite_to_file* ArtifactMetadata* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2            :            B            X  b$840e5352-1ba7-49fd-8398-d9a6e5790500j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                       3
+                
+                
+                  [Creating walkthrough of codebase registry foundation achievements inside artifact directory  *Create walkthrough.md in correct directory                  * !
+               "  
+ 68nstr51 write_to_file   {"ArtifactMetadata":{"RequestFeedback":false,"Summary":"Walkthrough summary of Phase 2A codebase achievements, including files created, registry mappings, and compiler build results.","UserFacing":true},"CodeContent":"# Walkthrough: Phase 2A     Component Registry Foundation\n\nWe have successfully created the foundational **Component Registry** structure and registered the **Hero Section** with its strict schema settings and dynamic properties manifest. \n\n---\n\n## 1. Summary of Folder \u0026 Registry Additions\n\n### Component Registry Structure\n* [NEW] [types.ts](file:///c:/Users/Admin/Ahvaanam/lib/registry/types.ts)     Declares strict TypeScript contracts for `SectionProperty`, `SectionBinding`, and `SectionManifest` objects.\n* [NEW] [index.ts](file:///c:/Users/Admin/Ahvaanam/lib/registry/index.ts)     Provides the static registration mapping loader that serves programmatic imports, listings, and configurations to page components.\n\n### Hero Section Components \u0026 Specifications\n* [NEW] [manifest.json](file:///c:/Users/Admin/Ahvaanam/components/sec  	 tions/hero/manifest.json)     Defines the Hero section's parameters, default values, supported themes, animations, and data bindings (titles, cover images, CTA buttons, and deity badges).\n* [NEW] [index.tsx](file:///c:/Users/Admin/Ahvaanam/components/sections/hero/index.tsx)     A React visual layout primitive that loads inputs, parses alignments, handles dark overlays, and renders the welcome banner.\n\n---\n\n## 2. Manifest Schema Specifications\n\nThe `Hero` schema contains the following configurations:\n1. **Identifier**: `id: \"hero\"`, `name: \"Welcome Hero Banner\"`.\n2. **Category**: `category: \"common\"` (reusable across all invitation types).\n3. **Properties**:\n   * `showScrollIndicator` (boolean)\n   * `overlayOpacity` (number, default: 0.45)\n   * `contentAlign` (select: \"left\" | \"center\" | \"right\")\n   * `minHeight` (string, default: \"85vh\")\n4. **Data Bindings**:\n   * `title` (resolves to `\"hero.title\"`)\n   * `subtitle` (resolves to `\"hero.subtitle\"`)\n   * `welcomeMessage` (resolves to `\"hero.welcomeMessage\"`)\n   * `heroImage` (resolves to `\"hero.heroImage\"`)\n   * `ctaText` (resolves to `\"hero.ctaText\"`)\n   * `surname` (resolves to `\"hero.surname\"`)\n   * `subText` (resolves to `\"hero.subText\"`)\n5. **Supported Themes**: Maps all 15 luxury and modern layouts.\n6. **Supported Motions**: `fade-in-up`, `reveal`, `zoom-in`, `none`.\n\n---\n\n## 3. Verification Test Results\n\n### Type Checking \u0026 Bundle Safety\n* **TypeScript Check (`npx tsc --noEmit`)**: Completed with **0 errors**.\n* **Next.js Production Build (`npm run build`)**: Completed successfully. \n  * Static page generation: **28/28 routes compiled**.\n  * Total compilation time: **13.9 seconds**.\n\n### Compatibility Checks\n* The new components are fully isolated. Existing wedding (`/invites/[id]`) and birthday templates render and operate exactly as before with no visual or backend changes.\n","Description":"Create walkthrough.md walkthrough summary in artifact folder","Overwrite":true,"TargetFile":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\walkthrough.md","toolAction":"Create walkthrough.md in correct directory","toolSummary":"Creating walkthrough of codebase registry foundation achievements inside artifact directory"}:     
+    M2 9   .  p| m D  /  M 5m  ,    o  7  O         Ll b;  <Z       \&  =  Y         Wn // x  y  `     H` t      x  &d   z 9   u   l] U !B   ) K    ! *   {    " sY  T      8H j R 8&  'FI A   m(     '   w o <&o   | rM[   }<   GE F  I    oW   Ew >  ( |  Po WY       dO      c X  q  a T   f<t^9 wA	           T 1 |   `  |          +V  A    f  3H    f UZ Ate45H  c  J            Jo      Jwrite_to_file* ArtifactMetadata* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2            :            B            X  b$840e5352-1ba7-49fd-8398-d9a6e5790500j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                       3
+                
+                
+                  [Creating walkthrough of codebase registry foundation achievements inside artifact directory  *Create walkthrough.md in correct directory              R f
+     
+  # Walkthrough: Phase 2A     Component Registry Foundation
+
+We have successfully created the foundational **Component Registry** structure and registered the **Hero Section** with its strict schema settings and dynamic properties manifest. 
+
+---
+
+## 1. Summary of Folder & Registry Additions
+
+### Component Registry Structure
+* [NEW] [types.ts](file:///c:/Users/Admin/Ahvaanam/lib/registry/types.ts)     Declares strict TypeScript contracts for `SectionProperty`, `SectionBinding`, and `SectionManifest` objects.
+* [NEW] [index.ts](file:///c:/Users/Admin/Ahvaanam/lib/registry/index.ts)     Provides the static registration mapping loader that serves programmatic imports, listings, and configurations to page components.
+
+### Hero Section Components & Specifications
+* [NEW] [manifest.json](file:///c:/Users/Admin/Ahvaanam/components/sections/hero/manifest.json)     Define  	 s the Hero section's parameters, default values, supported themes, animations, and data bindings (titles, cover images, CTA buttons, and deity badges).
+* [NEW] [index.tsx](file:///c:/Users/Admin/Ahvaanam/components/sections/hero/index.tsx)     A React visual layout primitive that loads inputs, parses alignments, handles dark overlays, and renders the welcome banner.
+
+---
+
+## 2. Manifest Schema Specifications
+
+The `Hero` schema contains the following configurations:
+1. **Identifier**: `id: "hero"`, `name: "Welcome Hero Banner"`.
+2. **Category**: `category: "common"` (reusable across all invitation types).
+3. **Properties**:
+   * `showScrollIndicator` (boolean)
+   * `overlayOpacity` (number, default: 0.45)
+   * `contentAlign` (select: "left" | "center" | "right")
+   * `minHeight` (string, default: "85vh")
+4. **Data Bindings**:
+   * `title` (resolves to `"hero.title"`)
+   * `subtitle` (resolves to `"hero.subtitle"`)
+   * `welcomeMessage` (resolves to `"hero.welcomeMessage"`)
+   * `heroImage` (resolves to `"hero.heroImage"`)
+   * `ctaText` (resolves to `"hero.ctaText"`)
+   * `surname` (resolves to `"hero.surname"`)
+   * `subText` (resolves to `"hero.subText"`)
+5. **Supported Themes**: Maps all 15 luxury and modern layouts.
+6. **Supported Motions**: `fade-in-up`, `reveal`, `zoom-in`, `none`.
+
+---
+
+## 3. Verification Test Results
+
+### Type Checking & Bundle Safety
+* **TypeScript Check (`npx tsc --noEmit`)**: Completed with **0 errors**.
+* **Next.js Production Build (`npm run build`)**: Completed successfully. 
+  * Static page generation: **28/28 routes compiled**.
+  * Total compilation time: **13.9 seconds**.
+
+### Compatibility Checks
+* The new components are fully isolated. Existing wedding (`/invites/[id]`) and birthday templates render and operate exactly as before with no visual or backend changes.
+ f*dfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/walkthrough.md    O
+ O  3 6  3 B
+># Walkthrough: Phase 1 Codebase Refactoring & Componentization         
+  We have successfully prepared the Ahvaanam codebase for the next-generation dynamic engine and template composition architecture. Monolithic components have been broken down, dead code deleted, and all shared UI elements extracted.        
+ ---        
+ ## 1. Summary of Changes        
+ ### Removed Dead Files   O
+K- [DELETE] `app/admin/[id]/ClientEditor.tsx` (redundant/unused editor file)   T
+P- [DELETE] `prisma.config.ts` (legacy unused database connection configurations)       .
+*### Extracted Shared UI Library Components     
+  - [NEW] [ConfettiCanvas.tsx](file:///c:/Users/Admin/Ahvaanam/components/ui/ConfettiCanvas.tsx) (HTML5 Canvas particle physics confetti triggers)     
+  - [NEW] [FileUploader.tsx](file:///c:/Users/Admin/Ahvaanam/components/ui/FileUploader.tsx) (self-contained file input and `/api/upload` form submission)       )
+%### Extracted Dashboard Subcomponents     
+  - [NEW] [ShareModal.tsx](file:///c:/Users/Admin/Ahvaanam/app/dashboard/components/ShareModal.tsx) (self-contained sharing sheets, QR code generator, WhatsApp URL formatting, and Canvas-based Save-the-Date image compiler)     
+  - [NEW] [RsvpDashboardModal.tsx](file:///c:/Users/Admin/Ahvaanam/app/dashboard/components/RsvpDashboardModal.tsx) (analytical guest counts, table grid listing, and CSV exporter)     
+  - [MODIFY] [page.tsx](file:///c:/Users/Admin/Ahvaanam/app/dashboard/page.tsx) (integrated new modal components, shrinking codebase length by ~250 lines)       1
+-### Extracted Customizer Editor Subcomponents   p
+l- [NEW] [GeneralSettings.tsx](file:///c:/Users/Admin/Ahvaanam/app/admin/[id]/components/GeneralSettings.tsx)   n
+j- [NEW] [CoupleSettings.tsx](file:///c:/Users/Admin/Ahvaanam/app/admin/[id]/components/CoupleSettings.tsx)   n
+j- [NEW] [EventsSettings.tsx](file:///c:/Users/Admin/Ahvaanam/app/admin/[id]/components/EventsSettings.tsx)   l
+h- [NEW] [StorySettings.tsx](file:///c:/Users/Admin/Ahvaanam/app/admin/[id]/components/StorySettings.tsx)   n
+j- [NEW] [VenuesSettings.tsx](file:///c:/Users/Admin/Ahvaanam/app/admin/[id]/components/VenuesSet  	 tings.tsx)   p
+l- [NEW] [DetailsSettings.tsx](file:///c:/Users/Admin/Ahvaanam/app/admin/[id]/components/DetailsSettings.tsx)     
+  - [MODIFY] [page.tsx](file:///c:/Users/Admin/Ahvaanam/app/admin/[id]/page.tsx) (integrated modular form subcomponents, shrinking codebase length from 2,210 lines to under 1,000 lines)       &
+"### Cataloged Design System Tokens     
+  - [NEW] [tokens.json](file:///c:/Users/Admin/Ahvaanam/lib/theme/tokens.json) (structured catalog mapping of theme fonts, luxury color codes, and dimensions to guide engine compositions)        
+ ---       +
+'## 2. Verification & Validation Results        
+ ### Automated Types Checks   %
+!- Command run: `npx tsc --noEmit`   #
+ - Result: **Passed (0 Errors)**       #
+ ### Production Build Validation   "
+ - Command run: `npm run build`   $
+ - Compile time: **10.7 seconds**   5
+1- TypeScript build verification: **10.4 seconds**   F
+B- Static pages compilation: **28/28 routes compiled successfully**    
+ - Result: **Passed**        
+ ---       -
+)## 3. Remaining Technical Debt & Blockers         
+  1. **Service Role Keys**: The database helper SDK endpoints still utilize full service role credentials by default, bypassing row-level security (RLS). We should transition to authenticated RLS client queries in a subsequent security hardening pass.     
+  2. **Next Steps for Phase 2**: We are fully unblocked to begin Phase 2 (implementing the JSON-driven dynamic template rendering engine, section compositions, and dynamic section schemas).   =
+9# Walkthrough: Phase 2A     Component Registry Foundation         
+  We have successfully created the foundational **Component Registry** structure and registered the **Hero Section** with its strict schema settings and dynamic properties manifest.         
+ ---       0
+,## 

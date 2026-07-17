@@ -1,0 +1,340 @@
+use client";
+
+import React from "react";
+import DeitySymbol from "@/components/shared/DeitySymbol";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+
+interface HeroSectionProps {
+  properties: {
+    showScrollIndicator?: boolean;
+    overlayOpacity?: number;
+    contentAlign?: "left" | "center" | "right";
+    minHeight?: string;
+  };
+  bindings: {
+    title?: string;
+    subtitle?: string;
+    welcomeMessage?: string;
+    heroImage?: string;
+    ctaText?: string;
+    surname?: string;
+    subText?: string;
+    enableHeaderMedia?: boolean;
+    headerMediaType?: "god" | "symbol";
+    selectedGod?: "ganesha" | "venkateswara" | "lakshmi" | "shiva" | "krishna";
+    selectedSymbol?: "om" | "swastik" | "shree" | "kalash" | "nandi";
+    headerMediaSize?: number;
+    headerMediaSpacing?: number;
+    showSurnameHeading?: boolean;
+    surnameFont?: "cinzel" | "playfair" | "great-vibes";
+    surnameColor?: string;
+  };
+  themeId?: string;
+  layoutId?: string;
+}
+
+export default function HeroSection({ properties, bindings, themeId, layoutId }: HeroSectionProps) {
+  const {
+    showScrollIndicator = true,
+    overlayOpacity = 0.45,
+    contentAlign = "center",
+    minHeight = "85vh",
+  } = properties;
+
+  const {
+    title = "",
+    subtitle = "",
+    welcomeMessage = "",
+    heroImage = "",
+    ctaText = "",
+    surname = "",
+    subText = "",
+    enableHeaderMedia = true,
+    headerMediaType = "god",
+    selectedGod = "ganesha",
+    selectedSymbol = "om",
+    headerMediaSize = 80,
+    headerMediaSpacing = 30,
+    showSurnameHeading = true,
+    surnameFont = "cinzel",
+    surnameColor = "var(--theme-accent)",
+  } = bindings;
+
+  const alignmentClass = 
+    contentAlign === "left" ? "text-left items-start" : 
+    contentAlign === "right" ? "text-right items-end" : 
+    "text-center items-center";
+
+  return (
+    <section 
+      className="relative flex flex-col justify-center items-center overflow-hidden w-full select-none"
+      style={{ 
+        minHeight: "var(--layout-min-height, 85vh)",
+        background: "var(--theme-gradient-backdrop, var(--theme-bg))"
+      }}
+    >
+      {/* Background Cover Image */}
+      {heroImage && (
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-102"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        />
+      )}
+
+      {/* Dark overlay */}
+      <div 
+        className="absolute inset-0 bg-black pointer-events-none"
+        style={{ opacity: overlayOpacity }}
+      />
+
+      {/* Hero content */}
+      <LayoutWrapper
+        layoutId={layoutId}
+        defaultLayoutId="hero-center"
+        className={`relative z-10 w-full max-w-4xl flex ${alignmentClass}`}
+        style={{ 
+          color: "var(--theme-text)",
+          fontFamily: "var(--theme-font-body)"
+        }}
+      >
+        {/* Left Side: Welcome, Title, Description, CTA */}
+        <div className="flex flex-col space-y-4 flex-1 text-center lg:text-left items-center lg:items-start w-full">
+          {/* Welcome Tagline */}
+          {welcomeMessage && (
+            <p 
+              className="text-xs uppercase tracking-[3px] font-semibold"
+              style={{ color: "var(--theme-accent)" }}
+            >
+              {welcomeMessage}
+            </p>
+          )}
+
+          {/* Main Title Heading */}
+          {title && (
+            <h1 
+              className="text-4xl md:text-6xl font-extrabold tracking-wide leading-tight"
+              style={{ fontFamily: "var(--theme-font-heading)" }}
+            >
+              {title}
+            </h1>
+          )}
+
+          {/* Subtitle / Details description */}
+          {subtitle && (
+            <p 
+              className="text-sm max-w-lg leading-relaxed whitespace-pre-line font-medium"
+              style={{ color: "var(--theme-secondary-text)" }}
+            >
+              {subtitle}
+            </p>
+          )}
+
+          {/*    meColor?: string;    
+   };    
+   themeId?: string;    
+ }       ^
+Zexport default function HeroSection({ properties, bindings, themeId }: HeroSectionProps) {    
+   layoutId?: string;    
+ }       h
+dexport default function HeroSection({ properties, bindings, themeId, layoutId }: HeroSectionProps) {   
+	  const {   #
+     showScrollIndicator = true,    
+     overlayOpacity = 0.45,    
+     contentAlign = "center",    
+     minHeight = "85vh",    
+   } = properties;       
+	  const {    
+     title = "",    
+     subtitle = "",    
+     welcomeMessage = "",    
+     heroImage = "",    
+     ctaText = "",    
+     surname = "",    
+     subText = "",   !
+     enableHeaderMedia = true,    
+     headerMediaType = "god",    
+     selectedGod = "ganesha",    
+     selectedSymbol = "om",    
+     headerMediaSize = 80,    
+     headerMediaSpacing = 30,   "
+     showSurnameHeading = true,    
+     surnameFont = "cinzel",   -
+)    surnameColor = "var(--theme-accent)",    
+   } = bindings;        
+   const alignmentClass =    <
+8    contentAlign === "left" ? "text-left items-start" :    <
+8    contentAlign === "right" ? "text-right items-end" :    #
+     "text-center items-center";        
+
+  return (    
+    <section    k
+g      className="relative flex flex-col justify-center items-center overflow-hidden w-full select-none"    
+       style={{     
+         minHeight,   8
+4        minHeight: "var(--layout-min-height, 85vh)",   I
+E        background: "var(--theme-gradient-backdrop, var(--theme-bg))"    
+       }}   	
+     >   (
+$      {/* Background Cover Image */}    
+       {heroImage && (    
+        <div    }
+y          className="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-102"   >
+:          style={{ backgroundImage: `url(${heroImage})` }}    
+
+        />    
+       )}        
+       {/* Dark overlay */}    
+       <div    E
+A        className="absolute inset-0 bg-black pointer-events-none"   /
++        style={{ opacity: overlayOpacity }}    
+       />        
+       {/* Hero content */}    
+       <div    m
+i        className={`relative z-10 w-full max-w-4xl px-6 py-12 flex flex-col ${alignmentClass} space-y-6`}    
+       <LayoutWrapper    
+         layoutId={layoutId}   )
+%        defaultLayoutId="hero-center"   O
+K        className={`relative z-10 w-full max-w-4xl flex ${alignmentClass}`}    
+         style={{    )
+%          color: "var(--theme-text)",   2
+.          fontFamily: "var(--theme-font-body)"    
+
+        }}    
+       >   +
+'        {/* Deity Symbol if enabled */}   #
+         {enableHeaderMedia && (    
+           <div     
+             style={{    7
+3              marginTop: `${headerMediaSpacing}px`,   0
+,              width: `${headerMediaSize}px`,   1
+-              height: `${headerMediaSize}px`     
+             }}   E
+A            className="flex items-center justify-center shrink-0"    
+           >    
+             <DeitySymbol   (
+$              type={headerMediaType}   +
+'              selectedGod={selectedGod}   1
+-              selectedSymbol={selectedSymbol}   (
+$              size={headerMediaSize}    
+             />    
+           </div>    
+
+        )}       "
+         {/* Surname Banner */}   /
++        {showSurnameHeading && surname && (   .
+*          <div className="animate-fadeIn">    
+             <h2    K
+G              className="text-2xl md:text-3xl font-bold tracking-wider"    
+               style={{      
+                  fontFamily: surnameFont === "great-vibes" ? "var(--font-great)" : surnameFont === "playfair" ? "var(--font-playfair)" : "var(--font-cinzel)",   (
+$                color: surnameColor     
+               }}    
+            >    
+               {surname}    
+             </h2>    
+             {subText && (     
+                <span className="text-[10px] uppercase tracking-[2px] opacity-75 block mt-1" style={{ color: "var(--theme-secondary-text)" }}>    
+                 {subText}    
+               </span>    
+             )}    
+           </div>    
+
+        )}       #
+         {/* Welcome Tagl    ine */}    
+         {welcomeMessage && (    
+          <p    J
+F            className="text-xs uppercase tracking-[3px] font-semibold"   8
+4            style={{ color: "var(--theme-accent)" }}    
+           >    
+             {welcomeMessage}    
+           </p>    
+
+        )}       &
+"        {/* Main Title Heading */}    
+         {title && (    
+           <h1    e
+a            className="text-4xl md:text-6xl font-extrabold tracking-wide leading-tight max-w-2xl"   C
+?            style={{ fontFamily: "var(--theme-font-heading)" }}    
+           >    
+             {title}    
+           </h1>    
+
+        )}       2
+.        {/* Subtitle / Details description */}    
+         {subtitle && (    
+          <p    \
+X            className="text-sm max-w-lg leading-relaxed whitespace-pre-line font-medium"   @
+<            style={{ color: "var(--theme-secondary-text)" }}    
+           >    
+             {subtitle}    
+           </p>    
+
+        )}       )
+%        {/* Call to Action Button */}    
+         {ctaText && (    
+           <button     
+             type="button"     
+              className="px-8 py-3.5 text-xs font-bold uppercase tracking-[2px] transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 cursor-pointer mt-4"    
+             style={{   9
+5              backgroundColor: "var(--theme-accent)",   #
+               color: "#FFFFFF",   =
+9              borderRadius: "var(--theme-radius-button)",   :
+6              boxShadow: "var(--theme-shadow-button)",   9
+5              fontFamily: "var(--theme-font-heading)"    
+             }}    
+           >    
+             {ctaText}    
+           </button>    
+
+        )}    
+       </div>   ?
+;        {/* Left Side: Welcome, Title, Description, CTA */}   x
+t        <div className="flex flex-col space-y-4 flex-1 text-center lg:text-left items-center lg:items-start w-full">   %
+!          {/* Welcome Tagline */}   "
+           {welcomeMessage && (    
+             <p    L
+H              className="text-xs uppercase tracking-[3px] font-semibold"   :
+6              style={{ color: "var(--theme-accent)" }}    
+            >   "
+               {welcomeMessage}    
+             </p>    
+           )}       (
+$          {/* Main Title Heading */}    
+           {title && (    
+             <h1    ]
+Y              className="text-4xl md:text-6xl font-extrabold tracking-wide leading-tight"   E
+A              style={{ fontFamily: "var(--theme-font-heading)" }}    
+            >    
+               {title}    
+             </h1>    
+           )}       4
+0          {/* Subtitle / Details description */}    
+           {subtitle && (    
+             <p    ^
+Z              className="text-sm max-w-lg leading-relaxed whitespace-pre-line font-medium"   B
+>              style={{ color: "var(--theme-secondary-text)" }}    
+            >    
+               {subtitle}    
+             </p>    
+           )}       +
+'          {/* Call to Action Button */}    
+           {ctaText && (   &
+"            <div className="pt-2">    
+               <button    !
+                 type="button"     
+                  className="px-8 py-3.5 text-xs font-bold uppercase tracking-[2px] transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 cursor-pointer"    
+                 style={{   =
+9                  backgroundColor: "var(--theme-accent)",   '
+#                  color: "#FFFFFF",   A
+=                  borderRadius: "var(--theme-radius-button)",   >
+:                  boxShadow: "var(--theme-shadow-button)",   =
+9                  fontFamily: "var(--theme-font-heading)"    
+                 }}    
+               >    
+                 {ctaText}    
+               </button>    
+             </div>    
+           )}    
+         </div>       B
+>        {/* Right Side: Deity Icon & Family Surname banner */}   H
+D        {(enableHeaderMedia || (showSurnameHeading && surname)) && (   

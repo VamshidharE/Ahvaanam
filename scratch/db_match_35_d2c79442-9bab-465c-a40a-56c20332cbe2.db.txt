@@ -1,0 +1,87 @@
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemeProvider from "@/components/theme/ThemeProvider";        
+ const mockHeroBindings = {   #
+   title: "Aishwarya & Karthik",   =
+9  subtitle: "We Invite You to Celebrate Our Special Day",   +
+'  welcomeMessage: "Wedding invitation",   3
+/  heroImage: "/images/themes/royal-temple.jpg",    
+   ctaText: "RSVP Now",    
+   surname: "Karthik Family",   ,
+(  subText: "Traditional Om Salutations",    
+   enableHeaderMedia: true,   &
+"  headerMediaType: "god" as const,   &
+"  selectedGod: "ganesha" as const,    
+   headerMediaSize: 80,    
+   headerMediaSpacing: 20    
+ };        
+ const mockHeroProperties = {    
+   showScrollIndicator: true,    
+   overlayOpacity: 0.5,   &
+"  contentAlign: "center" as const,    
+   minHeight: "450px"    
+ };       .
+*export default function TestThemesPage() {    
+
+  return (   A
+=    <div className="p-8 bg-zinc-100 min-h-screen space-y-12">   `
+\      <h1 className="text-xl font-bold uppercase tracking-wider text-slate-800 text-center">   ,
+(        Theme Engine Verification Canvas    
+       </h1>       A
+=      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">   /
++        {/* Column 1: Luxury Gold Theme */}     
+          <div className="flex flex-col space-y-3 bg-white p-4 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative">   e
+a          <span className="text-[10px] uppercase font-bold text-amber-500 tracking-[1.5px] px-2">   6
+2            1. Luxury Gold (royal-temple fallback)    
+           </span>   [
+W          <div className="rounded-2xl overflow-hidden border border-zinc-100 relative">   7
+3            <ThemeProvider themeId="luxury-gold" />    
+             <HeroSection   1
+-              properties={mockHeroProperties}   -
+)              bindings={mockHeroBindings}    
+             />    
+           </div>    
+         </div>       2
+.        {/* Column 2: Midnight Black Theme */}     
+          <div className="flex flex-col space-y-3 bg-white p-4 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative">   f
+b          <span className="text-[10px] uppercase font-bold text-purple-500 tracking-[1.5px] px-2">   :
+6            2. Midnight Black (Electric Violet Accent)    
+           </span>   [
+W          <div className="rounded-2xl overflow-hidden border border-zinc-100 relative">   :
+6            <ThemeProvider themeId="midnight-black" />    
+             <HeroSection   1
+-              properties={mockHeroProperties}   -
+)              bindings={mockHeroBindings}    
+             />    
+           </div>    
+         </div>       0
+,        {/* Column 3: Modern Glass Theme */}     
+          <div className="flex flex-col space-y-3 bg-white p-4 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative">   d
+`          <span className="text-[10px] uppercase font-bold text-cyan-500 tracking-[1.5px] px-2">   ?
+;            3. Modern Glass (Cyan Accent / Capsule Buttons)    
+           </span>   [
+W          <div className="rounded-2xl overflow-hidden border border-zinc-100 relative">   8
+4            <ThemeProvider themeId="modern-glass" />    
+             <HeroSection   1
+-              properties={mockHeroProperties}   -
+)              bindings={mockHeroBindings}    
+             />    
+           </div>    
+         </div>    
+       </div>    
+
+    </div>    
+   );    
+ }      Bmfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-themes.tsxX        )Create visual themes test-themes.tsx file     S  S                                                                          )              0   
+               2           M:             B             JQ     (   (   0 B!
+	sessionID  -3750763034362895579H  P  Z lzFSaqD3IcmrjuMP7uuUyQQX  b$70fbb39b-6601-464b-9489-155dbf3e1332j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+               M
+                                    *  
+               2           M:             B             JQ     (   (   0 B!
+	sessionID  -3750763034362895579H  P  Z lzFSaqD3IcmrjuMP7uuUyQQX  b$70fbb39b-6601-464b-9489-155dbf3e1332j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+               M
+                                    
+  I will update `components/sections/celebrant/index.tsx` to fix the CSS shadow key name to `box

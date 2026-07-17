@@ -1,0 +1,84 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[83] Found match at index 26059128
+  Preview of match [83]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+[84] Found match at index 26157782
+  Preview of match [84]:
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+import { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Import re
+------------------------
+[85] Found match at index 26203210
+  Preview of match [85]:
+"use client";       ?
+;import React, { useEffect, useState, useRef } from "react";   I
+Eimport { useInvitationData } from "../context/InvitationDataContext";   X
+Timport { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";   <
+8import { motion, AnimatePresence } from "framer
+------------------------
+   Y    YZ uh \  ` gm>     Zk       
+(bot-9ad06fba-4759-4f1d-9ce2-0541da229fa8     I have successfully added all 10 new premium birthday invitation templates to the Birthday section! Here is what was accomplished:
+
+### 1. Template Metadata Registration
+Registered all 10 premium layouts in the templates registry file at [lib/templates/registry.ts](file:///c:/Users/Admin/Ahvaanam/lib/templates/registry.ts) under the `"birthday"` category. They will now display inside the category layout picker when creating a new invitation:
+* **Midnight Black Luxury** (`midnight`)
+* **White Marble Luxury** (`marble`)
+* **Royal Emerald** (`emerald`)
+* **Navy Blue & Gold** (`navy`)
+* **Burgundy Velvet** (`burgundy`)
+* **Champagne Celebration** (`champagne`)
+* **Modern Glassmorphism** (`glass`)
+* **Black & Rose Gold** (`rosegold`)
+* **Golden Art Deco** (`artdeco`)
+* **Botanical Luxury** (`botanical`)
+
+---
+
+### 2. Editor Configs & Manifest Registry
+Added default structures, capability features, customizable sections, and form settings for all 10 new templates to the master manifest registry file at [lib/template-manifests/registry.ts](file:///c:/Users/Admin/Ahvaanam/lib/template-manifests/registry.ts). This ensures that when a user selects a template, the editor knows which modules (such as RSVPs, countdowns, and sound players) are active, and creates default layouts appropriately.
+
+---
+
+### 3. Unified Premium Guest Layout Component
+Programmed a unified high-fidelity rendering layout at [components/templates/birthday-premium/Layout.tsx](file:///c:/Users/Admin/Ahvaanam/components/templates/birthday-premium/Layout.tsx). 
+* Dynamically loads respective Google Fonts (e.g. *Cinzel*, *Lora*, *Bodoni*, *Cormorant Garamond*).
+* Renders custom backgrounds and particle systems (e.g. rising bubbles for modern glassmorphism, glowing gold sparks for midnight black, floating starlight for navy blue).
+* Applies the corresponding borders, buttons, and card designs matching each theme.
+* Structures scrollable invitation sections (Welcome banner, celebrant joven profile, live countdown clock, events schedules, memory grid, interactive map map, FAQs guidelines, and footer credits).
+
+---
+
+### 4. Hooked Guest Invitation Routing
+Updated the dynamic guest viewer route at [app/invites/[id]/page.tsx](file:///c:/Users/Admin/Ahvaanam/app/invites/[id]/page.tsx) to map the new 10 templates. When a guest loads a live invitation that uses one of these premium styles, it automatically renders the new layout with full styling.
+
+---
+
+### 5. Code Quality Check
+Ran the TypeScript compiler verification to ensure zero type issues across the entire workspace. The command built and compiled successfully with **zero compilation errors**.
+
+*All changes have been compiled and documented in your [walkthrough.md](file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/walkthrough.md) and [task.md](file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/task.md) files.*

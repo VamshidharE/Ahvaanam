@@ -1,0 +1,63 @@
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+import { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Import reusable section components
+import HeroSection from "../sections/hero";
+import CoupleSection from "../sections/couple";
+import CountdownSection from "../sections/countdown";
+import StorySection from "../sections/story";
+import EventsSection from "../sections/events";
+import GallerySection from "../sections/gallery";
+import VenueSection from "../sections/venue";
+import FamiliesSection from "../sections/families";
+import RSVPSection from "../sections/rsvp";
+import FAQSection from "../sections/faq";
+import DressCodeSection from "../sections/dressCode";
+import FooterSection from "../sections/footer";
+
+interface LegacyOrchestratorProps {
+  themeId: string;
+  onBackToHub: () => void;
+  particlesComponent?: React.ComponentType<any>;
+  themeBgClass?: string;
+  loadingTitle?: string;
+  loadingSubtitle?: string;
+}
+
+export default function Legac     Enable \"housewarming\" in `data/categories/categories.ts`\n- `[x]` Create House Details component (`components/sections/houseDetails/`) and register it in component registry\n- `[x]` Register 10 premium themes in Theme Registry (`lib/theme/registry.ts`) and Template Registry (`lib/templates/registry.ts`)\n- `[x]` Define `getHousewarmingComposition` mapper in `lib/composition/templates.ts`\n- `[x]` Create HousewarmingPremiumLayout proxy at `components/templates/housewarming-premium/Layout.tsx`\n- `[x]` Map the 10 housewarming themes in guest invites router `app/invites/[id]/page.tsx`\n- `[x]` Configure English and Telugu sample content inside default config loader `lib/defaults/housewarming.ts`\n- `[x]` Run TypeScript and build compilation verification check\n","Description":"Update task checklist to complete for Housewarming category implementation","Overwrite":true,"TargetFile":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\task.md","toolAction":"Update task.md","toolSummary":"Checking off tasks in task.md"}:     
+    M2 k  k SN    ?a l+      nn[q  36 u   j M]N    [        R        &   #  ro 8  PM   '    |       F wW 
+~f f bMk    ~  mH      %  v U'    Jwrite_to_file* ArtifactMetadata* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$ecf2dfb7-b64e-479f-b9ff-fff55199f93ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                    Checking off tasks in task.md   Update task.md               R  
+     
+  # Housewarming Category Tasks
+
+- `[x]` Enable "housewarming" in `data/categories/categories.ts`
+- `[x]` Create House Details component (`components/sections/houseDetails/`) and register it in component registry
+- `[x]` Register 10 premium themes in Theme Registry (`lib/theme/registry.ts`) and Template Registry (`lib/templates/registry.ts`)
+- `[x]` Define `getHousewarmingComposition` mapper in `lib/composition/templates.ts`
+- `[x]` Create HousewarmingPremiumLayout proxy at `components/templates/housewarming-premium/Layout.tsx`
+- `[x]` Map the 10 housewarming themes in guest invites router `app/invites/[id]/page.tsx`
+- `[x]` Configure English and Telugu sample content inside default config loader `lib/defaults/housewarming.ts`
+- `[x]` Run TypeScript and build compilation verification check
+ _*]file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/task.md    
+
+ 
+         3
+/# Phase 6A: Premium Invitation Experience Tasks   !
+ # Housewarming Category Tasks       }
+y- `[x]` Update `app/invites/[id]/page.tsx` with cinematic loaders, bottom sheet RSVP, music waveform dock, and share FABs   D
+@- `[x]` Enable "housewarming" in `data/categories/categories.ts`   v
+r- `[x]` Create House Details component (`components/sections/houseDetails/`) and register it in component registry     
+  - `[x]` Register 10 premium themes in Theme Registry (`lib/theme/registry.ts`) and Template Registry (`lib/templates/registry.ts`)   X
+T- `[x]` Define `getHousewarmingComposition` mapper in `lib/composition/templates.ts`   l
+h- `[x]` Create HousewarmingPremiumLayout proxy at `components/templates/housewarming-premium/Layout.tsx`   ^
+Z- `[x]` Map the 10 housewarming themes in 

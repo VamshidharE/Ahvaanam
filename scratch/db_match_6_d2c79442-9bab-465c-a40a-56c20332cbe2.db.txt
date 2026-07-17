@@ -1,0 +1,28 @@
+"use client"', idx);
+    if (startIdx === -1) {
+      startIdx = content.lastIndexOf('use client', idx);
+    }
+    if (startIdx === -1) startIdx = idx - 100;
+    
+    // Grab about 4000 characters
+    const slice = content.substring(startIdx, startIdx + 4500);
+    console.log(`  Preview of match [${matches}]:`);
+    console.log(slice.substring(0, 300));
+    console.log("------------------------");
+    
+    // Save to scratch
+    fs.writeFileSync(`scratch/db_match_${matches}_${path.basename(filePath)}.txt`, slice);
+    idx += searchStr.length;
+  }
+}
+
+try {
+  extractFromBinary(dbPath);
+  extractFromBinary(walPath);
+} catch (err) {
+  console.error(err);
+}
+ {*:file:///c:/Users/Admin/Ahvaanam/scratch/extract_from_db.js2=
+ file:///c:/Users/Admin/Ahvaanam  scratch/extract_from_db.js        <Search SQLite db and WAL files for CompositionRenderer code.     K  K                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+               " 7
+ 0uqq23tc write_to_file   {"CodeContent":"const fs = require('fs');\nconst path = require('path');\n\nconst dbPath = 'C:\\\\Users\\\\Admin\\\\.gemini\\\\antigravity\\\\conversations\\\\d2c79442-9bab-465c-a40a-56c20332cbe2.db';\nconst walPath = 'C:\\\\Users\\\\Admin\\\\.gemini\\\\antigravity\\\\conversations\\\\d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal';\n\nfunction extractFromBinary(filePath) {\n  if (!fs.existsSync(filePath)) {\n    console.log(`Fi

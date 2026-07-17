@@ -1,0 +1,357 @@
+ if (content.includes('export default function CompositionRenderer') \u0026\u0026 content.includes('SECTION_COMPONENTS')) {\n      // Find where \"use client\" starts\n      let startIdx = content.indexOf('\"use client\";');\n      if (startIdx === -1) startIdx = content.indexOf('use client');\n      if (startIdx === -1) continue;\n      \n      let cleanCode = content.substring(startIdx);\n      \n      // Clean JSON fields if any\n      const endMarkers = ['\",\"Description\"', '\",\\n      \"Description\"', '\", \"Description\"', '\",\"description\"'];\n      for (const marker of endMarkers) {\n        const markerIdx = cleanCode.indexOf(marker     W ;                
+               2             :           zB           zJQ     $  
+(   0 B!
+	sessionID  -3750763034362895579H  P  Z YaJTatXEPOO7juMP1qXSwAgX  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                 
+               z             z    *  
+               2             :           zB           zJQ     $  
+(   0 B!
+	sessionID  -3750763034362895579H  P  Z YaJTatXEPOO7juMP1qXSwAgX  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                 
+               z             z   /
+  I will write a script to check all the match files we dumped from the SQLite database to see if any other match contains the complete, untruncated `CompositionRenderer.tsx` file (including the full render return statement).   **Identifying the Core Issue**
+
+I've pinpointed candidate 3 as the probable start for the composition renderer. My progress hit a snag, halting around line 50. I need to figure out why. Aha, the culprit is most likely the `extract_real_file.js`, where a substring of `6000` was specified, where the limit may be insufficient. The endMarkers were included, but insufficient.
+
+
+2(bot-1889a678-d8f9-4b7a-acf7-aee017cff58f: (
+ z42uqj2t write_to_file   {"CodeContent":"const fs = require('fs');\nconst path = require('path');\n\nconst files = fs.readdirSync('scratch');\nlet candidates = [];\n\nfor (const file of files) {\n  if (file.startsWith('composition_pure_match_') \u0026\u0026 file.endsWith('.txt')) {\n    const filePath = path.join('scratch', file);\n    const content = fs.readFileSync(filePath, 'utf8');\n    \n    if (content.includes('export default function CompositionRenderer') \u0026\u0026 content.includes('SECTION_COMPONENTS')) {\n      // Find where \"use client\" starts\n      let startIdx = content.indexOf('\"use client\";');\n      if (startIdx === -1) startIdx = content.indexOf('use client');\n      if (startIdx === -1) continue;\n      \n      let cleanCode = content.substring(startIdx);\n      \n      // Clean JSON fields if any\n      const endMarkers = ['\",\"Description\"', '\",\\n      \"Description\"', '\", \"Description\"', '\",\"description\"'];\n      for (const marker of endMarkers) {\n        const markerIdx = cleanCode.indexOf(marker);\n        if (markerIdx !== -1) {\n          cleanCode = cleanCode.substring(0, markerIdx);\n        }\n      }\n      \n      let parsed = cleanCode\n        .replace(/\\\\n/g, '\\n')\n        .replace(/\\\\\"/g, '\"')\n        .replace(/\\\\\\\\/g, '\\\\');\n       =    rd compatibility.  
+ 
+  
+ 
+ &
+$Do NOT migrate additional templates.  
+ 
+  
+ 
+  
+	Objective  
+ 
+  
+ 
+ `
+^Build a reusable Motion Engine that is completely independent of Themes, Layouts and Sections.  
+ 
+  
+ 
+ 2
+0------------------------------------------------  
+ 
+  
+ 
+  
+ Tasks  
+ 
+  
+ 
+  
+ 1. Create Motion Registry.  
+ 
+  
+ 
+ 	
+ Folder:  
+ 
+  
+ 
+ 
+ lib/motion/  
+ 
+  
+ 
+  
+ Each motion pack contains:  
+ 
+  
+ 
+  
+- manifest.ts  
+ 
+  
+ - transitions.ts  
+ 
+  
+ - timings.ts  
+ 
+  
+ 
+ 2
+0------------------------------------------------  
+ 
+  
+ 
+  
+ 2. Create Motion Packs.  
+ 
+  
+ 
+  
+ Implement at least:  
+ 
+  
+ 
+  
+Luxury Motion  
+ 
+  
+ Celebration Motion  
+ 
+  
+ Minimal Motion  
+ 
+  
+ Glass Motion  
+ 
+  
+ 
+ 2
+0------------------------------------------------  
+ 
+  
+ 
+  
+ 3. Motion Engine  
+ 
+  
+ 
+ !
+ The Motion Engine must control:  
+ 
+  
+ 
+  
+ - page enter  
+ 
+ 
+ - page exit  
+ 
+  
+ - section reveal  
+ 
+  
+ - stagger timing  
+ 
+ 	
+ - hover  
+ 
+  
+ - tap  
+ 
+ 	
+ - modal  
+ 
+ 
+
+ - drawer  
+ 
+ 
+ - accordion  
+ 
+  
+ - floating elements  
+ 
+  
+
+- parallax  
+ 
+  
+ - scroll animations  
+ 
+  
+ 
+ ,
+*Sections must not contain animation logic.  
+ 
+  
+ 
+ 2
+0------------------------------------------------  
+ 
+  
+ 
+  
+ 4. Motion inheritance  
+ 
+  
+ 
+ 
+
+ Support:  
+ 
+  
+ 
+ 
+ Base Motion  
+ 
+  
+ 
+  
+      
+ 
+  
+ 
+  
+Luxury Motion  
+ 
+  
+ 
+  
+ Celebration Motion  
+ 
+  
+ 
+  
+ Glass Motion  
+ 
+  
+ 
+ &
+$Only overridden values should exist.  
+ 
+  
+ 
+ 2
+0------------------------------------------------  
+ 
+  
+ 
+  
+ 5. Motion switching  
+ 
+  
+ 
+ F
+DModern Birthday should switch between motion packs without changing:  
+ 
+  
+ 
+ 	
+ - Theme  
+ 
+ 
+
+ - Layout  
+ 
+  
+- Composition  
+ 
+  
+ 
+  
+ Only behavior changes.  
+ 
+  
+ 
+ 2
+0------------------------------------------------  
+ 
+  
+ 
+  
+ 6. Performance  
+ 
+  
+ 
+ !
+ Respect prefers-reduced-motion.  
+ 
+  
+ 
+  
+ Avoid layout shifts.  
+ 
+  
+ 
+  
+ GPU-friendly animations only.  
+ 
+  
+ 
+ &
+$No animation should block rendering.  
+ 
+  
+ 
+ 2
+0------------------------------------------------  
+ 
+  
+ 
+  
+ 7. Backward compatibility  
+ 
+  
+ 
+ $
+"Legacy templates continue working.  
+ 
+  
+ 
+ "
+ If Motion Engine is unavailable,  
+ 
+  
+ 
+  
+ fallback gracefully.  
+ 
+  
+ 
+ 2
+0------------------------------------------------  
+ 
+  
+ 
+  
+ Deliverables  
+ 
+  
+ 
+  
+     Motion Registry  
+ 
+  
+ 
+  
+     Motion Engine  
+ 
+  
+ 
+  
+     Motion inheritance  
+ 
+  
+ 
+  
+     Dynamic motion switching  
+ 
+  
+ 
+  
+     Reduced-motion support  
+ 
+  
+ 
+  
+     Build passes  
+ 
+  
+ 
+  
+ After completion provide:  
+ 
+  
+ 
+  
+ - Folder structure  
+ 
+  
+ - Motion packs  
+ 
+  
+ - Animation strategy  
+ 
+ '
+%- Remaining hardcoded animation

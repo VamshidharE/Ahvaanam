@@ -1,0 +1,96 @@
+"use client";
+2: 
+3: import { useEffect, useState } from "react";
+4: import { ToggleLeft, ToggleRight } from "lucide-react";
+5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+6: import { getWeddingComposition } from "@/lib/composition/templates";
+7: import { useInvitationData } from "../../context/InvitationDataContext";
+8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+9: 
+10: // --- TEMPLATE SPECIFIC PARTICLES ---
+11: import React, { useRef } from "react";
+12: const royaltempleParticles = () => null;
+13: 
+14: 
+15: export default function RoyalTempleLayout({ onBackToHub }: { onBackToHub: () => void }) {
+16:   const { invitationData } = useInvitationData();
+17:   const [useCompositionRenderer, setUseCompositionRenderer] = useState(false);
+18: 
+19:   useEffect(() => {
+20:     if (typeof window !== "undefined") {
+21:       setUseCompositionRenderer(localStorage.getItem("useCompositionRenderer") === "true" ||
+22:         new URLSearchParams(window.location.search).get("useCompositionRenderer") === "true");
+23:     }
+24:   }, []);
+25: 
+26:   const handleToggleRenderer = () => {
+27:     const nextVal = !useCompositionRenderer;
+28:     setUseCompositionRenderer(nextVal);
+29:     if (typeof window !== "undefined") {
+30:       localStorage.setItem("useCompositionRenderer", String(nextVal));
+31:     }
+32:   };
+33: 
+34:   if (!invitationData) return null;
+35: 
+36:   if (useCompositionRenderer) {
+37:     const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+38:     const config = isWrapped ? (invitationData as any).config : invitationData;
+39:     const comp = getWeddingComposition(config);
+40:     return (
+41:       <div className="min-h-screen text-white relative overflow-hidden select-none" style={{ backgroundColor: "var(--theme-bg, #0C0714)" }}>
+42:         <CompositionRenderer composition={comp} invitationData={invitationData} />
+43:         <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 select-none pointer-events-auto">
+44:           <button
+45:             onClick={handleToggleRenderer}
+46:             className="flex items-center gap-2 px-4 py-2.5 bg-black/60 hover:bg-black/80 backdrop-blur-md text-white rounded-full shadow-lg border border-purple-500/20 text-[10px] font-bold uppercase tracking-[1px] transition-all cursor-pointer"
+47:             title="Switch Renderer Engine"
+48:           >
+49:             <ToggleRight size={16} className="text-[#C49B27]" />
+50:             <span>Composer Engine</span>
+51:           </button>
+52:         </div>
+53:       </div>
+54:     );
+55:   }
+56: 
+57:   return (
+58:     <>
+59:       <LegacyOrchestrator
+60:         themeId="royal-temple"
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+   : kz9yqx9h       
+(bot-9f549e06-008d-4158-83d7-a7e6f81ea3b7   XI will view `lib/composition/templates.ts` to see how template compositions are defined.   2  
+ uhvcvjl0 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\composition\\templates.ts","StartLine":1,"toolAction":"View lib/composition/templates.ts","toolSummary":"Reading composition templates library file"}: 	  	
+ 	  M2      o :m      R A  g G4\    _Q    6  %1  -L @"  O  L  }+mR `Z; l_t ~ 	b u  M   3?    np S &&X R  C  r    UE    P   /  d   VG   2  g  8    F/WG#n (k             1o  } $    S1Q   \           5   ? : W AM,       t %CC[1     r    5 y    { A @  xO   ?  "     kDx>    KA  2         vu   -V+  H   XJV        S z  r<p   . ~"          !P=    :4pK6   ?         3 RdG: =   L2*q     w  ,] W9   ug  ` %m\C]       =     rH uLB'c $   g?z        i     c `     | ~ y -]Y X   z  Y `   Yz  33       Y     B l	  9 { :Iy  P C    )   ?#5 .            (! ?rr   ; HuW J $  H K PQ 1    P  S ft9  Mh  N { ]   &sfm e  AL    ;  Y  R~ g? Z  R            :w&4 >   ] Tn  2   W   ]# 6  #  H  |- = o   G"d8~       C      0        Q P       N]  n    8    W      (      Rm    (  ;(      a ,&   &   m  fn"$]        p sf 1    a < C g            "      0}    H ]       V v)  
+ o  S + G )e b  M^   <P   \     ?  G  q     _  {   L>  ^     Sz A # 2D  4 :/ AQ    PB"Yv    A      yP/ \HI bl,c H     ~ Ptz  k       v 6Y`7    C%  #        o @  r X*  K   c   8 	      PLc     R         ?_ )    GO     3      9 ?5  u1Y   \  k   tkX g<     s  ] -  z  N Q%I       %3   %  D-5W b   %    y 1   $;r   aW + 6O @ h  m Z-<   {   ~  /    W FK y    zi  0    .   S M7 U}w
+kJ	view_file      9    9Created At: 2026-07-12T14:11:29Z
+Completed At: 2026-07-12T14:11:29Z
+File Path: `file:///c:/Users/Admin/Ahvaanam/lib/composition/templates.ts`
+Total Lines: 214
+Total Bytes: 5851
+Showing lines 1 to 214
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import { CompositionSchema, SectionData } from "./types";
+2: 
+3: export function getWeddingComposition(config: any): CompositionSchema {
+4:   const sectionsOrder = config.sectionOrder || [
+5:     "hero", "couple", "countdown", "events", "story", "gallery", "venue", "families", "rsvp", "faq", "dressCode"
+6:   ];
+7:   
+8:   const sections: SectionData[] = sectionsOrder.map((sId: string) => {
+9:     const isSecEnabled = config[sId]?.enabled !== false;
+10:     let bindings: Record<string, string> = {};
+11: 
+12:     if (sId === "hero") {
+13:       bindings = {
+14:         title: "hero.title",
+15:         subtitle: "hero.subtitle",
+16:         welcomeMessage: "hero.welcomeMessage",
+17:         heroImage: "hero.heroImage",
+18:         ctaText: "hero.ctaText",
+19:         surname: "hero.surname",
+20:         subText: "hero.subText",
+21:         enableHeaderMedia: "hero.enableHeaderMedia",
+22:         headerMediaType: "hero.headerMediaType",
+23:         selectedGod: "h

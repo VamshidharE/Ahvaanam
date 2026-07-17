@@ -1,0 +1,163 @@
+/shared/orchestrator/index.tsx)** (1.8KB): Coordinator module that binds them all.
+
+### 2. Backwards Compatibility
+* Cleaned [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx#L1) to serve as a coordinator re-export layer. This preserves all existing template import paths without requiring any template-level file alterations.
+
+### 3. Verification & Auditing
+* Sourced file sizes and responsibilities inside [final_architecture_cleanup_report.md](file:///c:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/final_architecture_cleanup_report.md).
+* TypeScript type checks (`npx tsc --noEmit`) verified with **0 errors**.
+* Next.js production build compiler (`npm run build`) succeeded in **13.7 seconds** with **0 compiler warnings**.
+
+Details have been cataloged in the [walkthrough.md](file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/walkthrough.md) walkthrough. The architectural cleanup is officially complete!2(bot-c1d484c7-b469-4384-8071-f35685f61cb6B  I have successfully completed the **Final Architecture Cleanup**, split the `LegacyOrchestrator.tsx` component into modular, single-responsibility sub-orchestrators, and converted the original file into a backwards-compatible coordinator re-export layer.
+
+Here is a summary of the accomplishments:
+
+### 1. Modular Sub-Orchestrators Package
+We built the modular layout files under `components/shared/orchestrator/`:
+* **[AudioOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/AudioOrchestrator.tsx)** (1KB): Audio mounting and state triggers.
+* **[BackgroundEffects.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/BackgroundEffects.tsx)** (0.5KB): Toggle for canvas backdrop particles.
+* **[LoadingExperience.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/LoadingExperience.tsx)** (0.8KB): Fade overlays on page loading.
+* **[SectionPipeline.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/SectionPipeline.tsx)** (3KB): Order mapper that imports and mounts sections.
+* **[TemplateFrame.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/TemplateFrame.tsx)** (0.8KB): Main background container wrappers and back button.
+* **[ScrollController.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/ScrollController.tsx)** (0.5KB): Configures smooth scroll behavior.
+* **[ShareController.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/ShareController.tsx)** (0.8KB): Floating WhatsApp/clipboard share.
+* **[index.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/index.tsx)** (1.8KB): Coordinator module that binds them all.
+
+### 2. Backwards Compatibility
+* Cleaned [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx#L1) to serve as a coordinator re-export layer. This preserves all existing template import paths without requiring any template-level file alterations.
+
+### 3. Verification & Auditing
+* Sourced file sizes and responsibilities inside [final_architecture_cleanup_report.md](file:///c:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/final_architecture_cleanup_report.md).
+* TypeScript type checks (`npx tsc --noEmit`) verified with **0 errors**.
+* Next.js production build compiler (`npm run build`) succeeded in **13.7 seconds** with **0 compiler warnings**.
+
+Details have been cataloged in the [walkthrough.md](file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/walkthrough.md) walkthrough. The architectural cleanup is officially complete!` r     
+   M2 E OJw" y       g T      Ij 	 ,   #  8 e  ]  A . v     ,  1     AB       Y |   @ g x  q  p   1 ,    \*~8A    -    q 5 0 N      rtLine":1,"toolAction":"View real_renderer_candidate_9","toolSummary":"Reading the extracted composition renderer candidate 9"}:     
+    M2 > |   o   h .   n   BE3    ? p    J; ]       ggl   }G=#   C  (    j(5g  0 g -
+ X/ C  ;    bT    4  _; @ V-a   $     kx    1M W   |vw  L          (6     &    ]   z   [   Fdh  Rx'(  =  (  ,<   PA  r =O0  Xr    W       ,{r    P  ) \k  9  7 Q 	'|`HxW   f! %    :} =U   j UW    gl9        ? kP   q 2z    V  :1}M        ~  6p   v  \    tY (   vo_  @jx)~  W -   \
+     "8  *       z        <   ?F       Y_ ]f %Lr       h &   0    J    x   T  Y   > \ Q A  hLs &Sh zL Q#F ?   A#   9        	 a/      &   ;     c    jY  l^	 ,K    !  g  ` 
+   }+  @      1d K    /: > &stZ    4    'z_     c        F     S#K  q PH B1 o    E (P>* 
+ F 6$ $-   |   ;l9  n8   J j  EA 5d\!  Z    T    ~   >o mG ^    &^V  Zo \> < S  J  C  (D S  EnkUv^q   v H mz    Y AR I      \{ ~w  + =;" st  c  /N  & /j '     	 B  + 
+  FF  w  _     L  I	   A  7&   C    `  aX  ] O    )   -     b Ei 1+5 Ut%5   (  h5 5    K -v   g  'G    h {/,4 H  l %    %b A          F v  p G          Vja  v    W                 + R     R nv  CAZR     0      9  G    9#    z  S  <   G@)yA7  s     w C   - 1 i     : ~O #}           
+  o v{ oonU  ,    \  c   ~:    5V   Bc  I7 j v  ,  SW  <&U     &     0  H     =      D 2 10 svw    c  >  7    gt  r{ !7uL63  p   {l >i  |  X 4     2 _     P  A'      \tC  [  Z3 A6   ~Xo e   _
+  *     4 G b Rd  ~f [     uG  F9%    k @  |   /ng     S 9  Q ;    *B?   rn     M  j      {  L=     w  ( $Mv`c       0  1. O   >Sp         d     Ft2L  :  k     A  E  B 4f  iozB      tg Az  B    <e t   (2DN.H  X & /  F  AH1       A  k#_  q  $  gq    a 7 `   CS  |  Z<s=x T  Z    zD*3  C   oe<e% Z # g\f  z  7     7 _7u4 gn5	 u_~- ~  k    	 5 TN  sv    6   -    M < 	fJ   W	  Zr  A    v    |    ^   ?M  Y[)  2 HL  x4   D. CA: o m:  Weq=<u0     _bsHmW .$>Ok uh H  ] N 	 P  d     S    A        "S_~   v    ; %      @@    ?   1   B, ($X _  -K l      b:        S &J I@Wuq( h  n    ^  '    t h  N  {      *+3   } +  v   } i U_:   ~0     H   >    d  M7     z #    | ru  > ).   J   0   <   Vw  M1(e( & )n  6   T u ?; [ L Y n  ;   C $cI  @ $       7 o &     )Y   C3 U !7       
+o pc  T )    |   L   (  " w&= o  i     zr       A &     Q   ` _ 5 c     |           F ( ,=2  \} Q 	t7j !      ' $ 7   Z     NTU &;  A  $  V  s ;          d   o   wj=X    fZ  W8 E 4 &    tI ? m Y  e ]k  Umsc3   "l   v_  mz G    jJ8 @M    ?<r /    wv" v  O 4I^ N  KH  1        x   39\v  &c;vc  8 J =   j _W          \ =  y       |>   8 o    C   1W   %   :    p	  ,  $bXR` +        k     \     hY_   e =   W  t  &  :     G SYRM]l  } 5[   d  qQ   lJ p    S  V2    gJ>+k    v (:E } }W S   ]N            v   HhSM t E  }J  d>h{ 5      ~   oC  ]p U     R  I5 F   q	 m    4- i`w        !        A   '         j BbAH$  O   _  5   2 &    7    `  eO      ]  ;    s0   h+   C w  * C~[  $# r %  5 @l{M  { |\ 8Z       v n /      [s      } hu } J	view_fileZ  **Analyzing Potential Matches**
+
+I've got a few code snippets to evaluate. The first, `searchDir(geminiDir); ...`, from `search_all_logs.js`, seems like it could be relevant. I'm also looking at a no-match message and then what *appears* to be a key function, the `CompositionRenderer`. I'm starting to get a sense of which candidates might be the best match.
+
+
+      2    2Created At: 2026-07-12T14:18:53Z
+Completed At: 2026-07-12T14:18:53Z
+File Path: `file:///c:/Users/Admin/Ahvaanam/scratch/real_renderer_candidate_9.tsx`
+Total Lines: 85
+Total Bytes: 5592
+Showing lines 1 to 85
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: use client');
+2:     }
+3:     if (startIdx === -1) continue;
+4:     
+5:     // Try to find if this contains the full component
+6:     const hasComponentExport = content.includes('export default function CompositionRenderer');
+7:     const hasResolveBinding = content.includes('resolveBindingValue');
+8:     const hasSectionComponents = con    am","WaitMsBeforeAsync":5000,"toolAction":"Run extract_real_file.js","toolSummary":"Executing script to locate real CompositionRenderer code candidate"}:     
+    M2         E   U f    7 g   0  z E]    >  U/  j ZD =    U 6  2" l   c/ :L  wNN   Of tS   c.x          L^ a     CEsq~ 1 	  .  h     J run_command            Created At: 2026-07-12T14:18:47Z
+Completed At: 2026-07-12T14:18:50Z
+
+				The command completed successfully.
+				Output:
+				[1] Found possible REAL code file candidate: composition_pure_match_12_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt (size: 6000)
+  Parsed Code length: 3821
+  Code Ends with:   (e) {}
+    }
+  }
+}
+
+try {
+  searchDir(geminiDir);
+} catch (err) {
+  console.error('Error:', err);
+}
+[2] Found possible REAL code file candidate: composition_pure_match_13_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt (size: 6000)
+  Parsed Code length: 5004
+  Code Ends with:   } else {
+    console.log('No match containing CompositionRenderer export was found at all!');
+  }
+}
+[3] Found possible REAL code file candidate: composition_pure_match_14_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt (size: 6000)
+  Parsed Code length: 1627
+  Code Ends with:   invitationData: any;
+}
+
+export default function CompositionRenderer({ composition, invitationData }
+[4] Found possible REAL code file candidate: composition_pure_match_15_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt (size: 6000)
+  Parsed Code length: 1546
+  Code Ends with:  ly restored perfect CompositionRenderer.tsx!`);
+} else {
+  console.log('No perfect match found.');
+}
+[5] Found possible REAL code file candidate: composition_pure_match_17_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt (size: 6000)
+  Parsed Code length: 4980
+  Code Ends with:   } else {
+    console.log('No match containing CompositionRenderer export was found at all!');
+  }
+}
+[6] Found possible REAL code file candidate: composition_pure_match_18_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt (size: 6000)
+  Parsed Code length: 3821
+  Code Ends with:   (e) {}
+    }
+  }
+}
+
+try {
+  searchDir(geminiDir);
+} catch (err) {
+  console.error('Error:', err);
+}
+[7] Found possible REAL code file candidate: composition_pure_match_18_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt (size: 6000)
+  Parsed Code length: 4980
+  Code Ends with:   } else {
+    console.log('No match containing CompositionRenderer export was found at all!');
+  }
+}
+[8] Found possible REAL code file candidate: composition_pure_match_19_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt (size: 6000)
+  Parsed Code length: 112
+  Code Ends with:  ;');    
+     if (startIdx === -1) {   3
+/      startIdx = content.indexOf('use client');   	
+     }
+[9] Found possible REAL code file candidate: composition_pure_match_1_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt (size: 6000)
+  Parsed Code length: 5592
+  Code Ends with:    k  q B, X    1  O f fT    >   -      5TQ       -         +  b  U XT& E  p > 2  sUU   L  i | mUu 9}
+[10] Found possible REAL code file candidate: composition_pure_match_20_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt (size: 6000)
+  Parsed Code length: 197
+  Code Ends with:           if (startIdx !== -1) {   4
+0          cleaned = cleaned.substring(startIdx);   
+	        }
+[11] Found possible REAL code file candidate: composition_pure_match_2_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt (size: 6000)
+  Parsed Code length: 5041
+  Code Ends with:     .     ?]r r . >   ]    w7   f    a q R;^{ U    o>q  -m8~ / t G u    tt    o   !     N    c | 0 }
+[12] Found possible REAL code file candidate: composition_pure_match_6_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt (size: 6000)
+  Parsed Code length: 5527
+  Code Ends with:  position_renderer_db_match_424_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+Search complete.
+
+  	: o8iv5r7j       
+(bot-0f6abb6a-f450-4a2d-8d33-6992dfd0db60     I will view `scratch/real_renderer_candidate_9.tsx` to see if it contains the complete, original code of the composition renderer.   2  
+ wxn3bvf7 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\scratch\\real_renderer_candidate_9.tsx","Sta                  r k    w!      w   $ O    P b T+    L ;\   y   z   ,     ]   o     r e     ,     2I   V [K  !   T  | x '      E ? % %  8  H      8 ]   *e a      v  " $ H #    vMQ              ^) o o;83]   6 )xz y  ?     0 A   I  I} = t . #gw *&    2w_ 1 E   6  p~     r R    c    
+ lU     3 5 H  &   u   ]>% +ij)       j  ^t g{Q>     :U v    dq        :        l=  f "   j  PS$     7Y| $ {.4 o ;6
+F \         5H>@ Q !=      	{?b G      f  # )      o}  R   T   z      vV;       ay    1   Knh t}  ,  >    5/9   5 ] ]  _    t ^   ?"o  0{ c  z_   N =\.   y=  A    P      rzX < z  >$       l l  pT=2  5 mu |)8 <   0    .`c  t&M  zH h 2X   *    "! \v     |7 i T       +U94 l  L      R p   O[   I  s      ^p!  k  4   U l    v     h  %G L  S t  g*  4Q  Jr   * <   YZ  V  pK5   '  +  M    L  ~/O. "
+  P-    N    ? pzi     ]  9 CG   -dm  [  - g
+     *W  j  ' /  "K    B     ~      9      g     q OKe   h    P 9`1  |i   d6  (     W     q z  Q  D &      uV  y * WIc   A _T  1rd dH      YV S  M   @ v < Bo4~ o  P   A     d  O  \D\fE+  _=h  h \ !  x    4%[f       	     .  g   B c =<   A  a ! =     3,E    T7 GNhX* P1  z
+ a  )|    > @     3{  D    @<  !tx   Q   O    S     J     r m 8 C   /\ @   "=  #r  j  n  1C     b  (+  G  A 2 A      b, \Ut)H   1   K          s    t o6   o   J
+ 5  m go;     >I c     li     K   Gy       ~  [      c  A	Q     W   g 1    	  3&      RL c l     mC        mV[    n  G o s:  a j  $~o vo (TQn   oW% {      Z  0r%  F   I G ,*   \ R  	 d  +6  D q  m   < [ #O zs   b>    P A  r  I`  +/     XZ     b    d       M k  ew[4 M 7 r`  vZ:5Q             `   K : jS/} i  k    + Q      r3     A[ p u9F 7n ^ D     <C8
+ =  3 w ,- p  j   g cs  i&d p   gd@      L N >@      5   (
+ ^
+     z    D '*y @  3xF% M $   qX     'u  N    =D}; gS(i  k    _    . ;  6  8    N Je 4_1L  D n.JusE  4e  P   m    wg  M b a<u m   M    :          k}-4 3  HF W    E.TMb !l  $Dn   9 ,S      h   @    /   G   ; ]C S {    p     K  3      D           T B  ,4 _   $      )g   ,8  n   |  E, 89S     tzt        .V 
+ 3  D  i, /C     ;e   S   NqD  cj     e<
+    mi        s(  A>UV     2K    - \f G  f    T~     _  5   /  t  kU 2  /  T k  l   @ On  h  SS o    `  c  c       gL       o`        x   0  U     lFs                  OM~@  `  =  3 Q  v       7r%q } ?@. ?c'g_          1       .   T      6   B  B     3"   x P    y3  DK
+ )   ^R$ L 9cD  l  r B   2              Z  ^ NY z n         J 	G  K   [DmK3Y<v      _  :M  u eMK qYg         |  % 3 f      N  c          	_+  )  at;    k   q+ k     c   g<*    G O  U#",    0-B 	 l
+   4   8O  W8!    g "      |      T  kx x   LV  l3^ {_:T   1U     "    z |2#       i \ 6 fh             .   \CP W    ^c +.wJ:    	 :@* j 	  v jk  ?_ rIP] |hL  <    X z^"        Z .c  . ^  7 p  r  6
+ .  / @i  HJwrite_to_fileZ  **Analyzing the Unexpected Data**
+
+I'm puzzled, this file, `composition_renderer_db_match_10_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt`, persists. Line 1 contains `"use client";`);` which is unexpected. This client directive seems out

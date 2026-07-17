@@ -1,0 +1,127 @@
+use client\";\n\nimport React, { useEffect, useState } from \"react\";\nimport LayoutWrapper from \"@/components/layouts/LayoutWrapper\";\n\ninterface CountdownSectionProps {\n  bindings: {\n    title?: string;\n    targetDate?: string;\n    postWeddingMessage?: string;\n  };\n  layoutId?: string;\n}\n\nexport default function CountdownSection({ bindings, layoutId }: CountdownSectionProps) {\n  const { \n    title = \"Party Countdown\", \n    targetDate = \"2026-12-14T19:00:00\", \n    postWeddingMessage = \"The Celebration has begun!\" \n  } = bindings;\n\n  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });\n  const [isPassed, setIsPassed] = useState(false);\n\n  useEffect(() =\u003e {\n    if (!targetDate) return;\n    const targetTime = new Date(targetDate).getTime();\n\n    const updateCountdown = () =\u003e {\n      const now = new Date().getTime();\n      const difference = targetTime - now;\n      if (difference \u003c= 0) {\n        setIsPassed(true);\n      } else {\n        setIsPassed(false);\n        setTimeLeft({\n          days: Math.floor(difference / (1000 * 60 * 60 * 24)),\n          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),\n          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),\n          seconds: Math.floor((difference % (1000 * 60)) / 1000),\n        });\n      }\n    };\n\n    updateCountdown();\n    const interval = setInterval(updateCountdown, 1000);\n    return () =\u003e clearInterval(interval);\n  }, [targetDate]);\n\n  return (\n    \u003cLayoutWrapper\n      layoutId={layoutId}\n      defaultLayoutId=\"story-stack\"\n      className=\"py-20 px-6 border-b border-white/5 text-center select-none\"\n      style={{ \n        fontFamily: \"var(--theme-font-body)\",\n        color: \"var(--theme-text)\",\n        background: \"rgba(139, 92, 246, 0.03)\"\n      }}\n    \u003e\n      \u003cdiv className=\"max-w-4xl mx-auto space-y-10 w-full\"\u003e\n        \u003cdiv className=\"space-y-2\"\u003e\n          \u003ch3 \n            className=\"text-xs uppercase tracking-[3px] font-bold\"\n            style={{ \n              color: \"var(--theme-accent)\",\n              fontFamily: \"var(--theme-font-heading)\" \n            }}\n          \u003e\n            {title}\n          \u003c/h3\u003e\n        \u003c/div\u003e\n        {isPassed ? (\n          \u003cp \n            className=\"text-lg uppercase tracking-[1.5px] font-bold animate-pulse\"\n            style={{ color: \"var(--theme-accent)\" }}\n          \u003e\n            {postWeddingMessage}\n          \u003c/p\u003e\n        ) : (\n          \u003cdiv className=\"grid grid-cols-4 gap-4 max-w-md mx-auto w-full\"\u003e\n            {Object.entries(timeLeft).map(([label, value]) =\u003e (\n              \u003cdiv \n                key={label} \n                className=\"border border-white/5 py-4 flex flex-col justify-center shadow-xs\"\n                style={{ \n                  backgroundColor: \"var(--theme-card-bg)\",\n                  borderColor: \"var(--theme-border)\",\n                  borderRadius: \"var(--theme-radius-card)\",\n                  boxShadow: \"var(--theme-shadow-card)\"\n                }}\n              \u003e\n                \u003cspan \n                  className=\"text-2xl md:text-3xl font-extrabold\"\n                  style={{ color: \"var(--theme-accent)\" }}\n                \u003e\n                  {value}\n                \u003c/span\u003e\n                \u003cspan \n                  className=\"text-[9px] uppercase tracking-[1px] font-bold mt-1\"\n                  style={{ color: \"var(--theme-secondary-text)\" }}\n                \u003e\n                  {label}\n                \u003c/span\u003e\n              \u003c/div\u003e\n                ))}\n          \u003c/div\u003e\n        )}\n      \u003c/div\u003e\n    \u003c/LayoutWrapper\u003e\n  );\n}\n","Description":"Update countdown layout section to support LayoutWrapper","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\countdown\\index.tsx","toolAction":"Update countdown component","toolSummary":"Integrating LayoutWrapper in Countdown Section component"}:     
+    M2   =   o-  ? ;   O:    U"   e9  q M    "  ;.  m  *  ]  X  p5Vf                E  um   f    z $ w\ Wr1       (   	u    E  )   y \M   3  7  > b    r      f0#N & a`8     0E  !V  J[   &7 J;    0      f   7   ] t  !   ?/ R  A o zzn  ( K    v      '7yQ  cM      p  R   Jwrite_to_file            Created At: 2026-07-11T12:09:33Z
+Completed At: 2026-07-11T12:09:34Z
+Created file file:///c:/Users/Admin/Ahvaanam/components/sections/countdown/index.tsx with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission. d: lbe79os9       
+(bot-33180c16-4395-4093-92a9-4d62d51d9b68     I will create a visual layout verification test page at `<appDataDir>\brain\<conversation-id>/scratch/test-layouts.tsx` to verify dynamic layout switches. This demonstrates Centered vs Split column layouts.   2  
+ q3f5m5rq write_to_file   {"CodeContent":"\"use client\";\n\nimport React from \"react\";\nimport HeroSection from \"@/components/sections/hero\";\nimport ThemeProvider from \"@/components/theme/ThemeProvider\";\n\nconst mockHeroBindings = {\n  title: \"Dev \u0026 Neha's Wedding\",\n  subtitle: \"We Invite You to Celebrate Our Union\",\n  welcomeMessage: \"Save the Date\",\n  heroImage: \"/images/themes/royal-temple.jpg\",\n  ctaText: \"RSVP Now\",\n  surname: \"Dev Family\",\n  subText: \"Traditions\",\n  enableHeaderMedia: true,\n  headerMediaType: \"god\" as const,\n  selectedGod: \"ganesha\" as const,\n  headerMediaSize: 75,\n  headerMediaSpacing: 25\n};\n\nconst mockHeroProperties = {\n  showScrollIndicator: true,\n  overlayOpacity: 0.5,\n  contentAlign: \"center\" as const,\n  minHeight: \"450px\"\n};\n\nexport default function TestLayoutsPage() {\n  return (\n    \u003cdiv className=\"p-8 bg-zinc-100 min-h-screen space-y-12 select-none\"\u003e\n      \u003ch1 className=\"text-xl font-bold uppercase tracking-wider text-slate-800 text-center\"\u003e\n        Layout Engine Structural Verification Canvas\n      \u003c/h1\u003e\n\n      \u003cdiv className=\"space-y-10 max-w-5xl mx-auto\"\u003e\n        {/* Layout 1: Centered Welcome Layout */}\n        \u003cdiv className=\"flex flex-col space-y-3 bg-white p-6 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative\"\u003e\n          \u003cspan className=\"text-[10px] uppercase font-bold text-amber-500 tracking-[1.5px]\"\u003e\n            1. Layout: Centered welcome Layout (hero-center)\n          \u003c/span\u003e\n          \u003cdiv className=\"rounded-2xl overflow-hidden border border-zinc-100 relative\"\u003e\n            \u003cThemeProvider themeId=\"luxury-gold\" /\u003e\n            \u003cHeroSection\n              properties={mockHeroProperties}\n              bindings={mockHeroBindings}\n              layoutId=\"hero-center\"\n            /\u003e\n          \u003c/div\u003e\n        \u003c/div\u003e\n\n        {/* Layout 2: Split 2-Column Layout */}\n        \u003cdiv className=\"flex flex-col space-y-3 bg-white p-6 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative\"\u003e\n          \u003cspan className=\"text-[10px] uppercase font-bold text-purple-500 tracking-[1.5px]\"\u003e\n            2. Layout: Split 2-Column Grid Layout (hero-split)\n          \u003c/span\u003e\n          \u003cdiv className=\"rounded-2xl overflow-hidden border border-zinc-100 relative\"\u003e\n            \u003cThemeProvider themeId=\"luxury-gold\" /\u003e\n            \u003cHeroSection\n              properties={mockHeroProperties}\n              bindings={mockHeroBindings}\n              layoutId=\"hero-split\"\n            /\u003e\n          \u003c/div\u003e\n        \u003c/div\u003        at Array.forEach (<anonymous>:null:null)
+    at loadComposition (lib/composition/loader.ts:32:17)
+    at CompositionRenderer (components/composition/CompositionRenderer.tsx:123:37)
+    at HousewarmingPremiumLayout (components/templates/housewarming-premium/Layout.tsx:25:7)
+    at <unknown> (app/invites/[id]/page.tsx:235:20)
+    at InviteContent (app/invites/[id]/page.tsx:239:8)
+    at GuestInvitePage (app/invites/[id]/page.tsx:402:7)
+
+## Code Frame
+  50 | ...   const resolvedProperties: Record<string, any> = {};
+  51 | ...   if (manifest && manifest.properties) {
+> 52 | ...     for (const prop of manifest.properties) {
+     |                                     ^
+  53 | ...       const userVal = section.properties?.[prop.key];
+  54 | ...       resolvedProperties[prop.key] = userVal !== undefined ? userV...
+  55 | ...     }
+
+Next.js version: 16.2.9 (Turbopack)
+  
+## Error Type  
+ 
+  
+ Runtime TypeError  
+ 
+  
+ 
+  
+ ## Error Message  
+ 
+ %
+#manifest.properties is not iterable  
+ 
+  
+ 
+  
+ 
+ 4
+2    at <unknown> (lib/composition/loader.ts:52:35)  
+ 
+ .
+,    at Array.forEach (<anonymous>:null:null)  
+ 
+ :
+8    at loadComposition (lib/composition/loader.ts:32:17)  
+ 
+ T
+R    at CompositionRenderer (components/composition/CompositionRenderer.tsx:123:37)  
+ 
+ ^
+\    at HousewarmingPremiumLayout (components/templates/housewarming-premium/Layout.tsx:25:7)  
+ 
+ 5
+3    at <unknown> (app/invites/[id]/page.tsx:235:20)  
+ 
+ 8
+6    at InviteContent (app/invites/[id]/page.tsx:239:8)  
+ 
+ :
+8    at GuestInvitePage (app/invites/[id]/page.tsx:402:7)  
+ 
+  
+ 
+  
+## Code Frame  
+ 
+ B
+@  50 | ...   const resolvedProperties: Record<string, any> = {};  
+ 
+ 5
+3  51 | ...   if (manifest && manifest.properties) {  
+ 
+ :
+8> 52 | ...     for (const prop of manifest.properties) {  
+ 
+ .
+,     |                                     ^  
+ 
+ B
+@  53 | ...       const userVal = section.properties?.[prop.key];  
+ 
+ R
+P  54 | ...       resolvedProperties[prop.key] = userVal !== undefined ? userV...  
+ 
+  
+   55 | ...     }  
+ 
+  
+ 
+ %
+#Next.js version: 16.2.9 (Turbopack)  
+ 
+" b   
+   j   B   x    X           
+       
+/read_file(C:\Users\Admin\invitecraft\AGENTS.md)
+@write_file(C:\Users\Admin\invitecraft\components\data\themes.ts)
+Jwrite_file(C:\Users\Admin\invitecraft\components\context\ThemeContext.tsx)
+Mwrite_file(C:\Users\Admin\invitecraft\components\shared\ThemeSelectorHub.tsx)
+6write_file(C:\Users\Admin\invitecraft\app\globals.css)
+Dwrite_file(C:\Users\Admin\invitecraft\components\data\invitation.ts)
+Swrite_file(C:\Users\Admin\invitecraft\components\templates\royal-temple\Layout.tsx)
+Twrite_file(C:\Users\Admin\invitecraft\components\templates\floral-garden\Layout.tsx)
+Swrite_file(C:\Users\Admin\invitecraft\components\templates\south-indian\Layout.tsx)
+Twrite_file(C:\Users\Admin\invitecraft\components\templates\palace-luxury\Layout.tsx)
+Uwrite_file(C:\Users\Admin\invitecraft\components\templates\lotus-serenity\Layout.tsx)
+Owrite_file(C:\Users\Admin\invitecraft\components\templates\marigold\Layout.tsx)
+Pwrite_file(C:\Users\Admin\invitecraft\components\templates\moonlight\Layout.tsx)
+Swrite_file(C:\Users\Admin\invitecraft\components\templates\grand-mandap\Layout.tsx)
+3write_file(C:\Users\Admin\invitecraft\app\page.tsx)
+ command(npm run)
+Ewrite_file(C:\Users\Admin\invitecraft\components\types\invitation.ts)
+Nwrite_file(C:\Users\Admin\invitecraft\components\templates\peacock\Layout.tsx)
+Owrite_file(C:\Users\Admin\invitecraft\components\templates\heritage\Layout.tsx)
+ command(npm run)
+9read_file(C:\Users\Admin\invitecraft\components\sections)
+%read_file(C:\Users\Admin\invitecraft)
+Icommand(Get-ChildItem -Recurse -Filter *.tsx | Select-String "sections/")
+mcommand(Get-ChildItem -Recurse -Filter *.tsx | Select-String -Pattern "components/Footer", "components/Hero")
+Qcommand(Get-ChildItem -Recurse -Filter *.tsx | Select-String "InvitationContext")
+  command(Get-ChildItem -Path components/templates -Recurse -Filter *.tsx | Select-String -Pattern "Background", "CouplePhoto", "MusicButton", "ShareButton")
+Ewrite_file(C:\Users\Admin\i

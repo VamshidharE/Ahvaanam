@@ -1,0 +1,225 @@
+use client";
+2: 
+3: import { useEffect, useState } from "react";
+4: import { ToggleLeft, ToggleRight } from "lucide-react";
+5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+6: import { getWeddingComposition } from "@/lib/composition/templates";
+7: import { useInvitationData } from "../../context/InvitationDataContext";
+8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+9: 
+10: // --- TEMPLATE SPECIFIC PARTICLES ---
+11: import React, { useRef } from "react";
+12: const royaltempleParticles = () => null;
+13: 
+14: 
+15: export default function RoyalTempleLayout({ onBackToHub }: { onBackToHub: () => void }) {
+16:   const { invitationData } = useInvitationData();
+17:   const [useCompositionRenderer, setUseCompositionRenderer] = useState(false);
+18: 
+19:   useEffect(() => {
+20:     if (typeof window !== "undefined") {
+21:       setUseCompositionRenderer(localStorage.getItem("useCompositionRenderer") === "true" ||
+22:         new URLSearchParams(window.location.search).get("useCompositionRenderer") === "true");
+23:     }
+24:   }, []);
+25: 
+26:   const handleToggleRenderer = () => {
+27:     const nextVal = !useCompositionRenderer;
+28:     setUseCompositionRenderer(nextVal);
+29:     if (typeof window !== "undefined") {
+30:       localStorage.setItem("useCompositionRenderer", String(nextVal));
+31:     }
+32:   };
+33: 
+34:   if (!invitationData) return null;
+35: 
+36:   if (useCompositionRenderer) {
+37:     const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+38:     const config = isWrapped ? (invitationData as any).config : invitationData;
+39:     const comp = getWeddingComposition(config);
+40:     return (
+41:       <div className="min-h-screen text-white relative overflow-hidden select-none" style={{ backgroundColor: "var(--theme-bg, #0C0714)" }}>
+42:         <CompositionRenderer composition={comp} invitationData={invitationData} />
+43:         <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 select-none pointer-events-auto">
+44:           <button
+45:             onClick={handleToggleRenderer}
+46:             className="flex items-center gap-2 px-4 py-2.5 bg-black/60 hover:bg-black/80 backdrop-blur-md text-white rounded-full shadow-lg border border-purple-500/20 text-[10px] font-bold uppercase tracking-[1px] transition-all cursor-pointer"
+47:             title="Switch Renderer Engine"
+48:           >
+49:             <ToggleRight size={16} className="text-[#C49B27]" />
+50:             <span>Composer Engine</span>
+51:           </button>
+52:         </div>
+53:       </div>
+54:     );
+55:   }
+56: 
+57:   return (
+58:     <>
+59:       <LegacyOrchestrator
+60:         themeId="royal-temple"
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+   : kz9yqx9h       
+(bot-9f549e06-008d-4158-83d7-a7e6f81ea3b7   XI will view `lib/composition/templates.ts` to see how template compositions are defined.   2  
+ uhvcvjl0 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\composition\\templates.ts","S    tartLine":1,"toolAction":"View lib/composition/templates.ts","toolSummary":"Reading composition templates library file"}: 	  	
+ 	  M2      o :m      R A  g G4\    _Q    6  %1  -L @"  O  L  }+mR `Z; l_t ~ 	b u  M   3?    np S &&X R  C  r    UE    P   /  d   VG   2  g  8    F/WG#n (k             1o  } $    S1Q   \           5   ? : W AM,       t %CC[1     r    5 y    { A @  xO   ?  "     kDx>    KA  2         vu   -V+  H   XJV        S z  r<p   . ~"          !P=    :4pK6   ? w  ,] W9   ug  ` %m\C]       =     rH uLB'c $   g?z        i     c `     | ~ y -]Y X   z  Y `   Yz  33       Y     B l	  9 { :Iy  P C    )   ?#5 .            (! ?rr   ; HuW J $  H K PQ 1    P  S ft9  Mh  N { ]   &sfm e  AL    ;  Y  R~ g? Z  R            :w&4 >   ] Tn  2   W   ]# 6  #  H  |- = o   G"d8~       C      0        Q P       N]  n    8    W      (      Rm    (  ;(      a ,&   &   m  fn"$]        p sf 1    a < C g            "      0}    H ]       V v)  
+ o  S + G )e b  M^   <P   \     ?  G  q     _  {   L>  ^     Sz A # 2D  4 :/ AQ    PB"Yv    A      yP/ \HI bl,c H     ~ Ptz  k       v 6Y`7    C%  #        o @  r X*  K   c   8 	      PLc     R         ?_ )    GO     3      9 ?5  u1Y   \  k   tkX g<     s  ] -  z  N Q%I       %3   %  D-5W b   %    y 1   $;r   aW + 6O @ h  m Z-<   {   ~  /    W FK y    zi  0    .   S M7 U}w
+kJ	view_file      9    9Created At: 2026-07-12T14:11:29Z
+Completed At: 2026-07-12T14:11:29Z
+File Path: `file:///c:/Users/Admin/Ahvaanam/lib/composition/templates.ts`
+Total Lines: 214
+Total Bytes: 5851
+Showing lines 1 to 214
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import { CompositionSchema, SectionData } from "./types";
+2: 
+3: export function getWeddingComposition(config: any): CompositionSchema {
+4:   const sectionsOrder = config.sectionOrder || [
+5:     "hero", "couple", "countdown", "events", "story", "gallery", "venue", "families", "rsvp", "faq", "dressCode"
+6:   ];
+7:   
+8:   const sections: SectionData[] = sectionsOrder.map((sId: string) => {
+9:     const isSecEnabled = config[sId]?.enabled !== false;
+10:     let bindings: Record<string, string> = {};
+11: 
+12:     if (sId === "hero") {
+13:       bindings = {
+14:         title: "hero.title",
+15:         subtitle: "hero.subtitle",
+16:         welcomeMessage: "hero.welcomeMessage",
+17:         heroImage: "hero.heroImage",
+18:         ctaText: "hero.ctaText",
+19:         surname: "hero.surname",
+20:         subText: "hero.subText",
+21:         enableHeaderMedia: "hero.enableHeaderMedia",
+22:         headerMediaType: "hero.headerMediaType",
+23:         selectedGod: "hero.selectedGod",
+24:         selectedSymbol: "hero.selectedSymbol"
+25:       };
+26:     } else if (sId === "couple") {
+27:       bindings = {
+28:         title: "couple.title",
+29:         groomName: "groom.name",
+30:         groomParents: "groom.parents",
+31:         groomImage: "groom.image",
+32:         brideName: "bride.name",
+33:         brideParents: "bride.parents",
+34:         brideImage: "bride.image"
+35:       };
+36:     } else if (sId === "countdown") {
+37:       bindings = {
+38:         title: "countdown.title",
+39:         targetDate: "countdown.targetDate"
+40:       };
+41:     } else if (sId === "events") {
+42:       bindings = {
+43:         events: "events"
+44:       };
+45:     } else if (sId === "story") {
+46:       bindings = {
+47:         title: "story.title",
+48:         timeline: "story.timeline"
+49:       };
+50:     } else if (sId === "gallery") {
+51:       bindings = {
+52:         title: "gallery.title",
+53:         images: "gallery.images"
+54:       };
+55:     } else if (sId === "venue") {
+56:       bindings = {
+57:         title: "venue.title",
+58:         address: "venue.address",
+59:         mapEmbedUrl: "venue.mapEmbedUrl"
+60:       };
+61:     } else if (sId === "families") {
+62:       bindings = {
+63:         ti         	h                                                                                                                                        *S      x     T   
+              2             X  b$e27694be-dca7-4510-bcaf-5676d2aea7d5j      P
+$e814890c-6b84-44e9-9783-edb10a1bb4dd S %"$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+              2             X  b$e27694be-dca7-4510-bcaf-5676d2aea7d5j      P
+$e814890c-6b84-44e9-9783-edb10a1bb4dd S %"$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     
+jI will list the files in `public/images/themes` to see what images are currently available for thumbnails.2(bot-a81441ee-86a6-4d56-8b09-782c7fac76a8:  
+ i8bn1304  list_dir   {"DirectoryPath":"c:\\Users\\Admin\\Ahvaanam\\public\\images\\themes","toolAction":"List public/images/themes","toolSummary":"Checking existing theme images in public/images/themes"}:     
+    M2    72 a        @)FF  zWT J   	.P X w    ,'   P   2    g      xv   i  g      a>   E8   gmx    EmP. .%  	 K          1    9 L X       Y       O   [ Dt vOgT  1SN#))Y    L]>i Q n   Q.k J list_dirBjI will list the files in `public/images/themes` to see what images are currently available for thumbnails.`  %Q            @   
+           -  2             :
+          B
+          JN     6 _(   0 B!
+	sessionID  -3750763034362895579H PKZ nedLaqy9N5CujuMPsYOO4Q8X  b$e27694be-dca7-4510-bcaf-5676d2aea7d5j      P
+$e814890c-6b84-44e9-9783-edb10a1bb4dd Q $"$d2c79442-9bab-465c-a40a-56c20332cbe2     "
+                 
+    
+            
+              *  
+           -  2             :
+          B
+          JN     6 _(   0 B!
+	sessionID  -3750763034362895579H PKZ nedLaqy9N5CujuMPsYOO4Q8X  b$e27694be-dca7-4510-bcaf-5676d2aea7d5j      P
+$e814890c-6b84-44e9-9783-edb10a1bb4dd Q $"$d2c79442-9bab-465c-a40a-56c20332cbe2     "
+                 
+    
+            
+              
+GI will list `public/images` to see if there is a `themes` folder there.2(bot-27cf37a9-c7c4-4899-afe1-d0e13ac138b9:  
+ aumm2euc  list_dir   {"DirectoryPath":"c:\\Users\\Admin\\Ahvaanam\\public\\images","toolAction":"List public/images","toolSummary":"Listing public/images to locate the theme templates assets"}:     
+   M2 ' =2~j  G   
+   Od ,  
+  6b   ([u      R"  F /  <      l    T< v g?o  -  }        9      	o t!  T  Sy^ ^b 4    kO   fI1Rr`J list_dirBGI will list `public/images` to see if there is a `themes` folder there.`   R      L     V 	 
+               "  
+ aumm2euc  list_dir   {"DirectoryPath":"c:\\Users\\Admin\\Ahvaanam\\public\\images","toolAction":"List public/images","toolSummary":"Listing public/images to locate the theme templates assets"}:     
+   M2 ' =2~j  G   
+   Od ,  
+  6b   ([u      R"  F /  <      l    T< v g?o  -  }        9      	o t!  T  Sy^ ^b 4    kO   fI1Rr`J list_dir*DirectoryPath*
+toolAction* toolSummary2             :             B
+         pX  b$e27694be-dca7-4510-bcaf-5676d2aea7d5j      P
+$e814890c-6b84-44e9-9783-edb10a1bb4dd R $"$d2c79442-9bab-465c-a40a-56c20332cbe2                    *  2
+                 
+    
+         Q
+    
+         p  :Listing public/images to locate the theme templates assets   List public/images  
+         ( 	  *  
+               "  
+ aumm2euc  list_dir   {"DirectoryPath":"c:\\Users\\Admin\\Ahvaanam\\public\\images","toolAction":"List public/images","toolSummary":"Listing public/images to locate the theme templates assets"}:     
+   M2 ' =2~j  G   
+   Od ,  
+  6b   ([u      R"  F /  <      l    T< v g?o  -  }        9      	o t!  T  Sy^ ^b 4    kO   fI1Rr`J list_dir*DirectoryPath*
+toolAction* toolSummary2             :             B
+         pX  b$e27694be-dca7-4510-bcaf-5676d2aea7d5j      P
+$e814890c-6b84-44e9-9783-edb10a1bb4dd R $"$d2c79442-9bab-465c-a40a-56c20332cbe2                    *  2
+                 
+    
+         Q
+    
+         p  :Listing public/images to locate the theme templates assets   List public/images  
+         (z  
+-file:///c:/Users/Admin/Ahvaanam/public/images  
+
+categories    
+
+couple.jpg      
+ deities    
+ editor-preview.png   _  
+ hero-invitation.png      	
+ img.png  
+ logo.png     
+
+ themes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          A$    |   QR       0   8 j      
+ .ipynb  " o  :  *          (  0 @ H P *       As IDE feedback, the following lint errors may be related to your recent edits up to this point. Consider whether they deserve immediate attention. If worth addressing, clearly comment on them and/or fix them. Be explicit in acknowledging lints and explaining your fix's approach. AVOID unproductive loops; if you detect yourself repeatedly creating/fixing lints in a short period, offer some thoughts but MOVE ON.0 P h x                "  28 @ *  2    ( By  @   N0 J headJ tailJ mkdirJ cdJ cpJ mvJ catJ findJ grepJ rmJ touchJ lessJ clearJ ls  *
+powershell2
+powershellX ` h p x R 8 @ H @P @X  h p  x      Z   j                         @      ( 0 8           "$       ( 2 
+ 8   B     NJ   Z     ` * 
+ * red8  @ H P  X ` h 0 8 R     X h z                                                    
+  '                   
+( 0           
+       
+/read_file(C:\Users\Admin\invitecraft\AGENTS.md)
+@write_file(C:\Users\Admin\invitecraft\components\data\themes.ts)
+Jwrite_file(C:\Users\Admin\invitecraft\components\context\ThemeContext.tsx)
+Mwrite_file(C:\Users\Admin\invitecraft\components\shared\ThemeSelectorHub.tsx)
+6write_file(C:\Users\Admin\invitecraft\app\globals.css)
+Dwrite_file(C:\Users\Admin\invitecraft\components\data\invita ]$   8   QR"$e27694be-dca7-4510-bcaf-5676d2aea7d5B     2   2   2   2   2   2   2   0   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   1   2
+     "N     6 _(   0 B!
+	sessionID  -3750763034362895579H PKZ nedLaqy9N5CujuMPsYOO4Q80M: 
+ autoJ^           "           *(M2  M      3db112e82  K      db380c6e:       2e508b5eB         R     Z         b     5zw         )       ?1       ?82A       

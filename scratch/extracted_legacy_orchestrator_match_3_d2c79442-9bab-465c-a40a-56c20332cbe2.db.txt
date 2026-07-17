@@ -1,0 +1,109 @@
+3cany\u003e;\n  themeBgClass?: string;\n  loadingTitle?: string;\n  loadingSubtitle?: string;\n}\n\nexport default function LegacyOrchestrator({\n  themeId,\n  onBackToHub,\n  particlesComponent: Particles,\n  themeBgClass = \"bg-stone-900\",\n  loadingTitle = \"Invitation\",\n  loadingSubtitle = \"Celebrating Love\"\n}: LegacyOrchestratorProps) {\n  const { invitationData } = useInvitationData();\n  const [loading, setLoading] = useState(true);\n  const [playingMusic, setPlayingMusic] = useState(false);\n  const audioRef = useRef\u003cHTMLAudioElement | null\u003e(null);\n\n  useEffect(() =\u003e {\n    if (invitationData) {\n      const timer = setTimeout(() =\u003e setLoading(false), 1500);\n      return () =\u003e clearTimeout(timer);\n    }\n  }, [invitationData]);\n\n  if (!invitationData) return null;\n\n  const isWrapped = invitationData \u0026\u0026 \"category\" in invitationData \u0026\u0026 \"config\" in invitationData;\n  const invitation = isWrapped ? (invitationData as any).config : invitationData;\n\n  const toggleMusic = () =\u003e {\n    if (!audioRef.current) return;\n    if (playingMusic) {\n      audioRef.current.pause();\n    } else {\n      audioRef.current.play().catch(() =\u003e {});\n    }\n    setPlayingMusic(!playingMusic);\n  };\n\n  const sectionOrder = invitation.sectionOrder || [];\n\n  const renderSectionComponent = (sectionId: string) =\u003e {\n    const sectionConfig = invitation[sectionId];\n    const isEnabled = sectionConfig?.enabled !== false;\n    if (!isEnabled) return null;\n\n    const properties = sectionConfig || {};\n    const bindings = sectionConfig || {};\n\n    switch (sectionId) {\n      case \"hero\":\n        return (\n          \u003cHeroSection\n            key={sectionId}\n            properties={properties}\n            bindings={bindings}\n            themeId={themeId}\n            layoutId=\"hero-center\"\n            motionId=\"luxury-motion\"\n          /\u003e\n        );\n      case \"couple\":\n        return \u003cCoupleSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"countdown\":\n        return \u003cCountdownSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"story\":\n        return \u003cStorySection key={s   "     ph|{I)T {   [b! q 4 y   _      
+)    J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2             :             B             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    5  6
+                 
+                 
+                   2Reading template routing switch blocks in page.tsx   View switch case routing                   *  
+           o  "  
+ i02nc6xu 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\app\\invites\\\\[id]\\page.tsx","EndLine":275,"StartLine":220,"toolAction":"View switch case routing","toolSummary":"Reading template routing switch blocks in page.tsx"}:     
+    M2 If s-  x?     0 4/        uvK  ?`    wo   2   C/  I2 h/  I  e    a w   \Vw  U  P T    f   yX  ys    .    /  l  | ]   f 9C  9  E  F  Q   N X X:      m  { -X         ~   VN ~7 H         W      m 9V n L  F  ph|{I)T {   [b! q 4 y   _      
+)    J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2             :             B             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    5  6
+                 
+                 
+                   2Reading template routing switch blocks in page.tsx   View switch case routing               r  
+=file:///c:/Users/Admin/Ahvaanam/app/invites/%5Bid%5D/page.tsx      "            case "rosegold":
+          case "artdeco":
+          case "botanical":
+            return <PremiumBirthdayTemplateLayout onBackToHub={dummyBack} />;
+          default:
+            return <RoyalTempleLayout onBackToHub={dummyBack} />;
+        }
+      })()}
+
+      {/* --- PREMIUM MOBILE-FIRST FLOATING DOCK --- */}
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-black/60 border border-white/10 backdrop-blur-xl px-5 py-3 rounded-full flex items-center gap-6 shadow-2xl select-none max-w-sm w-[90%] sm:w-auto justify-around">
+        <button
+          onClick={() => scrollToSection("hero")}
+          className="text-white/60 hover:text-white transition-colors cursor-pointer flex flex-col items-center gap-0.5"
+        >
+          <Home size={18} />
+          <span className="text-[8px] font-bold uppercase tracking-[0.5px]">Home</span>
+        </button>
+
+        {invitationData.story?.enabled && (
+          <button
+            onClick={() => scrollToSection("story")}
+            className="text-white/60 hover:text-white transition-colors cursor-pointer flex flex-col items-center gap-0.5"
+          >
+            <Calendar size={18} />
+            <span className="text-[8px] font-bold uppercase tracking-[0.5px]">Story</span>
+          </button>
+        )}
+
+        {invitationData.gallery?.enabled && (
+          <button
+            onClick={() => scrollToSection("gallery")}
+            className="text-white/60 hover:text-white transition-colors cursor-pointer flex flex-col items-center gap-0.5"
+          >
+            <ImageIcon size={18} />
+            <span className="text-[8px] font-bold uppercase tracking-[0.5px]">Gallery</span>
+          </button>
+        )}
+
+        {invitationData.venue?.enabled && (
+          <button
+            onClick={() => scrollToSection("venue")}
+            className="text-white/60 hover:text-white transition-colors cursor-pointer flex flex-col items-center gap-0.5"
+          >
+            <MapPin size={18} />
+            <span className="text-[8px] font-bold uppercase tracking-[0.5px]">Venue</span>
+          </button>
+        )}
+
+        {invitationData.rsvp?.enabled && (
+          <button
+            onClick={() => setRsvpSheetOpen(true)}
+            className="bg-[#C59B27] hover:bg-[#B0871B] text-black px-4 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-[1px] transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 flex items-center gap-1"
+          >
+            <MessageCircle size={12} />
+            <span>RSVP</span>X  ` |                                                                               L A3 HuU  _ . e}    Fy     t       b     ?*< G  : R 6  p     $\T  7 F `  z   ~     h         ~  6 d  % !|  = Q cr ;y  ZS    |    c D JF  ?
++ i s   r  %            tk'             n   @      ~b 0    0j      M   ' jr   E sF  o -     ^     5 $h   7-    Si    K  ;  6az    g l 7 HC 5 o  F     C h   Gf)gWh H      q m   5n    7O 5N}M  z (   0    D     O   _O_?  =      1^     K v " 32 K      qJ        .  "g -a   /   "  H  W wf  (    *zg*J multi_replace_file_content* Description* Instruction* ReplacementChunks*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   0Routing housewarming templates in guest page.tsx   Update page.tsx                   *  
+               "  
+ 8ply7tmq  multi_replace_file_content  {"Description":"Import and route HousewarmingPremiumLayout inside guest page.tsx.","Instruction":"Inject HousewarmingPremiumLayout import and add case handlers matching the 10 theme/template IDs.","ReplacementChunks":[{"AllowMultiple":false,"EndLine":22,"ReplacementContent":"import PremiumBirthdayTemplateLayout from \"../../../components/templates/birthday-premium/Layout\";\nimport HousewarmingPremiumLayout from \"../../../components/templates/housewarming-premium/Layout\";","StartLine":20,"TargetContent":"import PremiumBirthdayTemplateLayout from \"../../../components/templates/birthday-premium/Layout\";"},{"AllowMultiple":false,"EndLine":223,"ReplacementContent":"          case \"rosegold\":\n          case \"artdeco\":\n          case \"botanical\":\n            return \u003cPremiumBirthdayTemplateLayout onBackToHub={dummyBack} /\u003e;\n          case \"divine-griha\":\n          case \"modern-nest\":\n          case \"royal-palace\":\n          case \"emerald-estate\":\n          case \"classic-ivory\":\n          case \"constellation-navy\":\n          case \"warm-terracotta\":\n          case \"glassmorphic-oasis\":\n          case \"rosegold-manor\":\n          case \"botanical-garden\":\n            return \u003cHousewarmingPremiumLayout onBackToHub={dummyBack} /\u003e;","StartLine":220,"TargetContent":"          case \"rosegold\":\n          case \"artdeco\":\n          case \"botanical\":\n            return \u003cPremiumBirthdayTemplateLayout onBackToHub={dummyBack} /\u003e;"}],"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\app\\invites\\\\[id]\\page.tsx","toolAction":"Update page.tsx","toolSummary":"Routing housewarming templates in guest page.tsx"}:     
+    M2           X fB Q7.  J yFTS c     >    H1  V               v   a o     C    ^    2w	u ~vA] <<% By76 d ?*           N{  j      D  +     G; t  E =    (:3 Ca        U :  \ lL B  @ #  i)  | &   h r 4 3yZSb  S' `0?  z   6' R  :I        E       =} # ' 6`^  R     6    &  z X M# #   
+C 7q      bS   L 1  )  IA   Y  Ui M  =X k     : v &            *  6K 
+ no]    R_9 d   x y ^   gvx w D #^  vc  zt U 
+\*     A      8F 1    Gf      e! j  l %Im 5[  
+I J         I       *  <      j      u" u          ~% m   6R aP   /     /)i   oJ     F <B  e C_ i   yQ9  ]C  u    1A ' (H M     K   
+  	+ .9  A3 HuU  _ . e}    Fy     t       b     ?*< G  : R 6  p     $\T  7 F `  z   ~     h         ~  6 d  % !|  = Q cr ;y  ZS    |    c D JF  ?
++ i s   r  %            tk'             n   @      ~b 0    0j      M   ' jr   E sF  o -     ^     5 $h   7-    Si    K  ;  6az    g l 7 HC 5 o  F     C h   Gf)gWh H      q m   5n    7O 5N}M  z (   0    D     O   _O_?  =      1^     K v " 32 K      qJ        .  "g -a   /   "  H  W wf  (    *zg*J multi_replace_file_content* Description* Instruction* ReplacementChunks*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   0Routing housewarming templates in guest page.tsx   Update page.tsx                                                                                                                         |         
+           !  2             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+           !  2             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     
+rI will execute a dry-run TypeScript check to verify type safety across all our updates, templates, and registries.   **Discovering Relevant Files**
+
+I've made a breakthrough! I identified `lib/config/createDefaultConfig.ts` as a key file. Delving deeper, I found an import statement: `import housewarmingConfig from "../defaults/housewarming";`. This seems highly relevant. I'm now assessing the implications of this connection, specifically focusing on how they relate to the bigger picture.
+
+
+2(bot-09a61e8f-4f96-4565-9161-95055a3e8494:  
+ 97u8gkrf  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript validation check on new housewarming category files"}:     
+    M2     =   1  X      WN W  Z@ #g 9  6 k w        C    H   .  PE7
+he    X ;  9    K  	?o   }    3z        3 @  N !   >{ T`f  o     FMl   a     [ p L g & V       	 s= p W      f r    p '">KJ  JxA             

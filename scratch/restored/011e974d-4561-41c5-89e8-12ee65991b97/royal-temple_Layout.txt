@@ -1,0 +1,172 @@
+\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\media__1783015848346\.jpg'\); print\(img\.size\)")
+ command(pip install Pillow)
+  command(python -c "from PIL import Image; img = Image\.open\(r'C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\media__1783015848346\.jpg'\); print\(img\.size\)")
+~command(python C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\find_layout\.py)
+~command(python C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\find_layout\.py)
+~command(python C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\find_layout\.py)
+  command(python C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\slice_thumbnails\.py)
+  command(python C:\\Users       9   le\n                    \u003ch4 className=\"text-xs font-bold text-yellow-500 uppercase tracking-[1px] mb-2\"\u003eSurname \u0026 Sacred Symbols\u003c/h4\u003e\n                    \n                    \ K g      @     N   
+               " 8
+ ng1zn51i  multi_replace_file_content  +{"Description":"Implement advanced header deities \u0026 title layout customizer in Royal Temple layout template.","Instruction":"Injecting getAlignClass helper and replacing old surname header blocks in Royal Temple template.","ReplacementChunks":[{"AllowMultiple":false,"EndLine":104,"ReplacementContent":"export default function RoyalTempleLayout({ onBackToHub }: { onBackToHub: () =\u003e void }) {\n  const { invitationData } = useInvitationData();\n  const [loading, setLoading] = useState(true);\n  \n  const getAlignClass = (pos?: string) =\u003e {\n    if (pos === \"top-left\") return \"flex flex-col items-start text-left w-full md:items-start\";\n    if (pos === \"top-right\") return \"flex flex-col items-end text-right w-full md:items-end\";\n    return \"flex flex-col items-center text-center w-full justify-center\";\n  };","StartLine":101,"TargetContent":"export default function RoyalTempleLayout({ onBackToHub }: { onBackToHub: () =\u003e void }) {\n  const { invitationData } = useInvitationData();\n  const [loading, setLoading] = useState(true);"},{"AllowMultiple":false,"EndLine":282,"ReplacementContent":"                {/* --- ADVANCED HEADER CUSTOMIZER --- */}\n                \u003cdiv \n                  className={getAlignClass(invitation.hero.headerMediaPosition)} \n                  style={{ paddingTop: `${invitation.hero.headerMediaSpacing ?? 30}px` }}\n                \u003e\n                  {/* Deity / Symbol (placed on top!) */}\n                  {(invitation.hero.enableHeaderMedia ?? true) \u0026\u0026 (\n                    \u003cmotion.div\n                      initial={{ opacity: 0, scale: 0.8 }}\n                      animate={{ opacity: 1, scale: 1 }}\n                      className=\"mb-4\"\n                    \u003e\n                      \u003cDeitySymbol\n                        type={invitation.hero.headerMediaType || \"god\"}\n                        selectedGod={invitation.hero.selectedGod || \"ganesha\"}\n                        selectedSymbol={invitation.hero.selectedSymbol || \"om\"}\n                        size={invitation.hero.headerMediaSize || 80}\n                        color={invitation.hero.headerMediaColor || \"#C59B27\"}\n                      /\u003e\n                    \u003c/motion.div\u003e\n                  )}\n\n                  {/* Family Surname Heading */}\n                  {(invitation.hero.showSurnameHeading ?? true) \u0026\u0026 invitation.hero.surname \u0026\u0026 (\n                    \u003cmotion.div\n                      initial={{ opacity: 0, y: -15 }}\n                      animate={{ opacity: 1, y: 0 }}\n                      className=\"flex flex-col items-center gap-1 w-full\"\n                    \u003e\n                      \u003ch2 \n                        className=\"text-3xl md:text-5xl font-bold uppercase tracking-[2px] leading-tight drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]\"\n                        style={{\n                          color: invitation.hero.surnameColor || \"#C59B27\",\n                          fontFamily: \n                  G C f      8     F   
+               2             :            B            JQ     !  (   0 B!
+	sessionID  -3750763034362895579H  P 
+Z 6xJCaqqhKoz8juMPvoPisA0X  b$c0b770e4-c21c-4ff5-8c59-64561832499dj      R
+$7d85ea43-75e8-4b3f-8f97-54265a45ed1e      "$011e974d-4561-41c5-89e8-12ee65991b97     4
+                 
+                
+               @                  *  
+               2             :            B            JQ     !  (   0 B!
+	sessionID  -3750763034362895579H  P 
+Z 6xJCaqqhKoz8juMPvoPisA0X  b$c0b770e4-c21c-4ff5-8c59-64561832499dj      R
+$7d85ea43-75e8-4b3f-8f97-54265a45ed1e      "$011e974d-4561-41c5-89e8-12ee65991b97     4
+                 
+                
+               @                  dmin/Ahvaanam/app/dashboard/page.tsxR z"use client";
+
+import React, { useState, useEffect } from "react";
+import { 
+  Palette, Heart, Calendar, Plus, Trash2, Edit3, 
+  ExternalLink, Sparkles, CheckCircle, AlertCircle, Share2, Download, Copy, LogOut
+} from "lucide-react";
+
+interface ClientProfile {
+  id: string;
+  groom: string;
+  bride: string;
+  date: string;
+  theme: string;
+  enabled: boolean;
+}
+
+export default function AgencyDashboard() {
+  const [profiles, setProfiles] = useState<ClientProfile[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [shareProfile, setShareProfile] = useState<ClientProfile | null>(null);
+  const [creating, setCreating] = useState(false);
+
+  // Modal form states
+  const [groom, setGroom] = useState("");
+  const [bride, setBride] = useState("");
+  const [slug, setSlug] = useState("");
+  const [error, setError] = useState<string | null>(null);
+
+  // Share states
+  const [customDomain, setCustomDomain] = useState("");
+  const [linkCopied, setLinkCopied] = useState(false);
+  const [downloadingQR, setDownloadingQR] = useState(false);
+
+  useEffect(() => {
+    fetchProfiles();
+    if (typeof window !== "undefined") {
+      setCustomDomain(window.location.origin);
+    }
+  }, []);
+
+  const fetchProfiles = async () => {
+    try {
+      const res = await fetch("/api/invitation");
+      if (!res.ok) throw new Error();
+      const data = await res.json();
+      setProfiles(data);
+    } catch (err) {
+      console.error("Failed to load profiles");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Auto-generate URL slug when names change
+  useEffect(() => {
+    if (groom || bride) {
+      const generated = `${groom.trim()}-${bride.trim()}`
+        .toLowerCase()
+        .replace(/[^a-z0-9-]/g, "")
+        .replace(/-+/g, "-");
+      setSlug(generated);
+    } else {
+      setSlug("");
+    }
+  }, [groom, bride]);
+
+  const handleCreate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!groom || !bride || !slug) {
+      setError("Please fill out all fields.");
+      return;
+    }
+
+    setCreating(true);
+    setError(null);
+
+    try {
+      const res = await fetch("/api/invitation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: slug, groom, bride }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to create profile");
+
+      setGroom("");
+      setBride("");
+      setSlug("");
+      setShowModal(false);
+      fetchProfiles();
+      
+      // Redirect to editor
+      window.location.href = `/admin/${data.id}`;
+    } catch (err: any) {
+      setError(err.message || "Failed to create invitation. Try again.");
+    } finally {
+      setCreating(false);
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    if (!confirm(`Are you sure you want to permanently delete the invitation "${id}"?`)) return;
+
+    try {
+      const res = await fetch(`/api/invitation/${id}`, { method: "DELETE" });
+      if (res.ok) {
+        setProfiles(prev => prev.filter(p => p.id !== id));
+      } else {
+        alert("Failed to delete client profile.");
+      }
+    } catch (err) {
+      alert("Error deleting client profile.");
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      const res = await fetch("/api/auth/logout", { method: "POST" });
+      if (res.ok) {
+        window.location.href = "/login";
+      }
+    } catch (err) {
+      console.error("Logout failed", err);
+    }
+  };
+
+  const getShareUrl = (id: string) => {
+    const base = customDomain.replace(/\/$/, "");
+    return `${base}/invites/${id}`;
+  };
+
+  const handleCopyLink = (id: string) => {
+    const url = getShareUrl(id);
+    navigator.clipboard.writeText(url);
+    setLinkCopied(true);
+    setTimeout(() => setLinkCopied(false), 2000);
+  };
+
+  const handleDownloadQR = async (id: string) => {
+    setDownloadingQR(true);
+    const url = getShareUrl(id);
+    const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${e    \\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\slice_thumbnails\.py)
+tcommand(Get-ChildItem -Path "components/templates" -Filter "Layout.tsx" -Recurse | Select-String -Pattern "<header")
+  command(Get-ChildItem -Path "components/templates" -Filter "Layout.tsx" -Recurse | Select-String -Pattern "a key={item.id}" -Context 1, 3)
+ command(Select-String)
+ command(Select-Str

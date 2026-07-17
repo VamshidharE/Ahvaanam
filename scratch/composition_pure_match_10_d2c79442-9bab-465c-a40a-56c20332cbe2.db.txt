@@ -1,0 +1,95 @@
+      -
+(bot-4aa8c7b3-4113-47af-aa86-7cd77f2440c7     I will update the search script to scan for `"SECTION_COMPONENTS"`, which is a highly specific variable unique to `Com                                                                                                                                                                             / /    X              0   8 j      
+ .ipynb  " o  :  *          (  0 @ H P *       As IDE feedback, the following lint errors may be related to your recent edits up to this point. Consider whether they deserve immediate attention. If worth addressing, clearly comment on them and/or fix them. Be explicit in acknowledging lints and explaining your fix's approach. AVOID unproductive loops; if you detect yourself repeatedly creating/fixing lints in a short period, offer some thoughts but MOVE ON.0 P h x                "  28 @ *  2    ( By  @   N0 J headJ tailJ mkdirJ cdJ cpJ mvJ catJ findJ grepJ rmJ touchJ lessJ clearJ ls  *
+powershell2
+powershellX ` h p x R 8 @ H @P @X  h p  x      Z   j                         @      ( 0 8           "$       ( 2 
+ 8   B     NJ   Z     ` * 
+ * red8  @ H P  X ` h 0 8 R     X h z                                                    
+  '                   
+( 0           
+       
+/read_file(C:\Users\Admin\invitecraft\AGENTS.md)
+@write_file(C:\Users\Admin\invitecraft\components\data\themes.ts)
+Jwrite_file(C:\Users\Admin\invitecraft\components\context\ThemeContext.tsx)
+Mwrite_file(C:\Users\Admin\invitecraft\components\shared\ThemeSelectorHub.tsx)
+6write_file(C:\Users\Admin\invitecraft\app\globals.css)
+Dwrite_file(C:\Users\Admin\invitecraft\components\data\invitation.ts)
+Swrite_file(C:\Users\Admin\invitecraft\components\templates\royal-temple\Layout.tsx)
+Twrite_file(C:\Users\Admin\invitecraft\components\templates\floral-garden\Layout.tsx)
+Swrite_file(C:\Users\Admin\invitecraft\components\templates\south-indian\Layout.tsx)
+Twrite_file(C:\Users\Admin\invitecraft\components\templates\palace-luxury\Layout.tsx)
+Uwrite_file(C:\Users\Admin\invitecraft\components\templates\lotus-serenity\Layout.tsx)
+Owrite_file(C:\Users\Admin\invitecraft\components\templates\marigold\Layout.tsx)
+Pwrite_file(C:\Users\Admin\invitecraft\components\templates\moonlight\Layout.tsx)
+Swrite_file(C:\Users\Admin\invitecraft\components\templates\grand-mandap\Layout.tsx)
+3write_file(C:\Users\Admin\invitecraft\app\page.tsx)
+ command(npm run)
+Ewrite_file(C:\Users\Admin\invitecraft\components\types\invitation.ts)
+Nwrite_file(C:\Users\Admin\invitecraft\components\templates\peacock\Layout.tsx)
+Owrite_file(C:\Users\Admin\invitecraft\components\templates\heritage\Layout.tsx)
+ command(npm run)
+9read_file(C:\Users\Admin\invitecraft\components\sections)
+%read_file(C:\Users\Admin\invitecraft)
+Icommand(Get-ChildItem -Recurse -Filter *.tsx | Select-String "sections/")
+mcommand(Get-ChildItem -Recurse -Filter *.tsx | Select-String -Pattern "components/Footer", "components/Hero")
+Qcommand(Get-ChildItem -Recurse -Filter *.tsx | Select-String "InvitationContext")
+  command(Get-ChildItem -Path components/templates -Recurse -Filter *.tsx | Select-String -Pattern "Back n /   Z       "$b9df6dd8-dfd4-44a6-86e2-f5dd8f18b5a5B     2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   1   2   1   1   2
+     "Q         (   0 B!
+	sessionID  -3750763034362895579H  P  Z OVVTapycDObCg8UPsfPx8A00  : 
+ autoJe              "             (  2          f6ce5b062          67527c8b:       e9c821beB         R     Z         b     ^zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  e Q         (   0 B!
+	sessionID  -3750763034362895579H  P  Z OVVTapycDObCg8UPsfPx8A0" d1cd222e6ff9b22e   gemini-default   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  633  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $24c66b1d-cdac-4252-8bd1-85c63e73688f  5
+trajectory_id $caf57629-637c-4871-a4b3-8d196466d06e   Gemini 3.5 Flash (Medium) g    g-[#130B1E] flex items-center justify-center text-4xl">
+                
+          </div>
+        </div>
+        <div className="space-y-2">
+          <h3 className="text-2xl font-bold">{name}</h3>
+          <p 
+            className="text-xs uppercase tracking-[2px] font-bold"
+            style={{ color: "var(--theme-accent)" }}
+          >
+            Turning {age} Years Young
+          </p>
+        </div>
+        <p 
+          className="text-xs max-w-md mx-auto leading-relaxed font-sans font-medium"
+          style={{ color: "var(--theme-secondary-text)" }}
+        >
+          Join us as we raise a toast to another year of accomplishments, laughter, and beautiful memories!
+        </p>
+      </div>
+    </LayoutWrapper>
+  );
+}
+   *Gfile:///c:/Users/Admin/Ahvaanam/components/sections/celebrant/index.tsx2J
+ file:///c:/Users/Admin/Ahvaanam 'components/sections/celebrant/index.tsx    8
+ 8  % H  %  
+"use client";        
+ import React from "react";   C
+?import LayoutWrapper from "@/components/layouts/LayoutWrapper";       %
+!interface CelebrantSectionProps {    
+  bindings: {    
+     name?: string;    
+     age?: number;    
+   };    
+ }       S
+Oexport default function CelebrantSection({ bindings }: CelebrantSectionProps) {    
+   layoutId?: string;    
+ }       ]
+Yexport default function CelebrantSection({ bindings, layoutId }: CelebrantSectionProps) {   =
+9  const { name = "Celebrant Name", age = 25 } = bindings;        
+
+  return (    
+    <section     
+     <LayoutWrapper    
+       layoutId={layoutId}   '
+#      defaultLayoutId="story-stack"   b
+^      className="py-24 px-6 max-w-5xl mx-auto border-b border-white/5 text-center select-none"    
+       style={{    1
+-        fontFamily: "var(-

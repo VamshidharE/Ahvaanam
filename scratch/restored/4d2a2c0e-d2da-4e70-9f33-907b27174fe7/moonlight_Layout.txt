@@ -1,0 +1,185 @@
+ the code structure of a visual layout template.`     anvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const stars = Array.from({ length: 70 }).map(() => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: Math.random() * 1.5 + 0.5,
+      twinkleSpeed: Math.random() * 0.02 + 0.005,
+      alpha: Math.random(),
+      direction: Math.random() > 0.5 ? 1 : -1,
+    }));
+
+    const resize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener("resize", resize);
+
+    let animationFrameId: number;
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+      stars.forEach((s) => {
+        s.alpha += s.twinkleSpeed * s.direction;
+        if (s.alpha > 1) {
+          s.alpha = 1;
+          s.direction = -1;
+        } else if (s.alpha < 0) {
+          s.alpha = 0;
+          s.direction = 1;
+        }
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = "#ffffff";
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      animationFrameId = requestAnimationFrame(draw);
+    };
+    draw();
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0" />;
+};
+
+export default function MoonlightLayout({ onBackToHub }: { onBackToHub: () => void }) {
+  const { invitationData } = useInvitationData();
+  const getAlignClass = (pos?: string) => {
+    if (pos === "top-left") return "flex flex-col items-start text-left w-full md:items-start";
+    if (pos === "top-right") return "flex flex-col items-end text-right w-full md:items-end";
+    return "flex flex-col items-center text-center w-full justify-center";
+  };
+  const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
+  const [playingMusic, setPlayingMusic] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  // Countdown timer state
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isWeddingPassed, setIsWeddingPassed] = useState(false);
+
+  useEffect(() => {
+    if (!invitationData) return;
+    setMounted(true);
+    const timer = setTimeout(() => setLoading(false), 2000);
+
+    const weddingDate = new Date(invitationData.countdown.targetDate).getTime();
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const difference = weddingDate - now;
+      if (difference <= 0) {
+        setIsWeddingPassed(true);
+      } else {
+        setIsWeddingPassed(false);
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        });
+      }
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+    };
+  }, [invitationData]);
+
+  if (!invitationData) return null;
+  const invitation = invitationData;
+
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+    if (playingMusic) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(() => {});
+    }
+    setPlayingMusic(!playingMusic);
+  };
+
+  if (!mounted) return null;
+
+  // Auto-generate Navigation Items from enabled sections in order
+  const sectionLabels: Record<string, string> = {
+    hero: "Home",
+    couple: "Couple",
+    story: "Story",
+    events: "Events",
+    gallery: "Gallery",
+    venue: "Venues",
+    rsvp: "RSVP",
+    faq: "FAQ",
+    dressCode: "Theme"
+  };
+X  `      &     k  k                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               j      ~     |   
+               2             X  b$5151695a-0bcb-4392-ba27-80f5712bf77dj      R
+$2e046975-33bd-402d-89b1-91f106a8aeee      "$4d2a2c0e-d2da-4e70-9f33-907b27174fe7      
+                     *  
+               2             X  b$5151695a-0bcb-4392-ba27-80f5712bf77dj      R
+$2e046975-33bd-402d-89b1-91f106a8aeee      "$4d2a2c0e-d2da-4e70-9f33-907b27174fe7      
+                     
+bI will view `lib/categories/birthday.ts` to inspect the defined Birthday metadata fields and keys.2(bot-6f879dc6-e11b-4e91-912c-03a3e7b88b0aBbI will view `lib/categories/birthday.ts` to inspect the defined Birthday metadata fields and keys.`  	 i      <     N   
+               "  
+ gr0c8d4e 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\moonlight\\Layout.tsx","ContentOffset":0,"EndLine":150,"StartLine":1,"toolAction":"Viewing file","toolSummary":"File edit"}:     
+    M2 L  Da8           >6  6 %7 A  |   }  G      J d    s. e!  s Nt    wr      p V     (  p  (;    g 3 < 4"k F 7 k   E  o  rk t V D j   F  /  l      cl      0 8,       Y 6   A      -!   j    (     a g    *   A   <   B       9_    I  b *       -H         Py   @8y,{$) !  eP     z  =? C   kWP&  H Z& /  S SH>li  @  f
+ e h t   $ _q lD?  TMv      X  tQ  Kx < $ }w  i TJ	view_file* AbsolutePath*ContentOffset* EndLine*	StartLine*
+toolAction* toolSummary2             :             B             X  b$5151695a-0bcb-4392-ba27-80f5712bf77dj      R
+$2e046975-33bd-402d-89b1-91f106a8aeee      "$4d2a2c0e-d2da-4e70-9f33-907b27174fe7                    /  6
+                 
+                 
+                   	File edit   Viewing file                   *  
+               "  
+ gr0c8d4e 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\moonlight\\Layout.tsx","ContentOffset":0,"EndLine":150,"StartLine":1,"toolAction":"Viewing file","toolSummary":"File edit"}:     
+    M2 L  Da8           >6  6 %7 A  |   }  G      J d    s. e!  s Nt    wr      p V     (  p  (;    g 3 < 4"k F 7 k   E  o  rk t V D j   F  /  l      cl      0 8,       Y 6   A      -!   j    (     a g    *   A   <   B       9_    I  b *       -H         Py   @8y,{$) !  eP     z  =? C   kWP&  H Z& /  S SH>li  @  f
+ e h t   $ _q lD?  TMv      X  tQ  Kx < $ }w  i TJ	view_file* AbsolutePath*ContentOffset* EndLine*	StartLine*
+toolAction* toolSummary2             :             B             X  b$5151695a-0bcb-4392-ba27-80f5712bf77dj      R
+$2e046975-33bd-402d-89b1-91f106a8aeee      "$4d2a2c0e-d2da-4e70-9f33-907b27174fe7                    /  6
+                 
+                 
+                   	File edit   Viewing file               r '
+Ifile:///c:/Users/Admin/Ahvaanam/components/templates/moonlight/Layout.tsx   " &"use client";
+
+import { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInvitationData } from "../../context/InvitationDataContext";
+import { Calendar, MapPin, Clock, Phone, MessageCircle, Volume2, VolumeX, Menu, X, ArrowLeft, HelpCircle, Shirt } from "lucide-react";
+import Image from "next/image";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import DeitySymbol from "../../shared/DeitySymbol";
+import GallerySlider from "../../shared/GallerySlider";
+
+// --- STARFIELD & TWINKLING MOON LIGHT EFFECT (CANVAS) ---
+const MoonStarfield = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let width = (c   y                                                                                                                                                                                       E k   	  z     
+  
+              "  
+ rhw09maa 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\categories\\birthday.ts","toolAction":"Viewing file","toolSummary":"File edit"}:     
+    M2 0 a 8S  C     
+  Hi      v   b;     O        C    1\   c    k    i  0  3 z	    @ Z R       $     ;6 1 hD]   9?5  _B (         f e  )    L+AG  	AB LQ  5 BoG8D  l !1 y!*      %  0      \  z* ~|   : o f7 [Ov[MO l  4|       9e  ew >2  
+  E o  }   c     
+  Y +3   l g      m B       vM  /&Y  P   "~    K  PA B Q  n   ^X 0 y3 D B     R L   k   X   +", 4 |    ? # @_v 3H @o : qc= Zq s.L  
+  'm  l   hd       c Wg    )L  Q\   D   d5H    j F      i  #}  b;   E  h  8  A     h*       -     w<M   oD         SY    O q'     ~ B\>    * K m {^  &'qv   K  oV  J       QC  }O >  9 _  f]= (      z      ]Z ~  s& <b`  Y           [ M        e$ U  s 6=  EJ      ozy 5X tk          g  } v~  ;u      "   C Y| +  /  2 9'    ha<`K      :x  Q/d + `Qw -/ | j     D 87@ xd     M  + |    
+[    C C  U$XB  &)     L  3H 7Mm9  'f B  p F'i  *    k  QeA  /        q1t   _M   "      ^     zL vgO  c R

@@ -1,0 +1,479 @@
+from "../sections/footer";
+import CelebrantSection from "../sections/celebrant";
+import HouseDetailsSection from "../sections/houseDetails";
+import OwnersSection from "../sections/owners";
+
+interface LegacyOrchestratorProps {
+  themeId: string;
+  onBackToHub: () => void;
+  particlesComponent?: React.ComponentType<any>;
+  themeBgClass?: string;
+  loadingTitle?: string;
+  loadingSubtitle?: string;
+}
+
+export default function LegacyOrchestrator({
+  themeId,
+  onBackToHub,
+  particlesComponent: Particles,
+  themeBgClass = "bg-stone-900",
+  loadingTitle = "Invitation",
+  loadingSubtitle = "Celebrating Love"
+}: LegacyOrchestratorProps) {
+  const { invitationData } = useInvitationData();
+  const [loading, setLoading] = useState(true);
+  const [playingMusic, setPlayingMusic] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    if (invitationData) {
+      const timer = setTimeout(() => setLoading(false), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [invitationData]);
+
+  if (!invitationData) return null;
+
+  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+  const invitation = isWrapped ? (invitationData as any).config : invitationData;
+
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+    if (playingMusic) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(() => {});
+    }
+    setPlayingMusic(!playingMusic);
+  };
+
+  const sectionOrder = invitation.sectionOrder || [];
+
+  const renderSectionComponent = (sectionId: string) => {
+    const sectionConfig = invitation[sectionId];
+    const isEnabled = sectionConfig?.enabled !== false;
+    if (!isEnabled) return null;
+
+    const properties = sectionConfig || {};
+    const bindings = sectionConfig || {};
+
+    switch (sectionId) {
+      case "hero":
+        return (
+          <HeroSection
+            key={sectionId}
+            properties={properties}
+            bindings={bindings}
+            themeId={themeId}
+            layoutId="hero-center"
+            motionId="luxury-motion"
+          />
+        );
+      case "couple":
+        return <CoupleSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "countdown":
+        return <CountdownSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "story":
+        return <StorySection key={sectionId} properties={properties} bindings={bindings} />;
+      case "events":
+        return <EventsSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "gallery":
+        return <GallerySection key={sectionId} properties={properties} bindings={bindings} />;
+      case "venue":
+        return <VenueSection key={sectionId} properties={properties} bindings={bindings} />;
+          case "families":
+        return <FamiliesSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "rsvp":
+        return <RSVPSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "faq":
+        return <FAQSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "dressCode":
+        return <DressCodeSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "footer":
+        return <FooterSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "celebrant":
+        return <CelebrantSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "houseDetails":
+        return <HouseDetailsSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "owners":
+        return <OwnersSection key={sectionId} properties={properties} bindings={bindings} />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className={`min-h-screen relative overflow-hidden ${themeBgClass}`}>
+      {invitation.music?.enabled && invitation.music?.file && (
+        <audio ref={audioRef} loop src={invitation.music.file} />
+      )}
+
+      {/* Loading overlay */}
+      <AnimatePresence>
+        {loading && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-[#FFFDF5] flex flex-col items-center justify-center text-center p-6"
+          >
+            <h2 className="text-[#FF8800] text-xs uppercase tracking-[4px] mb-1 font-bold">{loadingTitle}</h2>
+            <p className="text-amber-900/40 text-xs font-semibold">{loadingSubtitle}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Particles canvas overlay */}
+      {invitation.themeSettings?.showParticles && Particles && <Particles />}
+
+      {/* Floating utility buttons */}
+      <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-4">
+        <button
+          onClick={onBackToHub}
+          className="flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40 bg-white/90 text-[#FF8800] backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
+        >
+          <ArrowLeft size={20} />
+        </button>
+        {invitation.music?.enabled && (
+          <button
+            onClick={toggleMusic}
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40 bg-white/90 text-[#FF8800] backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
+          >
+            {playingMusic ? <Volume2 size={20} /> : <VolumeX size={20} />}
+          </button>
+        )}
+      </div>
+
+      {/* Dynamic sections container */}
+      <div className="space-y-12">
+        {sectionOrder.map((sectionId: string) => renderSectionComponent(sectionId))}
+      </div>
+    </div>
+  );
+}
+2             8    (
+:file:///c:/Users/Admin/Ahvaanam/scratch/cleanup-layouts.js  (const fs = require('fs');
+const path = require('path');
+
+const templatesDir = path.join(__dirname, '../components/templates');
+const templateDirs = fs.readdirSync(templatesDir).filter(name => {
+  return fs.statSync(path.join(templatesDir, name)).isDirectory();
+});
+
+templateDirs.forEach(dirName => {
+  if (dirName === 'housewarming-premium') {
+    console.log(`Skipping ${dirName} (already orchestrator layout)`);
+    return;
+  }
+
+  const layoutPath = path.join(templatesDir, dirName, 'Layout.tsx');
+  if (!fs.existsSync(layoutPath)) return;
+
+  const content = fs.readFileSync(layoutPath, 'utf8');
+
+  // Match particle effect canvas component code
+  let particleCode = '';
+  let particleName = '';
+  
+  const particleMatch = content.match(/\/\/ --- [A-Z ]+ EFFECT \(CANVAS[A-Z ]*\) ---\r?\nconst ([A-Za-z0-9_]+) = \(\) => {[\s\S]+?};\r?\n\r?\n/);
+  if (particleMatch) {
+    particleCode = particleMatch[0];
+    particleName = particleMatch[1];
+  } else {
+    const sparklesMatch = content.match(/\/\/ --- GLOWING [A-Z ]+ EFFECT \(CANVAS\    ) ---\r?\nconst ([A-Za-z0-9_]+) = \(\) => {[\s\S]+?};\r?\n\r?\n/);
+    if (sparklesMatch) {
+      particleCode = sparklesMatch[0];
+      particleName = sparklesMatch[1];
+    }
+  }
+
+  const isBirthday = dirName.includes('birthday') || dirName === 'birthday-premium';
+  const compositionFunc = isBirthday ? 'getBirthdayComposition' : 'getWeddingComposition';
+  const displayTitle = dirName.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  const componentName = dirName.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('') + 'Layout';
+
+  const cleanCode = `"use client";
+
+import { useEffect, useState } from "react";
+import { ToggleLeft, ToggleRight } from "lucide-react";
+import CompositionRenderer from "@/components/composition/CompositionRenderer";
+import { ${compositionFunc} } from "@/lib/composition/templates";
+import { useInvitationData } from "../../context/InvitationDataContext";
+import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+
+// --- TEMPLATE SPECIFIC PARTICLES ---
+import React, { useRef } from "react";
+${particleCode || `const ${dirName.replace(/-/g, '')}Particles = () => null;\n`}
+
+export default function ${componentName}({ onBackToHub }: { onBackToHub: () => void }) {
+  const { invitationData } = useInvitationData();
+  const [useCompositionRenderer, setUseCompositionRenderer] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setUseCompositionRenderer(localStorage.getItem("useCompositionRenderer") === "true" ||
+        new URLSearchParams(window.location.search).get("useCompositionRenderer") === "true");
+    }
+  }, []);
+
+  const handleToggleRenderer = () => {
+    const nextVal = !useCompositionRenderer;
+    setUseCompositionRenderer(nextVal);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("useCompositionRenderer", String(nextVal));
+    }
+  };
+
+  if (!invitationData) return null;
+
+  if (useCompositionRenderer) {
+    const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+    const config = isWrapped ? (invitationData as any).config : invitationData;
+    const comp = ${compositionFunc}(config);
+    return (
+      <div className="min-h-screen text-white relative overflow-hidden select-none" style={{ backgroundColor: "var(--theme-bg, #0C0714)" }}>
+        <CompositionRenderer composition={comp} invitationData={invitationData} />
+        <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 select-none pointer-events-auto">
+          <button
+            onClick={handleToggleRenderer}
+            className="flex items-center gap-2 px-4 py-2.5 bg-black/60 hover:bg-black/80 backdrop-blur-md text-white rounded-full shadow-lg border border-purple-500/20 text-[10px] font-bold uppercase tracking-[1px] transition-all cursor-pointer"
+            title="Switch Renderer Engine"
+          >
+            <ToggleRight size={16} className="text-[#C49B27]" />
+            <span>Composer Engine</span>
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <LegacyOrchestrator
+        themeId="${dirName}"
+        onBackToHub={onBackToHub}
+        particlesComponent={${particleName || `${dirName.replace(/-/g, '')}Particles`}}
+        themeBgClass="bg-[#FAF9F6]"
+        loadingTitle="${displayTitle} Invitation"
+        loadingSubtitle="Celebrating Love"
+      />
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 select-none pointer-events-auto">
+        <button
+          onClick={handleToggleRenderer}
+          className="flex items-center gap-2 px-4 py-2.5 bg-black/60 hover:bg-black/80 backdrop-blur-md text-white rounded-full shadow-lg border border-purple-500/20 text-[10px] font-bold uppercase tracking-[1px] transition-all cursor-pointer"
+          title="Switch Renderer Engine"
+        >
+          <ToggleLeft size={16} className="text-white/60" />
+          <span>Legacy Switch</span>
+        </button>
+      </div>
+    </>
+  );
+}
+`;
+
+  fs.writeFileSync(layoutPath, cleanCode, 'utf8');
+  console.log(`Successfully refactored ${dirName}     layout!`);
+});
+2             8    Phase 6A     Premium Invitation Experience
+
+Objective
+
+Transform the guest invitation experience into a premium, cinematic, mobile-first journey.
+
+Do NOT change the editor.
+
+Do NOT change the Composition Engine.
+
+Do NOT change Themes, Layouts or Motion Engine architecture.
+
+Use the existing platform.
+
+------------------------------------------------
+
+Tasks
+
+1. Redesign the invitation viewing experience.
+
+Focus on:
+
+- Hero entrance
+- Smooth section transitions
+- Elegant loading screen
+- Premium typography hierarchy
+- Beautiful spacing
+- Scroll storytelling
+- Music controls
+- Sticky RSVP button
+- Floating navigation
+- Share FAB
+- Back-to-top FAB
+
+------------------------------------------------
+
+2. Premium Hero
+
+Design a cinematic Hero experience.
+
+Include:
+
+- Large hero image
+- Elegant title
+- Subtitle
+- Date
+- Scroll indicator
+- Soft background animation
+
+------------------------------------------------
+
+3. Navigation
+
+Create a mobile-first floating navigation.
+
+Sections:
+
+Home
+
+Story
+
+Gallery
+
+Venue
+
+RSVP
+
+------------------------------------------------
+
+4. Guest Experience
+
+Improve:
+
+Loading
+
+Scrolling
+
+Music
+
+Maps
+
+Gallery
+
+Countdown
+
+RSVP
+
+Share
+
+------------------------------------------------
+
+5. Mobile Polish
+
+Everything should feel like a premium mobile application.
+
+Use:
+
+Bottom sheets
+
+Glass cards
+
+Smooth gestures
+
+Elegant shadows
+
+Large touch targets
+
+------------------------------------------------
+
+6. Performance
+
+Maintain 60 FPS.
+
+Lazy load heavy sections.
+
+Images should be optimized.
+
+------------------------------------------------
+
+Deliverables
+
+    Premium invitation experience
+
+    Mobile-first UX
+
+    No regression
+
+    Existing architecture unchanged
+
+    Build passes   proceed    Build the complete Housewarming category using the existing architecture.
+
+Requirements:
+
+- Do NOT create new engines.
+- Reuse Composition Engine.
+- Reuse Theme Engine.
+- Reuse Layout Engine.
+- Reuse Motion Engine.
+- Reuse Dynamic Inspector.
+
+Deliver:
+
+1. Housewarming category configuration
+2. 10 premium mobile-first themes
+3. Appropriate icons and decorations
+4. Telugu and English sample content
+5. Invitation sections:
+   - Hero
+   - Family
+   - House Details
+   - Muhurtham
+   - Gallery
+   - Map
+   - RSVP
+   - Footer
+6. Theme previews
+7. Fully editable through the existing editor
+
+No architecture changes.
+No editor changes.
+No renderer changes.    ## Error Type
+Runtime TypeError
+
+## Error Message
+manifest.properties is not iterable
+
+
+    at <unknown> (lib/composition/loader.ts:52:35)
+    at Array.forEach (<anonymous>:null:null)
+    at loadComposition (lib/composition/loader.ts:32:17)
+    at CompositionRenderer (components/composition/CompositionRenderer.tsx:123:37)
+    at HousewarmingPremiumLayout (components/templates/housewarming-premium/Layout.tsx:25:7)
+    at <unknown> (app/invites/[id]/page.tsx:235:20)
+    at InviteContent (app/invites/[id]/page.tsx:239:8)
+    at GuestInvitePage (app/invites/[id]/page.tsx:402:7)
+
+## Code Frame
+  50 | ...   const resolvedProperties: Record<string, any> = {};
+  51 | ...   if (manifest && manifest.properties) {
+> 52 | ...     for (const prop of manifest.properties) {
+     |                                     ^
+  53 | ...       const userVal = section.properties?.[prop.key];
+  54 | ...       resolvedProperties[prop.key] = userVal !== undefined ? userV...
+  55 | ...     }
+
+Next.js version: 16.2.9 (Turbopack)
+    Print the manifest.properties value for both the working Hero section and the failing HouseDetails section, and compare their structures.    Refactor the Component Registry so every section manifest follows one canonical schema.
+
+Requirements:
+
+1. Audit every registered section manifest.
+
+2. Ensure every manifest uses the exact same schema.
+
+3. Reject invalid manifests during startup.
+
+4. Add runtime validation.
+
+5. Add TypeScript typing for manifests.
+
+6. Add a registry validation script that runs during build.
+
+If any manifest viola

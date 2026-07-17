@@ -1,0 +1,229 @@
+e:///c:/Users/Admin/Ahvaanam/scratch/cleanup-layouts.js): Refactored all 12 templates layout files.
+
+---
+
+### 6. Current Work and Next Steps
+
+1. **Fix switch cases in LegacyOrchestrator**:
+   * Open [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx#L85-L120) and update the section props.
+   * Strip out the `properties` argument and pass only the `bindings={bindings}` prop to components (e.g. `CoupleSection`, `CountdownSection`, `StorySection`, etc.), and forward `layoutId` and `motionId` when applicable.
+2. **Verify Types & Compilation**:
+   * Run type check verify command: `npx tsc --noEmit`
+   * Run production build verify command: `npm run build`
+3. **Produce Sprint Audit Report**:
+   * Create `architecture_cleanup_audit.md` in the artifact directory containing visual layout stats and duplicate code analysis confirming clean orchestration.X  ` 	r  
+ architecture_proposal nfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/architecture_proposal.md"             *p
+nfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/architecture_proposal.md2     Principal software architect level proposal detailing the 5-year scaling plan for Ahvaanam, mapping current architecture, detailing scalability bottlenecks at 500 templates, introducing an engine-based modular design, defining a clean folder structure, and detailing a progressive migration roadmap."             8 r  
+ scratchpad_pmixqba1 tfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/browser/scratchpad_pmixqba1.md"            r  
+ codebase_audit gfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/codebase_audit.md"           i*i
+gfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/codebase_audit.md2     Senior software architect level audit report detailing the tech stack, implemented/missing features, security risks, performance analysis, and a technical roadmap for the Ahvaanam digital invitation SaaS platform."           c8 r  
+ design_audit_report lfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/design_audit_report.md"             2e SDesign audit and templates similarity report for Phase 9 - Premium Template System."             8 r  
+ implementation_plan lfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/implementation_plan.md"             *p
+lfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/implementation_plan.md  2     Implementation plan for     Phase 6A     Premium Invitation Experience of Ahvaanam, designing the cinematic loader, glassmorphic floating navigation bar, slide-up RSVP bottom sheet, music waveforms visualizers, and share overlays."             0 8 r  
+ media__1783358831943 nfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/media__1783358831943.jpg"           ?r  
+ migrate-layouts pfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/migrate-layouts.js"           =*r
+pfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/migrate-layouts.jsr  
+ migrate-layouts pfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/migrate-layouts.ts"             *r
+pfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/migrate-layouts.tsr  
+ test-composition qfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-composition.ts"           G*s
+qfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-composition.tsr  
+ test-layouts nfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-layouts.tsx"             *p
+nfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-layouts.tsxr  
+ test-motions nfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-motions.tsx"            *p
+nfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-motions.tsxr  
+ test-renderer-page tfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-renderer-page.tsx"             *v
+tfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-renderer-page.tsxr  
+test-renderer ofile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-renderer.tsx"             *q
+ofile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-renderer.tsxr  
+ test-themes mfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-themes.tsx"             *o
+mfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-themes.tsxr  
+ section_specification nfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/section_specification.md"           Y*p
+nfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/section_specification.md2     Production-grade Section Specification detailing semantic building blocks, variant inheritance, schema JSON contracts, data-driven form rendering, nesting restrictions, performance optimizations, and future roadmap integration."           V8 r  
+ task ]file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/task.md"            *a
+]file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/task.md  2V GCompleted task checklist for Phase 10 - Professional Invitation Editor."            r  
+ template_specification ofile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/template_specification.md"            *q
+ofile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/template_specification.md2     Production-grade Template Specification outlining the transition from raw React layouts to a declarative JSON composition schema, mapping structural, visual, motion, content, asset, and plugin layers, and describing how the Rendering Engine and Editor interact with this system."            8 r  
+ walkthrough dfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/walkthrough.md"             *h
+dfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/walkthrough.md  2         Walkthrough summary of Professional Invitation Editor (Phase 10), detailing sidebar layout redesigns, live smartphone sandboxes, properties inspectors, media dialogs, and build verification metrics."             8 z}file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/logs/transcript.jsonl    
+lfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/implementation_plan.md  # Implementation Plan     Phase 6A: Premium Invitation Experience
+
+Transform the guest invitation experience into a premium, cinematic, mobile-first journey. Create a glassmorphic floating navigation dock, a slide-up RSVP bottom sheet modal, music waveforms visualizers, and a golden mandala cinematic loading screen.
+
+---
+
+## User Review Required
+
+> [!IMPORTANT]
+> * **RSVP Bottom Sheet Integration**: Rather than showing the RSVP form statically at the bottom of the page, guests can tap "RSVP" to slide up a premium glassmorphic bottom sheet, replicating native mobile app sheets.
+> * **Unified Music Visualizer**: Hides template-specific floating sound buttons via CSS overrides and provides a unified music visualizer dock with an animated waveform indicator representing playback.
+
+---
+
+## Open Questions
+
+No open questions.
+
+---
+
+## Proposed Changes
+
+### 1. Unified Guest Viewer Redeployment
+
+#### [MODIFY] [page.tsx](file:///c:/Users/Admin/Ahvaanam/app/invites/[id]/page.tsx)
+* Implements the golden mandala loading canvas overlay fading out after 2.2 seconds.
+* Integrates a floating navigation bar at the bottom center (Home, Story, Gallery, Venue, RSVP).
+* Configures the `<AnimatePresence>` slide-up RSVP bottom sheet containing `<RsvpSubmissionForm>`.
+* Includes floating share FABs (using web share dialogs / copy feedback toast banners) and a back-to-top FAB.
+* Hides template sound controls using page CSS overrides to avoid layout collisions.
+
+---
+
+## Verification Plan
+
+### Automated Tests
+- Run `npx tsc --noEmit` to verify type checking.
+- Run `npm run build` to confirm compilation runs without error.
+
+### Manual Verification
+- Deploy to localhost and verify that scroll navigation offsets, music Visualizer waves, and the RSVP bottom sheet function correctly.
+
+  2            8     
+]file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/task.md   # Phase 10: Professional Invitation Editor Tasks
+
+- `[x]` Redesign admin editor workspace in `app/admin/[id]/page.tsx`
+- `[x]` Build Figma-like Left Sidebar tabs (Layers list, Media Assets Library, Themes selector, Version History)
+- `[x]` Set up Center Stage Live Preview (responsive scaling, zoom control, Figma Column grids, Safe Area notches)
+- `[x]` Build Webflow-like Right Sidebar Properties Inspector (Zod-validated context-aware fields, Typography font families, Spacing padding inputs, Motion presets)
+- `[x]` Implement Media Library Dialog modal (Optimizer compression details, cropping controls, AI Enhance trigger)
+- `[x]` Run TypeScript and build compile checks
+
+  2            8      
+5file:///c:/Users/Admin/Ahvaanam/app/designer/page.tsx    "use client";
+
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Sparkles,
+  Smartphone,
+  Share2,
+  Download,
+  Play,
+  Pause,
+  Clock,
+  Check,
+  Copy,
+  X,
+  Type,
+  Music,
+  Sliders,
+  Settings,
+  Edit,
+  Smile,
+  Compass,
+  ArrowRight,
+  Eye,
+  Heart,
+  ChevronRight,
+  Calendar,
+  MapPin,
+  QrCode,
+  Info,
+  CheckCircle,
+  HelpCircle
+} from "lucide-react";
+
+// --- DYNAMIC GOOGLE FONTS LOADER ---
+const THEME_FONTS = [
+  "Playfair+Display:ital,wght@0,400..900;1,400..900",
+  "Cinzel:wght@400..900",
+  "Bodoni+Moda:ital,wght@0,400..900;1,400..900",
+  "Cormorant+Garamond:ital,wght@0,300..700;1,300..700",
+  "Great+Vibes",
+  "Lora:ital,wght@0,400..700;1,400..700",
+  "Montserrat:ital,wght@0,100..900;1,100..900",
+  "Inter:wght@100..900",
+  "DM+Sans:ital,opsz,wght@0,9..400,100..1000;1,9..400,100..1000",
+  "Jost:ital,wght@0,100..900;1,100..900",
+  "Outfit:wght@100..900",
+  "Cinzel+Decorat    ive:wght@400;700;900"
+];
+
+// --- 10 PREMIUM THEMES CONFIG ---
+const INITIAL_THEMES = [
+  {
+    id: "midnight",
+    name: "Midnight Black Luxury",
+    description: "Matte black with radiant gold foil borders and gold serif elegance.",
+    badge: "Royal Luxury",
+    colors: [
+      { name: "Matte Gold", primary: "#D4AF37", bg: "#121212", text: "#F5E6C4", accent: "#C5A028", cardBg: "#1C1C1C", border: "#D4AF37" },
+      { name: "Champagne", primary: "#F0E2C6", bg: "#0F0F0F", text: "#E5D7B9", accent: "#DFCCA3", cardBg: "#1A1A1A", border: "#F0E2C6" },
+      { name: "Platinum", primary: "#E5E5E5", bg: "#1A1A1A", text: "#FFFFFF", accent: "#CCCCCC", cardBg: "#242424", border: "#E5E5E5" }
+    ],
+    typography: ["Cinzel", "Playfair Display", "Cinzel Decorative"],
+    backgroundType: "midnight",
+    music: ["Symphonic Waltz", "Ethereal Moonlight", "Midnight Sonata"],
+    headerStyle: "bg-black/90 border-b border-[#D4AF37]/25 text-[#F5E6C4]",
+    navStyle: "bg-black/95 border-t border-[#D4AF37]/20 text-stone-400",
+    fabStyle: "bg-gradient-to-r from-[#D4AF37] to-[#B0871B] text-black shadow-[0_4px_20px_rgba(212,175,55,0.4)]",
+    btnStyle: "bg-[#D4AF37] hover:bg-[#B0871B] text-black font-semibold tracking-widest",
+    sliderColor: "accent-[#D4AF37]",
+    switchColor: "bg-[#D4AF37]",
+    modalStyle: "bg-[#181818] border border-[#D4AF37]/35 text-[#F5E6C4]",
+    progressStyle: "bg-gradient-to-r from-[#D4AF37] to-[#B0871B]",
+    loadingStyle: "border-[#D4AF37]",
+    defaultData: {
+      title: "YOU ARE INVITED TO",
+      eventTitle: "A BIRTHDAY Celebration",
+      name: "Rahul Sharma",
+      ageText: "30TH BIRTHDAY",
+      date: "Sunday, 20 July 2025",
+      time: "7:00 PM Onwards",
+      venue: "The Grand Lounge, Banjara Hills, Hyderabad",
+      rsvp: "RSVP: 98765 43210"
+    }
+  },
+  {
+    id: "marble",
+    name: "White Marble Luxury",
+    description: "Minimalist Italian marble backdrop trimmed with hairline gold accents.",
+    badge: "Contemporary",
+    colors: [
+      { name: "Classic Gold", primary: "#C5A880", bg: "#FAF9F6", text: "#241E1C", accent: "#A38760", cardBg: "#FFFFFF", border: "#C5A880" },
+      { name: "Rose Gold", primary: "#E0B3A2", bg: "#FDFBF7", text: "#332B28", accent: "#C0907D", cardBg: "#FFFFFF", border: "#E0B3A2" },
+      { name: "Slate Gold", primary: "#9A9EAB", bg: "#F8F8FA", text: "#2C3E50", accent: "#7B808E", cardBg: "#FFFFFF", border: "#9A9EAB" }
+    ],
+    typography: ["Bodoni Moda", "Montserrat", "Playfair Display"],
+    backgroundType: "marble",
+    music: ["Serenade of Spring", "Acoustic Whispers", "Gilded Garden"],
+    headerStyle: "bg-white/80 border-b border-stone-200 backdrop-blur-md text-stone-800",
+    navStyle: "bg-white/90 border-t border-stone-200 backdrop-blur-md text-stone-500",
+    fabStyle: "bg-stone-900 text-white shadow-xl hover:bg-stone-800",
+    btnStyle: "bg-stone-900 hover:bg-stone-800 text-white font-medium uppercase tracking-[2px]",
+    sliderColor: "accent-stone-900",
+    switchColor: "bg-stone-900",
+    modalStyle: "bg-white border border-stone-200 text-stone-800 shadow-2xl",
+    progressStyle: "bg-stone-900",
+    loadingStyle: "border-[#C5A880]",
+    defaultData: {
+      title: "PLEASE JOIN US FOR A",
+      eventTitle: "Birthday Celebration",
+      name: "Ananya Reddy",
+      ageText: "28TH BIRTHDAY",
+      date: "Sunday, 20 July 2025",
+      time: "6:30 PM Onwards",
+      venue: "The Pearl Banquets, Jubilee Hills, Hyderabad",
+      rsvp: "RSVP: 91234 56789"
+    }
+  },
+  {
+    id: "emerald",
+    name: "Royal Emerald",
+    description: "Imperial emerald green layout, featuring classical gold floral filigrees.",
+    badge: "Heritage",
+    colors: [
+      { name: "Imperial Gold", primary: "#E5C07B", bg: "#062319", text: "#EAE6DF", accent: "#D4AF37", cardBg: "#0B3527", border: "#E5C07B" },
+      { name: "Bronze Emerald", primary: "#D3AC6B", bg: "#031E14", text: "#EAE6DF", accent: "#B28F50", cardBg: "#082B1E", border: "#D3AC6B" },
+      { name: "Verdant White", primary: "#C89E5F", bg: "#0A291D", text: "#FFFFFF", accent: "#F2D49B", cardBg: "#113A2B", border: "#C89E5F" }
+    ],
+    t    ypography: ["Cormorant Garamond", "Lo

@@ -1,0 +1,125 @@
+"use client";
+
+import React, { useState } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+import FileUploader from "../ui/FileUploader";
+import { listThemes } from "@/lib/theme/registry";
+import { 
+  Plus, Trash2, Calendar, Clock, MapPin, CheckCircle2, 
+  AlertCircle, ChevronDown, ChevronUp, Edit2 
+} from "lucide-react";
+
+import { BuilderModuleDefinition, ModuleField } from "@/lib/builder/types";
+
+interface BuilderModuleProps {
+  definition: BuilderModuleDefinition;
+}
+
+export default function BuilderModule({ definition }: BuilderModuleProps) {
+  const { invitationData, updateInvitationData } = useInvitationData();
+  const [expanded, setExpanded] = useState(false);
+
+  if (!invitationData) return null;
+
+  const isWrapped = invitationData && "config" in invitationData;
+  const configObj = isWrapped ? (invitationData as any).config : invitationData;
+
+  const getValueByPath = (path: string): any => {
+    if (!configObj) return "";
+    const parts = path.split(".");
+    let current = configObj;
+    for (const part of parts) {
+      if (current && typeof current === "object" && part in current) {
+        current = current[part];
+      } else {
+        return undefined;
+      }
+    }
+    return current;
+  };
+
+  const updateValueByPath = (path: string, value: any) => {
+    updateInvitationData((prev: any) => {
+      const next = { ...prev };
+      const target = isWrapped ? next.config : next;
+      if (target) {
+        const parts = path.split(".");
+        let current = target;
+        for (let i = 0; i < parts.length - 1; i++) {
+          const part = parts[i];
+          if (!current[part] || typeof current[part] !== "object") {
+            current[part] = {};
+          }
+          current = current[part];
+        }
+        current[parts[parts.length - 1]] = value;
+      }
+      return next;
+    });
+  };
+
+  // --- BLUEPRINT DELEGATED EVALUATIONS ---
+  const comp = definition.completion(configObj);
+  const summaryText = definition.summary(configObj);
+  const isComplete = comp.status === "success";
+
+  // --- FORM FIELDS RENDERING ENGINE ---
+  const renderFieldInput = (field: ModuleField) => {
+    const val = getValueByPath(field.defaultPath);
+
+    switch (field.type) {
+      case "text":
+        return (
+          <input
+            type="text"
+            value={val || ""}
+            placeholder={field.placeholder}
+            onChange={(e) => updateValueByPath(field.defaultPath, e.target.value)}
+            className="w-full bg-[#0A0A0B] border border-[#2E2E35] rounded-xl px-3.5 py-2.5 text-xs text-slate-200 outline-none focus:border-[#C59B27]"
+          />
+        );
+
+      case "textarea":
+       "    return (
+          <textarea
+            value={val || ""}
+            placeholder={field.placeholder}
+            onChange={(e) => updateValueByPath(field.defaultPath, e.target.value)}
+            className="w-full h-24 bg-[#0A0A0B] border border-[#2E2E35] rounded-xl px-3.5 py-2.5 text-xs text-slate-200 outline-none focus:border-[#C59B27] resize-none"
+          />
+        );
+
+      case "boolean":
+        return (
+          <label className="flex items-center gap-2.5 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={!!val}
+              onChange={(e) => updateValueByPath(field.defaultPath, e.target.checked)}
+              className="w-4 h-4 accent-[#C59B27] bg-[#0A0A0B] border border-[#2E2E35]"
+            />
+            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.5px]">Enabled</span>
+          </label>
+        );
+
+      case "image":
+        return (
+          <div className="space-y-3.5">
+            {val && (
+              <div className="relative rounded-xl overflow-hidden border border-[#2E2E35] aspect-video w-full">
+                <img src={val} alt={field.label} className="w-full h-full object-cover" />
+                <button
+                  type="button"
+                  onClick={() => updateValueByPath(field.defaultPath, "")}
+                  className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white p-1.5 rounded-lg transition-colors cursor-pointer"
+                  title="Remove Asset"
+                >
+                  <Trash2 size={12} />
+                </button>
+              </div>
+            )}
+            <FileUploader
+              onUploadSuccess={(url) => updateValueByPath(field.defaultPath, url)}
+              label={`Upload ${field.label}`}
+            />
+          </div

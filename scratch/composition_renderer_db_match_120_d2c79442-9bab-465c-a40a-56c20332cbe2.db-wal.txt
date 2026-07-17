@@ -1,0 +1,92 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+[185] Found match at index 4121330
+  Preview of match [185]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[15] Found match at index 5436226
+  Preview of match [15]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeMessage: "Weddi
+------------------------
+[186] Found match at index 4121716
+  Preview of match [186]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[16] Found match at index 5436613
+  Preview of match [16]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[187] Found match at index 4122102
+  Preview of match [187]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[17] Found match at index 5437000
+  Preview of match [17]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider"    ;
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You
+------------------------
+[188] Found match at index 4432954
+  Preview of match [188]:
+"use client";
+
+import React from "react";
+import { getTheme } from "@/lib/theme/registry";
+
+interface ThemeProvid
+------------------------
+[18] Found match at index 5438558
+   node scratch/extract_from_db.js   node scratch/extract_from_db.js        3 Op~1 =  q  k                "   #   e   $   )   w      h               )           s   u   v           D   ;       e   p           <           x   [           ~       ,   *       h       6                   w               $   U   N       >   ]       7       .               !           |               Y   f       K           P   v       u               J                       O   O                       B   ?   @                   ~   r   q   D   q       '                               R           y   P                   L               l                   _                       M           n   M       T                   I                       a                                      x       r                               (   W   }                       t       ^           {       d   s           y   {                       l                   j   S       g           r                               N   u       z       t       k   L   K   m                   	               {       o   9                           a       z   G                               z           ^                                           b                       o           Z           7   x   %   O       |               y   "                               o               ~   {   k   m   l   j   i               ~   V                           g       }   ]                                                           !   N       S   R   Q   v   w                                                   ~   |   }   z   y   w   t   s   ]   [   \                                           {   |           q   Q   U   ;   :   8           F       F   G                                           !   "   '   (   )   8   :   ;   e   l   m   o   q   {   |                                                                                                                                                                                                                                                                                                                   )   *   ,   7   <   >   ?   @   B   D   H   I   J   K   L   M   N   O   P   Q   R   S   U   Y   Z   [   ]   ^   a   f   g   h   i   j   k   l   m   n   o   q   r   s   t   u   v   w   x   y   z   {   |   }   ~                                                                                                                                                                                                                                                       ^   a   b   c   f   g   v                                                                       ;   A   g   h   j   z   {   |                                                                                                                       
+                  	a  	g  	r  
+
+  
+   
+                                                                                                                                                                                	   
+                                                                      !   &   '   (   0   1   2   3   6   A   B   C   D   E       1   ]   a   s   |                                                                       
+               '   S   o   p   q   r   s   t   u   v   w                                                                                                                                                                                                                           '   4   6   7   8   @   G   L   P   Q   R         !   "   #   (   +   -   .   5   9   <   = 

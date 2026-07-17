@@ -1,0 +1,83 @@
+use client\";\n\nimport React, { useEffect, useState, useRef } from \"react\";\nimport { useInvitationData } from \"../context/InvitationDataContext\";\nimport { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from \"lucide-react\";\nimport { motion, AnimatePresence } from \"framer-motion\";\n\n// Import reusable section components\nimport HeroSection from \"../sections/hero\";\nimport CoupleSection from \"../sections/couple\";\nimport CountdownSection from \"../sections/countdown\";\nimport StorySection from \"../sections/story\";\nimport EventsSection from \"../sections/events\";\nimport GallerySection from \"../sections/gallery\";\nimport VenueSection from \"../sections/venue\";\nimport FamiliesSection from \"../sections/families\";\nimport RSVPSection from \"../sections/rsvp\";\nimport FAQSection from \"../sections/faq\";\nimport DressCodeSection from \"../sections/dressCode\";\nimport FooterSection from \"../sections/footer\";\n\ninterface LegacyOrchestratorProps {\n  themeId: string;\n  onBackToHub: () =\u003e void;\n  particlesComponent?: React.ComponentType\u003cany\u003e;\n  themeBgClass?: string;\n  loadingTitle?: string;\n  loadingSubtitle?: string;\n}\n\nexport default function LegacyOrchestrator({\n  themeId,\n  onBackToHub,\n  particlesComponent: Particles,\n  themeBgClass = \"bg-stone-900\",\n  loadingTitle = \"Invitation\",\n  loadingSubtitle = \"Celebrating Love\"\n}: LegacyOrchestratorProps) {\n  const { invitationData } = useInvitationData();\n  const [loading, setLoading] = useState(true);\n  const [playingMusic, setPlayingMusic] = useState(false);\n  const audioRef = useRef\u003cHTMLAudioElement | null\u003e(null);\n\n  useEffect(() =\u003e {\n    if (invitationData) {\n      const timer = setTimeout(() =\u003e setLoading(false), 1500);\n      return () =\u003e clearTimeout(timer);\n    }\n  }, [invitationData]);\n\n  if (!invitationData) return null;\n\n  const isWrapped = invitationData \u0026\u0026 \"category\" in invitationData \u0026\u0026 \"config\" in invitationData;\n  const invitation = isWrapped ? (invitationData as any).config : invitationData;\n\n  const toggleMusic = () =\u003e {\n    if (!audioRef.current) return;\n    if (playingMusic) {\n      audioRef.current.pause();\n    } else {\n      audioRef.current.play().catch(() =\u003e {});\n    }\n    setPlayingMusic(!playingMusic);\n  };\n\n  const sectionOrder = invitation.sectionOrder || [];\n\n  const renderSectionComponent = (sectionId: string) =\u003e {\n    const sectionConfig = invitation[sectionId];\n    const isEnabled = sectionConfig?.enabled !== false;\n    if (!isEnabled) return null;\n\n    const properties = sectionConfig || {};\n    const bindings = sectionConfig || {};\n\n    switch (sectionId) {\n      case \"hero\":\n        return (\n          \u003cHeroSection\n            key={sectionId}\n            properties={properties}\n            bindings={bindings}\n            themeId={themeId}\n            layoutId=\"hero-center\"         command(Get-ChildItem -Recurse -Filter "*.ts*" -Path "app","components","lib","utils" | Select-String -Pattern "signSession" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+?write_file(C:\Users\Admin\Ahvaanam\app\api\auth\login\route.ts)
+@write_file(C:\Users\Admin\Ahvaanam\app\api\auth\logout\route.ts)
+  command(Get-ChildItem -Recurse -Filter "\*\.tsx" -Path "app","components" \| Select-String -Pattern "logo\.png" \| ForEach-Object \{ "\$\(\$_\.Path\):\$\(\$_\.LineNumber\): \$\(\$_\.Line\.Trim\(\)\)" \})
+ command(Copy-Item)
+ command(Copy-Item)
+ command(git checkout)
+ command(Select-String)
+  command(Select-String -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\\.system_generated\\logs\\\*\.jsonl" -Pattern "app/admin/\\\\\\\[id\\\\\\\]/page\.tsx" \| select -first 10)
+  command(Get-Content -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\\.system_generated\\logs\\transcript_full\.jsonl" \| Select-String -Pattern "app/admin/\\\\\\\[id\\\\\\\]/page\.tsx" \| select -first 5)
+  command(Get-Content -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\\.system_generated\\logs\\transcript_full\.jsonl" \| Select-String -Pattern "page\.tsx" \| select -first 5)
+  command(Get-ChildItem -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\" -Filter "page\.tsx" -Recurse -ErrorAction SilentlyContinue \| select FullName, Length)
+  command(Get-Content -Path "C:\Users\Admin\.gemini\antigravity\brain\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\.system_generated\logs\transcript_full.jsonl" | Select-String   P1    "       J$a14da8b9-31e7-4946-a588-45ca9a302e76R   
+      0   8 j      
+ .ipynb  " o  :  *          (  0 @ H P *       As IDE feedback, the following lint errors may be related to your recent edits up to this point. Consider whether they deserve immediate attention. If worth addressing, clearly comment on them and/or fix them. Be explicit in acknowledging lints and explaining your fix's approach. AVOID unproductive loops; if you detect yourself repeatedly creating/fixing lints in a short period, offer some thoughts but MOVE ON.0 P h x                "  28 @ *  2    ( B    @     0 J headJ tailJ mkdirJ cdJ cpJ mvJ catJ findJ grepJ rmJ touchJ lessJ clearJ lsJ headJ tailJ mkdirJ cdJ cpJ mvJ catJ findJ grepJ rmJ touchJ lessJ clearJ ls  *
+powershell2
+powershellX ` h p x R 8 @ H @P @X  h p  x      Z   j                         @      ( 0 8           "$       ( 2 
+ 8   B     NJ   Z     ` * 
+ * red8  @ H P  X ` h 0 8 R     X h z                                                    
+  '                   
+( 0           
+       
+/read_file(C:\Users\Admin\invitecraft\AGENTS.md)
+@write_file(C:\Users\Admin\invitecraft\components\data\themes.ts)
+Jwrite_file(C:\Users\Admin\invitecraft\components\context\ThemeContext.tsx)
+Mwrite_file(C:\Users\Admin\invitecraft\components\shared\ThemeSelectorHub.tsx)
+6write_file(C:\Users\Admin\invitecraft\app\globals.css)
+Dwrite_file(C:\Users\Admin\invitecraft\components\data\invitation.ts)
+Swrite_file(C:\Users\Admin\invitecraft\components\templates\royal-temple\Layout.tsx)
+Twrite_file(C:\Users\Admin\invitecraft\components\templates\floral-garden\Layout.tsx)
+Swrite_file(C:\Users\Admin\invitecraft\components\templates\south-indian\Layout.tsx)
+Twrite_file(C:\Users\Admin\invitecraft\components\templates\palace-luxury\Layout.tsx)
+Uwrite_file(C:\Users\Admin\invitecraft\components\templates\lotus-serenity\Layout.tsx)
+Owrite_file(C:\Users\Admin\invitecraft\components\templates\marigold\Layout.tsx)
+Pwrite_file(C:\Users\Admin\invitecraft\components\templates\moonlight\Layout.tsx)
+Swrite_file(C:\Users\Admin\invitecraft\components\templates\grand-mandap\Layout.tsx)
+3write_file(C:\Users\Admin\invitecraft\app\page.tsx)
+ command(npm run)
+Ewrite_file(C:\Users\Admin\invitecraft\components\types\invitation.ts)
+Nwrite_file(C:\Users\Admin\invitecraft\components\templates\peacock\Layout.tsx)
+Owrite_file(C:\Users\Admin\invitecraft\components\templates\heritage\Layout.tsx)
+ command   g                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                L .                   0   8 j      
+ .ipynb  " o  :  *          (  0 @ H P *       As IDE feedback, the following lint errors may be related to your recent edits up to this point. Consider whether they deserve immediate attention. If worth addressing, clearly comment on them and/or fix them. Be explicit in acknowledging lints and explaining your fix's approach. AVOID unproductive loops; if you detect yourself repeatedly creating/fixing lints in a short period, offer some thoughts but MOVE ON.0 P h x                "  28 @ *  2    ( By  @   N0 J headJ tailJ mkdirJ cdJ cpJ mvJ catJ findJ grepJ rmJ touchJ lessJ clearJ ls  *
+powershell2
+powershellX ` h p x R 8 @ H @P @X  h p  x      Z   j                         @      ( 0 8           "$       ( 2 
+ 8   B     NJ   Z     ` * 
+ * red8  @ H P  X ` h 0 8 R     X h z                                                    
+  '                   
+( 0           
+       
+/read_file(C:\Users\Admin\invitecraft\AGENTS.md)
+@write_file(C:\Users\Admin\invitecraft\components\data\themes.ts)
+Jwrite_file(C:\Users\Admin\invitecraft\components\context\ThemeContext.tsx)
+Mwrite_file(C:\Users\Admin\invitecraft\components\shared\ThemeSelectorHub.tsx)
+6write_file(C:\Users\Admin\invitecraft\app\globals.css)
+Dwrite_file(C:\Users\Admin\invitecr k .   T       "$b9df6dd8-dfd4-44a6-86e2-f5dd8f18b5a5B     2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   1   2   1   1   2
+     "P     0   (  
+0 B!
+	sessionID  -3750763034362895579H  PgZ MlVTaq_2B7_EjuMP4pmgyAo0  : 
+ autoJd              "             (  2          67527c8b2          4c5500a7:       e9c821beB        R     Z         b     Bzw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  d P     0   (  
+0 B!
+	sessionID  -3750763034362895579H  PgZ MlVTaq_2B7_EjuMP4pmgyAo" f2fd44ba79619326   gemini-default  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $24c66b1d-cdac-4252-8bd1-85c63e73688f  5
+trajectory_id $caf57629-637c-4871-a4b3-8d196466d06e   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  631   Gemini 3.5 Flash (Medium) d       ;qi  M  6 E\s  \>    	QA    o   V  q
+ s  )J hJ L9 @   i  H0     +G ] #q    (mL    *   ngI  @   f [     ^5 o o   `b   /< "; ^   z  	W    u   T4     '}    [  r   ' i      V - 2I!!R  " q#    (   g=D  ~  x'  E :   x`     [R    S)  L  ]?   \R qh g  [ $  S    3r o1 v  YU h     A Ln%gC   X    E  -%  l[     2d      &   e Rv &)   a 5  [[^  [  I
+   C   <   <  _      [  R e !$      OM    io 0 J   x $ ! t6 `j I   F  [D     ;  /M   8 G  7  8     ^a   j   )	V\     
+0@:  Z &|  /oyc ]anZ  q {    @    h+  X .-  6  <   !.  P  GR    &     |  X  - gmvM)   Q0B   `  J i  [O E7 D? b0 ]     $     q  q 1 o xM   n M ]8    c*N t ]5  0      `   m \L| 4 bsk  *V  o~ r &M `! T  fpf  I    '  w   ,   >A  I      q6- X     9m   B R @R@  N 6   XS     @      Q    A' j |x (   nN  )W R     P P ' q  q   B      qa    JJ  W  ?tB,YS    :P'    	  H W.   \ | ? :0 N b    _  ) in  G(           p [Krz    k  _ 3   Qg  7~     N)     7^ w,     ) $ k    3       W       }{   C   B           a  h k xP 	+ w#M   l   ~     ( qG   aE	
+  - v=Gi     q`  a\ YK 
+ a@ >}kl  T  )_{    * Z  G&1 > l,  m :   8 Pj  I   ZI  a      kZ  "O  eHq"          Z Ze   }             $d  ' %     RY_    M   X.$8B !3   [[ hZ  n  
+y+R!      M $  J9%9 Ny  h         $  }{ c b     2  q)t 2 1$	 s    q  ch  m   ^  e 8 U  A   #   [f     K >   'J S 9 _q      d4      j /  $r -          >o   ~ * n  gH J  ); 4N   f U 	$       ?  _       i0K /w i R   d+  -  	      Z b    (              w  r  FY  U )JV b    !  u     k 8     \J      A H       s     k X -   ^  FD uUr   3    q     u E g 9R ^}     * M      p s D(+      b  jP a 7     K  !!6    ?  P    :  6   ye
+Yqd @#  I1 ;   s  8K    ? MxZ      B    i G1  G  {    v"
+b  ;x S   f  M 'p v  c!I   [   C!     @'h         ,  1e-       zF k M   +J     H  I  I\   F  \K   r   /6   T        \4A            i    hS`  Bu m lp%$  W   uI    qh & :\\)V  6 Q 
+ [ k a I     - s     H    b   P   %             *P      i 
+R     c   LS    (    6  @[E p       2 4o?ut<G  N 8  D IT                H     ;   r, H   Z  Vs  Z  H q     )M  w8I 5F ] j-   [ ; w~ V  q   dv R      w   ,             a  	 >m  b      { 8 ; ;j+W pV	      i p     D   eP  }UL  p ' F+on    Z y  P    cM=     E       w*  GLHH*   $ $    / M -     J  a      9 |    Z   Ta  5 s x]z U  xP   D b [ %    '/   ix3    'R        
+ |y`I &3D &   .  k q) VT p   E PZ H  &5) &  G )%)  P\  zv r 3Eqwg  I   N   -Q 4  =Qm ^   9  gAj       I  T N B P   CegR   5     o  I Q~ #     no.-  v     o: J  C  O z f ;p } n DJ T   bV  ]  W JB 7  g9	  D    DL  b M 0 E    9    F^   D     ]     $m n    <S  ^Eb    KON   v /  TN /   F     f   6     2aB@  LOI  0 )y*o    k =+ W        I      k&  xu  [  )n      N U    M'K"  cu ~    o ch^[o8     r C}r7* =k  ;' ZV        y)   IN 6   &+e ^  Z*   6  @f @    O  i      8r  7O   Q     ~-" 9 \W d^b 6KC.`   YL  -    I       	"+*             %n )		  I"    0tV V qG %    i oN  '     ?  [   '_      U  oi    OU 7 iiuK*o$ Hn   R  w `W )   .     b`I B6     9  +^   2  *  +B    #0"&t  |O     9  qtJm^P0Cj  A  $^7    w [ !N    9H  H     U     E: I  &   'G >'p  G   *|N       U        b  J}AIeh   X*: % O     a   P   -f	BG  
+`   }
+   H lG  + n  ^  {  w }  l           h-  "     Z    l     K       +     	 \)   `   2ND &   p  E+ I#)9   |N       T    E  ;    H  c\k W 5 M0  S   `      I _lk  4  K <P     5  i    _" $  7     s   g  Io             \0F  Uc  f    A     2   j{.b  W Z :f0g R0  V s _" y_  ,G      |  jB  F   =}      E  ;     +    ) VR  A      qP  JO 
+   BZK `)J Y:    '  BZ\9^ H  Rg. p_u  [ w }  l       (    ^  w    q   >   " |      b#m+Cp ~j   I     _UW i}H Dv     =     &    > r   D ;        | |  oHCHe  A  SKT+   W *   Kf	%   JR 'b  \  )@C}>    K     =   .Ys[     *2A%1 >    "   8 !!i)  Ey      r q]  % % R    en"g}kX4 2n     Z  V  4   FYq{  P r w *  !J \ e)  I>}z       g [h%0    gBI"  s>(    ] I .] D   `m V J  m  WiS-&     P    I  ( `u {     c  1  

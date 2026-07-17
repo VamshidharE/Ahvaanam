@@ -1,0 +1,101 @@
+use client');
+    }
+    if (startIdx === -1) continue;
+    
+    // Try to find if this contains the full component
+    const hasComponentExport = content.includes('export default function CompositionRenderer');
+    const hasResolveBinding = content.includes('resolveBindingValue');
+    const hasSectionComponents = content.includes('SECTION_COMPONENTS');
+    
+    if (hasComponentExport && hasResolveBinding && hasSectionC
+------------------------
+[33] Found match at index 3328854
+  Preview of match [33]:
+"use client";');    
+     if (startIdx === -1) {   3
+/      startIdx = content.indexOf('use client');   	
+     }   &
+"    if (startIdx === -1) continue;    
+        :
+6    // Try to find if this contains the full component   c
+_    const hasComponentExport = content.includes('export default function CompositionRenderer');   J
+F    const hasResolveBinding = content.includes('resolveBindingValue');   L
+H    const hasSectionComponents = content.includes('SECTION_COMPONENTS');    
+        N
+J    if 
+------------------------
+[34] Found match at index 4392779
+  Preview of match [34]:
+"use client";
+2: 
+3: import { useEffect, useState } from "react";
+4: import { ToggleLeft, ToggleRight } from "lucide-react";
+5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+6: import { getWeddingComposition } from "@/lib/composition/templates";
+7: import { useInvitationData } from "../../context/InvitationDataContext";
+8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+9: 
+10: // --- TEMPLATE SPECIFIC PARTICLES ---
+11: import React, { useRef }
+------------------------
+[35] Found match at index 4395424
+  Preview of match [35]:
+"use client";
+2: 
+3: import { useEffect, useState } from "react";
+4: import { ToggleLeft, ToggleRight } from "lucide-react";
+5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+6: import { getWeddingComposition } from "@/lib/composition/templates";
+7: import { useInvitationData } from "../../context/InvitationDataContext";
+8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+9: 
+10: // --- TEMPLATE SPECIFIC PARTICLES ---
+11: import React, { useRef }
+------------------------
+[36] Found match at index 4496572
+  Preview of match [36]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[123] Found match at index 29082480
+   node scratch/extract_from_db.js   node scratch/extract_from_db.js   G     3 Op~1 JQ b         W  W                                         J 	        l       
+               "  
+ lmt7gzt3  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolActi
+------------------------
+[37] Found match at index 4504744
+  Preview of match [37]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[123] Found match at index 29082480
+   node scratch/extract_from_db.js   node scratch/extract_from_db.js   G     3 Op~1 JQ b         W  W                                         J 	        l       
+               "  
+ lmt7gzt3  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolActi
+-------------    lueprint.location ? [\"location\"] : []),\n    ...blueprint.media\n  ];","TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\builder\\BuilderProgress.tsx","toolAction":"Dynamic progress check modules","toolSummary":"Converting hardcoded tab arrays to flatMap on blueprint steps in BuilderProgress.tsx"}:     
+    M2 W !          ;  5   8=&      +$ /  ZA 3  Y      j    WWRK  8 C e   F    r= _  	 $ & J\ X ]   vYrg     o>l  u -  DOs1 5W .1 X%	F   e         [     d %  & z$ J replace_file_content*AllowMultiple* Description* EndLine* Instruction* ReplacementContent*	StartLine*TargetContent*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$6cbfd4d1-7498-4d67-8506-5d42476faf3dj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   TConverting hardcoded tab arrays to flatMap on blueprint steps in BuilderProgress.tsx   Dynamic progress check modules                   *  
+               "  
+ o88it1h6  replace_file_content   {"AllowMultiple":false,"Description":"Collect module IDs in BuilderProgress using flatMap on blueprint steps.","EndLine":32,"Instruction":"Replace checkModuleIds array with flatMap statement.","ReplacementContent":"  const checkModuleIds = blueprint.steps.flatMap(s =\u003e s.modules || []);","StartLine":26,"TargetContent":"  const checkModuleIds = [\n    ...blueprint.people,\n    ...blueprint.celebration,\n    ...(blueprint.location ? [\"location\"] : []),\n    ...blueprint.media\n  ];","TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\builder\\BuilderProgress.tsx","toolAction":"Dynamic progress check modules","toolSummary":"Converting hardcoded tab arrays to flatMap on blueprint steps in BuilderProgress.tsx"}:     
+    M2 W !          ;  5   8=&      +$ /  ZA 3  Y      j    WWRK  8 C e   F    r= _  	 $ & J\ X ]   vYrg     o>l  u -  DOs1 5W .1 X%	F   e         [     d %  & z$ J replace_file_content*AllowMultiple* Description* EndLine* Instruction* ReplacementContent*	StartLine*TargetContent*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$6cbfd4d1-7498-4d67-8506-5d42476faf3dj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   TConverting hardcoded tab arrays to flatMap on blueprint steps in BuilderProgress.tsx   Dynamic progress check modules               R )
+  
+  
+4Replace checkModuleIds array with flatMap statement.  @ J  
+    const checkModuleIds = [
+    ...blueprint.people

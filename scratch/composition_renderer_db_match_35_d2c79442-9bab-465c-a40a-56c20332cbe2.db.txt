@@ -1,0 +1,125 @@
+"use client";');    
+     if (startIdx === -1) {   3
+/      startIdx = content.indexOf('use client');   	
+     }   &
+"    if (startIdx === -1) continue;    
+        :
+6    // Try to find if this contains the full component   c
+_    const hasComponentExport = content.includes('export default function CompositionRenderer');   J
+F    const hasResolveBinding = content.includes('resolveBindingValue');   L
+H    const hasSectionComponents = content.includes('SECTION_COMPONENTS');    
+        N
+J    if (hasComponentExport && hasResolveBinding && hasSectionComponents) {   9
+5      // Let's try to extract the JSON-escaped string   S
+O      // It starts with "use client" and should end around the end of the file.   J
+F      // Let's find the closing quote if it starts with a double quote    
+       let parsedCode = '';    
+       try {   ]
+Y        // If the match starts with double quote (which means it's part of a JSON record)   *
+&        if (content.startsWith('"')) {   ,
+(          // Find the matching end quote   g
+c          // Since it's a JSON string, let's find the next unescaped quote that finishes the string   9
+5          // We can parse the prefix using JSON.parse   6
+2          // Let's find the end of the JSON string   >
+:          let endIdx = content.indexOf('","Description"');   "
+           if (endIdx === -1) {   D
+@            endIdx = content.indexOf('",\n      "Description"');    
+           }   "
+           if (endIdx === -1) {   =
+9            endIdx = content.indexOf('", "Description"');    
+           }   "
+           if (endIdx !== -1) {   D
+@            const jsonString = content.substring(0, endIdx + 1);   4
+0            parsedCode = JSON.parse(jsonString);    
+           }   
+	        }    
+       } catch (e) {   0
+,        // Fallback: regular string clean up    
+       }   
+
+          H
+D      // If we couldn't parse it as JSON, let's clean it up manually    
+       if (!parsedCode) {   :
+6        let codeContent     = content.substring(startIdx);   ;
+7        // Remove trailing database junk or JSON fields   Y
+U        // In the database log, it might be followed by description, targetFile, etc.   b
+^        const endMarkers = ['","Description"', '",\n      "Description"', '", "Description"'];   .
+*        for (const marker of endMarkers) {   <
+8          const markerIdx = codeContent.indexOf(marker);   %
+!          if (markerIdx !== -1) {   B
+>            codeContent = codeContent.substring(0, markerIdx);    
+           }   
+	        }   +
+'        // Unescape newlines and quotes   $
+         parsedCode = codeContent   $
+           .replace(/\\n/g, '\n')   #
+           .replace(/\\"/g, '"')   &
+"          .replace(/\\\\/g, '\\');    
+       }   
+
+          T
+P      // Check if it looks complete (ends with closing bracket of the component)     
+        if (parsedCode.includes('export default function CompositionRenderer') && parsedCode.includes('return') && parsedCode.trim().endsWith('}')) {   Y
+U        console.log(`FOUND PERFECT MATCH in ${file} (length: ${parsedCode.length})`);   #
+         bestMatch = parsedCode;   !
+         bestMatchFile = file;    
+         break;    
+       }   	
+     }    
+   }    
+ }        
+ if (bestMatch) {   H
+D  const destPath = 'components/composition/CompositionRenderer.tsx';   @
+<  fs.mkdirSync(path.dirname(destPath), { recursive: true });   ,
+(  fs.writeFileSync(destPath, bestMatch);   V
+R  console.log(`Successfully restored perfect, complete CompositionRenderer.tsx!`);    
+ } else {   I
+E  console.log('No perfect match found, trying fallback matching...');   6
+2  // Fallback: take the longest match and write it    
+   let longestCode = '';    
+   let longestFile = '';   !
+   for (const file of files) {   Y
+U    if (file.startsWith('composition_renderer_db_match_') && file.endsWith('.txt')) {   7
+3      const filePath = path.join(scratchDir, file);   <
+8      const content = fs.readFileSync(filePath, 'utf8');   P
+L      if (content.includes('export default function CompositionRenderer')) {   "
+         let cleaned = content;    
+         // Basic clean up   <
+8        let startIdx = cleaned.indexOf('"use client";');   J
+F        if (startIdx === -1) startIdx = cleaned.indexOf('use client');   "
+         if (startIdx !== -1) {   4
+0          cleaned = cleaned.substring(startIdx);   
+	        }   <
+8        let endIdx = cleaned.indexOf('","Description"');    
+         if (endIdx !== -1) {   5
+1          cleaned = cleaned.substring(0, endIdx);   
+	        }    
+         cleaned = cleaned   $
+           .replace(/\\n/g, '\n')   #
+           .replace(/\\"/g, '"')   &
+"          .replace(/\\\\/g, '\\');    
+
+             6
+2        if (cleaned.length > longestCode.length) {   $
+           longestCode = cleaned;   !
+           longestFile = file;   
+	        }    
+       }   	
+     }    
+   }    
+   if (longestCode) {   ]
+Y    console.log(`Longest match found in ${longestFile} (length: ${longestCode.length})`);   N
+J    // Trim extra junk at the end (keep only up to the last closing brace)   :
+6    const lastBraceIdx = longestCode.lastIndexOf('}');   "
+     if (lastBraceIdx !== -1) {   C
+?      longestCode = longestCode.substring(0, lastBraceIdx + 1);   	
+     }   J
+F    const destPath = 'components/composition/CompositionRenderer.tsx';   B
+>    fs.mkdirSync(path.dirname(destPath), { recursive: true });   0
+,    fs.writeFileSync(destPath, longestCode);   L
+H    console.log(`Successfully wrote fallback CompositionRenderer.tsx!`);    
+
+  } else {   X
+T    console.log('No match containing CompositionRenderer export was found at all!');    
+   }    
+ }      B@file:///c:/Users/Admin/Ahvaanam/scratch/extract_perfect_match.jsX     PExtract and clean the perfect CompositionRenderer.tsx match from database dumps.                                                                                                                                                                                                                                         

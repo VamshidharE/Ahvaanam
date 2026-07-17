@@ -1,0 +1,208 @@
+{
+  "faq": {
+    "id": "faq",
+    "title": "Frequently Asked Questions",
+    "enabled": true,
+    "entries": [
+      {
+        "answer": "Traditional Indian attire is preferred.",
+        "question": "Is there a dress code?"
+      }
+    ]
+  },
+  "hero": {
+    "id": "hero",
+    "title": "Together with our beloved families",
+    "ctaText": "View Invitationk",
+    "enabled": true,
+    "subText": "WEDDING INVITATION",
+    "surname": "allu",
+    "subtitle": "request the pleasure of your gracious presence as we begin our forever together.",
+    "heroImage": "/images/couple.jpg",
+    "selectedGod": "ganesha",
+    "surnameFont": "cinzel",
+    "surnameColor": "#C59B27",
+    "musicAutoplay": false,
+    "showParticles": true,
+    "backgroundType": "image",
+    "overlayOpacity": 0.45,
+    "selectedSymbol": "om",
+    "welcomeMessage": "|| Shree Ganeshaay Namah ||",
+    "headerMediaSize": 80,
+    "headerMediaType": "god",
+    "headerMediaColor": "#C59B27",
+    "enableHeaderMedia": true,
+    "headerMediaSpacing": 30,
+    "showSurnameHeading": false,
+    "headerMediaPosition": "top-middle"
+  },
+  "rsvp": {
+    "id": "rsvp",
+    "title": "Kindly RSVP",
+    "enabled": true,
+    "contacts": [
+      {
+        "type": "whatsapp",
+        "label": "WhatsApp Coordinator",
+        "value": "919999999999"
+      }
+    ]
+  },
+  "music": {
+    "file": "/music/theme.mp3",
+    "enabled": true
+  },
+  "story": {
+    "id": "story",
+    "title": "Our Love Story",
+    "enabled": true,
+    "timeline": [
+      {
+        "date": "14 Feb 2024",
+        "title": "First Meeting",
+        "description": "Describe your first meeting here."
+      },
+      {
+        "date": "01 Jan 2025",
+        "title": "The Proposal",
+        "description": "Describe the proposal here."
+      }
+    ]
+  },
+  "venue": {
+    "id": "venue",
+    "title": "Wedding Venues",
+    "venues": [
+      {
+        "id": "main-venue",
+        "city": "CityName",
+        "title": "Wedding Venue",
+        "address": "123 Ring Road, City, State",
+        "mapsUrl": "https://maps.google.com/?q=Grand+Marriage+Palace",
+        "embedUrl": "https://www.google.com/maps?q=Grand+Marriage+Palace&output=embed",
+        "venueName": "Grand Marriage Palace",
+        "parkingInfo": "Valet parking is available."
+      }
+    ],
+    "enabled": true
+  },
+  "couple": {
+    "id": "couple",
+    "bride": {
+      "bio": "A description of the bride's background, hobbies, and personality.",
+      "name": "suda",
+      "image": "/images/couple.jpg",
+      "parents": "Bride Parents"
+    },
+    "groom": {
+      "bio": "A description of the groom's background, hobbies, and personality.",
+      "name": "sai",
+      "image": "/images/couple.jpg",
+      "parents": "Groom Parents"
+    },
+    "title": "The Happy Couple",
+    "enabled": true
+  },
+  "events": [
+    {
+      "id": "wedding",
+      "date": "31 Dec 2026",
+      "icon": "💍",
+      "time": "10:00 AM",
+      "title": "Wedding Ceremony (Muhurtham)",
+      "venue": "Grand Marriage Palace, City",
+      "enabled": true,
+      "description": "The sacred marriage ceremony details."
+    }
+  ],
+  "footer": {
+    "id": "footer",
+    "title": "Footer Credits",
+    "enabled": true,
+    "creditText": "Designed with love by Ahvaanam Hub.",
+    "salutation": "Bound by Matrimony. name & hello."
+  },
+  "gallery": {
+    "id": "gallery",
+    "title": "Our Moments",
+    "images": [
+      "/images/couple.jpg",
+      "/images/couple.jpg",
+      "/images/couple.jpg"
+    ],
+    "enabled": true,
+    "layoutType": "carousel",
+    "slideshowMode": true
+  },
+  "themeId": "grand-mandap",
+  "families": {
+    "id": "families",
+    "title": "Warm Greetings",
+    "enabled": true,
+    "brideFamily": [
+      {
+        "name": "Mr. & Mrs. Bride Parents",
+        "relation": "Parents"
+      }
+    ],
+    "groomFamily": [
+      {
+        "name": "Mr. & Mrs. Groom Parents",
+        "relation": "Parents"
+      }
+    ]
+  },
+  "countdown": {
+    "id": "countdown",
+    "title": "Muhurtham Countdown",
+    "enabled": true,
+    "timezone": "IST",
+    "targetDate": "2026-12-31T10:00:00",
+    "customLabels": {
+      "days": "Days",
+      "hours": "Hours",
+      "minutes": "Minutes",
+      "seconds": "Seconds"
+    },
+    "hideAfterWedding": true,
+    "postWeddingMessage": "The wedding has concluded! Thank you for your blessings."
+  },
+  "dressCode": {
+    "id": "dressCode",
+    "code": "Traditional Festive",
+    "title": "Dress Code & Theme",
+    "colors": [
+      "#FF8800",
+      "#FFD700",
+      "#C59B27",
+      "#8B0000"
+    ],
+    "enabled": true,
+    "description": "Vibrant ethnic colors are highly encouraged!"
+  },
+  "sectionOrder": [
+    "hero",
+    "couple",
+    "countdown",
+    "story",
+    "events",
+    "gallery",
+    "venue",
+    "families",
+    "rsvp",
+    "faq",
+    "dressCode",
+    "footer"
+  ],
+  "themeSettings": {
+    "borderStyle": "gold",
+    "buttonStyle": "rounded",
+    "galleryStyle": "carousel",
+    "particleType": "dust",
+    "heroAnimation": "zoom",
+    "showParticles": true,
+    "countdownStyle": "glass"
+  },
+  "_payment_status": "pending",
+  "_status": "draft"
+}

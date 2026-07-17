@@ -1,0 +1,82 @@
+ion from "../sections/celebrant";
+import HouseDetailsSection from "../sections/houseDetails";
+import OwnersSection from "../sections/owners";0 8 (   EImport celebrant, houseDetails, and owners inside LegacyOrchestrator.          8   !       !   #   w                         A ^      |     ~   
+              2             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2        ^      |      x   
+              2             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+              2             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                    Z
+rI will create the manifest file for the House Details section at `components/sections/houseDetails/manifest.json`.   **Analyzing Configuration Defaults**
+
+I've been examining the default configurations, specifically within `lib/defaults/housewarming.ts`. I noticed the configurations for the "Housewarming category configuration", and am getting to work on it now! I'm starting to consider how to best handle the new information and incorporate the requested deliverable.
+
+
+**Mapping Section Components**
+
+I'm now mapping out the required invitation sections to existing or new components. Specifically, I'm assigning `"hero"` to `Hero`, `"families"` to `Family`, and considering whether to map `"houseDetails"` to `"celebrant"` or create a dedicated `"houseDetails"` component. I'm leaning toward creating a dedicated component for clarity and premium feel. Also, I've checked the section manifests in `lib/registry/index.ts` to ensure coverage. I also need to make a note to enable it in `data/categories/categories.ts`.
+
+
+**Defining Section Mappings**
+
+I've completed section component mappings: `"houseDetails"` is now its own component, created in `components/sections/houseDetails`. I've also confirmed that `"muhurtham"` maps to `"countdown"`, `"gallery"` to `"gallery"`, `"map"` to `"venue"`, `"rsvp"` to `"rsvp"`, and `"footer"` to `"footer"`. All are using existing components. I also have the standard housewarming payload in English and Telugu in mind!
+
+I have the default configuration complete with English and Telugu greetings. This covers all of the standard "housewarming" details in a single payload! I'm ready to design the new `houseDetails` component.
+
+
+2(bot-4eb19733-675a-4015-9bc5-bcd51f9c32a0: L
+ 0r2m3x5n write_to_file   {"CodeContent":"{\n  \"id\": \"houseDetails\",\n  \"name\": \"House Details\",\n  \"category\": \"housewarming\",\n  \"properties\": {\n    \"enabled\": { \"type\": \"boolean\", \"default\": true }\n  },\n  \"bindings\": {\n    \"title\": { \"type\": \"text\", \"label\": \"Title\", \"default\": \"Our New Nest\" },\n    \"houseName\": { \"type\": \"text\", \"label\": \"House Name\", \"default\": \"Shree Nilayam\" },\n    \"description\": { \"type\": \"textarea\", \"label\": \"Description\", \"default\": \"A home built with love, dreams, and blessings. We welcome you to join our housewarming celebration.\" }\n  }\n}\n","Description":"Create houseDetails manifest.json","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\houseDetails\\manifest.json","toolAction":"Create houseDetails manifest","toolSummary":"Creating manifest for House Details Section component"}: E  E
+ E  M2 =[ 4W$`!  p6 q<     F  2u   l . fJL   QN J      P P4% + cW +  evA " 7  \      a        Yg  $ b`   `  K{  e      ;    	 A )\Gf   o { f  w M 5  9 m  +o    oSkHJCi %@    21qC      o@  ?    1      6  Y}>T iu I)     n        K	  S     x  ]SP L   Y<?  GJ
+   0J KH  j1VN    X  BLE    =n uz    /     \r   ^                 
+              2             :             B             JQ     !   (   0 B!
+	sessionID  -3750763034362895579H  P  Z XoVSavLCCML5juMPjsOc8QsX  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+              2             :             B             JQ     !   (   0 B!
+	sessionID  -3750763034362895579H  P  Z XoVSavLCCML5juMPjsOc         Ls          B%xI      e  S*O  cZr 5g f   M  E   We ) > 6 r       [+_l     a T  0l  ;=sS3-V    b         Jy       q2 { :2  NV  J   g     H    ` |      K U    R   E     r       \@ 	  e g  "~v I    i  f=	C8    r |z$ |  [I,K)     ,      f  ) fm NA  :C  f %]   3As k4 j (}  +   i   >O *= YY UWp ; H  y )    #  [   N   f ,w Sv N    |M     &      +	  q o=  xI   < ;1/T h1  |              I# <   va  5 ~  7T+  &#z    V  }"n  e   Babpr   !>-x_	K q$        gl{     z Vf ;'m |ix` 8 ]H   E "u   7S  e b                Yz @^  0+Q-a   u^     ;   	 n yr7H l\ b
+  j8 J )    }   uyu        2    s       +Q z	  Z C{    z(?    | 
+` 9*        j T   *   j   @\   E   )  |  G  d r    Z      R    7'  ->QQ   8  .9X  Q5  -Hz s7?   E   I@ 3.O= X       r   ] 9     % j i0 DCB     q vg      8   6G ] e       D] V\y$ IV Gf}     - k}j$/f   f XZB  6 .  \  n!yQ4*  4 
+z  fM @ZXw     e A  m        S  |jz j-  O<o$A l       e i  F  y    ?7 a     Wz   -? ! d^ :M       W @     3  @ N  P- yU   x WD    ?   I     i7      R    3 h  yo   8( } pT H  ab1d ~  b   =  6 }    l4 <~|O    n jY      X  {    \    U BM8= H#    =7  ^  @ !/~  :?  Ss  q=      ?   }  &2   {           "    W  d zP  ^   e     F  <{   b H  K d &8     &w r   
+. 2  0L mY %hx  \L   #qO  6 X  OF a   %N F       a [i  r    C    ^   PI  c  Z     ;R M  >  fg   
+:  Wc>  E  bd Bg Q ) D O \IDN   i W f ' _Ms   J  `W  BvRC x   U     	!gU     V - X >  8J K   $   K A     5     9j  ) n    bx _q  a,      pW ]9v8 r6    t      W|R +     * []  7. a:M    eOp  | n   Q 06   z       U s    W&  =	%:   #W   W4f     o  f(  m   c    W  t cS  # { "   6I    KX(H  r | #  u :    2      *  D  _   E< I b Uq\GO  + 6      V   zTl!  q`  0P S   f  D "Zx;      WP           0q 8   w         Gb:& +  ^ DG4  
+=        fA   Tm      5zP{ 0s `  e%L/  R !  |w   u       t    f1  ! z  tzv+    4  O ^( V8   m jM [     - jT    IN Ww   !- N? b Z$ 9 t       O 7    FP w    #I[ /P z eKC     `a   6 BT F  Ml     "          0   T gl         O      )_   8h N         y  e;   I       ?B B 3      .w X   =  wP &# a ~   }**kmn   " B~ T G Q   =h$      w> O    / B S *fK     <   =      .  l  G   = _ [ s[
+     ?          h )B 2p    -  hQ   T ;@" >^  Y ~ x  K  N           f [  /     Vs-G ^ t A     7 Q$    ;    a             q   _    Dd r   "  ~;J Q     )     q6* [ p;#E   Q  u f jlhTv   T  Ac\ >K   h m    T}  ? :  U i zd  w C V  \   M{ r5mZx   *    RC2  }  `%   m 2  &"W   Q    Q7 lP 3 | $  /C    ud kI         a   p            zgO` Z  |!  z|  ]     {\O7    Vr    JfZK  J   , tl  T  .  |   {E  +    }      2 ]s D     ;   H= 3M  u    H0      ;)# ;   k     |b  q= F J NKY D     U2Y0  @   ;   A  I( ,          ?Z	 wUP? c    s )       }v'~] @ Y Zgm i        N P     $  U  / }  A *	,&  o \ 
+     g   `D @ K     Ak ;'5
+ Q ?@     r  3q +   ^     o   EXv nE  * . ZS  W   qy  >  i   '      w  _4     ne      " R r M    ,. Wn   i?  :>    f    @ZR{C   N _ y  / ?6r` D    V T     8Z             B       j7     ~ P;Hy    s1      _    | fji u Q& C  0^ @ '       =BKG    P      Z  9h   4 + I    # X   3 r  bt#  '   B L=  @T  =s   _ Cf\_   _    T\   V    >{E$   v    Q !F  1 o   0        2R \b 8    B  Q I  k<   %  t        w    }  g .     z    ) I a h      +w CZy 8HF     @         o 6aR  f         f  a .   :Th+         # ,$ u      7 n   u=  D'  O0       #    23   @w x N    7      a >W   Q/ : q   B0 %  t  J9 ^        D g, yK   8     r 8 ? u j u 	g       ] -     _     =   
+e +  i    P  C`1V ]x  `} O   K   ^ f  | q   _J)z    +gi}  2  ha  F ,  G      kc    km  6 ~fx '   r;  W  7 jW@  \Yy l     D    [    l     nl rP  	MW |      u X e8 ~
+ X WP   {j  5&    %  q    :        W   h  I Q 3iT & y4    }    V  d   #C      Xp  b  \  >  C W     g /  z  B8-    0    nM b 8 i $ x   p    
+1 9   @TO;    d   w"  ?kM  &    _ 7    0  pO   ] r I%  }51      MDe   i     ?/~vJ  %    qj  Qv     j     m o   ." r5FgLy6   g  s>o    P n  1  "M  >  ?u $| d V   )  1H      g%_M:(  	 ;3   X' <  { TR            S$U a;    ru+      v ]      DM  OH L         4   H d Yc 6  y  N[ U  * 6`M b uL *  _5m  G  *     x@   ;  q $  : E d]   lt    R 7A  O    G T   BV0  0   A      >  \A  6a  < O 	  8   qga ' 71    .   5jk] c  7+   d     8z       [ H7 X  ~Y I   z  S_    A   lC     W      c /a  & B  5 p  )2    :k @    @      iOP I  fC EI.@Q 5 j  V    K *     N   M  v  5 :    py     jbA       X m5 [* ) V x V.&     # I  `d :  a l-   6      T  A  ! k  6 H 0 u u 
+n  Ob N SD   v   y   [       -o < gqD   0 S PNmN%  +  X E X  p    S+@ A   ?   M= / 6 5D  1 (,^ c  7  ! ayu   
+4 3      }~ b h  J     _ 1   V  h+  ;J 5r W $   7    " 4 i  g
+xL E RwhOi   pY}q z@M\7  w     n x        `     U _  APb  ce U     u n        a  y  CB          w Sd%oO  ]@AXT: O  R  |     	2  _j i  \jvO _ dD  oq w R   Fca	 ' SQat :  w z   v "   )   I     J grep_search* CaseInsensitive* IsRegex* MatchPerLine* Query*
+SearchPath*
+toolAction* toolSummary2             :             B             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    <  6
+                 
+                 
+                   4Searching for default data load pathways in codebase   Search for default.json usage                   * t
+               " p
+ f1xs42mz  grep_search   {"CaseInsensitive":false,"IsRegex":false,"MatchPerLine":true,"Query":"default.json","SearchPath":"c:\\Users\\Admin\\Ahvaanam","toolAction":"Search for default.json usage","toolSummary":"Searching for default data load pathways in codebase"}: n  n
+ n  M2    , M }   \ 	Q  B      9l m   N      24  < ( ,   gEv     v |- ~ *o    b  c  5    \        5 `T he    _     C     a  c   e4  b<6a^j  ~    W 5     ^;L'$    W *T     m$  P e     O3 .  0   hB _.<        5m G .	   ` L J  { 3 8      39N { hl	 +[   Yy^ &    j {     ; n cs  N          i L  mk` m J   [     f  g    -5 ZS     3      V  )  0.MJ         z7`#V [      /       vDw b    (    7&tH   [   k I    %      (      78y`~x   d     >       !         { L{    3 xK <I  G  "    ?G 5 V     <   ) -    5 _ @ )%f      h  <l#kc  	z    ^f8     \ h   a 1  '#  z# G6     h       8f  |     5   a) c jd , F   6  XP< C]   g [   	 2  X#x=  A@ s     ^R  qH  K G .&     #  Z              ! @r( _  [ v   ,    %&: W5 &  > \     G Z          ;     > H 5  ~  o '   Y      {!  * i L  |. k  HW i      o n@  Bs BUH^        @ c   =  S     4  libX(       s*be  v mK  GP      7 dz  ' +   5O s  ^ u  b  #     D      dR   5:   o  ^  z A      !  Y    X W V 7?      V    M   {  0         $o  7 5 \     %e-  a   <#/3 "= {     7  e  U=p/  ,      2  
+T:<0  W   U g g =   7=@          C   b  
+   <  F '8    R      f
+    q  P6    4 MN   T   - I      }   oZF  I&L=    : VC [5K    ^ 6g  :\.`'	  v  q<   5   > w l  8y    ]       [ F     K            
+  ^N  J*     ^ R  i O 3 +m#DX)K*5  ~  @- #4 V r7  W  s   7 Ah   9 7           }  ]4 < 8 A
+  >,`>j    6 %"1 mo   y  0. @+   Y l+ s G z /    q .\     )    [I       T v)! + s~F H|  a   -       ?   ~  MJ  d    &] jG    @n     p    &  ^      8   :      |    9.    L C f    & n S      8  .     /!    p      Yy 1 cX > fb 4@   n ~ ) X    lw     H9h 
+   )   >@ H  I P      % vt`   Nt,$[ ;h f         7 D   e      m m ? H  w   \ :  Mn *\    .c  D  ]  M:   *S }    (Z  ie "<l `      1    Y    H12  E B4J  N]h"J  st    l = b *C     t, <t    Mo4S  ,$ rW S      c\   ^      ~   k    ,  xN    &   d C  [     XM  L   6   F{R 4 !     ~  kPf  r  U   uB   c  ~  k  ( ?  X]    t"( B J:  $ ; i @  +h      Z  m. r    G     .     j!> T  G 0&  2b    P(  # |   < U        
+ `Xr =Xp P  3k 48@ GC  1 z  r      _ 26I _H  Q P#   ytX b _  K    lP   6< '    KmK ?  wM)  5d } 2        g :  F   "     1  Q  ^  *       8   2    j> r #  4 * /  >  w D  M,  & F        I K|  NW  ,g# /  p  v0  3   + i V   A    %   :  uwz  tC# +  !I) '[F{           ~1     p^  K , h  F= \      %  Q 1            V , !   5l /y ez   L {  d  H  (<I  sm 2   +& 1 e  SG       6   ) f  [ M -%    &  u*   A6bi\    t w?   /   J         Sy 6Jd mJ /   0     H H *  Cn     *  )  Q  @  + mmeOO   h Lm$      rx^    k   [ cQ j + i F   	  \}      I    :    gV zy F#L`         df    J QyR  N 5R    m  <;   +     / "V  .f6 B4   W    f
+D    =l +  H   ? pVn  c       E [     US
+Z HX    9;      Z  0U   "       M   ]  pT \F;Kw , Q>#    > !   L      r  sD8rw # q$  @  o  C 	 A '@< [ Nb; X3L  D  r 7   4              X <@B   B >q   l*_A-    G  k  {    Q.}  m4D: H HLX    e0 W| t .`    G   3c [ s  Q   K      l&z b[ 
+    h m.L n kS_: ,b   \ >"      puF4Ce    	    g  j l   Jc   E    P ,   c mnhw        y*  ]D     <w  4   8 *         6 &fj V<    LG[ T      	YK&x .>S  2      :      )t V o   Z      fv Uu[ I&o 1     LC   0  2   ;   S[04 ]{R 0    4j <  
+C .>r    y  \'9l O  #  s7 R.  4 a%  ] ^SZ       A   5;   <       !E        *   |rbD{       kt     z   g]   +     B     ?I    R{  qz eu      47z Z*E F   (     s  !    e    T)i  % g   J  i u  u MN  I ~      G   W  U     4     3  >Td   K        d8   ( `i_Q:# V j Jk  >   1       y X   i@ ; D  an        ;    X   q    :      P    {        ' V4bi   F  | .   NB              (     Qcp  5   w'        t    Z    }O   aB x Aq  0gr          1 Jb     n V   ~     N X       #  5o    Vl      68  J    .W   T  3KE n    6   $    P  db      	 0 w    /Hj  La x   t}a    D       QEZ   Z   ed4j 5HL` X;  W         %K   k    p]2    O   6   L   ]   [    *D%    	  c  &    &T  H 8    #$  { 8    0
+$Q  8   u e  k I   _ r    7   G  4     op  :  [D  !1~  8  Afj  3R  9 `}Oq  # 5?      A*09oA Xy X     $9     w
+ I   qL  a   P   -   AA     '  x      hy   T >  B K   l        [  GZF  t   F4g 6v am3  nk]   /$   b}  ]    U9c    96IZ   D  l cxz i;   2   ~s  /4 Ol  3J     pY  l   &   m  0   HMp2    j   K b - =    W     j    |   <|5  X    \H   & 2 &           9:LA    Z  SN  g  \ F K     ?L ym IJl    s )    xH   \  >   [   w %.C  ig%' |  \9   % l  ; $fR R`ji F f6 b :M   ;  A   E T    P   C    Q  7   y   K >   b  u      |P |   6F    Qj   cD       UoB A V  :D  V  ;         O  D   =  ^f   |NZ  { U,X ]H  H l t 8)    yP  ,' e $  A / vG U d8 4Qk     @ -6}7e?'*k z     w  Y  m% K  - h4    3  @J i   9    f  .[z  A  P   j6 !   B*e  S
+    yA           P  !     | =        Zj Dg *g ^  &M  EB   ; 7N     7H   /h~< e
+E     ]          k      `    A   g59  A +mdy>o Wh D    i   &h^	G    ! EhdE   m mNT   `kb  {  2o s  !  * 2s   f  . 4         ,M &  U<D  .   <       Fa     8    t      V o2mM'32    )      .E >  _  f    sw    2    >y  pq   | |     D ^ g >   Nv6:  <k t*k     A   % w 4     J     l]  0    . <    >x"g    ^  k s (e7     S h^,C S  ~    _   !ny  =CG  D D  OY  ^- +      s     }YU )    
++{ K +  .  <   |    ]6     ZO  X      K #ll   IM    ` [  8   Oj   -T ]  yc    J#  ) /      >9 f 9  G 	o    9~0 ]  n    % ?  Z(   # 35 ] QA k~  6  86  ) t~X D    4     Rp Q>~7
+   ad 9I     >  HUL    
+    7S %q  #a    o N  Q4 &A G ' U-     ]4  %     c w\yQ    wr}
+e vO j     j   Q   

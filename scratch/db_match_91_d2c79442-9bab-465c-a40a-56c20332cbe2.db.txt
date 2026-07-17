@@ -1,0 +1,39 @@
+"use client";       4
+0import React, { useRef, useState } from "react";   4
+0import { Volume2, VolumeX } from "lucide-react";       &
+"interface AudioOrchestratorProps {    
+   musicFile?: string;    
+   musicEnabled?: boolean;    
+ }       d
+`export default function AudioOrchestrator({ musicFile, musicEnabled }: AudioOrchestratorProps) {   >
+:  const [playingMusic, setPlayingMusic] = useState(false);   =
+9  const audioRef = useRef<HTMLAudioElement | null>(null);       3
+/  if (!musicEnabled || !musicFile) return null;       !
+   const toggleMusic = () => {   &
+"    if (!audioRef.current) return;    
+     if (playingMusic) {   #
+       audioRef.current.pause();    
+     } else {   2
+.      audioRef.current.play().catch(() => {});   	
+     }   '
+#    setPlayingMusic(!playingMusic);    
+   };        
+
+  return (   
+
+     <>   7
+3      <audio ref={audioRef} loop src={musicFile} />    
+      <button   !
+         onClick={toggleMusic}     
+          className="fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40 bg-white/90 text-[#FF8800] backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer select-none"    
+       >   J
+F        {playingMusic ? <Volume2 size={20} /> : <VolumeX size={20} />}    
+       </button>    
+     </>    
+   );    
+ }      BTfile:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/AudioOrchestrator.tsxX     HCreate AudioOrchestrator component to handle music loading and triggers.   [d0 1O     $      VSS 9    A* 7  >      Um 9 * $  Ut ^ 1* _ P G LND R<U - T    b #   p\ D* ] m2X AD \D o  vj   s)  _~        _             _  k  J ),ZnY[  1H  h F      0    l    Z\w   x    m   $ 0 fvm1   
+O     9   kq 57`  eU8   $" 4- * U  "^  = e9 pEq9 ,1    Y [%<D   !  +     x o     E8    k3fc  yX t    j7  %  b   hjI  @K       1  B kl     ]S Z,V_ A Y       ?   =   1     H  D    bJQl[kS q8     F   V N  /?|    O    a  Yx      X t1     k !      l 2   cUC#  Z ]+	`   X l V.[  _,U   -X    1 kx  4  < \     klN`  %hhl Zc   X   "Ra    cp   m1  yE '         Qx  O u 3     g: } P q    u k B m *]  s bU ^ +p     k 6   v   \s} xc7 \ ys a  ex     c     !  E  E ~ H   s              g f          ;      l6 7 .  K  %.  J    x  +   / ?/>  ]y V Y [.;               |  \ o3     %W    F<t  p          ~
+    g }  /` d  x*u    qrQ  2    H    E{  % q        Y :     8d I   c           \ y W       ^ + v N<      p  N         g s.   z w     Y   L ~ u           f W     F   ?      w   _    +q       Q      J4.e   (q hn  Z   \x    i  i   _         G         *\x  X        ]t n  
+ V   o    } <  >    7^ [o  g |
+  d >} y ~            < $   M        r" " R"9 N v       4   'G$ :     :<          V`    t       m : s        '  3      V\t    q  ; ~ 5    6` '    W    `   q    { w$    q   ah      `  A  |        ei8  R      z U+ cu   6    F   [     '   ^Kf  wfb  Y =b#  7      #          ^ _      ?      p   `  1 uw     + <         z  q W   W  =     ?  K     0 _=*  3LTn    c: O   iD k      H   x 7    7         '?      3Wa   1f        ?} 5  c )    {a > w; Pl6y ,  e          >    <        V   V m M        H	   R   M   ?n  ("   i Ztf$m"     b  -q   a            r	    Y 7 u   C      _o$     Z    Etw Y   &    y \       uuu      x  1 G  x    1d B z[R   } Q     k   %iY [ V  ? u              ~  8     ?h     f p       j  Wo mX  o 7.  N Xo} [    J,              4,y e     ?l,z    *u kR  3.    P[ T\^}  E     '   illDB  A z { >  k j  |      >   V 	> c X,         w  F   ~ ^ e+ S6   u ZQ  x " x   ( !" 7 )       jn+ K GD O  )1 s N    B  b i;                     j p  0cU?    0p     kq  w   	   F  E   ;    c  &      sq u7     GsW  V   wc  +t      M   R	    |  4     *D     !    q    [#      gfb  cq -7   n s  `   0 *   V f @   O   n  w=     K  E  ' /  u  ! [   1d     W\u;6 |Kh  R  "U    K        X;   ~  q  {_   ~    o  _   O         _ [o   Wt   {        = Y    _ E  `  & t  M&   _       6   {   _   |   	= D ")   \     ZW&G^" ' H  a        &   M7                S  oL Z      +. F L   }1  Zl  >8  ?  a#q I      =  a         O   F,Y]  C        eX  =      s(      "; i P{   -e     c #~   t      s0 m:    o      9K   O   c      F \z  ?<       Mq   F7   bW       c   ;    1  0  w<  } @  > G  G    5|# ~    8    X   [L  Qr 	       V A b"  C  ' 9       u @   l7m+        X   ' v F     }  F i (8    IDAT6; {  5       DL `=$ n K. 5    #  	v v
+ 9 w8 k[b     ;   ? ?    z        HZ ," )       UU6.                cOaQ<ad@_    G 7   u    ~ {8 {       9d           Q  _-0t  8  Gc   a   d|    o   |  _C  8  <

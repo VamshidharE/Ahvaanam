@@ -1,0 +1,189 @@
+use client";
+2: 
+3: import { useEffect, useState } from "react";
+4: import { ToggleLeft, ToggleRight } from "lucide-react";
+5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+6: import { getWeddingComposition } from "@/lib/composition/templates";
+7: import { useInvitationData } from "../../context/InvitationDataContext";
+8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+9: 
+10: // --- TEMPLATE SPECIFIC PARTICLES ---
+11: import React, { useRef }
+------------------------
+
+
+Log: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-406.log
+</SYSTEM_MESSAGE> @: yua3fjsz      "
+(bot-9ca8b032-d61b-4c47-86c3-c02d184cd1d9     I will write a script to filter the new    ) {    
+     const line = lines[i];   
+	    try {   '
+#      const obj = JSON.parse(line);   
+
+          `
+\      // Look for mentions of TargetFile: components/composition/ or tool calls targeting it     
+        const hasComposition = JSON.stringify(obj).toLowerCase().includes('components/composition') || JSON.stringify(obj).toLowerCase().includes('components\\composition');   
+
+           
+       if (hasComposition) {   N
+J      const hasWord = JSON.stringify(obj).includes('CompositionRenderer');    
+       if (hasWord) {    
+         matchCount++;   u
+q        console.log(`Match ${matchCount}: step_index=${obj.step_index}, source=${obj.source}, type=${obj.type}`);   ,
+(        // Let's print out what is there   !
+         if (obj.tool_calls) {   0
+,          for (const tc of obj.tool_calls) {   7
+3            console.log(`  Tool call: ${tc.name}`);   2
+.            console.log(`  Tool: ${tc.name}`);    
+             if (tc.args) {   G
+C              console.log(`    TargetFile: ${tc.args.TargetFile}`);   O
+K              let code = tc.args.CodeContent || tc.args.ReplacementContent;    
+               if (code) {   C
+?                console.log(`    Code length: ${code.length}`);   G
+C                const fileBase = path.basename(tc.args.TargetFile);   r
+n                fs.writeFileSync(`scratch/restored_composition_${fileBase}_step_${obj.step_index}.txt`, code);   f
+b                fs.writeFileSync(`scratch/composition_restored_step_${obj.step_index}.txt`, code);    
+               }    
+            }    
+           }   
+	        }   G
+C        if (obj.content && obj.content.includes('write_to_file')) {   B
+>          console.log("  Contains write_to_file in content!");    
+         if (obj.content) {   h
+d          console.log(`  Content Preview: ${obj.content.substring(0, 150).replace(/\n/g, ' ')}...`);   
+	        }    
+       }    
+     } catch (e) {}    
+   }   8
+4  console.log(`Done. Found ${matchCount} matches.`);    
+ } catch (err) {   #
+   console.error('Error:', err);    
+ }      B>file:///c:/Users/Admin/Ahvaanam/scratch/extract_composition.jsR  const fs = require('fs');
+const path = require('path');
+
+const logPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\.system_generated\\logs\\transcript.jsonl';
+
+try {
+  const content = fs.readFileSync(logPath, 'utf8');
+  const lines = content.split('\n').filter(l => l.trim());
+  console.log(`Read ${lines.length} lines from transcript.jsonl.`);
+
+  let matchCount = 0;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    try {
+      const obj = JSON.parse(line);
+      
+      // Look for mentions of TargetFile: components/composition/ or tool calls targeting it
+      const hasComposition = JSON.stringify(obj).toLowerCase().includes('components/composition') || JSON.stringify(obj).toLowerCase().includes('components\\composition');
+      
+      if (hasComposition) {
+        matchCount++;
+        console.log(`Match ${matchCount}: step_index=${obj.step_index}, source=${obj.source}, type=${obj.type}`);
+        // Let's print out what is there
+        if (obj.tool_calls) {
+          for (const tc of obj.tool_calls) {
+            console.log(`  Tool call: ${tc.name}`);
+            if (tc.args) {
+              console.log(`    TargetFile: ${tc.args.TargetFile}`);
+              let code = tc.args.CodeContent || tc.args.ReplacementContent;
+              if (code) {
+                console.log(`    Code length: ${code.length}`);
+                const fileBase = path.basename(tc.args.TargetFile);
+                fs.writeFileSync(`scratch/restored_composition_${fileBase}_step_${obj.step_index}.txt`, code);
+              }
+            }
+          }
+        }
+        if (obj.content && obj.content.includes('write_to_file')) {
+          console.log("  Contains write_to_file in content!");
+        }
+      }
+    } catch (e) {}
+  }
+  console.log(`Done. Found ${matchCount} matches.`);
+} catch (err) {
+  console.error('Error:', err);
+}
+    MSearch logs of 011e974d for CompositionRenderer occurrences to recover files.     L     5 a    t    -]` x j[  x  1~   } G wF   o      T   R    9m   } p	D6     [ >    G   "]( 3
+ 0^ !l   q  4jgX    k        2~ z,)    r ` o)X   w   \p   { I"    -b  8j Pt   eE @ h  `1 iT 3  \  ch     ? g      <V.6,N1 U!z $"  Z 7I <     -  e  1  >   -J 6        t|    lb'   2 Tp< UP   U?DI  w      ~  Z cu    b:   ])j1 4     @ $       P@t^  &    B W      vx _ ;       y :      F  f :     z          "g   L 	  D          < I  E  U  W2@b  T/  ]P`
+    u-     > F  e     ]   gJ  Y   a( { +^  z  J( se l  c$l     0	6  g:C   0b& N  g   U        2     X  :   jK   p8  e  t  :^    o  7      3 C Fa } [1  u  UQO e  2Y  Xp3*g! 7     x   ?`  v~.      k     L 0    |{x	@     ^8         -e   4b  A1e    ':{{    B     0 t  $2q{X  h2   Ys E    #  .v  A 6 | T n  R  1 2Jo  i  &   U U -po    R  r  Y  aM H      U      m c   v    [   ^z ]    ;h _   y+/k!s !  g~t  0 T .  ,Lw  t %   sJ   {! O   O\. ^ <       w           %I eK  _o  5[   h       S&  _]ZW -  ?B  #  s`e  g A i? 8]  D	   0  ]   <   V        F   T;/h;  t   _ )     Q    w
+td  (z  , i  D#H \ y f        eQg A )  C.   K .MT        =   ~d    @  `                     H  ?       /   R fa 8  a    KT u   %        p$U}  ! 
+@  Al  2 Y      v V  @v z   a	 '  a g ,   ^Z`k/  U       X    Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2            :            B           HX  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                       3
+                
+                
+               H  OUpdating script to search for CompositionRenderer in previous conversation logs   Write extract_composition script              R 2
+     
+  const fs = require('fs');
+
+const logPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\.system_generated\\logs\\transcript_full.jsonl';
+
+try {
+  const content = fs.readFileSync(logPath, 'utf8');
+  const lines = content.split('\n').filter(l => l.trim());
+  console.log(`Read ${lines.length} lines.`);
+
+  let matchCount = 0;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    try {
+      const obj = JSON.parse(line);
+      const hasWord = JSON.stringify(obj).includes('CompositionRenderer');
+      if (hasWord) {
+        matchCount++;
+        console.log(`Match ${matchCount}: step_index=${obj.step_index}, source=${obj.source}, type=${obj.type}`);
+        if (obj.tool_calls) {
+          for (const tc of obj.tool_calls) {
+            console.log(`  Tool: ${tc.name}`);
+            if (tc.args) {
+              console.log(`    TargetFile: ${tc.args.TargetFile}`);
+              let code = tc.args.CodeContent || tc.args.ReplacementContent;
+              if (code) {
+                console.log(`    Code length: ${code.length}`);
+                fs.writeFileSync(`scratch/composition_restored_step_${obj.step_index}.txt`, code);
+              }
+            }
+          }
+        }
+        if (obj.content) {
+          console.log(`  Content Preview: ${obj.content.substring(0, 150).replace(/\n/g, ' ')}...`);
+        }
+      }
+    } catch (e) {}
+  }
+  console.log(`Done. Found ${matchCount} matches.`);
+} catch (err) {
+  console.error('Error:', err);
+}
+   *>file:///c:/Users/Admin/Ahvaanam/scratch/extract_composition.js2A
+ file:///c:/Users/Admin/Ahvaanam  scratch/extract_composition.js    %
+ %    /     
+ const fs = require('fs');   !
+ const path = require('path');         
+  const logPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\.system_generated\\logs\\transcript.jsonl';         
+  const logPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\.system_generated\\logs\\transcript_full.jsonl';       	
+ try {   7
+3  const content = fs.readFileSync(logPath, 'utf8');   >
+:  const lines = content.split('\n').filter(l => l.trim());   G
+C  console.log(`Read ${lines.length} lines from transcript.jsonl.`);   1
+-  console.log(`Read ${lines.length} lines.`);        
+   let matchCount = 0;   .
+*  for (let i = 0; i < lines.length; i++    9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                       3
+                
+                
+               H  OUpdating script to search for CompositionRenderer in previous conversation logs   Write extract_composition script                  * *
+               " '
+ ywjwyadv write_to_file   {"CodeContent":"const fs = require('fs');\n\nconst logPath = 'C:\\\\Users\\\\Admin\\\\.gemini\\\\antigravity\\\\brain\\\\011e974d-4561-41c5-89e8-12ee65991b97\\\\.system_generated\\\\logs\\\\transcript_full.jsonl';\n\ntry {\n  const content = fs.readFileSync(logPath, 'utf8');\n  const lines = content.split('\\n').filter(l =\u003e l.trim());\n  console.log(`Read ${lines.length} lines.`);\n\n  let matchCount = 0;\n  for (let i = 0; i \u003c lines.length; i++) {\n    const line = lines[i];\n    try {\n      const obj = JSON.parse(line);\n      const hasWord = JSON.stringify(obj).includes('CompositionRenderer');\n      if (hasWord) {\n        matchCount++;\n        console.log(`Match ${matchCount}: step_index=${obj.step_index}, source=${obj.source}, type=${obj.type}`);\n        if (obj.tool_calls) {\n          for (const tc of obj.tool_calls) {\n            console.log(`  Tool: ${tc.name}`);\n            if (tc.args) {\n              console.log(`    TargetFile: ${tc.args.TargetFile}`);\n              let code = tc.args.CodeContent || tc.args.ReplacementContent;\n              if (code) {\n                console.log(`    Code length: ${code.length}`);\n                fs.writeFileSync(`scratch/composition_restored_step_${obj.step_index}.txt`, code);\n              }\n            }\n          }\n        }\n        if (obj.content) {\n          console.log(`  Content Preview: ${obj.content.substring(0, 150).replace(/\\n/g, ' ')}...`);\n        }\n      }\n    } catch (e) {}\n  }\n  console.log(`Done. Found ${matchCount} matches.`);\n} catch (err) {\n  console.error('Error:', err);\n}\n","Description":"Search logs of 011e974d for CompositionRenderer occurrences to recover files.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\scratch\\extract_composition.js","toolAction":"Write extract_composition script","toolSummary":"Updating script to search for CompositionRenderer in previous conversation logs"}:     
+    M2   } (a7 A        Gc  u   } 'qW &`p   X  .     PSOyC^ Z  '    J zf   w   Fq zo     ) p     e5   &  Q$ HZ % a ]l     b               _m    +f\5T     #   g&          Uy  UC     `   iX . |    ~   +  (   ]  I   5 + ^ @U   X  2w Es 0|h   k 7O( =   V  vw         mV  nq  K  g    -   2&f  u z5   c#   pC ) :  #F    r } u*O %D   U  X  `L   a$q   z ^   ~l  B yK M    r5v  *@I     p {I    sS     h0
+   @ pw 2   T   v  dO :     AX        \*   ~  ).    ,:2] N  )    C xw M   V}  q_ :o% ,eMU b".       7   f L Z z      q = D >   Z!{W M9   Q  I     ? f    R7  N     8  > 88b2         
+Ks3h |C: n     l _ _           i$  R / # $p *p  [  FE    _Gs    fV  `I -  t  d N >W  Z Q D    t H &.h 0  s    ~( Y4O ~*x    7   @   i     g 31  v    v    ' U  .  "   #nV"p * 8y    ".  ^NDY  Z c        %yWL   8*.kc d| H         M HG U:~    % g zo   1  6  5g B         P` 9     B    f)^\  ,  P  s       =         	E8   U	PB.   IO !%H?&     &,   T?     :
+ s     d   j  $ X I6 1  NJ    b   K  x   5q     `   {    # I        2Y  \   w   @   Y 3xe@ P    :   -      vU    9  {x  aH3  m `       f <     2t       sZ 0 -     m XL    VU?           5a PE     n   F  y  Q    D     z;yA  y    i   k     R,    .     4   T   1  l  b   b      B   t    ej H C  #   " #   Jk 8?*:  k F2    <w  ~   	 t   c0  *"  s1  	  U ,u[ W   {     J             TgG    |   : R%c47  ^   wb/[      `4 
+ Ce      +SH ; 5     Y  ;S  K      >u  8  34  / '` _C   xl   ^ v  ( _`jH   w i U 2  o@Y{v   N        t  ?I  - B   1  8 )
+7n\eP  .$|S  S       Wx       ( #   T  h t jd7Z     p   =     ~|(e P   % Ez  p     >          m8Y    7b
+   3O	     R%   ~  )   Z^   X g       + $    3    { q c   O6    ki  Y U   @in j"	       9                 ` `o       Y7 '     eYEG  rW=   k  CCb    C  4y!  F K 3    A  V( .	  >   J=   / * L5P      s  *V       FTO  5   &   O  R      tent;\n              if (code) {\n                console.log(`    Code length: ${code.length}`);\n                fs.writeFileSync(`scratch/composition_restored_step_${obj.step_index}.txt`, code);\n              }\n            }\n          }\n        }\n        if (obj.content) {\n          console.log(`  Content Preview: ${obj.content.substring(0, 150).replace(/\\n/g, ' ')}...`);\n        }\n      }\n    } catch (e) {}\n  }\n  console.log(`Done. Found ${matchCount} matches.`);\n} catch (err) {\n  console.error('Error:', err);\n}\n","Description":"Search logs of 011e974d for CompositionRenderer occurrences to recover files.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\scratch\\extract_composition.js","toolAction":"Write extract_composition script","toolSummary":"Updating script to search for CompositionRenderer in previous conversation logs"}:     
+    M2   } (a7 A        Gc  u   } 'qW &`p   X  .     PSOyC^ Z  '    J zf   w   Fq zo     ) p     e5   &  Q$ HZ % a ]l     b               _m    +f\5T     #   g&          Uy  UC     `   iX . |    ~   +  (   ]  I   5 + ^ @U   X  2w Es 0|h   k 7O( =   V  vw         mV  nq  K  g    -   2&f  u z5   c#   pC ) :  #F    r } u*O %D   U  X  `L   a$q   z ^   ~l  B yK M    r5v  *@I     p {I    sS     h0
+   @ pw 2   T   v  dO :     AX        \*   ~  ).    ,:2] N  )    C xw M   V}  q_ :o% ,eMU b".       7   f L Z z      q = D >   Z!{W M9   Q  I     ? f    R7  N     8  > 88b2         
+Ks3h |C: n     l _ _           i$  R / # $p *p  [  FE    _Gs    fV  `I -  t  d N >W  Z Q D    t H &.h 0  s    ~( Y4O ~*x    7   @   i     g 31  v    v    ' U  .  "   #nV"p * 8y    ".  ^NDY  Z c        %yWL   8*.kc d| H         M HG U:~    % g zo   1  6  5g B         P` 9     B    f)^\  ,  P  s       =         	E8   U	PB.   IO !%H?&     &,   T?     :
+ s     d   j  $ X I6 1  NJ    b   K  x   5q     `   {    # I        2Y  \   w   @   Y 3xe@ P    :   -      vU    9  {x  

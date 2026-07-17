@@ -1,0 +1,253 @@
+\"great-vibes\";\n    surnameColor?: string;\n  };\n  themeId?: string;\n  layoutId?: string;\n}\n\nexport default function HeroSection({ properties, bindings, themeId, layoutId }: HeroSectionProps) {\n  const {\n    showScrollIndicator = true,\n    overlayOpacity = 0.45,\n    contentAlign = \"center\",\n    minHeight = \"85vh\",\n  } = properties;\n\n  const {\n    title = \"\",\n    subtitle = \"\",\n    welcomeMessage = \"\",\n    heroImage = \"\",\n    ctaText = \"\",\n    age data using 7 workers ...
+  Generating static pages using 7 workers (0/28) ...
+  Generating static pages using 7 workers (7/28) 
+  Generating static pages using 7 workers (14/28) 
+  Generating static pages using 7 workers (21/28) 
+    Generating static pages using 7 workers (28/28) in 822ms
+  Finalizing page optimization ...
+
+Route (app)
+        /
+        /_not-found
+        /about
+       /admin/[id]
+       /api/auth/login
+       /api/auth/logout
+       /api/invitation
+       /api/invitation/[id]
+       /api/invitation/[id]/analytics
+       /api/invitation/[id]/edit
+       /api/invitation/[id]/pay
+       /api/invitation/[id]/publish
+       /api/invitation/[id]/rsvp
+       /api/invitation/[id]/view
+       /api/upload
+       /auth/callback
+       /checkout/[id]
+        /contact
+        /create
+        /create/details
+        /create/theme
+        /dashboard
+       /dashboard/analytics/[id]
+        /demo
+        /forgot-password
+        /how-it-works
+       /invites/[id]
+        /login
+        /logout
+        /portfolio
+        /pricing
+        /privacy
+        /reset-password
+        /services
+        /signup
+        /templates
+       /templates/[slug]
+        /terms
+
+
+   Proxy (Middleware)
+
+     (Static)   prerendered as static content
+    (Dynamic)  server-rendered on demand
+
+
+
+Log: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-907.log  task_notification"  
+$5e031e1e-7ed4-4779-9105-c21267f81720 $d2c79442-9bab-465c-a40a-56c20332cbe2 -d2c79442-9bab-465c-a40a-56c20332cbe2/task-907( 2             R>
+<Running Next.js production build verification check finishedb  
+  
+$d2c79442-9bab-465c-a40a-56c20332cbe2      
+ e74cmam8  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running Next.js production build verification check"}:     
+    M2 y v  v WO s  9tz n     o   TIl      z  9         7   z  k[y)   E     U X  Z   V   &   G E -4   pr  0. <~  k      E)  4       V  H@    0 w  5    > .  5    TD       =\ ` (   +  G  ,f {Jb     km :k  G   AI    U     -&   D<sk  UmDl    l (      jH_   <    ak % W V,   *?+ )  b  -T - ( Y   >     f     E         s%V         z#;J run_command"  Task id "d2c79442-9bab-465c-a40a-56c20332cbe2/task-907" finished with result:
+
+				The command completed successfully.
+				Output:
+				
+> ahvaanam@0.1.0 build
+> next build
+
+    Next.js 16.2.9 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+    Compiled successfully in 13.2s
+  Running TypeScript ...
+  Finished TypeScript in 14.3s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/28) ...
+  Generating static pages using 7 workers (7/28) 
+  Generating static pages using 7 workers (14/28) 
+  Generating static pages using 7 workers (21/28) 
+    Generating static pages using 7 workers (28/28) in 822ms
+  Finalizing page optimization ...
+
+Route (app)
+        /
+        /_not-found
+        /about
+       /admin/[id]
+       /api/auth/login
+       /api/auth/logout
+       /api/invitation
+       /api/invitation/[id]
+       /api/invitation/[id]/analytics
+       /api/invitation/[id]/edit
+       /api/invitation/[id]/pay
+       /api/invitation/[id]/publish
+       /api/invitation/[id]/rsvp
+       /api/invitation/[id]/view
+       /api/upload
+       /auth/callback
+       /checkout/[id]
+        /contact
+        /create
+        /create/details
+        /create/theme
+        /dashboard
+       /dashboard/analytics/[id]
+        /demo
+        /forgot-password
+        /how-it-works
+       /invites/[id]
+        /login
+        /logout
+        /portfolio
+        /pricing
+        /privacy
+        /reset-password
+        /services
+        /signup
+        /templates
+       /templates/[slug]
+        /terms
+
+
+   Proxy (Middleware)
+
+     (Static)   prerendered as static content
+    (Dynamic)  server-rendered on demand
+
+
+
+Log: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-907.log    sk  UmDl    l (      jH_   <    ak % W V,   *?+ )  b  -T - ( Y   >     f     E         s%V         z#;J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             B             X  b$a8609067-3f16-47d7-8743-5b673209cfc2j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    0  H
+                 
+  	              
+                 
+                   3Running Next.js production build verification check   Test Next.js build                 
+ 
+ command npm run build  
+-d2c79442-9bab-465c-a40a-56c20332cbe2/task-907 zfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-907.log"npm run build(     *  
+           ]  "  
+ e74cmam8  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running Next.js production build verification check"}:     
+    M2 y v  v WO s  9tz n     o   TIl      z  9         7   z  k[y)   E     U X  Z   V   &   G E -4   pr  0. <~  k      E)  4       V  H@    0 w  5    > .  5    TD       =\ ` (   +  G  ,f {Jb     km :k  G   AI    U     -&   D<sk  UmDl    l (      jH_   <    ak % W V,   *?+ )  b  -T - ( Y   >     f     E         s%V         z#;J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             B             X  b$a8609067-3f16-47d7-8743-5b673209cfc2j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    0  H
+                 
+  	              
+                 
+                   3Running Next.js production build verification check   Test Next.js build                 <  9
+ 
+ command npm run build  npm run  * Test Next.js build     
+ 
+ command npm run build   	  
+<  9
+ 
+ command npm run build  npm run  * Test Next.js build B
+$e814890c-6b84-44e9-9783-edb10a1bb4dd        " 
+ command(npm run) 	  
+-d2c79442-9bab-465c-a40a-56c20332cbe2/task-907 zfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-907.log"npm run build(      c:\Users\Admin\Ahvaanam0 ` N    
+  
+> ahvaanam@0.1.0 build
+> next build
+
+    Next.js 16.2.9 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+    Compiled successfully in 13.2s
+  Running TypeScript ...
+  Finished TypeScript in 14.3s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/28) ...
+  Generating static pages using 7 workers (7/28) 
+  Generating static pages using 7 workers (14/28) 
+  Generating static pages using 7 workers (21/28) 
+    Generating static pages using 7 workers (28/28) in 822ms
+  Finalizing page optimization ...
+
+Route (app)
+        /
+        /_not-found
+        /about
+       /admin/[id]
+       /api/auth/login
+       /api/auth/logout
+       /api/invitation
+       /api/invitation/[id]
+       /api/invitation/[id]/analytics
+       /api/invitation/[id]/edit
+       /api/invitation/[id]/pay
+       /api/invitation/[id]/publish
+       /api/invitation/[id]/rsvp
+       /api/invitation/[id]/view
+       /api/upload
+       /auth/callback
+       /checkout/[id]
+        /contact
+        /create
+        /create/details
+        /create/theme
+        /dashboard
+       /dashboard/analytics/[id]
+        /demo
+        /forgot-password
+        /how-it-works
+       /invites/[id]
+        /login
+        /logout
+        /portfolio
+        /pricing
+        /privacy
+        /reset-password
+        /services
+        /signup
+        /templates
+       /templates/[slug]
+        /terms
+
+
+   Proxy (Middleware)
+
+     (Static)   prerendered as static content
+    (Dynamic)  server-rendered on demand
+
+  npm run build  npm run build    
+  
+> ahvaanam@0.1.0 build
+> next build
+
+    Next.js 16.2.9 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+                                                                                                                                        .       4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+               2           p:             B             JP         (  0 B!
+	sessionID  -3750763034362895579H P  Z aIZSasmdG_zGjuMPv5znkQsX  b$ecf2dfb7-b64e-479f-b9ff-fff55199f93ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+               p
+                                    *  
+               2           p:             B             JP         (  0 B!
+	sessionID  -3750763034362895579H P  Z aIZSasmdG_zGjuMPv5znkQsX  b$ecf2dfb7-b64e-479f-b9ff-fff55199f93ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+               p
+                                    
+FI will update `task.md` to check off all our completed category tasks.2(bot-9cd33a86-8205-43bd-b90b-3b0db38950ea:  
+ o9aitiou write_to_file  	{"ArtifactMetadata":{"RequestFeedback":false,"Summary":"Completed task checklist for Housewarming Category Implementation.","UserFacing":false},"CodeContent":"# Housewarming Category Tasks\n\n- `[x]` Enable \"housewarming\" in `data/categories/categories.ts`\n- `[x]` Create House Details component (`components/sections/houseDetails/`) and register it in component registry\n- `[x]` Register 10 premium themes in Theme Registry (`lib/theme/registry.ts`) and Template Registry (`lib/templates/registry.ts`)\n- `[x]` Define `getHousewarmingComposition` mapper in `lib/composition/templates.ts`\n- `[x]` Create HousewarmingPremiumLayout proxy at `components/templates/housewarming-premium/Layout.tsx`\n- `[x]` Map the 10 housewarming themes in guest invites router `app/invites/[id]/page.tsx`\n- `[x]` Configure English and Telugu sample content inside default config loader `lib/defaults/housewarming.ts`\n- `[x]` Run TypeScript and build compilation verification check\n","Description":"Update task checklist to complete for Housewarming category implementation","Overwrite":true,"TargetFile":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\task.md","toolAction":"Update task.md","toolSummary":"Checking off tasks in task.md"}:     
+    M2 k  k SN    ?a l+      nn[q  36 u   j M]N    [        R        &   #  ro 8  PM   '    |       F wW 
+~f f bMk    ~  mH      %  v U'    Jwrite_to_fileBFI will update `task.md` to check off all our completed category tasks.`        	  <     8  
+               "  
+ o9aitiou write_to_file  	{"ArtifactMetadata":{"RequestFeedback":false,"Summary":"Completed task checklist for Housewarming Category Implementation.","UserFacing":false},"CodeContent":"# Housewarming Category Tasks\n\n- `[x]` Enable \"housewarming\" in `data/categories/categories.ts`\n- `[x]` Create House Details component (`components/sections/houseDetails/`) and register it in component registry\n- `[x]` Register 10 premiu

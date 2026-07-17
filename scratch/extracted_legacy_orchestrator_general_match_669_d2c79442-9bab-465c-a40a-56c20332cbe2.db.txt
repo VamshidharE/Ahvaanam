@@ -1,0 +1,171 @@
+sName="text-[#C49B27]" />   ,
+(            <span>Composer Engine</span>    
+           </button>    
+         </div>    
+       </div>   
+
+     );    
+   }        
+
+  return (   
+
+     <>    
+       <LegacyOrchestrator    
+         themeId="${dirName}"   %
+!        onBackToHub={onBackToHub}   [
+W        particlesComponent={${particleName || `${dirName.replace(/-/g, '')}Particles`}}   '
+#        themeBgClass="bg-[#FAF9F6]"   5
+1        loadingTitle="${displayTitle} Invitation"   .
+*        loadingSubtitle="Celebrating Love"    
+       />   k
+g      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 select-none pointer-events-auto">    
+         <button   ,
+(          onClick={handleToggleRenderer}     
+            className="flex items-center gap-2 px-4 py-2.5 bg-black/60 hover:bg-black/80 backdrop-blur-md text-white rounded-full shadow-lg border border-purple-500/20 text-[10px] font-bold uppercase tracking-[1px] transition-all cursor-pointer"   ,
+(          title="Switch Renderer Engine"   
+	        >   @
+<          <ToggleLeft size={16} className="text-white/60" />   (
+$          <span>Legacy Switch</span>    
+         </button>    
+       </div>    
+     </>    
+   );    
+ }    
+ `;       6
+2  fs.writeFileSync(layoutPath, cleanCode, 'utf8');   @
+<  console.log(`Successfully refactored ${dirName} layout!`);    
+ });      B:file:///c:/Users/Admin/Ahvaanam/scratch/cleanup-layouts.jsX     9Create script to clean template layouts programmatically.     $  $                           k              6   
+           %  2             :             B             JO         (  	0 B!
+	sessionID  -3750763034362895579HMPfZ BY9SaqnlBNKbjuMP3oSu6AYX  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+           %  2             :             B             JO         (  	0 B!
+	sessionID  -3750763034362895579HMPfZ BY9SaqnlBNKbjuMP3oSu6AYX  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+  I will execute the TypeScript dry-run verification to confirm that our new central legacy orchestrator matches the imports and shapes of all template layout wrappers.2(bot-b6c23862-ebe9-4cf4-8b21-6d36033cee2c:  
+ nol34jbm  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript validation check on thin templates layout refactoring changes"}:     
+    M2   W6    A+  rXG   O, 9Ta  \   [U$ i h h \% !  [!wa     A & +  ad     h  6 l s. l Y  '-y   i  ^TS j 
+   {D   q W        1u      R  8KR'   z ^F R  e{    T2     G p       Eb} t2     l    Q8 # Y Z % 03   5^   G  f"    o  iLX"ru6      Q   m  `    T _    > ,V      A  CH   o   : k  o - \  T   )   M E ] P  qa k z g \{!KE       	mGxJ >       G h : B  
+ } g  .   =  [  t f B     r     ar'      2      Ir _ l. 6 5O  Cb  i    H? &DT L FPJ run_commandB  I will execute the TypeScript dry-run verification to confirm that our new central legacy orchestrator matches the imports and shapes of all template layout wrappers.`        	        4  
+               "  
+ nol34jbm  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript validation check on thin templates layout refactoring changes"}:     
+    M2   W6    A+  rXG   O, 9Ta  \   [U$ i h h \% !  [!wa     A & +  ad     h  6 l s. l Y  '-y   i  ^TS j 
+   {D   q W        1u      R  8KR'   z ^F R  e{    T2     G p       Eb} t2     l    Q8 # Y Z % 03   5^   G  f"    o  iLX"ru6      Q   m  `    T _    > ,V      A  CH   o   : k  o - \  T   )   M E ] P  qa k z g \{!KE       	mGxJ >       G h : B  
+ } g  .   =  [  t f B     r     ar'      2      Ir _ l. 6 5O  Cb  i    H? &DT L FPJ run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    8   
+                   PRunning TypeScript validation check on thin templates layout refactoring changes   Verify types safety    *  
+               "  
+ nol34jbm  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript validation check on thin templates layout refactoring changes"}:     
+    M2   W6    A+  rXG   O, 9Ta  \   [U$ i h h \% !  [!wa     A & +  ad     h  6 l s. l Y  '-y   i  ^TS j 
+   {D   q W        1u      R  8KR'   z ^F R  e{    T2     G p       Eb} t2     l    Q8 # Y Z % 03   5^   G  f"    o  iLX"ru6      Q   m  `    T _    > ,V      A  CH   o   : k  o - \  T   )   M E ] P  qa k z g \{!KE       	mGxJ >       G h : B  
+ } g  .   =  [  t f B     r     ar'      2      Ir _ l. 6 5O  Cb  i    H? &DT L FPJ run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    8   
+                   PRunning TypeScript validation check on thin templates layout refactoring changes   Verify types safety  D  c:\Users\Admin\AhvaanamX ` '   npx tsc --noEmit   npx tsc --noEmit     =  =                                                                                                                                                                                                                                                    !        ~     <   
+               2             X  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+               2             X  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     
+oI have launched the type-checking task in the background. I will pause tool calls now and let it finish checks ~        ~ N    0   
+               "  
+ nol34jbm  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript validation check on thin templates layout refactoring changes"}:     
+    M2   W6    A+  r 7        : N    f   
+               "  
+ nol34jbm  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript validation check on thin templates layout refactoring changes"}:     
+    M2   W6    A+  rXG   O, 9Ta  \   [U$ i h h \% !  [!wa     A & +  ad     h  6 l s. l Y  '-y   i  ^TS j 
+   {D   q W        1u      R  8KR'   z ^F R  e{    T2     G p       Eb} t2     l    Q8 # Y Z % 03   5^   G  f"    o  iLX"ru6      Q   m  `    T _    > ,V      A  CH   o   : k  o - \  T   )   M E ] P  qa k z g \{!KE       	mGxJ >       G h : B  
+ } g  .   =  [  t f B     r     ar'      2      Ir _ l. 6 5O  Cb  i    H? &DT L FPJ run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             B           IX  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    8  G
+                 
+  	              
+                 
+               I  PRunning TypeScript validation check on thin templates layout refactoring changes   Verify types safety                 
+ 
+ command  npx tsc --noEmit  
+.d2c79442-9bab-465c-a40a-56c20332cbe2/task-1173 {file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1173.log" npx tsc --noEmit(     * 	
+               "  
+ nol34jbm  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript validation check on thin templates layout refactoring changes"}:     
+    M2   W6    A+  rXG   O, 9Ta  \   [U$ i h h \% !  [!wa     A & +  ad     h  6 l s. l Y  '-y   i  ^TS j 
+   {D   q W        1u      R  8KR'   z ^F R  e{    T2     G p       Eb} t2     l    Q8 # Y Z % 03   5^   G  f"    o  iLX"ru6      Q   m  `    T _    > ,V      A  CH   o   : k  o - \  T   )   M E ] P  qa k z g \{!KE       	mGxJ >       G h : B  
+ } g  .   =  [  t f B     r     ar'      2      Ir _ l. 6 5O  Cb  i    H? &DT L FPJ run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             B           IX  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    8  G
+                 
+  	              
+                 
+               I  PRunning TypeScript validation check on thin templates layout refactoring changes   Verify types safety                 <  9
+ 
+ command  npx tsc --noEmit  npx  * Verify types safety  !  
+ 
+ command  npx tsc --noEmit   	~
+<  9
+ 
+ command  npx tsc --noEmit  npx  * Verify types safety >
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	     " 
+ command(npx) 	  
+.d2c79442-9bab-465c-a40a-56c20332cbe2/task-1173 {file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1173.l        nd(npx)
+ command(docker ps)
+6write_file(C:\Users\Admin\Ahvaanam\supabase_setup.sql)
+;write_file(C:\Users\Admin\Ahvaanam\app\auth\lockActions.ts)
+-write_file(C:\Users\Admin\Ahvaanam\lib\db.ts)
+ command(Select-String)
+ command(Select-String)
+<write_file(C:\Users\Admin\Ahvaanam\app\auth\adminActions.ts)
+  command(Select-String -Path \(Get-ChildItem -Path "app","components" -Filter "\*\.tsx" -Recurse -ErrorAction SilentlyContinue \| Select-Object -ExpandProperty FullName\) -Pattern "Celebrate Every")
+bcommand(Get-ChildItem -Path "app" -Recurse -ErrorAction SilentlyContinue | Select-Object FullName)
+  command(Select-String -Path \(Get-ChildItem -Path "app","components" -Filter "\*\.tsx" -Recurse -ErrorAction SilentlyContinue \| Select-Object -ExpandProperty FullName\) -Pattern "Every Event Deserves")
+  command(node "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\copy_categories\.js")
+  command(Select-String -Path \(Get-ChildItem -Path "app","components" -Filter "\*\.tsx" -Recurse -ErrorAction SilentlyContinue \| Select-Object -ExpandProperty FullName\) -Pattern "hello@", "8688", "contact@", "location", "address")
+  command(Get-ChildItem -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97" -Filter "*1783*" -Recurse -ErrorAction SilentlyContinue | Select-Object FullName)
+:command(python -c "import PIL; print\(PIL\.__version__\)")
+~command(python "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\remove_bg\.py")
+ command(Select-String)
+ command(Select-String)
+ command(Select-String)
+ command(Select-String)
+ command(Select-String)
+ command(Select-String)
+ command(Select-String)
+  command(Get-ChildItem -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97" -Filter "*.png" -Recurse -ErrorAction SilentlyContinue | Select-Object FullName)
+~command(python "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\remove_bg\.py")
+ command(Select-String)
+ command(Select-String)
+ command(Select-String)
+~command(node "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\check_admin\.js")
+3write_file(C:\Users\Admin\Ahvaanam\scratch_diag.js)
+ command(node scratch_diag\.js)
+ command(Remove-Item)
+ command(Select-String)
+ command(Select-String)
+  command(Get-ChildItem -Path C:\Users\Admin\Ahvaanam -Filter "*.tsx" -Recurse | Select-String -Pattern "onAuthStateChange", "push\(")
+  command(Get-ChildItem -Path C:\Users\Admin\Ahvaanam -Filter "*.ts" -Recurse | Select-String -Pattern "onAuthStateChange", "push\(")
+  command(Get-ChildItem -Path C:\Users\Admin\Ahvaanam\app, C:\Users\Admin\Ahvaanam\components -Filter "*.tsx" -Recurse | Select-String -Pattern "push\(")
+ucommand(Get-ChildItem -Path C:\Users\Admin\Ahvaanam\app -Filter "*.tsx" -Recurse | Select-String -Pattern "redirect")
+  command(Get-ChildItem -Path C:\Users\Admin\Ahvaanam\app, C:\Users\Admin\Ahvaanam\components -Filter "*.tsx" -Recurse | Select-String -Pattern "location.href", "router.replace", "router.push")
+Zcommand($env:NEXT_FONT_GOOGLE_MOCKED="true"; npm run dev --prefix C:\Users\Admin\Ahvaanam)
+ command(node scratch_diag\.js)
+  command(Get-ChildItem -Path C:\Users\Admin\Ahvaanam\app -Filter "*.tsx" -Recurse | Select-String -Pattern "locked_by", "read.only", "readOnly", "someone.else", "another.designer", "being edited")
+ command(Get-ChildItem)
+  command(Select-String -Path "app\page.tsx" -Pattern "Celebrate Every|Every Event Deserves|upanayanam|Upanayanam" | Select-Object -Property LineNumber,Line)
+  command(Get-ChildItem -Recurse -Filter "*.tsx" -Path "app" | Select-String -Pattern "Continue with Google" | Select-Object -Property Filename,LineNumber)
+  command(Select-String -Path "app\services\page.tsx" -Pattern "price|pricing|   |\$|starting|Starting|from" | Select-Object -Property LineNumber,Line)
+  command(Get-ChildItem -Recurse -Filter "*.tsx" -Path "app","components" | Select-String -Pattern "Google" | Select-Object -Property Filename,LineN            h                                                                                           '        ~     H   
+               2             X  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+               2             X  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     
+  I will view `components/sections/couple/index.tsx` using `view_file` to see its property interface structure. This will guide how we pass props to sections inside the orchestrator.2(bot-c672396b-fcb9-4aa1-881e-e1136205ca86B  I will view `components/sections/couple/index.tsx` using `view_file` to see its property interface structure. This will guide how we pass props to sections inside the orchestrator.`  "        L      n e 
+               b$1b00ed85-9cfa-4138-8093-ec925366d0e7  R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2   
+                  e  *  
+               b$1b00ed85-9cfa-4138-8093-ec925366d0e7  R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-

@@ -1,0 +1,99 @@
+th.random() \u003e 0.4 ? \"#FF4500\" : (Math.random() \u003e 0.5 ? \"#FF8C00\" : \"#FFD700\"), // Orangered, Darkorange, or Gold\n      alpha: Math.random() * 0.7 + 0.3,\n    }));\n\n    const resize = () =\u003e {\n      width = canvas.width = window.innerWidth;\n      height = canvas.height = window.innerHeight;\n      particles.forEach(p =\u003e {\n        p.x = width / 2 + (Math.random() - 0.5) * 80;\n        p.y = height - Math.random() * 50;\n      });\n    };\n    window.addEventListener(\"resize\", resize);\n\n    let animationFrameId: number;\n    const draw = () =\u003e {\n      ctx.clearRect(0, 0, width, height);\n      particles.forEach((p) =\u003e {\n        p.y -= p.vy;\n        p.x += p.vx;\n        p.alpha -= 0.003;\n\n        if (p.y \u003c 0 || p.alpha \u003c= 0) {\n          p.y = height - Math.random() * 40;\n          p.x = width / 2 + (Math.random() - 0.5) * 80;\n          p.alpha = Math.random() * 0.7 + 0.3;\n        }\n\n        ctx.beginPath();\n        ctx.fillStyle = p.color;\n        ctx.shadowBlur = 8;\n        ctx.shadowColor = p.color;\n        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);\n        ctx.fill();\n      });\n      animationFrameId = requestAnimationFrame(draw);\n    };\n    draw();\n\n    return () =\u003e {\n      window.removeEventListener(\"resize\", resize);\n      cancelAnimationFrame(animationFrameId);\n    };\n  }, []);\n\n  return \u003ccanvas ref={canvasRef} className=\"absolute inset-0 pointer-events-none z-0\" /\u003e;\n};\n\nexport default function GrandMandapLayout({ onBackToHub }: { onBackToHub: () =\u003e void }) {\n  const [loading, setLoading] = useState(true);\n  const [mounted, setMounted] = useState(false);\n  const [playingMusic, setPlayi    <       t          
+               "   
+ oxi2nqe5 write_to_file    {"CodeContent":"\"use client\";\n\nimport { useEffect, useState, useRef } from \"react\";\nimport { motion, AnimatePresence } from \"framer-motion\";\nimport { invitation } from \"../../data/invitation\";\nimport { Calendar, MapPin, Clock, Phone, MessageCircle, Volume2, VolumeX, ArrowLeft, HelpCircle, Shirt } from \"lucide-react\";\nimport Image from \"next/image\";\nimport Lightbox from \"yet-another-react-lightbox\";        
+  
+                                                                                                                                                                                                  ~     z   
+               2             X  b$e132425c-185d-49f4-a6a9-66f5d68995f0j      R
+$7d85ea43-75e8-4b3f-8f97-54265a45ed1e     "$011e974d-4561-41c5-89e8-12ee65991b97      
+                     *  
+               2             X  b$e132425c-185d-49f4-a6a9-66f5d68995f0j      R
+$7d85ea43-75e8-4b3f-8f97-54265a45ed1e     "$011e974d-4561-41c5-89e8-12ee65991b97      
+                     
+TI will view the final lines in `app/templates/page.tsx` to verify the closing block.2(bot-ede4ced5-7aeb-4f9f-bd7e-3b59a8392b21:  
+ laclgkwe 	view_file   {"AbsolutePath":"C:\\Users\\Admin\\Ahvaanam\\app\\templates\\page.tsx","EndLine":284,"StartLine":270,"toolAction":"Checking final lines in templates/page.tsx","toolSummary":"View app/templates/page.tsx"}:     
+    9      A }   _   +A   c~  2  y ""  B lrwf. Kr  ` -   y   i  g  !   )   Y n M E  >     #=   3`   1_       H[F  3  p O   D  , G }K    #     _  '        7 LE;   J	view_fileBTI will view the final lines in `app/templates/page.tsx` to verify the closing block.`  /        (     .   
+               "  
+ e09fi882 	view_file   {"AbsolutePath":"C:\\Users\\Admin\\Ahvaanam\\app\\templates\\page.tsx","EndLine":95,"StartLine":50,"toolAction":"Checking templates component body in page.tsx","toolSummary":"View app/templates/page.tsx"}:     
+    9    >  <e |li" (            [ .k ^VY -    <LP  pWV 2t   Jg 6\  K  @ ^    } S }   Z       {       G   ` ^  g_      _X     7Q iK       	      0    O       y k  : 4/OfSj    ;    |#    E  k    [ !            M X Q  m1   =   ('   AT    <   V<  0 1 S W1 4   U      5    yw"    s N      ]  l5@7d i N.Z9 55;   wf,    {   cU\     9 *    D ~   m4/ P    h F    2) D)   U  d  s =  A : v   ( C     XV   2   &1        F         !      @~  d    >?   Q ]  ) 3vr  s6 t V   7    [ k    3  -    _ <     j  O e
+! e     I   
+JM
+8  j >W  9 * F    @          %2   '  k( Bs( F   l   M  X       E      a E ]  - )	   .         Y3 '   w  
+)} > ](h35 ) ] 9 =sl [wn   $    },      R ^ {   z, * ^z  S   n A eT      m TvF 78  F  s    } v(! p G  *W   ;= s M       %? ~  )    ) >   }8 Q    kM     f;1H zoM  p{ e" "         ( 7  2 C "?*Kl }   W   V    e    n   G   V=  
+      t , < D- o  C  8|   c     Q  #9g  s              
+       n : f C MPU  :& H     sn@C  ]   hq        P Ne   ^     a    [ qi     ]    n2    8}jGx   mBB@P # m     _M 0 Z  E N e)6   t  
+ Y )   nT9 Z    j#  *>   RS  M u+  R r     w   , S Ms0/h Wi=[K   @ $  O   dYHQ      h     ~Z D   .  E  z A     p q     H W a XE X+ z < J rL      `s   kyv        Y   } b2  0W     [    }  \p>l    W        L     Z   
+               "  
+ e09fi882 	view_file   {"AbsolutePath":"C:\\Users\\Admin\\Ahvaanam\\app\\templates\\page.tsx","EndLine":95,"StartLine":50,"toolAction":"Checking templates component body in page.tsx","toolSummary":"View app/templates/page.tsx"}:     
+    9    >  <e |li" (            [ .k ^VY -    <LP  pWV 2t   Jg 6\  K  @ ^    } S }   Z       {       G   ` ^  g_      _X     7Q iK       	      0    O       y k  : 4/OfSj    ;    |#    E  k    [ !            M X Q  m1   =   ('   AT    <   V<  0 1 S W1 4   U      5    yw"    s N      ]  l5@7d i N.Z9 55;   wf,    {   cU\     9 *    D ~   m4/ P    h F    2) D)   U  d  s =  A : v   ( C     XV   2   &1        F         !      @~  d    >?   Q ]  ) 3vr  s6 t V   7    [ k    3  -    _ <     j  O e
+! e     I   
+JM
+8  j >W  9 * F    @          %2   '  k( Bs( F   l   M  X       E      a E ]  - )	   .         Y3 '   w  
+)} > ](h35 ) ] 9 =sl [wn   $    },      R ^ {   z, * ^z  S   n A eT      m TvF 78  F  s    } v(! p G  *W   ;= s M       %? ~  )    ) >   }8 Q    kM     f;1H zoM  p{ e" "         ( 7  2 C "?*Kl }   W   V    e    n   G   V=  
+      t , < D- o  C  8|   c     Q  #9g  s              
+       n : f C MPU  :& H     sn@C  ]   hq        P Ne   ^     a    [ qi     ]    n2    8}jGx   mBB@P # m     _M 0 Z  E N e)6   t  
+ Y )   nT9 Z    j#  *>   RS  M u+  R r     w   , S Ms0/h Wi=[K   @ $  O          u  !i  {X ?  Y p    [n G   n g 5}h q  sc      l 0  Cd'&  t   8 P   \D    c\J	view_file* AbsolutePath*
+toolAction* toolSummary2           9:           9B           <X  b$4ff142f3-7aa5-4cc5-bd4a-0002b231ebd6j      R
+$7d85ea43-75e8-4b3f-8f97-54265a45ed1e      "$011e974d-4561-41c5-89e8-12ee65991b97                9  1  3
+               9
+               ;
+               <  %View app/api/invitation/[id]/route.ts  -Viewing specific invitation API route handler             :    *  
+              "  
+ w3ngkmzd 	view_file   {"AbsolutePath":"C:\\Users\\Admin\\Ahvaanam\\app\\api\\invitation\\[id]\\route.ts","toolAction":"Viewing specific invitation API route handler","toolSummary":"View app/api/invitation/[id]/route.ts"}:     
+    9  - t  -1 p  @Q]   w     'G	  q]>X  c b p  -  /2  X UD  Z         J ,o C ' 0   0;  >   ~I  d  %    D ]$   Y vLY:   L       7     d >W       A\     '.   c ?      o    lE Q   {        nc)	   t]    i    tk x x    y  }lTp(;<y  u  ]   /   J%    K     Tj;   i8K b2      7 )   eF   i vd<7T1     U?  r    .u u  !i  {X ?  Y p    [n G   n g 5}h q  sc      l 0  Cd'&  t   8 P   \D    c\J	view_file* AbsolutePath*
+toolAction* toolSummary2           9:           9B           <X  b$4ff142f3-7aa5-4cc5-bd4a-0002b231ebd6j      R
+$7d85ea43-75e8-4b3f-8f97-54265a45ed1e      "$011e974d-4561-41c5-89e8-12ee65991b97                9  1  3
+               9
+               ;
+               <  %View app/api/invitation/[id]/route.ts  -Viewing specific invitation API route handler             :r  
+Dfile:///C:/Users/Admin/Ahvaanam/app/api/invitation/%5Bid%5D/route.ts S"  import { NextResponse } from "next/server";
+import { createClient } from "../../../../utils/supabase/server";
+import { getInvitationById, saveInvitation, deleteInvitation } from "../../../../lib/db";
+
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params;
+
+  try {
+    const json = await getInvitationById(id);
+    return NextResponse.json(json);
+  } catch (error) {
+    return NextResponse.json({ error: "Invitation profile not found" }, { status: 404 });
+  }
+}
+
+export async function POST(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { id } = await params;
+
+  // Verify lock ownership before saving
+  const { data: template } = await supabase
+    .from('invitations')
+    .select('locked_by, last_activity_at')
+    .eq('id', id)
+    .maybeSingle();
+
+  if (template && template.locked_by) {
+    const lastActivity = new Date(template.last_activity_at).getTime();
+    const now = new Date().getTime();
+    const isExpired = now - lastActivity > 10 * 60 * 1000;
+    const isOwnLock = template.locked_by === user.id;
+
+    if (!isOwnLock && !isExpired) {
+      return NextResponse.json({ 
+        error: "Save blocked: This template is currently locked and being edited by another user." 
+      }, { status: 423 }); // 423 Locked
+    }
+  }
+
+  try {
+    const body = await request.json();

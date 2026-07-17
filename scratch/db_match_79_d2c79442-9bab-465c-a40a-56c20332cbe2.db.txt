@@ -1,0 +1,88 @@
+"use client";       ?
+;import React, { useEffect, useState, useRef } from "react";   I
+Eimport { useInvitationData } from "../context/InvitationDataContext";   X
+Timport { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";   <
+8import { motion, AnimatePresence } from "framer-motion";       )
+%// Import reusable section components   /
++import HeroSection from "../sections/hero";   3
+/import CoupleSection from "../sections/couple";   9
+5import CountdownSection from "../sections/countdown";   1
+-import StorySection from "../sections/story";   3
+/import EventsSection from "../sections/events";   5
+1import GallerySection from "../sections/gallery";   1
+-import VenueSection from "../sections/venue";   7
+3import FamiliesSection from "../sections/families";   /
++import RSVPSection from "../sections/rsvp";   -
+)import FAQSection from "../sections/faq";   9
+5import DressCodeSection from "../sections/dressCode";   3
+/import FooterSection from "../sections/footer";   9
+5import CelebrantSection from "../sections/celebrant";   ?
+;import HouseDetailsSection from "../sections/houseDetails";   3
+/import OwnersSection from "../sections/owners";       '
+#interface LegacyOrchestratorProps {    
+   themeId: string;    
+   onBackToHub: () => void;   4
+0  particlesComponent?: React.ComponentType<any>;    
+   themeBgClass?: string;    
+   loadingTitle?: string;    
+   loadingSubtitle?: string;    
+ }       0
+,export default function LegacyOrchestrator({    
+
+  themeId,    
+   onBackToHub,   $
+   particlesComponent: Particles,   $
+   themeBgClass = "bg-stone-900",   "
+   loadingTitle = "Invitation",   *
+&  loadingSubtitle = "Celebrating Love"   !
+ }: LegacyOrchestratorProps) {   5
+1  const { invitationData } = useInvitationData();   3
+/  const [loading, setLoading] = useState(true);   >
+:  const [playingMusic, setPlayingMusic] = useState(false);   =
+9  const audioRef = useRef<HTMLAudioElement | null>(null);        
+   useEffect(() => {    
+     if (invitationData) {   B
+>      const timer = setTimeout(() => setLoading(false), 1500);   +
+'      return () => clearTimeout(timer);   	
+     }    
+   }, [invitationData]);       '
+#  if (!invitationData) return null;       e
+a  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;   U
+Q  const invitation = isWrapped ? (invitationData as any).config : invitationData;       !
+   const toggleMusic = () => {   &
+"    if (!audioRef.current) return;    
+     if (playingMusic) {   #
+       audioRef.current.pause();    
+     } else {   2
+.      audioRef.current.play().catch(() => {});   	
+     }   '
+#    setPlayingMusic(!playingMusic);    
+   };       9
+5  const sectionOrder = invitation.sectionOrder || [];       =
+9  const renderSectionComponent = (sectionId: string) => {   4
+0    const sectionConfig = invitation[sectionId];   ;
+7    const isEnabled = sectionConfig?.enabled !== fals    ync\('C:/Users/Admin/Ahvaanam/app/page\.tsx', 'utf8'\)\.split\('\\n'\); lines\.forEach\(\(l, idx\) => \{ if \(l\.includes\('EventCategories'\)\) console\.log\(idx\+1, ':', l\); \}\);")
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+  command(node -e "const fs = require\('fs'\); const path = require\('path'\); function walk\(dir\) \{ const list = fs\.readdirSync\(dir\); list\.forEach\(file => \{ const filepath = path\.join\(dir, file\); if \(file\.toLowerCase\(\)\.includes\('navbar'\)\) \{ console\.log\(filepath\); \} const stat = fs\.statSync\(filepath\); if \(stat\.isDirectory\(\) && !file\.startsWith\('\.'\) && file !== 'node_modules'\) \{ walk\(filepath\); \} \}\); \} walk\('C:/Users/Admin/Ahvaanam'\);")
+>write_file(C:\Users\Admin\Ahvaanam\components\home\Navbar.tsx)
+ command(npm run)
+ command(npm install)
+Ewrite_file(C:\Users\Admin\Ahvaanam\components\home\SectionReveal.tsx)
+Dwrite_file(C:\Users\Admin\Ahvaanam\components\home\SmoothScroll.tsx)
+Gwrite_file(C:\Users\Admin\Ahvaanam\components\home\BackgroundBlobs.tsx)
+ command(npm run)
+ command(npm install)
+Hwrite_file(C:\Users\Admin\Ahvaanam\components\home\FloatingElements.tsx)
+<write_file(C:\Users\Admin\Ahvaanam\components\home\Hero.tsx)
+ command(npm run)
+Qwrite_file(C:\Users\Admin\Ahvaanam\components\shared\ParallaxProviderWrapper.tsx)
+ command(npm run)
+Gwrite_file(C:\Users\Admin\Ahvaanam\components\home\EventCategories.tsx)
+Gwrite_file(C:\Users\Admin\Ahvaanam\components\home\TemplateGallery.tsx)
+Gwrite_file(C:\Users\Admin\Ah

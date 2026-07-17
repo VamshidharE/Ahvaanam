@@ -1,0 +1,109 @@
+"use client";
+
+import React, { use, useState, useEffect, useRef } from "react";
+import { InvitationDataProvider, useInvitationData } from "../../../components/context/InvitationDataContext";
+import RsvpSubmissionForm from "../../../components/rsvp/RsvpSubmissionForm";
+import { motion, AnimatePresence } from "framer-motion";
+import { Home, Calendar, Image as ImageIcon, MapPin, MessageCircle, Share2, ArrowUp, Volume2, VolumeX, Sparkles } from "lucide-react";
+
+// Import all 10 visual template layouts
+import RoyalTempleLayout from "../../../components/templates/royal-temple/Layout";
+import FloralGardenLayout from "../../../components/templates/floral-garden/Layout";
+   Rimport SouthIndianTraditionalLayout from "../../../components/templates/south-indian/Layout";
+import PalaceLuxuryLayout from "../../../components/templates/palace-luxury/Layout";
+import LotusSerenityLayout from "../../../components/templates/lotus-serenity/Layout";
+import MarigoldLayout from "../../../components/templates/marigold/Layout";
+import PeacockLayout from "../../../components/templates/peacock/Layout";
+import HeritageLayout from "../../../components/templates/heritage/Layout";
+import MoonlightLayout from "../../../components/templates/moonlight/Layout";
+import GrandMandapLayout from "../../../components/templates/grand-mandap/Layout";
+import ModernBirthdayLayout from "../../../components/templates/modern-birthday/Layout";
+import PremiumBirthdayTemplateLayout from "../../../components/templates/birthday-premium/Layout";
+
+function InviteContent({ clientId }: { clientId: string }) {
+  const { invitationData, loading } = useInvitationData();
+
+  // State controls
+  const [showLoader, setShowLoader] = useState(true);
+  const [rsvpSheetOpen, setRsvpSheetOpen] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [playingMusic, setPlayingMusic] = useState(false);
+  const [showToast, setShowToast] = useState<string | null>(null);
+
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    if (loading || !invitationData) return;
+
+    // Fades out loader after delay
+    const loaderTimer = setTimeout(() => setShowLoader(false), 2200);
+
+    // Scroll listener for back-to-top FAB
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 400);
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    // Analytics record view
+    const recordView = async () => {
+      try {
+        let visitorToken = localStorage.getItem("ahvaanam_visitor_token");
+        if (!visitorToken) {
+          if (typeof crypto !== "undefined" && crypto.randomUUID) {
+            visitorToken = crypto.randomUUID();
+          } else {
+            visitorToken = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+              const r = (Math.random() * 16) | 0,
+                v = c === "x" ? r : (r & 0x3) | 0x8;
+              return v.toString(16);
+            });
+          }
+          localStorage.setItem("ahvaanam_visitor_token", visitorToken);
+        }
+
+        await fetch(`/api/invitation/${clientId}/view`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ visitor_token: visitorToken }),
+        });
+      } catch (err) {
+        console.error("Failed to record analytics view:", err);
+      }
+    };
+
+    recordView();
+
+    return () => {
+      clearTimeout(loaderTimer);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [clientId, loading, invitationData]);
+
+  if (loading || !invitationData) {
+    return (
+      <div className="min-h-screen bg-[#05020B] flex items-center justify-center text-center">
+        <div className="flex flex-col items-center">
+          <div className="w-12 h-12 border-2 border-yellow-500 border-t-transparent rounded-full animate-spin mb-4 animate-duration-[1s]" />
+          <h2 className="text-[#C59B27] text-[10px] uppercase tracking-[3px] font-semibold animate-pulse">Loading Invitation</h2>
+        </div>
+      </div>
+    );
+  }
+
+  const activeTheme = invitationData.themeId || "royal-temple";
+  const dummyBack = () => {};
+
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+    if (playingMusic) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(() => {});
+    }
+    setPlayingMusic(!playingMusic);
+  };
+
+  const handleShare = async () => {
+    if (typeof navigator !== "undefined" && navigator.share) {
+      try {
+        await navigato

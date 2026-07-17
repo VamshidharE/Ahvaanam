@@ -1,0 +1,186 @@
+emeBgClass?: string;    
+   loadingTitle?: string;    
+   loadingSubtitle?: string;    
+ }       0
+,export default function LegacyOrchestrator({    
+
+  themeId,    
+   onBackToHub,   $
+   particlesComponent: Particles,   $
+   themeBgClass = "bg-stone-900",   "
+   loadingTitle = "Invitation",   *
+&  loadingSubtitle = "Celebrating Love"   !
+ }: LegacyOrchestratorProps) {   5
+1  const { invitationData } = useInvitationData();   3
+/  const [loading, setLoading] = useState(true);   >
+:  const [playingMusic, setPlayingMusic] = useState(false);   =
+9  const audioRef = useRef<HTMLAudioElement | null>(null);        
+   useEffect(() => {    
+     if (invitationData) {   B
+>      const timer = setTimeout(() => setLoading(false), 1500);   +
+'      return () => clearTimeout(timer);   	
+     }    
+       }, [invitationData]);       '
+#  if (!invitationData) return null;       e
+a  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;   U
+Q  const invitation = isWrapped ? (invitationData as any).config : invitationData;       !
+   const toggleMusic = () => {   &
+"    if (!audioRef.current) return;    
+     if (playingMusic) {   #
+       audioRef.current.pause();    
+     } else {   2
+.      audioRef.current.play().catch(() => {});   	
+     }   '
+#    setPlayingMusic(!playingMusic);    
+   };       9
+5  const sectionOrder = invitation.sectionOrder || [];       =
+9  const renderSectionComponent = (sectionId: string) => {   4
+0    const sectionConfig = invitation[sectionId];   ;
+7    const isEnabled = sectionConfig?.enabled !== false;   $
+     if (!isEnabled) return null;       /
++    const properties = sectionConfig || {};   -
+)    const bindings = sectionConfig || {};        
+     switch (sectionId) {    
+       case "hero":    
+         return (    
+           <HeroSection    
+             key={sectionId}   '
+#            properties={properties}   #
+             bindings={bindings}   !
+             themeId={themeId}   &
+"            layoutId="hero-center"   (
+$            motionId="luxury-motion"    
+           />    
+
+        );    
+       case "couple":   y
+u        return <CoupleSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;    
+       case "countdown":   |
+x        return <CountdownSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   L
+H        return <CountdownSection key={sectionId} bindings={bindings} />;    
+       case "story":   x
+t        return <StorySection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   H
+D        return <StorySection key={sectionId} bindings={bindings} />;    
+       case "events":   y
+u        return <EventsSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   I
+E        return <EventsSection key={sectionId} bindings={bindings} />;    
+       case "gallery":   z
+v        return <GallerySection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   J
+F        return <GallerySection key={sectionId} bindings={bindings} />;    
+       case "venue":   x
+t        return <VenueSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   H
+D        return <VenueSection key={sectionId} bindings={bindings} />;    
+       case "families":   {
+w        return <FamiliesSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   K
+G        return <FamiliesSection key={sectionId} bindings={bindings} />;    
+       case "rsvp":   w
+s        return <RSVPSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   G
+C        return <RSVPSection key={sectionId} bindings={bindings} />;    
+       case "faq":   v
+r        return <FAQSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   F
+B        return <FAQSection key={sectionId} bindings={bindings} />;    
+       case "dressCode":   |
+x        return <DressCodeSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   L
+H        return <DressCodeSection key={sectionId} bindings={bindings} />;    
+       case "footer":   y
+u        return <FooterSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   I
+E        return <FooterSection key={sectionId} bindings={bindings} />;    
+       case "celebrant":   |
+x        return <CelebrantSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;    
+       case "houseDetails":    
+{        return <HouseDetailsSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   O
+K        return <HouseDetailsSection key={sectionId} bindings={bindings} />;    
+           case "owners":   y
+u        return <OwnersSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   I
+E        return <OwnersSection key={sectionId} bindings={bindings} />;    
+       default:    
+         return null;   	
+     }    
+   };        
+
+  return (   Q
+M    <div className={`min-h-screen relative overflow-hidden ${themeBgClass}`}>   C
+?      {invitation.music?.enabled && invitation.music?.file && (   E
+A        <audio ref={audioRef} loop src={invitation.music.file} />    
+       )}       !
+       {/* Loading overlay */}    
+       <AnimatePresence>    
+         {loading && (    
+           <motion.div   (
+$            initial={{ opacity: 1 }}   %
+!            exit={{ opacity: 0 }}   u
+q            className="fixed inset-0 z-50 bg-[#FFFDF5] flex flex-col items-center justify-center text-center p-6"    
+           >   r
+n            <h2 className="text-[#FF8800] text-xs uppercase tracking-[4px] mb-1 font-bold">{loadingTitle}</h2>   \
+X            <p className="text-amber-900/40 text-xs font-semibold">{loadingSubtitle}</p>    
+           </motion.div>    
+
+        )}    
+       </AnimatePresence>       *
+&      {/* Particles canvas overlay */}   Q
+M      {invitation.themeSettings?.showParticles && Particles && <Particles />}       *
+&      {/* Floating utility buttons */}   K
+G      <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-4">    
+         <button   #
+           onClick={onBackToHub}     
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40 bg-white/90 text-[#FF8800] backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"   
+	        >   %
+!          <ArrowLeft size={20} />    
+         </button>   +
+'        {invitation.music?.enabled && (    
+           <button   %
+!            onClick={toggleMusic}     
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40 bg-white/90 text-[#FF8800] backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"    
+           >   N
+J            {playingMusic ? <Volume2 size={20} /> : <VolumeX size={20} />}    
+           </button>    
+
+        )}    
+       </div>       ,
+(      {/* Dynamic sections container */}   &
+"      <div className="space-y-12">   X
+T        {sectionOrder.map((sectionId: string) => renderSectionComponent(sectionId))}    
+       </div>    
+
+    </div>    
+   );    
+ }    
+ }      *  Instruction: Omit layoutId and motionId for static section components.
+
+Code Edit:
+```
+{{ ... }}
+      case "countdown":
+        return <CountdownSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "story":
+        return <StorySection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "events":
+        return <EventsSection key={sectionId} bindings={bindings} />;
+      case "gallery":
+        return <GallerySection key={sectionId} bindings={bindings} />;
+      case "venue":
+        return <VenueSection key={sectionId} bindings={bindings} />;
+      case "families":
+        return <FamiliesSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "rsvp":
+        return <RSVPSection key={sectionId} bindings={bindings} />;
+      case "faq":
+        return <FAQSection key={sectionId} bindings={bindings} />;
+      case "dressCode":
+        return <DressCodeSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "footer":
+        return <FooterSection key={sectionId} bindings={bindings} />;
+      case "houseDetails":
+        return <HouseDetailsSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "owners":
+        return <OwnersSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      default:
+{{ ... }}
+```0   *Align props structure for static sections.    ewing file', 'Running command', 'Semantic searching'."}},"additionalProperties":false,"type":"object","required":["AbsolutePath","toolSummary","toolAction"]}:	view_fileB  
+write_to_file   Use this tool to create new files. The file and any parent directories will be created for you if they do not already exist.
+		Follow these instructions:
+		1. By default this tool will error if TargetFile already exists. To overwrite an existing file, set Overwrite to true.
+		2. When creating an artifact, always provide an ArtifactMetadata.   {"$schema":"https://json-schema.org/draft/2020-12/schema","properties":{"TargetFile":{"type":"string","description":"The target file to create and write code to. Must be an absolute path."},"Overwrite":{"type":"boolean","description":"Set this to true to overwrite an existing file. WARNING: This will replace the entire file contents. Only use when you explicitly intend to overwrite. Otherwise, use a code edit tool to modify existing files."},"CodeContent":{"type":"string","description":"The code contents to write to the file."},"Description":{"type":"string","description":"Brief, user-facing explanation of what this change did. Focus on non-obvious rationale, design decisions, or important context. Don't just restate what the code does."},"ArtifactMetadata":{"properties":{"Summary":{"type":"string","description":"Detailed multi-line summary of the artifact file, after edits have been made. Summary does not need to mention the artifact name and should focus on the contents and purpose of the artifact."},"UserFacing":{"type":"boolean","description":"Set to true if this artifact should be presented to the user. Set to false for scratch scripts, temporary data files, or files that the user does not need to see"},"RequestFeedback":{"type":"boolean","description":"Set to true if you'd like to request user feedback on this artifact and if the contents of this artifact are executable (e.g., a plan). The user will be provided with a 'Proceed' button to execute it."}},"additionalProperties":false,"type":"object","required":["Summary","UserFacing","RequestFeedback"],"description":"Metadata that defines artifact properties. Required when creating an artifact file."},"toolSummary":{"type":"string","description":"Brief 2-5 word noun phrase describing what this tool call is about. Capitalize like a sentence. Some examples: 'Directory analysis', 'Web search', 'File edit', 'Command execution', 'Semantic search'."},"toolAction":{"type":"string","description":"Brief 2-5 word summary of what this tool is doing. Capitalize like a sentence. Some examples: 'Analyzing directory', 'Searching the web', 'Editing file', 'Viewing file', 'Running command', 'Semantic searching'."}},"additionalProperties":false,"type":"object","required":["TargetFile","Overwrite","CodeContent","Description","toolSummary","toolAction"]}* CodeContent:write_to_fileJ '              "             (  2          a709d2bb2          be3610c5:       e9c821beB  6      R &   
+  &
+  
+Syst

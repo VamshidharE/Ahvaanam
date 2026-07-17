@@ -1,0 +1,92 @@
+"use client";        
+ import React from "react";       "
+ // Reusable section components   2
+.import HeroSection from "../../sections/hero";   6
+2import CoupleSection from "../../sections/couple";   <
+8import CountdownSection from "../../sections/countdown";   4
+0import StorySection from "../../sections/story";   6
+2import EventsSection from "../../sections/events";   8
+4import GallerySection from "../../sections/gallery";   4
+0import VenueSection from "../../sections/venue";   :
+6import FamiliesSection from "../../sections/families";   2
+.import RSVPSection from "../../sections/rsvp";   0
+,import FAQSection from "../../sections/faq";   <
+8import DressCodeSection from "../../sections/dressCode";   6
+2import FooterSection from "../../sections/footer";   <
+8import CelebrantSection from "../../sections/celebrant";   B
+>import HouseDetailsSection from "../../sections/houseDetails";   6
+2import OwnersSection from "../../sections/owners";       $
+ interface SectionPipelineProps {    
+   sectionOrder: string[];    
+   invitation: any;    
+   themeId: string;    
+ }       j
+fexport default function SectionPipeline({ sectionOrder, invitation, themeId }: SectionPipelineProps) {   =
+9  const renderSectionComponent = (sectionId: string) => {   4
+0    const sectionConfig = invitation[sectionId];   ;
+7    const isEnabled = sectionConfig?.enabled !== false;   $
+     if (!isEnabled) return null;       -
+)    const bindings = sectionConfig || {};        
+     switch (sectionId) {    
+       case "hero":    
+         return (    
+           <HeroSection    
+             key={sectionId}   %
+!            properties={bindings}   #
+             bindings={bindings}   !
+             themeId={themeId}   &
+"            layoutId="hero-center"   (
+$            motionId="luxury-motion"    
+           />    
+
+        );    
+       case "couple":   y
+u        return <CoupleSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;    
+       case "countdown":   L
+H        return <CountdownSection key={sectionId} bindings={bindings} />;    
+       case "story":   H
+D        return <StorySection key={sectionId} bindings={bindings} />;    
+       case "events":   I
+E        return <EventsSection key={sectionId} bindings={bindings} />;    
+       case "gallery":   J
+F        return <GallerySection key={sectionId} bindings={bindings} />;    
+       case "venue":   H
+D        return <VenueSection key={sectionId} bindings={bindings} />;    
+       case "families":   K
+G        return <FamiliesSection key={sectionId} bindings={bindings} />;    
+       case "rsvp":   G
+C        return <RSVPSection key={sectionId} bindings={bindings} />;    
+       case "faq":   F
+B        return <FAQSection key={sectionId} bindings={bindings} />;    
+       case "dressCode":   L
+H        return <DressCodeSection key={sectionId} bindings={bindings} />;    
+       case "footer":   I
+E        return <FooterSection key={sectionId} bindings={bindings} />;    
+       case "celebrant":   |
+x        return <CelebrantSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;    
+       case "houseDetails":   O
+K        return <HouseDetailsSection key={sectionId} bindings={bindings} />;    
+       case "owners":   I
+E        return <OwnersSection key={sectionId} bindings={bindings} />;    
+       default:    
+         return null;   	
+     }    
+   };        
+
+  return (   $
+     <div className="space-y-12">   V
+R      {sectionOrder.map((sectionId: string) => renderSectionComponent(sectionId))}    
+
+    </div>    
+   );    
+ }      BRfile:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/SectionPipeline.tsxX     KCreate SectionPipeline component to loop over and render sections pipeline.   n   U   ] }    w6  <a >  aS_  w p     6  y    feXVch     0  ^ 
+Ak.sXM  Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2            :            B            X  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                
+      3
+                
+                
+                  YCreating section pipeline component in components/shared/orchestrator/SectionPipeline.tsx   Create SectionPipeline.tsx                  * #
+               "  
+ jc2vmfwd write_to_file   {"CodeContent":"\"use client\";\n\nimport React from \"react\";\n\n// Reusable section components\nimport HeroSection from \"../../

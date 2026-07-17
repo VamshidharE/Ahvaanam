@@ -1,0 +1,54 @@
+use client\";\n\nimport React from \"react\";\nimport { CompositionSchema } from \"@/lib/composition/types\";\n\n// Dynamic section component imports\nimport HeroSection from \"@/components/sections/hero\";\nimport CoupleSection from \"@/components/sections/couple\";\nimport CountdownSection from \"@/components/sections/countdown\";\nimport StorySection from \"@/components/sections/story\";\nimport EventsSection from \"@/components/sections/events\";\nimport GallerySection from \"@/components/sections/gallery\";\nimport VenueSection from \"@/components/sections/venue\";\nimport FamiliesSection from \"@/components/sections/families\";\nimport RSVPSection from \"@/components/sections/rsvp\";\nimport FAQSection from \"@/components/sections/faq\";\nimport DressCodeSection from \"@/components/sections/dressCode\";\nimport FooterSection from \"@/components/sections/footer\";\n\nconst SECTION_COMPONENTS: Record<string, React.ComponentType<any>> = {\n  hero: HeroSection,\n  couple: CoupleSection,\n  countdown: CountdownSection,\n  story: StorySection,\n  events: EventsSection,\n  gallery: GallerySection,\n  venue: VenueSection,\n  families: FamiliesSection,\n  rsvp: RSVPSection,\n  faq: FAQSection,\n  dressCode: DressCodeSection,\n  footer: FooterSection,\n};\n\nfunction resolveBindingValue(path: string, data: any): any {\n  const parts = path.split(\".\");\n  let current = data;\n  for (const part of parts) {\n    if (current == null) return undefined;\n    current = current[part];\n  }\n  return current;\n}\n\ninterface CompositionRendererProps {\n  composition:    Ir communicating with other agents.
+
+**Do NOT use send_message to communicate with the user.** Instead, output visible text to communicate with the user.
+
+Available subagents:
+- research: Research subagent with read-only tools for exploring the codebase, searching the web, and reading files. Delegate to this agent when you need to run a task in a separate conversation context but with the same capabilities as the current agent, when a research task requires many search and file-reading steps that would clutter your context, or when you need a broad survey of the codebase or documentation. Prefer doing research yourself for quick, targeted lookups.
+- self: Subagent that inherits the parent agent's full configuration including tools, system prompt, and model. Use this when you need to run a task in a separate conversation context but with the same capabilities as the current agent.
+
+After launching a subagent, you do NOT need to poll or check your inbox in a loop. The system will automatically notify you when the subagent sends a message. Simply proceed with other work or stop calling tools, and you will be notified when there is a message to process.
+
+</subagents>"   0 8     
+	messaging   <messaging>
+You are connected to a messaging system where you may receive messages from: agents, background tasks, user-queued messages.
+
+## Receiving Messages
+
+You receive messages automatically at the start of each invocation. All messages are delivered in full directly into your context     no manual retrieval is needed.
+
+## Reactive Wakeup (No Polling Needed)
+
+The system automatically resumes your execution when:
+- A message arrives from a subagent or peer agent
+- A **background task** completes or sends you a notification
+- A **user-queued message** is ready to be dequeued
+
+This means you do **NOT** need to poll in a loop while waiting for messages or updates. After launching anything that performs work asynchronously, you may continue other work or simply stop by calling no more tools. The system will notify you when there is something to process.
+</messaging>"   0 8     
+ conversation_transcript   <conversation_transcript>
+Conversation transcripts are a complete, chronological record of an agent's conversation.
+They are useful for reviewing your own conversation history, your subagents' conversations, or any other agent's conversation.
+Transcripts are stored locally in the filesystem under: <appDataDir>\brain\<conversation-id>\.system_generated\logs and are keyed by Conversation ID.
+Conversation IDs uniquely identify an agent's conversation; they are used to spawn subagents and are referenced in artifact filepaths.
+
+# File Format
+Transcripts are in JSON Lines (JSONL) format. Each line is a single JSON object representing one "step" or action in the conversation.
+Each JSON object contains fields such as:
+- `step_index`: The index of the step in the trajectory.
+- `source`: The source of the action (e.g., `USER_EXPLICIT`, `MODEL`, `SYSTEM`).
+- `type`: The type of the step. Particular steps of interest are `USER_INPUT`, which represents a user's prompt, and `PLANNER_RESPONSE`, which represents the agent's response and tool calls.
+- `status`: The status of the step (e.g., `DONE`, `ERROR`).
+- `content`: The text content of the step (e.g., the user's request, the model's response, or tool responses).
+- `tool_calls`: An array of tool calls made in this step, including their arguments.
+- `is_truncated`: A boolean indicating that the step's content or thinking was truncated. Only present in `transcript.jsonl` (never in `transcript_full.jsonl`). When true, read the corresponding line in `transcript_full.jsonl` for the complete content.
+
+# How to use transcripts
+Each conversation produces two types of transcripts:
+- `transcript_full.jsonl`: A complete, untruncated version of the conversation transcript.
+- `transcript.jsonl`: A token-efficient version of `transcript_full.jsonl` with very large text outputs truncated. Each line of this transcript still maps 1-to-1 with a line in `transcript_full.jsonl`.
+
+`transcript.jsonl` is compact enough    Jto view in bulk and should be your starting point.
+`transcript_full.jsonl` can be very large and should only be read line-by-line for specific steps where the truncated version is insufficient.
+
+# When to use transcripts
+Read transcripts when you need to trace the exact sequence of events that are unavailable throug

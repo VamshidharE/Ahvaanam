@@ -1,0 +1,70 @@
+
+   };    
+   themeId?: string;    
+   layoutId?: string;    
+   motionId?: string;    
+ }       r
+nexport default function HeroSection({ properties, bindings, themeId, layoutId, motionId }: HeroSectionProps) {   
+	  const {   #
+     showScrollIndicator = true,    
+     overlayOpacity = 0.45,    
+     contentAlign = "center",    
+     minHeight = "85vh",    
+   } = properties;       
+	  const {    
+     title = "",    
+     subtitle = "",    
+     welcomeMessage = "",    
+     heroImage = "",    
+     ctaText = "",    
+     surname = "",    
+     subText = "",   !
+     enableHeaderMedia = true,    
+     headerMediaType = "god",    
+     selectedGod = "ganesha",    
+     selectedSymbol = "om",    
+     headerMediaSize = 80,    
+     headerMediaSpacing = 30,   "
+     showSurnameHeading = true,    
+     surnameFont = "cinzel",   -
+)    surnameColor = "var(--theme-accent)",    
+   } = bindings;        
+   const alignmentClass =    <
+8    contentAlign === "left" ? "text-left items-start" :    <
+8    contentAlign === "right" ? "text-right items-end" :    #
+     "text-center items-center";       /
++  const designLanguage = themeId ? (() => {   )
+%    const id = themeId.toLowerCase();   q
+m    if (["royal-temple", "palace-luxury", "peacock", "royal-palace", "heritage"].some(x => id.includes(x))) {   "
+       return "royal-heritage";   	
+     }   z
+v    if (["south-indian", "lotus-serenity", "marigold", "divine-griha", "warm-terracotta"].some(x => id.includes(x))) {   #
+       return "temple-grandeur";   	
+     }   X
+T    if (["glass", "glassmorphic-oasis", "glass-motion"].some(x => id.includes(x))) {   "
+       return "glass-elegance";   	
+     }   [
+W    if (["flo                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      U   	             
+               " C
+ lj5x9rmn  replace_file_content  @{"AllowMultiple":false,"Description":"Implement dynamic visual design languages inside HeroSection.","EndLine":110,"Instruction":"Inject getDesignLanguage helper and render specific design language overlays conditionally inside the Hero wrapper.","ReplacementContent":"  const designLanguage = themeId ? (() =\u003e {\n    const id = themeId.toLowerCase();\n    if ([\"royal-temple\", \"pal  7 U       6      ,   
+               " C
+ lj5x9rmn  replace_file_content  @{"AllowMultiple":false,"Description":"Implement dynamic visual design languages inside HeroSection.","EndLine":110,"Instruction":"Inject getDesignLanguage helper and render specific design language overlays conditionally inside the Hero wrapper.","ReplacementContent":"  const desi  \ U       6      v   
+               " C
+ lj5x9rmn  replace_file_content  @{"AllowMultiple":false,"Description":"Implement dynamic visual design languages inside HeroSection.","EndLine":110,"Instruction":"Inject getDesignLanguage helper and render specific design language overlays conditionally inside the Hero wrapper.","ReplacementContent":"  const designLanguage = themeId ? (() =\u003e {\n    const id = themeId.toLowerCase();\n    if ([\"royal-temple\", \"palace-luxury\", \"peacock\",      s T             @   
+               2             :             B             JP     !   (   0 B!
+	sessionID  -3750763034362895579HHP  Z UoxSasPXEKLqqfkPi7nn8AUX  b$b08b332d-19b3-41ee-aa84-b94bad6246efj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+               2             :             B             JP     !   (   0 B!
+	sessionID  -3750763034362895579HHP  Z UoxSasPXEKLqqfkPi7nn8AUX  b$b08b332d-19b3-41ee-aa84-b94bad6246efj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                   H
+  I will update `components/sections/hero/index.tsx` to introduce the Category Design Language overlay system. It maps the active template theme to customized golden arches, marigold garlands, watercolor eucalyptus leaves, art deco brass corners, or glowing glass panels.2(bot-bafe53b9-d2c5-42d9-8e78-544587cb2d64: C
+ lj5x9rmn  replace_file_content  @{"AllowMultiple":false,"Description":"Implement dynamic visual design languages inside HeroSection.","EndLine":110,"Instruction":"Inject getDesignLanguage helper and render specific design language overlays conditionally inside the Hero wrapper.","ReplacementContent":"  const designLanguage = themeId ? (() =\u003e {\n    const id = themeId.toLowerCase();\n    if ([\"royal-temple\", \"palace-luxury\", \"peacock\", \"royal-palace\", \"heritage\"].some(x =\u003e id.includes(x))) {\n      return \"royal-heritage\";\n    }\n    if ([\"south-indian\", \"lotus-serenity\", \"marigold\", \"divine-griha\", \"warm-terracotta\"].some(x =\u003e id.includes(x))) {\n      return \"temple-grandeur\";\n    }\n    if ([\"glass\", \"glassmorphic-oasis\", \"gla        003e\n      \u003c/div\u003e\n      \u003cdiv className=\"flex justify-between w-full\"\u003e\n        \u003cspan className=\"text-[#D4AF37]/40 text-lg\"\u003e   \u003c/span\u003e\n        \u003cspan className=\"text-[#D4AF37]/40 text-lg\"\u003e   \u003c/span\u003e\n      \u003c/div\u003e\n    \u003c/div\u003e\n  );\n\n  const renderArtDecoFrame = () =\u003e (\n    \u003cdiv className=\"absolute inset-4 border-2 border-double border-[#D4AF37]/45 pointer-events-none z-20 p-2\"\u003e\n      \u003cdiv className=\"w-full h-full border border-[#D4AF37]/20 flex flex-col justify-between\"\u003e\n        \u003cdiv className=\"flex justify-between -mt-2 -mx-2\"\u003e\n          \u003cspan className=\"text-[#D4AF37] text-xl font-serif\"\u003e   \u003c/span\u003e\n          \u003cspan className=\"text-[#D4AF37] text-xl font-serif\"\u003e   \u003c/span\u003e\n        \u003c/div\u003e\n        \u003cdiv className=\"flex justify-between -mb-2 -mx-2\"\u003e\n          \u003cspan className=\"text-[#D4AF37] text-xl font-serif\"\u003e   \u003c/span\u003e\n          \u003cspan className=\"text-[#D4AF37] text-xl font-serif\"\u003e   \u003c/span\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n    \u003c/div\u003e\n  );\n\n  const renderWatercolorLeaves = () =\u003e (\n    \u003cdiv className=\"absolute inset-0 pointer-events-none z-20 overflow-hidden\"\u003e\n      \u003cdiv className=\"absolute top-4 left-4 text-emerald-800/10 text-4xl rotate-45 select-none\"\u003e    \u003c/div\u003e\n      \u003cdiv className=\"absolute bottom-4 right-4 text-emerald-800/10 text-4xl -rotate-45 select-none\"\u003e    \u003c/div\u003e\n    \u003c/div\u003e\n  );\n\n  return (\n    \u003csection \n      className=\"relative flex flex-col justify-center items-center overflow-hidden w-full select-none\"\n      style={{ \n        minHeight: \"var(--layout-min-height, 85vh)\",\n        background: \"var(--theme-gradient-backdrop, var(--theme-bg))\"\n      }}\n    \u003e\n      {/* Design Language Overlays */}\n      {designLanguage === \"temple-grandeur\" \u0026\u0026 renderGarland()}\n      {designLanguage === \"royal-heritage\" \u0026\u0026 renderRoyalArch()}\n      {designLanguage === \"luxury-black-gold\" \u0026\u0026 renderArtDecoFrame()}\n      {designLanguage === \"botanical-garden\" \u0026\u0026 renderWatercolorLeaves()}\n      {designLanguage === \"glass-elegance\" \u0026\u0026 (\n        \u003cdiv className=\"absolute inset-0 bg-gradient-to-tr from-cyan-500/5 to-purple-500/5 opacity-40 backdrop-blur-[4px] pointer-events-none z-0\" /\u003e\n      )}\n\n      {/* Background Cover Image */}\n      {heroImage \u0026\u0026 (\n        \u003cdiv \n          className=\"absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-102\"\n          style={{ backgroundImage: `url(${heroImage})` }}\n        /\u003e\n      )}\n\n      {/* Dark overlay */}\n      \u003cdiv \n        className=\"absolute inset-0 bg-black pointer-events-none\"\n        style={{ opacity: overlayOpacity }}\n      /\u003e\n\n      {/* Hero content */}\n      \u003cMotionWrapper\n        motionId={motionId}\n        defaultMotionId=\"luxury-motion\"\n        type=\"reveal\"\n        className=\"w-full flex justify-center items-center z-10\"\n      \u003e\n        \u003cLayoutWrapper\n          layoutId={layoutId}\n          defaultLayoutId=\"hero-center\"\n          className={`w-full max-w-4xl flex ${alignmentClass}`}\n          style={{ \n            color: \"var(--theme-text)\",\n            fontFamily: \"var(--theme-font-body)\"\n          }}\n        \u003e\n          {/* Left Side: Welcome, Title, Description, CTA */}\n          \u003cdiv className=\"flex flex-col space-y-4 flex-1 text-center lg:text-left items-center lg:items-start w-full px-6\"\u003e\n            {/* Welcome Tagline */}","StartLine":70,"TargetContent":"  return (\n    \u003csection \n      className=\"relative flex flex-col justify-center items-center overflow-hidden w-full select-none\"\n      style={{ \n        minHeight: \"var(--layout-min-height, 85vh)\",\n          > background: \"var(--theme-gradient-backdrop, var(--theme-bg))\"\n      }}\n    \u003e\n      {/* Background Cover Image */}\n      {heroImage \u0026\u0026 (\n        \u003cdiv \n          className=\"absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-102\"\n          style={{ backgroundImage: `url(${heroImage})` }}\n        /\u003e\n      )}\n\n      {/* Dark overlay */}\n      \u003cdiv \n        className=\"absolute inset-0 bg-black pointer-events-none\"\n        style={{ opacity: overlayOpacity }}\n      /\u003e\n\n      {/* Hero content */}\n      \u003cMotionWrapper\n        motionId={motionId}\n        defaultMotionId=\"luxury-motion\"\n        type=\"reveal\"\n        className=\"w-full flex justify-center items-center z-10\"\n      \u003e\n        \u003cLayoutWrapper\n          layoutId={layoutId}\n          defaultLayoutId=\"hero-center\"\n          className={`w-full max-w-4xl flex ${alignmentClass}`}\n          style={{ \n            color: \"var(--theme-text)\",\n            fontFamily: \"var(--theme-font-body)\"\n          }}\n        \u003e\n          {/* Left Side: Welcome, Title, Description, CTA */}\n          \u003cdiv className=\"flex flex-col space-y-4 flex-1 text-center lg:text-left items-center lg:items-start w-full\"\u003e\n            {/* Welcome Tagline */}","TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\hero\\index.tsx","toolAction":"Update Hero Section layout","toolSummary":"Integrating design language overlays inside Hero index.tsx"}:     
+    M2  _ ,  	  G!#    : PX  m (`  < p     [Q b .      y^   SC  # 5    p  , A;    # w    #  g   KN Q   R  Yz     C 2    a  V  E  zR  B  U)RA %x7        }i T  Xy   0     M     9       D   4 @M 
+ O   }?    q   7#7{        H 4   ;&ED .< [ /     Y  :     l  I 47 
+ l         +  ^    p h5    {    F4 >h     E SL:C\m  N   7 v    ES   \  A   0 X><        M 5     I        )  f 4 L j   _  ;       d{  mJ replace_file_content*AllowMultiple* Description* EndLine* Instruction* ReplacementContent*	StartLine*TargetContent*
+TargetFile*
+toolAction* toolSummary2          

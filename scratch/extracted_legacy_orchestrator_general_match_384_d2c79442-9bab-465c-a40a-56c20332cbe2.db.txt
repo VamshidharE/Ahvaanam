@@ -1,0 +1,234 @@
+ =N  R>    <  ^B1 I      7)*+Z D     ; :    a    ^   ^J grep_search* CaseInsensitive* IsRegex* MatchPerLine* Query*
+SearchPath*
+toolAction* toolSumm   F   IegacyOrchestrator.tsx","toolAction":"Create LegacyOrchestrator.tsx","toolSummary":"Creating central legacy components orchestrator in components/shared/LegacyOrchestrator.tsx"}: ;  ;
+ ;  M2 l        P  #    O E   d  	 =*L%  h `sv ; G  x+    E:  E     gh* nS </  { d, 	m      I   	 # W   -n Z^ ! g    2 0 #T   t      a        ^ a- 5  ]K    :  :*(       3j   c  !  )Zl9    +   K  (B   Ns  % U   )5lXbD % |]    n  -W  ] S  VWr zWoY3-|  e S  gfG^     FT    A            I\ } d l     l 	/ 7L  E   4  x_         Ix  xm ?   b   8o_  l   t   7/        6  `]  I<  4  @   .    e   X1H  t    kG  Cx
+   -. ^,        - a
+j    o  r} gBL)        ' rv`          N ` c*  @ uKeO  	A  n N  8 b           i R  U   [#b@r    6 by    ,Z   T o9?    NdY w #   V   vm   7p  ?(<  H7 >RT    j3C  :7 i$ - ;    o _F     A  !xj    2    _G  { ;   :  Q /    +i? y % <0 HhD  [L   O   "   :    A{WuB 8N>*K Q*5^       s]     
+  `4T^<        O  >|  =      '   h     h   xU vA  P  9#  1    $:  w  1_D( <  ) #,  M ;    mG    G -yO    8  (R /k     0k   J $ s o  ]" K       V,q FJg: h < > {g   p Zz/ w- $    w #   EWW(  S 3       L   m  cn   0    {    L \     Q     B    0    S1[M zm >  V G     F    Fh       z       F     ] #   	   #     3 D   ] j| , =XO9 - E     PK   M S         R     b ; 4?q! z vZ{   78G      J   A{Am    k         @  J      =  y   S ~ ( w  0      q  3  -      :  .  Ce  I  E   {9              R     )k  v  L  8 g#  s        cde#X(E  7   9   y  Ga *    u   r        G  T 1    - f9     "^bJJ       Xu     UF  O  h    ^W  a> %&  6  5%  lNXo ]1cF K +  05  y   : \ 35   ?$      H     & X     n  $! PI  tvL  G h    {gB  :      o  ' m 1\   s J   U   n g EF  }   Y$ 3 <!   f     q   L S   M ] 4     n" & ( q}   j$+  `    $ -p  BU  c ] K  tS:      S    6    
+^&      , Uo G    ItV  6 B      r      i    C   6 g 43        |N] u    . 	M o      OV     Kn `G )s    _%         P !9         ti     q            Ad [L!  W O
+         G  )    \  a        -P 3  V  p2 R4    i    1  5"F  =dm     Ls      (K    c  >   oPf   o   Le   aXL   6F  S QK   #      r&P -/    k     >\   OKF    B	   4     f*  g &H  ^3   qCu {  !      	T^       HjZ W _  
+T     "8h  {I]      } 9:  D     L B    /      vc;     t}   )ZC   ]7 IQ  ,   [l <      N  $     (q 9:  g  [ n W""lC           =9  u sX    -     + 4 e K   's eb-l    ~ r        M  @X(    T X  x 2|T  h  [    "  1f     ^     3U   < + m w  <  r, GT2 OOr  A     v dD  4 F A oT      u% & :j s  ^on      = 2 *  G 0  wc k25n  X en      
+  6 n y   qY RO{ h+ u  $ < B0 _/"e    H         h`   n $  KY,Pf _^    ?Bp -V  m     Qs   ' d   oP(@4k        Uk   )     uT      ! 1      & :    #	r   dl 7a   1  #   V   /& !  ~ T+   @r_   /d *  ;    #   N   `(   z  u     $q 2   }l @vP]d ; u    OF   fAZd X   U:$  j[ `=  /   ^    $ t N  " . L W    Ym d  9 "   s     _(.gm    Q       d    B    o      yGQ >  D^ .    YomE \ ;  ZX    %  bs   :    m 9h {  a  l}         SiKe# "+ r lE  2XNW   , | '      J   ) 8H  "       {   0   c Vn        & '      2     	 n A' x8]x
++  S M\Sc	    {*    m   
+N N   F     &/ 0     W V  f   o      z     4P S Y   B  	q     }Wf      LZ   Z    & 8| - ,    u )4  [  0  I1    U     % 6S & Hn      8#    %GZ}    
+ W> '-   !     !C         Pg h        ! CW JT    Y 1    ". P     g  b ( y m  ||   bip _0 & ]>;] P |  __  E 2Xz    |    0a 5     F k F   	Rj     uc   _  B(   i 2         B-=  h-    [ voqx L    S K    9  	    ; bd  	   UU,  uo)   7   z    	   V e  y&f^   /        l E  7 * hkm L7   h w   i \   h        	>'fL   { x    	     h4_ D .    W.\    \ c8 .Q  	 Y	   m    z    C  d); U         ^    s  	  (4  5   |!\] j  =    F  F8  W  &   y6 u  Z  ,n *  7 xYiLEy u 
+     &V    "Rrt      zr i
+ , i 0 S K	?71Ng   J]y @  V  Mk t c @;"  ; ! i^  6       X   ;   a G  s   v   M       H T     .{  L   T   `n3 R @    a   m       b        z   6 )  Y     \ eM    9 e bM  . '  Bi  P  } z  J  z9 b    /1     MM     F  {   m _ 5 .G@kT{	 Yd  f  n   ~       E g  R ;  V      / N B t   c  e  Qp #  /    I l<  6  n   % r )U    S     P%3+  5       L#&Hx 3e- G3  i  /]o    >    U  I ?&O  U g       ^ 1    ]B16    y j    ] kX  `    2&    >zv  c ? m O &i              J z) 7 #  j      {    M            R   
+ 	
+ 	
+aInject HousewarmingPremiumLayout import and add case handlers matching the 10 theme/template IDs.  @ J  
+bimport PremiumBirthdayTemplateLayout from "../../../components/templates/birthday-premium/Layout";   import PremiumBirthdayTemplateLayout from "../../../components/templates/birthday-premium/Layout";
+import HousewarmingPremiumLayout from "../../../components/templates/housewarming-premium/Layout";0 8 J  
+            case "rosegold":
+          case "artdeco":
+          case "botanical":
+            return <PremiumBirthdayTemplateLayout onBackToHub={dummyBack} />;             case "rosegold":
+          case "artdeco":
+          case "botanical":
+            return <PremiumBirthdayTemplateLayout onBackToHub={dummyBack} />;
+          case "divine-griha":
+          case "modern-nest":
+          case "royal-palace":
+          case "emerald-estate":
+          case "classic-ivory":
+          case "constellation-navy":
+          case "warm-terracotta":
+          case "glassmorphic-oasis":
+          case "rosegold-manor":
+          case "botanical-garden":
+            return <HousewarmingPremiumLayout onBackToHub={dummyBack} />;0  8  "}*=file:///c:/Users/Admin/Ahvaanam/app/invites/%5Bid%5D/page.tsx2<
+ file:///c:/Users/Admin/Ahvaanam  app/invites/[id]/page.tsx    
+                
+"use client";       D
+@import React, { use, useState, useEffect, useRef } from "react";   r
+nimport { InvitationDataProvider, useInvitationData } from "../../../components/context/InvitationDataContext";   Q
+Mimport RsvpSubmissionForm from "../../../components/rsvp/RsvpSubmissionForm";   <
+8import { motion, AnimatePresence } from "framer-motion";     
+  import { Home, Calendar, Image as ImageIcon, MapPin, MessageCircle, Share2, ArrowUp, Volume2, VolumeX, Sparkles } from "lucide-react";       ,
+(// Import all 10 visual template layouts   V
+Rimport RoyalTempleLayout from "../../../components/templates/royal-temple/Layout";   X
+Timport FloralGardenLayout from "../../../components/templates/floral-garden/Layout";   a
+]import SouthIndianTraditionalLayout from "../../../components/templates/south-indian/Layout";   X
+Timport PalaceLuxuryLayout from "../../../components/templates/palace-luxury/Layout";   Z
+Vimport LotusSerenityLayout from "../../../components/templates/lotus-serenity/Layout";   O
+Kimport MarigoldLayout from "../../../components/templates/marigold/Layout";   M
+Iimport PeacockLayout from "../../../components/templates/peacock/Layout";   O
+Kimport HeritageLayout from "../../../components/templates/heritage/Layout";   Q
+Mimport MoonlightLayout from "../../../components/templates/moonlight/Layout";   V
+Rimport GrandMandapLayout from "../../../components/templates/grand-mandap/Layout";   \
+Ximport ModernBirthdayLayout from "../../../components/templates/modern-birthday/Layout";   f
+bimport PremiumBirthdayTemplateLayout from "../../../components/templates/birthday-premium/Layout";   f
+bimport HousewarmingPremiumLayout from "../../../components/templates/housewarming-premium/Layout";       @
+<function InviteContent({ clientId }: { clientId: string }) {   >
+:  const { invitationData, loading } = useInvitationData();        
+   // State controls   9
+5  const [showLoader, setShowLoader] = useState(true);   @
+<  const [rsvpSheetOpen, setRsvpSheetOpen] = useState(false);   @
+<  const [showBackToTop, setShowBackToTop] = useState(false);   >
+:  const [playingMusic, setPlayingMusic] = useState(false);   F
+B  const [showToast, setShowToast] = useState<string | null>(null);       6
+2  const audioRef = useRef<HTMLAudioElement>(null);        
+   useEffect(() => {   /
++    if (loading || !invitationData) return;       '
+#    // Fades out loader after delay   I
+E    const loaderTimer = setTimeout(() => setShowLoader(false), 2200);       .
+*    // Scroll listener for back-to-top FAB   $
+     const handleScroll = () => {   1
+-      setShowBackToTop(window.scrollY > 400);   
+
+     };   8
+4    window.addEventListener("scroll", handleScroll);        
+     // Analytics record view   (
+$    const recordView = async () => {    
+       try {      NN
+J        let visitorToken = localStorage.getItem("ahvaanam_visitor_token");    
+         if (!visitorToken) {   G
+C          if (typeof crypto !== "undefined" && crypto.randomUUID) {   3
+/            visitorToken = crypto.randomUUID();    
+           } else {   d
+`            visitorToken = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {   5
+1              const r = (Math.random() * 16) | 0,   8
+4                v = c === "x" ? r : (r & 0x3) | 0x8;   (
+$              return v.toString(16);    
+             });    
+           }   K
+G          localStorage.setItem("ahvaanam_visitor_token", visitorToken);   
+	        }       =
+9        await fetch(`/api/invitation/${clientId}/view`, {    
+           method: "POST",   >
+:          headers: { "Content-Type": "application/json" },   D
+@          body: JSON.stringify({ visitor_token: visitorToken }),    
+         });    
+       } catch (err) {   C
+?        console.error("Failed to record analytics view:", err);    
+       }   
+
+     };        
+     recordView();        
+     return () => {   $
+       clearTimeout(loaderTimer);   =
+9      window.removeEventListener("scroll", handleScroll);   
+
+     };   .
+*  }, [clientId, loading, invitationData]);       '
+#  if (loading || !invitationData) {    
+     return (   b
+^      <div className="min-h-screen bg-[#05020B] flex items-center justify-center text-center">   8
+4        <div className="flex flex-col items-center">     
+            <div className="w-12 h-12 border-2 border-yellow-500 border-t-transparent rounded-full animate-spin mb-4 animate-duration-[1s]" />     
+            <h2 className="text-[#C59B27] text-[10px] uppercase tracking-[3px] font-semibold animate-pulse">Loading Invitation</h2>    
+         </div>    
+       </div>   
+
+     );    
+   }       C
+?  const activeTheme = invitationData.themeId || "royal-temple";   !
+   const dummyBack = () => {};       !
+   const toggleMusic = () => {   &
+"    if (!audioRef.current) return;    
+     if (playingMusic) {   #
+       audioRef.current.pause();    
+     } else {   2
+.      audioRef.current.play().catch(() => {});   	
+     }   '
+#    setPlayingMusic(!playingMusic);    
+   };       '
+#  const handleShare = async () => {   B
+>    if (typeof navigator !== "undefined" && navigator.share) {    
+       try {   #
+         await navigator.share({   "
+           title: "Invitation",   ;
+7          text: "Check out this beautiful invitation!",   (
+$          url: window.location.href,    
+         });    
+       } catch (err) {    
+         // Fallback to copy    
+         copyLink();    
+       }    
+     } else {    
+       copyLink();   	
+     }    
+   };        
+   const copyLink = () => {   /
++    if (typeof navigator !== "undefined") {   >
+:      navigator.clipboard.writeText(window.location.href);   4
+0      setShowToast("Link copied to clipboard!");   5
+1      setTimeout(() => setShowToast(null), 3000);   	
+     }    
+   };       /
++  const scrollToSection = (id: string) => {   /
++    const el = document.getElementById(id);    
+    if (el) {   4
+0      el.scrollIntoView({ behavior: "smooth" });   	
+     }    
+   };        
+
+  return (   X
+T    <div className="client-invitation-view relative min-h-screen overflow-x-hidden">   "
+       {/* Background Audio */}   K
+G      {invitationData.music?.enabled && invitationData.music?.file && (   X
+T        <audio ref={audioRef} src={invitationData.music.file} loop preload="auto" />    
+       )}       I
+E      {/* Dynamic CSS Overrides to hide legacy components cleanly */}   4
+0      <style dangerouslySetInnerHTML={{__html: `   1
+-        button[title="Back to Selector Hub"],   $
+         .fixed.bottom-6.right-6,   3
+/        button[class*="music-playback-toggle"],   $
+         button[class*="Volume"],   $
+         button[class*="volume"],    
+         #rsvp-submit-form {   '
+#          display: none !important;   
+	        }    
+       `}} />       2
+.      {/* --- CINEMATIC LOADING SCREEN --- */}    
+       <AnimatePresence>    
+         {showLoader && (    
+           <motion.div   (
+$            initi   Oal={{ opacity: 1 }}   %
+!            exit={{ opacity: 0 }}   .
+*            transition={{ duration: 0.6 }}     
+}            className="fixed inset-0 bg-[#0C0714] z-[9999] flex flex-col items-center justify-center text-center select-none"    
+           >   r
+n            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#1d0f2b_0%,#0c0714_80%)]" />    
+             <motion.div   7
+3              initial={{ scale: 0.85, opacity: 0 }}   4
+0              animate={{ scale: 1, opacity: 1 }}   .
+*              transition={{ duration: 1 }}   G
+C              className="z-10 flex flex-col items-center space-y-6"    
+            >   /
++              {/* Rotating Gold Mandala */}     
+                <div className="w-24 h-24 border border-[#C59B27]/25 rounded-full flex items-center justify-center mx-auto relative animate-spin animate-duration-[16s]">     
+}                <div className="w-20 h-20 border border-[#C59B27]/40 rounded-full flex items-center justify-center absolute">   U
+Q                  <Sparkles size={24} className="text-[#C59B27] animate-pulse" />    
+                 </div>    
+               </div>   k
+g              <h2 className="text-[#C59B27] text-[10px] uppercase tracking-[5px] font-bold block mb-1">   !
+                 WELCOME GUEST    
+               </h2>   f
+b              <p className="text-white/40 italic text-xs">Preparing your premium experience...</p>    
+             </motion.div>    
+           </motion.div>    
+
+        )}    
+       </AnimatePresence>       8
+4      {/* --- RENDER CURRENT TEMPLATE LAYOUT --- */}    
+       {(() => {   "
+         switch (activeTheme) {   "
+           case "royal-temple":   E
+A            return <RoyalTempleLayout onBackToHub={dummyBack} />;   #
+           case "floral-garden":   F
+B            return <FloralGardenLayout onBackToHub={dummyBack} />;   "
+           case "south-indian":   P
+L            return <SouthIndianTraditionalLayout onBackToHub={dummyBack} />;   #
+           case "palace-luxury":   F
+B            return <PalaceLuxuryLayout onBackToHub={dummyBack} />;   $
+           case "lotus-serenity":   G
+C            return <LotusSerenityLayout onBackToHub={dummyBack} />;    
+           case "marigold":   B
+>            return <MarigoldLayout onBackToHub={dummyBack} />;    
+           case "peacock":   A
+=            return <PeacockLayout onBackToHub={dummyBack} />;    
+           case "heritage":   B
+>            return <HeritageLayout onBackToHub={dummyBack} />;    
+           case "moonlight":   C
+?            return 

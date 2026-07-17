@@ -1,0 +1,58 @@
+"use client";
+2: 
+3: import { useEffect, useState } from "react";
+4: import { ToggleLeft, ToggleRight } from "lucide-react";
+5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+6: import { getWeddingComposition } from "@/lib/composition/templates";
+7: import { useInvitationData } from "../../context/InvitationDataContext";
+8: import LegacyOrchestrator from "../../shared m 
+   X       "$9f6664e0-322c-4f52-981a-15ffbb18e59fB     2   0   2   2   2   2   2   2   1   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   1   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2
+     "M          0 B!
+	sessionID  -3750763034362895579H{P  Z LSFSaqLRIr7KjuMPv_752AE0  : 
+ autoJc q           "             (  2          0cefc8c82          8fd4d758:       e9c821beB       9R     Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  a M          0 B!
+	sessionID  -3750763034362895579H{P  Z LSFSaqLRIr7KjuMPv_752AE" be1cb5d0a4332171   gemini-default  9
+ last_execution_id $67478a15-6234-4d23-a784-3479c0b12ab0  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  295  #
+
+model_enum  MODEL_PLACEHOLDER_M20   Gemini 3.5 Flash (Medium) f [ 	   4           "$9f6664e0-322c-4f52-981a-15ffbb18e59fB     2   0   2   2   2   2   2   2   1   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   1   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2
+ 	   "N          0 B!
+	sessionID  -3750763034362895579H  P  Z KCFSar6DLeKsjuMP2IzyuAg0  : 
+ autoJd q           "             (  2          8fd4d7582          c328542b:       e9c821beB  ,      R     Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?       request failed: Post "https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse": read tcp 192.168.1.8:55547->172.217.113.4:443: wsarecv: An established connection was aborted by the software in your host machine.: request failed: Post "https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse": read tcp 192.168.1.8:55547->172.217.113.4:443: wsarecv: An established connection was aborted by the software in your host machine.(   b N          0 B!
+	sessionID  -3750763034362895579H  P  Z KCFSar6DLeKsjuMP2IzyuAg" 98ce2486c1183b31   gemini-default  !
+ used_claude_conservative  false   
+ last_step_index  293  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $67478a15-6234-4d23-a784-3479c0b12ab0  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false   Gemini 3.5 Flash (Medium) T     x  x                                                                                                                 4            h   
+               2           p:             B             JP     &   (   0 B!
+	sessionID  -3750763034362895579H P  Z uihSav_pE-CajuMP5svkwQwX  b$cbc2e186-3963-4de5-841e-dea8917e6274j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+               p
+                                    *  
+               2           p:             B             JP     &   (   0 B!
+	sessionID  -3750763034362895579H P  Z uihSav_pE-CajuMP5svkwQwX  b$cbc2e186-3963-4de5-841e-dea8917e6274j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+               p
+                                    
+  I have successfully completed Phase 3B     Composition Renderer. All requirements have been satisfied.
+
+Here is a summary of the accomplishments:
+1. **Composition Renderer Layout**: Created `components/composition/CompositionRenderer.tsx` which parses compositions, evaluates layout sequences, and mounts them inside React trees.
+2. **Prop-Drilling Elimination**: Added `RenderContext` and `useRenderContext()` distributing fallback themes, motions, assets, and invitation data to all child components.
+3. **Dynamic Imports Integration**: Upgraded the Component Registry in `lib/registry/index.ts` to utilize code-split React `lazy(() => import(...))` dynamic module loading.
+4. **Visual Durability Guards**: Enveloped lazy section mounts inside local `<Suspense>` boundaries and `try-catch` structures to contain runtime component crashes without breaking the guest pages.
+5. **Performance Profiling**: Built a `useRendererProfiler` hook recording rendering time (ms), sections parsed, skipped, and crashed.
+6. **Types and Build Verification**:
+   - `npx tsc --noEmit` resolved with **0 errors**.
+   - `npm run build` compiled successfully in **13.5 seconds** for all 28 production application routes.
+
+Details have been cataloged in the [walkthrough.md](file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/walkthrough.md) artifact. We have successfully completed both Phase 2 and Phase 3 foundations, making Ahvaanam completely prepared for scalable composition-based invitations! What would you like to focus on next?2(bot-871fcab5-3c35-408e-82cd-f9c620318634B  I have successfully completed Phase 3B     Composition Renderer. All requirements have been satisfied.
+
+Here is a summary of the accomplishments:
+1. **Composition Renderer Layout**: Created `components/composition/CompositionRenderer.tsx` which parses compositions, evaluates layout sequences, and mounts them inside React trees.
+2. **Prop-Drilling Elimination**: Added `RenderContext` and `useRenderContext()` distributing 

@@ -1,0 +1,108 @@
+hestrator.tsx  &Update LegacyOrchestrator switch props                   * )
+               " %
+ j16ukqjn  replace_file_content  #{"AllowMultiple":false,"Description":"Fix props type signature inside LegacyOrchestrator switch cases.","EndLine":120,"Instruction":"Pass only bindings, layoutId, and motionId props to section components.","ReplacementContent":"      case \"couple\":\n        return \u003cCoupleSection key={sectionId} bindings={bindings} layoutId=\"hero-center\    tId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"venue\":\n        return \u003cVenueSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"families\":\n        return \u003cFamiliesSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"rsvp\":\n        return \u003cRSVPSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"faq\":\n        return \u003cFAQSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"dressCode\":\n        return \u003cDressCodeSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"footer\":\n        return \u003cFooterSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"celebrant\":\n        return \u003cCelebrantSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"houseDetails\":\n        return \u003cHouseDetailsSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"owners\":\n        return \u003cOwnersSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      default:\n        return null;","StartLine":91,"TargetContent":"      case \"couple\":\n        return \u003cCoupleSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"countdown\":\n        return \u003cCountdownSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"story\":\n        return \u003cStorySection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"events\":\n        return \u003cEventsSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"gallery\":\n        return \u003cGallerySection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"venue\":\n        return \u003cVenueSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"families\":\n        return \u003cFamiliesSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"rsvp\":\n        return \u003cRSVPSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"faq\":\n        return \u003cFAQSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"dressCode\":\n        return \u003cDressCodeSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"footer\":\n        return \u003cFooterSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"celebrant\":\n        return \u003cCelebrantSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"houseDetails\":\n        return \u003cHouseDetailsSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"owners\":\n        return \u003cOwnersSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      default:\n        return null;","TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","toolAction":"Update LegacyOrchestrator switch props","toolSummary":"Aligning switch cases properties inside LegacyOrchestrator.tsx"}:     
+    M2    t  b   en .Z      6 v   M                 &     ]   k       %
+ xcg      C 3T
+  6   (  s %h  xw          t C~?   u-   a ^7  -< 5  )    ohm   .   T  M{ U  z   k b0 x    'e  J replace_file_contentB  I will update `components/shared/LegacyOrchestrator.tsx` to match the exact TypeScript property interface of each section component. All section wrapper calls will pass `bindings={bindings}` along with appropriate layout and motion IDs.`     shared\\LegacyOrchestrator.tsx","toolAction":"Update LegacyOrchestrator switch props","toolSummary":"Aligning switch cases properties inside LegacyOrchestrator.tsx"}:     
+    M2    t  b   en .Z      6 v   M                 &     ]   k       %
+ xcg      C 3T
+  6   (  s %h  xw          t C~?   u-   a ^7  -< 5  )    ohm   .   T  M{ U  z   k b0 x    'e  J replace_file_content*AllowMultiple* Description* EndLine* Instruction* ReplacementContent*	StartLine*TargetContent*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   >Aligning switch cases properties inside LegacyOrchestrator.tsx  &Update LegacyOrchestrator switch props               R   
+  
+  
+GPass only bindings, layoutId, and motionId props to section components.  @ J  
+       case "couple":
+        return <CoupleSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "countdown":
+        return <CountdownSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "story":
+        return <StorySection key={sectionId} properties={properties} bindings={bindings} />;
+      case "events":
+        return <EventsSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "gallery":
+        return <GallerySection key={sectionId} properties={properties} bindings={bindings} />;
+      case "venue":
+        return <VenueSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "families":
+        return <FamiliesSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "rsvp":
+        return <RSVPSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "faq":
+        return <FAQSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "dressCode":
+        return <DressCodeSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "footer":
+        return <FooterSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "celebrant":
+        return <CelebrantSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "houseDetails":
+        return <HouseDetailsSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "owners":
+        return <OwnersSection key={sectionId} properties={properties} bindings={bindings} />;
+      default:
+        return null;         case "couple":
+        return <CoupleSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "countdown":
+        return <CountdownSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "story":
+        return <StorySection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "events":
+        return <EventsSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "gallery":
+        return <GallerySection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "venue":
+        return <VenueSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "families":
+        return <FamiliesSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "rsvp":
+        return <RSVPSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "faq":
+        return <FAQSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "dressCode":
+        return <DressCodeSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "footer":
+        return <FooterSection key    20332cbe2.db.txt
+Saved match 4 of hero_section to scratch/extracted_hero_section_match_4_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 5 of hero_section to scratch/extracted_hero_section_match_5_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 6 of hero_section to scratch/extracted_hero_section_match_6_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 7 of hero_section to scratch/extracted_hero_section_match_7_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 8 of hero_section to scratch/extracted_hero_section_match_8_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 9 of hero_section to scratch/extracted_hero_section_match_9_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 10 of hero_section to scratch/extracted_hero_section_match_10_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 11 of hero_section to scratch/extracted_hero_section_match_11_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 12 of hero_section to scratch/extracted_hero_section_match_12_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 13 of hero_section to scratch/extracted_hero_section_match_13_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 14 of hero_section to scratch/extracted_hero_section_match_14_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 15 of hero_section to scratch/extracted_hero_section_match_15_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 16 of hero_section to scratch/extracted_hero_section_match_16_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 17 of hero_section to scratch/extracted_hero_section_match_17_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 18 of hero_section to scratch/extracted_hero_section_match_18_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 19 of hero_section to scratch/extracted_hero_section_match_19_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 20 of hero_section to scratch/extracted_hero_section_match_20_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 21 of hero_section to scratch/extracted_hero_section_match_21_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 22 of hero_section to scratch/extracted_hero_section_match_22_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 23 of hero_section to scratch/extracted_hero_section_match_23_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 24 of hero_section to scratch/extracted_hero_section_match_24_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 25 of hero_section to scratch/extracted_hero_section_match_25_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 26 of hero_section to scratch/extracted_hero_section_match_26_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 27 of hero_section to scratch/extracted_hero_section_match_27_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 28 of hero_section to scratch/extracted_hero_section_match_28_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 29 of hero_section to scratch/extracted_hero_section_match_29_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 30 of hero_section to scratch/extracted_hero_section_match_30_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 31 of hero_section to scratch/extracted_hero_section_match_31_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 32 of hero_section to scratch/extracted_hero_section_match_32_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 33 of hero_section to scratch/extracted_hero_section_match_33_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 34 of hero_section to scratch/extracted_hero_section_match_34_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 35 of hero_section to scratch/extracted_hero_section_match_35_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 36 of hero_section to scratch/extracted_hero_section_match_36_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 37 of hero_section to scratch/extracted_hero_section_match_37_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 38 of hero_section to scratch/extracted_hero_section_match_38_d     N  N        G     	  "      d  
+               " %
+ j16ukqjn  replace_file_content  #{"AllowMultiple":false,"Description":"Fix props type signature inside LegacyOrchestrator switch cases.","EndLine":120,"Instruction":"Pass only bindings, layoutId, and motionId props to section components.","ReplacementContent":"      case \"couple\":\n        return \u003cCoupleSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"countdown\":\n        return \u003cCountdownSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"story\":\n        return \u003cStorySection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"events\":\n        return \u003cEventsSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"gallery\":\n        return \u003cGallerySection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"venue\":\n        return \u003cVenueSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"families\":\n        return \u003cFamiliesSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"rsvp\":\n        return \u003cRSVPSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"faq\":\n        return \u003cFAQSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"dressCode\":\n        return \u003cDressCodeSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"footer\":\n        return \u003cFooterSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"celebrant\":\n        return \u003cCelebrantSection key={sectio &              *   
+           {  2             :             B             JP         (  	0 B!
+	sessionID  -

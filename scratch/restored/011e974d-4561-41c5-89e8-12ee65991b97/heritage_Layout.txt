@@ -1,0 +1,104 @@
+00 transition-colors\"\u003e{item.label}\u003c/a\u003e\n              ))}\n            \u003c/nav\u003e\n          \u003c/div\u003e\n        \u003c/header\u003e\n      )}\n\n      {/* --- DYNAMIC SECTION GENERATOR --- */}\n      {invitation.sectionOrder.map((sectionId) =\u003e {\n        // 1. HERO\n        if (sectionId === \"hero\" \u0026\u0026 invitation.hero.enabled) {\n      a\n\n    const resize = () =\u003e {\n      width = canvas.width = window.innerWidth;\n      height = canvas.height = window.innerHeight;\n    };\n    window.addEventListener(\"resize\", resize);\n\n    let animationFrameId: number;\n    const draw = () =\u003e {\n      ctx.clearRect(0, 0, width, height);\n      particles.forEach((p) =\u003e {\n        p.y -= p.vy;\n        p.x += p.vx;\n        if (p.x \u003e width + 10 || p.y \u003c -10) {\n          p.x = -10;\n          p.y = Math.random() * height;\n        }\n        ctx.beginPath();\n        ctx.fillStyle = `rgba(235, 140, 60, ${p.alpha})`; // Terracotta orange glow\n        ctx.shadowBlur = 6;\n        ctx.shadowColor = \"#eb8c3c\";\n        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);\n        ctx.fill();\n      });\n      animationFrameId = requestAnimationFrame(draw);\n    };\n    draw();\n\n    return () =\u003e {\n      window.removeEventListener(\"resize\", resize);\n      cancelAnimationFrame(animationFrameId);\n    };\n  }, []);\n\n  return \u003ccanvas ref={canvasRef} className=\"absolute inset-0 pointer-events-none z-0\" /\u003e;\n};\n\nexport default function HeritageLayout({ onBackToHub }: { onBackToHub: () =\u003e void }) {\n  const [loading, setLoading] = useState(true);\n  const [mounted, setMounted] = useState(false);\n  const [playingMusic, setPlayingMusic] = useState(false);\n  const [lightboxOpen, setLightboxOpen] = useState(false);\n  const [lightboxIndex, setLightboxIndex] = useState(0);\n  const audioRef = useRef\u003cHTMLAudioElement\u003e(null);\n\n  // Countdown timer state\n  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });\n  const [isWeddingPassed, setIsWeddingPassed] = useState(false);\n\n  useEffect(() =\u003e {\n    setMounted(true);\n    const timer = setTimeout(() =\u003e setLoading(false), 2000);\n\n    const weddingDate = new Date(invitation.countdown.targetDate).getTime();\n    const updateCountdown = () =\u003e {\n      const now = new Date().getTime();\n      const difference = weddingDate - now;\n      if (difference \u003c= 0) {\n        setIsWeddingPassed(true);\n      } else {\n        setTimeLeft({\n          days: Math.floor(difference / (1000 * 60 * 60 * 24)),\n          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),\n          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),\n          seconds: Math.floor((difference % (1000 * 60)) / 1000),\n        });\n      }\n    };\n\n    updateCountdown();\n    const interval = setInterval(updateCountdown, 1000);\n\n    return () =\u003e {\n      clearTimeout(timer);\n      clearInterval(interval);\n    };\n  }, []);\n\n  const toggleMusic = () =\u003e {\n    if (!audioRef.current) return;\n    if (playingMusic) {\n      audioRef.current.pause();\n    } else {\n      audioRef.current.play().catch(() =\u003e {});\n    }\n    setPlayingMusic(!playingMusic);\n  };\n\n  if (!mounted) return null;\n\n  // Auto-generate Navigation Items from enabled sections in order\n  const sectionLabels: Record\u003cstring, string\u003e = {\n    hero: \"Home\",\n    couple: \"Couple\",\n    story: \"Story\",\n    events: \"Events\",\n    gallery: \"Gallery\",\n    venue: \"Venues\",\n    rsvp: \"RSVP\",\n    faq: \"FAQ\",\n    dressCode: \"Theme\"\n  };\n\n  const navItems = invitation.sectionOrder\n    .filter((id) =\u003e id !== \"footer\" \u0026\u0026 id !== \"families\" \u0026\u0026 (invitation as any)[id]?.enabled)\n    .map((id) =\u003e ({ id, label: sectionLabels[id] || id }));\n\n  return (\n    \u003cdiv className=\"min-h-screen bg-[#F7E7D4] text-[#804000] relative overflow-hidden font-serif selection:bg-[#804000] selection:text-[#F7E7D4]\"\u003e\n      \u003caudio ref={audioRef} loop src={invitation.music.file} /\u003e\n\n      {/* --- ANIMATED LOADING SCREEN --- */}\n      \u003cAnimatePresence\u003e\n        {loading \u0026\u0026 (\n          \u003cmotion.div\n            initial={{ opacity: 1 }}\n            exit={{ opacity: 0, transition: { duration: 0.6 } }}\n            className=\"fixed inset-0 z-   Y     <button
+                type="submit"
+                className="w-full bg-yellow-600 hover:bg-yellow-500 text-black font-bold py-3.5 rounded-xl text-xs transition-all tracking-[0.5px] mt-2 flex items-center justify-center gap-2 hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(212,175,55,0.15)]"
+              >
+                Send Request Message
+              </button>
+            </form>
+          )}
+        </div>
+      </section>
+
+      {/* --- PREMIUM MINIMAL FOOTER --- */}
+      <footer className="bg-black/50 border-t border-white/5 py-12 z-10 px-6 md:px-12 mt-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          {/* Logo & Slogan */}
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <Palette className="text-yellow-500" size={20} />
+              <span className="font-bold uppercase tracking-[1px] text-white/90">Ahvaanam</span>
+            </div>
+            <p className="text-[11px] text-white/40 leading-relaxed">
+              Digital invitations for every celebration. Design, customize, and share instantly.
+            </p>
+          </div>
+
+          {/* Links Column 1 */}
+          <div className="space-y-3">
+            <h4 className="text-[10px] uppercase font-bold text-yellow-500 tracking-[1.5px]">Product</h4>
+            <ul className="space-y-2 text-[11px] text-white/50">
+              <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
+              <li><a href="#events" className="hover:text-white transition-colors">Events</a></li>
+              <li><a href="#how-it-works" className="hover:text-white transition-colors">How It Works</a></li>
+            </ul>
+          </div>
+
+          {/* Links Column 2 */}
+          <div className="space-y-3">
+            <h4 className="text-[10px] uppercase font-bold text-yellow-500 tracking-[1.5px]">Support</h4>
+            <ul className="space-y-2 text-[11px] text-white/50">
+              <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
+              <li><span className="cursor-not-allowed text-white/30">Privacy Policy</span></li>
+              <li><span className="cursor-not-allowed text-white/30">Terms of Service</span></li>
+            </ul>
+          </div>
+
+          {/* Admin Login Corner */}
+          <div className="space-y-3 flex flex-col items-start justify-between">
+            <div className="space-y-1">
+              <h4 className="text-[10px] uppercase font-bold text-white/50 tracking-[1.5px]">Administration</h4>
+              <p className="text-[10px] text-white/30">Access dashboard management.</p>
+            </div>
+            <a 
+              href="/login" 
+              className="text-[10px] uppercase tracking-[1px] font-bold text-yellow-500/80 hover:text-yellow-400 border border-yellow-500/20 hover:border-yellow-500/40 px-3 py-1.5 rounded-lg bg-yellow-500/5 transition-all"
+            >
+              Admin Portal Login
+            </a>
+          </div>
+        </div>
+
+        <div className="border-t border-white/5 pt-6 text-center text-[10px] text-white/30 uppercase tracking-[1px]">
+             {new Date().getFullYear()} AHVAANAM. ALL RIGHTS RESERVED.
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+// Simple fallback icon mapping
+function CakeIcon(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8" />
+      <path d="M4 16h16" />
+      <path d="M10 9h4" />
+      <path d="M12 5v4" />
+    </svg>
+  );
+}    "use client";
+
+import React, { useState, useEffect } from "react";
+import {
+  Palette, Heart, Sparkles, CheckCircle, Mail, MapPin,
+  Phone, Music, ArrowRight, ArrowLeft, QrCode, Image as ImageIcon,
+  Calendar, Gift, Smile, Plus, Eye, Smartphone, Monitor, Tablet,
+  Sh                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        I _      >     L   
+               2             :             B             JP     )   (  	0 B!
+	sessionID  -3750763034362895579H  P  Z OkpBav48rICDxQ-toozBCQX  b$e4f7373b-2b76-415f-b116-342376deb1f0j      Q
+$7d85ea43-75e8-4b3f-8f97-54265a45ed1e    k"$011e974d-4561-41c5-89e8-12ee65991b97     6
+                 
+                 
+                                    *  
+               2             :             B       

@@ -1,0 +1,87 @@
+"use client";       ?
+;import React, { useEffect, useState, useRef } from "react";   ;
+7import { ToggleLeft, ToggleRight } from "lucide-react";   S
+Oimport CompositionRenderer from "@/components/composition/CompositionRenderer";   `
+\import { getWeddingComposition, getBirthdayComposition } from "@/lib/composition/templates";   <
+8import { motion, AnimatePresence } from "framer-motion";   L
+Himport { useInvitationData } from "../../context/InvitationDataContext";   s
+oimport { Calendar, MapPin, Clock, Phone, Volume2, VolumeX, Menu, X, HelpCircle, Sparkles } from "lucide-react";   6
+2import Lightbox from "yet-another-react-lightbox";   3
+/import "yet-another-react-lightbox/styles.css";       =
+9// Dynamic Google Fonts configuration for birthday themes   1
+-const THEME_FONTS: Record<string, string> = {    
+   midnight: "Cinzel",    
+   marble: "Bodoni+Moda",   $
+   emerald: "Cormorant+Garamond",    
+   navy: "Cinzel",    
+   burgundy: "Lora",   &
+"  champagne: "Cormorant+Garamond",    
+   glass: "Inter",   #
+   rosegold: "Playfair+Display",   #
+   artdeco: "Cinzel+Decorative",    
+   botanical: "Lora"    
+ };       !
+ // Theme configuration mapper   0
+,const THEME_CONFIGS: Record<string, any> = {    
+  midnight: {   /
++    bgClass: "bg-[#0F0F0F] text-[#F5E6C4]",    
+     primaryColor: "#D4AF37",    
+     textColor: "#F5E6C4",    
+     accentColor: "#C5A028",   =
+9    cardClass: "bg-[#1C1C1C] border border-[#D4AF37]/25",   `
+\    btnClass: "bg-gradient-to-r from-[#D4AF37] to-[#B0871B] text-black font-bold uppercase",    
+     ornament: "   ",   =
+9    glowClass: "shadow-[0_0_20px_rgba(212,175,55,0.15)]",   #
+     fontFamily: "Cinzel, serif"    
+   },    
+   marble: {   /
++    bgClass: "bg-[#FAF9F6] text-[#241E1C]",    
+     primaryColor: "#C5A880",    
+     textColor: "#241E1C",    
+     accentColor: "#A38760",   @
+<    cardClass: "bg-white border border-stone-200 shadow-sm",   Q
+M    btnClass: "bg-stone-900 text-white font-medium uppercase tracking-[2px]",    
+     ornament: "Invite",   *
+&    fontFamily: "'Bodoni Moda', serif"    
+   },    
+   emerald: {   /
++    bgClass: "bg-[#041D14] text-[#EAE6DF]",    
+     primaryColor: "#E5C07B",    
+     textColor: "#EAE6DF",    
+     accentColor: "#D4AF37",   =
+9    cardClass: "bg-[#0B3527] border border-[#E5C07B]/30",   d
+`    btnClass: "bg-gradient-to-r from-[#E5C07B] to-[#B28F50] text-[#062319] font-bold uppercase",    
+     ornament: "    ",   1
+-    fontFamily: "'Cormorant Garamond', serif"    
+   },   
+	  navy: {   /
++    bgClass: "bg-[#050B1B] text-[#E0E1DD]",    
+     primaryColor: "#F1C40F",    
+     textColor: "#E0E1DD",    
+     accentColor: "#FFD700",   =
+9    cardClass: "bg-[#1C2541] border border-[#F1C40F]/20",   D
+@    btnClass: "bg-[#F1C40F] text-slate-950 font-bold uppercase",    
+     ornament: "   ",   #
+     fontFamily: "Cinzel, serif"    
+   },    
+  burgundy: {   /
++    bgClass: "bg-[#25030C] text-[#F3E8EE]",    
+     primaryColor: "#DFBA6B",    
+     textColor: "#F3E8EE",    
+     accentColor: "#C89E5F",   =
+9    cardClass: "bg-[#430919] border border-[#DFBA6B]/20",   H
+D    btnClass: "bg-[#DFBA6B] text-slate-900 font-semibold uppercase",    
+     ornament: "   ",   !
+     fontFamily: "Lora, serif"    
+   },    
+   champagne: {   /       
+                                                                                                                                                                                                                                                    %      |     z   
+               2             X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      Q
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0    M"$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+               2             X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      Q
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0    M"$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     
+  I will run a `git status` and check if there are any unstaged or modified files in the git workspace that might have altered the layout or styles of the website.2(bot-ec2f1227-6589-4d1a-9df1-5a461ac2ba5dB  I will run a `git status` and check if there are any unstaged or modified files in the git workspace that might have altered the layout or styles of the website.`  [ $            * 	 
+               "  
+ djjs14fu  list_dir   {"DirectoryPath":"c:\\Users\\Admin\\Ahvaanam\\app\\templates","toolAction":"List app/templates directory","toolSummary":"Checking for templates page files in app/

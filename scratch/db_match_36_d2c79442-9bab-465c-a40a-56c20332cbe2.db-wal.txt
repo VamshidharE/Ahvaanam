@@ -1,0 +1,35 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+[84] Found match at index 26157782
+  Preview of match [84]:
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+import { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Import re
+------------------------
+[85] Found match at index 26203210
+  Preview of match [85]:
+"use client";       ?
+;import React, { useEffect, useState, useRef } from "react";   I
+Eimport { useInvitationData } from "../context/InvitationDataContext";   X
+Timport { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";   <
+8import { motion, AnimatePresence } from "framer
+------------------------
+        YZ v J :      } SQLite format 3      @     P          ~   	                                                   P .      	       8   B   @
+N
+ 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                //  -tablebattle_mode_infosbattle_mode_infos CREATE TABLE `battle_mode_infos` (`idx` integer,`data` blob,PRIMARY KEY (`idx`))  	  ==  Otabletrajectory_metadata_blobtrajectory_metadata_blob
+CREATE TABLE `trajectory_metadata_blob` (`id` text DEFAULT "main",`data` blob,PRIMARY KEY (`id`))O
+  c=  indexsqlite_autoindex_trajectory_metadata_blob_1trajectory_metadata_blob     //  -tableparent_referencesparent_references	CREATE TABLE `parent_references` (`idx` integer,`data` blob,PRIMARY KEY (`idx`))    //  -tableexecutor_metadataexecutor_metadata CREATE TABLE `executor_metadata` (`idx` integer,`data` blob,PRIMARY KEY (`idx`))     %%  gtablegen_metadatagen_metadata CREATE TABLE `gen_metadata` (`idx` integer,`data` blob,`size` integer NOT NULL DEFAULT 0,PRIMARY KEY (`idx`))_   3    indexidx_steps_step_typesteps CREATE INDEX `idx_steps_step_type` ON `steps`(`step_

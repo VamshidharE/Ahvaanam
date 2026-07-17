@@ -1,0 +1,130 @@
+"use client";');
+    if (startIdx === -1) {
+      startIdx = content.indexOf('use client');
+    }
+    if (startIdx === -1) continue;
+    
+    // Try to find if this contains the full component
+    const hasComponentExport = content.includes('export default function CompositionRenderer');
+    const hasResolveBinding = content.includes('resolveBindingValue');
+    const hasSectionComponents = content.includes('SECTION_COMPONENTS');
+    
+    if (hasComponentExport && hasResolveBinding && hasSectionC
+------------------------
+[35] Found match at index 29301270
+  Preview of match [35]:
+"use client";');    
+     if (startIdx === -1) {   3
+/      startIdx = content.indexOf('use client');   	
+     }   &
+"    if (startIdx === -1) continue;    
+        :
+6    // Try to find if this contains the full component   c
+_    const hasComponentExport = content.includes('export default function CompositionRenderer');   J
+F    const hasResolveBinding = content.includes('resolveBindingValue');   L
+H    const hasSectionComponents = content.includes('SECTION_COMPONENTS');    
+        N
+J    if 
+------------------------
+   node scratch/extract_from_db.js   node scratch/extract_from_db.js   <     3 S `  x p  b8L   7 { useEffect, useState, useRef } from "react";
+import { ToggleLeft, ToggleRight } from "lucide-react";
+import CompositionRenderer from "@/components/composition/CompositionRenderer";
+import { getWeddingComposition, getBirthdayComposition } from "@/lib/composition/templates";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInvitationData } from "../../context/InvitationDataContext";
+import { Calendar, MapPin, Clock, Phone, Volume2, VolumeX, Menu, X
+------------------------
+[23] Found match at index 24247056
+  Preview of match [23]:
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { ToggleLeft, ToggleRight } from "lucide-react";
+import CompositionRenderer from "@/components/composition/CompositionRenderer";
+import { getWeddingComposition, getBirthdayComposition } from "@/lib/composition/templates";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInvitationData } from "../../context/InvitationDataContext";
+import { Calendar, MapPin, Clock, Phone, Volume2, VolumeX, Menu, X
+------------------------
+[24] Found match at index 24248104
+  Preview of match [24]:
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { ToggleLeft, ToggleRight } from "lucide-react";
+import CompositionRenderer from "@/components/composition/CompositionRenderer";
+import { getWeddingComposition, getBirthdayComposition } from "@/lib/composition/templates";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInvitationData } from "../../context/InvitationDataContext";
+import { Calendar, MapPin, Clock, Phone, Volume2, VolumeX, Menu, X
+------------------------
+[25] Found match at index 24248326
+  Preview of match [25]:
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { ToggleLeft, ToggleRight } from "lucide-react";
+import CompositionRenderer from "@/components/composition/CompositionRenderer";
+import { getWeddingComposition, getBirthdayComposition } from "@/lib/composition/templates";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInvitationData } from "../../context/InvitationDataContext";
+import { Calendar, MapPin, Clock, Phone, Volume2, VolumeX, Menu, X
+------------------------
+[26] Found match at index 26906310
+  Preview of match [26]:
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+
+import AudioOrchestrator from "./AudioOrchestrator";
+import BackgroundEffects from "./BackgroundEffects";
+import LoadingExperience from "./LoadingExperience";
+import SectionPipeline from "./SectionPipeline";
+import TemplateFrame from "./TemplateFrame";
+import ScrollController from "./ScrollController";
+import ShareController from "./ShareController";
+
+interfac
+------------------------
+[27] Found match at index 28640033
+  Preview of match [27]:
+"use client";
+
+import React, { useState, useEffect   B, useRef, use } from "react";
+import Link from "next/link";
+import { InvitationDataProvider, useInvitationData } from "../../../components/context/InvitationDataContext";
+import { getCategory } from "@/lib/categories/utils";
+import { getManifest } from "@/lib/template-manifests";
+import { getTheme, listThemes } from "@/lib/theme/registry";
+import { listMotionPacks } from "@/lib/motion/registry";
+import { 
+  Sliders, Heart, Calendar, Clock, Ma
+------------------------
+[28] Found match at index 28640663
+  Preview of match [28]:
+"use client";
+
+import React, { useState, useEffect   B, useRef, use } from "react";
+import Link from "next/link";
+import { InvitationDataProvider, useInvitationData } from "../../../components/context/InvitationDataContext";
+import { getCategory } from "@/lib/categories/utils";
+import { getManifest } from "@/lib/template-manifests";
+import { getTheme, listThemes } from "@/lib/theme/registry";
+import { listMotionPacks } from "@/lib/motion/registry";
+import { 
+  Sliders, Heart, Calendar, Clock, Ma
+------------------------
+[29] Found match at index 28645601
+  Preview of match [29]:
+"use client";
+
+imp   S     3 S `   H
+* n N     b  b                             V    I        $ l       
+               "  
+ ozljwaiu  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run extract_from_db.js","toolSummary":"Executing database scan script to locate the composition renderer code"}:     
+    M2 
+
+      \ H     48  o    * 8   =     t 5l m   s  )r  l}  d 0          l x   hE N e ,       ^Auo_N   3     } 9,  A  F  j2 " 5  J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0    

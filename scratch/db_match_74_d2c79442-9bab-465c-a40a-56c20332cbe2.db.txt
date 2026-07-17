@@ -1,0 +1,75 @@
+"use client";
+
+import React from "react";
+import { getTheme } from "@/lib/theme/registry";
+
+interface ThemeProviderProps {
+  themeId: string;
+}
+
+export default function ThemeProvider({ themeId }: ThemeProviderProps) {
+  const theme = getTheme(themeId);
+
+  const cssContent = `
+    :root {
+      --theme-bg: ${theme.colors.background};
+      --theme-text: ${theme.colors.text};
+      --theme-accent: ${theme.colors.accent};
+      --theme-border: ${theme.colors.border};
+      --theme-secondary-text: ${theme.colors.secondaryText};
+      --theme-card-bg: ${theme.colors.cardBg};
+      
+      --theme-font-heading: ${theme.typography.fontHeading};
+      --theme-font-body: ${theme.typography.fontBody};
+      
+      --theme-radius-card: ${theme.radius.card};
+      --theme-radius-button: ${theme.radius.button};
+      
+      --theme-shadow-card: ${theme.shadows.card};
+      --theme-shadow-button: ${theme.shadows.button};
+      
+      --theme-gradient-backdrop: ${theme.gradients.backdrop};
+      
+      --theme-glass-bg: ${theme.glass.background};
+      --theme-glass-blur: ${theme.glass.blur};
+    }
+  `;
+
+  return <style dangerouslySetInnerHTML={{ __html: cssContent }} />;
+}
+X(` 	   	    ?t   W 1     >      B      %e   >   #;@ w XH    52V  f   N P f ub   h [Js   d Q           S   %U   dz + ?L   ] [      @oV   M  g  X ^  n  Rm     F         g@K< ( T    y&   dqq^O  O  Y X *|  p   sOL   C   & 4 1 8% F a$ef     j . 6 1  B^6, " ' /     e$        d / 0  7e     Rp    !g vp  {    h J de   :    }>$    U#G mF r   P O p   l  r ]%0  x  ? p ~7*?] F     JM   N      D      O\          9   ; Qq  i t     1 `?R`   < . v   uW] I 4       jG K      % [ 9E      w #  J run_commandZ  **Investigating a Discrepancy**
+
+I'm puzzled. Earlier, a component file, `LegacyOrchestrator.tsx`, was seemingly created, but a recent `git status` reveals no trace of it. It's missing from the modified, deleted, or untracked files. Now, I will need to check what might have happened to that file!
+
+
+            Created At: 2026-07-12T08:50:09Z
+Completed At: 2026-07-12T08:50:11Z
+
+				The command completed successfully.
+			Stdout:
+			
+			Stderr:
+			
+ 4: dc0tgifw       
+(bot-5a84591b-aa70-473f-af6f-20f4ced91b0b   ZI will search for `LegacyOrchestrator.tsx` in `transcript.jsonl` to locate the exact step.   2  
+ 6cmzr40k  run_command   {"CommandLine":"Select-String -Path \"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\.system_generated\\logs\\transcript.jsonl\" -Pattern \"LegacyOrchestrator.tsx\" | Select-Object -Property LineNumber, Line -First 3","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":2000,"toolAction":"Search orchestrator filename","toolSummary":"Searching transcript for LegacyOrchestrator.tsx filename reference"}:     
+    M2     I|  %     #   D  f5    F |   M  l   B wq}W 
+gk   p@   ^I0*    >   	(  U^Y }#I   j n     jj  n  Q L    6q Q    ) !      `   ~ [ X A-D $       f | d T   I  >  u  $   Z  _ /$ <  . !]Y     {V@qd d    k   >   *B   z Q  #   C$ 
+         7     1   < \X W J run_command            Created At: 2026-07-12T08:50:14Z
+Completed At: 2026-07-12T08:50:17Z
+
+				The command completed successfully.
+				Output:
+				
+LineNumber Line                                                                                                        
+---------- ----                                                                                                        
+        22 {"step_index":1146,"source":"MODEL","type":"PLANNER_RESPONSE","status":"DONE","created_at":"2026-07-11T18...
+        23 {"step_index":1147,"source":"MODEL","type":"CODE_ACTION","status":"DONE","created_at":"2026-07-11T18:43:3...
+        32 {"step_index":1156,"source":"MODEL","type":"PLANNER_RESPONSE","status":"DONE","created_at":"2026-07-11T18...
+
+
+
+   : 6cmzr40k      	
+(bot-6a536c5f-9687-414f-8f91-9c9d32367dd8   yI will retrieve the JSON content from line 22 of the transcript to extract the original code of `LegacyOrchestrator.tsx`.   2  
+ 5ziott2k  run_command   {"CommandLine":"powershell -Command \"(Get-Content 'C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\.system_generated\\logs\\transcript.jsonl')[21]\"","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Get line from transcript","toolSummary":"Reading line 22 from transcript.jsonl to recover file contents"}:     
+    M2    <  F? ^ t4      ap  [    { - p     fc _v4 J] Jz    Gh  %  ] N     CF   a !* )@ mwI	    ^ H S}x; g   e$   ~  3  

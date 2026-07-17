@@ -1,0 +1,176 @@
+r  wez)  ,  DdF   k '  8cC  dG  .~       +	 >  J	view_file      $    $Created At: 2026-07-12T08:50:46Z
+Completed At: 2026-07-12T08:50:46Z
+File Path: `file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx`
+Total Lines: 163
+Total Bytes: 6305
+Showing lines 1 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: "use client";
+2: 
+3: import React, { useEffect, useState, useRef } from "react";
+4: import { useInvitationData } from "../context/InvitationDataContext";
+5: import { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";
+6: import { motion, AnimatePresence } from "framer-motion";
+7: 
+8: // Import reusable section components
+9: import HeroSection from "../sections/hero";
+10: import CoupleSection from "../sections/couple";
+11: import CountdownSection from "../sections/countdown";
+12: import StorySection from "../sections/story";
+13: import EventsSection from "../sections/events";
+14: import GallerySection from "../sections/gallery";
+15: import VenueSection from "../sections/venue";
+16: import FamiliesSection from "../sections/families";
+17: import RSVPSection from "../sections/rsvp";
+18: import FAQSection from "../sections/faq";
+19: import DressCodeSection from "../sections/dressCode";
+20: import FooterSection from "../sections/footer";
+21: 
+22: interface LegacyOrchestratorProps {
+23:   themeId: string;
+24:   onBackToHub: () => void;
+25:   particlesComponent?: React.ComponentType<any>;
+26:   themeBgClass?: string;
+27:   loadingTitle?: string;
+28:   loadingSubtitle?: string;
+29: }
+30: 
+31: export default function LegacyOrchestrator({
+32:   themeId,
+33:   onBackToHub,
+34:   particlesComponent: Particles,
+35:   themeBgClass = "bg-stone-900",
+36:   loadingTitle = "Invitation",
+37:   loadingSubtitle = "Celebrating Love"
+38: }: LegacyOrchestratorProps) {
+39:   const { invitationData } = useInvitationData();
+40:   const [loading, setLoading] = useState(true);
+41:   const [playingMusic, setPlayingMusic] = useState(false);
+42:   const audioRef = useRef<HTMLAudioElement | null>(null);
+43: 
+44:   useEffect(() => {
+45:     if (invitationData) {
+46:       const timer = setTimeout(() => setLoading(false), 1500);
+47:       return () => clearTimeout(timer);
+48:     }
+49:   }, [invitationData]);
+50: 
+51:   if (!invitationData) return null;
+52: 
+53:   const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+54:   const invitation = isWrapped ? (invitationData as any).config : invitationData;
+55: 
+56:   const toggleMusic = () => {
+57:     if (!audioRef.current) return;
+58:     if (playingMusic) {
+59:       audioRef.current.pause();
+60:     } else {
+61:       audioRef.current.play().catch(() => {});
+62:     }
+63:     setPlayingMusic(!playingMusic);
+64:   };
+65: 
+66:   const sectionOrder = invitation.sectionOrder || [];
+67: 
+68:   const renderSectionComponent = (sectionId: string) => {
+69:     const sectionConfig = invitation[sectionId];
+70:     const isEnabled = sectionConfig?.enabled !== false;
+71:     if (!isEnabled) return null;
+72: 
+73:     const properties = sectionConfig || {};
+74:     const bindings = sectionConfig || {};
+75: 
+76:     switch (sectionId) {
+77:       case "hero":
+78:         return (
+79:           <HeroSection
+80:             key={sectionId}
+81:             properties={properties}
+82:             bindings={bindings}
+83:             themeId={themeId}
+84:             layoutId="hero-center"
+85:             motionId="luxury-motion"
+86:           />
+87:         );
+88:       case "couple":
+89:         return <CoupleSection key={sectionId} properties={properties} bindings={bindings} />;
+90:       case "countdown":
+91:      9bab-465c-a40a-56c20332cbe2\\scratch\\recover-orchestrator.py","toolAction":"Create python script","toolSummary":"Updating python script to locate content key case-insensitively"}: 	  	
+ 	  M2  _9      W  h {  9  9Y8j   y[            Dh o 6  ^ ^u%   | sK  m#   g%- e      x     W= l;   
+  du     [       $]    E ,RmD    + ( b1_v   SWF   Xv44     lC   " 6*  i o'l    K   1g  y FuE3        ?c    o +B k *    B    U     T  D  @ mSk      c     (   ?W   l V  M     | ?/   >  L    j    u      {      x  	   C $R c    z 1    Z   ; > v l      w !  >    4  l  H     uaj  U a% M  #    <FJ     }g     /   g    &   {B0#  Wery| & j!t z$H  D  vy a7 k q  Iv 	    J  Mk       O   <   #w%J     F  hy Kz    e-    X     !  ;>.     oK P      U n \ 7*  FnN   Y$  8   g: .a C _  eM  +)d J   Z  'P      kF_S   .k|  , 7 k   A" 1 r'       
+  @8     S 31       v;  @ u    6F -    C!  *v  V_  "  *  C ]  %F  VVq +   LV   O  J >     Kx m3[ " v/? Jm6    g @ A :
+      p    E    : [ )      I( J  5xS;  h      J   '    d \  [ / H    . ,    ;I     ;              M   %n   e  m  >.}       X  t7 |> #~
+8$TG Et   8  i I|<  - X         b  "f(5}D    k  L    x 
+ eT  %     Ugm  t M)   8X 0   ?   M A]+   SX   I   G K G n     u   j kOV  o  }       ywf    pK  B5eXO    =wcd j  C   k#        GF  WM\ S
+  G  -   [ ^(  ^    '       ;        ld  ;f  :Z#          n   p Q8      wK  ] e r  6    s C z  9   ?<Q  o    6w     :gs F        mO   ~ f ?H      &  
+A KR}      s   2* 7U s a =  6	  \yKa  Jwrite_to_file            Created At: 2026-07-12T08:50:38Z
+Completed At: 2026-07-12T08:50:38Z
+Created file file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/recover-orchestrator.py with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission. s: 9x3hqg2b       
+(bot-c6bcdfb6-248e-4a67-af9d-95384e5361a8    I will execute the recovery script to search for the creation pattern and write out `components/shared/LegacyOrchestrator.tsx`.   2  
+ rod0yvq8  run_command   {"CommandLine":"python \"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\scratch\\recover-orchestrator.py\"","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run python recovery script","toolSummary":"Running python script to search and recover LegacyOrchestrator.tsx"}:i g
+e  M2 1        h   }$        M      w        _ C] 2uu  wr .Y9  TD d L  5   iKvU"Z  + T ) l   V  Q    ;J run_command            Created At: 2026-07-12T08:50:40Z
+Completed At: 2026-07-12T08:50:43Z
+
+				The command completed successfully.
+				Output:
+				Match found at line 1144
+Tool arguments keys: dict_keys(['CodeContent', 'Description', 'Overwrite', 'TargetFile', 'toolAction', 'toolSummary'])
+Found content key: 'CodeContent' (first 100 chars): "use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { useInvitationDat
+Restored code to c:\Users\Admin\Ahvaanam\components\shared\LegacyOrchestrator.tsx
+
+   : rod0yvq8      	
+(bot-8740f251-dd73-40af-b1c6-200c5b362dab   qI will view the first 100 lines of the recovered `components/shared/LegacyOrchestrator.tsx` to verify its syntax.   2  
+ rnw5g46x 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","EndLine":100,"StartLine":1,"toolAction":"View LegacyOrchestrator.tsx","toolSummary":"Reading recovered LegacyOrchestrator file content"}:     
+    M2  X   d      \ m{ VL 0 ^7  fz  >E     f<  j G  G  &  u      N h7  6a  /   }   E [    p    ]    .hb zR  5  ML'-<N~  # B O  {   WK     .^ /v  Gw '     3   @ f   a $W xA[ 
+   +~    Q .h       /vI c  N   4p k3 "	 T  ' WZ  x4O$-+G    < /@   .     pV.L  Xr  p  -     F2 08    a   " LW;Y  ; j u@   L  wi   +  5     a  E     U      C   kS nd   72 Fd  U: @         b0' T3  M 3 =         AR/( 7    R  B .M   *| R t TO  t   , 8  J N"Z        a +6      `     +hKC T  	   I  { u :    L{M       @f    .  qJ          _k  Z >P         p f   Qj      9  Q        U   h| U  ( "k=, I^  C  j   7  l   `;                R c 5 2F  q   4'  0aS <      . y        - .;    *`          N  B  1  \   ~  S  T 	        0  y }         m  oH  >  ,   x   1D V   a x7o o]   n  * 9       7%M   _$    $  0 w{{#C   kC L 'Y  A O  F F  /  )    H  ]+C0B    ?  #R P `a i  Y  8m   ?A m T   O  I 8\  |     W      Jwrite_to_file            Created At: 2026-07-12T08:50:28Z
+Completed At: 2026-07-12T08:50:28Z
+Created file file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/recover-orchestrator.py with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission. s: lj5q28ad       
+(bot-da85f924-9939-4f4b-9e23-870e020c6a9d     I will execute the recovery script to extract the missing `LegacyOrchestrator.tsx` component and restore it to `components/shared/LegacyOrchestrator.tsx`.   2  
+ omltd5w1  run_command   {"CommandLine":"python \"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\scratch\\recover-orchestrator.py\"","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run python recovery script","toolSummary":"Running python script to recover LegacyOrchestrator.tsx"}:z x
+v  M2   g9y@ K &    n  )   CW  m   G  o  .   [ ^Z  /a 5>.     } n     $   E)  2      5e  yj K<  q V6    |   N    / y; J run_command            Created At: 2026-07-12T08:50:31Z
+Completed At: 2026-07-12T08:50:34Z
+
+				The command failed with exit code: 1
+				Output:
+				Reading transcript: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\.system_generated\logs\transcript_full.jsonl
+Traceback (most recent call last):
+  File "C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\scratch\recover-orchestrator.py", line 14, in <module>
+    code = tool_call["args"]["CodeContent"]
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'CodeContent'
+
+   : omltd5w1       
+(bot-7de65354-6ece-4450-b118-b564ee64c4f1   iI will update the script to inspect the exact key naming inside the JSON structure of the transcript log.   2  
+ 9x3hqg2b write_to_file   {"CodeContent":"import json\nimport os\n\ntranscript_path = r\"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\.system_generated\\logs\\transcript_full.jsonl\"\n\nwith open(transcript_path, \"r\", encoding=\"utf-8\") as f:\n    for i, line in enumerate(f):\n        if \"LegacyOrchestrator\" in line and \"write_to_file\" in line:\n            data = json.loads(line)\n            print(f\"Match found at line {i+1}\")\n            for tc in data.get(\"tool_calls\", []):\n                if tc.get(\"name\") == \"write_to_file\":\n                    args = tc.get(\"args\", {})\n                    print(\"Tool arguments keys:\", args.keys())\n                    # Look up content key case-insensitively\n                    for k, v in args.items():\n                        if \"content\" in k.lower():\n                            print(f\"Found content key: '{k}' (first 100 chars): {v[:100]}\")\n                            target_path = r\"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx\"\n                            \n                            code = v\n                            if isinstance(code, str):\n                                if code.startswith('\"') and code.endswith('\"'):\n                                    code = code[1:-1]\n                                code = code.replace('\\\\n', '\\n').replace('\\\\t', '\\t').replace('\\\\\"', '\"').replace('\\\\\\\\', '\\\\')\n                            \n                            os.makedirs(os.path.dirname(target_path), exist_ok=True)\n                            with open(target_path, \"w\", encoding=\"utf-8\") as out:\n                                out.write(code)\n                            print(f\"Restored code to {target_path}\")\n                            break\n            break\n","Description":"Inspect and recover LegacyOrchestrator key case-insensitively","Overwrite":true,"TargetFile":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-          '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         i      L              0   8 j      
+ .ipynb  " o  :  *          (  0 @ H P *       As IDE feedback, the followin m     X       "$4221b728-5dd5-4290-b663-2edbd364a56cB     1   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   0   2   1   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2
+     "P     $   (  
+0 B!
+	sessionID  -3750763034362895579H  PvZ iFNTasWDPa2AqfkPpaSCyQk0  : 
+ autoJe              "             (  2          7c2b3d9d2          e933f4a1:       e9c821beB         R    
+Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  d P     $   (  
+0 B!
+	sessionID  -3750763034362895579H  PvZ iFNTasWDPa2AqfkPpaSCyQk" d91c1b7cc968f0b6   gemini-default  !
+ used_claude_conservative  false   
+ last_step_index  849  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $a14da8b9-31e7-4946-a588-45ca9a302e76  5
+trajectory_id $238586bc-fc92-4743-a54e-2cd8faa721f3   
+ used_claude  false   Gemini 3.5 Flash (Medium) f f     J       "$4221b728-5dd5-4290-b663-2edbd364a56cB     1   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   0   2   1   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2
+     "M      
+   0 B!
+	sessionID  -3750763034362895579H  PcZ hFNTarjILvbPjuMP3c6BgA00  : 
+ autoJd              "             (  2          e933f4a12          ba70065c:       e9c821beB       MR    
+Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  a M      
+   0 B!
+	sessionID  -3750763034362895579H  PcZ hFNTarjILvbPjuMP3c6BgA0" 765cdc86cd5260c8   gemini-default   
+ last_step_index  847  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $a14da8b9-31e7-4946-a588-45ca9a302e76  5
+trajectory_id $238586bc-fc92-4743-a54e

@@ -1,0 +1,117 @@
+Created At: 2026-07-12T14:01:45Z
+Completed At: 2026-07-12T14:01:45Z
+File Path: `file:///c:/Users/Admin/Ahvaanam/scratch/restored_page.txt`
+Total Lines: 109
+Total Bytes: 2965
+Showing lines 1 to 109
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: Created At: 2026-07-12T09:01:28Z
+2: Completed At: 2026-07-12T09:01:29Z
+3: 
+4: 				The command completed successfully.
+5: 				Output:
+6: 				On branch main
+7: Your branch is up to date with 'origin/main'.
+8: 
+9: Changes not staged for commit:
+10:   (use "git add/rm <file>..." to update what will be committed)
+11:   (use "git restore <file>..." to discard changes in working directory)
+12: 	modified:   .gitignore
+13: 	modified:   app/globals.css
+14: 	modified:   app/layout.tsx
+15: 	modified:   app/page.tsx
+16: 	deleted:    components/Footer.tsx
+17: 	deleted:    components/Hero.tsx
+18: 	deleted:    components/background/Background.tsx
+19: 	deleted:    components/background/Corners.tsx
+20: 	deleted:    components/background/Glow.tsx
+21: 	deleted:    components/background/LightRays.tsx
+22: 	deleted:    components/data/invitation.ts
+23: 	deleted:    components/effects/GoldDust.tsx
+24: 	deleted:    components/effects/Petals.tsx
+25: 	deleted:    components/hero/CouplePhoto.tsx
+26: 	deleted:    components/hero/RoyalFrame.tsx
+27: 	deleted:    components/sections/Countdown.tsx
+28: 	deleted:    components/sections/Gallery.tsx
+29: 	deleted:    components/sections/PremiumGallery.tsx
+30: 	deleted:    components/sections/RSVP.tsx
+31: 	deleted:    components/sections/Timeline.tsx
+32: 	deleted:    components/sections/Venue.tsx
+33: 	deleted:    components/sections/WeddingDetails.tsx
+34: 	deleted:    components/shared/MusicButton.tsx
+35: 	deleted:    components/shared/ShareButton.tsx
+36: 	modified:   next.config.ts
+37: 	modified:   package-lock.json
+38: 	modified:   package.json
+39: 
+40: Untracked files:
+41:   (use "git add <file>..." to include in what will be committed)
+42: 	app/about/
+43: 	app/admin/
+44: 	app/api/
+45: 	app/auth/
+46: 	app/checkout/
+47: 	app/contact/
+48: 	app/create/
+49: 	app/dashboard/
+50: 	app/demo/
+51: 	app/forgot-password/
+52: 	app/how-it-works/
+53: 	app/invites/
+54: 	app/login/
+55: 	app/logout/
+56: 	app/not-found.tsx
+57: 	app/portfolio/
+58: 	app/pricing/
+59: 	app/privacy/
+60: 	app/reset-password/
+61: 	app/services/
+62: 	app/signup/
+63: 	app/templates/
+64: 	app/terms/
+65: 	components/context/
+66: 	components/data/invites/
+67: 	components/data/themes.ts
+68: 	components/home/
+69: 	components/layouts/
+70: 	components/motion/
+71: 	components/rsvp/
+72: 	components/sections/couple/
+73: 	components/sections/dressCode/
+74: 	components/sections/families/
+75: 	components/sections/houseDetails/
+76: 	components/sections/owners/
+77: 	components/sections/story/
+78: 	components/shared/DeitySymbol.tsx
+79: 	components/shared/GallerySlider.tsx
+80: 	components/shared/LegacyOrchestrator.tsx
+81: 	components/shared/PageTransitionWrapper.tsx
+82: 	components/shared/ParallaxProviderWrapper.tsx
+83: 	components/shared/ThemeSelectorHub.tsx
+84: 	components/shared/category-card.tsx
+85: 	components/shared/theme-card.tsx
+86: 	components/templates/
+87: 	components/types/
+88: 	data/
+89: 	lib/
+90: 	prisma/
+91: 	proxy.ts
+92: 	public/images/categories/
+93: 	public/images/deities/
+94: 	public/images/editor-preview.png
+95: 	public/images/hero-invitation.png
+96: 	public/images/img.png
+97: 	public/images/logo.png
+98: 	public/images/themes/
+99: 	public/sample-invitation.pdf
+100: 	public/uploads/
+101: 	scratch/
+102: 	section_specification.md
+103: 	supabase_setup.sql
+104: 	types/
+105: 	utils/
+106: 
+107: no changes added to commit (use "git add" and/or "git commit -a")
+108: 
+109: 
+The above content shows the entire, complete file contents of the requested file.

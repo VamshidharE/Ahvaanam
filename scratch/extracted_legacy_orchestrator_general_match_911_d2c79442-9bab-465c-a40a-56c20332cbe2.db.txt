@@ -1,0 +1,167 @@
+ to bind the sub-orchestrators (`AudioOrchestrator`, `BackgroundEffects`, `LoadingExperience`, `SectionPipeline`, `TemplateFrame`, `ScrollController`, `ShareController`) together into a single, clean LegacyOrchestrator component   ~ w A      6     0   
+           E  "  
+ qreo391p write_to_file   {"CodeContent":"\"use client\";\n\nimport React from \"react\";\nimport { Share2 } from \"lucide-react\";\n\nexport default function ShareController() {\n  const handleShare = () =\u003e {\n    if (typeof navigator !== \"undefined\" \u0026\u0026 navigator.share) {\n      navigator.share({\n        title: \"Invitation\",\n        text: \"Please bless us with your presence!\",\n        url: window.location.href\n      }).catch(() =\u003e {});\n    } else if (typeof navigator !== \"undefined\" \u0026\u0026 navigator.clipboard) {\n      navigator.clipboard.writeText(window.location.href);\n      alert(\"Invitation link copied to clipboard!\");\n    }\n  };\n\n  return (\n    \u003cbutton\n      onClick={handleShare}\n      className=\"fixed bottom-6 right-22 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40 bg-white/90 text-[#FF8800] backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer select-none\"\n      title=\"Share invitation link\"\n    \u003e\n      \u003cShare2 size={18} /\u003e\n    \u003c/button\u003e\n  );\n}\n","Description":"Create ShareController component to handle invitation link copy or sharing overlays.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\orchestrator\\ShareController.tsx","toolAction":"Create ShareController.tsx","toolSummary":"Creating share controller component in components/shared/orchestrator/ShareController.tsx"}:     
+    M2 b:    g8   8    J     * (x  h 4  &  R    ";B3n  vm  &B  2 t# 0  H  s   i       \G  Y   4vZ  e          ={_  -&  p I^ U \     V Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2           ~:           ~B             X  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                ~      5
+               ~
+                 
+                   YCreating share controller component in components/shared/orchestrator/ShareController.tsx   Create ShareController.tsx                  *  
+           E  "  
+ qreo391p write_to_file   {"CodeContent":"\"use client\";\n\nimport React from \"react\";\nimport { Share2 } from \"lucide-react\";\n\nexport default function ShareController() {\n  const handleShare = () =\u003e {\n    if (typeof navigator !== \"undefined\" \u0026\u0026 navigator.share) {\n      navigator.share({\n        title: \"Invitation\",\n        text: \"Please bless us with your presence!\",\n        url: window.location.href\n      }).catch(() =\u003e {});\n    } else if (typeof navigator !==   z   w.log(`Successfully restored perfect CompositionRenderer.tsx!`); } else {   console.log('No perfect match found.'); } 
+-----------------------------------------
+[Candidate 28] File: composition_pure_match_17_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt, Length: 1547
+  Ends with: c(destPath, bestMatch);   console.log(`Successfully restored perfect CompositionRenderer.tsx!`); } else {   console.log('No perfect match found.'); } 
+-----------------------------------------
+[Candidate 29] File: composition_pure_match_9_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 1547
+  Ends with: c(destPath, bestMatch);   console.log(`Successfully restored perfect CompositionRenderer.tsx!`); } else {   console.log('No perfect match found.'); } 
+-----------------------------------------
+[Candidate 30] File: composition_pure_match_19_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 247
+  Ends with: t');   	      }   & "    if (startIdx === -1) continue;             : 6    // Try to find if this contains the full component   c _    const hasCompon
+-----------------------------------------
+[Candidate 31] File: composition_pure_match_20_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 241
+  Ends with: ;   "          if (startIdx !== -1) {   4 0          cleaned = cleaned.substring(startIdx);    	        }   < 8        let endIdx = cleaned.indexOf('
+-----------------------------------------
+Done.
+
+   : 5oh2j6w3      	
+(bot-fd6ba27a-2636-4382-b958-f68b1206a4b5     I will view the first candidate file `scratch/composition_candidate_1.tsx` to see if it is the correct, untruncated composition renderer code.   2  
+ ehrce7c3 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\scratch\\composition_candidate_1.tsx","StartLine":1,"toolAction":"View composition_candidate_1","toolSummary":"Reading composition_candidate_1 to check for untruncated code"}:     
+    M2 rD79FA! T    Q]< + 	  M  q     F^ -yf. ] T    #      ^%     ^6 ^       9 @ 4K'    Sc  V&T      E  J    x  l  tK n64t    c    RI  J    9     + Y ]  j   B  Pf  y 6   	/ <  i  S %W &  '  `  u  *v N    <    K )     = M  QKa lpx-u   / Y# ?       K [g ? j   r    1 $   .  r  Caw x   "I  U K  
+SB|  cfR R `  U >    :i  N w Qt   2  b  M y  S        |	 t   ,  b
+  _  P          C    9 r	  ]cH    M A         :      C   3  _    kF   6  ^cAh Id   ,     H   1  ^0    F    K a    /8  3   56        {Ku?a 1  g  #2R A j  ~h| d P6
+   H   UR wN i  	 I T    A  @  %l  U&      E%:+ $ #  H  N9  )Pt <    y M#6` ; UY} "c{M j h  p  
+     V   _  4    j$"=      p  Sr   r 4O:V N  gR  u (   A KNr# Ce3       opi{ &v  b0k         -V+ $I    D $3 o  S`   S A%  i ; \; YFTCd    g    "j)S  h  ]  PX5  J     J	view_file      5    4Created At: 2026-07-12T14:19:32Z
+Completed At: 2026-07-12T14:19:32Z
+File Path: `file:///c:/Users/Admin/Ahvaanam/scratch/composition_candidate_1.tsx`
+Total Lines: 68
+Total Bytes: 5990
+Showing lines 1 to 68
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: use client');   	
+2:      }   &
+3: "    if (startIdx === -1) continue;    
+4:         :
+5: 6    // Try to find if this contains the full component   c
+6: _    const hasComponentExport = content.includes('export default function CompositionRenderer');   J
+7: F    const hasResolveBinding = content.includes('resolveBindingValue');   L
+8: H    const hasSectionComponents = content.includes('SECTION_COMPONENTS');    
+9:         N
+10: J    if 
+11: ------------------------
+12: Scanning C:\Users\Admin\.gemini\antigravity\conversations\d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal (5055272 bytes)
+13:    .st_${theme.id}`,
+14: -    templateId: theme.id,
+15: -    category: "wedding",
+16: -    editor: {
+17: -      sections: WEDDING_SECTIONS,
+18: -      navigation: WEDDING_NAVIGATION,
+19: -      defaultExpanded: ["hero", "couple", "events"],
+20: -      displayOrder: WEDDING_SECTIONS.map((s) => s.id)
+21: -    },
+22: -    features: WEDDING_FEATURES,
+23: -         \"undefined\" \u0026\u0026 navigator.clipboard) {\n      navigator.clipboard.writeText(window.location.href);\n      alert(\"Invitation link copied to clipboard!\");\n    }\n  };\n\n  return (\n    \u003cbutton\n      onClick={handleShare}\n      className=\"fixed bottom-6 right-22 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40 bg-white/90 text-[#FF8800] backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer select-none\"\n      title=\"Share invitation link\"\n    \u003e\n      \u003cShare2 size={18} /\u003e\n    \u003c/button\u003e\n  );\n}\n","Description":"Create ShareController component to handle invitation link copy or sharing overlays.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\orchestrator\\ShareController.tsx","toolAction":"Create ShareController.tsx","toolSummary":"Creating share controller component in components/shared/orchestrator/ShareController.tsx"}:     
+    M2 b:    g8   8    J     * (x  h 4  &  R    ";B3n  vm  &B  2 t# 0  H  s   i       \G  Y   4vZ  e          ={_  -&  p I^ U \     V Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2           ~:           ~B             X  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                ~      5
+               ~
+                 
+                   YCreating share controller component in components/shared/orchestrator/ShareController.tsx   Create ShareController.tsx              R  
+ 	  	
+  "use client";
+
+import React from "react";
+import { Share2 } from "lucide-react";
+
+export default function ShareController() {
+  const handleShare = () => {
+    if (typeof navigator !== "undefined" && navigator.share) {
+      navigator.share({
+        title: "Invitation",
+        text: "Please bless us with your presence!",
+        url: window.location.href
+      }).catch(() => {});
+    } else if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(window.location.href);
+      alert("Invitation link copied to clipboard!");
+    }
+  };
+
+  return (
+    <button
+      onClick={handleShare}
+      className="fixed bottom-6 right-22 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40 bg-white/90 text-[#FF8800] backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer select-none"
+      title="Share invitation link"
+    >
+      <Share2 size={18} />
+    </button>
+  );
+}
+   *Rfile:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/ShareController.tsx2U
+ file:///c:/Users/Admin/Ahvaanam 2components/shared/orchestrator/ShareController.tsx    	
+ 	        
+"use client";        
+ import React from "react";   *
+&import { Share2 } from "lucide-react";       /
++export default function ShareController() {   !
+   const handleShare = () => {   B
+>    if (typeof navigator !== "undefined" && navigator.share) {    
+       navigator.share({    
+         title: "Invitation",   8
+4        text: "Please bless us with your presence!",   %
+!        url: window.location.href    
+       }).catch(() => {});   M
+I    } else if (typeof navigator !== "undefined" && navigator.clipboard) {   >
+:      navigator.clipboard.writeText(window.location.href);   8
+4      alert("Invitation link copied to clipboard!");   	
+     }    
+   };        
+
+  return (    
+     <button    
+       onClick={handleShare}     
+        className="fixed bottom-6 right-22 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40 bg-white/90 text-[#FF8800] backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer select-none"   '
+#      title="Share invitation link"   	
+     >    
+       <Share2 size={18} />    
+    </button>    
+   );    
+ }      BRfile:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/ShareController.tsxX     TCreate ShareController component to handle invitation link copy or sharing overlays.   y U - A  b     j  P [   u+`tw  W d5*7/     7    Q__   \l  8 i          W: T t  |<  9l     0 < j4 $    ]himCS{/   J #     PZY     FG  lD o?N       _U ^
+-----------------------------------------
+[Candidate 15] File: composition_pure_match_13_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt, Length: 5005
+  Ends with: ully wrote fallback CompositionRenderer.tsx!`);   } else {     console.log('No match containing CompositionRenderer export was found at all!');   } } 
+-----------------------------------------
+[Candidate 16] File: composition_pure_match_17_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 4981
+  Ends with: ully wrote fallback CompositionRenderer.tsx!`);   } else {     console.log('No match containing CompositionRenderer export was found at all!');   } } 
+-----------------------------------------
+[Candidate 17] File: composition_pure_match_18_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 4981
+  Ends with: ully wrote fallback CompositionRenderer.tsx!`);   } else {     console.log('No match containing CompositionRenderer export was found at all!');   } } 
+-----------------------------------------
+[Candidate 18] File: composition_pure_match_5_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 4981
+  Ends with: ully wrote fallback CompositionRenderer.tsx!`);   } else {     console.log('No match containing CompositionRenderer export was found at all!');   } } 
+-----------------------------------------
+[Candidate 19] File: composition_pure_match_12_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt, Length: 3844
+  Ends with:   }         }       } catch (e) {}     }   } }  try {   searchDir(geminiDir); } catch (err) {   console.error('Error:', err); } console.log('Done.'); 
+-----------------------------------------
+[Candidate 20] File: composition_pure_match_18_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt, Length: 3844
+  Ends with:   }         }       } catch (e) {}     }   } }  try {   searchDir(geminiDir); } catch (err) {   console.error('Error:', err); } console.log('Done.'); 
+-----------------------------------------
+[Candidate 21] File: composition_pure_match_21_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 3758
+  Ends with:    required?: boolean; }  export interface BuilderModuleDefinition {   id: string;   title: string;   description: string;   fields: ModuleField[]; } 
+-----------------------------------------
+[Candidate 22] File: composition_pure_match_16_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt, Length: 3486
+  Ends with: c(destPath, bestMatch);   console.log(`Successfully restored perfect CompositionRenderer.tsx!`); } else {   console.log('No perfect match found.'); } 
+-----------------------------------------
+[Candidate 23] File: composition_pure_match_8_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 3462
+  Ends with: c(destPath, bestMatch);   console.log(`Successfully restored perfect CompositionRenderer.tsx!`); } else {   console.log('No perfect match found.'); } 
+-----------------------------------------
+[Candidate 24] File: composition_pure_match_22_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 3173
+  Ends with:    required?: boolean; }  export interface BuilderModuleDefinition {   id: string;   title: string;   description: string;   fields: ModuleField[]; } 
+-----------------------------------------
+[Candidate 25] File: composition_pure_match_14_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 2222
+  Ends with: kspace UI in `app/admin/[id]/page.tsx` - `[x]` Connect header buttons to swap back to Advanced Studio - `[x]` Run TypeScript and build compile checks 
+-----------------------------------------
+[Candidate 26] File: composition_pure_match_2_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt, Length: 2179
+  Ends with:                                    J 	        l                       "    lmt7gzt3  run_command   {"CommandLine":"node scratch/extra

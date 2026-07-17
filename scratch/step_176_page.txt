@@ -1,0 +1,44 @@
+Created At: 2026-07-12T13:57:53Z
+Completed At: 2026-07-12T13:57:53Z
+File Path: `file:///c:/Users/Admin/Ahvaanam/app/page.tsx`
+Total Lines: 36
+Total Bytes: 1202
+Showing lines 1 to 36
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import Hero from "../components/Hero";
+2: import WeddingDetails from "../components/sections/WeddingDetails";
+3: import Countdown from "../components/sections/Countdown";
+4: import Timeline from "../components/sections/Timeline";
+5: import PremiumGallery from "../components/sections/PremiumGallery";
+6: import Venue from "../components/sections/Venue";
+7: import RSVP from "../components/sections/RSVP";
+8: import MusicButton from "../components/shared/MusicButton";
+9: import ShareButton from "../components/shared/ShareButton";
+10: import ScrollProgress from "../components/shared/ScrollProgress";
+11: import SectionDivider from "../components/shared/SectionDivider";
+12: import Footer from "@/components/Footer";
+13: 
+14: export default function Home() {
+15:   return (
+16:     <main className="overflow-hidden bg-[#09070D]">
+17:       <ScrollProgress />
+18:       <MusicButton />
+19:       <ShareButton />
+20:       <Hero />
+21:       <SectionDivider />
+22:       <WeddingDetails />
+23:       <SectionDivider />
+24:       <Countdown />
+25:       <SectionDivider />
+26:       <Timeline />
+27:       <SectionDivider />
+28:       <PremiumGallery />
+29:       <SectionDivider />
+30:       <Venue />
+31:       <SectionDivider />
+32:       <RSVP />
+33:       <Footer />
+34:     </main>
+35:   );
+36: }
+The above content shows the entire, complete file contents of the requested file.

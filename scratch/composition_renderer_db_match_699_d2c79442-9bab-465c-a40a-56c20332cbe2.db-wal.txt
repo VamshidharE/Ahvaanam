@@ -1,0 +1,184 @@
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+
+------------------------
+[81] Found match at index 5996451
+  Preview of match [81]:
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemeProvider from "@/compo    s   =U   
+ v     * u > S? 3 Z g    c- 
+    ? 2 n q  u     Bx   J db  Eo   N  	 ?       ;x>! u d	'J  l  Z          C$U CC     
+  d    *o j  !D ' q #7 ~    Y6`      5 9        p    I     *B  r P6! )  oK     ]  (      O+  X m   ; '     S!j  5m0  J [DZ    Y   3^    O    c.|     }   |"NJ},@  8l  3   y Q 5   ] k0    /C   F \|>O S+p ,  5O         -  
+------------------------
+[82] Found match at index 9173412
+  Preview of match [82]:
+"use client";
+
+import React, { useState, useEffect, useRef, use } from "react";
+import Link from "next/link";
+import { InvitationDataProvider, useInvitationData } from "../../../components/context/InvitationDataContext";
+import { WeddingInvitationConfig, WeddingEvent, StoryTimelineEntry, FAQEntry, RSVPContact } from "../../../components/types/invitation";
+import { motion, AnimatePresence } from "framer-motion";
+import { getCategory, getCategoryFields, getCategoryGroups } from "@/lib/categories/u
+------------------------
+[83] Found match at index 9174269
+  Preview of match [83]:
+"use client";
+
+import React, { useState, useEffect, useRef, use } from "react";
+import Link from "next/link";
+import { InvitationDataProvider, useInvitationData } from "../../../components/context/InvitationDataContext";
+import { WeddingInvitationConfig, WeddingEvent, StoryTimelineEntry, FAQEntry, RSVPContact } from "../../../components/types/invitation";
+import { motion, AnimatePresence } from "framer-motion";
+import { getCategory, getCategoryFields, getCategoryGroups } from "@/lib/categories/u
+------------------------
+[84] Found match at index 12042330
+  Preview of match [84]:
+"use client";
+
+import React from "react";
+import FileUploader from "@/components/ui/FileUploader";
+
+interface CoupleSettingsProps {
+  invitationData: any;
+  updateInvitationData: (updater: any) => void;
+}
+
+export default function CoupleSettings({ invitationData, updateInvitationData }: CoupleSettingsProps) {
+  return (
+    <div className="space-y-6 text-left animate-fadeIn">
+      {/* Hero Header parameters */}
+      <div className="card-minimal p-4 md:p-5 space-y-4">
+        <h3 className="text
+------------------------
+[85] Found match at index 12044422
+  Preview of match [85]:
+"use client";
+
+imp         3 Op~1        
+    ort React from "react";
+import FileUploader from "@/components/ui/FileUploader";
+
+interface CoupleSettingsProps {
+  invitationData: any;
+  updateInvitationData: (updater: any) => void;
+}
+
+export default function CoupleSettings({ invitationData, updateInvitationData }: CoupleSettingsProps) {
+  return (
+    <div className="space-y-6 text-left animate-fadeIn">
+      {/* Hero Header parameters */}
+      <div className="card-minimal p-4 md:p-5 space-y-4">
+        <h3 className="text
+------------------------
+[86] Found match at index 12045711
+  Preview of match [86]:
+"use client";
+
+import React from "react";
+import FileUploader from "@/components/ui/FileUploader";
+
+interface CoupleSettingsProps {
+  invitationData: any;
+  updateInvitationData: (updater: any) => void;
+}
+
+export default function CoupleSettings({ invitationData, updateInvitationData }: CoupleSettingsProps) {
+  return (
+    <div className="space-y-6 text-left animate-fadeIn">
+      {/* Hero Header parameters */}
+      <div className="card-minimal p-4 md:p-5 space-y-4">
+        <h3 className="text
+------------------------
+[87] Found match at index 13015446
+  Preview of match [87]:
+"use client";       7
+3import React, { useEffect, useState } from "react";   C
+?import LayoutWrapper from "@/components/layouts/LayoutWrapper";   B
+>import MotionWrapper from "@/components/motion/MotionWrapper";       %
+!interface CountdownSectionProps {    
+  bindings: {    
+     title?: string;    
+     targetDate?: string;   $
+     postWeddingMessage?: string;    
+   };    
+   layoutId?: string;    
+   motionId?: string;    
+ }       g
+cexport default function CountdownSection({ bindings, la
+------------------------
+[88] Found match at index 13047451
+  Preview of match [88]:
+"use client";
+
+import React from "react";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+import MotionWrapper from "@/components/motion/MotionWrapper";
+
+interface FamiliesSectionProps {
+  bindings: {
+    title?: string;
+    brideFamily?: string;
+    groomFamily?: string;
+  };
+  layoutId?: string;
+  motionId?: string;
+}
+
+export default function FamiliesSection({ bindings, layoutId, motionId }: FamiliesSectionProps) {
+  const {
+    title = "Warm Greetings",
+    brideFamily = "",
+ 
+------------------------
+[89] Found match at index 13049611
+  Preview of match [89]:
+"use client";
+
+import React from "react";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+import MotionWrapper from "@/components/motion/MotionWrapper";
+
+interface FamiliesSectionProps {
+  bindings: {
+    title?: string;
+    brideFamily?: string;
+    groomFamily?: string;
+  };
+  layoutId?: string;
+  motionId?: string;
+}
+
+export default function FamiliesSection({ bindings, layoutId, motionId }: FamiliesSectionProps) {
+  const {
+    title = "Warm Greetings",
+    brideFamily = "",
+ 
+------------------------
+[90] Found match at index 13051510
+  Preview of match [90]:
+"use client";
+
+import React from "react";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+import MotionWrapper from "@/components/motion/MotionWrapper";
+
+interface FamiliesSectionProps {
+  bindings: {
+    title?: string;
+    brideFamily?: string;
+    groomFamily?: string;
+  };
+  layoutId?: string;
+  motionId?: string;
+}
+
+export default function FamiliesSection({ bindings, layoutId, motionId }: FamiliesSectionProps) {
+  const {
+    title = "Warm Greetings",
+    brideFamily = "",
+ 
+-

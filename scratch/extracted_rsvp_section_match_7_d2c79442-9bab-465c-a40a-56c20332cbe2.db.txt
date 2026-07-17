@@ -1,0 +1,63 @@
+use client\";\n\nimport React from \"react\";\nimport { MessageCircle, Phone } from \"lucide-react\";\n\ninterface ContactItem {\n  type: string;\n  label: string;\n  value: string;\n}\n\ninterface RSVPSectionProps {\n  bindings: {\n    title?: string;\n    contacts?: ContactItem[];\n  };\n}\n\nexport default function RSVPSection({ bindings }: RSVPSectionProps) {\n  const { title = \"Confirm Attendance\", contacts = [] } = bindings;\n\n  return (\n    \u003csection className=\"py-24 px-6 max-w-5xl mx-auto border-b border-white/5 text-center select-none\"\u003e\n      \u003cdiv className=\"space-y-12\"\u003e\n        \u003cdiv className=\"max-w-2xl mx-auto space-y-3\"\u003e\n          \u003ch2 className=\"text-xs uppercase tracking-[3px] font-bold text-amber-400\"\u003eRSVP\u003c/h2\u003e\n          \u003cp className=\"text-3xl md:text-4xl font-extrabold uppercase tracking-[0.5px]\"\u003e{title}\u003c/p\u003e\n        \u003c/div\u003e\n\n        \u003cdiv className=\"flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto\"\u003e\n          {contacts.map((contact, idx) =\u003e (\n            \u003ca\n              key={idx}\n              href={contact.type === \"whatsapp\" ? `https://wa.me/${contact.value}` : `tel:${contact.value}`}\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n              className=\"flex-1 flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-6 py-3.5 rounded-xl text-xs font-bold uppercase tracking-[1px] transition-all shadow-md cursor-pointer\"\n            \u003e\n              {contact.type === \"whatsapp\" ? \u003cMessageCircle size={16} /\u003e : \u003cPhone size={16} /\u003e}\n              {contact.label || \"Confirm RSVP\"}\n            \u003c/a\u003e\n          ))}\n        \u003c/div\u003e\n      \u003c/di                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               -              6   
+           N  2             :             B             JQ     #   (  0 B!
+	sessionID  -3750763034362895579H  P  Z PU9TasLmH6mVjuMPiLia-A8X  b$8a58ba79-dce8-4e0e-985f-0c2b279780cbj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+           N  2             :             B             JQ     #   (  0 B!
+	sessionID  -3750763034362895579H  P  Z PU9TasLmH6mVjuMPiLia-A8X  b$8a58ba79-dce8-4e0e-985f-0c2b279780cbj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+mI will cast `invitationData` as `any` inside the category check to bypass the TypeScript declaration warning.2(bot-49020422-2f9c-41a6-8aab-28f7b3258581:  
+ xoxk35ws  replace_file_content   {"AllowMultiple":false,"Description":"Cast invitationData to any to read category property safely without modifying type definitions.","EndLine":49,"Instruction":"Change category lookup line to cast invitationData to any.","ReplacementContent":"  const { invitationData } = useInvitationData();\n  const category = (invitationData as any)?.category || \"wedding\";\n  const isHousewarming = category === \"housewarming\";","StartLine":43,"TargetContent":"  const { invitationData } = useInvitationData();\n  const category = invitationData?.category || \"wedding\";\n  const isHousewarming = category === \"housewarming\";","TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\families\\index.tsx","toolAction":"Cast invitationData to any","toolSummary":"Casting context state to any to read category properties inside components/sections/families/index.tsx"}: 	  	
+ 	  M2 !`;  i/ YV *< J  P Hu t / JD  3Sl      W    g,j     I      {                 mJ    Il#   K
+C    '3+DNFm    b~   { c3 T         ]   J?  0E s O    : +N      >    <   5 i   i E  s qo   h( 2 ,  [wV	 W         f   H t +    V      a       g   4  MUr  	u 8O :N      dUk @h =\v  M AK  .6  qB  1  m    $   2N    -  f  9  T a W{    F    z   a ?2 # : N <   	ssV #  V   \A  |sq $   w3 P F V  5   ^2 j Q  <    W  8  w9 s hd Dv  t    y   /*   2  i %   F*, z   t 5  #M      	  3  ]    G ; < *      xk     Yt  n    p  j  g      I        H, f *L %   +  uW   {  t= >O;&  n      \z   <     
+  S0 i  P j        jrO az    K 	"        W            #    L BZL  j   
+C t :  s      m H _      z     Cq   >   n  L   k  ci  !Bf   s3  !u     "  M   WO5G   }  s K     { 1_  q        _+m= )     BFD]V !    G          X         y   ch           Ht;  y ^+1    6 K5   x  A     x  O    m  n@2o  ?   35  x 	wE* `;t    " &Bw    S      V8 +xm^, _ 3 k  D  Q lX*  x1]  ROg`1  3       Y  z@ P 5 y  /   k  Z3 4    0 f         }:     D<      db  0   a  SQ   - n      f   V   2 _  Ri  }  &)ujiD    CC  $      }    6 ] 	 H  =t!`RM+     }        ^  4   n N   62  izZE U   H   I 8  MKs  l "h ,  b  p w        F D<c  N?   o       {Q   q R  >R  \C# p { 2~ V       >J replace_file_contentBmI will cast `invitationData` as `any` inside the category check to bypass the TypeScript declaration warning.`           J                                                                                                                                                                                                                                                                                                                               G        ~         
+               2             X  b$8a58ba79-dce8-4e0e-985f-0c2b279780cbj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+               2             X  b$8a58ba79-dce8-4e0e-985f-0c2b279780cbj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     
+EI will run the TypeScript compiler check again to verify type safety.2(bot-bcd5b890-0fab-4ef0-8d9a-cc2d095c184eBEI will run the TypeScript compiler check again to verify type safety.`  W        H      \   
+               "  
+ xoxk35ws  replace_file_content   {"AllowMultiple":false,"Description":"Cast invitationData to any to read category property safely without modifying type definitions.","EndLine":49,"Instruction":"Change category lookup line to cast invitationData to any.","ReplacementContent":"  const { invitationData } = useInvitationData();\n  const category = (invitationData as any)?.category || \"wedding\";\n  const isHousewarming = category === \"housewarming\";","StartLine":43,"TargetContent":"  const { invitationData } = useInvitationData();\n  const category = invitationData?.category || \"wedding\";\n  const isHousewarming = category === \"housewarming\";","TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\families\\index.tsx","toolAction":"Cast invitationData to any","toolSummary":"Casting context state to any to read category properties inside components/sections/families/index.tsx"}: 	  	
+ 	  M2 !`;  i/ YV *< J  P Hu t / JD  3Sl      W    g,j     I      {                 mJ    Il#   K
+C    '3+DNFm    b~   { c3 T         ]   J?  0E s O    : +N      >    <   5 i   i E  s qo   h( 2 ,  [wV	 W         f   H t +    V      a       g   4  MUr  	u 8O :N      dUk @h =\v  M AK  .6  qB  1  m    $   2N    -  f  9  T a W{    F    z   a ?2 # : N <   	ssV #  V   \A  |sq $   w3 P F V  5   ^2 j Q  <    W  8  w9 s hd Dv  t    y   /*   2  i %   F*, z   t 5  #M      	  3  ]    G ; < *      xk     Yt  n    p  j  g      I        H, f *L %   +  uW   {  t= >O;&  n      \z   <     
+  S0 i  P j        jrO az    K 	"        W            #    L BZL  j   
+C t :  s      m H _      z     Cq   >   n  L   k  ci  !Bf   s3  !u     "  M   WO5G   }  s K     { 1_  q        _+m= )     BFD]V !    G          X         y   ch           Ht;  y ^+1    6 K5   x  A     x  O    m  n@2o  ?   35  x 	wE* `;t    " &Bw    S      V8 +xm^, _ 3 k  D  Q lX*  x1]  ROg`1  3       Y  z@ P 5 y  /   k  Z3 4    0 f         }:     D<      db  0   a  SQ   - n      f   V   2 _  Ri  }  &)ujiD    CC  $      }    6 ] 	 H  =t!`RM+     }        ^  4   n N   62  izZE U   H   I 8  MKs  l "h ,  b  p w        F D<c  N?   o       {Q   q R  >R  \C# p { 2~ V       >J replace_file_content*AllowMultiple* Description* EndLine* Instruction* ReplacementContent*	StartLine*TargetContent*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$8a58ba79-dce8-4e0e-985f-0c2b279780cbj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   fCasting context state to any to read category properties inside components/sections/families/index.tsx   Cast invitationData to any                   *  
+               "  
+ xoxk35ws  replace_file_content   {"AllowMultiple":false,"Description":"Cast invitationData to any to read category property safely without modifying type definitions.","EndLine":49,"Instruction":"Change category lookup line to cast invitationData to any.","ReplacementContent":"  const { invitationData } = useInvitationData();\n  const category = (invitationData as any)?.category || \"wedding\";\n  const i       raction**:
+  * Created `components/sections/celebrant/manifest.json` and its React visual component `components/sections/celebrant/index.tsx`.
+  * Created `components/sections/countdown/index.tsx` encapsulating countdown timer execution logic.
+  * Created `components/sections/events/index.tsx` mapping schedule cards.
+  * Created `components/sections/gallery/index.tsx` rendering moments with dynamic Lightboxes.
+  * Created `components/sections/venue/index.tsx` mapping addresses and google maps embeds.
+  * Updated static manifests and lazy component lists inside the registry index file.
+
+---
+
+### 4. Model Knowledge
+
+* **Lazy Component Types**: Standard React `lazy()` loaders return a `LazyExoticComponent<ComponentType<any>>`, which satisfies the generic `React.ComponentType<any>` registry loader interfaces seamlessly without changing function signatures.
+* **ISO Date Conversions**: The countdown date-time picker splits `targetDate` strings on the `"T"` delimiter to display separate native inputs and rejoins them as ISO strings for data preservation.
+* **Registry Coexistence**: The Component Registry loader can return manifests for all sections (enabling the Dynamic Inspector), while keeping visual layout component pointers lazy or null for sections not yet migrated.
+
+---
+
+### 5. Files and Code
+
+#### Edited / Created Files
+* [index.ts](file:///c:/Users/Admin/Ahvaanam/lib/registry/index.ts): Converted layout components list to lazy dynamic loaders.
+* [manifest.json](file:///c:/Users/Admin/Ahvaanam/components/sections/celebrant/manifest.json): Created Celebrant metadata schema properties.
+* [index.tsx](file:///c:/Users/Admin/Ahvaanam/components/sections/celebrant/index.tsx): Celebrant card rendering component.
+* [index.tsx](file:///c:/Users/Admin/Ahvaanam/components/sections/countdown/index.tsx): Countdown timer execution layout component.
+* [index.tsx](file:///c:/Users/Admin/Ahvaanam/components/sections/events/index.tsx): Ceremonies list 

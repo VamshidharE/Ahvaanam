@@ -1,0 +1,101 @@
+use client');
+2:     }
+3:     if (startIdx === -1) continue;
+4:     
+5:     // Try to find if this contains the full component
+6:     const hasComponentExport = content.includes('export default function CompositionRenderer');
+7:     const hasResolveBinding = content.includes('resolveBindingValue');
+8:     const hasSectionComponents = content.includes('SECTION_COMPONENTS');
+9:     
+10:     if (hasComponentExport \u0026\u0026 hasResolveBinding \u0026\u0026 hasSectionComponents) {
+11:       // Let's try to extract the JSON-escaped string
+12:       // It starts with "use client" and should end around the end of the file.
+13:       // Let's find the closing quote if it starts with a double quote
+14:       let parsedCode = '';
+15:       try {
+16:         // If the match         3 \  'l     -     put:
+				[1] Found possible REAL code file candidate: composition_pure_match_12_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt (size: 6000)
+  Parsed Code length: 3821
+  Code Ends with:   (e) {}
+    }
+  }
+}
+
+try {
+  searchDir(geminiDir);
+} catch (err) {
+  console.error('Error:', err);
+}
+[2] Found possible REAL code file candidate: composition_pure_match_13_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt (size: 6000)
+  Parsed Code length: 5004
+  Code Ends with:   } else {
+    console.log('No match containing CompositionRenderer export was found at all!');
+  }
+}
+[3] Found possible REAL code file candidate: composition_pure_match_14_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt (size: 6000)
+  Parsed Code length: 1627
+  Code Ends with:   invitationData: any;
+}
+
+export default function CompositionRenderer({ composition, invitationData }
+[4] Found possible REAL code file candidate: composition_pure_match_15_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt (size: 6000)
+  Parsed Code length: 1546
+  Code Ends with:  ly restored perfect CompositionRenderer.tsx!`);
+} else {
+  console.log('No perfect match found.');
+}
+[5] Found possible REAL code file candidate: composition_pure_match_17_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt (size: 6000)
+  Parsed Code length: 4980
+  Code Ends with:   } else {
+    console.log('No match containing CompositionRenderer export was found at all!');
+  }
+}
+[6] Found possible REAL code file candidate: composition_pure_match_18_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt (size: 6000)
+  Parsed Code length: 3821
+  Code Ends with:   (e) {}
+    }
+  }
+}
+
+try {
+  searchDir(geminiDir);
+} catch (err) {
+  console.error('Error:', err);
+}
+[7] Found possible REAL code file candidate: composition_pure_match_18_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt (size: 6000)
+  Parsed Code length: 4980
+  Code Ends with:   } else {
+    console.log('No match containing CompositionRenderer export was found at all!');
+  }
+}
+[8] Found possible REAL code file candidate: composition_pure_match_19_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt (size: 6000)
+  Parsed Code length: 112
+  Code Ends with:  ;');    
+     if (startIdx === -1) {   3
+/      startIdx = content.indexOf('use client');   	
+     }
+[9] Found possible REAL code file candidate: composition_pure_match_1_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt (size: 6000)
+  Parsed Code length: 5592
+  Code Ends with:    k  q B, X    1  O f fT    >   -      5TQ       -         +  b  U XT& E  p > 2  sUU   L  i | mUu 9}
+[10] Found possible REAL code file candidate: composition_pure_match_20_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt (size: 6000)
+  Parsed Code length: 197
+  Code Ends with:           if (startIdx !== -1) {   4
+0          cleaned = cleaned.substring(startIdx);   
+	        }
+[11] Found possible REAL code file candidate: composition_pure_match_2_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt (size: 6000)
+  Parsed Code length: 5041
+  Code Ends with:     .     ?]r r . >   ]    w7   f    a q R;^{ U    o>q  -m8~ / t G u    tt    o   !     N    c | 0 }
+[12] Found possible REAL code file candidate: composition_pure_match_6_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt (size: 6000)
+  Parsed Code length: 5527
+  Code Ends with:  position_renderer_db_match_424_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+Search complete.
+
+  	: o8iv5r7j       
+(bot-0f6abb6a-f450-4a2d-8d33-6992dfd0db60     I will view `scratch/real_renderer_candidate_9.tsx` to see if it contains the complete, original code of the composition renderer.   2  
+ wxn3bvf7 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\scratch\\real_renderer_candidate_9.tsx","StartLine":1,"toolAction":"View real_renderer_candidate_9","toolSummary":"Reading the extracted composition renderer candidate 9"}:     
+    M2 > |   o   h .   n   BE3    ? p    J; ]       ggl   }G=#   C  (    j(5g  0 g -
+ X/ C  ;    bT    4  _; @ V-a   $     kx    1M W   |vw  L          (6     &    ]   z   [   Fdh  Rx'(  =  (  ,<   PA  r =O0  Xr    W       ,{r    P  ) \k  9  7 Q 	'|`HxW   f! %    :} =U   j UW    gl9        ? kP   q          3 \  'l5  q' 0      f  # )      o}  R   T   z      vV;       ay    1   Knh t}  ,  >    5/9   5 ] ]  _    t ^   ?"o  0{ c  z_   N =\.   y=  A    P      rzX < z  >$       l l  pT=2  5 mu |)8 <   0    .`c  t&M  zH h 2X   *    "! \v     |7 i T       +U94 l  L      R p   O[   I  s      ^p!  k  4   U l    v     h  %G L  S t  g*  4Q  Jr   * <   YZ  V  pK5   '  +  M    L  ~/O. "
+  P-    N    ? pzi     ]  9 CG   -dm  [  - g
+     *W  j  ' /  "K    B     ~      9      g     q OKe   h    P 9`1  |i   d6  (     W     q z  Q  D &      uV  y * WIc   A _T  1rd dH      YV S  M   @ v < Bo4~ o  P   A     d  O  \D\fE+  _=h  h \ !  x    4%[f       	     .  g   B c =<   A  a ! =     3,E    T7 GNhX* P1  z
+ a  )|    > @     3{  D    @<  !tx   Q   O    S     J     r m 8 C   /\ @   "=  #r  j  n  1C     b  (+  G  A 2 A      b, \Ut)H   1   K          s    t o6   o   J
+ 5  m go;     >I c     li     K   Gy       ~  [      c  A	Q     W   g 1    	  3&      RL c l     mC        mV[    n  G o s:  a j  $~o vo (TQn   oW% {      Z  0r%  F   I G ,*   \ R  	 d  +6  D q  m   < [ #O zs   b>    P A  r  I`  +/     

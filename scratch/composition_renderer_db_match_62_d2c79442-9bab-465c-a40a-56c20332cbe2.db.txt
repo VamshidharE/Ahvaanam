@@ -1,0 +1,104 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+[185] Found match at index 4121330
+  Preview of match [185]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeMessage: "Weddi
+------------------------
+[186] Found match at index 4121716
+  Preview of match [186]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[187] Found match at index 4122102
+  Preview of match [187]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider"    ;
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You
+------------------------
+[188] Found match at index 4432954
+  Preview of match [188]:
+"use client";
+
+import React from "react";
+import { getTheme } from "@/lib/theme/registry";
+
+interface ThemeProviderProps {
+  themeId: string;
+}
+
+export default fu        YZ twRJ  v   fUs     nD  |   ef /      O F>W\} y      X        0     D  z M            q  ?  $ a  u 
+ ) |     ?E  [    {       + 4
+------------------------
+[189] Found match at index 4640376
+  Preview of match [189]:
+"use client";
+
+import React from "react";
+import { getTheme } from "@/lib/theme/registry";
+
+interface ThemeProviderProps {
+  themeId: string;
+}
+
+export default fu        YZ twRJ  v   fUs     nD  |   ef /      O F>W\} y      X        0     D  z M            q  ?  $ a  u 
+ ) |     ?E  [    {       + 4
+------------------------
+
+
+Log: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-386.log
+</SYSTEM_MESSAGE> @: rozs8g8yB         $
+(bot-a38b07f6-6ceb-41a1-b84a-9266acb9629d     I will update the SQLite database search script to look for the exact import statement that is unique to the `CompositionRenderer.tsx` file (`import HeroSection from "@/components/sections/hero";`), ensuring we extract only that specific file.  	2 !
+ mcea3fwq write_to_file   {"CodeContent":"const fs = require('fs');\nconst path = require('path');\n\nconst dbPath = 'C:\\\\Users\\\\Admin\\\\.gemini\\\\antigravity\\\\conversations\\\\d2c79442-9bab-465c-a40a-56c20332cbe2.db';\nconst walPath = 'C:\\\\Users\\\\Admin\\\\.gemini\\\\antigravity\\\\conversations\\\\d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal';\n\nfunction extractFromBinary(filePath) {\n  if (!fs.existsSync(filePath)) {\n    console.log(`File not found: ${filePath}`);\n    return;\n  }\n  console.log(`Scanning ${filePath} (${fs.statSync(filePath).size} bytes)`);\n  const buf = fs.readFileSync(filePath);\n  \n  // Convert buffer to string replacing nulls with spaces\n  let content = '';\n  for (let i = 0; i \u003c buf.length; i++) {\n    const charCode = buf[i];\n    if (charCode === 0) {\n      content += ' ';\n    } else if (charCode \u003e= 32 \u0026\u0026 charCode \u003c= 126) {\n      content += String.fromCharCode(charCode);\n    } else if (charCode === 10 || charCode === 13 || charCode === 9) {\n      content += String.fromCharCode(charCode);\n    } else {\n      content += ' ';\n    }\n  }\n\n  // Exact first import line in CompositionRenderer.tsx\n  const searchStr = 'import HeroSection from \"@/components/sections/hero\";';\n  let idx = 0;\n  let matches = 0;\n  while ((idx = content.indexOf(searchStr, id    om page code into the shared library folder.       e
+a#### [NEW] [ConfettiCanvas.tsx](file:///c:/Users/Admin/Ahvaanam/components/ui/ConfettiCanvas.tsx)   Z
+V* Houses the HTML5 canvas particle generation logic currently duplicated across pages.       a
+]#### [NEW] [FileUploader.tsx](file:///c:/Users/Admin/Ahvaanam/components/ui/FileUploader.tsx)   G
+C* Houses the file input and `/api/upload` fetch uploader component.        
+ ---       E
+A### 2. Admin Invitation Editor (Refactor app/admin/[id]/page.tsx)   4
+0Break down the 2,210-line monolithic customizer.       s
+o#### [NEW] [GeneralSettings.tsx](file:///c:/Users/Admin/Ahvaanam/app/admin/[id]/components/GeneralSettings.tsx)   X
+T* Form tab component for Layout theme selector, audio path, and reordering sections.       q
+m#### [NEW] [CoupleSettings.tsx](file:///c:/Users/Admin/Ahvaanam/app/admin/[id]/components/CoupleSettings.tsx)     
+  * Form tab component for Bride/Groom names, parents, portrait photos, deity icons, size/spacing range selectors, and family surname options.       q
+m#### [NEW] [EventsSettings.tsx](file:///c:/Users/Admin/Ahvaanam/app/admin/[id]/components/EventsSettings.tsx)   l
+h* Form tab component for adding, removing, and updating ceremony dates, venue details, and descriptions.       o
+k#### [NEW] [StorySettings.tsx](file:///c:/Users/Admin/Ahvaanam/app/admin/[id]/components/StorySettings.tsx)   O
+K* Form tab component for managing the love story timeline cards and images.       q
+m#### [NEW] [VenuesSettings.tsx](file:///c:/Users/Admin/Ahvaanam/app/admin/[id]/components/VenuesSettings.tsx)   `
+\* Form tab component for RSVP contact entries and target date/time countdown configurations.       s
+o#### [NEW] [DetailsSettings.tsx](file:///c:/Users/Admin/Ahvaanam/app/admin/[id]/components/DetailsSettings.tsx)   K
+G* Form tab component for dress code details and custom FAQ entry lists.       U
+Q#### [MODIFY] [page.tsx](file:

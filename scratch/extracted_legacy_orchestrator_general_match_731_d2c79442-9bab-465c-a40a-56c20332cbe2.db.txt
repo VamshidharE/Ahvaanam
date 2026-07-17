@@ -1,0 +1,100 @@
+ctured and how much of it is present.2  
+ bl64iuz5 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","EndLine":100,"StartLine":1,"toolAction":"View LegacyOrchestrator.tsx","toolSummary":"Reading the top lines of LegacyOrchestrator to inspect its current state"}:     
+    M2    y8g  l  U bfi G !S    z O %F  e    5   ,        D =q thT       ' bG g/u Uk/   6 ^D q E_9D        N  aN  h  B  C<     )  C  ^   z 6\    c      + 4  2    / !2      X ~ 2  "u +Y     %xA),J  d}2= *  _ OB   &      \   ,!  X $.L  ? .y?    C   U   &  y]      
+   -  Z6t      SS I  u7   i  X%jK        " e &  7    H      1qD  Ys   -=    f  J qE    n';    ,  1    M  M[R   +          i A 5  g    S2j  i M  A {    x   c   j   ; xk h   je     ?/ y   SfQ      i  C y*  E   q b,K     2@   @   	                "     X=.    [ s):I     k   M      uT} ZH 3    +  ] + /
+n            0|   h n   "Y  S       i M  8 4' Q` $ jT    Y!<      : ; ?   0x ^        	       T Hd UT   E              p    .4   0   DZE"7t %     !  +     * dR      hUI   -m :    p   M     q    H   6 5 a7       j   n :     y            Ye nk Q  v  P  LJ	view_file       "P     B   (   0 B!
+	sessionID  -3750763034362895579H  PuZ eqNTauy3D-76juMP0PPIqAY0  : 
+ autoB  
+ ask_permission   Use this tool to ask for permission after a failure due to insufficient permissions, specifically when you need additional permissions for file reads or writes after a terminal command or file operation encounters a permission error.
+CRITICAL: Request the narrowest scope that covers your planned operations without requiring repeated asks. For example, prefer a subdirectory over a whole project. Never request wildcard (`*`) or root-level permissions.
+IMPORTANT: Do NOT use this tool to request persistent exceptions for commands that make network requests, run arbitrary code, or download unverified files (e.g., curl, wget, pip, npm). For such operations, invoke the run_command tool directly so the user can explicitly review and approve the individual process execution.
+Valid actions, their target formats, and matching behaviors are:
+- `command`:
+  - Target Format: Command prefix or *
+  - Matching: Matches commands by prefix. e.g., 'git' matches 'git add', 'git commit', etc.
+- `custom`:
+  - Target Format: Custom action name
+  - Matching: Matches the exact action name.
+- `execute_url`:
+  - Target Format: Domain name or *
+  - Matching: Matches the domain and all subdomains. Does not match URL paths.
+- `mcp`:
+  - Target Format: serverName/toolName, serverName/*, or *
+  - Matching: Matches by exact serv                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      v              T   
+               2            :           XB           XJP         (  	0 B!
+	sessionID  -3750763034362895579H  PuZ FI9Sav6YFZLWjuMPiZe80AwX  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     "
+                
+               X             X    *  
+               2            :           XB           XJP         (  	0 B!
+	sessionID  -3750763034362895579H  PuZ FI9Sav6YFZLWjuMPiZe80AwX  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     "
+                
+               X             X    
+~I will view lines 91 to 120 of `components/shared/LegacyOrchestrator.tsx` to align the replacement range for the switch cases.2(bot-3f972033-95ac-408a-ad4c-54a4c326ea54:  
+ wg3amwfz 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","EndLine":120,"StartLine":91,"toolAction":"View LegacyOrchestrator cases range","toolSummary":"Reading sections cases block in LegacyOrchestrator.tsx"}:     
+    M2  2H  T    x rc  ^  n    C  F  A : U  Q      O ?  _ BH  	  m' @  {  & '< # ! w {  v 6  EV 8     { _    Z }?   ^<GU  /     X  Y  B  lsy    m  hu   )G U      L 2sf  ~ T _ mNa [    
+ IJ  u( l3 g ># @ 1B    n ~       dk9Kd    8  A e    (  &)  .     +  @n   nug  {      %   c s      *    Q M       Y  > j    Q |    M        v G  U9U   5    3    d *    SdP  G .  }vZ  g      U  Y  	r.  w    >           ^P w G21    |    v    R+  '   +} bz"},   d  8   |5  << T  S 6!Z}/     *   YLP        "   l            2  ky9.   "k     J   ]  |- m         qx   s      q   P> z&c           I    )  K  8s  l  >h  +  L u   t/pWY X  ] +   ^  i B Z   MZ  >;    D{2 6       qD  _ D  r 9?R< p F	  j~ 9 ^ ; aA dJ    Z  >   K  Ev ENHFA C   9  A1  Dp^!c VS  X"!   {        i z2;.X  >s o i     D a {o*    nxS1 *  <U A  BJvY 5 s  & UZ    gS z   #c  }    gwm  1       |   N6 	  AM     A*  +   r  l=m 8 e            4   e 5   l Z   _  JT ?   W  T/ :ZR[$ w     TD     dYE   y   # W  {              I ;0q    h      0     &%    0  J  [    +Z  q[   &  5  g$   _  n9  mp/,&   |r   Z _2 S
+        f,7    )/ v wT  `   | +b      M_ &> h-  QiQ ]\  " (  \ 'O       W    q@   3  doT  p 1      E.i    K           iiLv  w uj   %        R    U v   8Gvwy    {g    -     yO5e?@>r &  2 U I]  8U      $    r      { r  m#             q  `         9      W26 ~? ^@        ,q  m^
+1    6    0  SK   /  h 	 M    Y  Re   o' `\Gd c      -Xx+    z=  \&s ] $ 6`    v   -             & H[b  ?   z>z y          " 1D  U  %: G] 3? 3  ~  QRH  a   <, ^ E  :  >Wk d 
+j    p      J t Z J   w     M Oc   | _nH ! I8  +6W       `l Q    y!t   } { &   `A   yD N^   r KS WP^8^ K   A   Y\. q  <Z ?5   ( T G    t <I  hH    	     )     G: k]x n  y i  k &    LS  ~c , 0t_   w       6~j Lj   rv   Q g=        [    . 5  1O   <^H  6   (5 `[     2     fw{'P  :&   ^g     Y-1 l    D    q d    <  j~  ZZ  3`[   d f],]tM        % W  4U        + y: B  $!    _q      \ =: p    12m p  g Cc<  }<H Y 539}J     ee FR	 {ka 8U   |  '  XHw {      @X^ e  S   "    A }L X| lNp  OYl        {       `  P(  j  -H     	 FqY 5      y  :
+ :: 
+  t   V  T *      Sl         si   6  5oA  X"1 Q         9jW   lU 3C     D      w    T l  y f dg   'J   Mo <>    v  V  V!5G:     c  J	view_fileB~I will view lines 91 to 120 of `components/shared/LegacyOrchestrator.tsx` to align the replacement range for the switch cases.`         *    Q M       Y  > j    Q |    M        v G  U9U   5    3    d *    SdP  G .  }vZ  g      U  Y  	r.  w    >           ^P w G21    |    v    R+  '   +} bz"},   d  8   |5  << T  S 6!Z}/     *   YLP        "   l            2  ky9.   "k     J   ]  |- m         qx   s      q   P> z&c           I    )  K  8s  l  >h  +  L u   t/pWY X  ] +   ^  i B Z   MZ  >;    D{2 6       qD  _ D  r 9?R< p F	  j~ 9 ^ ; aA dJ    Z  >   K  Ev ENHFA C   9  A1  Dp^!c VS  X"!   {        i z2;.X  >s o i     D a {o*    nxS1 *  <U A  BJvY 5 s  & UZ    gS z   #c  }    gwm  1       |   N6 	  AM     A*  +   r  l=m 8 e            4   e 5   l Z   _  JT ?   W  T/ :ZR[$ w     TD     dYE   y   # W  {              I ;0q    h      0     &%    0  J  [    +Z  q[   &  5  g$   _  n9  mp/,&   |r   Z _2 S
+        f,7    )/ v wT  `   | +b      M_ &> h-  QiQ ]\  " (  \ 'O       W    q@   3  doT  p 1      E.i    K           iiLv  w uj   %        R    U v   8Gvwy    {g    -     yO5e?@>r &  2 U I]  8U      $    r      { r  m#             q  `         9      W26 ~? ^@        ,q  m^
+1    6    0  SK   /  h 	 M    Y  Re   o' `\Gd c      -Xx+    z=  \&s ] $ 6`    v   -             & H[b  ?   z>z y          " 1D  U  %: G] 3? 3  ~  QRH  a   <, ^ E  :  >Wk d 
+j    p      J t Z J   w     M Oc   | _nH ! I8  +6W       `l Q    y!t   } { &   `A   yD N^   r KS WP^8^ K   A   Y\. q  <Z ?5   ( T G    t <I  hH    	     )     G: k]x n  y i  k &    LS  ~c , 0t_   w       6~j Lj   rv   Q g=        [    . 5  1O   <^H  6   (5 `[     2     fw{'P  :&   ^g     Y-1 l    D    q d    <  j~  ZZ  3`[   d f],]tM        % W  4U        + y: B  $!    _q      \ =: p    12m p  g Cc<  }<H Y 539}J     ee FR	 {ka 8U   |  '  XHw {      @X^ e  S   "    A }L X| lNp  OYl        {       `  P(  j  -H     	 FqY 5      y  :
+ :: 
+  t   V  T *      Sl         si   6  5oA  X"1 Q         9jW   lU 3C     D      w    T l  y f dg   'J   Mo <>    v  V  V!5G:     c  J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2           X:           XB           ZX  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                X  <  3
+               X
+               Y
+               Z  6Reading sections cases block in LegacyOrchestrator.tsx  #View LegacyOrchestrator cases range             Yr 
+Hfile:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx Z w"       case "couple":
+        return <CoupleSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "countdown":
+        return <CountdownSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "story":
+        return <StorySection key={sectionId} properties={properties} bindings={bindings} />;
+      case "events":
+        return <EventsSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "gallery":
+        return <GallerySection key={sectionId} properties={properties} bindings={bindings} />;
+      case "venue":
+        return <VenueSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "families":
+        return <FamiliesSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "rsvp":
+        return <RSVPSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "faq":
+        return <FAQSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "dressCode":
+        return <DressCodeSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "footer":
+        return <FooterSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "celebrant":
+        return <CelebrantSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "houseDetails":
+        return <HouseDetailsSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "owners":
+        return <OwnersSection key={sectionId} properties={properties} bindings={bindings} />;
+      default:
+        return null;X  ` 4        P  P                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       $        8         
+              "  
+ wg3amwfz 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","EndLine":120,"StartLine":91,"toolAction":"View LegacyOrchestrator cases range","toolSummary":"Reading sections cases block in LegacyOrchestrator.tsx"}:     
+    M2  2H  T    x rc  ^  n    C  F  A : U  Q      O ?  _ BH  	  m' @  {  & '< # ! w {  v 6  EV 8     { _    Z }?   ^<GU  /     X  Y  B  lsy    m  hu   )G U      L 2sf  ~ T _ mNa [    
+ IJ  u( l3 g ># @ 1B    n ~       dk9Kd    8  A e    (  &)  .     +  @n   nug  {      %   c s      *    Q M       Y  > j    Q |    M        v G  U9U   5    3    d *    SdP  G .  }vZ  g      U  Y  	r.  w    >           ^P w G21    |    v    R+  '   +} bz"},   d  8   |5  << T  S 6!Z}/     *   YLP        "   l            2  ky9.   "k     J   ]  |- m         qx   s      q   P> z&c           I    )  K  8s  l  >h  +  L u   t/pWY X  ] +   ^  i B Z   MZ  >;    D{2 6       qD  _ D  r 9?R< p F	  j~ 9 ^ ; aA dJ    Z  >   K  Ev ENHFA C   9  A1  Dp^!c VS  X"!   {        i z2;.X  >s o i     D a {o*    nxS1 *  <U A  BJvY 5 s  & UZ    gS z   #c  }    gwm  1       |   N6 	  AM     A*  +   r  l=m 8 e            4   e 5   l Z   _  JT ?   W  T/ :ZR[$ w     TD     dYE   y   # W  {              I ;0q    h      0     &%    0  J  [    +Z  q[   &  5  g$   _  n9  mp/,&   |r   Z _2 S
+        f,7    )/ v wT  `   | +b      M_ &> h-  QiQ ]\  " (  \ 'O       W    q@   3  doT  p 1      E.i    K           iiLv  w uj   %        R    U v   8Gvwy    {g    -     yO5e?@>r &  2 U I]  8U      $    r      { r  m#             q  `         9      W26 ~? ^@        ,q  m^
+1    6    0  SK   /  h 	 M    Y  Re   o' `\Gd c      -Xx+    z=  \&s ] $ 6`    v   -             & H[b  ?   z>z y          " 1D  U  %: G] 3? 3  ~  QRH  a   <, ^ E  :  >Wk d 
+j    p      J t Z J   w     M Oc   | _nH ! I8  +6W       `l Q    y!t   } { &   `A   yD N^   r KS WP^8^ K   A   Y\. q  <Z ?5   ( T G    t <I  hH    	     )     G: k]x n  y i  k &    LS  ~c , 0t_   w       6~j Lj   rv   Q g=        [    . 5  1O   <^H  6   (5 `[     2     fw{'P  :&   ^g     Y-1 l    D    q d    <  j~  ZZ  3`[   d f],]tM        % W  4U        + y: B  $!    _q      \ =: p    12m p  g Cc<  }<H Y 539}J     ee FR	 {ka 8U   |  '  XHw {      @X^ e  S   "    A }L X| lNp  OYl        {       `  P(  j  -H     	 FqY 5      y  :
+ :: 
+  t   V  T *      Sl         si   6  5oA  X"1 Q         9jW   lU 3C     D      w    T l  y f dg   'J   Mo <>    v  V  V!5G:     c  J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2           X:           XB           ZX  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                X  <  3
+               X
+               Y
+               Z  6Reading sections cases block in LegacyOrchestrator.tsx  #View LegacyOrchestrator cases range             Y    *  
+              "  
+ wg3amwfz 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","EndLine":120,"StartLine":91,"toolAction":"View LegacyOrchestrator cases range","toolSummary":"Reading sections cases block in LegacyOrchestrator.tsx"}:     
+    M2  2H  T    x rc  ^  n    C  F  A : U  Q      O ?  _ BH  	  m' @  {  & '< # ! w {  v 6  EV 8     { _    Z }?   ^<GU  /     X  Y  B  lsy    m  hu   )G U      L 2sf  ~ T _ mNa [    
+ IJ  u( l3 g ># @ 1B    n ~       dk9Kd    8  A e    (  &)  .     +  @n   nug  {      %   c s               	p                                                                                                                

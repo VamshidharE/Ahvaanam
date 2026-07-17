@@ -1,0 +1,102 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider"    ;
+   P    YZ uh \ v  @        
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and L
+------------------------
+[182] Found match at index 4118136
+  Preview of match [182]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[50] Found match at index 5460942
+  Preview of match [50]:
+"use client"   G     3 Op~1   B @        Y  Y                                         J 	        l       
+               "  
+ lmt7gzt3  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run extract_from_db.js","toolSummary":"Executing database scan script to locate the composition renderer code"}:     
+    M2  ,  n hp N5.v +'  9  e  a K   -;?E|     bg'   6           r D  -      0  )   T   T      w  +     H   q!  F      5 ]0q     i*  J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2            :            X  b$4aa75d03-12   	        l   ,   
+               "  
+ lmt7gzt3  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run extract_from_db.js","toolSummary":"Executing database scan script to locate the composition renderer code"}:     
+    M2  ,  n hp N5.v +'  9  e  a K   -;?E|     bg'   6           r D  -      0  )   T   T      w  +     H   q!  F      5 ]0q     i*  J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2            :            X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                   :  4
+                
+  	             
+                   FExecuting database scan script to locate the composition renderer code   Run extract_from_db.js               .
+*
+ command  node scratch/extract_from_db.js      *  
+               "  
+ lmt7gzt3  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run extract_from_db.js","toolSummary":"Executing database scan script to locate the composition renderer code"}:     
+    M2  ,  n hp N5.v +'  9  e  a K   -;?E|     bg'   6           r D  -        	        l    ,   
+               "  
+ lmt7gzt3  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run extract_from_db.js","toolSummary":"Executing database scan script to locate the composition renderer code"}:     
+    M2  ,  n hp N5.v +'  9  e  a K   -;?E|     bg'   6           r D  -      0  )   T   T      w  +     H   q!  F      5 ]0q     i*  J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2            :            X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                   :  4
+                
+  	             
+                   FExecuting database scan script to locate the composition renderer code   Run extract_from_db.js               .
+*
+ command  node scratch/extract_from_db.js      *  
+               "  
+ lmt7gzt3  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run extract_from_db.js","toolSummary":"Executing database scan script to locate the composition renderer code"}:     
+    M2  ,  n hp N5.v +'  9  e  a K   -;?E|     bg'   6           r D  -      0  )   T   T      w  +     H   q!  F      5 ]0q     i*  J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2            :            X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                   :  4
+                
+  	             
+                   FExecuting database scan script to locate the composition renderer code   Run extract_from_db.js                k  h
+*
+ command  node scratch/extract_from_db.js  node scratch/extract_from_db\.js  * Run extract_from_db.js  0 .
+*
+ command  node scratch/extract_from_db.js   	  
+k  h
+*
+ command  node scratch/extract_from_db.js  node scratch/extract_from_db\.js  * Run extract_from_db.js .
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0           @  c:\Users\Admin\AhvaanamX ` '   @
+ @<truncated 840 lines>
+[43] Found match at index 5458229
+  Preview of match [43]:
+"use client";
+
+             3 Op~1 >    Ni 
+ O   4  4                                           ~ x r l f ` Z T N H B < 6 0 * $                                                       | v p j d ^ X R L F @ : 4 . ( "       
+                        ztnhb\VPJD>82,&                                           | u n g ` Y R K D =                     { t S L 8 1   	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+b
+[
+:
+3
+ 
+ 
+ 	 	 	 	 	 	 	q	j	I	B	.	'	                      x d ] I B . '                       x d ] I B . '                         q j V O ; 4                         q j V O ; 4                         ~ w c \ H U p             - H c ~           - &   H c ~             ; V q                 ; V q          	 	 	 	;	c	\	U	~	 	 	 	 	 	 	 	 	 
+ 
+,
+T
+M
+F
+|
+u
+n
+ 
+ 
+ 
+ 
+   
+ 
+  * #   E m f _                   6 / ( ; B	  ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ;                                                           H b    H [    H T    H M    H F    H ?    H 8    H 1    H *    H #    H      H                        A      # j          $      "      !     "      %                          &                          '                          (                          )        

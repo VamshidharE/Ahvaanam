@@ -1,0 +1,64 @@
+Created At: 2026-07-05T13:24:25Z
+Completed At: 2026-07-05T13:24:25Z
+File Path: `file:///C:/Users/Admin/Ahvaanam/app/page.tsx`
+Total Lines: 397
+Total Bytes: 17514
+Showing lines 100 to 155
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+100:           }}
+101:         />
+102:       ))}
+103:     </div>
+104:   );
+105: }
+106: 
+107: const shareItems = [
+108:     {
+109:         icon: MessageCircle,
+110:         title: "WhatsApp",
+111:         desc: "Share instantly",
+112:         href: "https://api.whatsapp.com/send?text=Check%20out%20our%20premium%20invitation%20demo%20at%20http%3A%2F%2Flocalhost%3A3000%2Fdemo",
+113:         isExternal: true
+114:     },
+115:     {
+116:         icon: Globe,
+117:         title: "Website",
+118:         desc: "Personal invitation URL",
+119:         href: "/demo",
+120:         isExternal: false
+121:     },
+122:     {
+123:         icon: QrCode,
+124:         title: "QR Code",
+125:         desc: "Quick access",
+126:         href: "/demo",
+127:         isExternal: false
+128:     },
+129:     {
+130:         icon: Download,
+131:         title: "Download",
+132:         desc: "Image & PDF",
+133:         href: "/sample-invitation.pdf",
+134:         isExternal: true,
+135:         download: true
+136:     },
+137: ];
+138: 
+139: export default function RecreatedHomepage() {
+140:   // Global Invitation state synced across sections
+141:   const [coupleName, setCoupleName] = useState("RAHUL & PRIYA");
+142:   const [selectedFont, setSelectedFont] = useState("Cinzel");
+143:   const [selectedColor, setSelectedColor] = useState("#C49B27"); // Ornate Gold
+144:   const [selectedBg, setSelectedBg] = useState("traditional-ivory");
+145:   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+146: 
+147:   // Active states for sections
+148:   const [selectedCategory, setSelectedCategory] = useState("Wedding");
+149:   const [activeGallerySlide, setActiveGallerySlide] = useState(2); // Royal Jade in center
+150:   const [activeDevice, setActiveDevice] = useState<"desktop" | "mobile" | "tablet">("mobile");
+151: 
+152:   // Testimonials state
+153:   const [activeTestimonial, setActiveTestimonial] = useState(1);
+154: 
+155:   // Personalization Auto-Play Showcase state
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

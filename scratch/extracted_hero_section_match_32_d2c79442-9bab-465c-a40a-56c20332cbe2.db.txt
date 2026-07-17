@@ -1,0 +1,221 @@
+";
+    surnameColor?: string;
+  };
+  themeId?: string;
+  layoutId?: string;
+  motionId?: string;
+}
+
+export default function HeroSection({ properties, bindings, themeId, layoutId, motionId }: HeroSectionProps) {
+  const {
+    showScrollIndicator = true,
+    overlayOpacity = 0.45,
+    contentAlign = "center",
+    minHeight = "85vh",
+  } = properties;
+
+  const {
+    title = "",
+    subtitle = "",
+    welcomeMessage = "",
+    heroImage = "",
+    ctaText = "",
+    surname = "",
+    subText = "",
+    enableHeaderMedia = true,
+    headerMediaType = "god",
+    selectedGod = "ganesha",
+    selectedSymbol = "om",
+    headerMediaSize = 80,
+    headerMediaSpacing = 30,
+    showSurnameHeading = true,
+    surnameFont = "cinzel",
+    surnameColor = "var(--theme-accent)",
+  } = bindings;
+
+  const alignmentClass = 
+    contentAlign === "left" ? "text-left items-start" : 
+    contentAlign === "right" ? "text-right items-end" : 
+    "text-center items-center";
+
+  return (
+    <section 
+      className="relative flex flex-col justify-center items-center overflow-hidden w-full select-none"
+      style={{ 
+        minHeight: "var(--layout-min-height, 85vh)",
+        background: "var(--theme-gradient-backdrop, var(--theme-bg))"
+      }}
+    >
+      {/* Background Cover Image */}
+      {heroImage && (
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-102"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        />
+      )}
+
+      {/* Dark overlay */}
+      <div 
+        className="absolute inset-0 bg-black pointer-events-none"
+        style={{ opacity: overlayOpacity }}
+      />
+
+      {/* Hero content */}
+      <MotionWrapper
+        motionId={motionId}
+        defaultMotionId="luxury-motion"
+        type="reveal"
+        className="w-full flex justify-center items-center z-10"
+      >
+        <LayoutWrapper
+          layoutId={layoutId}
+          defaultLayoutId="hero-center"
+          className={`w-full max-w-4xl flex ${alignmentClass}`}
+          style={{ 
+            color: "var(--theme-text)",
+            fontFamily: "var(--theme-font-body)"
+          }}
+        >
+          {/* Left Side: Welcome, Title, Description, CTA */}
+          <div className="flex flex-col space-y-4 flex-1 text-center lg:text-left items-center lg:items-start w-full">
+            {/* Welcome Tagline */}
+            {welcomeMessage && (
+              <p 
+                className="text-xs uppercase tracking-[3px] font-semibold"
+                style={{ color: "var(--theme-accent)" }}
+              >
+                {welcomeMessage}
+              </p>
+            )}
+
+            {/* Main Title Heading */}
+            {title && (
+              <h1 
+                className="text-4xl md:text-6xl font-extrabold tracking-wide leading-tight"
+                style={{ fontFamily: "var(--theme-font-heading)" }}
+              >
+                {title}
+              </h1>
+            )}
+
+            {/* Subtitle / Details descript    ion */}
+            {subtitle && (
+              <p 
+                className="text-sm max-w-lg leading-relaxed whitespace-pre-line font-medium"
+                style={{ color: "var(--theme-secondary-text)" }}
+              >
+                {subtitle}
+              </p>
+            )}
+
+            {/* Call to Action Button */}
+            {ctaText && (
+              <div className="pt-2">
+                <MotionWrapper motionId={motionId} defaultMotionId="luxury-motion" type="hover">
+                  <MotionWrapper motionId={motionId} defaultMotionId="luxury-motion" type="tap">
+                    <button 
+                      type="button"
+                      className="px-8 py-3.5 text-xs font-bold uppercase tracking-[2px] transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer"
+                      style={{
+                        backgroundColor: "var(--theme-accent)",
+                        color: "#FFFFFF",
+                        borderRadius: "var(--theme-radius-button)",
+                        boxShadow: "var(--theme-shadow-button)",
+                        fontFamily: "var(--theme-font-heading)"
+                      }}
+                    >
+                      {ctaText}
+                    </button>
+                  </MotionWrapper>
+                </MotionWrapper>
+              </div>
+            )}
+          </div>
+
+          {/* Right Side: Deity Icon & Family Surname banner */}
+          {(enableHeaderMedia || (showSurnameHeading && surname)) && (
+            <div className="flex flex-col items-center justify-center space-y-5 flex-1 w-full pt-6 lg:pt-0">
+              {enableHeaderMedia && (
+                <div 
+                  style={{ 
+                    marginTop: `${headerMediaSpacing}px`,
+                    width: `${headerMediaSize}px`,
+                    height: `${headerMediaSize}px` 
+                  }}
+                  className="flex items-center justify-center shrink-0"
+                >
+                  <DeitySymbol
+                    type={headerMediaType}
+                    selectedGod={selectedGod}
+                    selectedSymbol={selectedSymbol}
+                    size={headerMediaSize}
+                  />
+                </div>
+              )}
+
+              {showSurnameHeading && surname && (
+                <div className="text-center animate-fadeIn">
+                  <h2 
+                    className="text-2xl md:text-3xl font-bold tracking-wider"
+                    style={{ 
+                      fontFamily: surnameFont === "great-vibes" ? "var(--font-great)" : surnameFont === "playfair" ? "var(--font-playfair)" : "var(--font-cinzel)",
+                      color: surnameColor 
+                    }}
+                  >
+                    {surname}
+                  </h2>
+                  {subText && (
+                    <span className="text-[10px] uppercase tracking-[2px] opacity-75 block mt-1" style={{ color: "var(--theme-secondary-text)" }}>
+                      {subText}
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+        </LayoutWrapper>
+      </MotionWrapper>
+
+      {/* Scroll indicator */}
+      {showScrollIndicator && (
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 z-10 animate-bounce opacity-85">
+          <span className="text-[8px] uppercase tracking-[1.5px] text-white/70 font-semibold">Scroll</span>
+          <div className="w-1 h-3 bg-white/60 rounded-full" />
+        </div>
+      )}
+    </section>
+  );
+}
+X  ` ;   ;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        W 2    (              0   8 j      
+ .ipynb  " o  :  *          (  0 @ H P *       As IDE feedback, the following lint errors may be related to your recent edits up to this point. Consider whether they deserve immediate attention. If worth addressing, clearly comment on them and/or fix them. Be explicit in acknowledging lints and explaining your fix's approach. AVOID unproductive loops; if you detect yourself repeatedly creating/fixing lints in a short period, offer some thoughts but MOVE ON.0 P h x                "  28 @ *  2    ( By  @   N0 J headJ tailJ mkdirJ cdJ cpJ mvJ catJ findJ grepJ rmJ touchJ lessJ clearJ ls  *
+powershell2
+powershellX ` h p x R 8 @ H @P @X  h p  x      Z   j                         @      ( 0 8           "$       ( 2 
+ 8   B     NJ   Z     ` * 
+ * red8  @ H P  X ` h 0 8 R     X h z                                                    
+  '                   
+( 0           
+       
+/read_file(C:\Users\Admin\invitecraft\AGENTS.md)
+@write_file(C:\Users\Admin\invitecraft\components\data\themes.ts)
+Jwrite_file(C:\Users\Admin\invitecraft\components\context\ThemeContext.tsx)
+Mwrite_file(C:\Users\Admin\invitecraft\components\shared\ThemeSelectorHub.tsx)
+6write_file(C:\Users\Admin\invitecraft\app\globals.css)
+Dwrite_file(C:\Users\Admin\invitecraft\components\data\invitation.ts)
+Swrite_file(C:\Users\Admin\invitecraft\components\templates\royal-temple\Layout.tsx)
+Twrite_file(C:\Users\Admin\invitecraft\components\templates\floral-garden\Layout.tsx)
+Swrite_file(C:\Users\Admin\invitecraft\components\templates\south-indian\Layout.tsx)
+Twrite_file(C:\Users\Admin\invitecraft\components\templates\palace-luxury\Layout.tsx)
+Uwrite_file(C:\Users\Admin\invi n 2   Z       "$b9df6dd8-dfd4-44a6-86e2-f5dd8f18b5a5B     2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   1   2   1   1   2
+     "Q         (   0 B!
+	sessionID  -3750763034362895579H  P  Z TFVTasP5BsL5juMPjsOc8Qs0  : 
+ autoJe              "             (  2          6737efe92          17b393c5:       e9c821beB         R     Z         b     Vzw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  e Q         (   0 B!
+	sessionID  -3750763034362895579H  P  Z TFVTasP5BsL5juMPjsOc8Qs" 3252236e79326004   gemini-default   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  639  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $24c66b1d-cdac-4252-8bd1-85c63e73688f  5
+trajectory_id $caf57629-637c-4871-a4b3-8d196466d06e   Gemini 3.5 Flash (Medium) g     k  k                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  	 Q            z   
+               "  
+ 4j6o7vx4 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\theme\\ThemeProvider.tsx","toolAction":"View Theme

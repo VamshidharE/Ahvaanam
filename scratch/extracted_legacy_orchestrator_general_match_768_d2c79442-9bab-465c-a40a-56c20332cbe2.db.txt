@@ -1,0 +1,130 @@
+
+                 
+                                     	                   
+               " %
+ j16ukqjn  replace_file_content  #{"AllowMultiple":false,"Description":"Fix props type signature inside LegacyOrchestrator switch cases.","EndLine":120,"Instruction":"Pass only bindings, layoutId, and motionId props to section components.","ReplacementContent":"      case \"couple\":\n        return \u003cCoupleSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"countdown\":\n        return \u003cCountdownSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"story\":\n        return \u003cStorySection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"events\":\n        return \u003cEventsSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"gallery\":\n        return \u003cGallerySection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"venue\":\n        return \u003cVenueSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"families\":\n        return \u003cFamiliesSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"rsvp\":\n        return \u003cRSVPSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"faq\":\n        return \u003cFAQSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u00         Guests`
+  * `Love Story`     `House Details`
+  * `Wedding Events`     `Pooja Schedule`
+  * `Muhurtham`     `Gruhapravesam Muhurtham`
+* **Customizer / Layout Constraint**: "STOP thinking like a developer. Think like a Creative Director. Architecture is frozen. Do NOT modify: Composition Engine, Theme Engine, Layout Engine, Motion Engine, Component Registry, Editor."
+* **Professional Editor Visual Layouts**:
+  * Left sidebar lists layers (drag handles, visibility, duplicate, delete), assets (optimizer details, AI enhance), themes, and version logs.
+  * Right sidebar contains context-aware properties, typography, spacing padding, and motion presets.
+  * Center canvas simulates responsive device stages (mobile, tablet, desktop) on a checkered canvas with Column Grid toggle and Safe Area boundaries.
+
+---
+
+### 3. Work Accomplished
+
+* **[COMPLETED] Category Blueprint Registry**:
+  * Created [blueprint.ts](file:///c:/Users/Admin/Ahvaanam/lib/categories/blueprint.ts) defining vocabulary, default themes, layout, motion, and hidden/editable panels for Wedding, Birthday, and Housewarming.
+  * Redesigned [housewarming.ts](file:///c:/Users/Admin/Ahvaanam/lib/categories/housewarming.ts) categories schema and mapped it to field bindings.
+  * Configured [SectionInspector.tsx](file:///c:/Users/Admin/Ahvaanam/app/admin/[id]/components/SectionInspector.tsx) to dynamically translate labels (e.g. "Bride's Family"     "Family Members List") for housewarming edit streams.
+* **[COMPLETED] Premium Template System (Phase 9)**:
+  * Redesigned [hero/index.tsx](file:///c:/Users/Admin/Ahvaanam/components/sections/hero/index.tsx) welcoming section to conditionally inject decorative overlay layers (Gatsby art-deco frames, golden palace arches, marigold flower garlands, and watercolor leaves) depending on theme design languages.
+  * Documented accessibility targets (WCAG contrast, touch sizes) and performance canvas budgets inside [design_audit_report.md](file:///c:/Users/Admin/Ahvaanam/design_audit_report.md).
+* **[COMPLETED] Professional Invitation Editor (Phase 10)**:
+  * Fully rebuilt [page.tsx](file:///c:/Users/Admin/Ahvaanam/app/admin/[id]/page.tsx) into a modern designer workspace featuring:
+    * Left-side layers/assets panel.
+    * Center stage responsive sandbox with scaling sliders, columns overlay, and mobile safe-area notches.
+    * Right-side context-aware inspector integrating typography, padding, and motion modifiers.
+* **[IN PROGRESS] Architecture Cleanup Sprint**:
+  * Created [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx) to encapsulate the loading screen, background audio, background particle wrappers, and section components loop.
+  * Built [cleanup-layouts.js](file:///c:/Users/Admin/Ahvaanam/scratch/cleanup-layouts.js) script and executed it to refactor all 12 templates layout files, dropping their length from ~750 lines to ~100 lines of pure composition/orchestration shells.
+
+---
+
+### 4. Model Knowledge
+
+* **TypeScript Compilation Failures on Reusable Section Components**:
+  * Reusable section components (e.g., `CoupleSection`, `CountdownSection`, `StorySection`, `EventsSection`, `GallerySection`, `VenueSection`, `FamiliesSection`, `RSVPSection`, `FAQSection`, `DressCodeSection`, `FooterSection`, `CelebrantSection`, `HouseDetailsSection`, `OwnersSection`) do **not** take a `properties` prop.
+  * They generally accept `bindings` (as a flat record) and occasionally `layoutId` or `motionId` variables.
+  * For example, the `CoupleSectionProps` interface defines:
+    ```typescript
+    interface CoupleSectionProps {
+      bindings: {
+        title?: string;
+        groomName?: string;
+        groomParents?: string;
+        groomImage?: string;
+        brideName?: string;
+        brideParents?: string;
+        brideImage?: string;
+      };
+      layoutId?: string;
+      motionId?: string;
+    }
+    ```
+  * In [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx), we are attempting to pass both `properties={properties}` and `bindings={bindin    gs}`. This triggers TS compilation errors that prevent builds. We must update the prop passing in `LegacyOrchestrator.tsx` to match the exact parameters of each section.
+
+---
+
+### 5. Files and Code
+
+#### Edited/Created Files
+* [blueprint.ts](file:///c:/Users/Admin/Ahvaanam/lib/categories/blueprint.ts): Created Category Blueprint maps.
+* [housewarming.ts](file:///c:/Users/Admin/Ahvaanam/lib/categories/housewarming.ts): Redesigned category field enums.
+* [Layout.tsx](file:///c:/Users/Admin/Ahvaanam/components/templates/housewarming-premium/Layout.tsx): Created premium viewer visuals (incense smoke, marigold canvas particles, bell chimes).
+* [SectionInspector.tsx](file:///c:/Users/Admin/Ahvaanam/app/admin/[id]/components/SectionInspector.tsx): Translated family labels to category terms.
+* [templates.ts](file:///c:/Users/Admin/Ahvaanam/lib/composition/templates.ts): Registered owners section mappings.
+* [housewarming.ts](file:///c:/Users/Admin/Ahvaanam/lib/defaults/housewarming.ts): Set default section orders.
+* [hero/index.tsx](file:///c:/Users/Admin/Ahvaanam/components/sections/hero/index.tsx): Integrated design language overlays.
+* [page.tsx](file:///c:/Users/Admin/Ahvaanam/app/admin/[id]/page.tsx): Rebuilt Figma-style editor dashboard.
+* [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx): Created centralized legacy renderer.
+* [cleanup-layouts.js](file:///c:/Users/Admin/Ahvaanam/scratch/cleanup-layouts.js): Refactored all 12 templates layout files.
+
+---
+
+### 6. Current Work and Next Steps
+
+1. **Fix switch cases in LegacyOrchestrator**:
+   * Open [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx#L85-L120) and update the section props.
+   * Strip out the `properties` argument and pass only the `bindings={bindings}` prop to components (e.g. `CoupleSection`, `CountdownSection`, `StorySection`, etc.), and forward `layoutId` and `motionId` when applicable.
+2. **Verify Types & Compilation**:
+   * Run type check verify command: `npx tsc --noEmit`
+   * Run production build verify command: `npm run build`
+3. **Produce Sprint Audit Report**:
+   * Create `architecture_cleanup_audit.md` in the artifact directory containing visual layout stats and duplicate code analysis confirming clean orchestration.X  ` 	r  
+ architecture_proposal nfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/architecture_proposal.md"             *p
+nfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/architecture_proposal.md2     Principal software architect level proposal detailing the 5-year scaling plan for Ahvaanam, mapping current architecture, detailing scalability bottlenecks at 500 templates, introducing an engine-based modular design, defining a clean folder structure, and detailing a progressive migration roadmap."             8 r  
+ scratchpad_pmixqba1 tfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/browser/scratchpad_pmixqba1.md"            r  
+ codebase_audit gfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/codebase_audit.md"           i*i
+gfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/codebase_audit.md2     Senior software architect level audit report detailing the tech stack, implemented/missing features, security risks, performance analysis, and a technical roadmap for the Ahvaanam digital invitation SaaS platform."           c8 r  
+ design_audit_report lfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/design_audit_report.md"             2e SDesign audit and templates similarity report for Phase 9 - Premium Template System."             8 r  
+ implementation_plan lfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/implementation_plan.md"             *p
+lfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/implementation_plan.md  2     Implementation plan for     Phase 6A     Premium Invitation Experience of Ahvaanam, designing the cinematic loader, glassmorphic floating navigation bar, slide-up RSVP bottom sheet, music waveforms visualizers, and share overlays."             0 8 r  
+ media__1783358831943 nfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/media__1783358831943.jpg"           ?r  
+ migrate-layouts pfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/migrate-layouts.js"           =*r
+pfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/migrate-layouts.jsr  
+ migrate-layouts pfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/migrate-layouts.ts"             *r
+pfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/migrate-layouts.tsr  
+ test-composition qfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-composition.ts"           G*s
+qfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-composition.tsr  
+ test-layouts nfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-layouts.tsx"             *p
+nfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-layouts.tsxr  
+ test-motions nfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-motions.tsx"            *p
+nfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-motions.tsxr  
+ test-renderer-page tfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-renderer-page.tsx"             *v
+tfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-renderer-page.tsxr  
+test-renderer ofile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-renderer.tsx"             *q
+ofile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-renderer.tsxr  
+ test-themes mfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-themes.tsx"             *o
+mfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-themes.tsxr  
+ section_specification nfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/section_specification.md"           Y*p
+nfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/section_specification.md2     Production-grade Section Specification detailing semantic building blocks, variant inheritance, schema JSON contracts, data-driven form rendering, nesting restrictions, performance optimizations, and future roadmap integration."           V8 r  
+ task ]file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/task.md"            *a
+]file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/task.md  2V GCompleted task checklist for Phase 10 - Professional Invitation Editor."            r  
+ template_specification ofile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/template_specification.md"            *q
+ofile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/template_specification.md2     Production-grade Template Specification outlining the transition from raw React layouts to a declarative JSON composition schema, mapping structural, visual, motion, content, asset, and plugin layers, and describing how the Rendering Engine and Editor interact with this system."            8 r  
+ walkthrough dfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/walkthrough.md"             *h
+dfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/walkthrough.md  2         Walkthrough summary of Professional Invitation Editor (Phase 10), detailing sidebar layout redesigns, live smartphone sandboxes, properties inspectors, media dialogs, and build verification metrics."             8 z}file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/logs/transcript.jsonl    
+lfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/implementation_plan.md  # Implementation Plan     Phase 6A: Premium Invitation Experience
+
+Transform the guest invitation experience into a premium, cinematic, mobile-first journey. Create a glassmorphic floating navigation dock, a slide-up RSVP bottom sheet modal, music waveforms visualizers, and a golden mandala cinematic loading screen.
+
+---
+
+## User Review Required
+
+> [!IMPORTANT]
+> * **RSVP Bottom Sheet Integration**: Rather than showing the RSVP form statically at the bottom of the page, guests

@@ -1,0 +1,49 @@
+Created At: 2026-07-05T13:23:43Z
+Completed At: 2026-07-05T13:23:51Z
+File Path: `file:///C:/Users/Admin/Ahvaanam/app/page.tsx`
+Total Lines: 397
+Total Bytes: 17514
+Showing lines 155 to 195
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+155:   // Personalization Auto-Play Showcase state
+156:   const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
+157: 
+158:   // Helper arrays matching the reference concept
+159:   const categories = [
+160:     { name: "Wedding", icon: Heart },
+161:     { name: "Engagement", icon: Sparkles },
+162:     { name: "Birthday", icon: Gift },
+163:     { name: "Housewarming", icon: MapPin },
+164:     { name: "Baby Shower", icon: Smile },
+165:     { name: "Upanayanam", icon: Award },
+166:     { name: "Half Saree", icon: Layers },
+167:     { name: "Corporate", icon: Monitor },
+168:     { name: "Festivals", icon: Calendar },
+169:     { name: "More", icon: Plus }
+170:   ];
+171: 
+172:   const templates = [
+173:     { id: 0, name: "Traditional Ivory", bg: "bg-[#FFFDF8]", border: "border-[#D4AF37]/35", accent: "#D4AF37", dark: false, symbol: "ॐ" },
+174:     { id: 1, name: "Rose Garden", bg: "bg-[#FFEBEF]", border: "border-rose-300/30", accent: "#C88E9B", dark: false, symbol: "❀" },
+175:     { id: 2, name: "Royal Emerald", bg: "bg-[#0A251B]", border: "border-emerald-500/20", accent: "#C49B27", dark: true, symbol: "🔱" },
+176:     { id: 3, name: "Golden Aura", bg: "bg-[#FCF9F2]", border: "border-amber-600/15", accent: "#AA7C11", dark: false, symbol: "ॐ" },
+177:     { id: 4, name: "Midnight Sapphire", bg: "bg-[#0C1E36]", border: "border-blue-500/20", accent: "#C49B27", dark: true, symbol: "ॐ" },
+178:     { id: 5, name: "Heritage Gold", bg: "bg-[#FAF5E6]", border: "border-amber-500/25", accent: "#B0871B", dark: false, symbol: "ॐ" }
+179:   ];
+180: 
+181:   const handlePrev = () => {
+182:     setActiveGallerySlide((prev) => (prev === 0 ? templates.length - 1 : prev - 1));
+183:   };
+184: 
+185:   const handleNext = () => {
+186:     setActiveGallerySlide((prev) => (prev === templates.length - 1 ? 0 : prev + 1));
+187:   };
+188: 
+189:   const personalizationFeatures = [
+190:     { name: "Surname", label: "Family Surname Title", details: "E.g. 'The Mehtas' or 'The Sharmas'", visual: "THE MEHTAS FAMILY" },
+191:     { name: "God", label: "Traditional Deities Icons", details: "Gold Ganesh, Venkateswara or Om emblem", visual: "🔱 Lord Ganesha" },
+192:     { name: "Family", label: "Parent & Relatives Lists", details: "Add parents' blessings and siblings names", visual: "Blessings: Mr. & Mrs. Mehta" },
+193:     { name: "Gallery", label: "Couple Image Slider", details: "Slide show of couple portraits", visual: "[ Couple Portrait Frame ]" },
+194:     { name: "Music", label: "Devotional Audio Player", details: "Choose background instrumentals", visual: "♫ Sacred Flute Symphony" },
+195:     { name: "Countdown", label: "Target Ceremony Timer", details: "Animate days, hours, and minutes remaining", visual: "30 Days : 12 Hours : 45 Mins" },
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

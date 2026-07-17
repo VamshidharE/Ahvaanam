@@ -1,0 +1,327 @@
+use client";
+
+import React from "react";
+import { MessageCircle, Phone } from "lucide-react";
+
+interface ContactItem {
+  type: string;
+  label: string;
+  value: string;
+}
+
+interface RSVPSectionProps {
+  bindings: {
+    title?: string;
+    contacts?: ContactItem[];
+  };
+}
+
+export default function RSVPSection({ bindings }: RSVPSectionProps) {
+  const { title = "Confirm Attendance", contacts = [] } = bindings;
+
+  return (
+    <section className="py-24 px-6 max-w-5xl mx-auto border-b border-white/5 text-center select-none">
+      <div className="space-y-12">
+        <div className="max-w-2xl mx-auto space-y-3">
+          <h2 className="text-xs uppercase tracking-[3px] font-bold text-amber-400">RSVP</h2>
+          <p className="text-3xl md:text-4xl font-extrabold uppercase tracking-[0.5px]">{title}</p>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+          {contacts.map((contact, idx) => (
+            <a
+              key={idx}
+              href={contact.type === "whatsapp" ? `https://wa.me/${contact.value}` : `tel:${contact.value}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-6 py-3.5 rounded-xl text-xs font-bold uppercase tracking-[1px] transition-all shadow-md cursor-pointer"
+            >
+              {contact.type === "whatsapp" ? <MessageCircle size={16} /> : <Phone size={16} />}
+              {contact.label || "Confirm RSVP"}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+2            8     
+Afile:///c:/Users/Admin/Ahvaanam/components/sections/faq/index.tsx   "use client";
+
+import React from "react";
+import { HelpCircle } from "lucide-react";
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface FAQSectionProps {
+  bindings: {
+    title?: string;
+    entries?: FAQItem[];
+  };
+}
+
+export default function FAQSection({ bindings }: FAQSectionProps) {
+  const { title = "Celebration FAQs", entries = [] } = bindings;
+
+  return (
+    <section className="py-24 px-6 max-w-5xl mx-auto border-b border-white/5 select-none">
+      <div className="space-y-12">
+        <div className="text-center max-w-2xl mx-auto space-y-3">
+          <h2 className="text-xs uppercase tracking-[3px] font-bold text-purple-400">Info</h2>
+          <p className="text-3xl md:text-4xl font-extrabold uppercase tracking-[0.5px]">{title}</p>
+        </div>
+
+        <div className="space-y-4 max-w-2xl mx-auto">
+          {entries.map((entry, idx) => (
+            <div key={idx} className="bg-white/[0.02] border border-white/5 p-6 rounded-2xl space-y-2 text-left">
+              <h4 className="text-sm font-bold flex items-start gap-2 text-white">
+                <HelpCircle size={15} className="text-purple-400 shrink-0 mt-0.5" />
+                {entry.question}
+              </h4>
+              <p className="text-xs text-white/50 pl-6 leading-relaxed font-sans font-medium">{entry.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+2             8     
+Dfile:///c:/Users/Admin/Ahvaanam/components/sections/footer/index.tsx   "use client";
+
+import React from "react";
+
+interface FooterSectionProps {
+  bindings: {
+    title?: string;
+    creditText?: string;
+    salutation?    : string;
+  };
+}
+
+export default function FooterSection({ bindings }: FooterSectionProps) {
+  const { salutation = "Cheers!", creditText = "" } = bindings;
+
+  return (
+    <footer className="w-full bg-black/40 border-t border-white/5 py-12 px-6 text-center space-y-4 select-none">
+      <p className="text-xs uppercase tracking-[2px] font-bold text-amber-400">{salutation}</p>
+      <p className="text-[10px] text-white/30 uppercase tracking-[1px] font-sans font-medium">{creditText}</p>
+    </footer>
+  );
+}
+2           P8      
+Ofile:///c:/Users/Admin/Ahvaanam/components/templates/modern-birthday/Layout.tsx    "use client";
+
+import { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInvitationData } from "../../context/InvitationDataContext";
+import { Calendar, MapPin, Clock, Phone, MessageCircle, Volume2, VolumeX, Menu, X, ArrowLeft, HelpCircle } from "lucide-react";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+
+// Decorative canvas for twinkling stars and party balloons
+const CelebrationBackground = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    // Twinling stars + confetti particles
+    const particles = Array.from({ length: 80 }).map(() => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: Math.random() * 2 + 1,
+      color: Math.random() > 0.5 ? "rgba(245, 158, 11, 0.4)" : "rgba(168, 85, 247, 0.4)", // amber/purple glow
+      speed: Math.random() * 0.5 + 0.1,
+      angle: Math.random() * Math.PI * 2,
+    }));
+
+    const resize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener("resize", resize);
+
+    let animationFrameId: number;
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach((p) => {
+        p.x += Math.cos(p.angle) * p.speed;
+        p.y += p.speed;
+        if (p.y > height) {
+          p.y = 0;
+          p.x = Math.random() * width;
+        }
+        ctx.beginPath();
+        ctx.fillStyle = p.color;
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      animationFrameId = requestAnimationFrame(draw);
+    };
+    draw();
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0" />;
+};
+
+export default function ModernBirthdayLayout({ onBackToHub }: { onBackToHub: () => void }) {
+  const { invitationData } = useInvitationData();
+  const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
+  const [playingMusic, setPlayingMusic] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  // Countdown state
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isPassed, setIsPassed] = useState(false);
+
+  // Safely resolve nested config keys for both wrapped & flat layouts
+  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+  const config = isWrapped ? (invitationData as any).config : invitationData;
+
+  useEffect(() => {
+    if (!config) return;
+    setMounted(true);
+    const timer = setTimeout(() => setLoading(false), 1500);
+
+    const targetDate = config.countdown?.targetDate 
+      ? new Date(config.countdown.targetDate).getTime() 
+      : config.date ? new Date(`${config.date}T${config.time || "18:00:00"}`).getTime() : 0;
+
+    const updateCountdown = () => {
+      if (!targetDate)     return;
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+      if (difference <= 0) {
+        setIsPassed(true);
+      } else {
+        setIsPassed(false);
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        });
+      }
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+    };
+  }, [config]);
+
+  if (!config) return null;
+
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+    if (playingMusic) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(() => {});
+    }
+    setPlayingMusic(!playingMusic);
+  };
+
+  if (!mounted) return null;
+
+  const sectionLabels: Record<string, string> = {
+    hero: "Home",
+    celebrant: "Celebrant",
+    events: "Party Details",
+    countdown: "Countdown",
+    gallery: "Memories",
+    venue: "Location Map",
+    rsvp: "RSVP",
+    faq: "Guidelines"
+  };
+
+  const sectionsOrder = config.sectionOrder || ["hero", "celebrant", "countdown", "events", "gallery", "venue", "rsvp", "faq", "footer"];
+
+  return (
+    <div className="min-h-screen bg-[#0C0714] text-white flex flex-col font-sans relative overflow-x-hidden selection:bg-purple-500 selection:text-white">
+      <CelebrationBackground />
+
+      {/* Background Audio */}
+      {config.music?.enabled && config.music?.file && (
+        <audio ref={audioRef} src={config.music.file} loop preload="auto" />
+      )}
+
+      {/* --- FLOATING AUDIO CONTROL --- */}
+      {config.music?.enabled && (
+        <button
+          onClick={toggleMusic}
+          className="fixed bottom-6 right-6 z-50 p-3 bg-purple-600/90 text-white rounded-full shadow-lg hover:bg-purple-700 transition-all border border-purple-500/30"
+        >
+          {playingMusic ? <Volume2 size={20} className="animate-bounce" /> : <VolumeX size={20} />}
+        </button>
+      )}
+
+      {/* --- DESKTOP SIDEBAR NAVIGATION --- */}
+      <header className="hidden lg:flex fixed left-0 top-0 bottom-0 w-64 bg-black/40 border-r border-white/5 backdrop-blur-md z-40 p-8 flex-col justify-between">
+        <div>
+          <div className="flex items-center gap-2 mb-10">
+            <span className="text-xl font-bold tracking-[2px] text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-purple-400">AHVAANAM</span>
+          </div>
+          <nav className="flex flex-col gap-3">
+            {sectionsOrder.map((sectionId: string) => {
+              if (sectionId === "footer" || !config[sectionId]?.enabled) return null;
+              return (
+                <a
+                  key={sectionId}
+                  href={`#${sectionId}`}
+                  className="text-xs uppercase tracking-[1.5px] font-bold text-white/50 hover:text-white py-2 transition-colors border-l border-transparent hover:border-purple-500 pl-3"
+                >
+                  {sectionLabels[sectionId] || sectionId}
+                </a>
+              );
+            })}
+          </nav>
+        </div>
+        <div className="text-[10px] text-white/30 uppercase tracking-[1px]">
+          Birthday Celebration
+        </div>
+      </header>
+
+      {/* --- MOBILE NAVIGATION PANEL --- */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-black/40 border-b border-white/5 backdrop-blur-md z-45 px-6 flex items-center justify-between">
+        <span className="text-sm font-bold tracking-[2px] text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-purple-400">CELEBRATION</span>
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="p-2 text-white/80 hover:text-white"
+        >
+          {menuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {menuOpen && (
+              <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="lg:hidden fixed top-16 left-0 right-0 bg-[#0C0714]/95 border-b border-white/5 backdrop-blur-lg z-40 p-6 flex flex-col gap-4 shadow-2xl"
+          >
+            {sectionsOrder.map((sectionId: string) => {
+              if (sectionId === "footer" || !confi

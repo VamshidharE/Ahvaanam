@@ -1,0 +1,216 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the Date",
+  heroImage: "/images/themes/royal-temple.jpg",
+  ctaText: "RSVP Now",
+  surname: "Dev Family",
+  subText: "Traditions",
+  enableHeaderMedia: true,
+  headerMediaType: "god" as const,
+  selectedGod: "ganesha" as const,
+  headerMediaSize: 75,
+  headerMediaSpacing: 25
+};
+
+const mockHeroProperties = {
+  showScrollIndicator: true,
+  overlayOpacity: 0.5,
+  contentAlign: "center" as const,
+  minHeight: "450px"
+};
+
+export default function TestLayoutsPage() {
+  return (
+    <div className="p-8 bg-zinc-100 min-h-screen space-y-12 select-none">
+      <h1 className="text-xl font-bold uppercase tracking-wider text-slate-800 text-center">
+        Layout Engine Structural Verification Canvas
+          </h1>
+
+      <div className="space-y-10 max-w-5xl mx-auto">
+        {/* Layout 1: Centered Welcome Layout */}
+        <div className="flex flex-col space-y-3 bg-white p-6 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative">
+          <span className="text-[10px] uppercase font-bold text-amber-500 tracking-[1.5px]">
+            1. Layout: Centered welcome Layout (hero-center)
+          </span>
+          <div className="rounded-2xl overflow-hidden border border-zinc-100 relative">
+            <ThemeProvider themeId="luxury-gold" />
+            <HeroSection
+              properties={mockHeroProperties}
+              bindings={mockHeroBindings}
+              layoutId="hero-center"
+            />
+          </div>
+        </div>
+
+        {/* Layout 2: Split 2-Column Layout */}
+        <div className="flex flex-col space-y-3 bg-white p-6 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative">
+          <span className="text-[10px] uppercase font-bold text-purple-500 tracking-[1.5px]">
+            2. Layout: Split 2-Column Grid Layout (hero-split)
+          </span>
+          <div className="rounded-2xl overflow-hidden border border-zinc-100 relative">
+            <ThemeProvider themeId="luxury-gold" />
+            <HeroSection
+              properties={mockHeroProperties}
+              bindings={mockHeroBindings}
+              layoutId="hero-split"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+  2             8     
+3file:///c:/Users/Admin/Ahvaanam/lib/motion/types.ts   export interface MotionPreset {
+  initial?: any;
+  whileInView?: any;
+  viewport?: any;
+  transition?: any;
+  whileHover?: any;
+  whileTap?: any;
+  [key: string]: any;
+}
+
+export interface MotionPack {
+  id: string;
+  name: string;
+  baseId?: string; // parent motion pack ID to inherit from
+  presets: {
+    reveal: MotionPreset;
+    hover: MotionPreset;
+    tap: MotionPreset;
+    stagger?: number;
+    [key: string]: any;
+  };
+}
+2             8     
+6file:///c:/Users/Admin/Ahvaanam/lib/motion/registry.ts   import { MotionPack } from "./types";
+
+const MOTIONS: Record<string, MotionPack> = {
+  // --- BASE MOTION ---
+  "motion-base": {
+    id: "motion-base",
+    name: "Base Motion",
+    presets: {
+      reveal: {
+        initial: { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, margin: "-100px" },
+        transition: { duration: 0.8, ease: "easeOut" },
+      },
+      hover: {
+        scale: 1.02,
+        transition: { duration: 0.3 },
+      },
+      tap: {
+        scale: 0.98,
+      },
+      stagger: 0.1,
+    },
+  },
+
+  // --- LUXURY MOTION ---
+  "luxury-motion": {
+    id: "luxury-motion",
+    name: "Luxury Motion",
+    baseId: "motion-base",
+    presets: {
+      reveal: {
+        initial: { opacity: 0, y: 30 },
+        whileInView: { opacity: 1, y: 0 },
+        transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }, // elegant cubic bezier
+      },
+      hover: {
+        scale: 1.01,
+        transition: { duration: 0.4 },
+      },
+      tap: {
+        scale: 0.99,
+      },
+    },
+  },
+
+  // --- CELEBRATION MOTION ---
+  "celebration-motion": {
+    id: "celebration-motion",
+    name: "Celebration Motion",
+    baseId: "motion-base",
+    presets: {
+      reveal: {
+        initial: { opacity: 0, scale: 0.95, y: 15 },
+        whileInView: { opacity: 1, scale: 1, y: 0 },
+        transition: { type: "spring", stiffness: 100, damping: 15 }, // bouncy spring
+      },
+      hover: {
+        scale: 1.05,
+        rotate: 1,
+        transition: { duration: 0.2 },
+      },
+      tap: {
+        scale: 0.95,
+      },
+    },
+  },
+
+  // --- MINIMAL MOTION ---
+  "minimal-motion": {
+    id: "minimal-motion",
+    name: "Minimal Motion",
+    baseId: "motion-base",
+    presets: {
+      reveal: {
+        initial: { opacity: 0 },
+        whileInView: { opacity: 1 },
+        transition: { duration: 0.5, ease: "linear" }, // simple subtle fade
+      },
+      hover: {
+        scale: 1.0,
+      },
+      tap: {
+        scale: 1.0,
+      },
+    },
+  },
+
+  // --- G    LASS MOTION ---
+  "glass-motion": {
+    id: "glass-motion",
+    name: "Glass Motion",
+    baseId: "motion-base",
+    presets: {
+      reveal: {
+        initial: { opacity: 0, backdropFilter: "blur(0px)" },
+        whileInView: { opacity: 1, backdropFilter: "blur(12px)" },
+        transition: { duration: 1.0 },
+      },
+      hover: {
+        scale: 1.03,
+        backgroundColor: "rgba(255, 255, 255, 0.08)",
+      },
+      tap: {
+        scale: 0.97,
+      },
+    },
+  },
+  "housewarming-motion": {
+    id: "housewarming-motion",
+    name: "Housewarming Motion",
+    baseId: "motion-base",
+    presets: {
+      reveal: {
+        initial: { opacity: 0, scale: 0.98, y: 40 },
+        whileInView: { opacity: 1, scale: 1, y: 0 },
+        transition: { duration: 1.5, ease: [0.22, 1, 0.36, 1] },
+      },
+      hover: {
+        scale: 1.015,
+        transition: { duration: 0.5, ease: "easeOut" },
+      },
+ 

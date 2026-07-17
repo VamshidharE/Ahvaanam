@@ -1,0 +1,81 @@
+ sure we replace the closing lines of the switch block accurately.2(bot-2950d9c0-2b5f-4e3f-a2e5-3f00c50e6576:  
+ hc2n1m70 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","EndLine":125,"StartLine":105,"toolAction":"View LegacyOrchestrator switch end","toolSummary":"Reading end of sections switch statement in LegacyOrchestrator.tsx"}:     
+    M2        C    ; .aC SQx  Jx  h [ Z      iT(    MV 5 Wx7     ^ _C  r = _Z   " . x yE,X<H t ; cz        ed D  
+   ~  O|  f <  "]!7_R   0W i} 7 4 9  +   L9SUF`B  i   %d MR    >p     !\J/m  I2   #P  Io               E H6      d F    e{     OM~  }#T     3 :%a    l/  p  _  S   v      d    g      F   |& ~ p<  c       7| b  :  p Hp1 *t  I     > *       t    e 	9  Tn uJ	view_fileB  I will view lines 105 to 125 of `components/shared/LegacyOrchestrator.tsx` to make sure we replace the closing lines of the switch block accurately.`                                                                                                                                                                                                                                                                             5 
+      |     f   
+           (  2             X  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+           (  2             X  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     
+}I will add the remaining switch cases for `celebrant`, `houseDetails`, and `owners` inside the legacy orchestrator component.2(bot-33b3f247-842c-447c-8a99-e8e9eed7a760B}I will add the remaining switch cases for `celebrant`, `houseDetails`, and `owners` inside the legacy orchestrator component.`  7 	      <     *   
+               "  
+ hc2n1m70 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","EndLine":125,"StartLine":105,"toolAction":"View LegacyOrchestrator switch end","toolSummary":"Reading end of sections switch statement in LegacyOrchestrator.tsx"}:     
+    M2        C    ; .aC SQx  Jx  h [ Z      iT(    MV 5 Wx7     ^ _C  r = _Z   " . x yE,X<H t ; cz        ed D  
+   ~  O|  f <  "]!7_R   0W i} 7 4 9  +   L9SUF`B  i   %d MR    >p     !\J/m  I2   #P  Io               E H6      d F    e{     OM~  }#T     3 :%a    l/  p  _  S   v      d    g      F   |& ~ p<  c       7| b  :  p Hp1 *t  I     > *       t    e 	9  Tn uJ	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2             :             B             X  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    ?  6
+                 
+                 
+                   BReading end of sections switch statement in LegacyOrchestrator.tsx  "View LegacyOrchestrator switch end                   *  
+               "  
+ hc2n1m70 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","EndLine":125,"StartLine":105,"toolAction":"View LegacyOrchestrator switch end","toolSummary":"Reading end of sections switch statement in LegacyOrchestrator.tsx"}:     
+    M2        C    ; .aC SQx  Jx  h [ Z      iT(    MV 5 Wx7     ^ _C  r = _Z   " . x yE,X<H t ; cz        ed D  
+   ~  O|  f <  "]!7_R   0W i} 7 4 9  +   L9SUF`B  i   %d MR    >p     !\J/m  I2   #P  Io               E H6      d F    e{     OM~  }#T     3 :%a    l/  p  _  S   v      d    g      F   |& ~ p<  c       7| b  :  p Hp1 *t  I     > *       t    e 	9  Tn uJ	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2             :             B             X  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    ?  6
+                 
+                 
+                   BReading end of sections switch statement in LegacyOrchestrator.tsx  "View LegacyOrchestrator switch end               r  
+Hfile:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx h |"        case "rsvp":
+        return <RSVPSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "faq":
+        return <FAQSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "dressCode":
+        return <DressCodeSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "footer":
+        return <FooterSection key={sectionId} properties={properties} bindings={bindings} />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className={`min-h-screen relative overflow-hidden ${themeBgClass}`}>
+      {invitation.music?.enabled && invitation.music?.file && (
+        <audio ref={audioRef} loop src={invitation.music.file} />
+      )}
+
+      {/* Loading overlay */}
+      <AnimatePresence>X  ` 1         O  O a  K`B  _U%  Z a1   jseJ  v D}     "   U   u+      >        ~   Jq!2 ! 2      *         
+               " "
+ 2mcrp186 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\builder\\BuilderOverview.tsx","EndLine":140,"StartLine":90,"toolAction":"View BuilderOverview bottom lines","toolSummary":"Reading bottom visual components in BuilderOverview.tsx"}:     
+    M2 Y {/       Y   >?   Y a  
+;   1  ,F ?I  2[   AJ 'VJ \)    O/}  T (  S  Zxf H    Lm   |J    ^P  _o 2    [  l h  6          a f%TZ b   , a   3get             > F;gP[        =!) y    .     [  (  s  ( Q  i I:h 6h              a   r~2BG H  3 f  +  ? q     '
+*79     	R  k  >)R    T       K  ) #l .  Y  -  E    [  0@ CD! 6 5o c     F     z~    $  Xb\   !($`< Ms#]3      D$   C m=     __ U <G   0 D  m        " H        T  2 jyk  {^j   @      Z>   @   l s   S   $/K >D>    Z
+ ]> 5 y  /   a  K`B  _U%  Z a1   jseJ  v D}     "   U   u+      >        ~   Jq!2U     
+  U      D  	~  1   [ O  @ VK 	o   9IA l{   f           i t&(   
+j  eY )   ( < Y&B>  cx 5 0   U       +%  ,C V$   9      /;   U   ~FyQ      C  %  8V       ew     "      P  Pv z   @   6`       3     Ze  * P B     FU@    C    i p'      8 w  P  /   i   &         $B  3  H 9c   e  ~   z   F    Vb  b, 8    >oWK    @Z _;L (    $ Wr E  4    &  p /9     D u A  !  )  <   R  (  BY p(   \  6EW     }j" Q$   <?g d 7  I   { 'y1
+/    VN  Zz c   on       =a^ 5:c   "/ ;O Ne  Jd  <      _ >  1   bA B }] Q    BJXM  gI+c[      It  "  m@H. r     }    4<?                M h       T v94   7>a  :   f    B   (% YF   C q '' s  j  +s   .m        ]|       L      92     )Jl F      oTV |   tQXE s  t w     M Ue      ( L2 :  9     %3   Z         8#  u  7<         *9\   r 
+ CQ    4     	    1. Ne  cMi* 3   \g c  f        L      `  ? @s   $e n\J    3A N  o    T   6     '*    L b   y ] { Q  D7 0 \>   .  G  V K M  j  7"%   m '  1 L   qw/da     c    # 1      j & b zbv   0    '  { \   6c TPTe '  7    6  F   M ]
+ = 4 ; 2 m z  n`]     :l   _cNY{ + D     i L g ;i    X W| B    ? !     mr  2   "	 P   D GM I W6e      c   <         RpPt   S `:  e ]    )   z8gHd %  &  F           - i  "      }         w  i   	    C@ i2  (   p` T 
+Z    e X{k   1x  b2P  oe   [    H L   w J  {7 Hs"      H  w'a gpt  B 2
+5 C   Xp_) X   MWi P y J x  j Xf        J_z  M  $    yq_a   C   dE        f  64  a$j] T      "z  -    jru   ^;}h 9 a   c1 # y   . y   a  A C    . V >      J  
+  3
+.# ov       Y' q z    C  T    [x  DX% U P    w  i0 +    U I   # y    6 s]p} F    Wi S  % O   rc       W  < ` -    	 &      2   ' o    K:  hBo ki8FO &k 5    u   t Js_   =     p    "g    % i  K :F p`+ Cf 0H      /X    #        u  P  	 h e/    }C  #} 
+s 	    0     a '    z  Q JIb 1r> @D cS>    4 ev    4 o   E      D s mR  ]       S=    > ? .    W yM m w  9   B ,   &  \        R zr#j    bD FT! bSl Pe  'k
+p  - : !b     b ;  L A0   S    M  4(x   y  A    1 F#*& hb s   oX   *XNYK>   dW    WS	O:    yT  o  3        7`   >    x\          2?O q    L  ) *  g       9      A\    D    iR"A;Q  a u\  JPK    I  Ia  |           V^        8[  x      s X#;     -        XZ    d  V Q  ?  \%     &    ^$g    k:[  D  m.    & 
+F F     B8c   iv A   .      wmPy 9C  WmHC Cl^ (   9 9  P    !I @      /  ;   %v   J   f 1.A,     {   I      "##    ^  A    A  <	s 	OU= B= dr   6Y     &G  a? v 4z|    S#C:   '    	^ op  ^  $     p3    p.^{ 5  d    ? jK    u$ e '   0#@   b"D K   W            6 n  bxl R $  <nh   = k l  k   ^     A
+#2 )~	    # $3   (   9 ? ]Q       | t  R^    s      ,   S eW%  9|/Y rq6 y     D  |  > v . W   b   =xu*  V&   q$O  | -@ 3   bE3G-     }  #  4 $Il   V   ks A s u       4  )  k i |      >KT    ]5  1 F # ; u*  r P T   R   T H p*o  M c  ~FC{ F lfq       ;E d Z k P  K  &Z  W        qZ         :    #   _    <  ^     	Q       v    *    L     "      l B  ?   n  ) I/   V {  j    @  m Z   0U      > 3*  zc    t f  F  )       O    r U;  [  q     q i-f	 b qHT 4    c        w  ]       ar <    ~H    p` rK  G  aj   HhY&     i   `!  d p   @   / ,F      4      x -pT    7  `     <      E z   *  	 Y    n u  e  7)N2  h  I   ?T G      0   Q 5 * e2 %#   X 
+Z      ~ r  tR`    I   ?  `     qk   \           ider\";\n\nconst mockHeroBindings = {\n  title: \"Aishwarya \u0026 Karthik\",\n  subtitle: \"We Invite You to Celebrate Our Special Day\",\n  welcomeMessage: \"Wedding invitation\",\n  heroImage: \"/images/themes/royal-temple.jpg\",\n  ctaText: \"RSVP Now\",\n  surname: \"Karthik Family\",\n  subText: \"Traditional Om Salutations\",\n  enableHeaderMedia: true,\n  headerMediaType: \"god\" as const,\n  selectedGod: \"ganesha\" as const,\n  headerMediaSize: 80,\n  headerMediaSpacing: 20\n};\n\nconst mockHeroProperties = {\n  showScrollIndicator: true,\n  overlayOpacity: 0.5,\n  contentAlign: \"center\" as const,\n  minHeight: \"450px\"\n};\n\nexport default function TestThemesPage() {\n  return (\n    \u003cdiv className=\"p-8 bg-zinc-100 min-h-screen space-y-12\"\u003e\n      \u003ch1 className=\"text-xl font-bold uppercase tracking-wider text-slate-800 text-center\"\u003e\n        Theme Engine Verification Canvas\n      \u003c/h1\u003e\n\n      \u003cdiv className=\"grid grid-cols-1 lg:grid-cols-3 gap-8\"\u003e\n        {/* Column 1: Luxury Gold Theme */}\n        \u003cdiv className=\"flex flex-col space-y-3 bg-white p-4 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative\"\u003e\n          \u003cspan className=\"text-[10px] uppercase font-bold text-amber-500 tracking-[1.5px] px-2\"\u003e\n            1. Luxury Gold (royal-temple fallback)\n          \u003c/span\u003e\n          \u003cdiv className=\"rounded-2xl overflow-hidden border border-zinc-100 relative\"\u003e\n            \u003cThemeProvider themeId=\"luxury-gold\" /\u003e\n            \u003cHeroSection\n              properties={mockHeroProperties}\n              bindings={mockHeroBindings}\n            /\u003e\n          \u003c/div\u003e\n        \u003c/div\u003e\n\n        {/* Column 2: Midnight Black Theme */}\n        \u003cdiv className=\"flex flex-col space-y-3 bg-white p-4 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative\"\u003e\n          \u003cspan className=\"text-[10px] uppercase font-bold text-purple-500 tracking-[1.5px] px-2\"\u003e\n            2. Midnight Black (Electric Violet Accent)\n          \u003c/span\u003e\n          \u003cdiv className=\"rounded-2xl overflow-hidden border border-zinc-100 relative\"\u003e\n            \u003cThemeProvider themeId=\"midnight-black\" /\u003e\n            \u003cHeroSection\n              properties={mockHeroProperties}\n              bindings={mockHeroBindings}\n            /\u003e\n          \u003c/div\u003e\n        \u003c/div\u003e\n\n        {/* Column 3: Modern Glass Theme */}\n        \u003cdiv className=\"flex flex-col space-y-3 bg-white p-4 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative\"\u003e\n          \u003cspan className=\"text-[10px] uppercase font-bold text-cyan-500 tracking-[1.5px] px-2\"\u003e\n            3. Modern Glass (Cyan Accent / Capsule Buttons)\n          \u003c/span\u003e\n          \u003cdiv className=\"rounded-2xl overflow-hidden border border-zinc-100 relative\"\u003e\n            \u003cThemeProvider themeId=\"modern-glass\" /\u003e\n            \u003cHeroSection\n              properties={mockHeroProperties}\n              bindings={mockHeroBindings}\n            /\u003e\n          \u003c/div\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n    \u003c/div\u003e\n  );\n}\n","Description":"Create visual themes test-themes.tsx file","Overwrite":true,"TargetFile":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\scratch\\test-themes.tsx","toolAction":"Create test-themes.tsx","toolSummary":"Creating scratch theme verification page"}:     
+    M2 D    J@           gN^
+ X    j   '6/ #m} F     /     H O     ;$Bd  /F C     Q  q     ?AH : )  1P     U\   `  e ^.S      m        ST |#  z  i    F    T   K  =    q :      C & ;vm5"odL:   P9L   
+~    GQ      P   ( R~o   #  U   I%     1w  7 
+ t *N:| ( t2rR~ J   7  4a         T  W)2]P   H`  \ J E   8 E  M     mxz65   W    E{ e/ &   P     B   xvJ y;  h `K >     7    m{yWeUjH      7        OyoiG   g   ! K         B     
+       D     , H
+Kg      | 0 Y M   d  Tl-           f FZ     ) L G!  / 6 x   t  Y  U   '  ?  "
+ ,x   &}B   rp     gb   	 c        #  _ ] 
+_[  *    ^  ] g_       `     Yy   rM    | c   EV   a? = 9X 1;3 ( Qm c8    c 3   - y   m0]k A>p        @  !i12       AU   = .  Su nN?   P     ; 6 <  -pa  P W  6      ,  q3   w_n7   w B  R> 6 L  ~	Q    [ Jw   s         7 Cf " ?V! +  D%     v          U{          8   <K/i k f Uh %B\` .G  Ki    x QK            { '%    F  I   1 $      $M+  ~  '  m&  4 ue 	 OW      y wOQ      b        ub   !  ?h  L   0O  l q<    ~    ]f       L   9      < $  Z) 2    r    L7  M    h  w  rz     t  jrD        5       v#     T u U Dr  G    j -     5 T.   '  }E9 *   )f W>    ! Xg  H  & > w o     I*/$     T ;;     4  Q Bb7       F&*  l   {    1 U    _h 1s 3TFI [    Y e   4     fP  6 x t  C  C  O H gv       'R T {        }  & F  1  `n:*    !  0T     D` L o90C+ [ s    QF <   t    B  ^    T1              Z hb  w     O r_    5     @ j 2 !N {y O    I y , U$5j?  w $ X9    [?$ 	 $  Kj) 4 wp  8 A, y   :2   1   y\         5jn )     ;  sj  H= Cqj )T `    Ca E I9ME X  e _ d   p~       1 K        )  K  "     1 a pk nK   8     4X   2#  ^ 9 0  =  t F    	
+Y1r      &)XA 4 + N   tN  SD y M ~   #    n   QH 60    l   z H  y       =  C gv u    }F 4      \   1 _zI   }#   N  `7)? `R { u; A    Z nJY,:	<54) "I = (a\     8  ,         3   d  Dg     GZ  ?~?  ~   8 :o  >     G       e  D+ +  f= rQ    ,R       _       UI   @  8 u   %6        W r  R ]  	alw  J   & +     o  0xB 	  2B  TY b)  ] n a  [    y  e   qJ    W     wT  tn  \  [ +#o e,HO     2 uE    >   ^  *C   ,  Y 9   z D  (#U p =O ;3',r   x]7` j e D)>      }  w  ^  t|6   obA  r    CCN    y     J  ~   %%       ^|  t  Dqaf       =        v m I8   F  Q"      	P`     Dp&f  s   m A P .
+  : R 3J t  3 iy    {  V  &c  N

@@ -1,0 +1,32 @@
+use client";
+2: 
+3: import { useEffect, useState } from "react";
+4: import { ToggleLeft, ToggleRight } from "lucide-react";
+5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+6: import { getWeddingComposition } from "@/lib/composition/templates";
+7: import { useInvitationData } from "../../context/InvitationDataContext";
+8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+9: 
+10: // --- TEMPLATE SPECIFIC PARTICLES ---
+11: import React, { useRef }
+------------------------
+
+
+Log: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-406.log
+</SYSTEM_MESSAGE> @: yua3fjsz      "
+(bot-9ca8b032-d61b-4c47-86c3-c02d184cd1d9     I will write a script to filter the new DB extraction dumps for matches that are actually `CompositionRenderer.tsx` (containing both `SECTION_COMPONENTS` and the component export `CompositionRenderer`) and restore it.   2  
+ xmxd6hkd write_to_file   {"CodeContent":"const fs = require('fs');\nconst path = require('path');\n\nconst scratchDir = 'scratch';\nconst files = fs.readdirSync(scratchDir);\n\nlet bestMatch = null;\nlet bestMatchFile = '';\n\nfor (const file of files) {\n  if (file.startsWith('composition_renderer_db_match_') \u0026\u0026 file.endsWith('.txt')) {\n    const filePath = path.join(scratchDir, file);\n    const content = fs.readFileSync(filePath, 'utf8');\n    \n    const hasComponentExport = content.includes('export default function CompositionRenderer');\n    const hasSectionRegistry = content.includ         3 \  'l  -         es('SECTION_COMPONENTS');\n    const hasResolve = content.includes('resolveBindingValue');\n    \n    if (hasComponentExport \u0026\u0026 hasSectionRegistry \u0026\u0026 hasResolve) {\n      console.log(`Potential CompositionRenderer match in file: ${file}`);\n      \n      // Clean up string\n      let cleaned = content;\n      let startIdx = cleaned.indexOf('\"use client\";');\n      if (startIdx === -1) startIdx = cleaned.indexOf('use client');\n      if (startIdx !== -1) {\n        cleaned = cleaned.substring(startIdx);\n      }\n      \n      // Look for the end of the JSON string or description marker\n      const endMarkers = ['\",\"Description\"', '\",\\n      \"Description\"', '\", \"Description\"', '\",\"description\"'];\n      for (const marker of endMarkers) {\n        const markerIdx = cleaned.indexOf(marker);\n        if (markerIdx !== -1) {\n          cleaned = cleaned.substring(0, markerIdx);\n        }\n      }\n      \n      // Unescape characters\n      let parsed = cleaned\n        .replace(/\\\\n/g, '\\n')\n        .replace(/\\\\\"/g, '\"')\n        .replace(/\\\\\\\\/g, '\\\\');\n        \n      // Trim to the last closing brace of the component\n      const lastBrace = parsed.lastIndexOf('}');\n      if (lastBrace !== -1) {\n        parsed = parsed.substring(0, lastBrace + 1);\n      }\n      \n      if (parsed.includes('export default function CompositionRenderer') \u0026\u0026 parsed.trim().endsWith('}')) {\n        console.log(`  -\u003e FOUND EXCELLENT COMPLETE CODE in ${file} (length: ${parsed.length})`);\n        bestMatch = parsed;\n        bestMatchFile = file;\n        break;\n      }\n    }\n  }\n}\n\nif (bestMatch) {\n  const destPath = 'components/composition/CompositionRenderer.tsx';\n  fs.mkdirSync(path.dirname(destPath), { recursive: true });\n  fs.writeFileSync(destPath, bestMatch);\n  console.log(`Successfully restored perfect CompositionRenderer.tsx!`);\n} else {\n  console.log('No perfect match found.');\n}\n","Description":"Filter and restore clean CompositionRenderer.tsx from new DB match files.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\scratch\\extract_exact_renderer.js","toolAction":"Write extract_exact_renderer script","toolSummary":"Creating a script to filter and clean the CompositionRenderer code from the DB match files"}: 	  	
+ 	  M2 -1 2    a   G,N7    EX > Z]  1<a   5; T  p  ]       B ]  /` (	s       s   8t k   <        f W ]  dnn      #[ 
+    h g   s & (  fP .ng  ,      1   _     s +2[   X ~  e 8m    Y     '  Y  i    2  ^    k _   p"  
+ M= _o K    BTm   b8f  *  q    ls ? VF *,Q~ ME  h-&  c    ^ d    r      r 6  `          p j&"6      :XB    ~         El \  ~[, g    E  p?    Y  HC " < 4@ _ 5b
+  {9   $dxX -Et    V     D d    `dH  :  b    &g;   c   9$   " a  
+  g>  5 T@* h4`     4 yq  "D t A & s0 ) 7  zQr5 g z  t   L  e   "{  R     LZ      T R     7,]  % * Z 	  )          F *  .6    ,  ,"  (o      rvq   m )    AF     a  F  M    r8    H ) <o?[N? i          Z V   "  !  8d           2L    )      z1~D  xm      w  ' Oz n  +  d ]       >\   G C     *   5 D @b          hX  Ug=   @`   )u b    7    g   	S  `pW*1   C~   W 9 Yy(b! ^pUN 	H@#    l   2 om Y   PFVs"   Z A  !   "     Vm  .	    UW  c  z   AU $  #>  g  Ow= 82ui  p  A  J  h iW@ t f  J` J "1%  :  ?? < Jn K4  [5 	    e=    {% Uu  G>b*   @T C E <   e$   ;       i   c  '  2X   Q  q!    \e^x    s  se F N7z&         < QV  .  
+A P     S         1 R    \ :	pNp   s       c# !    8   |k f p      M'E L   ~ ] 	 Q     hz  - ]  q <    G   t   
+ 1 '   L   Qu     B`  (Jwrite_to_file            Created At: 2026-07-12T14:16:48Z
+Completed At: 2026-07-12T14:16:48Z
+Created file file:///c:/Users/Admin/Ahvaanam/scratch/extract_exact_renderer.js with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission. b: xmxd6hkd       
+(bot-d367c5ee-52e2-4681-9f76-44e58e13817d   ^I will execute the filtering script to restore the complete, untruncated composition renderer. y2  
+ nfsf9ddk  run_command   {"CommandLine":"node scratch/extract_exact_renderer.js","C         3 \  'l   ?f1      wd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run extract_exact_renderer.js","toolSummary":"Executing the match filtering script to restore CompositionRenderer.tsx"}:     
+    M2         ux  /$|>  tYI     g _  hn\ af    Oq N R} Z y  m    0 j M	      
+ x K

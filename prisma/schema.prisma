@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model invitations {
+  id             String   @id
+  user_id        String?  @db.Uuid
+  config         Json
+  status         String   @default("draft")
+  payment_status String   @default("pending")
+  created_at     DateTime @default(now()) @db.Timestamptz
+  updated_at     DateTime @default(now()) @db.Timestamptz
+  rsvps          rsvps[]
+  views          invitation_views[]
+}
+
+model rsvps {
+  id            String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  invitation_id String
+  guest_name    String
+  phone         String
+  email         String?
+  attending     Boolean
+  guest_count   Int         @default(1)
+  message       String?
+  created_at    DateTime    @default(now()) @db.Timestamptz
+  updated_at    DateTime    @default(now()) @db.Timestamptz
+  invitation    invitations @relation(fields: [invitation_id], references: [id], onDelete: Cascade)
+
+  @@unique([invitation_id, phone], name: "unique_invitation_phone")
+  @@index([invitation_id], map: "idx_rsvps_invitation_id")
+}
+
+model invitation_views {
+  id            String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  invitation_id String
+  visitor_token String
+  viewed_at     DateTime    @default(now()) @db.Timestamptz
+  invitation    invitations @relation(fields: [invitation_id], references: [id], onDelete: Cascade)
+
+  @@index([invitation_id], map: "idx_views_invitation_id")
+}

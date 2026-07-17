@@ -1,0 +1,74 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[83] Found match at index 26059128
+  Preview of match [83]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+[84] Found match at index 26157782
+  Preview of match [84]:
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+import { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Import re
+------------------------
+[85] Found match at index 26203210
+  Preview of match [85]:
+"use client";       ?
+;import React, { useEffect, useState, useRef } from "react";   I
+Eimport { useInvitationData } from "../context/InvitationDataContext";   X
+Timport { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";   <
+8import { motion, AnimatePresence } from "framer
+------------------------
+        YZ v J :    p                                                                                '          l   X   
+           .  "  
+ xhqhc4jp  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run extract_from_db.js","toolSummary":"Running database scan script to locate the composition renderer code"}:     
+    M2 S W   v e  0hu   E  M    ) * k     d      &Z a1 d K       df   D   G9  H  wga   Ze e |{6     g s G     9  1 yW     {  66  G   J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2           L:           LX  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                L  :  4
+               L
+  	            M
+                   DRunning database scan script to locate the composition renderer code   Run extract_from_db.js             M .
+*
+ command  node scratch/extract_from_db.js      *  
+           .  "  
+ xhqhc4jp  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run extract_from_db.js","toolSummary":"Running database scan script to locate the composition renderer code"}:     
+    M2 S W   v e  0hu   E  M    ) * k     d      &Z a1 d K       df   D   G9  H  wga   Ze e |{6     g s G     9  1 yW     {  66  G   J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2                     l (       
+           .  "  
+ xhqhc4jp  run_c  `          l (   *   
+           .  "  
+ xhqhc4jp  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run extract_from_db.js","toolSummary":"Running database scan script to locate the composition renderer code"}:     
+    M2 S W   v e  0hu   E  M    ) * k     d      &Z a1 d K       df   D   G9  H  wga   Ze e |{6     g s G     9  1 yW     {  66  G   J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2           L:           LX  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                L  :  4
+               L
+  	            M
+                   DRunning database scan script to locate the composition renderer code   Run extract_from_db.js             M .
+*
+ command  node scratch/extract_from_db.js  
+-d2c79442-9bab-465c-a40a-56c20332cbe2/task-386 zfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-386.log" node scratch/extract_from_db.js(     *  
+           .  "  
+ xhqhc4jp  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run extract_from_db.js","toolSummary":"Running database scan script to locate the composition renderer code"}:     
+    M2 S W   v e  0hu   E  M    ) * k     d      

@@ -1,0 +1,66 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[187] Found match at index 4122102
+  Preview of match [187]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider"    ;
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You
+------------------------
+[188] Found match at index 4432954
+  Preview of match [188]:
+"use client";
+
+import React from "react";
+import { getTheme } from "@/lib/theme/registry";
+
+interface ThemeProviderProps {
+  themeId: string;
+}
+
+export default fu        YZ twRJ  v   fUs     nD  |   ef /      O F>W\} y      X        0     D  z M            q  ?  $ a  u 
+ ) |     ?E  [    {       + 4
+------------------------
+[189] Found match at index 4640376
+  Preview of match [189]:
+"use client";
+
+import React from "react";
+import { getTheme } from "@/lib/theme/registry";
+
+interface ThemeProviderProps {
+  themeId: string;
+}
+
+export default fu        YZ twRJ  v   fUs     nD  |   ef /      O F>W\} y      X        0     D  z M            q  ?  $ a  u 
+ ) |     ?E  [    {       + 4
+------------------------
+
+
+Log: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-386.log   < q#    C{wa     s/ Y   ]        4  3 &     m^   C  I  ~ &<K   2    F !]Q\    =i&  e    p        F=    F  0       J  
+           z4      b z  +  -      #.    \<  
+ u5  e&'% ]@sC-  G ; q` ~    s v .A !    HK  T  ? 9  8\  (       A-    ~ Jl| _4{Z ,   s    <%BO$! y*H(    w'  X  C( G   h&7D  ;C  N !     P e E    "9  c     uxu#  ^1o W 1     IDATk  6S   ' nl  QO~  & q= Rf]=        @Fv rR   Rq u         1C   N  GR q       * M  K.     BL U  ':p  	 ?	  T`    1b R  q  W   . =x >i\ T      ,  X "`         X  .   &	b @2  &J       A      Y e  & 9  H      g I{%.(k d v B  N 	    s  aY e  F72  R  8 n%      l 7vr    "c  and\,       y    d 8{   U $;A    ]  s/  Q     =s  b E `  !H -  1     	 '"!>  'L    @vj"   K N {
+f]z) R|HN     b     'b  a mJ  9   2  E`` `Wq: po l H MA    z 3u     $1   Hr ? H  ]O +f  6vl  M             <   ! R ,A    m tS' N        v  H b    L u     X E h  D?   c  c hg  b  3	d=     E "`   X  :  P   :   !   M    I 9       X b 7 5L- 9 [   X:  .    t f 3  c  X  J  $ enZ   D   ! n. QF9 &Q"  8 " 3  (%   s "    I     N Gf !  hFV  YD}F 42  P  h6     " { #e F     N H=G     ] E "`    _ HCi            k   l  zJ    K- H  F1<    ,    y V         \ e t "  p3  M B fGWJ9)    x    E   SgS  (   :  r  +r    ltr/  8   fdc      C  6  H e   :^     t  l E "`   X ,        70     Qg  O  S!S \  )h % U i  K N  i,  J  I@   B 2   BrB `zI   &  *0   N   P Lr     2   "K  0@   .    [N&( <) S72 hd  5~c n ^   h   3    v        E "`          L ,    :H  S X  9"   M \"  P & X    qJ  V' e  6u 1  q   $  2   $Q'Q&  -  +  Yf @  .2  L #3F b  6   N ` G7    xm A  F dl& 6  S R, 7  eb  UmE  iB    X ,    >  <    3v5^   8u A     [G     ;'e   &J) Q,    ; b ITi XOq    _ d  u     yE4i   "C 4#  8xzu %&  pAUjQ    R   Z  @  ,       \#S F 3          m$ {    b zc _           E "`           4=]  @  _ 4_ 8 BZ  7     L )   g      6 + i     7"B6n=   +YP     & f e     ( )$ > zH6  wv" Y r  K P     z   K] h32 h        6   q h X h  f   X ,        |   % Q        ],}   p  @  hZd-   E   t{F        s      h G    FU ,  ITJi v zj* XY            G t '  uO  M  X  y   Z ,  * > R     I Z 6l$    $   n D   b   q   :  	  tPJF7ED  1;U    /sqz XO
+ MN	wF      GIZ  Dvc y    f TX   {K    ym      5"kZ "`   X ,     @    6  ;  $  ]\7~ F    9 *"     ~   fFq   u    R 'U   "G   _ N  FQ FY k  @Y  R  /yJ L# Cl  2 k 8     ^ 9      "          $ i   X ,     )"  };is M@ 7q    w2d M=rc3 u    <du$    9 2  t *    ^M   B          6u t +   4  .' 5 O  n1jQlRVk       z     ZE   $  i C  KF  $~  1x2.  F!    z {c    sZ "`    v     s
+   eo        9Od m z c   L     X g      2      JD )kE  "    6 : 3i n C  \? ` S@A    10  J4    qP72    d  gtoL   Y     f X ,     E "      t    iz    t  "e }% !1  D  g8m
+J !        !  1  &  #i] "3 * jH  L$  ;L   T  $W  $    6c l  ?     &   :   CJI N      (0 I  N  ] (kr h1     xd&#Dp    C ? ?ks  >   Z ,     E "pF        f k    J |# G    i   P=D Pb3M N  K       F9 Gb   p Sa]       `
+  Sj;)49 X  l*  eq )   hd    y d    t fd  {          _     k   E "`       3        R  m    -f    \ C ` d" m  q -@  "R   4 G    y        :Zb\C  J  }  6 "    
+]*(96 J g / o   C 8E     B   J F   ;y}  E    X ,      E   w 5 !1   n|}   $o p [    G X  3 cB  t Fo z  {  4        S`S  "9    5  `Si  0 'q   `    	 C   L 6          dd  r  )       dkr ' {>  k  X ,      C        *G6! yg -R      Q m   ) #(         A    e 5)w.   9 vD l$i     & ARA 5  6&: 3  H          Y  Wg+X ,     E`  0H " y    >) U  I b{ G   + Y     "  %S2*12FX 3 6F  bT@2     9^  *:  9< 0=RVR \    O  $    $[            Tz OC   R  g *"0N >  6  "`   X ,    @    P:  3   iI o L[dxhJg J 3 F  h     T    gT  ?      E   2     'W  G  p< *     N#K & Gg     c @ 	 l ^ 6 C  h32 'C A )    |  ?j      {     E "      RI; M  o ^   )
+ D Eb9 \ iS2#	  p  r(!'     2I "NZ ,*]Q   $ e  X 92}JG   y   X   &W  D#w E H 0 .  %  w'  .Q .
+ M3m R 2Ucg   v = 7 ?c        5      X ,     E    w( F ycv      v6 QH7E   \ "ym *  }$Gs @   s  @  <#     'Q :   !    sd ]  d }  8< kv$ D  )  z 9g  R  Ab  W  B ,  @! X,  Uc             7    E x}}    k o   X ,         J        82   1   =^ }<       ,F    1   3  cu4z D = $   N    ! #    $F7'  -           N %"	 t
+ L   S7 4   EGbYG    # n     F k  L  ^  `           r  r )                                                                                                                                                                                                                                                                                    

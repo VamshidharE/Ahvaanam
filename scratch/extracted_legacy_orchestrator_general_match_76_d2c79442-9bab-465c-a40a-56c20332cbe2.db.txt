@@ -1,0 +1,150 @@
+use client";    
+ 2:    3
+/3: import { useEffect, useState } from "react";   >
+:4: import { ToggleLeft, ToggleRight } from "lucide-react";   V
+R5: import CompositionRenderer from "@/components/composition/CompositionRenderer";   K
+G6: import { getWeddingComposition } from "@/lib/composition/templates";   O
+K7: import { useInvitationData } from "../../context/InvitationDataContext";   H
+D8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";    
+ 9:    .
+*10: // --- TEMPLATE SPECIFIC PARTICLES ---    
+ 11: import React, { useRef }    
+ ------------------------   %
+![35] Found match at index 4395424    
+   Preview of match [35]:    
+"use client";    
+ 2:    3
+/3: import { useEffect, useState } from "react";   >
+:4: import { ToggleLeft, ToggleRight } from "lucide-react";   V
+R5: import CompositionRenderer from "@/components/composition/CompositionRenderer";   K
+G6: import { getWeddingCompo    on from \"@/components/sections/rsvp\";\nimport FAQSection from \"@/components/sections/faq\";\nimport DressCodeSection from \"@/components/sections/dressCode\";\nimport FooterSection from \"@/components/sections/footer\";\n\nconst SECTION_COMPONENTS: Record\u003cstring, React.ComponentType\u003cany\u003e\u003e = {\n  hero: HeroSection,\n  couple: CoupleSection,\n  countdown: CountdownSection,\n  story: StorySection,\n  events: EventsSection,\n  gallery: GallerySection,\n  venue: VenueSection,\n  families: FamiliesSection,\n  rsvp: RSVPSection,\n  faq: FAQSection,\n  dressCode: DressCodeSection,\n  footer: FooterSection,\n};\n\nfunction resolveBindingValue(path: string, data: any): any {\n  if (!path) return undefined;\n  const parts = path.split(\".\");\n  let current = data;\n  for (const part of parts) {\n    if (current == null) return undefined;\n    current = current[part];\n  }\n  return current;\n}\n\ninterface CompositionRendererProps {\n  composition: CompositionSchema;\n  invitationData: any;\n}\n\nexport default function CompositionRenderer({ composition, invitationData }: CompositionRendererProps) {\n  const isWrapped = invitationData \u0026\u0026 \"category\" in invitationData \u0026\u0026 \"config\" in invitationData;\n  const config = isWrapped ? (invitationData as any).config : invitationData;\n\n  return (\n    \u003cdiv className=\"space-y-0\"\u003e\n      {composition.sections.map((section) =\u003e {\n        if (section.properties?.enabled === false) return null;\n        const Comp = SECTION_COMPONENTS[section.type];\n        if (!Comp) return null;\n\n        // Resolve bindings\n        const resolvedProps: Record\u003cstring, any\u003e = {};\n        if (section.bindings) {\n          for (const [key, path] of Object.entries(section.bindings)) {\n            resolvedProps[key] = resolveBindingValue(path, config);\n          }\n        }\n\n        return (\n          \u003cComp\n            key={section.id}\n            {...resolvedProps}\n            properties={section.properties}\n          /\u003e\n        );\n      })}\n    \u003c/div\u003e\n  );\n}\n","Description":"Write untruncated clean CompositionRenderer component.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\composition\\CompositionRenderer.tsx","toolAction":"Write CompositionRenderer.tsx","toolSummary":"Writing CompositionRenderer.tsx to restore the composition renderer component"}:     
+    M2  ;  z{Ou 2  6 g    \          -      P 2 p  Rk  )  Q l     x53        o  X X           WO $[      u    =  D    b    4   T      9      :       .X$Z  d   )#!Tu /  w   8  a b 5  O$   XQ    U     J  9  C      E f   >~   eA *  / p   ^ " )"  X      !L ,iz K}F@Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$347c0972-dfb9-46b7-8961-1a472e0b8ecbj      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   MWriting CompositionRenderer.tsx to restore the composition renderer component   Write CompositionRenderer.tsx               R   
+     
+  "use client";
+
+import React from "react";
+import { CompositionSchema } from "@/lib/composition/types";
+
+// Dynamic section component imports
+import HeroSection from "@/components/sections/hero";
+import CoupleSection from "@/components/sections/couple";
+import CountdownSection from "@/components/sections/countdown";
+import StorySection from "@/components/sections/story";
+import EventsSection from "@/components/sections/events";
+import GallerySection from "@/components/sections/gallery";
+import VenueSection from "@/components/sections/venue";
+import FamiliesSection from "@/components/sections/families";
+import RSVPSection from "@/components/sections/rsvp";
+import FAQSection from "@/components/sections/faq";
+import DressCodeSection from "@/components/sections/dressCode";
+import FooterSection from "@/components/sections/footer";
+
+const SECTION_COMPONENTS: Record<string, React.ComponentType<any>>     ction from \"@/components/sections/gallery\";\nimport VenueSection from \"@/components/sections/venue\";\nimport FamiliesSection from \"@/components/sections/families\";\nimport RSVPSection from \"@/components/sections/rsvp\";\nimport FAQSection from \"@/components/sections/faq\";\nimport DressCodeSection from \"@/components/sections/dressCode\";\nimport FooterSection from \"@/components/sections/footer\";\n\nconst SECTION_COMPONENTS: Record\u003cstring, React.ComponentType\u003cany\u003e\u003e = {\n  hero: HeroSection,\n  couple: CoupleSection,\n  countdown: CountdownSection,\n  story: StorySection,\n  events: EventsSection,\n  gallery: GallerySection,\n  venue: VenueSection,\n  families: FamiliesSection,\n  rsvp: RSVPSection,\n  faq: FAQSection,\n  dressCode: DressCodeSection,\n  footer: FooterSection,\n};\n\nfunction resolveBindingValue(path: string, data: any): any {\n  if (!path) return undefined;\n  const parts = path.split(\".\");\n  let current = data;\n  for (const part of parts) {\n    if (current == null) return undefined;\n    current = current[part];\n  }\n  return current;\n}\n\ninterface CompositionRendererProps {\n  composition: CompositionSchema;\n  invitationData: any;\n}\n\nexport default function CompositionRenderer({ composition, invitationData }: CompositionRendererProps) {\n  const isWrapped = invitationData \u0026\u0026 \"category\" in invitationData \u0026\u0026 \"config\" in invitationData;\n  const config = isWrapped ? (invitationData as any).config : invitationData;\n\n  return (\n    \u003cdiv className=\"space-y-0\"\u003e\n      {composition.sections.map((section) =\u003e {\n        if (section.properties?.enabled === false) return null;\n        const Comp = SECTION_COMPONENTS[section.type];\n        if (!Comp) return null;\n\n        // Resolve bindings\n        const resolvedProps: Record\u003cstring, any\u003e = {};\n        if (section.bindings) {\n          for (const [key, path] of Object.entries(section.bindings)) {\n            resolvedProps[key] = resolveBindingValue(path, config);\n          }\n        }\n\n        return (\n          \u003cComp\n            key={section.id}\n            {...resolvedProps}\n            properties={section.properties}\n          /\u003e\n        );\n      })}\n    \u003c/div\u003e\n  );\n}\n","Description":"Write untruncated clean CompositionRenderer component.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\composition\\CompositionRenderer.tsx","toolAction":"Write CompositionRenderer.tsx","toolSummary":"Writing CompositionRenderer.tsx to restore the composition renderer component"}:     
+    M2  ;  z{Ou 2  6 g    \          -      P 2 p  Rk  )  Q l     x53        o  X X           WO $[      u    =  D    b    4   T      9      :       .X$Z  d   )#!Tu /  w   8  a b 5  O$   XQ    U     J  9  C      E f   >~   eA *  / p   ^ " )"  X      !L ,iz K}F@Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$347c0972-dfb9-46b7-8961-1a472e0b8ecbj      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   MWriting CompositionRenderer.tsx to restore the composition renderer component   Write CompositionRenderer.tsx                   *  
+               "  
+ h282es0e write_to_file   {"CodeContent":"\"use client\";\n\nimport React from \"react\";\nimport { CompositionSchema } from \"@/lib/composition/types\";\n\n// Dynamic section component imports\nimport HeroSection from \"@/components/sections/hero\";\nimport CoupleSection from \"@/components/sections/couple\";\nimport CountdownSection from \"@/components/sections/countdown\";\nimport StorySection from \"@/components/sections/story\";\nimport EventsSection from \"@/components/sections/events\";\nimport GallerySection from \"@/components/sections/gallery\";\nimport VenueSection from \"@/components/sections/venue\";\nimport FamiliesSection from \"@/components/sections/families\";\nimport RSVPSecti    Status: DONE
+Log: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\.system_generated\tasks\task-460.log
+Log output:
+<truncated 329 lines>
+omposition_pure_match_79_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 80] Found at index 5120741
+    Saved to scratch/composition_pure_match_80_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 81] Found at index 5128947
+    Saved to scratch/composition_pure_match_81_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 82] Found at index 5139254
+    Saved to scratch/composition_pure_match_82_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 83] Found at index 5145594
+    Saved to scratch/composition_pure_match_83_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 84] Found at index 5146324
+    Saved to scratch/composition_pure_match_84_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 85] Found at index 5175991
+    Saved to scratch/composition_pure_match_85_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+Scanning C:\Users\Admin\.gemini\antigravity\conversations\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11.db (19783680 bytes)...
+All databases scanned.
+
+Last progress: 2s ago
+
+
+REMINDER: Do not call this tool again to poll or wait for updates. You will be automatically notified when the task completes or a message arrives. If you need a bounded wait, use the `schedule` tool -- it waits silently in the background and suppresses its notification if you are woken by another event.
+
+The following is a <SYSTEM_MESSAGE> not actually sent by the user. It is provided by the system as important information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp=2026-07-12T14:20:20Z sender=d2c79442-9bab-465c-a40a-56c20332cbe2/task-460 priority=MESSAGE_PRIORITY_HIGH content=Task id "d2c79442-9bab-465c-a40a-56c20332cbe2/task-460" finished with result:
+
+				The command completed successfully.
+				Output:
+				<truncated 219 lines>
+  [MATCH 25] Found at index 1415138
+    Saved to scratch/composition_pure_match_25_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 26] Found at index 1432336
+    Saved to scratch/composition_pure_match_26_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 27] Found at index 1462969
+    Saved to scratch/composition_pure_match_27_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 28] Found at index 1481196
+    Saved to scratch/composition_pure_match_28_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 29] Found at index 2050168
+    Saved to scratch/composition_pure_match_29_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 30] Found at index 2153961
+    Saved to scratch/composition_pure_match_30_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 31] Found at index 2162167
+    Saved to scratch/composition_pure_match_31_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 32] Found at index 2172474
+    Saved to scratch/composition_pure_match_32_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 33] Found at index 2178814
+    Saved to scratch/composition_pure_match_33_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 34] Found at index 2179544
+    Saved to scratch/composition_pure_match_34_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 35] Found at index 2209248
+    Saved to scratch/composition_pure_match_35_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 36] Found at index 2218270
+    Saved to scratch/composition_pure_match_36_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 37] Found at index 2223067
+    Saved to scratch/composition_pure_match_37_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 38] Found at index 2224770
+    Saved to scratch/composition_pure_match_38_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 39] Found at index 2241996
+    Saved to scratch/composition_pure_match_39_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 40] Found at index 2272601
+    Saved to scratch/composition_pure_match_40_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 41] Found at index 2290856
+    Saved t    o scratch/composition_pure_match_41_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 42] Found at index 3225954
+    Saved to scratch/composition_pure_match_42_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 43] Found at index 3234160
+    Saved to scratch/composition_pure_match_43_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 44] Found at index 3244467
+    Saved to scratch/composition_pure_match_44_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 45] Found at index 3250835
+    Saved to scratch/composition_pure_match_45_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 46] Found at index 3251537
+    Saved to scratch/composition_pure_match_46_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 47] Found at index 3281241
+    Saved to scratch/composition_pure_match_47_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 48] Found at index 3290263
+    Saved to scratch/composition_pure_match_48_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 49] Found at index 3295060
+    Saved to scratch/composition_pure_match_49_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 50] Found at index 3296791
+    Saved to scratch/composition_pure_match_50_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 51] Found at index 3313989
+    Saved to scratch/composition_pure_match_51_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 52] Found at index 3344594
+    Saved to scratch/composition_pure_match_52_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 53] Found at index 3362849
+    Saved to scratch/composition_pure_match_53_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATCH 54] Found at index 3764327
+    Saved to scratch/composition_pure_match_54_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+  [MATC

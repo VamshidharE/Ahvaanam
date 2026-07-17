@@ -1,0 +1,82 @@
+includes('export default function CompositionRenderer');\n    const hasRegistry = content.includes('SECTION_COMPONENTS');\n    const hasResolve = content.includes('resolveBindingValue');\n    \n    if (hasExport \u0026\u0026 hasRegistry \u0026\u0026 hasResolve) {\n      // Exclude logs/command-outputs\n      const isLogFile = content.includes('Preview of match') || \n                         content.includes('Found match') || \n                         content.includes('run_command') || \n                         content.includes('CommandLine') ||\n                         content.includes('task-') ||\n                         content.includes('step_index') ||\n                         content.includes('\\\"tool_calls\\\"');\n                         \n      if (!isLogFile) {\n        foundCount++;\n        console.log(`[${foundCount}] Found possible REAL code file candidate: ${file} (size: ${content.length})`);\n        \n        let startIdx = content.indexOf('\"use client\";');\n        if (startIdx === -1) startIdx = content.indexOf('use client');\n        if (startIdx !== -1) {\n          let code = content.substring(startIdx);\n          \n          // Try to clean up\n          const endMarkers = ['\",\"Description\"', '\",\\n      \"Description\"', '\", \"Description\"', '\",\"description\"'];\n          for (const marker of endMarkers) {\n            const markerIdx = code.indexOf(marker);\n            if (markerIdx !== -1) {\n              code = code.substring(0, markerIdx);\n            }\n          }\n          \n          // Unescape backslashes and quotes\n          let parsed = code\n            .replace(/\\\\n/g, '\\n')\n            .replace(/\\\\\"/g, '\"')\n            .replace(/\\\\\\\\/g, '\\\\');\n            \n          const lastBrace = parsed.lastIndexOf('}');\n          if (lastBrace !== -1) {\n            parsed = parsed.substring(0, lastBrace + 1);\n          }\n          \n          console.log(\"  Parsed Code length:\", parsed.length);\n          console.log(\"  Code Ends with: \", parsed.substring(parsed.length - 100));\n          \n          // Save it!\n          fs.writeFileSync(`scratch/real_render   Oontinue;    
+21:         :
+22: 6    // Try to find if this contains the full component   c
+23: _    const hasComponentExport = content.includes('export default function CompositionRenderer');   J
+24: F    const hasResolveBinding = content.includes('resolveBindingValue');   L
+25: H    const hasSectionComponents = content.includes('SECTION_COMPONENTS');    
+26:         N
+27: J    if 
+28: ------------------------
+29: [34] Found match at index 4392779
+30:   Preview of match [34]:
+31: "use client";
+32: 2: 
+33: 3: import { useEffect, useState } from "react";
+34: 4: import { ToggleLeft, ToggleRight } from "lucide-react";
+35: 5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+36: 6: import { getWeddingComposition } from "@/lib/composition/templates";
+37: 7: import { useInvitationData } from "../../context/InvitationDataContext";
+38: 8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+39: 9: 
+40: 10: // --- TEMPLATE SPECIFIC PARTICLES ---
+41: 11: import React, { useRef }
+42: ------------------------
+43: [35] Found match at index 4395424
+44:   Preview of match [35]:
+45: "use client";
+46: 2: 
+47: 3: import { useEffect, useState } from "react";
+48: 4: import { ToggleLeft, ToggleRight } from "lucide-react";
+49: 5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+50: 6: import { getWeddingComposition } from "@/lib/composition/templates";
+51: 7: import { useInvitationData } from "../../context/InvitationDataContext";
+52: 8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+53: 9: 
+54: 10: // --- TEMPLATE SPECIFIC PARTICLES ---
+55: 11: import React, { useRef }
+56: ------------------------
+57: [36] Found match at index 4496572
+58:   Preview of match [36]:
+59: "use client";
+60: 
+61: import React from "react";
+62: import HeroSection from "@/components/sections/hero";
+63: import ThemeProvi
+64: ------------------------
+65: [123] Found match at index 29082480
+66:    node scratch/extract_from_db.js   node scratch/extract_from_db.js   G     3 Op~1 JQ b         W  W                                         J 	        l       
+67:                "  
+68:  lmt7gzt3  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\Users\Admin\Ahvaanam","WaitMsBeforeAsync":5000,"toolActi
+69: ------------------------
+70: [37] Found match at index 4504744
+71:   Preview of match [37]:
+72: "use client";
+73: 
+74: import React from "react";
+75: import HeroSection from "@/components/sections/hero";
+76: import ThemeProvi
+77: ------------------------
+78: [123] Found match at index 29082480
+79:    node scratch/extract_from_db.js   node scratch/extract_from_db.js   G     3 Op~1 JQ b         W  W                                         J 	        l       
+80:                "  
+81:  lmt7gzt3  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\Users\Admin\Ahvaanam","WaitMsBeforeAsync":50   %er');
+82:     const hasResolveBinding = content.includes('resolveBindingValue');
+83:     const hasSectionComponents = content.includes('SECTION_COMPONENTS');
+84:     
+85:     if (hasComponentExport && hasResolveBinding && hasSectionC
+86: ------------------------
+87: [32] Found match at index 3328223
+88:   Preview of match [32]:
+89: "use client";');
+90:     if (startIdx === -1) {
+91:       startIdx = content.indexOf('use client');
+92:     }
+93:     if (startIdx === -1) continue;
+94:     
+95:     // Try to find if this contains the full component
+96:     const hasComponentExport = content.includes('export default function CompositionRenderer');
+97:     const hasResolveBinding = content.includes('resolveBindingValue');
+98:     const hasSectionComponents = content.includes('SECTION_COMPONENTS');
+99:     
+100:     if (hasComponentExport && hasResolveBinding && hasSectionC
+101: ---------------

@@ -1,0 +1,76 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[170] Found match at index 4005562
+  Preview of match [170]:
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemeProvider from "@/components/theme/ThemeProvider";        
+ const mockHeroBindings = {   $
+   title: "Dev & Neha's Wedding",   7
+3  subtitle: "We Invite You to Celebrate Our U
+------------------------
+[171] Found match at index 4006707
+  Preview of match [171]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+[172] Found match at index 4007093
+  Preview of match [172]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+[173] Found match at index 4007492
+  Preview of match [173]:
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemeProvider from "@/compo    s   =U   
+ v     * u > S? 3 Z g    c- 
+    ? 2 n q  u     Bx   J db  Eo   N  	 ?       ;x>! u d	'J  l  Z          C$U CC     
+  d    *o j  !D ' q #7 ~    Y6`      5 9        p    I     *B  r P6! )  oK     ]  (      O+  X m   ; '     S!j  5m0  J [DZ    Y   3^    O    c.|     }   |"NJ},@  8l  3   y Q 5   ] k0    /C   F \|>O S+p ,  5O         -  * @   '       * X   ]  =W | =  $ cEk   ?    % Tu     ! d   @   [     ] [   ^ B   @ g 0A A   fh?     K  3  Q * 
+ z        >?) ?       yS	     S    .   `       H   \        q T  zn  2  " R | J  *    taoH  H w$ lf   &0T*T       Y\        Lw&Rx k     z     V  |r{LMJ   C   M` =     n 5   w  ~   4D s;  vc |    Nt m  P  _|;        ~@     }  )w. L 
+W q    7  0D      q 	   (   * ?    c         ~ 3.  M6 z  Ks  l 'Q ) A$M : / &2   ._4rgm   k;   30K . G 	    Mi   | x  X   *   d4DUb  ^N)V>r    q    &              7O   x        d             ?       j   z7 H    @i X/   >  G^/   8      A   ` =        qB 79     W *    +W @-NF           ]   	 V9       \  P jU t	     -7   P    u[  zv% T9  u  4p 8     A d  S }T 7 4q   9|       Kr   _  e W   w  p +\s  8L. 9mt h   Gj   K$  q |  j Z5i2 N   <         Ytp &PG  2  3 1    PFPg  +l n @  =  a  C j  &o   MI   +C G xCVdw  +plR    P   : .5Z  Kz ~9   :       0    $   ` =^Q   }   3   ,$   uq    I8  h  - xvy    Y       / By ;M  4 k Tb    V ? *g    !    F    u     v8 {  -  % t H D     `        l  9 q?   eC    z    ?F   m   G {= _,  v   @)#    -  Y   F >r  v>   l p            ;  ?cU    To|  `   sVtF  o\  
+  J5..  A~2. ]        & V    I* u= :,   F }    9q   w       f    4           r  v     W   w SRm    d  j<    NWC  #Q>q   _x& TQ#     \ f_ gu  /6qO ( m  + }oy    A! V   [ G  m  5U  	  t&  ~    (h   *(  ZMP  6    d  #    D M7u  Vt O Sz        q   `l)^z   *        8UU  P     P-	 = <        ;    _/*  C     Z           ={!    x     j      
+ ?Z (E          w  O 3 l  ! ? a     0L{~   0R  _   <(  <   7  J^C!t ] m *,    u      o  N )   (I   A n2W {2      '   ;V "[    ^e LQ /   _    9   0V h    +  -   :X    A f P!/    _JG    W  Y#        ,  H { Y   {C    C    
+   Y '  <}    2 a   5   Nw S  - :       d q ) 8    aL)     GG      *   $  X:Qdc     :k|   , ]   .Wz       v ~    k8c]GH       o o    
+       L  b C  	 nhO  C  '  L,g     Q     #          @) XYX E     h  ; g W _"  ~9  \R )[YhT(ox   l kK6 /'p  _  q 1 -     j Mf 0   Q cM6\\j/ ^   /aG  Am N   0EG   '   V V   W{      S 3 
+0 t  = pQ  .Ur	   P  &j~ +  U TV  [y  :
+ X :     !+6 c  pw' 2    u y ]><Z     y  $U   qH   "  diR-   3   \ a      5 Og      '  b    x         Z>    *     J          C ~u-  w   I    d       ?@ C WU   l     Y  /8         {     &   Zwnw 7 ]  uqL   B '       D%K: z  
+  _f S     ]  S  ojf  & O     @/ dG  -     E*\az      a     Z*7m  > C4          Og   U  @Y o T'   !     tn<2!   )h L2    Ny . < pC   J-     )  8 |or V     t[ H   Ga  Z   G  b  & O    TXJ  	h kY g c  g\_u+  O  z E * q  %     s  N   WF W   j y'Sj      HvH   Pv  $  ;Q* J    \   X b57+ F         N^e7tF!      $  v  d  ^: R  L kV  + :       2 >   4   J sAf   q a  i~2     1      vC  'B k -L#w C       [    ~ f  G      @s      
+ T%z   N     8      ^C7 .W>L#   J}1   |e 3    m   ,]  	 T   \cT3  G`t       6  N      z#   > ddk\a  )D30q    x dS >!` K -        $ D     `  |+  3 !   ^ N       k ec K   jU   ;             bm 0 `  Jwrite_to_fileZ  **Investigating a Zero Count**
+
+I'm puzzled, I expected more results. I saw it print "Read 213 lines" and then... nothing else! That implies zero untruncated writes for `CompositionRenderer.tsx` within `transcript_full.jsonl`. This is unexpected. I'm now investigating `scratch/untruncated_composition_renderer_transcript_full.jsonl.txt` to find the reason for this null result.
+
+
+            Created At: 2026-07-12T14:14:08Z
+Completed At: 2026-07-12T14:14:08Z
+Created file file:///c:/Users/Admin/Ahvaanam/scratch/extract_from_db.js with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission. `: 0uqq23tc       
+(bot-c2689975-b783-4feb-aa8b-d2930d8b949e   $I will run the database scan script. n2  
+ xhqhc4jp  run_command   {"CommandLine":"node sc    da6-5ce5-4bf8-bba5-af668bcdd44a     I will write a Node.js script to perform a binary string extraction on the SQLite database and its WAL file. Since SQLite stores records in plain text, we can locate th

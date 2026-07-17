@@ -1,0 +1,117 @@
+use client\";\n\nimport React, { useEffect, useState } from \"react\";\nimport LayoutWrapper from \"@/components/layouts/LayoutWrapper\";\n\ninterface CountdownSectionProps {\n  bindings: {\n    title?: string;\n    targetDate?: string;\n    postWeddingMessage?: string;\n  };\n  layoutId?: string;\n}\n\nexport default function CountdownSection({ bindings, layoutId }: CountdownSectionProps) {\n  const { \n    title = \"Party Countdown\", \n    targetDate = \"2026-12-14T19:00:00\", \n    postWeddingMessage = \"The Celebration has begun!\" \n  } = bindings;\n\n  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });\n  const [isPassed, setIsPassed] = useState(false);\n\n  useEffect(() =\u003e {\n    if (!targetDate) return;\n    const targetTime = new Date(targetDate).getTime();\n\n    const updateCountdown = () =\u003e {\n      const now = new Date().getTime();\n      const difference = targetTime - now;\n      if (difference \u003c= 0) {\n        setIsPassed(true);\n      } else {\n        setIsPassed(false);\n        setTimeLeft({\n          days: Math.floor(difference / (1000 * 60 * 60 * 24)),\n          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),\n          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),\n          seconds: Math.floor((difference % (1000 * 60)) / 1000),\n        });\n      }\n    };\n\n    updateCountdown();\n    const interval = setInterval(updateCountdown, 1000);\n    return () =\u003e clearInterval(interval);\n  }, [targetDate]);\n\n  return (\n    \u003cLayoutWrapper\n      layoutId={layoutId}\n      defaultLayoutId=\"story-stack\"\n      className=\"py-20 px-6 border-b border-white/5 text-center select-none\"\n      style={{ \n        fontFamily: \"var(--theme-font-body)\",\n        color: \"var(--theme-text)\",\n        background: \"rgba(139, 92, 246, 0.03)\"\n      }}\n    \u003e\n      \u003cdiv className=\"max-w-4xl mx-auto space-y-10 w-full\"\u003e\n        \u003cdiv className=\"space-y-2\"\u003e\n          \u003ch3 \n            className=\"text-xs uppercase tracking-[3px] font-bold\"\n            style={{ \n              color: \"var(--theme-accent)\",\n              fontFamily: \"var(--theme-font-heading)\" \n            }}\n          \u003e\n            {title}\n          \u003c/h3\u003e\n        \u003c/div\u003e\n        {isPassed ? (\n          \u003cp \n            className=\"text-lg uppercase tracking-[1.5px] font-bold animate-pulse\"\n            style={{ color: \"var(--theme-accent)\" }}\n          \u003e\n            {postWeddingMessage}\n          \u003c/p\u003e\n        ) : (\n          \u003cdiv className=\"grid grid-cols-4 gap-4 max          v v                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            T   	   H      F  
+           U  " N
+ ek6supzj 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\validation.ts","toolAction":"View validation.ts rules","toolSummary":"Reading configuration schemas validation rules in lib/validation.ts"}: L  L
+ L  M2 8b 
+]    zo D    L   "Ud4  ,1h  3  s      k%a,  0    se }s@xl     e-  \Y{   ZcGJ> <    @~D D  s  dcO,      y P   8@   q,` >v 3   , .  I  0B`/  brV  s s  S        l  9 K   K     B:  2_   (   nNO   @[  ExX    9 ( xK      |M        d   G      ~         
+               2             X  b$350f4ff7-9e8b-43f0-8674-801bad7cbb91j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+               2             X  b$350f4ff7-9e8b-43f0-8674-801bad7cbb91j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                    
+sI will view the validation rules inside `lib/validation.ts` to see what fields are permitted in the config schemas.   **Analyzing Wedding Logic**
+
+I've zeroed in on the wedding category conditional in line 78 of the typescript code. The logic here is key. I'm scrutinizing how the `isWedding` variable is set and used in the validation process. The use of a default value here, while understandable, may conceal other considerations of invite types. I'm exploring its implications for the overall flow.
+
+
+**Clarifying Configuration Structure**
+
+I'm now diving into the different data structures used for wedding versus non-wedding invitation configurations. I've realized the `invite.config` field is flat for wedding invitations, but wrapped for other categories. The implications of this are that for non-wedding categories, the API returns a `config` object containing the actual configuration sections, whereas wedding ones are flat. This distinction is crucial for understanding how the front end is structured and how updates will need to be handled.
+
+
+**Differentiating Configurations Now**
+
+Okay, the distinction between wedding and non-wedding invitation configurations is starker than I initially grasped. I've re-traced the logic, and I'm really starting to understand `isWrapped`, and how the code correctly handles both scenarios. This is critical for updating values because it allows us to know to send flat or wrapped data. Specifically, I've just verified that `configObj` is resolved correctly for updates in both scenarios.
+
+
+2(bot-507c74a7-e889-447c-8b26-08fa982b21c6BsI will view the validation rules inside `lib/validation.ts` to see what fields are permitted in the config schemas.Z         `  A R            \   
+               "  
+ 8bcjopm0 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\app\\api\\invitation\\\\[id]\\route.ts","toolAction":"View save API route","toolSummary":"Reading invitation POST save handler in app/api/invitation/[id]/route.ts"}: 
+  
+
+ 
+  M2  @   :     w\I  I b  T    4  e Z         4    gLj % U  g     / 'T.    l3     :f xQ  
+( Z&]  0     X*  B)  $   d RCYjS   -  p    )     >     0    [  *    N     /Z     Y        ?^   t < )e     b    HFp  /*   ]       f n   # G+     <      PF  {  1     8  
+/s       !  T      (ZLj   a# k `   <    [_    *j t   : S      d4U$  + v   9 M   Gt     \'  +H oRv  <  V       h    "  rOOv   x"  r Z B   J       \  H       r/g`      wY  9    ,   
+.Q  j       gy  . } %]M  5a`c  `   @  ^  6g  N Y    v    W     P}    b6   " -9q D      ~  Xz   Dr      ?u Y_      d   L +L     a   b  *      ,  @        ^ SHQ %  " Z8  ?  5V7( T _ o i  mm1&2  5 k  \   $    `sY J        rS jO :  K   @  r         #wX4 $,` 1K  B} \   &q   ( E    ' =  F S U    - T  V  b     7  w  dm { L        F   O  G H ;m   Ne%:p            ,    I6   )    = ~Noc      DD  <+  k     w e   V  1"         B     o dA ^   +'  * q c  }Ed *^B, 3    z   P    k   jyF   z      }        ~ ^   o f   4 +  I kN = [b      )  jy m  <     V9       v 65H   nvE FTq\m   -q Bd h  H + }        "  {2   -  / O #  {z S 9=3  *      f           8  { ~ e8*     r 9.E      !6  n  FBz  _[d    &V ={     " oI      
+ s    T Fp W  xQ   p  k   7 K j8 l    H}>    Avg w   9M   . ]BxC8 } &} FoFm       L _ 4 q( 2  ]@]gV  *    ! Pl r Vv =T  -   2 j        E Cz       Z N !  GB f   d  FR       uM  E1 l_c3  oB . *      ] o    U   I a L #        s,Rr    g{    ~    7$     |  J	view_file* AbsolutePath*
+toolAction* toolSummary2            :            B            X  b$350f4ff7-9e8b-43f0-8674-801bad7cbb91j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                   4  3
+                
+                
+                  HReading invitation POST save handler in app/api/invitation/[id]/route.ts   View save API route                  *  
+               "  
+ 8bcjopm0 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\app\\api\\invitation\\\\[id]\\route.ts","toolAction":"View save API route","toolSummary":"Reading invitation POST save handler in app/api/invitation/[id]/route.ts"}: 
+  
+
+ 
+  M2  @   :     w\I  I b  T    4  e Z         4    gLj % U  g     / 'T.    l3     :f xQ  
+( Z&]  0     X*  B)  $   d RCYjS   -  p    )     >     0    [  *    N     /Z     Y        ?^   t < )e     b    HFp  /*   ]       f n   # G+     <      PF  {  1     8  
+/s       !  T      (ZLj   a# k `   <    [_    *j t   : S      d4U$  + v   9 M   Gt     \'  +H oRv  <  V       h    "  rOOv   x"  r Z B   J       \  H       r/g`      wY  9    ,   
+.Q  j       gy  . } %]M  5a`c  `   @  ^  6g  N Y    v    W     P}    b6   " -9q D      ~  Xz   Dr      ?u Y_      d   L +L    *      ,  @        ^ SHQ %  " Z8  ?  5V7( T _ o i  mm1&2  5 k  \   $    `sY J        rS jO :  K   @  r         #wX4 $,` 1K  B} \   &q   ( E    ' =  F S U    - T  V  b     7  w  dm { L        F   O  G H ;m   Ne%:p            ,    I6   )    = ~Noc      DD  <+  k     w e   V  1"         B     o dA ^   +'  * q c  }Ed *^B, 3    z   P    k   jyF   z      }        ~ ^   o f   4 +  I kN = [b      )  jy m  <     V9       v 65H   nvE FTq\m   -q Bd h  H + }        "  {2   -  / O #  {z S 9=3  *      f           8  { ~ e8*     r 9.E      !6  n  FBz  _[d    &V ={     " oI      
+ s    T Fp W  xQ   p  k   7 K j8 l    H}>    Avg w   9M   . ]BxC8 } &} FoFm       L _ 4 q( 2  ]@]gV  *    ! Pl r Vv =T  -   2 j        E Cz       Z N !  GB f   d  FR       uM  E1 l_c3  oB . *      ] o    U   I a L #        s,Rr    g{    ~    7$     |  J	view_file* AbsolutePath*
+toolAction* toolSummary2            :            B            X  b$350f4ff7-9e8b-43f0-8674-801bad7cbb91j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                   4  3
+                
+                
+                  HReading invitation POST save handler in app/api/invitation/[id]/route.ts   View save API route              r &
+Dfile:///c:/Users/Admin/Ahvaanam/app/api/invitation/%5Bid%5D/route.ts   " %import { NextResponse } from "next/server";
+import { createClient } from "@/utils/supabase/server";
+import { getInvitationById, saveInvitation, deleteInvitation } from "@/lib/db";
+import { configUpdateSchema } from "@/lib/validation";
+
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params;
+
+  try {
+    // 1. Fetch the invitation details globally (using service client default fallback)
+    const invite = await getInvitationById(id);
+    if (!invite) {
+      return NextResponse.json({ error: "Invitation profile not found" }, { status: 404 });
+    }
+
+    const { config, user_id, status, payment_status } = invite;
+
+    // 2. If status i    s published, allow public access
+    if (status === "published") {
+      return NextResponse.json(config);
+    }
+
+    // 3. If draft (not published), authenticate the request
+    const supabase = await createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    // 4. Return 404 if not the owner (or not logged in)
+    if (!user || user.id !== user_id) {
+      return NextResponse.json({ error: "Invitation profile not found" }, { status: 404 });
+    }
+
+    // 5. Owner is authenticated and owns the invite; always return the config
+    const responsePayload = {
+      ...config,
+      _payment_status: payment_status,
+      _status: status,
+    };
+
+    return NextResponse.json(responsePayload);
+  } catch (error) {
+    return NextResponse.json({ error: "Invitation profile not found" }, { status: 404 });
+  }
+}
+
+export async function POST(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return NextRespo

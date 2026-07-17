@@ -1,0 +1,128 @@
+use client\";\n\nimport React, { useEffect, useState } from \"react\";\nimport LayoutWrapper from \"@/components/layouts/LayoutWrapper\";\nimport MotionWrapper from \"@/components/motion/MotionWrapper\";\n\ninterface CountdownSectionProps {\n  bindings: {\n    title?: string;\n    targetDate?: string;\n    postWeddingMessage?: string;\n  };\n  layoutId?: string;\n  motionId?: string;\n}\n\nexport default function CountdownSection({ bindings, layoutId, motionId }: CountdownSectionProps) {\n  const { \n    title = \"Party Countdown\", \n    targetDate = \"2026-12-14T19:00:00\", \n    postWeddingMessage = \"The Celebration has begun!\" \n  } = bindings;\n\n  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });\n  const [isPassed, setIsPassed] = useState(false);\n\n  useEffect(() =\u003e {\n    if (!targetDate) return;\n    const targetTime = new Date(targetDate).getTime();\n\n    const updateCountdown = () =\u003e {\n      const now = new Date().getTime();\n      const difference = targetTime - now;\n      if (difference \u003c= 0) {\n        setIsPassed(true);\n      } else {\n        setIsPassed(false);\n        setTimeLeft({\n          days: Math.floor(difference / (1000 * 60 * 60 * 24)),\n          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),\n          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),\n          seconds: Math.floor((difference % (1000 * 60)) / 1000),\n        });\n      }\n    };\n\n    updateCountdown();\n    const interval = setInterval(updateCountdown, 1000);\n    return () =\u003e clearInterval(interval);\n  }, [targetDate]);\n\n  return (\n    \u003cMotionWrapper\n      motionId={motionId}\n      defaultMotionId=\"luxury-motion\"\n      type=\"reveal\"\n      className=\"w-full\"\n    \u003e\n      \u003cLayoutWrapper\n        layoutId={layoutId}\n        defaultLayoutId=\"story-stack\"\n        className=\"py-20 px-6 border-b border-white/5 text-center select-none\"\n        style={{ \n          fontFamily: \"var(--theme-font-body)\",\n          color: \"var(--theme-text)\",\n          background: \"rgba(139, 92, 246, 0.03)\"\n        }}\n      \u003e\n        \u003cdiv className=\"max-w-4xl mx-auto space-y-10 w-full\"\u003e\n          \u003cdiv className=\"space-y-2\"\u003e\n            \u003ch3 \n              className=\"text-xs uppercase tracking-[3px] font-bold\"\n              style={{ \n                color: \"var(--theme-accent)\",\n                fontFamily: \"var(--theme-font-heading)\" \n              }}\n            \u003e\n              {title}\n            \u003c/h3\u003e\n          \u003c/div\u003e\n          {isPassed ? (\n            \u003cp \n              className=\"text-lg uppercase tracking-[1.5px] font-bold animate-pulse\"\n              style={{ color: \"var(--theme-accent)\" }}\n            \u003e\n              {postWeddingMessage}\n            \u003c/p\u003e\n          ) : (\n            \u003cdiv className=\"grid grid-cols-4 gap-4 max-w-md mx-auto w-full\"\u003e\n              {Object.entries(timeLeft).map(([label, value]) =\u003e (\n                \u003cdiv \n                  key={label} \n                  className=\"border border-white/5 py-4 flex flex-col justify-center shadow-xs\"\n                  style={{ \n                    backgroundColor: \"var(--theme-card-bg)\",\n                    borderColor: \"var(--theme-border)\",\n                    bo   (hvaanam/components/sections/hero/index.tsx with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission. b: nbbp3gjd       
+(bot-5a7282a6-1f90-4a91-b8bc-410213a7cf8a     I will update `components/sections/celebrant/index.tsx` to support the `motionId` prop, wrapping the component container with `MotionWrapper` for scroll entry animation.   2  
+ zc5zte8r write_to_file   {"CodeContent":"\"use client\";\n\nimport React from \"react\";\nimport LayoutWrapper from \"@/components/layouts/LayoutWrapper\";\nimport MotionWrapper from \"@/components/motion/MotionWrapper\";\n\ninterface CelebrantSectionProps {\n  bindings: {\n    name?: string;\n    age?: number;\n  };\n  layoutId?: string;\n  motionId?: string;\n}\n\nexport default function CelebrantSection({ bindings, layoutId, motionId }: CelebrantSectionProps) {\n  const { name = \"Celebrant Name\", age = 25 } = bindings;\n\n  return (\n    \u003cMotionWrapper\n      motionId={motionId}\n      defaultMotionId=\"luxury-motion\"\n      type=\"reveal\"\n      className=\"w-full\"\n    \u003e\n      \u003cLayoutWrapper\n        layoutId={layoutId}\n        defaultLayoutId=\"story-stack\"\n        className=\"py-24 px-6 max-w-5xl mx-auto border-b border-white/5 text-center select-none\"\n        style={{ \n          fontFamily: \"var(--theme-font-body)\",\n          color: \"var(--theme-text)\"\n        }}\n      \u003e\n        \u003cdiv className=\"max-w-2xl mx-auto space-y-3\"\u003e\n          \u003ch2 \n            className=\"text-xs uppercase tracking-[3px] font-bold\"\n            style={{ color: \"var(--theme-accent)\" }}\n          \u003e\n            The Celebrant\n          \u003c/h2\u003e\n          \u003cp \n            className=\"text-3xl md:text-4xl font-extrabold uppercase tracking-[0.5px]\"\n            style={{ fontFamily: \"var(--theme-font-heading)\" }}\n          \u003e\n            Meet the Birthday Star\n          \u003c/p\u003e\n        \u003c/div\u003e\n\n        \u003cdiv \n          className=\"border border-white/5 p-8 md:p-12 max-w-xl mx-auto space-y-6 w-full\"\n          style={{ \n            backgroundColor: \"var(--theme-card-bg)\",\n            borderRadius: \"var(--theme-radius-card)\",\n            borderColor: \"var(--theme-border)\",\n            boxShadow: \"var(--theme-shadow-card)\"\n          }}\n        \u003e\n          \u003cdiv className=\"w-32 h-32 mx-auto rounded-full bg-gradient-to-tr from-amber-400 to-purple-600 p-1\"\u003e\n            \u003cdiv className=\"w-full h-full rounded-full bg-[#130B1E] flex items-center justify-center text-4xl\"\u003e\n                  \n            \u003c/div\u003e\n          \u003c/div\u003e\n          \u003cdiv className=\"space-y-2\"\u003e\n            \u003ch3 className=\"text-2xl font-bold\"\u003e{name}\u003c/h3\u003e\n            \u003cp \n              className=\"text-xs uppercase tracking-[2px] font-bold\"\n              style={{ color: \"var(--theme-accent)\" }}\n            \u003e\n              Turning {age} Years Young\n            \u003c/p\u003e\n          \u003c/div\u003e\n          \u003cp \n            className=\"text-xs max-w-md mx-auto leading-relaxed font-sans font-medium\"\n            style={{ color: \"var(--theme-secondary-text)\" }}\n          \u003e\n            Join us as we raise a toast to another year of accomplishments, laughter, and beautiful memories!\n          \u003c/p\u003e\n        \u003c/div\u003e\n      \u003c/LayoutWrapper\u003e\n    \u003c/MotionWrapper\u003e\n  );\n}\n","Description":"Update celebrant visual layout section to support MotionWrapper","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\celebrant\\index.tsx","toolAction":"Update celebrant component","toolSummary":"Integrating MotionWrapper in Celebrant Section component"}:     
+    M2 . }N     *  	 S    f     
+       T  e%|su  Fq    '     1  4,         p  v+3   lB  !3 C   '    O L  D  $0      v  w   p<  #        O    < j  }   n
+ '    4   z  c   C v  d`X      A       ] , 1%K |     p  h      c O w            B             X  b$cf4a4861-8c76-4c1f-9414-c255d657c83fj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    0  G
+                 
+  	              
+               -
+                   3Running Next.js production build verification check   Test Next.js build                 
+ 
+ command npm run build  
+.d2c79442-9bab-465c-a40a-56c20332cbe2/task-1478 {file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1478.log"npm run build(     *  
+               "  
+ iy86ksyu  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running Next.js production build verification check"}:     
+    M2         z c   E      O  $     Om  zT uf      W9 R  ]88    f  S8 
+ 2f6 0 ]    |  YcY   s L7B W   Db1 =  @          P  A    G ? `X    cR   l ,   KC v KD.         Qsd /   G  7 y   12 C   } 9    h  $ Q w . <  i 
+!      |      Fj Mi~ }  K       m     sHfJ  &q w 0V   F a  G  '   6   *   0  yf  L<R  ^* W 	    SWJ run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             B             X  b$cf4a4861-8c76-4c1f-9414-c255d657c83fj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    0  G
+                 
+  	              
+               -
+                   3Running Next.js production build verification check   Test Next.js build                 <  9
+ 
+ command npm run build  npm run  * Test Next.js build     
+ 
+ command npm run build   	  
+<  9
+ 
+ command npm run build  npm run  * Test Next.js build B
+$e814890c-6b84-44e9-9783-edb10a1bb4dd        " 
+ command(npm run) 	  
+.d2c79442-9bab-465c-a40a-56c20332cbe2/task-1478 {file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1478.log"npm run build(       c:\Users\Admin\Ahvaanam0 ` N   
+ 
+> ahvaanam@0.1.0 build
+> node scripts/validate-manifests.js && next build
+
+Auditing registered section manifests against canonical schema...
+    All section manifests are valid and follow the canonical schema!
+    Next.js 16.2.9 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+    Compiled successfully in 17.7s
+  Running TypeScript ...
+  Finished TypeScript in 10.6s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/28) ...
+  Generating static pages using 7 workers (7/28) 
+  Generating static pages using 7 workers (14/28) 
+  Generating static pages using 7 workers (21/28) 
+    Generating static pages using 7 workers (28/28) in 1319ms
+  Finalizing page optimization ...
+
+Route (app)
+        /
+        /_not-found
+        /about
+       /admin/[id]
+       /api/auth/login
+       /api/auth/logout
+       /api/invitation
+       /api/invitation/[id]
+       /api/invitation/[id]/analytics
+       /api/invitation/[id]/edit
+       /api/invitation/[id]/pay
+       /api/invitation/[id]/publish
+       /api/invitation/[id]/rsvp
+       /api/invitation/[id]/view
+       /api/upload
+       /auth/callback
+       /checkout/[id]
+        /contact
+        /create
+        /create/details
+        /create/theme
+        /dashboard
+       /dashboard/analytics/[id]
+        /demo
+        /forgot-password
+        /how-it-works
+       /invites/[id]
+        /login
+        /logout
+        /portfolio
+        /pricing
+        /privacy
+        /reset-password
+        /services
+        /signup
+        /templates
+       /templates/[slug]
+        /terms
+
+
+   Proxy (Middleware)
+
+     (Static)   prerendered as static content
+    (Dynamic)  server-rendered on demand
+
+  npm run build  npm run build    
+  
+> ahvaanam@0.1.0 build
+> node scripts/validate-manifests.js && next build
+
+Auditing registered section manifests against canonical schema...
+    All section manifests are valid and follow the canonical schema!
+    Next.js 16.2.9 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+    g 7 workers (14/28) 
+  Generating static pages using 7 workers (21/28) 
+    Generating static pages using 7 workers (28/28) in 1319ms
+  Finalizing page optimization ...
+
+Route (app)
+        /
+        /_not-found
+        /about
+       /admin/[id]
+       /api/auth/login
+       /api/auth/logout
+       /api/invitation
+       /api/invitation/[i

@@ -1,0 +1,41 @@
+use client\";\n\nimport React from \"react\";\nimport { CompositionSchema } from \"@/lib/composition/types\";\n\n// Dynamic section component imports\nimport HeroSection from \"@/components/sections/hero\";\nimport CoupleSection from \"@/components/sections/couple\";\nimport CountdownSection from \"@/components/sections/countdown\";\nimport StorySection from \"@/components/sections/story\";\nimport EventsSection from \"@/components/sections/events\";\nimport GallerySection from \"@/components/sections/gallery\";\nimport VenueSection from \"@/components/sections/venue\";\nimport FamiliesSection from \"@/components/sections/families\";\nimport RSVPSection from \"@/components/sections/rsvp\";\nimport FAQSection from \"@/components/sections/faq\";\nimport DressCodeSection from \"@/components/sections/dressCode\";\nimport FooterSection from \"@/components/sections/footer\";\n\nconst SECTION_COMPONENTS: Record<string, React.ComponentType<any>> = {\n  hero: HeroSection,\n  couple: CoupleSection,\n  countdown: CountdownSection,\n  story: StorySection,\n  events: EventsSection,\n  gallery: GallerySection,\n  venue: VenueSection,\n  families: FamiliesSection,\n  rsvp: RSVPSection,\n  faq: FAQSection,\n  dressCode: DressCodeSection,\n  footer: FooterSection,\n};\n\nfunction resolveBindingValue(path: string, data: any): any {\n  const parts = path.split(\".\");\n  let current = data;\n  for (const part of parts) {\n    if (current == null) return undefined;\n    current = current[part];\n  }\n  return current;\n}\n\ninterface CompositionRendererProps {\n  composition: CompositionSchema;\n  invitationData: any;\n}\n\nexport default function CompositionRenderer({ composition, invitationData }: CompositionRendererProps) {\n  const isWrapped = invitationData && \"category\" in invitationData && \"config\" in invitationData;\n  const config = isWrapped ? (invitationData as any).config : invitationData;\n\n  return (\n    <div className=\"space-y-0\">\n      {composition.sections.map((section) => {\n        if (section.properti
+2: <truncated 702 bytes>
+The above content shows the entire, complete file contents of the requested file.
+   : cty2cmdl      .
+(bot-42b71833-3873-48eb-b09b-0ec92b75a313     I will write a script to search the entire `C:\Users\Admin\.gemini\antigravity` folder (which includes temp log files, tasks history, and IDE caches) for the term `CompositionRenderer` to retrieve the complete code of the renderer.   2 (
+ 7899hetw write_to_file   {"CodeContent":"const fs = require('fs');\nconst path = require('path');\n\nconst geminiDir = 'C:\\\\Users\\\\Admin\\\\.gemini\\\\antigravit                                                                                                                                                                                                                                                                                                                                                                                                           i ,      t     V   
+               "  
+ x9x7hfqj 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\composition\\CompositionRenderer.tsx","EndLine":150,"StartLine":1,"toolAction":"View restored CompositionRenderer","toolSummary":"Viewing restored CompositionRenderer.tsx to verify code integrity"}:     
+    M2  ; 0   I    p  Y jr n K % %W
+ +9  vb   Sd, {W ] pq YR#  x S~4.        v$Eu&       S ' R    I  Y   e  7  I    l  pX  OXJ)_  K f    6   j     ie    BK T5 ; }+  Lc  hh   ^s `  n  "         29 	    (a	   0wE        *g 4 Lb :u   r  U K  we    X: '     g( &  \  E Z  8  D), (*Z$Jo z7X ;  4   * 8     dq*  rI =  2L     l '   +gV;   ^     
+     ],         \bZ 5    nFr & LI e  JK      hDE (&     4J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2             :             B             X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    ?  6
+                 
+                 
+                   AViewing restored CompositionRenderer.tsx to verify code integrity  !View restored CompositionRenderer                   *  
+               "  
+ x9x7hfqj 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\composition\\CompositionRenderer.tsx","EndLine":150,"StartLine":1,"toolAction":"View restored CompositionRenderer","toolSummary":"Viewing restored CompositionRenderer.tsx to verify code integrity"}:     
+    M2  ; 0   I    p  Y jr n K % %W
+ +9  vb   Sd, {W ] pq YR#  x S~4.        v$Eu&       S ' R    I  Y   e  7  I    l  pX  OXJ)_  K f    6   j     ie    BK T5 ; }+  Lc  hh   ^s `  n  "         29 	    (a	   0wE        *g 4 Lb :u   r  U K  we    X: '     g( &  \  E Z  8  D), (*Z$Jo z7X ;  4   * 8     dq*  rI =  2L     l '   +gV;   ^     
+     ],         \bZ 5    nFr & LI e  JK      hDE (&     4J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2             :             B             X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    ?  6
+                 
+                 
+                   AViewing restored CompositionRenderer.tsx to verify code integrity  !View restored CompositionRenderer               r *
+Nfile:///c:/Users/Admin/Ahvaanam/components/composition/CompositionRenderer.tsx   " *"use client";');
+    if (startIdx === -1) {
+      startIdx = content.indexOf('use client');
+    }
+    if (startIdx === -1) continue;
+    
+    // Try to find if this contains the full component
+    const hasComponentExport = content.includes('export default function CompositionRenderer');
+    const hasResolveBinding = content.includes('resolveBindingValue');
+    const hasSectionComponents = content.includes('SECTION_COMPONENTS');
+    
+    if (hasComponentExport && hasResolveBinding && hasSectionC
+------------------------
+[33] Found match at index 3328854
+  Preview of match [33]:

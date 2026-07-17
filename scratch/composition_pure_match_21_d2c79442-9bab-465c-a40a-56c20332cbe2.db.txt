@@ -1,0 +1,81 @@
+use client');
+2:     }
+3:     if (startIdx === -1) continue;
+4:     
+5:     // Try to find if this contains the full component
+6:     const hasComponentExport = content.includes('export default function CompositionRenderer');
+7:     const hasResolveBinding = content.includes('resolveBindingValue');
+8:     const hasSectionComponents = content.includes('SECTION_COMPONENTS');
+9:     
+10:     if (hasComponentExport \u0026\u0026 hasResolveBinding \u0026\u0026 hasSectionComponents) {
+11:       // Let's try to extract the JSON-escaped string
+12:       // It starts with "use client" and should end around the end of the file.
+13:       // Let's find the closing quote if it starts with a double quote
+14:       let parsedCode = '';
+15:       try {
+16:         // If the match starts with double quote (which means it's part of a JSON record)
+17:         if (content.startsWith('"')) {
+18:           // Find the matching end quote
+19:           // Since it's a JSON string, let's find the next unescaped quote that finishes the string
+20:           // We can parse the prefix using JSON.parse
+21:           // Let's find the end of the JSON string
+22:           let endIdx = content.indexOf('","Description"');
+23:           if (endIdx === -1) {
+24:             endIdx = content.indexOf('",\
+25:       "Description"');
+26:           }
+27:           if (endIdx === -1) {
+28:             endIdx = content.indexOf('", "Description"');
+29:           }
+30:           if (endIdx !== -1) {
+31:             const jsonString = content.substring(0, endIdx + 1);
+32:             parsedCode = JSON.parse(jsonString);
+33:           }
+34:         }
+35:       } catch (e) {
+36:         // Fallback: regular string clean up
+37:       }
+38:       
+39:       // If we couldn't parse it as JSON, let's clean it up manually
+40:       if (!parsedCode) {
+41:         let codeContent = content.substring(startIdx);
+42:         // Remove trailing database junk or JSON fields
+43:         // In the database log, it might be followed by description, targetFile, etc.
+44:         const endMarkers = ['","Description"', '",\
+45:       "Description"', '", "Description"'];
+46:         for (const marker of endMarkers) {
+47:           const markerIdx = codeContent.indexOf(marker);
+48:           if (markerIdx !== -1) {
+49:             codeContent = codeContent.substring(0, markerIdx);
+50:           }
+51:         }
+52:         // Unescape newlines and quotes
+53:         parsedCode = codeContent
+54:           .replace(/\\
+55: /g, '\
+56: ')
+57:           .replace(/\\"/g, '"')
+58:           .replace(/\\\\/g, '\\');
+59:       }
+60:       
+61:       // Check if it looks complete (ends with closing bracket of the component)
+62:       if (parsedCode.includes('export default function CompositionRenderer') \u0026\u0026 parsedCode.includes('return') \u0026\u0026 parsedCode.trim().endsWith('}')) {
+63:         console.log(`FOUND PERFECT MATCH in ${file} (length: ${parsedCode.length})`);
+64:         bestMatch = parsedCode;
+65:       R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                 
+                                  
+  I will view `scratch/restored_d2c79442-9bab-465c-a40a-56c20332cbe2_step_309_extract_composition.js.txt` to see what code it contains.   **Analyzing Candidate Overlap**
+
+I've just realized candidate 11 shares the same core script, `extract_exact_renderer.js`, but with different file structures. I'm focusing on the `cleaned.substring(startIdx)` snippet, and its role within that specific instance of the script. This divergence warrants a deeper look!
+
+
+2(bot-41b1599a-1d99-4379-9056-3328d34f0e61:  
+ yvc695je 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\scratch\\restored_d2c79442-9bab-465c-a40a-56c20332cbe2_step_309_extract_composition.js.txt","StartLine":1,"toolAction":"View restored extract_composition","toolSummary":"Reading restored extract_composition script from a previous step"}:     
+    M2  y   `       .  00S   )   L F    +   Iz F  f     	     &    ZT  7  )q y      |  |l  	t C    }# I@   P    Q#1d|  t" c      <sLz   ^ R} + E P  6 (    W     %   <xp  I-   )     : P    8   B_k     H3  1 Z6   4x r          FZMK { %@)#  H P      X      B   -ajsW%    dHL  B  r   < i d           J    S   { g67
+ C 7?    O   ]  S f     @LY  k   B f :Pxj8 g   F eI,   P     k`      h xq  s %   3>/r  &        O   0   ^  3    2    :       l#Z6  2    W  u  f bN  }     I VR<Yq MDO5  N ?   1 E}H Z	9P   ' ~      s | z m  _   k  >        s  ] j A 8 l s 1  \p   k ex 1V   X  n k     w    v       	    d T eK uxg  v Lp(l5   . ^C   J }    5>  0   _X k g ;2   Z  R   G  O   I N> a & ?   D?3  0u!;    C   &  ./]   q Z        N w     K    S  V   t  C(     :L  un  ; .w <j   ' s   . I ,Io<        (   7 p`X$ H_ gO n       r  p o    I    &  {   }    OR aS M    'W  P |      Z   [\B  ( 2 3D  L   u] uGg   )    NjB.   Ic  H ?X    a  i F F  ~& - j x7 .|K   UD,lZc \ f u f    d  * R I_  d =, i    ,    D   ] > #       J  h` e  p|  [ s  ?k             7       \$   + i  q 9Q     k   j f a&     V% $A s     Q  \ L    1      cp,     U   r             w   ` P 83nO   *\q    LW   G uZ         ^>  G}  % G       M  !}    :bf  7  a    n5B fe< a 0vCf     R-  S3W   b wD    N 	 Q!7 I g       z  1G         n \  t }  \   < 3  j y    t  9        $   Z Wg !'V   o]Zw 1 mP- K  -   4  }  : v 6  J2      p&   
+[~   J< G   y/ [   r   %F  ]     wQ %  : {Q   Rr*o     =      7     T L $ p`  O      i   	   %  ,  :@    
+    c7    a j   V  # [ZI     u?  Z F     szC      uS  ; 'U  6 ]!&  cc s   C       x #@v :F&?r +        R>  P ?    4  >  L   ( Y_f!v  /  * ]     G  zh  @  4 +> >       K <  |mV   }  d       uZ; k >  R:B  o D_  #P {       E   0  w ` 
+  { Df F  t |_    X   =ew @L/  x[ *      ua        r   A    i{ E  8 Z 	       r   T Y} pWh ^  Y     f 0N     U  'u   J y U# j   F @  k]   `   )(  nm  y#i   W^   u   O   
+ g   j5E  @  ;    @   j %% xx   {Y  * u0 k` h   3  h/  K+u HP    >     s=C.B -  */= Y )   ;  ,  4EXI Q  tQ Y        Dy     IJ c,$   H : oW   R Oj   m  

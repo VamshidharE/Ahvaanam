@@ -1,0 +1,112 @@
+use client\";\n\nimport React from \"react\";\nimport DeitySymbol from \"@/components/shared/DeitySymbol\";\n\ninterface HeroSectionProps {\n  properties: {\n    showScrollIndicator?: boolean;\n    overlayOpacity?: number;\n    contentAlign?: \"left\" | \"center\" | \"right\";\n    minHeight?: string;\n  };\n  bindings: {\n    title?: string;\n    subtitle?: string;\n    welcomeMessage?: string;\n    heroImage?: string;\n    ctaText?: string;\n    surname?: string;\n    subText?: string;\n    enableHeaderMedia?: boolean;\n    headerMediaType?: \"god\" | \"symbol\";\n    selectedGod?: \"ganesha\" | \"venkateswara\" | \"lakshmi\" | \"shiva\" | \"krishna\";\n    selectedSymbol?: \"om\" | \"swastik\" | \"shree\" | \"kalash\" | \"nandi\";\n    headerMediaSize?: number;\n    headerMediaSpacing?: number;\n    showSurnameHeading?: boolean;\n    surnameFont?: \"cinzel\" | \"playfair\" | \"great-vibes\";\n    surnameColor?: string;\n  };\n  themeId?: string;\n}\n\nexport default function HeroSection({ properties, bindings, themeId }: HeroSectionProps) {\n  const {\n    showScrollIndicator = true,\n    overlayOpacity = 0.45,\n    contentAlign = \"center\",\n    minHeight = \"85vh\",\n  } = properties;\n\n  const {\n    title = \"\",\n    subtitle = \"\",\n    welcomeMessage = \"\",\n    heroImage = \"\",\n    ctaText = \"\",\n    surname = \"\",\n    subText = \"\",\n    enableHeaderMedia = true,\n    headerMediaType = \"god\",\n    selectedGod = \"ganesha\",\n    selectedSymbol = \"om\",\n    headerMediaSize = 80,\n    headerMediaSpacing = 30,\n    showSurnameHeading = true,\n    surnameFont = \"cinzel\",\n    surnameColor = \"#C59B27\",\n  } = bindings;\n\n  const alignmentClass = \n    contentAlign === \"left\" ? \"text-left items-start\" : \n    contentAlign === \"right\" ? \"text-right items-end\" : \n    \"text-center items-center\";\n\n  return (\n    \u003csection \n      className=\"relative flex flex-col justify-center items-center overflow-hidden w-full select-none\"\n      style={{ minHeight }}\n    \u003e\n      {/* Background Cover Image */}\n      {heroImage \u0026\u0026 (\n        \u003cdiv \n          className=\"absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-105\"\n          style={{ backgroundImage: `url(${heroImage})` }}\n        /\u003e\n      )}\n\n      {/* Dark overlay */}\n      \u003cdiv \n        className=\"absolute inset-0 bg-black pointer-events-none\"\n        style={{ opacity: overlayOpacity }}\n      /\u003e\n\n      {/* Hero content */}\n      \u003cdiv className={`relative z-10 w-full max-w-4xl px-6 py-12 flex flex-col ${alignmentClass} text-white space-y-6`}\u003e\n        {/* Deity Symbol if enabled */}\n        {enableHeaderMedia \u0026\u0026 (\n          \u003cdiv \n            style={{ \n              marginTop: `${headerMediaSpacing}px`,\n              width: `${headerMediaSize}px`,\n              height: `${headerMediaSize}px` \n            }}\n            className=\"flex items-center justify-center shrink-0\"\n          \u003e\n            \u003cDeitySymbol\n              type={headerMediaType}\n              selectedGod={selectedGod}\n              selectedSymbol={selectedSymbol}\n              size={headerMediaSize}\n            /\u003e\n          \u003c/div\u003e\n        )}\n\n        {/* Surname Banner */}\n        {showSurnameHeading \u0026\u0026 surname \u0026\u0026 (\n          \u003cdiv className=\"animate-fadeIn\"\u003e\n            \u003ch2 \n              classNa            transition={{\r\n169:                                         duration: 4,\r\n170:                                         repeat: Infinity,\r\n171:                                         repeatDelay: 3,\r\n172:                                         ease: \"easeInOut\",\r\n173:                                     }}\r\n174:                                     className=\"absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent\"\r\n175:                                     style={{\r\n176:                                         transform: \"skewX(-25deg)\",\r\n177:                                         width: \"120px\",\r\n178:                                     }}\r\n179:                                 />\r\n180:                             </motion.div>\r\n181:                         </Tilt>\r\n182:                     </Parallax>\r\n183: \r\n184:                 </div>\r\n185: \r\n186:             </div>\r\n187: \r\n188:             {/* Scroll Indicator */}\r\n189: \r\n190:             <motion.div\r\n191:                 animate={{ y: [0, 12, 0] }}\r\n192:                 transition={{\r\n193:                     repeat: Infinity,\r\n194:                     duration: 1.8,\r\n195:                 }}\r\n196:                 className=\"absolute bottom-10 left-1/2 -translate-x-1/2\"\r\n197:             >\r\n198:                 <div className=\"flex h-14 w-8 justify-center rounded-full border border-yellow-300\">\r\n199:                     <motion.div\r\n200:                         animate={{\r\n201:                             y: [6, 22, 6],\r\n202:                         }}\r\n203:                         transition={{\r\n204:                             duration: 1.8,\r\n205:                             repeat: Infinity,\r\n206:                         }}\r\n207:                         className=\"mt-2 h-3 w-3 rounded-full bg-yellow-500\"\r\n208:                     />\r\n209:                 </div>\r\n210:             </motion.div>\r\n211: \r\n212:         </section>\r\n213:     );\r\n214: }\nThe above content shows the entire, complete file contents of the requested file.\n"}
+{"step_index":189,"source":"MODEL","type":"PLANNER_RESPONSE","status":"DONE","created_at":"2026-07-12T13:58:41Z","content":"I will search for the original website homepage code in the conversation history/transcript logs to see if we can restore the 397-line `app/page.tsx` that was active in the first session.","thinking":"**Identifying Key Components**\n\nI've pinpointed `components/home/Hero.tsx` as the core of the homepage hero section. I'm also examining the `components/home` folder for a fuller picture. It contains the expected elements: `Navbar.tsx`, `Footer.tsx`, `EventCategories.tsx`, and a `Template` I need to understand. I'm focusing on reconstructing the original website's look.\n\n\n","tool_calls":[{"name":"list_dir","args":{"DirectoryPath":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\.system_generated\\logs","toolAction":"List logs directory","toolSummary":"Listing files in the logs directory to retrieve transcript logs"}}]}
+{"step_index":190,"source":"MODEL","type":"LIST_DIRECTORY","status":"DONE","created_at":"2026-07-12T13:58:47Z","content":"Created At: 2026-07-12T13:58:47Z\nCompleted At: 2026-07-12T13:58:47Z\n{\"name\":\"transcript.jsonl\", \"sizeBytes\":\"565346\"}\n{\"name\":\"transcript_full.jsonl\", \"sizeBytes\":\"45153\"}\n\nSummary: This directory contains 0 subdirectories and 2 files."}
+{"step_index":191,"source":"MODEL","type":"PLANNER_RESPONSE","status":"DONE","created_at":"2026-07-12T13:58:47Z","content":"I will search the logs for `CherryBlossoms` (a unique function that was in our original `app/page.tsx` file) to locate the exact code and restore it.","tool_calls":[{"name":"grep_search","args":{"CaseInsensitive":false,"IsRegex":false,"MatchPerLine":true,"Query":"CherryBlossoms","SearchPath":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\.system_generated\\logs","toolAction":"SearX `            ] w-[650px] rounded-full bg-yellow-300/40 blur-[220px]"
+                    />
+
+                    {/* Floating Invitation */}
+
+                    <Parallax speed={-8}>
+                        <Tilt
+                            tiltMaxAngleX={8}
+                            tiltMaxAngleY={8}
+                            perspective={1200}
+                            glareEnable={true}
+                            glareMaxOpacity={0.18}
+                            scale={1.02}
+                        >
+                            <motion.div
+                                animate={{
+                                    y: [0, -18, 0],
+                                    rotate: [-1, 1, -1],
+                                }}
+                                transition={{
+                                    duration: 6,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                }}
+                                className="relative z-20 -translate-y-10"
+                            >
+                                <div className="absolute -top-6 right-4 z-30 rounded-full border border-white/50 bg-white/70 px-4 py-2 text-sm font-medium shadow-xl backdrop-blur-xl">
+                                        Premium Template
+                                </div>
+                                <div className="relative overflow-hidden rounded-[30px] border border-white/60 bg-white/90 p-3 backdrop-blur-xl shadow-[0_50px_120px_rgba(0,0,0,.18)]">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-yellow-100/20 pointer-events-none"></div>
+                                    <img
+                                        src="/images/hero-invitation.png"
+                                        alt="Invitation"
+                                        className="w-[680px] xl:w-[770px] rounded-[22px]"
+                                    />
+                                </div>
+
+                                {/* Shine */}
+                                <motion.div
+                                    animate={{
+                                        x: [-350, 420],
+                                    }}
+                                    transition={{
+                                        duration: 4,
+                                        repeat: Infinity,
+                                        repeatDelay: 3,
+                                        ease: "easeInOut",
+                                    }}
+                                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+                                    style={{
+                                        transform: "skewX(-25deg)",
+                                        width: "120px",
+                                    }}
+                                />
+                            </motion.div>
+                        </Tilt>
+                    </Parallax>
+
+                </div>
+
+            </div>
+
+            {/* Scroll Indicator */}
+
+            <motion.div
+                animate={{ y: [0, 12, 0] }}
+                transition={{
+                    repeat: Infinity,
+                    duration: 1.8,
+                }}
+                className="absolute bottom-10 left-1/2 -translate-x-1/2"
+            >
+                <div className="flex h-14 w-8 justify-center rounded-full border border-yellow-300">
+                    <motion.div
+                        animate={{
+                            y: [6, 22, 6],
+                        }}
+                        transition={{
+                            duration: 1.8,
+                            repeat: Infinity,
+                        }}
+                        className="mt-2 h-3 w-3 rounded-full bg-yellow-500"
+                    />
+                </div>
+            </motion.div>
+
+        </section>
+    );
+}X  ` K   K    hitecture.
+
+Do NOT redesign templates.
+
+Do NOT change appearance.
+
+Do NOT change animations.
+
+Only replace the underlying architecture.
+
+Tasks
+
+1. Migrate every Wedding template.
+
+2. Migrate every Birthday template.
+
+3. Every template must use:
+
+- Composition Engine
+- Component Regist

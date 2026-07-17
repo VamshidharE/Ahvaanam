@@ -1,0 +1,152 @@
+ers, maps embedding, and RSVP states from every template layout component.        
+ ---       )
+%## 1. Centralized Legacy Orchestrator         
+  We created a single shared orchestrator component at [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx) that handles:   9
+5* Audio background loading and volume toggle buttons.   %
+!* Dynamic loading splash screens.   2
+.* Template-specific canvas particle rendering.   x
+t* Loop orchestration of all registered reusable sections (`HeroSection`, `CoupleSection`, `CountdownSection`, etc.).        
+ ---       %
+!## 2. Refactored Template Layouts         
+  Every template `Layout.tsx` component in the workspace has been refactored into a thin composition wrapper of **under 110 lines** (down from 750+ lines).     
+  They no longer access properties like `countdown`, `gallery`, or `rsvp` directly. Instead, they resolve compositions and delegate rendering to `CompositionRenderer` or `LegacyOrchestrator`.        
+ ---       '
+### 3. Auditing & Compilation Checks         
+  * **Business Logic Audit**: Created the template refactoring status list at [template_business_logic_audit.md](file:///c:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/template_business_logic_audit.md).   M
+I* **TypeScript Check (`npx tsc --noEmit`)**: Completed with **0 errors**.   }
+y* **Next.js Production Build (`npm run build`)**: Compiled successfully in **14.5 seconds** with **0 compiler warnings**.   -
+)# Walkthrough: Final Architecture Cleanup             
+  We have successfully split `LegacyOrchestrator.tsx` into a modular package of single-responsibility orchestrator components, converting the parent orchestrator into a clean, coordinator-only re-export module.        
+ ---       $
+ ## 1. Split Orchestrator Package       M
+ICreated the target folder structure at `components/shared/orchestrator/`:     
+  * **[AudioOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/AudioOrchestrator.tsx)**: Handles playing, pausing, and toggling music track elements.     
+  * **[BackgroundEffects.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/BackgroundEffects.tsx)**: Manages canvas particle overlay checks.     
+  * **[LoadingExperience.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/LoadingExperience.tsx)**: Manages loading layout visibility.     
+  * **[SectionPipeline.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/SectionPipeline.tsx)**: Evaluates `sectionOrder` and maps IDs to section components.     
+  * **[TemplateFrame.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/TemplateFrame.tsx)**: Envelopes main background styling and back buttons.     
+  * **[ScrollController.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/ScrollController.tsx)**: Sets global scroll smooth behavior.     
+  * **[ShareController.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/ShareController.tsx)**: Manages invitation link copy shares.     
+~* **[index.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/index.tsx)**: Serves as the coordinator module.        
+ ---       &
+"## 2. Compatibility & Verification         
+  * **Re-export Layer**: Standardized [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx#L1) to serve as a clean re-export path, avoiding template import changes.   R
+N* **TypeScript Validation (`npx tsc --noEmit`)**: Completed with **0 errors**.   }
+y* **Next.js Production Build (`npm run build`)**: Compiled successfully in **13.7 seconds** with **0 compiler warnings**.      Bdfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/walkthrough.mdR  # Walkthrough: Architecture Cleanup Sprint
+
+We have successfully completed the **Architecture Cleanup Sprint**, completely removing duplicate date calculations, lightbox controls, music triggers, maps embedding, and RSVP states from every template layout component.
+
+---
+
+## 1. Centralized Legacy Orchestrator
+
+We created a single shared orchestrator component at [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx) that handles:
+* Audio background loading and volume toggle buttons.
+* Dynamic loading splash screens.
+* Template-specific canvas particle rendering.
+* Loop orchestration of all registered reusable sections (`HeroSection`, `CoupleSection`, `CountdownSection`, etc.).
+
+---
+
+## 2. Refactored Template Layouts
+
+Every template `Layout.tsx` component in the workspace has been refactored into a thin composition wrapper of **under 110 lines** (down from 750+ lines).
+They no longer access properties like `countdown`, `gallery`, or `rsvp` directly. Instead, they resolve compositions and delegate rendering to `CompositionRenderer` or `LegacyOrchestrator`.
+
+---
+
+## 3. Auditing & Compilation Checks
+
+* **Business Logic Audit**: Created the template refactoring status list at [template_business_logic_audit.md](file:///c:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/template_business_logic_audit.md).
+* **TypeScript Check (`npx tsc --noEmit`)**: Completed with **0 errors**.
+* **Next.js Production Build (`npm run build`)**: Compiled successfully in **14.5 seconds** with **0 compiler warnings**.
+            Walkthrough summary of Final Architecture Cleanup, detailing the split orchestrator components and compile check validation stats."           I8   [Create walkthrough.md walkthrough summary in artifact folder for Final Architecture Cleanup    ** (0.5KB): Configures smooth scroll behavior.
+* **[ShareController.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/ShareController.tsx)** (0.8KB): Floating WhatsApp/clipboard share.
+* **[index.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/index.tsx)** (1.8KB): Coordinator module that binds them all.
+
+### 2. Backwards Compatibility
+* Cleaned [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx#L1) to serve as a coordinator re-export layer. This preserves all existing template import paths without requiring any template-level file alterations.
+
+### 3. Verification & Auditing
+* Sourced file sizes and responsibilities inside [final_architecture_cleanup_report.md](file:///c:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/final_architecture_cleanup_report.md).
+* TypeScript type checks (`npx tsc --noEmit`) verified with **0 errors**.
+* Next.js production build compiler (`npm run build`) succeeded in **13.7 seconds** with **0 compiler warnings**.
+
+Details have been cataloged in the [walkthrough.md](file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/walkthrough.md) walkthrough. The architectural cleanup is officially complete!2(bot-c1d484c7-b469-4384-8071-f35685f61cb6B  I have successfully completed the **Final Architecture Cleanup**, split the `LegacyOrchestrator.tsx` component into modular, single-responsibility sub-orchestrators, and converted the original file into a backwards-compatible coordinator re-export layer.
+
+Here is a summary of the accomplishments:
+
+### 1. Modular Sub-Orchestrators Package
+We built the modular layout files under `components/shared/orchestrator/`:
+* **[AudioOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/AudioOrchestrator.tsx)** (1KB): Audio mounting and state triggers.
+* **[BackgroundEffects.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/BackgroundEffects.tsx)** (0.5KB): Toggle for canvas backdrop particles.
+* **[LoadingExperience.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/LoadingExperience.tsx)** (0.8KB): Fade overlays on page loading.
+* **[SectionPipeline.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/SectionPipeline.tsx)** (3KB): Order mapper that imports and mounts sections.
+* **[TemplateFrame.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/TemplateFrame.tsx)** (0.8KB): Main background container wrappers and back button.
+* **[ScrollController.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/ScrollController.tsx)** (0.5KB): Configures smooth scroll behavior.
+* **[ShareController.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/ShareController.tsx)** (0.8KB): Floating WhatsApp/clipboard share.
+* **[index.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/index.tsx)** (1.8KB): Coordinator module that binds them all.
+
+### 2. Backwards Compatibility
+* Cleaned [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx#L1) to serve as a coordinator re-export layer. This preserves all existing template import paths without requiring any template-level file alterations.
+
+### 3. Verification & Auditing
+* Sourced file sizes and responsibilities inside [final_architecture_cleanup_report.md](file:///c:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/final_architecture_cleanup_report.md).
+* TypeScript type checks (`npx tsc --noEmit`) verified with **0 errors**.
+* Next.js production build compiler (`npm run build`) succeeded in **13.7 seconds** with **0 compiler warnings**.
+
+Details have been cataloged in the [walkthrough.md](file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/walkthrough.md) walkthrough. The architectural cleanup is officially complete!` r     
+   M2 E OJw" y       g T      Ij 	 ,   #  8 e  ]  A . v     ,  1     AB       Y |   @ g x  q  p   1 ,    \*~8A    -    q 5 0 N      rtLine":1,"toolAction":"View real_renderer_candidate_9","toolSummary":"Reading the extracted composition renderer candidate 9"}:     
+    M2 > |   o   h .   n   BE3    ? p    J; ]       ggl   }G=#   C  (    j(5g  0 g -
+ X/ C  ;    bT    4  _; @ V-a   $     kx    1M W   |vw  L          (6     &    ]   z   [   Fdh  Rx'(  =  (  ,<   PA  r =O0  Xr    W       ,{r    P  ) \k  9  7 Q 	'|`HxW   f! %    :} =U   j UW    gl9        ? kP   q 2z    V  :1}M        ~  6p   v  \    tY (   vo_  @jx)~  W -   \
+     "8  *       z        <   ?F       Y_ ]f %Lr       h &   0    J    x   T  Y   > \ Q A  hLs &Sh zL Q#F ?   A#   9        	 a/      &   ;     c    jY  l^	 ,K    !  g  ` 
+   }+  @      1d K    /: > &stZ    4    'z_     c        F     S#K  q PH B1 o    E (P>* 
+ F 6$ $-   |   ;l9  n8   J j  EA 5d\!  Z    T    ~   >o mG ^    &^V  Zo \> < S  J  C  (D S  EnkUv^q   v H mz    Y AR I      \{ ~w  + =;" st  c  /N  & /j '     	 B  + 
+  FF  w  _     L  I	   A  7&   C    `  aX  ] O    )   -     b Ei 1+5 Ut%5   (  h5 5    K -v   g  'G    h {/,4 H  l %    %b A          F v  p G          Vja  v    W                 + R     R nv  CAZR     0      9  G    9#    z  S  <   G@)yA7  s     w C   - 1 i     : ~O #}           
+  o v{ oonU  ,    \  c   ~:    5V   Bc  I7 j v  ,  SW  <&U     &     0  H     =      D 2 10 svw    c  >  7    gt  r{ !7uL63  p   {l >i  |  X 4     2 _     P  A'      \tC  [  Z3 A6   ~Xo e   _
+  *     4 G b Rd  ~f [     uG  F9%    k @  |   /ng     S 9  Q ;    *B?   rn     M  j      {  L=     w  ( $Mv`c       0  1. O   >Sp         d     Ft2L  :  k     A  E  B 4f  iozB      tg Az  B    <e t   (2DN.H  X & /  F  AH1       A  k#_  q  $  gq    a 7 `   CS  |  Z<s=x T  Z    zD*3  C   oe<e% Z # g\f  z  7     7 _7u4 gn5	 u_~- ~  k    	 5 TN  sv    6   -    M < 	fJ   W	  Zr  A    v    |    ^   ?M  Y[)  2 HL  x4   D. CA: o m:  Weq=<u0     _bsHmW .$>Ok uh H  ] N 	 P  d     S    A        "S_~   v    ; %      @@    ?   1   B, ($X _  -K l      b:        S &J I@Wuq( h  n    ^  '    t h  N  {      *+3   } +  v   } i U_:   ~0     H   >    d  M7     z #    | ru  > ).   J   0   <   Vw  M1(e( & )n  6   T u ?; [ L Y n  ;   C $cI  @ $       7 o &     )Y   C3 U !7       
+o pc  T )    |   L   (  " w&= o  i     zr       A &     Q   ` _ 5 c     |           F ( ,=2  \} Q 	t7j !      ' $ 7   Z     NTU &;  A  $  V  s ;          d   o   wj=X    fZ  W8 E 4 &    tI ? m Y  e ]k  Umsc3   "l   v_  mz G    jJ8 @M    ?<r /    wv" v  O 4I^ N  KH  1        x   39\v  &c;vc  8 J =   j _W          \ =  y       |>   8 o    C   1W   %   :    p	  ,  $bXR` +        k     \     hY_   e =   W  t  &  :     G SYRM]l  } 5[   d  qQ   lJ p    S  V2    gJ>+k    v (:E } }W S   ]N            v   HhSM t E  }J  d>h{ 5      ~   oC  ]p U     R  I5 F   q	 m    4- i`w        !        A   '         j BbAH$  O   _  5   2 &    7    `  eO      ]  ;    s0   h+   C w  * C~[  $# r %  5 @l{M  { |\ 8Z       v n /      [s      } hu } J	view_fileZ  **Analyzing Potential Matches**
+
+I've got a few code snippets to evaluate. The first, `searchDir(geminiDir); ...`, from `search_all_logs.js`, seems like it could be relevant. I'm also looking at a no-match message and then what *appears* to be a key function, the `CompositionRenderer`. I'm starting to get a sense of which candidates might be the best match.
+
+
+      2    2Created At: 2026-07-12T14:18:53Z
+Completed At: 2026-07-12T14:18:53Z
+File Path: `file:///c:/Users/Admin/Ahvaanam/scratch/real_renderer_candidate_9.tsx`
+Total Lines: 85
+Total Bytes: 5592
+Showing lines 1 to 85
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: use client');
+2:     }
+3:     if (startIdx === -1) continue;
+4:     
+5:     // Try to find if this contains the full component
+6:     const hasComponentExport = content.includes('export default function CompositionRenderer');
+7:     const hasResolveBinding = content.includes('resolveBindingValue');
+8:     const hasSectionComponents = con    am","WaitMsBeforeAsync":5000,"toolAction":"Run extract_real_file.js","toolSummary":"Executing script to locate real CompositionRenderer code candidate"}:     
+    M2         E   U f    7 g   0  z E]    >  U/  j ZD =    U 6  2" l   c/ :L  wNN   Of tS   c.x          L^ a     CEsq~ 1 	  .  h     J run_command            Created At: 2026-07-12T14:18:47Z
+Completed At: 2026-07-12T14:18:50Z
+
+				The command completed successfully.
+				Output:
+				[1] Found possible REAL code file candidate: composition_pure_match_12_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt (size: 6000)
+  Parsed Code length: 3821
+  Code Ends with:   (e) {}
+    }
+  }
+}
+
+try {
+  searchDir(geminiDir);
+} catch (err) {
+  console.error('Error:', err);
+}
+[2] Found possible REAL code file candidate: composition_pure_match_13_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt (size: 6000)
+  Parsed Code length: 5004
+  Code Ends with:   } else {
+    console.log('No match containing CompositionRenderer export was found at all!');
+  }
+}
+[3] Found possible REAL code file candidate: composition_pure_match_14_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt (size: 6000)
+  Parsed Code leng

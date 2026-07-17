@@ -1,0 +1,60 @@
+"use client";
+2: 
+3: import React, { createContext, useContext, useEffect, useRef, Suspense } from "react";
+4: import { CompositionSchema } from "@/lib/composition/types";
+5: import { loadComposition } from "@/lib/composition/loader";
+6: import { validateComposition } from "@/lib/composition/validator";
+7: import SectionRenderer from "@/components/sections/SectionRenderer";
+8: 
+9: // 1. RenderContext Definition
+10: interface RenderContextType {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool ag        ^                                                                                                                                                                                                                                                                            E #            j   
+              2             :             B             JO     *   (   0 B!
+	sessionID  -3750763034362895579H4P^Z IkRTat62IfbPjuMP3c6BgA0X  b$cb079ec8-7747-414f-b109-d9421a9d73a6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  
+   "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+              2             :             B             JO     *   (   0 B!
+	sessionID  -3750763034362895579H4P^Z IkRTat62IfbPjuMP3c6BgA0X  b$cb079ec8-7747-414f-b109-d9421a9d73a6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  
+   "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+}I will run our manifest schema verification check. This confirms that all component registries and manifests remain pristine.2(bot-4f539ee0-44f7-4da5-b49e-44db9366bd13:  
+ yvk2nsmh  run_command   {"CommandLine":"node scripts/validate-manifests.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify manifests schema","toolSummary":"Running pre-build node validation check on manifests catalog"}:     
+    M2  t  _  T0   	   g       '       C9     &   Fh <l(h    ^   W n=k Wje  C  _yzD@:Fx       d     pdeF       9IY,   (   r @    (           q  
+BN   %b  6@# Y         8I  +   )) G      =H 0o {     X/ 0:  1Uw4 n     a L+ y w    fW     a o        d        K U 1    B@      ( hsS  ` ^  &     o   \  i  J x \    #d  J D   31 F 3~    Q   V  \         #I$ J run_commandB}I will run our manifest schema verification check. This confirms that all component registries and manifests remain pristine.`    "      N     f e 
+              b$cb079ec8-7747-414f-b109-d9421a9d73a6  R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  
+   "$d2c79442-9bab-465c-a40a-56c20332cbe2   
+                    e  *  
+              b$cb079ec8-7747-414f-b109-d9421a9d73a6  R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  
+   "$d2c79442-9bab-465c-a40a-56c20332cbe2   
+                       
+  [Message] timestamp=2026-07-12T07:37:03Z sender=d2c79442-9bab-465c-a40a-56c20332cbe2/task-1312 priority=MESSAGE_PRIORITY_HIGH content=Task id "d2c79442-9bab-465c-a40a-56c20332cbe2/task-1312" finished with result:
+
+				The command completed successfully.
+			Stdout:
+			
+			Stderr:
+			
+
+Log: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1312.log   
+MRunning TypeScript compile validation on Celebration Builder changes finished   Task id "d2c79442-9bab-465c-a40a-56c20332cbe2/task-1312" finished with result:
+
+				The command completed successfully.
+			Stdout:
+			
+			Stderr:
+			
+
+Log: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1312.log  task_notification"  
+$82b6e66f-608e-4117-a07e-549849de1ca0 $d2c79442-9bab-465c-a40a-56c20332cbe2 .d2c79442-9bab-465c-a40a-56c20332cbe2/task-1312( 2             RO
+MRunning TypeScript compile validation on Celebration Builder changes finishedb  
+  
+$d2c79442-9bab-465c-a40a-56c20332cbe2  
+   
+ uh0m1d77  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript compile validation on Celebration Builder changes"}:     
+    M2 I X ,    s  ] x5[cjB   U 7Bx M 1    OsFR   BAX ]     i   <    ' N  KJ  YJ+2k    |  vyh$c    Eo = '  O %   p   |   ._      tH    & +    +   3\    t [k l   q  nUv #       r q?' z . 9    i ( :  F   I  ) kc V      x 1& ) V        :Gj)9    J run_command"  Task id "d2c79442-9bab-465c-a40a-56c20332cbe2/task-1312" finished with re

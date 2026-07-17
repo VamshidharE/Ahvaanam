@@ -1,0 +1,217 @@
+use client";
+
+import React, { useEffect, useState } from "react";
+
+interface CountdownSectionProps {
+  bindings: {
+    title?: string;
+    targetDate?: string;
+    postWeddingMessage?: string;
+  };
+}
+
+export default function CountdownSection({ bindings }: CountdownSectionProps) {
+  const { 
+    title = "Party Countdown", 
+    targetDate = "2026-12-14T19:00:00", 
+    postWeddingMessage = "The Celebration has begun!" 
+  } = bindings;
+
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isPassed, setIsPassed] = useState(false);
+
+  useEffect(() => {
+    if (!targetDate) return;
+    const targetTime = new Date(targetDate).getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const difference = targetTime - now;
+      if (difference <= 0) {
+        setIsPassed(true);
+      } else {
+        setIsPassed(false);
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        });
+      }
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, [targetDate]);
+
+  return (
+    <section 
+      className="py-20 px-6 border-b border-white/5 text-center select-none"
+      style={{ 
+        fontFamily: "var(--theme-font-body)",
+        color: "var(--theme-text)",
+        background: "rgba(139, 92, 246, 0.03)"
+      }}
+    >
+      <div className="max-w-4xl mx-auto space-y-10">
+        <div className="space-y-2">
+          <h3 
+            className="text-xs uppercase tracking-[3px] font-bold"
+            style={{ 
+              color: "var(--theme-accent)",
+              fontFamily: "var(--theme-font-heading)" 
+            }}
+          >
+            {title}
+          </h3>
+        </div>
+        {isPassed ? (
+          <p 
+            className="text-lg uppercase tracking-[1.5px] font-bold animate-pulse"
+            style={{ color: "var(--theme-accent)" }}
+          >
+            {postWeddingMessage}
+          </p>
+        ) : (
+          <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
+            {Object.entries(timeLeft).map(([label, value]) => (
+              <div 
+                key={label} 
+                className="border border-white/5 py-4 flex flex-col justify-center shadow-xs"
+                style={{ 
+                  backgroundColor: "var(--theme-card-bg)",
+                  borderColor: "var(--theme-border)",
+                  borderRadius: "var(--theme-radius-card)",
+                  shadow: "var(--theme-shadow-card)"
+                }}
+              >
+                <span 
+                  className="text-2xl md:text-3xl font-extrabold"
+                  style={{ color: "var(--theme-accent)" }}
+                >
+                  {value}
+                </span>
+                <span 
+                  className="text-[9px] uppercase tracking-[1px] font-bold mt-1"
+                  style={{ color: "var(--theme-secondary-text)" }}
+                >
+                  {label}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+  j  
+  
+                    backgroundColor: "var(--theme-card-bg)",
+                  borderColor: "var(--theme-border)",
+                  borderRadius: "var(--theme-radius-card)",
+                  shadow: "var(--theme-shadow-card)"                     backgroundColor: "var(--theme-card-bg)",
+                  borderColor: "var(--theme-border)",
+                  borderRadius: "var(--theme-radius-card)",
+                  boxShadow: "var(--theme-shadow-card)"0Q8[(   .Fix shadow CSS variable key name to boxShadow.     	    	                                                                                                           P        ~         
+               2             X  b$70fbb39b-6601-464b- E        x     
+   
+           G  2           #X  b$70fbb39b-6601-464b-9489-155dbf3e1332j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+               #    *  
+           G  2           #X  b$70fbb39b-6601-464b-9489-155dbf3e1332j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+               #    
+GI will trigger the Next.js production compiler check in the background.2(bot-70e172b4-2484-4ea7-9ef1-e1d3fa588d84BGI will trigger the Next.js production compiler check in the background.`          4 N       
+               "  
+ uann54jy  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running type checking verification check on codebase"}:     
+    M2 9     kD        E W#_ (  }    T 4      0   -  e0(^ +^<v pF j     }C *   Te     Q6I RT^ &i E  K   / L !x io Rs,  A  5D ( +  AO)    Cu    $  | < U-Z    Z    4   O  |  P J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2           ':           'B            X  b$70fbb39b-6601-464b-9489-155dbf3e1332j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                '  1  E
+               '
+  	            (
+                 
+                  4Running type checking verification check on codebase   Verify types safety             (  
+ 
+ command  npx tsc --noEmit      *  
+               "  
+ uann54jy  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running type checking verification check on codebase"}:     
+    M2 9     kD        E W#_ (  }    T 4      0   -  e0(^ +^<v pF j     }C *   Te     Q6I RT^ &i E  K   / L !x io Rs,  A  5D ( +  AO)    Cu    $  | < U-Z    Z    4   O  |  P J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2           ':           'B            X  b$70fbb39b-6601-464b-9489-155dbf3e1332j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                '  1  E
+               '
+  	            (
+                 
+                  4Running type checking verification check on codebase   Verify types safety             (  <  9
+ 
+ command  npx tsc --noEmit  npx  * Verify types safety  !  
+ 
+ command  npx tsc --noEmit   	~
+<  9
+ 
+ command  npx tsc --noEmit  npx  * Verify types safety >
+$e814890c-6b84-44e9-9783-edb10a1bb4dd        " 
+ command(npx)  F  c:\Users\Admin\Ahvaanam0 X ` '   npx tsc --noEmit   npx tsc --noEmit b              ,   
+               2             :           (B           (JN       j(   0 B!
+	sessionID  -3750763034362895579H PQZ oDFSasvpM6rnjuMP1pb0yAgX  b$70fbb39b-6601-464b-9489-155dbf3e1332j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                 
+               (             (    *  
+               2             :           (B           (JN       j(   0 B!
+	sessionID  -3750763034362895579H PQZ oDFSasvpM6rnjuMP1pb0yAgX  b$70fbb39b-6601-464b-9489-155dbf3e1332j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                 
+               (             (    
+7I will run the TypeScript compiler dry-run check again.2(bot-cbd01f1a-4ba3-4166-9c91-50d4de89678f:  
+ uann54jy  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running type checking verification check on codebase"}:     
+    M2 9     kD        E W#_ (  }    T 4      0   -  e0(^ +^<v pF j     }C *   Te     Q6I RT^ &i E  K   / L !x io Rs,  A  5D ( +  AO)    Cu    $  | < U-Z    Z    4   O  |  P J run_commandB7I will run the TypeScript compiler dry-run check again.`           "  portant information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp=2026-07-12T08:21:19Z sender=d2c79442-9bab-465c-a40a-56c20332cbe2/task-1512 priority=MESSAGE_PRIORITY_HIGH content=Task id "d2c79442-9bab-465c-a40a-56c20332cbe2/task-1512" finished with result:
+
+				The command completed successfully.
+				Output:
+				
+> ahvaanam@0.1.0 build
+> node scripts/validate-manifests.js && next build
+
+Auditing registered section manifests against canonical schema...
+    All section manifests are valid and follow the canonical schema!
+    Next.js 16.2.9 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+    Compiled successfully in 18.2s
+ o g   \       "$101c0b2b-f569-4b97-a4ec-fbae6db062c1B     1   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   0   1   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2
+     "Q         (  0 B!
+	sessionID  -3750763034362895579H  P  Z CCdSap76HNOtjuMPtoe0oQY0  : 
+ autoJe              "             (  2          5fdcae512          e033abea:       e9c821beB         R     Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  e Q         (  0 B!
+	sessionID  -3750763034362895579H  P  Z CCdSap76HNOtjuMPtoe0oQY" 436bb6dab25bb49d   gemini-default   
+ last_step_index  487  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $1a078f40-946a-45a9-a396-5f4ab1ffd19d  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false  !
+ used_claude_conservative  false   Gemini 3.5 Flash (Medium) h m f   X       "$101c0b2b-f569-4b97-a4ec-fbae6db062c1B     1   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   0   1   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2
+     "P         (  0 B!
+	sessionID  -3750763034362895579H P  Z BSdSatysOfLjjuMPhf7e-As0  : 
+ autoJe              "             (  2          e033abea2          59217561:       e9c821beB         R     Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  d P         (  0 B!
+	sessionID  -3750763034362895579H P  Z BSdSatysOfLjjuMPhf7e-As" 15958f4ebc0e88d9   gemini-default  !
+ used_claude_conservative  false   
+ last_step_index  485  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $1a078f40-946a-45a9-a396-5f4ab1ffd19d  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false   Gemini 3.5 Flash (Medium) f i e   P       "$101c0b2b-f569-4b97-a4ec-fbae6db062c1B     1   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   0   1   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2
+     "P     .   (  0 B!
+	sessionID  -3750763034362895579H P  Z AydSau2FE-2tjuMPkfLogA00  : 
+ autoJd              "             (  2          592175612          e90ef127:       e9c821beB       .R     Z       hb     xzw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  c P     .   (  0 B!
+	sessionID  -3750763034362895579H P  Z AydSau2FE-2tjuMPkfLogA0" ead488dae1d44b2   gemini-default  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $1a078f40-946a-45a9-a396-5f4ab1ffd19d  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claud

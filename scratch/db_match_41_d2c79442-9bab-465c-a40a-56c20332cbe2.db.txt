@@ -1,0 +1,123 @@
+"use client";
+
+import React from "react";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+
+interface CelebrantSectionProps {
+  bindings: {
+    name?: string;
+    age?: number;
+  };
+  layoutId?: string;
+}
+
+export default function CelebrantSection({ bindings, layoutId }: CelebrantSectionProps) {
+  const { name = "Celebrant Name", age = 25 } = bindings;
+
+  return (
+    <LayoutWrapper
+      layoutId={layoutId}
+      defaultLayoutId="story-stack"
+      className="py-24 px-6 max-w-5xl mx-auto border-b border-white/5 text-center select-none"
+      style={{ 
+        fontFamily: "var(--theme-font-body)",
+        color: "var(--theme-text)"
+      }}
+    >
+      <div className="max-w-2xl mx-auto space-y-3">
+        <h2 
+          className="text-xs uppercase tracking-[3px] font-bold"
+          style={{ color: "var(--theme-accent)" }}
+        >
+          The Celebrant
+        </h2>
+        <p 
+          className="text-3xl md:text-4xl font-extrabold uppercase tracking-[0.5px]"
+          style={{ fontFamily: "var(--theme-font-heading)" }}
+        >
+          Meet the Birthday Star
+        </p>
+      </div>
+
+      <div 
+        className="border border-white/5 p-8 md:p-12 max-w-xl mx-auto space-y-6 w-full"
+        style={{ 
+          backgroundColor: "var(--theme-card-bg)",
+          borderRadius: "var(--theme-radius-card)",
+          borderColor: "var(--theme-border)",
+          boxShadow: "var(--theme-shadow-card)"
+        }}
+      >
+        <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-tr from-amber-400 to-purple-600 p-1">
+          <div className="w-full h-full rounded-full bg-[#130B1E] flex items-center justify-center text-4xl">
+                
+          </div>
+        </div>
+        <div className="space-y-2">
+          <h3 className="text-2xl font-bold">{name}</h3>
+          <p 
+            className="text-xs uppercase tracking-[2px] font-bold"
+            style={{ color: "var(--theme-accent)" }}
+          >
+            Turning {age} Years Young
+          </p>
+        </div>
+        <p 
+          className="text-xs max-w-md mx-auto leading-relaxed font-sans font-medium"
+          style={{ color: "var(--theme-secondary-text)" }}
+        >
+          Join us as we raise a toast to another year of accomplishments, laughter, and beautiful memories!
+        </p>
+      </div>
+    </LayoutWrapper>
+  );
+}
+    ?Update celebrant visual layout section to support MotionWrapper    t LotusSerenityLayout from "../../../components/templates/lotus-serenity/Layout";
+import MarigoldLayout from "../../../components/templates/marigold/Layout";
+import PeacockLayout from "../../../components/templates/peacock/Layout";
+import HeritageLayout from "../../../components/templates/heritage/Layout";
+import MoonlightLayout from "../../../components/templates/moonlight/Layout";
+import GrandMandapLayout from "../../../components/templates/grand-mandap/Layout";
+import ModernBirthdayLayout from "../../../components/templates/modern-birthday/Layout";
+import PremiumBirthdayTemplateLayout from "../../../components/templates/birthday-premium/Layout";
+
+function InviteContent({ clientId }: { clientId: string }) {
+  const { invitationData, loading } = useInvitationData();
+
+  React.useEffect(() => {
+    if (loading || !invitationData) return;
+
+    // Asynchronous view recording
+    const recordView = async () => {
+      try {
+        let visitorToken = localStorage.getItem("ahvaanam_visitor_token");
+        if (!visitorToken) {
+          if (typeof crypto !== "undefined" && crypto.randomUUID) {
+            visitorToken = crypto.randomUUID();
+          } else {
+            visitorToken = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+              const r = (Math.random() * 16) | 0,
+                v = c === "x" ? r : (r & 0x3) | 0x8;
+              return v.toString(16);
+            });
+          }
+          localStorage.setItem("ahvaanam_visitor_token", visitorToken);
+        }
+
+        await fetch(`/api/invitation/${clientId}/view`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ visitor_token: visitorToken }),
+        });
+      } catch (err) {
+        console.error("Failed to record analytics view:", err);
+      }
+    };
+
+    recordView();
+  }, [clientId, loading, invitationData]);
+
+  if (loading || !invitationData) {
+    return (
+      <div className="min-h-screen bg-[#05020B] flex items-center justify-center text-center">
+        <div cla

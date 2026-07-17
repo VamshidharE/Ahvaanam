@@ -1,0 +1,76 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { ToggleLeft, ToggleRight } from "lucide-react";
+import CompositionRenderer from "@/components/composition/CompositionRenderer";
+import { getWeddingComposition } from "@/lib/composition/templates";
+import { useInvitationData } from "../../context/InvitationDataContext";
+import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+
+// --- TEMPLATE SPECIFIC PARTICLES ---
+import React, { useRef } from "react";
+const royaltempleParticles = () => null;
+
+
+export default function RoyalTempleLayout({ onBackToHub }: { onBackToHub: () => void }) {
+  const { invitationData } = useInvitationData();
+  const [useCompositionRenderer, setUseCompositionRenderer] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setUseCompositionRenderer(localStorage.getItem("useCompositionRenderer") === "true" ||
+        new URLSearchParams(window.location.search).get("useCompositionRenderer") === "true");
+    }
+  }, []);
+
+  const handleToggleRenderer = () => {
+    const nextVal = !useCompositionRenderer;
+    setUseCompositionRenderer(nextVal);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("useCompositionRenderer", String(nextVal));
+    }
+  };
+
+  if (!invitationData) return null;
+
+  if (useCompositionRenderer) {
+    const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+    const config = isWrapped ? (invitationData as any).config : invitationData;
+    const comp = getWeddingComposition(config);
+    return (
+      <div className="min-h-screen text-white relative overflow-hidden select-none" style={{ backgroundColor: "var(--theme-bg, #0C0714)" }}>
+        <CompositionRenderer composition={comp} invitationData={invitationData} />
+        <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 select-none pointer-events-auto">
+          <button
+            onClick={handleToggleRenderer}
+            className="flex items-center gap-2 px-4 py-2.5 bg-black/60 hover:bg-black/80 backdrop-blur-md text-white rounded-full shadow-lg border border-purple-500/20 text-[10px] font-bold uppercase tracking-[1px] transition-all cursor-pointer"
+            title="Switch Renderer Engine"
+          >
+            <ToggleRight size={16} className="text-[#C49B27]" />
+            <span>Composer Engine</span>
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <LegacyOrchestrator
+        themeId="royal-temple"XP`          and `app/templates`) to see if there are page files that we should inspect or restore.   **Revisiting Contact and Workflow**
+
+I'm focusing now on replicating the website's contact page. I've broken down the key elements from the provided screenshot: the "LET'S CREATE YOUR STORY" headline, the "STUDIO INFO" section (email, call, response time, location) and, crucially, the "ENQUIRY FORM". Additionally, I'm working to reconstruct the "HOW IT WORKS" page.
+
+
+2(bot-10968581-19c0-4892-9aea-2080fdda7ddc:  
+ yi7obhyl  list_dir   {"DirectoryPath":"c:\\Users\\Admin\\Ahvaanam\\app\\contact","toolAction":"List app/contact directory","toolSummary":"Checking for contact page files in app/contact"}:     
+    M2 % t    f  .w   c n(   6   \ o     >      kl}  4&`p?`2  < E    Jp  [8    D  UX 8I/  h_    TR  5  I Z 0    k?} sh  V   j wI)k  '#yJ         _ W ;    m  _] CpV c*          B I ,%;SD  A o    Rv   : , 5    ] 18}R   6( W ~~  Br    KEO ^>  | m; ?  KM      RL  !-     ?)  w i^  kU     f f U(#     ) n -     L   X #Y=+\ R  s      *  $   UXW 5 _  2    - q   Q Vr    m       z           q p   l
+     M  ` t      % 	  ?? 1uxW j o O           s	x IZ*     )	     O^ d  }HQz   g   h i    *     9 3  z   g " } = > >GN>   O8`%   9, I   \    ?   RPWQ   c"  n  '   ! $  E  O  9d I>   5,{ `     r +*   R  8B 7>WY  K e QL   B $  A    Bn  
+     i         3 N oS. O$$     Oy g   LJ @  [ ,&  b ]  O7  u "  4-  >    l      Y       x  D 1  - ?t   >  Ox  m  b D;,      = X^   ) "  N 
+ W   J e n    bq2"  IzAOb   J  _   G      , Up*     p
+ ~ `  n [u "  k9  u e F[Y   Fhm [ 
+ FX@aq     X A 
+E[2K -L /2                A  [    D
+1 U        /! E? %87  	 a} <oF 	      | W  E [    ]B   ^  (A   !      R A  ?  @   [f9 HD   ;0E  q   {   |   3       x  
+7&5   Z    O l 6    4  hz   e  s  e                 r]-)  J   U    }6  A      U8    N          Q  /V( {s m         -    H    ?   <  uH   6aV      0          !   T   q; 3 OP
+E     E i  :  w <  ZL    s     >    3z     f      3 M    >  [   N   i N\ R{  d     

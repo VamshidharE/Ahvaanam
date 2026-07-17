@@ -1,0 +1,133 @@
+../sections/rsvp" from file 'C:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx'
+    Matched by include pattern '**/*.tsx' in 'C:/Users/Admin/Ahvaanam/tsconfig.json'
+components/shared/LegacyOrchestrator.tsx(18,24): error TS2307: Cannot find module '../sections/faq' or its corresponding type declarations.
+components/shared/LegacyOrchestrator.tsx(20,27): error TS2307: Cannot find module '../sections/footer' or its corresponding type declarations.
+components/shared/LegacyOrchestrator.tsx(89,47): error TS2322: Type '{ key: "couple"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & CoupleSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & CoupleSectionProps'.
+components/shared/LegacyOrchestrator.tsx(91,50): error TS2322: Type '{ key: "countdown"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes'.
+  Property 'properties' does not exist     on type 'IntrinsicAttributes'.
+components/shared/LegacyOrchestrator.tsx(93,46): error TS2322: Type '{ key: "story"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & StorySectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & StorySectionProps'.
+components/shared/LegacyOrchestrator.tsx(97,48): error TS2322: Type '{ key: "gallery"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes'.
+components/shared/LegacyOrchestrator.tsx(99,46): error TS2322: Type '{ key: "venue"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes'.
+components/shared/LegacyOrchestrator.tsx(101,49): error TS2322: Type '{ key: "families"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & FamiliesSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FamiliesSectionProps'.
+components/shared/LegacyOrchestrator.tsx(103,45): error TS2322: Type '{ key: "rsvp"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes'.
+components/shared/LegacyOrchestrator.tsx(107,50): error TS2322: Type '{ key: "dressCode"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & DressCodeSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & DressCodeSectionProps'.
+components/templates/birthday-premium/Layout.tsx(278,25): error TS2304: Cannot find name 'getBirthdayComposition'.
+components/templates/birthday-premium/Layout.tsx(278,58): error TS2304: Cannot find name 'getWeddingComposition'.
+components/templates/birthday-premium/Layout.tsx(281,10): error TS2552: Cannot find name 'CompositionRenderer'. Did you mean 'useCompositionRenderer'?
+components/templates/birthday-premium/Layout.tsx(288,14): error TS2304: Cannot find name 'ToggleRight'.
+components/templates/birthday-premium/Layout.tsx(780,12): error TS2304: Cannot find name 'ToggleLeft'.
+components/templates/floral-garden/Layout.tsx(5,33): error TS2307: Cannot find module '@/components/composition/CompositionRenderer' or its corresponding type declarations.
+components/templates/grand-mandap/Layout.tsx(5,33): error TS2307: Cannot find module '@/components/composition/CompositionRenderer' or its corresponding type declarations.
+components/templates/heritage/Layout.tsx(5,33): error TS2307: Cannot find module '@/components/composition/CompositionRenderer' or its corresponding type declarations.
+components/templates/lotus-serenity/Layout.tsx(5,33): error TS2307: Cannot find module '@/components/composition/CompositionRenderer' or its corresponding type declarations.
+components/templates/marigold/Layout.tsx(5,33): error TS2307: Cannot find module '@/components/composition/CompositionRenderer' or its corresponding type declarations.
+components/templates/moonlight/Layout.tsx(5,33): error TS2307: Cannot find module '@/components/composition/CompositionRenderer' or its corresponding type declarations.
+components/templates/palace-luxury/Layout.tsx(5,33): error TS2307: Cannot find module '@/components/composition/CompositionRenderer' or its corresponding type declarations.
+components/templates/peacock/Layout.tsx(5,33): error TS2307: Cannot find module '@/components/composition/CompositionRenderer' or its corresponding type declarations.
+components/templates/royal-temple/Layout.tsx(5,33): error TS2307: Cannot find module '@/components/composition/CompositionRenderer' or its corresponding type declarations.
+components/templates/south-indian/Layout.tsx(5,33): error TS2307: Cannot find module '@/components/composition/CompositionRenderer' or its corresponding type declarations.
+lib/composition/templates.ts(1,48): error TS2307: Cannot find module './types' or its corresponding type declarations.
+   npx tsc --noEmit   npx tsc --noEmit             v d  S  O b ZYN   g( A 7E  Ot:  RdDz i      7  M    l"j   # 7 J    Ct  f   H f    ^   >(qU  o'0 H AI
+}     !  K ~   Tx  J  W DkL nO   6#f        \Z  2  	0   .  O;  :  \   X<  1y x   kSwt ~  "4 8 U  r   QA    =]    X Oj    <|:U& j  Cl   | rnSYM  q Rf q       5   S8  yqU ;    $Q # ' O     ] m N' o :>"% 4      DV P * t<    2 
+}Aanq  W  ,   2 ?I l, D{d {    t 3    1\d     
+   R +
+     61   5%  X 42@L-   \M %    DE    A yx  ?    ->       4   ]  d c  L d$ \o       l   + _T :
+aG:q   u  YG  ! - 9 l:>B'  * 6   
+6   Q  z. D  b  Z[   ~#)#    !        ; e ] o  zU     < 0S    $nR    G     X e H    O*|  hB    > D %2& >Tr   DK 7i      u_ (X   C 2  o  L = `   $|$  J    (  II+   m "   X     "$9f6664e0-322c-4f52-981a-15ffbb18e59fB     2   0   2   2   2   2   2   2   1   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   1   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2
+     "P         (   0 B!
+	sessionID  -3750763034362895579H  P#Z RCJSaqGYMrrojuMPreaJ4Aw0G: 
+ autoJa              "             (G2  G      d27823b92  F      eafe5d7e:       e9c821beB  D    xR    	Z         b     <zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  d P         (   0 B!
+	sessionID  -3750763034362895579H  P#Z RCJSaqGYMrrojuMPreaJ4Aw" 1a6b0d6f3aa2172b   gemini-default  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $67478a15-6234-4d23-a784-3479c0b12ab0  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  345   Gemini 3.5 Flash (Medium) f n !   Z       "$9f6664e0-322c-4f52-981a-15ffbb18e59fB     2   0   2   2   2   2   2   2   1   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   1   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2
+     "O         (   0 B!
+	sessionID  -3750763034362895579H2PVZ ACJSas6GGMidjuMPupCdoAw0F: 
+ autoJb              "             (F2  F      eafe5d7e2  D      25e135e1:       e9c821beB         R    	Z         b     Dzw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  c O         (   0 B!
+	sessionID  -3750763034362895579H2PVZ ACJSas6GGMidjuMPupCdoAw" e8f6a04e926cc78a   gemini-default   
+ last_step_index  343  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $67478a15-6234-4d23-a784-3479c0b12ab0  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false  !
+ used_claude_conservative  false   Gemini 3.5 Flash (Medium) g k     T       "$9f6664e0-322c-4f52-981a-15ffbb18e59fB     2   0   2   2   2   2   2   2   1   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   1   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2
+     "N       n(   0 B!
+	sessionID  -3750763034362895579H PYZ -SFSaovGM-nJjuMP1_fWgQw0D: 
+ autoJa              "            (D2  D      25e135e12  B      2edb1370:       e9c821beB         R    	Z         b     9zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  b N       n(   0 B!
+	sessionID  -3750763034362895579H PYZ -SFSaovGM-nJjuMP1_fWgQw" 8095d55d385dea45   gemini-default   
+ last_step_index  341  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $67478a15-6234-4d23-a784-3479c0b12ab0  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false  !
+ used_claude_conservative  false   Gemini 3.5 Flash (Medium) d    #     4   G `   +8
+3+  2 kzR  )D-  rK?  *.7$        q    a     :y IP^  mk  {`8   H)     M 8 62    Z   I     X       mV! /   hu5  ZP   c  _mn       kp H  u  r    R   Q    H   8 w  c  l     1   H [ r  ^ "            3  X1 K +Z   v  l  E      /0    +  d 	 t    9      - c  A  Y#C 5 A=  #        A    f ;Ipr Ir#    2 X  Q  ~MjQT  =    wn d k v    
+Ec  $     ^a8!4   ? -  P )  [ Tf    f[22 ,     )      ]      U ,Jk    M T      Wh n  F~     H  |? /+  k   w  :{  d Y\_:    5e       x bR h       W A       r     FH E	e0    $b6g   	   {U  Y d     > w  M `    Hl % LJ # _* P  :% E OrE            J pp #  c8 Yw}Z      s l/       +    k.j s  XY? < ' G     z k    3  M u.  T  9o l  
+ -|2"Lf  "V8     6    }     Q5sM   { we    w1  1v );  c[   v 75#5  5T :   ^      yl D  N   %  :FV  /Z (W / <(k         5     }  g   j   g{z            0 4           '    S  ,\     }-      9 1K  e S  ) 5e     Z)  8   }  ( -      3  W 3   r  r.3         <V  `9   zk  OS   l     (   J    b      
+ ? z6 n76 u       5 P   k   J    D zM+  Mk 
+ 6m  
+{ X   @R      E{C  KgV K  2   F   b    M  7  .Z8_O3   ![ 0> 6  \;T   B  ?G{~ '  (   M x*=G      [ * -  0 + m nV  m8  5 I-%6 V b3    U fx 'z  W    |XU6C9c       [&0  \& 9c^  8W  n  F       s   !U y 4   ? ;      S];' #*9  v -:     T  8   E  @    In       $   /    t   eL  t X G '  l!     {E18 I	8 U V*  P -I-    Dr  M     Tv l     m E 5    m   #  ( D  v + 33   T A     :O^ )R  A fw E uL Nxq     *   6k  [ D a}0L%   `K   r 8N s  Q u <1 . 4 B (      |]   ;D         4   &Y    B        x  ,   1O  JI   h> 7    h   F<     G     j%i kj  :   @  K      .    ~_P   8X  f>   $&@j;  hB 8  n  T m7| U S L  ]T   ;s  n \ V     w     y 5  r    b-)N       Q !\  "         vxk  l  VO      :k    {tR   }T   QA/m n  ,Y U     a;      0    A . ! 2 . }Q VB  y  D$$ m Dn N}]v t   J  ! 6o $  / w i  ;g   < ;          Q<\b s pr  |    k-b }     Z!P    <>  |L B        0   .T  * u 9   ,G u F j@   
+X 7 e     H !  ;zH X O%    _5   k  xJ  D    | v  C[     (  G   n    R   J:   I  [  X   of  &b5~& Y pa  I 7N  F<      t]
+K F  r ) x H  VN     z  V )D  X Si ,S   5  	     }  2    Z  g1?([ b)  +;lqE   1R      WgR  A ; Mr    r200(      8    ;   t          | J 5>  >           YL\ s  I$|,    51]*YWD       xd    T    D [    IZ  x   'e xD $Mh      - $. a   R	     9  R fp r_;+ Y< MV     CHXH /{          "    <   U 3   7 c    ! W        M*S  O   /   &*Y h  W  ? o^ 2E>Hy9  = j      I5t1} Bwp6@   ,# #qZ      7 ;n 2 a   f   l  c   x  >rX.  H   D     R  j 2 J=  9 p !  ) A    * /E     J   1 3 A   @      iC }    O  K    ``    X" W   vOjqo Q   3      Z    p     :     %K  XB        , i q d 1  Tm 2P T   h    C    w M  zc     s      \ !    ujoo K  R`      < x A1^ qE    2Q     %  q        h    ;[         Q k H 2F   F  2     P R\  {    V 6 7r  ^m  b  Pd  l   ]  v f@t    .5hRa2  ; #|m   =  2f)  q   &
+ ^      EI  v     Q D        tw   "      ^Q  ]g  ) _j R h  F  D         V    
+   4 L  n  $f  U     6  k 3 +  |    z   J  
+ nO  -  Bv   k  zGR *  % $   S  :S   Ju  u $ Ni C     zg  o' G  .(2  0 B E;#   Y\#j4    V  ]	    >W  /s S zW[ /      :p  V} 2    J X   _ <! d    Du         F  yo n g[)n   T { )V      K  x      &  "#   & z[  If              MI  
+  Ul R    B[ p  Gy     $	< Ta?   2
+P H<<U  x
+ " s       mZ N    v g0  i w# Hb  n^ z    W6  "   h p     J/            *   :   -G  '                o   	  T  G   e Z  v 1   i   0F gG/X          { 4     pXMP    X  jT f   `       k` ?8    :A  p  ,7 h  7sO V   eI v   -  F   D    | J list_dir*DirectoryPath*
+toolAction* toolSummary2             :             B             X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    +  6
+                 
+                 
+                   9Listing components folder to see available subdirectories   List components directory               z  
+*file:///c:/Users/Admin/Ahvaanam/components  
+
+Footer.tsx    
+ Hero.tsx     
+
+background    
+ composition    
+ context    
+ data    
+ effects    
+ hero    
+ home    
+ layouts   
+
+ motion    
+ rsvp    
+ sections   
+
+ shared   
+	templates   	
+ theme   	
+ types    
+ ui   m                                                                                                                                                                                                                                    x            j   
+               2             :             B             JN         (   0 B!
+	sessionID  -3750763034362895579H%PsZ 0TRSau-NGJ3jjuMP2fKMKAX  b$4d494374-7d8c-4205-8fb2-aae7c166e76bj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+               2             :             B             JN         (   0 B!
+	sessionID  -3750763034362895579H%PsZ 0TRSau-NGJ3jjuMP2fKMKAX  b$4d494374-7d8c-4205-8fb2-aae7c166e76bj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+qI will view lines 110 to 138 of `app/invites/[id]/page.tsx` to read the rest of the template router switch cases.2(bot-44170556-f3d1-4426-a6da-fa2a73062806:  
+ 7w4sn113 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\app\\invites\\\\[id]\\page.tsx","EndLine":138,"StartLine":110,"toolAction":"View page.tsx templates list continued","toolSummary":"Viewing remaining templates routing switch cases in page.tsx"}:     
+    M2  #   	$^ oS% ])  /  L 9+      9g  %     !g _  F       n     9   < /YNPl3 F  =  _O,)4 u \6       |I    p  o b  F    HxOl O     e  '$   2  z& Dq\  !   `El   UWb  	{   " z&SJ	view_fileBqI will view lines 110 to 138 of `app/invites/[id]/page.tsx` to read the rest of the template router switch cases.`   	    	        6  
+               "  
+ 7w4sn113 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaana

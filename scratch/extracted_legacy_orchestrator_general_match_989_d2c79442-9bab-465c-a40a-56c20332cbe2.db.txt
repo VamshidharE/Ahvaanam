@@ -1,0 +1,117 @@
+re_cleanup_report.md             u    *  
+           7  "  
+ 3jps7su0 write_to_file   {"ArtifactMetadata":{"RequestFeedback":false,"Summary":"Final architecture cleanup report detailing the split of LegacyOrchestrator into Audio, Background, Loading, Pipeline, Frame, Scroll, and Share sub-orchestrators.","UserFacing":true},"CodeContent":"# Final Architecture Cleanup Report\n\nThis report documents the modular file sizes, distinct responsibilities, and resolved technical debt for the split orchestrator architecture under the `components/shared/orchestrator/` folder.\n\n---\n\n## 1. File Sizes \u0026 Responsibilities\n\nEach sub-orchestrator component has been designed around the **Single Responsibility Principle (SRP)**:\n\n| Component File Path | Approximate File Size | Direct Architectural Responsibility |\n| :--- | :--- | :--- |\n| **[AudioOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/AudioOrchestrator.tsx)** | **1KB** | Handles background music element mount and play/pause controls. |\n| **[BackgroundEffects.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/BackgroundEffects.tsx)** | **0.5KB** | Mounts and toggles template particles ca    nvas animations. |\n| **[LoadingExperience.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/LoadingExperience.tsx)** | **0.8KB** | Orchestrates fading loading overlays on startup. |\n| **[SectionPipeline.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/SectionPipeline.tsx)** | **3KB** | Maps the ordered list of section IDs directly to their visual components. |\n| **[TemplateFrame.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/TemplateFrame.tsx)** | **0.8KB** | Configures borders, outer layouts, and back-to-hub buttons. |\n| **[ScrollController.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/ScrollController.tsx)** | **0.5KB** | Enforces HTML anchor scroll smoothness options. |\n| **[ShareController.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/ShareController.tsx)** | **0.8KB** | Mounts floating WhatsApp/copy page link controls. |\n| **[index.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/index.tsx)** | **1.8KB** | Coordinates the sub-orchestrators in a clean coordinator component. |\n\n---\n\n## 2. Technical Debt Status\n\n* **Zero Duplication**: Shared layout tasks (countdown math, lightbox gallery state) are completely offloaded to the respective standalone section components.\n* **Refactoring Legacy Code**: The old `LegacyOrchestrator.tsx` now functions solely as a re-export layer to guarantee backwards-compatibility with template layouts, keeping files extremely clean and modular.\n","Description":"Create final_architecture_cleanup_report.md report documenting split layout details.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\final_architecture_cleanup_report.md","toolAction":"Create final_architecture_cleanup_report.md","toolSummary":"Creating final architecture report in artifact directory"}:     
+    M2 KJzt<^Wc  S t%   G4 <}A    7  4 v  <nr ]& x`   F
+    # / _m     M    :  7X_(s U e   )ot D  X8Y  N  ,t v   ; 7  d    s  &  2xB  ;@ r  6bi   
+ 1 X    k   SK v) , s n  B  PQ  i  ( CX    % A^ G; cWGi7q2H  )  2  ]  K3   kn	 J I y   nz   q    bY3  O;      ]+ f   #       \?
+   :e      @    q     s   Vu*    ~wR           / `PS zS  S M  y  a Jwrite_to_file* ArtifactMetadata* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2           t:           tB             X  b$c37b2554-95f0-4425-9165-ee14242d5814j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                t      4
+               t
+               v
+                   8Creating final architecture report in artifact directory  +Create final_architecture_cleanup_report.md             uR *
+     
+  # Final Architecture Cleanup Report
+
+This report documents the modular file sizes, distinct responsibilities, and resolved technical debt for the split orchestrator architecture under the `components/shared/orchestrator/` folder.
+
+---
+
+## 1. File Sizes & Responsibilities
+
+Each sub-orchestrator component has been designed around the **Single Responsibility Principle (SRP)**:
+
+| Component File Path | Approximate File Size | Direct Architectural Responsibility |
+| :--- | :--- | :--- |
+| **[AudioOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/AudioOrchestrator.tsx)** | **1KB** | Handles background music element mount and play/pause controls. |
+| **[BackgroundEffects.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/BackgroundEffects.tsx)** | **0.5KB** | Mounts and toggles template particles canvas animations. |
+| **[LoadingExperience.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/LoadingExperience.tsx)** | **0.8KB** | Orchestrates fading loading overlays on startup. |
+| **[SectionPipeline.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/SectionPipeline.tsx)** | **3KB** | Maps the ordered list of section IDs directly to their visual components. |
+| **[TemplateFrame.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrat    or/TemplateFrame.tsx)** | **0.8KB** | Configures borders, outer layouts, and back-to-hub buttons. |
+| **[ScrollController.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/ScrollController.tsx)** | **0.5KB** | Enforces HTML anchor scroll smoothness options. |
+| **[ShareController.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/ShareController.tsx)** | **0.8KB** | Mounts floating WhatsApp/copy page link controls. |
+| **[index.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/index.tsx)** | **1.8KB** | Coordinates the sub-orchestrators in a clean coordinator component. |
+
+---
+
+## 2. Technical Debt Status
+
+* **Zero Duplication**: Shared layout tasks (countdown math, lightbox gallery state) are completely offloaded to the respective standalone section components.
+* **Refactoring Legacy Code**: The old `LegacyOrchestrator.tsx` now functions solely as a re-export layer to guarantee backwards-compatibility with template layouts, keeping files extremely clean and modular.
+ |*zfile:///c:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/final_architecture_cleanup_report.md     
+         '
+## Final Architecture Cleanup Report         
+  This report documents the modular file sizes, distinct responsibilities, and resolved technical debt for the split orchestrator architecture under the `components/shared/orchestrator/` folder.        
+ ---       '
+### 1. File Sizes & Responsibilities       k
+gEach sub-orchestrator component has been designed around the **Single Responsibility Principle (SRP)**:       Y
+U| Component File Path | Approximate File Size | Direct Architectural Responsibility |    
+ | :--- | :--- | :--- |     
+  | **[AudioOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/AudioOrchestrator.tsx)** | **1KB** | Handles background music element mount and play/pause controls. |     
+  | **[BackgroundEffects.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/BackgroundEffects.tsx)** | **0.5KB** | Mounts and toggles template particles canvas animations. |     
+  | **[LoadingExperience.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/LoadingExperience.tsx)** | **0.8KB** | Orchestrates fading loading overlays on startup. |     
+  | **[SectionPipeline.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/SectionPipeline.tsx)** | **3KB** | Maps the ordered list of section IDs directly to their visual components. |     
+  | **[TemplateFrame.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/TemplateFrame.tsx)** | **0.8KB** | Configures borders, outer layouts, and back-to-hub buttons. |     
+  | **[ScrollController.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/ScrollController.tsx)** | **0.5KB** | Enforces HTML anchor scroll smoothness options. |     
+  | **[ShareController.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/ShareController.tsx)** | **0.8KB** | Mounts floating WhatsApp/copy page link controls. |     
+  | **[index.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/index.tsx)** | **1.8KB** | Coordinates the sub-orchestrators in a clean coordinator component. |        
+ ---        
+ ## 2. Technical Debt Status         
+  * **Zero Duplication**: Shared layout tasks (countdown math, lightbox gallery state) are completely offloaded to the respective standalone section components.     
+  * **Refactoring Legacy Code**: The old `LegacyOrchestrator.tsx` now functions solely as a re-export layer to guarantee backwards-compatibility with template layouts, keeping files extremely clean and modular.      Bzfile:///c:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/final_architecture_cleanup_report.mdX             Final architecture cleanup report detailing the split of LegacyOrchestrator into Audio, Background, Loading, Pipeline, Frame, Scroll, and Share sub-orchestrators."           t8   TCreate final_architecture_cleanup_report.md report documenting split layout details.    hitecture Cleanup.","UserFacing":false},"CodeContent":"# Final Architecture Cleanup Tasks\n\n- `[x]` Audit `LegacyOrchestrator.tsx`\n- `[x]` Split component into orchestrator sub-components (AudioOrchestrator, BackgroundEffects, LoadingExperience, SectionPipeline, TemplateFrame, ScrollController, ShareController)\n- `[x]` Set up coordinator entry point in `orchestrator/index.tsx`\n- `[x]` Configure `LegacyOrchestrator.tsx` as a re-export layer\n- `[x]` Write visual design and file audit report at `final_architecture_cleanup_report.md`\n- `[x]` Run TypeScript and build compile checks\n","Description":"Update task checklist to complete for Final Architecture Cleanup","Overwrite":true,"TargetFile":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\task.md","toolAction":"Update task.md in artifact folder","toolSummary":"Checking off tasks in task.md within artifact directory"}:     
+    M2  b  q    6  3    N),A  R  @  qQ   b     J  ^     P        +M %   $        Hd *    ( ;   W2      0de QG  ):         (}?Mp    * #N  8,kV   :  6I %  x9 h   L j   Z     .M     wZ `   6 c_ <Bj           PO ;  L O      8Eu f/}1T  <N 9J $3S   Aj.   7   G   4{ ]Jwrite_to_file* ArtifactMetadata* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$c37b2554-95f0-4425-9165-ee14242d5814j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   7Checking off tasks in task.md within artifact directory  !Update task.md in artifact folder               R  
+     
+  # Final Architecture Cleanup Tasks
+
+- `[x]` Audit `LegacyOrchestrator.tsx`
+- `[x]` Split component into orchestrator sub-components (AudioOrchestrator, BackgroundEffects, LoadingExperience, SectionPipeline, TemplateFrame, ScrollController, ShareController)
+- `[x]` Set up coordinator entry point in `orchestrator/index.tsx`
+- `[x]` Configure `LegacyOrchestrator.tsx` as a re-export layer
+- `[x]` Write visual design and file audit report at `final_architecture_cleanup_report.md`
+- `[x]` Run TypeScript and build compile checks
+ _*]file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/task.md     
+           '
+## Architecture Cleanup Sprint Tasks   &
+"# Final Architecture Cleanup Tasks       5
+1- `[x]` Audit every template Layout.tsx component   c
+_- `[x]` Build shared LegacyOrchestrator component at `components/shared/LegacyOrchestrator.tsx`   [
+W- `[x]` Centralize countdown calculations, date parsing, lightboxes, and music controls   W
+S- `[x]` Refactor all 12 template layouts into thin composition orchestration shells   \
+X- `[x]` Write template business logic audit report at `template_business_logic_audit.md`   *
+&- `[x]` Audit `LegacyOrchestrator.tsx`     
+  - `[x]` Split component into orchestrator sub-components (AudioOrchestrator, BackgroundEffects, LoadingExperience, SectionPipeline, TemplateFrame, ScrollController, ShareController)   F
+B- `[x]` Set up coordinator entry point in `orchestrator/index.tsx`   C
+?- `[x]` Configure `LegacyOrchestrator.tsx` as a re-export layer   _
+[- `[x]` Write visual design and file audit report at `final_architecture_cleanup_report.md`   3
+/- `[x]` Run TypeScript and build compile checks      B]file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/task.mdR  # Architecture Cleanup Sprint Tasks
+
+- `[x]` Audit every template Layout.tsx component
+- `[x]` Build shared LegacyOrchestrator component at `components/shared/LegacyOrchestrator.tsx`
+- `[x]` Centralize countdown calculations, date parsing, lightboxes, and music controls
+- `[x]` Refactor all 12 template layouts into thin composition orchestration shells
+- `[x]` Write template business logic audit report at `template_business_logic_audit.md`
+- `[x]` Run TypeScript and build compile checks
+       H 8Completed task checklist for Final Architecture Cleanup."               @Update task checklist to complete for Final Architecture Cleanup                                                                                     ' X      ~     H   
+               2             X  b$c37b2554-95f0-4425-9165-ee14242d5814j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+               2             X  b$c37b2554-95f0-4425-9165-ee14242d5814j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     
+ I have successfully completed the **Final Architecture Cleanup**, split the `LegacyOrchestrator.tsx` component into modular, single-responsibility sub-orchestrators, and converted the original file into a backwards-compatible coordinator re-export layer.
+
+Here is a summary of the accomplishments:
+
+### 1. Modular Sub-Orchestrators Package
+We built the modular layout files under `components/shared/orchestrator/`:
+* **[AudioOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/AudioOrchestrator.tsx)** (1KB): Audio mounting and state triggers.
+* **[BackgroundEffects.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/BackgroundEffects.tsx)** (0.5KB): Toggle for canvas backdrop particles.
+* **[LoadingExperience.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/LoadingExperience.tsx)** (0.8KB): Fade overlays on page loading.
+* **[SectionPipeline.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/SectionPipeline.tsx)** (3KB): Or

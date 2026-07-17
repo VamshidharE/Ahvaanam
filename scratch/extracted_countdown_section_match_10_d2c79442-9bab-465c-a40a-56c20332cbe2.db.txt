@@ -1,0 +1,101 @@
+use client";       7
+3import React, { useEffect, useState } from "react";       %
+!interface CountdownSectionProps {    
+  bindings: {    
+     title?: string;    
+     targetDate?: string;   $
+     postWeddingMessage?: string;    
+   };    
+ }       S
+Oexport default function CountdownSection({ bindings }: CountdownSectionProps) {    
+
+  const {    #
+     title = "Party Countdown",    ,
+(    targetDate = "2026-12-14T19:00:00",    :
+6    postWeddingMessage = "The Celebration has begun!"     
+   } = bindings;       ^
+Z  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });   6
+2  const [isPassed, setIsPassed] = useState(false);        
+   useEffect(() => {    
+     if (!targetDate) return;   :
+6    const targetTime = new Date(targetDate).getTime();       '
+#    const updateCountdown = () => {   +
+'      const now = new Date().getTime();   .
+*      const difference = targetTime - now;    
+       if (difference <= 0) {    
+         setIsPassed(true);    
+       } else {    
+         setIsPassed(false);    
+         setTimeLeft({   C
+?          days: Math.floor(difference / (1000 * 60 * 60 * 24)),   Y
+U          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),   Q
+M          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),   E
+A          seconds: Math.floor((difference % (1000 * 60)) / 1000),    
+         });    
+       }   
+
+     };        
+     updateCountdown();   <
+8    const interval = setInterval(updateCountdown, 1000);   -
+)    return () => clearInterval(interval);    
+   }, [targetDate]);        
+
+  return (   i
+e    <section className="py-20 px-6 bg-purple-950/10 border-b border-white/5 text-center select-none">   8
+4      <div className="max-w-4xl mx-auto space-y-10">   '
+#        <div className="space-y-2">   e
+a          <h3 className="text-xs uppercase tracking-[3px] font-bold text-purple-400">{title}</h3>    
+         </div>    
+         {isPassed ? (   q
+m          <p className="text-amber-400 text-lg uppercase tracking-[1.5px] font-bold">{postWeddingMessage}</p>    
+        ) : (   G
+C          <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">   C
+?            {Object.entries(timeLeft).map(([label, value]) => (     
+               <div key={label} className="bg-white/[0.03] border border-white/5 rounded-2xl py-4 flex flex-col justify-center">   g
+c                <span className="text-2xl md:text-3xl font-extrabold text-amber-400">{value}</span>   u
+q                <span className="text-[9px] uppercase tracking-[1px] text-white/40 font-bold mt-1">{label}</span>    
+               </div>    
+             ))}    
+           </div>    
+
+        )}    
+       </div>    
+     </section>    
+   );    
+ }      BGfile:///c:/Users/Admin/Ahvaanam/components/sections/countdown/index.tsxX     (Create countdown visual layout index.tsx     R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+  I will create the Events layout component file at `components/sections/events/index.tsx`. It imports standard calendar icons and renders the schedule cards.2(bot-075fbb9b-9833-4cc9-8f66-348b7e82d1a2:  
+ r3ekn94s write_to_file   {"CodeContent":"\"use client\";\n\nimport React from \"react\";\nimport { Calendar, Clock, MapPin } from \"lucide-react\";\n\ninterface EventItem {\n  enabled?: boolean;\n  icon?: string;\n  title: string;\n  date: string;\n  time: string;\n  venue: string;\n  description?: string;\n}\n\ninterface EventsSectionProps {\n  bindings: {\n    events?: EventItem[];\n  };\n}\n\nexport default function EventsSection({ bindings }: EventsSectionProps) {\n  const { events = [] } = bindings;\n\n  return (\n    \u003csection className=\"py-24 px-6 max-w-5xl mx-auto border-b border-white/5 select-none\"\u003e\n      \u003cdiv className=\"space-y-12\"\u003e\n        \u003cdiv className=\"text-center max-w-2xl mx-auto space-y-3\"\u003e\n          \u003ch2 className=\"text-xs uppercase tracking-[3px] font-bold text-amber-400\"\u003eSchedule\u003c/h2\u003e\n          \u003cp className=\"text-3xl md:text-4xl font-extrabold uppercase tracking-[0.5px]\"\u003eCelebration Program\u003c/p\u003e\n        \u003c/div\u003e\n\n        \u003cdiv className=\"grid md:grid-cols-2 gap-6 max-w-3xl mx-auto\"\u003e\n          {events.map((event, idx) =\u003e {\n            if (event.enabled === false) return null;\n            return (\n              \u003cdiv key={idx} className=\"bg-white/[0.02] border border-white/5 p-6 rounded-2xl hover:border-purple-500/20 transition-all space-y-4\"\u003e\n                \u003cdiv className=\"flex items-center gap-3\"\u003e\n                  \u003cspan className=\"text-2xl\"\u003e{event.icon || \"    \"}\u003c/span\u003e\n                  \u003ch3 className=\"text-lg font-bold\"\u003e{event.title}\u003c/h3\u003e\n                \u003c/div\u003e\n                \u003cdiv className=\"space-y-2 text-xs text-white/60\"\u003e\n                  \u003cp className=\"flex items-center gap-2\"\u003e\n                    \u003cCalendar size={13} className=\"text-purple-400\" /\u003e {event.date}\n                  \u003c/p\u003e\n                  \u003cp className=\"flex items-center gap-2\"\u003e\n                    \u003cClock size={13} className=\"text-purple-400\" /\u003e {event.time}\n                  \u003c/p\u003e\n                  \u003cp className=\"flex items-center gap-2\"\u003e\n                    \u003cMapPin size={13} className=\"text-purple-400\" /\u003e {event.venue}\n                  \u003c/p\u003e\n                \u003c/div\u003e\n                {event.description \u0026\u0026 (\n                  \u003cp className=\"text-xs text-white/40 leading-relaxed pt-2 font-medium\"\u003e\n                    {event.description}\n                  \u003c/p\u003e\n                )}\n              \u003c/div\u003e\n            );\n          })}\n        \u003c/div\u003e\n      \u003c/div\u003e\n    \u003c/section\u003e\n  );\n}\n","Description":"Create events visual layout index.tsx","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\events\\index.tsx","toolAction":"Create events layout","toolSummary":"Creating React events layout component in components/sections/events/index.tsx"}:     
+    M2    B  SB 	    gX[  Eoed j  & a}&;$ ^  L6 ,"      l q	      ?E     L P",q
+     5  k  "     g  e    ^  2 "@ ;p  n7 `] ` B&   s   6d l *w  2G\ 6J Z:    ?   A uH  SG 7  ^b      ! #q'D     %    ?J B  
+ N|       b  0  s   }   B  % m W  68_ ^      Y  q)  3       2dTx m   8   bJN  V    L  U   JmPi   a  T D [! SV|   a , 0    5       ~  F   u \H Y n     t  y^  A     {  G], <     K  V K ZN   r9 ;  1Nv     5   T   +N) )    N          -   50 _  (    #  7Jwrite_to_fileB  I will create the Events layout component file at `components/sections/events/index.tsx`. It imports standard calendar icons and renders the schedule cards.`     003cdiv className=\"grid md:grid-cols-2 gap-6 max-w-3xl mx-auto\"\u003e\n          {events.map((event, idx) =\u003e {\n            if (event.enabled === false) return null;\n            return (\n              \u003cdiv key={idx} className=\"bg-white/[0.02] border border-white/5 p-6 rounded-2xl hover:border-purple-500/20 transition-all space-y-4\"\u003e\n                \u003cdiv className=\"flex items-center gap-3\"\u003e\n                  \u003cspan className=\"text-2xl\"\u003e{event.icon || \"    \"}\u003c/span\u003e\n                  \u003ch3 className=\"text-lg font-bold\"\u003e{event.title}\u003c/h3\u003e\n                \u003c/div\u003e\n                \u003cdiv className=\"space-y-2 text-xs text-white/60\"\u003e\n                  \u003cp className=\"flex items-center gap-2\"\u003e\n                    \u003cCalendar size={13} className=\"text-purple-400\" /\u003e {event.date}\n                  \u003c/p\u003e\n                  \u003cp className=\"flex items-center gap-2\"\u003e\n                    \u003cClock size={13} className=\"text-purple-400\" /\u003e {event.time}\n                  \u003c/p\u003e\n                  \u003cp className=\"flex items-center gap-2\"\u003e\n                    \u003cMapPin size={13} className=\"text-purple-400\" /\u003e {event.venue}\n                  \u003c/p\u003e\n                \u003c/div\u003e\n                {event.description \u0026\u0026 (\n                  \u003cp className=\"text-xs text-white/40 leading-relaxed pt-2 font-medium\"\u003e\n                    {event.description}\n                  \u003c/p\u003e\n                )}\n              \u003c/div\u003e\n            );\n          })}\n        \u003c/div\u003e\n      \u003c/div\u003e\n    \u003c/section\u003e\n  );\n}\n","Description":"Create events visual layout index.tsx","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\events\\index.tsx","toolAction":"Create events layout","toolSummary":"Creating React events layout component in components/sections/events/index.tsx"}:     
+    M2    B  SB 	    gX[  Eoed j  & a}&;$ ^  L6 ,"      l q	      ?E     L P",q
+     5  k  "     g  e    ^  2 "@ ;p  n7 `] ` B&   s   6d l *w  2G\ 6J Z:    ?   A uH  SG 7  ^b      ! #q'D     %    ?J B  
+ N|       b  0  s   }   B  % m W  68_ ^      Y  q)  3       2dTx m   8   bJN  V    L  U   JmPi   a  T D [! SV|   a , 0    5       ~  F   u \H Y n     t  y^  A     {  G], <     K  V K ZN   r9 ;  1Nv     5   T   +N) )    N          -   50 _  (    #  7Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$bc3033ce-468a-4103-a22f-54c2f03f835ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   NCreating React events layout component in components/sections/events/index.tsx   Create events layout                   *  
+               "  
+ r3ekn94s write_to_file   {"CodeContent":"\"use client\";\n\nimport React from \"react\";\nimport { Calendar, Clock, MapPin } from \"lucide-react\";\n\ninterface EventItem {\n  enabled?: boolean;\n  icon?: string;\n  title: string;\n  date: string;\n  time: string;\n  venue: string;\n  description?: string;\n}\n\ninterface EventsSectionProps {\n  bindings: {\n    events?: EventItem[];\n  };\n}\n\nexport default function EventsSection({ bindings }: EventsSectionProps) {\n  const { events = [] } = bindings;\n\n  return (\n    \u003csection className=\"py-24 px-6 max-w-5xl mx-auto border-b border-white/5 select-none\"\u003e\n      \u003cdiv className=\"space-y-12\"\u003e\n        \u003cdiv className=\"text-center max-w-2xl mx-auto space-y-3\"\u003e\n          \u003ch2 className=\"text-xs uppercase tracking-[3px] font-bold text-amber-400\"\u003eSchedule\u003c/h2\u003e\n          \u003cp className=\"text-3xl md:text-4xl font-extrabold uppercase tracking-[0.5px]\"\u003eCelebration Program\u003c/p\u003e\n        \u003c/div\u003e\n\n        \u003cdiv className=\"grid md:grid-cols-2    -2xl hover:border-purple-500/20 transition-all space-y-4">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">{event.icon || "    "}</span>
+                  <h3 className="text-lg font-bold">{event.title}</h3>
+                </div>
+                <div className="space-y-2 text-xs text-white/60">
+                  <p className="flex items-center gap-2">
+                    <Calendar size={13} className="text-purple-400" /> {event.date}
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <Clock size={13} className="text-purple-400" /> {event.time}
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <MapPin size={13} className="text-purple-400" /> {event.venue}
+                  </p>
+                </div>
+                {event.description && (
+                  <p cl

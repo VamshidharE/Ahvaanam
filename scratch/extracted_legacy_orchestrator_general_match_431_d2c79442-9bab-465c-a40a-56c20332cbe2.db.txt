@@ -1,0 +1,402 @@
+y; bindings: any; }' is not assignable to type 'IntrinsicAttributes & StorySectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & StorySectionProps'.
+components/shared/LegacyOrchestrator.tsx(95,47): error TS2322: Type '{ key: "events"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & EventsSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & EventsSectionProps'.
+components/shared/LegacyOrchestrator.tsx(97,48): error TS2322: Type '{ key: "gallery"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & GallerySectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & GallerySectionProps'.
+components/shared/LegacyOrchestrator.tsx(99,46): error TS2322: Type '{ key: "venue"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & VenueSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & VenueSectionProps'.
+components/shared/LegacyOrchestrator.tsx(101,49): error TS2322: Type '{ key: "families"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & FamiliesSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FamiliesSectionProps'.
+components/shared/LegacyOrchestrator.tsx(103,45): error TS2322: Type '{ key: "rsvp"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & RSVPSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & RSVPSectionProps'.
+components/shared/LegacyOrchestrator.tsx(105,44): error TS2322: Type '{ key: "faq"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & FAQSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FAQSectionProps'.
+components/shared/LegacyOrchestrator.tsx(107,50): error TS2322: Type '{ key: "dressCode"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & DressCodeSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & DressCodeSectionProps'.
+components/shared/LegacyOrchestrator.tsx(109,47): error TS2322: Type '{ key: "footer"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & FooterSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FooterSectionProps'.
+components/templates/birthday-premium/Layout.tsx(278,25): error TS2304: Cannot find name 'getBirthdayComposition'.
+components/templates/birthday-premium/L   ~      sections: HOUSEWARMING_SECTIONS,
+      navigation: HOUSEWARMING_NAVIGATION,
+      defaultExpanded: ["hero", "houseDetails", "events"],
+      displayOrder: HOUSEWARMING_SECTIONS.map((s) => s.id)
+    },
+    features: HOUSEWARMING_FEATURES,
+    defaults: {
+      themeId: theme.id,
+      sectionOrder: ["hero", "houseDetails", "owners", "countdown", "gallery", "venue", "rsvp", "footer"],
+      themeSettings: {
+        showParticles: true,
+        particleType: theme.id === "glassmorphic-oasis" ? "bubbles" : theme.id === "constellation-navy" ? "stars" : "dust",
+        borderStyle: theme.id === "divine-griha" || theme.id === "royal-palace" ? "gold" : "none",
+        heroAnimation: "zoom"
+      },
+      music: {
+        enabled: true,
+        file: "/music/theme.mp3"
+      }
+    },
+    version: "1.0.0",
+    description: theme.desc
+  }))
+];0  8  "  *Bfile:///c:/Users/Admin/Ahvaanam/lib/template-manifests/registry.ts2E
+ file:///c:/Users/Admin/Ahvaanam "lib/template-manifests/registry.ts    
+               j
+fimport { TemplateManifest, TemplateSection, TemplateNavigationItem, TemplateFeatures } from "./types";       %
+!// Standard Wedding Sections List   1
+-const WEDDING_SECTIONS: TemplateSection[] = [    
+   {    
+     id: "hero",    
+     title: "Welcome Banner",    
+     icon: "Sliders",    
+    order: 1,    
+     enabled: true,    
+     editableFields: [    
+       "hero.title",    
+       "hero.subtitle",    
+       "hero.welcomeMessage",    
+       "hero.heroImage",    
+       "hero.ctaText",    
+       "hero.surname",    
+       "hero.subText"   
+
+     ],   X
+T    description: "Configures the top welcome slide image, tagline, and CTA options."    
+   },    
+   {    
+     id: "couple",   '
+#    title: "Bride & Groom Details",    
+     icon: "Heart",    
+    order: 2,    
+     enabled: true,    
+     editableFields: [    
+       "couple.title",    
+       "couple.groom.name",   !
+       "couple.groom.parents",    
+       "couple.groom.bio",    
+       "couple.groom.image",    
+       "couple.bride.name",   !
+       "couple.bride.parents",    
+       "couple.bride.bio",    
+       "couple.bride.image"   
+
+     ],   V
+R    description: "Configures names, parents, and biography details of the couple."    
+   },    
+   {    
+     id: "countdown",   #
+     title: "Wedding Countdown",    
+     icon: "Calendar",    
+    order: 3,    
+     enabled: true,    
+     editableFields: [    
+       "countdown.title",   !
+       "countdown.targetDate",    
+       "countdown.timezone",   (
+$      "countdown.postWeddingMessage"   
+
+     ],   ^
+Z    description: "Interactive Muhurtham timer counting down to the main wedding ceremony."    
+   },    
+   {    
+     id: "story",   %
+!    title: "Love Story Timeline",    
+     icon: "Palette",    
+    order: 4,    
+     enabled: true,   :
+6    editableFields: ["story.title", "story.timeline"],   T
+P    description: "A chronological list of milestone events in the relationship."    
+   },    
+   {    
+     id: "events",   %
+!    title: "Ceremonies Schedule",    
+     icon: "Calendar",    
+    order: 5,    
+     enabled: true,   #
+     editableFields: ["events"],   m
+i    description: "List of sub-events (e.g. Sangeet, Mehendi, reception) with date and venue coordinates."    
+   },    
+   {    
+     id: "gallery",    
+     title: "Photo Gallery",    
+     icon: "Palette",    
+    order: 6,    
+     enabled: true,   R
+N    editableFields: ["gallery.title", "gallery.images", "gallery.layoutType"],   K
+G    description: "Configures slideshow and moments photo grid layouts."    
+   },    
+   {    
+     id: "venue",   %
+!    title: "Location Venues Map",    
+     icon: "MapPin",    
+    order: 7,    
+     enabled: true,   "
+     editableFields: ["venue"],   T
+P    description: "Traditional address text alongside embedded interactive maps."    
+   },    
+   {    
+     id: "families",   +
+'    title: "Warm Greetings / Families",    
+     icon: "Heart",    
+    order: 8,    
+     enabled: true,   [
+W    editableFields: ["families.title", "families.brideFamily", "families.groomFamily"],   R
+N        description: "A dedicated greeting card showing members of both families."    
+   },    
+   {    
+     id: "rsvp",   (
+$    title: "Confirmation RSVP Info",    
+     icon: "MapPin",    
+    order: 9,    
+     enabled: true,   8
+4    editableFields: ["rsvp.title", "rsvp.contacts"],   H
+D    description: "Interactive RSVP buttons and contact coordinates."    
+   },    
+   {    
+     id: "faq",   ,
+(    title: "Frequently Asked Questions",    
+     icon: "Shirt",    
+     order: 10,    
+     enabled: true,   5
+1    editableFields: ["faq.title", "faq.entries"],   a
+]    description: "Helpful Q&A list items for guests (e.g. transport, accommodation details)."    
+   },    
+   {    
+     id: "dressCode",   +
+'    title: "Dress Code & Theme Colors",    
+     icon: "Shirt",    
+     order: 11,    
+     enabled: true,   k
+g    editableFields: ["dressCode.title", "dressCode.code", "dressCode.description", "dressCode.colors"],   R
+N    description: "Color palette circles and styling guidelines for attendees."    
+   },    
+   {    
+     id: "footer",   '
+#    title: "Page Credits / Footer",    
+     icon: "Sliders",    
+     order: 12,    
+     enabled: true,   S
+O    editableFields: ["footer.title", "footer.creditText", "footer.salutation"],   M
+I    description: "Closing family credits and designer watermark details."    
+   }    
+ ];       1
+-// Standard Wedding Sidebar Navigation Groups   :
+6const WEDDING_NAVIGATION: TemplateNavigationItem[] = [    
+   {    
+     id: "general",   #
+     label: "General & Reorder",    
+     icon: "Sliders",   $
+     sections: ["hero", "footer"]    
+   },    
+   {    
+     id: "couple",    
+     label: "Bride & Groom",    
+     icon: "Heart",    
+     sections: ["couple"]    
+   },    
+   {    
+     id: "events",   !
+     label: "Events Schedule",    
+     icon: "Calendar",   )
+%    sections: ["events", "countdown"]    
+   },    
+   {    
+     id: "story",    
+     label: "Love Story",    
+     icon: "Palette",    
+     sections: ["story"]    
+   },    
+   {    
+     id: "venues",    
+     label: "Venues & RSVP",    
+     icon: "MapPin",   #
+     sections: ["venue", "rsvp"]    
+   },    
+   {    
+     id: "details",   #
+     label: "FAQs & Dress Code",    
+     icon: "Shirt",   &
+"    sections: ["faq", "dressCode"]    
+   }    
+ ];       /
++// Standard capabilities of wedding layouts   0
+,const WEDDING_FEATURES: TemplateFeatures = {    
+   supportsGallery: true,    
+   supportsCountdown: true,    
+   supportsMusic: true,    
+   supportsVideo: false,    
+   supportsMaps: true,    
+   supportsRSVP: true,   "
+   supportsGiftRegistry: false,    
+   supportsQRCode: false,    
+   supportsTimeline: true,    
+   supportsSchedule: true,    
+   supportsFamily: true,    
+   supportsStory: true,    
+   supportsSponsors: false,   "
+   supportsRegistration: false,    
+   supportsBranding: true,    
+   supportsCustomCSS: false,    
+   supportsAnalytics: false    
+ };        
+ // Default values factory   9
+5const createWeddingDefaults = (themeId: string) => ({    
+
+  themeId,   6
+2  sectionOrder: WEDDING_SECTIONS.map((s) => s.id),    
+   themeSettings: {    
+     showParticles: true,    
+     particleType: "dust",    
+     borderStyle: "gold",    
+     heroAnimation: "zoom"    
+   },    
+
+  music: {    
+     enabled: true,    
+     file: "/music/theme.mp3"    
+   }    
+ });       !
+ // Wedding Themes definitions    
+ const WEDDING_THEMES = [     
+    { id: "royal-temple", name: "Royal Temple Layout", desc: "Ornate golden pillars, traditional arches, and gold leaf detailing." },    
+{  { id: "floral-garden", name: "Floral Garden Layout", desc: "Rose gold accents, blooming borders, and pastel overlays." },     
+    { id: "south-indian", name: "South Indian Traditional", desc: "Muted copper tones, banana leaf frames, and sacred marigolds." },     
+    { id: "palace-luxury", name: "Palace Luxury Layout", desc: "Grand palace gates, royal red velvet overlays, and gold borders." },     
+    { id: "lotus-serenity", name: "Lotus Serenity Layout", desc: "Sacred pink lotus blossoms and glowing golden spiritual ove    rlays." },     
+    { id: "marigold", name: "Marigold Celebration Layout", desc: "Vibrant orange and yellow marigold garlands with festive backgrounds." },     
+|  { id: "peacock", name: "Peacock Royal Layout", desc: "Majestic peacock feather overlays and deep royal blue gradients." },     
+   { id: "heritage", name: "Heritage Haveli Layout", desc: "Terracotta textures, vintage stone arches, and heritage designs." },   |
+x  { id: "moonlight", name: "Moonlight Wedding Layout", desc: "Midnight skies, glowing lanterns, and starry overlays." },     
+~  { id: "grand-mandap", name: "Grand Mandap Layout", desc: "Luxurious floral mandap stages with traditional hanging lights." }    
+ ];       -
+)// Birthday shared sections configuration    
+ const BIRTHDAY_SECTIONS = [    
+   {    
+     id: "hero",    
+     title: "Welcome Banner",    
+     icon: "Sliders",    
+    order: 1,    
+     enabled: true,    
+     editableFields: [    
+       "hero.title",    
+       "hero.subtitle",    
+       "hero.welcomeMessage",    
+       "hero.heroImage",    
+       "hero.ctaText",    
+       "hero.subText"   
+
+     ],   X
+T    description: "Configures the top welcome slide image, tagline, and CTA options."    
+   },    
+   {    
+     id: "celebrant",   #
+     title: "Celebrant Details",    
+     icon: "Heart",    
+    order: 2,    
+     enabled: true,    
+     editableFields: [    
+       "celebrant.name",    
+       "age"   
+
+     ],   @
+<    description: "Configures name and age being celebrated."    
+   },    
+   {    
+     id: "countdown",   !
+     title: "Party Countdown",    
+     icon: "Calendar",    
+    order: 3,    
+     enabled: true,    
+     editableFields: [    
+       "countdown.title",   !
+       "countdown.targetDate",    
+       "countdown.timezone",   (
+$      "countdown.postWeddingMessage"   
+
+     ],   9
+5    description: "Interactive party countdown clock."    
+   },    
+   {    
+     id: "events",    
+     title: "Party Details",    
+     icon: "Calendar",    
+    order: 4,    
+     enabled: true,   #
+     editableFields: ["events"],   G
+C    description: "Configure schedule, timings, and events details."    
+   },    
+   {    
+     id: "gallery",   "
+     title: "Gallery Memories",    
+     icon: "Palette",    
+    order: 5,    
+     enabled: true,   R
+N    editableFields: ["gallery.title", "gallery.images", "gallery.layoutType"],   E
+A    description: "Configures grid of past moments and snapshots."    
+   },    
+   {    
+     id: "venue",   !
+     title: "Party Venue Map",    
+     icon: "MapPin",    
+    order: 6,    
+     enabled: true,   "
+     editableFields: ["venue"],   7
+3    description: "Address and locations guide map."    
+   },    
+   {    
+     id: "rsvp",    
+     title: "RSVP Info",    
+     icon: "MapPin",    
+    order: 7,    
+     enabled: true,   8
+4    editableFields: ["rsvp.title", "rsvp.contacts"],   D
+@    description: "Interactive RSVP buttons and contact options."    
+   },    
+   {    
+     id: "faq",   ,
+(    title: "Frequently Asked Questions",    
+     icon: "Shirt",    
+    order: 8,    
+     enabled: true,   5
+1    editableFields: ["faq.title", "faq.entries"],   9
+5    description: "Helpful party guidelines and FAQs."    
+   },    
+   {    
+     id: "footer",    
+     title: "Footer Credits",    
+     icon: "Sliders",    
+    order: 9,    
+     enabled: true,   S
+O    editableFields: ["footer.title", "footer.creditText", "footer.salutation"],   3
+/    description: "Footer text and salutations."    
+   }    
+ ];       !
+ const BIRTHDAY_NAVIGATION = [    
+   {    
+     id: "general",   #
+     label: "General & Reorder",    
+     icon: "Sliders",   $
+     sections: ["hero", "footer"]    
+   },    
+   {    
+     id: "basics",    
+     label: "Celebrant Info",    
+     icon: "Heart",    
+     sections: ["celebrant"]    
+   },    
+   {    
+     id: "event_details",    
+     label: "Party Details",    
+     icon: "Calendar",   2
+.    sections: ["events", "countdown", "venue"]    
+   },    
+   {    
+     id: "gallery",    
+     label: "Gallery",    
+     icon: "Palette",    
+     sec    tions: ["gallery"]    
+   },    
+   {    
+     id: "rsvp",    
+     label: "RSVP & FAQs",    

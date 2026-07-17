@@ -1,0 +1,46 @@
+"use client";
+
+import React from "react";
+import { getTheme } from "@/lib/theme/registry";
+
+interface ThemeProviderProps {
+  themeId: string;
+}
+
+export default fu        YZ twRJ  v   fUs     nD  |   ef /      O F>W\} y      X        0     D  z M            q  ?  $ a  u 
+ ) |     ?E  [    {       + 4
+------------------------
+
+
+Log: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-386.log  task_notification" G
+$128b2e48-012d-42aa-99ea-037a1a451d3e $d2c79442-9bab-465c-a40a-56c20332cbe2 -d2c79442-9bab-465c-a40a-56c20332cbe2/task-386( 2             RO
+MRunning database scan script to locate the composition renderer code finishedb  
+  
+$d2c79442-9bab-465c-a40a-56c20332cbe2      
+ xhqhc4jp  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run extract_from_db.js","toolSummary":"Running database scan script to locate the composition renderer code"}:     
+    M2 S W   v e  0hu   E  M    ) * k     d      &Z a1 d K       df   D   G9  H  wga   Ze e |{6     g s G     9  1 yW     {  66  G   J run_command" ATask id "d2c79442-9bab-465c-a40a-56c20332cbe2/task-386" finished with result:
+
+				The command completed successfully.
+				Output:
+				<truncated 3326 lines>
+------------------------
+[169] Found match at index 4005163
+  Preview of match [169]:
+"use client     l  l h                                                                                                      z     ~   
+               2           -X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+               -    *  
+               2           -X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+               -  x
+$I will run the database scan script.2(bot-c2689975-b783-4feb-aa8b-d2930d8b949eB$I will run the database scan script.`   {        X          
+               " 7
+ 0uqq23tc write_to_file   {"CodeContent":"const fs = require('fs');\nconst path = require('path');\n\nconst dbPath = 'C:\\\\Users\\\\Admin\\\\.gemini\\\\antigravity\\\\conversations\\\\d2c79442-9bab-465c-a40a-56c20332cbe2.db';\nconst walPath = 'C:\\\\Users\\\\Admin\\\\.gemini\\\\antigravity\\\\conversations\\\\d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal';\n\nfunction extractFromBinary(filePath) {\n  if (!fs.existsSync(filePath)) {\n    console.log(`File not found: ${filePath}`);\n    return;\n  }\n  console.log(`Scanning ${filePath} (${fs.statSync(filePath).size} bytes)`);\n  const buf = fs.readFileSync(filePath);\n  \n  // Convert buffer to string replacing nulls with spaces to avoid string termination issues\n  let content = '';\n  for (let i = 0; i \u003c buf.length; i++) {\n    const charCode = buf[i];\n    if (charCode === 0) {\n      content += ' ';\n    } else if (charCode \u003e= 32 \u0026\u0026 charCode \u003c= 126) {\n      content += String.fromCharCode(charCode);\n    } else if (charCode === 10 || charCode === 13 || charCode === 9) {\n      content += String.fromCharCode(charCode);\n    } else {\n      content += ' ';\n    }\n  }\n\n  // Search for the specific imports in CompositionRenderer.tsx\n  const searchStr = 'import HeroSection from';\n  let idx = 0;\n  let matches = 0;\n  while ((idx = content.indexOf(searchStr, idx)) !== -1) {\n    matches++;\n    console.log(`[${matches}] Found match at index ${idx}`);\n    // Find the start of the file: look backward for \"use client\"\n    let startIdx = content.lastIndexOf('\"use client\"', idx);\n    if (startIdx === -1) {\n      startIdx = content.lastIndexOf('use client', idx);\n    }\n    if (startIdx === -1) startIdx = idx - 100;\n    \n    // Grab about 4000 characters\n    const slice = content.substring(startIdx, startIdx + 4500);\n    console.log(`  Preview of match [${matches}]:`);\n    console.log(slice.substring(0, 300));\n    console.log(\"------------------------\");\n    \n    // Save to scratch\n    fs.writeFileSync(`scratch/db_match_${matches}_${path.basename(filePath)}.txt`, slice);\n    idx += searchStr.length;\n  }\n}\n\ntry {\n  extractFromBinary(dbPath);\n  extractFromBinary(walPath);\n} catch (err) {\n  console.error(err);\n}\n","Description":"Search SQLite db and WAL files for CompositionRenderer code.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\scratch\\extract_from_db.js","toolAction":"Write extract_from_db script","toolSummary":"Creating a script to extract composition code from SQLite database files"}: #  #
+ #  M2 F   t  p@ + +  p 
+   l?   t e fq   ; Sye  S   b dM k     ]  Ph  T  e% J J    <   q     Lh   {rP         [[   0 7   <  3`   w% 6! ~ otS  k  ]  G  . V     E| "nXz   R    ! A ,        E   <hX  Vxu  5=   {  g       D t]   |Q @ i S8%     M    b_Q  X J     vq    ] 9 (     ^             {rM\ `c; J     	   S   E5  H4  V   # r      Q!      Q;i/  .L  ] | 6 .   ! 1Z  s# R% s/h       }+-J(    2  #DVD    
+ d   P$
+  P P A  g ph  u  cg$ =        8  w m   T > 4  I1_ o7  Z  ;( + 
+ ~  n = X.T 484 Y  F   L   D   uk    k           (_   (      iB* vbI    &         Xw  4n     LL 8y {x@#  \    2u0 X  6Z  8 N    10  
+ k       
+h= I hZ{  F z  |y m   t P^  T7 
+u*   '([U0   g ^C aK (   zp !,     "  /i  |h     O8. J+ S     1 x    '- Rp     u&  w p R_     Y4 9*_   Q$ y'u`  wf       Q l(     / ?       J>    k r f\   u     _h    >f        b k 6=E<   }<    x 7     ,   Z` Pr&   v     p                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       

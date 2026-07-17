@@ -1,0 +1,264 @@
+use client";
+
+import React, { useEffect, useState } from "react";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+import MotionWrapper from "@/components/motion/MotionWrapper";
+
+interface CountdownSectionProps {
+  bindings: {
+    title?: string;
+    targetDate?: string;
+    postWeddingMes    sage?: string;
+  };
+  layoutId?: string;
+  motionId?: string;
+}
+
+export default function CountdownSection({ bindings, layoutId, motionId }: CountdownSectionProps) {
+  const { 
+    title = "Party Countdown", 
+    targetDate = "2026-12-14T19:00:00", 
+    postWeddingMessage = "The Celebration has begun!" 
+  } = bindings;
+
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isPassed, setIsPassed] = useState(false);
+
+  useEffect(() => {
+    if (!targetDate) return;
+    const targetTime = new Date(targetDate).getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const difference = targetTime - now;
+      if (difference <= 0) {
+        setIsPassed(true);
+      } else {
+        setIsPassed(false);
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        });
+      }
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, [targetDate]);
+
+  return (
+    <MotionWrapper
+      motionId={motionId}
+      defaultMotionId="luxury-motion"
+      type="reveal"
+      className="w-full"
+    >
+      <LayoutWrapper
+        layoutId={layoutId}
+        defaultLayoutId="story-stack"
+        className="py-20 px-6 border-b border-white/5 text-center select-none"
+        style={{ 
+          fontFamily: "var(--theme-font-body)",
+          color: "var(--theme-text)",
+          background: "rgba(139, 92, 246, 0.03)"
+        }}
+      >
+        <div className="max-w-4xl mx-auto space-y-10 w-full">
+          <div className="space-y-2">
+            <h3 
+              className="text-xs uppercase tracking-[3px] font-bold"
+              style={{ 
+                color: "var(--theme-accent)",
+                fontFamily: "var(--theme-font-heading)" 
+              }}
+            >
+              {title}
+            </h3>
+          </div>
+          {isPassed ? (
+            <p 
+              className="text-lg uppercase tracking-[1.5px] font-bold animate-pulse"
+              style={{ color: "var(--theme-accent)" }}
+            >
+              {postWeddingMessage}
+            </p>
+          ) : (
+            <div className="grid grid-cols-4 gap-4 max-w-md mx-auto w-full">
+              {Object.entries(timeLeft).map(([label, value]) => (
+                <div 
+                  key={label} 
+                  className="border border-white/5 py-4 flex flex-col justify-center shadow-xs"
+                  style={{ 
+                    backgroundColor: "var(--theme-card-bg)",
+                    borderColor: "var(--theme-border)",
+                    borderRadius: "var(--theme-radius-card)",
+                    boxShadow: "var(--theme-shadow-card)"
+                  }}
+                >
+                  <span 
+                    className="text-2xl md:text-3xl font-extrabold"
+                    style={{ color: "var(--theme-accent)" }}
+                  >
+                    {value}
+                  </span>
+                  <span 
+                    className="text-[9px] uppercase tracking-[1px] font-bold mt-1"
+                    style={{ color: "var(--theme-secondary-text)" }}
+                  >
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </LayoutWrapper>
+    </MotionWrapper>
+  );
+}
+  j  
+  
+          style={{ 
+          fontFamily: "var(--theme-font-body)",
+          color: "var(--theme-text)",
+          background: "rgba(139, 92, 246, 0.03)"
+        }}           style={{ 
+          fontFamily: "var(--theme-font-body)",
+          color: "var(--theme-text)",
+          background: "var(--theme-card-bg, rgba(255, 255, 255, 0.02))"
+        }}0>8D(   VClean up countdown layout wrapper to use variable card bg instead of hardcoded purple. u                                                                                                                                                                                                                                                             ^                    
+               " A
+ 0xl758x9 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\motion\\registry.ts","toolAction":"View motion registry.ts","toolSummary":"Reading motion configurations in lib/motion/                    
+              b$4b6055c1-1edd-4072-9733-cb036d432e2e  R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2  "
+                
+                                  *  
+              b$4b6055c1-1edd-4072-9733-cb036d432e2e  R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2  "
+                
+                                     S         T      F   
+               " A
+ 0xl758x9 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\motion\\registry.ts","toolAction":"View motion registry.ts","toolSummary":"Reading motion configurations in lib/motion/registry.ts"}: ?  ?
+ ?  M2 dS (  ;p    UL%O 7m     \n z   0    E  S   y ?  p  =g ,q  zZ    :Q   8 ib k    hDz   &   h  A5kJa *  9M   . %  8  n ^    zo  r 	 * i x  n   p  v   ~      $xA         }haB  P X 
+ h    yr Jd	    W*  - ,              G A ~T   (7    -       
+              V   
+           ;  2            :             B             JP         (  	0 B!
+	sessionID  -3750763034362895579H PeZ 64pSao_9FoqbjuMPuNbxuAsX  b$4b6055c1-1edd-4072-9733-cb036d432e2ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                
+                                    *  
+           ;  2            :             B             JP         (  	0 B!
+	sessionID  -3750763034362895579H PeZ 64pSao_9FoqbjuMPuNbxuAsX  b$4b6055c1-1edd-4072-9733-cb036d432e2ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                
+                                   O
+  I will view the Motion Registry catalog in `lib/motion/registry.ts` to see how animation configs are structured. This will guide where to append our new "housewarming-motion" pack.   **Implementing Housewarming Elements**
+
+I'm moving forward with implementing Task 4, 5, and 6 for "Housewarming." I'm focused on the viewer experience, category assets, and category motion. The core elements will be: Premium Hero, warm lighting, temple bells ambiance, animated diya glow, floating flower petals, soft incense smoke, and the overall premium feel. This is a very interesting concept.
+
+
+**Refining Visual Elements**
+
+I'm now zeroing in on the visual components of the "Housewarming" experience. The implementation of the audio elements and particle animations will be inside `components/templates/housewarming-premium/Layout.tsx`, allowing for complete encapsulation. I've broken down the design into four core elements: a temple bells audio loop, an animated diya glow using box-shadow halos, floating flower petals and light particles via a canvas animation, and soft incense smoke.
+
+
+**Adding Visual Refinements**
+
+I'm now focusing on implementing traditional patterns, specifically an SVG door toran header and rangoli mandala backgrounds. I'm imagining a high-quality user experience that will WOW the user! I'm planning a `HousewarmingEffectsCanvas` React Canvas component to manage delicate petals and gold embers. Additionally, I'm integrating temple bell and diya SVGs, adding CSS keyframe-animated incense smoke overlays, and looking to add an audio component. I need to figure out how to best trigger the audio.
+
+
+2(bot-4b2f05a9-71c3-4fbf-b236-e5fc1a86b84e: A
+ 0xl758x9 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\motion\\registry.ts","toolAction":"View motion registry.ts","toolSummary":"Reading motion configurations in lib/motion/registry.ts"}: ?  ?
+ ?  M2 dS (  ;p    UL%O 7m     \n z   0    E  S   y ?  p  =g ,q  zZ    :Q   8 ib k    hDz   &   h  A5kJa *  9M   . %  8  n ^    z        ne, arg: (OperationVc { node: RawVc::TaskOutput(769) },) } from database failed  
+ 
+  
+ 
+  
+   Caused by:  
+ 
+ J
+H      0: Unable to open static sorted file referenced from 00000019.meta  
+ 
+ 9
+7      1: Unable to open static sorted file 00000015.sst  
+ 
+ j
+h      2: Failed to open SST file C:\Users\Admin\Ahvaanam\.next\dev\cache/turbopack\f37fad94\00000015.sst  
+ 
+ B
+@      3: The system cannot find the path specified. (os error 3)  
+ 
+   
+      at <unknown> (TurbopackInternalError: Failed to lookup task ids: Looking up task id for CachedTaskType { native_fn: NativeFunction { name: "get_written_endpoint_with_issues_operation", global_name: "next_napi_bindings::next_api::endpoint::get_written_endpoint_with_issues_operation", .. }, this: None, arg: (OperationVc { node: RawVc::TaskOutput(769) },) } from database failed) {      
+ 
+ c
+a  location: 'turbopack\\crates\\turbo-tasks-backend\\src\\backend\\operation\\mod.rs:619:14'       
+ 
+  
+ }  
+ 
+  
+ 
+ |
+zthread 'tokio-runtime-worker' (8768) panicked at turbopack\crates\turbo-tasks-backend\src\backend\operation\mod.rs:619:14:  
+ 
+   
+  Failed to lookup task ids: Looking up task id for CachedTaskType { native_fn: NativeFunction { name: "get_written_endpoint_with_issues_operation", global_name: "next_napi_bindings::next_api::endpoint::get_written_endpoint_with_issues_operation", .. }, this: None, arg: (OperationVc { node: RawVc::TaskOutput(769) },) } from database failed  
+ 
+  
+ 
+  
+
+Caused by:  
+ 
+ H
+F    0: Unable to open static sorted file referenced from 00000019.meta  
+ 
+ 7
+5    1: Unable to open static sorted file 00000015.sst  
+ 
+ h
+f    2: Failed to open SST file C:\Users\Admin\Ahvaanam\.next\dev\cache/turbopack\f37fad94\00000015.sst  
+ 
+ @
+>    3: The system cannot find the path specified. (os error 3)  
+ 
+  
+ 
+ q
+othread '<unnamed>' (2128) panicked at turbopack\crates\turbo-tasks-backend\src\backend\operation\mod.rs:619:14:  
+ 
+   
+  Failed to lookup task ids: Looking up task id for CachedTaskType { native_fn: NativeFunction { name: "get_source_map_rope_operation", global_name: "next_napi_bindings::next_api::project::get_source_map_rope_operation", .. }, this: None, arg: (ResolvedVc(RawVc::TaskCell(1, "next_api::project::ProjectContainer#0")), "TurbopackInternalError: Failed to lookup task ids: Looking up task id for CachedTaskType { native_fn: NativeFunction { name: \"get_written_endpoint_with_issues_operation\", global_name: \"next_napi_bindings::next_api::endpoint::get_written_endpoint_with_issues_operation\", .. }, this: None, arg: (OperationVc { node: RawVc::TaskOutput(769) },) } from database failed") } from database failed  
+ 
+  
+ 
+  
+
+Caused by:  
+ 
+ H
+F    0: Unable to open static sorted file referenced from 00002316.meta  
+ 
+ 7
+5    1: Unable to open static sorted file 00002314.sst  
+ 
+ h
+f    2: Failed to open SST file C:\Users\Admin\Ahvaanam\.next\dev\cache/turbopack\f37fad94\00002314.sst  
+ 
+ @
+>    3: The system cannot find the path specified. (os error 3)  
+ 
+   
+  Error [TurbopackInternalError]: Failed to lookup task ids: Looking up task id for CachedTaskType { native_fn: NativeFunction { name: "get_written_endpoint_with_issues_operation", global_name: "next_napi_bindings::next_api::endpoint::get_written_endpoint_with_issues_operation", .. }, this: None, arg: (OperationVc { node: RawVc::TaskOutput(769) },) } from database failed  
+ 
+  
+ 
+ 
+ Debug info:  
+ 
+   
+  - Failed to lookup task ids: Looking up task id for CachedTaskType { native_fn: NativeFunction { name: "g

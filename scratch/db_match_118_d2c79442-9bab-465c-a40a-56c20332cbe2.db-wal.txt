@@ -1,0 +1,155 @@
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemeProvider from "@/components/theme/ThemeProvider";        
+ const mockHeroBindings = {   #
+   title: "Aishwarya & Karthik",   =
+9  subtitle: "We Invite You to Celebrate Our Sp
+------------------------
+[36] Found match at index 16304688
+  Preview of match [36]:
+"use client";
+
+import React from "react";
+
+interface CelebrantSectionProps {
+  bindings: {
+    name?: string;
+    age?: number;
+  };
+}
+
+export default function CelebrantSection({ bindings }: CelebrantSectionProps) {
+  const { name = "Celebrant Name", age = 25 } = bindings;
+
+  return (
+    <section 
+
+------------------------
+[37] Found match at index 16439898
+  Preview of match [37]:
+"use client";
+
+import React, { useEffect, useState } from "react";
+
+interface CountdownSectionProps {
+  bindings: {
+    title?: string;
+    targetDate?: string;
+    postWeddingMessage?: string;
+  };
+}
+
+export default function CountdownSection({ bindings }: CountdownSectionProps) {
+  const { 
+    tit
+------------------------
+[38] Found match at index 16441628
+  Preview of match [38]:
+"use client";
+
+import React, { useEffect, useState } from "react";
+
+interface CountdownSectionProps {
+  bindings: {
+    title?: string;
+    targetDate?: string;
+    postWeddingMessage?: string;
+  };
+}
+
+export default function CountdownSection({ bindings }: CountdownSectionProps) {
+  const { 
+    tit
+------------------------
+[39] Found match at index 16452160
+  Preview of match [39]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+   node scratch/extract_from_db.js   node scratch/extract_from_db.js        YZ uh \  V   Hz     ---------
+[19] Found match at index 12045711
+  Preview of match [19]:
+"use client";
+
+import React from "react";
+import FileUploader from "@/components/ui/FileUploader";
+
+interface CoupleSettingsProps {
+  invitationData: any;
+  updateInvitationData: (updater: any) => void;
+}
+
+export default function CoupleSettings({ invitationData, updateInvitationData }: CoupleSetting
+------------------------
+[20] Found match at index 13012297
+  Preview of match [20]:
+"use client";       7
+3import React, { useEffect, useState } from "react";   C
+?import LayoutWrapper from "@/components/layouts/LayoutWrapper";   B
+>import MotionWrapper from "@/components/motion/MotionWrapper";       %
+!interface CountdownSectionProps {    
+  bindings: {    
+     title?: string;  
+------------------------
+[21] Found match at index 13015446
+  Preview of match [21]:
+"use client";       7
+3import React, { useEffect, useState } from "react";   C
+?import LayoutWrapper from "@/components/layouts/LayoutWrapper";   B
+>import MotionWrapper from "@/components/motion/MotionWrapper";       %
+!interface CountdownSectionProps {    
+  bindings: {    
+     title?: string;  
+------------------------
+[22] Found match at index 13019538
+  Preview of match [22]:
+"use client";       7
+3import React, { useEffect, useState } from "react";   C
+?import LayoutWrapper from "@/components/layouts/LayoutWrapper";   B
+>import MotionWrapper from "@/components/motion/MotionWrapper";       %
+!interface CountdownSectionProps {    
+  bindings: {    
+     title?: string;  
+------------------------
+[23] Found match at index 13027602
+  Preview of match [23]:
+"use client";       7
+3import React, { useEffect, useState } from "react";   C
+?import LayoutWrapper from "@/components/layouts/LayoutWrapper";   B
+>import MotionWrapper from "@/components/motion/MotionWrapper";       %
+!interface CountdownSectionProps {    
+  bindings: {    
+     title?: string;  
+------------------------
+[24] Found match at index 13047451
+  Preview of match [24]:
+"use client";
+
+import React from "react";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+import MotionWrapper from "@/components/motion/MotionWrapper";
+
+interface FamiliesSectionProps {
+  bindings: {
+    title?: string;
+    brideFamily?: string;
+    groomFamily?: string;
+  };
+  layo
+------------------------
+[25] Found match at index 13049611
+  Preview of match [25]:
+"use client";
+
+import React from "react";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+import MotionWrapper from "@/components/mo

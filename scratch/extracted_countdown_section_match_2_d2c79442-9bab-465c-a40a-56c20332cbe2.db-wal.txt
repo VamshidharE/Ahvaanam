@@ -1,0 +1,84 @@
+use client', idx);\n      if (startIdx === -1 || startIdx \u003c idx - 1000) {\n        startIdx = idx - 100;\n      }\n      \n      const slice = content.substring(startIdx, startIdx + 12000); // Grab large slice for complete file\n      const outName = `scratch/extracted_${fileLabel}_match_${matches}_${path.basename(filePath)}.txt`;\n      fs.writeFileSync(outName, slice);\n      console.log(`Saved match ${matches} of ${fileLabel} to ${outName}`);\n    }\n    idx += searchStr.length;\n  }\n}\n\n// 1. Scan for LegacyOrchestrator\nscanFile(dbPath, 'export default function LegacyOrchestrator', 'legacy_orchestrator');\nscanFile(walPath, 'export default function LegacyOrchestrator', 'legacy_orchestrator');\n\n// 2. Scan for some sections that fail compilation\nscanFile(dbPath, 'export default function CountdownSection', 'countdown_section');\nscanFile(walPath, 'export default function CountdownSection', 'countdown_section');\n\nscanFile(dbPath, 'export default function HeroSection', 'hero_section');\nscanFile(walPath, 'export default function HeroSection', 'hero_section');\n\nsc   P        \T t  DU        SQLite format 3      @     V              	                                                   V .      	       8   B   @
+N
+ 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                //  -tablebattle_mode_infosbattle_mode_infos CREATE TABLE `battle_mode_infos` (`idx` integer,`data` blob,PRIMARY KEY (`idx`))  	  ==  Otabletrajectory_metadata_blobtrajectory_metadata_blob
+CREATE TABLE `trajectory_metadata_blob` (`id` text DEFAULT "main",`data` blob,PRIMARY KEY (`id`))O
+  c=  indexsqlite_autoindex_trajectory_metadata_blob_1trajectory_metadata_blob     //  -tableparent_referencesparent_references	CREATE TABLE `parent_references` (`idx` integer,`data` blob,PRIMARY KEY (`idx`))    //  -tableexecutor_metadataexecutor_metadata CREATE TABLE `executor_metadata` (`idx` integer,`data` blob,PRIMARY KEY (`idx`))     %%  gtablegen_metadatagen_metadata CREATE TABLE `gen_metadata` (`idx` integer,`data` blob,`size` integer NOT NULL DEFAULT 0,PRIMARY KEY (`idx`))_   3    indexidx_steps_step_typesteps CREATE INDEX `idx_steps_step_type` ON `steps`(`step_type`)U   -  uindexidx_steps_statussteps CREATE INDEX `idx_steps_status` ON `steps`(`status`) i       1tablestepssteps CREATE TABLE `steps` (`idx` integer,`step_type` integer NOT NULL DEFAULT 0,`status` integer NOT NULL DEFAULT 0,`has_subtrajectory` numeric NOT NULL DEFAULT false,`metadata` blob,`error_details` blob,`permissions` blob,`task_details` blob,`render_info` blob,`step_payload` blob,`step_format` integer NOT NULL DEFAULT 0,PRIMARY KEY (`idx`)) ;   ++  -tabletrajectory_metatrajectory_meta CREATE TABLE `trajectory_meta` (`trajectory_id` text,`cascade_id` text,`trajectory_type` integer,`source` integer,PRIMARY KEY (`trajectory_id`))=   Q+  indexsqlite_autoindex_trajectory_meta_1trajectory_meta            b    \T t  DU     0o 
+    	S                                      { t m f _ X Q J C < 5 . '                                                 x q j c \ U N G @ 9 2 + $                            |ung`YRKD=6/(!                                           y r k d ] V O H A : 3 , %    	 	 	 	 	 	 	 	}	o	a	S                                             | u n g ` Y R K D = 6 / ( !        
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+y
+r
+k	 	v	h	Z
+e
+_
+X
+R
+M
+G
+@
+:
+4
+-
+&
+ 
+ 
+ 	 	 
+
+
+ 	 	 	 	 	 	 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 e                     e                                                                       A    e      e      e      e      e      eB    e7    b D    bt   	b    UD      ?     q                                                                                         ~      z      t      p      l      j      f      T      P      J      F      <      8      4      ,      *      &      "                                                                                                                                                                                           v     ?     =     4      `     0     "                                                                                                                                                                                                                                                                                              }      {      y      w      u      s      q      o      m      k      i      g      e      c      a      _      ]      [      Y      W      U      S      Q      O      M      K      I      G      E      B      @      =      ;      9      7      5      3      1      /      -      +      )      '      %      #      !                                                                                  	                                                                                                                                                                                                                                                                                                                              g    \T t  DUq      J
+    	+                                      { t m f _ X Q J C < 5 . '                                                 x q j c \ U N G @ 9 2 + $                            |ung`YRKD=6/(!                                           y r k d ] V O H A : 3 , %       	                                       } v o h a Z S L E > 7 0 ) "       
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+z
+s
+l
+e
+^
+W
+P
+I
+B
+;
+4
+-
+&
+ 
+ 
+ 
+
+	 
+ 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	x	q	j	c	\	U	N	G	@	9	2	+	 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    A                                                                                                               

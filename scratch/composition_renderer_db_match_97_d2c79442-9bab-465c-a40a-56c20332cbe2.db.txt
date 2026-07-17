@@ -1,0 +1,98 @@
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemeProvider from "@/components/theme/ThemeProvider";        
+ const mockHeroBindings = {   '
+#  title: "Ravi & Swetha's Sangeet",   7
+3  subtitle: "An Evening of Music, Dance, and Love",   '
+#  welcomeMessage: "You're Invited",   3
+/  heroImage: "/images/themes/royal-temple.jpg",    
+   ctaText: "RSVP Now",    
+   surname: "Ravi Family",    
+   subText: "Ceremonies",    
+   enableHeaderMedia: true,   &
+"  headerMediaType: "god" as const,   &
+"  selectedGod: "ganesha" as const,    
+   headerMediaSize: 75,    
+   headerMediaSpacing: 25    
+ };        
+ const mockHeroProperties = {    
+   showScrollIndicator: true,    
+   overlayOpacity: 0.5,   &
+"  contentAlign: "center" as const,    
+   minHeight: "450px"    
+ };       /
++export default function TestMotionsPage() {    
+
+  return (   M
+I    <div className="p-8 bg-zinc-100 min-h-screen space-y-12 select-none">   `
+\      <h1 className="text-xl font-bold uppercase tracking-wider text-slate-800 text-center">   8
+4        Motion Engine Transition Verification Canvas    
+       </h1>       8
+4      <div className="space-y-10 max-w-5xl mx-auto">   D
+@        {/* Pack 1: Luxury Motion (Slow Cubic Bezier reveal) */}     
+          <div className="flex flex-col space-y-3 bg-white p-6 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative">   `
+\          <span className="text-[10px] uppercase font-bold text-amber-500 tracking-[1.5px]">   I
+E            1. Motion Pack: Luxury Motion (Slow Elegant Cubic Bezier)    
+           </span>   [
+W          <div className="rounded-2xl overflow-hidden border border-zinc-100 relative">   7
+3            <ThemeProvider themeId="luxury-gold" />    
+             <HeroSection   1
+-              properties={mockHeroProperties}   -
+)              bindings={mockHeroBindings}   *
+&              motionId="luxury-motion"    
+             />    
+           </div>    
+         </div>       E
+A        {/* Pack 2: Celebration Motion (Bouncy Spring reveal) */}     
+          <div className="flex flex-col space-y-3 bg-white p-6 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative">   a
+]          <span className="text-[10px] uppercase font-bold text-purple-500 tracking-[1.5px]">   H
+D            2. Motion Pack: Celebration Motion (Bouncy Spring & Tap)    
+           </span>   [
+W          <div className="rounded-2xl overflow-hidden border border-zinc-100 relative">   7
+3            <ThemeProvider themeId="luxury-gold" />    
+             <HeroSection   1
+-              properties={mockHeroProperties}   -
+)              bindings={mockHeroBindings}   /
++              motionId="celebration-motion"    
+             />    
+           </div>    
+         </div>       A
+=        {/* Pack 3: Minimal Motion (Subtle Fading reveal) */}     
+          <div className="flex flex-col space-y-3 bg-white p-6 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative">   _
+[          <span className="text-[10px] uppercase font-bold text-cyan-500 tracking-[1.5px]">   C
+?            3. Motion Pack: Minimal Motion (Subtle Linear Fade)    
+           </span>   [
+W          <div className="rounded-2xl overflow-hidden border border-zinc-100 relative">   7
+3            <ThemeProvider themeId="luxury-gold" />    
+             <HeroSection   1
+-              properties={mockHeroProperties}   -
+)              bindings={mockHeroBindings}   +
+'              motionId="minimal-motion"    
+             />    
+           </div>    
+         </div>    
+       </div>    
+
+    </div>    
+   );    
+ }      Bnfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-motions.tsxX        +Create visual motions test-motions.tsx file    0
+  | runtime.goexit
+  | 	third_party/go/gc/src/runtime/asm_amd64.s:1264
+Wraps: (3) exec: "grep"
+Wraps: (4) executable file not found in %PATH%
+Error types: (1) *withstack.withStack (2) *withstack.withStack (3) *exec.Error (4) *errors.errorString  2 19d889a9928f402e822e8a94b620ddf6    *  
+               "  
+ wwfoedpk  grep_search   {"CaseInsensitive":false,"IsRegex":false,"MatchPerLine":true,"Query":"CherryBlossoms","SearchPath":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\.system_generated\\logs","toolAction":"Search for CherryBlossoms in logs","toolSummary":"Searching transcript logs to retrieve original app/page.tsx code"}:     
+    M2 ` G  2 9       eku  i_  >& 7v   6  a  /   *"   "
+#  K3       ^  !   =y r        7    JM   `' C [^A   4 <   C8a\l        q   i    m 7  2^      d0> -P  B  dwE    ~  <C c  ~i   N   C y H :      r      m E%I Z  L6     l  s c 6rS+\     W   r6 Gk         z    ,     y=\ z    G   dMCWf  - |i  0>   &^  4 !]   	R   9>      xur    CO   !     H^    )   K8UyibB  ,3   k }  AH         E dH > { )   [ U   = 8   Um# M8k d l  y ?[l  1  _ s< 
+    y  - R6     <@   B#  %       # q '{  K vd   t  6 RO        :u VwIL  V  I +     y  cO   e *    =              # | %      )uw  yL  b) H     #  V 3 = 9c 2
+ S?)A   3  O Fa{  m]K&s     rV    
+h  ?J L Sp T  mU JZ      {  Q            S i  ^t aW Y  XPk  v'` >
+:iL  ,    '   O    [ "  W     , R         -     v  9m 3   Z    /     y	 dFx    (  _     g  2  1 8     2    9` K B  :     5  +w  Cc 5uR+  \  V     - 2H %bm}#  l A QG,  s   l   '    Q 'SW  cJ io   W  	~P)  9  g  o Qq w    {  +    -  @    .  BR Um   Y  :I!8  'G  c  F l f M    ;N v  }  M   <   v  '  ^ U  )   t_ \        '   V   >gD  n    g<,       J grep_search* CaseInsensitive* IsRegex* MatchPerLine* Query*
+SearchPath*
+toolAction* toolSummary2             :             B             X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      Q
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0    Z"$d2c79442-9bab-465c-a40a-56c20332cbe2                    U  6
+                 
+                 
+                   @Searching transcript logs to retrieve original app/page.tsx code  !Search for CherryB

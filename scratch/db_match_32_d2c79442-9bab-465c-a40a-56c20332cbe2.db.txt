@@ -1,0 +1,153 @@
+"use client";
+
+import React, { createContext, useContext, useEffect, useRef, Suspense } from "react";
+import { CompositionSchema } from "@/lib/composition/types";
+import { loadComposition } from "@/lib/composition/loader";
+import { validateComposition } from "@/lib/composition/validator";
+import SectionRenderer from "@/components/sections/SectionRenderer";
+
+// 1. RenderContext Definition
+interface RenderContextType {
+  theme: string;
+  motion: string;
+  assets: Record<string, any>;
+  invitationData: any;
+}
+
+const RenderContext = createContext<RenderContextType | null>(null);
+
+export function useRenderContext() {
+  const ctx = useContext(RenderContext);
+  if (!ctx) {
+    throw new Error("useRenderContext must be used within a RenderProvider");
+  }
+  return ctx;
+}
+
+// 2. Profiling Hook Implementation
+export interface ProfileMetrics {
+  renderTimeMs: number;
+  sectionsRendered: string[];
+  skippedSections: string[];
+  failedSections: string[];
+}
+
+export function useRendererProfiler(onProfileComplete?: (metrics: ProfileMetrics) => void) {
+  const startTime = useRef(0);
+  const metrics = useRef<ProfileMetrics>({
+    renderTimeMs: 0,
+    sectionsRendered: [],
+    skippedSections: [],
+    failedSections: []
+  });
+
+  const startProfiling = () => {
+    startTime.current = performance.now();
+    metrics.current = {
+      renderTimeMs: 0,
+      sectionsRendered: [],
+      skippedSections: [],
+      failedSections: []
+    };
+  };
+
+  const recordRender = (id: string) => {
+    if (!metrics.current.sectionsRendered.includes(id)) {
+      metrics.current.sectionsRendered.push(id);
+    }
+  };
+
+  const recordSkip = (id: string) => {
+    if (!metrics.current.skippedSections.includes(id)) {
+      metrics.current.skippedSections.push(id);
+    }
+  };
+
+  const recordFailure = (id: string) => {
+    if (!metrics.current.failedSections.includes(id)) {
+      metrics.current.failedSections.push(id);
+    }
+  };
+
+  const stopProfiling = () => {
+    if (startTime.current > 0) {
+      metrics.current.renderTimeMs = performance.now() - startTime.current;
+      if (onProfileComplete) {
+        onProfileComplete(metrics.current);
+      }
+    }
+    return metrics.current;
+  };
+
+  return { startProfiling, recordRender, recordSkip, recordFailure, stopProfiling, metrics: metrics.current };
+}
+
+// 3. CompositionRenderer L    ayout Component
+interface CompositionRendererProps {
+  composition: CompositionSchema;
+  invitationData: any;
+  theme?: string;
+  motion?: string;
+  onProfileComplete?: (metrics: ProfileMetrics) => void;
+}
+
+export default function CompositionRenderer({
+  composition,
+  invitationData,
+  theme,
+  motion,
+  onProfileComplete
+}: CompositionRendererProps) {
+  const profiler = useRendererProfiler(onProfileComplete);
+  
+  // Start the profile log timer
+  profiler.startProfiling();
+
+  // Validate composition schema
+  const validation = validateComposition(composition);
+  if (!validation.valid) {
+    profiler.recordFailure("composition-root");
+    profiler.stopProfiling();
+    return (
+      <div className="p-6 bg-red-50 border border-red-200 rounded-3xl text-red-800 space-y-2 select-none">
+        <h4 className="font-bold text-sm">Composition Validation Failed</h4>
+        <ul className="list-disc list-inside text-xs space-y-1">
+          {validation.errors.map((err, i) => <li key={i}>{err}</li>)}
+        </ul>
+      </div>
+    );
+  }
+
+  // Load composition render tree
+  const renderTree = loadComposition(composition, invitationData);
+
+  const contextValue: RenderContextType = {
+    theme: theme || renderTree.theme,
+    motion: motion || renderTree.motion,
+    assets: renderTree.assets,
+    invitationData
+  };
+
+  const renderedNodes = renderTree.sections.map((sectionNode) => {
+    // Check if section is enabled (defaults to true if key is absent)
+    const isEnabled = sectionNode.properties.enabled !== false;
+    if (!isEnabled) {
+      profiler.recordSkip(sectionNode.id);
+      return null;
+    }
+
+    try {
+      profiler.recordRender(sectionNode.id);
+      return (
+        <Suspense 
+          key={sectionNode.id} 
+          fallback={
+            <div className="h-40 flex items-center justify-center bg-zinc-50 border border-dashed border-zinc-200 rounded-3xl animate-pulse">
+              <span className="text-[10px] uppercase font-bold text-slate-400 tracking-[1.5px]">Loading Dynamic Component...</span>
+            </div>
+          }
+        >
+          <SectionRenderer
+            section={{
+              id: sectionNode.id,
+              t

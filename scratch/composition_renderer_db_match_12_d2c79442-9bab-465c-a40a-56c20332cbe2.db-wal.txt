@@ -1,0 +1,44 @@
+"use client"', idx);
+    if (startIdx === -1) {
+      startIdx = content.lastIndexOf('use client', idx);
+    }
+    if (startIdx === -1) startIdx = idx - 100;
+    
+    const slice = content.substring(startIdx, startIdx + 6000);
+    console.log(`  Preview of match [${matches}]:`);
+    console.log(slice.substring(0, 500));
+    console.log("------------------------");
+    
+    // Save to scratch
+    fs.writeFileSync(`scratch/composition_renderer_db_match_${matches}_${path.basename(filePath)}.txt`, slice);
+    idx += searchStr.length;
+  }
+}
+
+try {
+  extractFromBinary(dbPath);
+  extractFromBinary(walPath);
+} catch (err) {
+  console.error(err);
+}
+ {*:file:///c:/Users/Admin/Ahvaanam/scratch/extract_from_db.js2=
+ file:///c:/Users/Admin/Ahvaanam  scratch/extract_from_db.js    $
+ $    =     
+ const fs = require('fs');   !
+ const path = require('path');       t
+pconst dbPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\conversations\\d2c79442-9bab-465c-a40a-56c20332cbe2.db';   y
+uconst walPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\conversations\\d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal';       *
+&function extractFromBinary(filePath) {   %
+!  if (!fs.existsSync(filePath)) {   3
+/    console.log(`File not found: ${filePath}`);    
+     return;    
+   }   P
+L  console.log(`Scanning ${filePath} (${fs.statSync(filePath).size} bytes)`);   ,
+(  const buf = fs.readFileSync(filePath);    
+      =
+9  // Convert buffer to string replaci         3 S `         c    gravity\\\\conversations\\\\d2c79442-9bab-465c-a40a-56c20332cbe2.db';\nconst walPath = 'C:\\\\Users\\\\Admin\\\\.gemini\\\\antigravity\\\\conversations\\\\d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal';\n\nfunction extractFromBinary(filePath) {\n  if (!fs.existsSync(filePath)) {\n    console.log(`File not found: ${filePath}`);\n    return;\n  }\n  console.log(`Scanning ${filePath} (${fs.statSync(filePath).size} bytes)`);\n  const buf = fs.readFileSync(filePath);\n  \n  // Convert buffer to string replacing nulls with spaces\n  let content = '';\n  for (let i = 0; i \u003c buf.length; i++) {\n    const charCode = buf[i];\n    if (charCode === 0) {\n      content += ' ';\n    } else if (charCode \u003e= 32 \u0026\u0026 charCode \u003c= 126) {\n      content += String.fromCharCode(charCode);\n    } else if (charCode === 10 || charCode === 13 || charCode === 9) {\n      content += String.fromCharCode(charCode);\n    } else {\n      content += ' ';\n    }\n  }\n\n  const searchStr = 'SECTION_COMPONENTS';\n  let idx = 0;\n  let matches = 0;\n  while ((idx = content.indexOf(searchStr, idx)) !== -1) {\n    matches++;\n    console.log(`[${matches}] Found match at index ${idx}`);\n    // Find the start of the file: look backward for \"use client\"\n    let startIdx = content.lastIndexOf('\"use client\"', idx);\n    if (startIdx === -1) {\n      startIdx = content.lastIndexOf('use client', idx);\n    }\n    if (startIdx === -1) startIdx = idx - 100;\n    \n    const slice = content.substring(startIdx, startIdx + 6000);\n    console.log(`  Preview of match [${matches}]:`);\n    console.log(slice.substring(0, 500));\n    console.log(\"------------------------\");\n    \n    // Save to scratch\n    fs.writeFileSync(`scratch/composition_renderer_db_match_${matches}_${path.basename(filePath)}.txt`, slice);\n    idx += searchStr.length;\n  }\n}\n\ntry {\n  extractFromBinary(dbPath);\n  extractFromBinary(walPath);\n} catch (err) {\n  console.error(err);\n}\n","Description":"Update SQLite search for CompositionRenderer using SECTION_COMPONENTS keyword.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\scratch\\extract_from_db.js","toolAction":"Write extract_from_db script","toolSummary":"Updating SQLite search script to look for SECTION_COMPONENTS keyword"}:     
+    M2 "HpQ  L             /{I }Ue r8E m X*  R  Y    4       $        i  A cl  N        { A 9   ;5- }    3H        UI    0d}D  X            ]       Y V   1     .v/   j.     I$AJ         lJ +J  Q  \B    :   -   }-     1     Yc  P   0      ge  ) ;O       f   E ]:     0  DE + H
+\O=)U= QrcF    L    Uj se l K      [       a 7uyO  G   k:    {+ 6b;   ]Y      R'  	    9  jT K    8 Fq  ; E p   S W M l (   L      Ql Lu       	g  Sf7 a 0  SE   Z  2v Z g    CI   _  i  (b.         =A     @ x  x;   Q | *qV  0g  Z R jZ          f  '  t7  k O D & ~    	 h  d  [7   3_ 5[     X |   0 [    (  7 V   v } |   <  #  H] 4F    W z  @ +  *?  g\@     4 &    D   0       g   ; gN           =8	  " D TT  | M  1 v c  n&  u    > L9  Z   {  i      #  /_  G   x    |3 |      ,  i           X ;   ,0    s  (*   v      > A  M [  SO  ". t K   D       p    r  K   0#\'  B     A           e s , n   s#     dg#U	 ?  8
+   8   U &^  D L    fr  > mmr   lQ   R    i d_%h J   r;>    .   9  o    1  9 ' $  p  K  n )   Wt9  }    k M  t   6 3 g; N	 J    :N     ( 	 )z  6` ^1E*      h  u ?_ T    [              $ +   vH U~ %  A       $A+ S.Q9        9   V?i   F       \    ~   s   B  ( CY ] ` b \    "   O  I m+O+    2 n    x!3-s  m  ?P    r "p{uI%   8)Q+   O   t I    8       r@F tEJj           )    E x  z     & i  = s  1     g!#    n  V   /   )    b   % _}]DJ z 6 j$ 5 c     p  T    *     Z      -  I (D  m  7     I 	>q  M_ py ;    Q UV 	c      ;)8j  <	          - #  ;sFiR 2H Gy     d t ! L  U yMw  ; :  D_-  ,H   _  ,    Ud    8     O    "  O  & h 4 Klk  W  & i1  ?     C C&   |F +y   ;      9>    i IfQ    %4s	 \   )6wX   L/2 /E y   0  f9 u 8    3i   b   h a3     IW I? 2BXa t   17 rR  m         :        ? r  *  @s      r V:  }   uL   PZ       @!             W .  
+<  ?r   K\2Ea            Y< .  c   *k7  
+ $        <  ya o |         3 S `     O )      string(startIdx, startIdx + 6000);\n    console.log(`  Preview of match [${matches}]:`);\n    console.log(slice.substring(0, 500));\n    console.log(\"------------------------\");\n    \n    // Save to scratch\n    fs.writeFileSync(`scratch/composition_renderer_db_match_${matches}_${path.basename(filePath)}.txt`, slice);\n    idx += searchStr.length;\n  }\n}\n\ntry {\n  extractFromBinary(dbPath);\n  extrac

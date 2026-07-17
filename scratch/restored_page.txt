@@ -1,0 +1,108 @@
+Created At: 2026-07-12T09:01:28Z
+Completed At: 2026-07-12T09:01:29Z
+
+				The command completed successfully.
+				Output:
+				On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .gitignore
+	modified:   app/globals.css
+	modified:   app/layout.tsx
+	modified:   app/page.tsx
+	deleted:    components/Footer.tsx
+	deleted:    components/Hero.tsx
+	deleted:    components/background/Background.tsx
+	deleted:    components/background/Corners.tsx
+	deleted:    components/background/Glow.tsx
+	deleted:    components/background/LightRays.tsx
+	deleted:    components/data/invitation.ts
+	deleted:    components/effects/GoldDust.tsx
+	deleted:    components/effects/Petals.tsx
+	deleted:    components/hero/CouplePhoto.tsx
+	deleted:    components/hero/RoyalFrame.tsx
+	deleted:    components/sections/Countdown.tsx
+	deleted:    components/sections/Gallery.tsx
+	deleted:    components/sections/PremiumGallery.tsx
+	deleted:    components/sections/RSVP.tsx
+	deleted:    components/sections/Timeline.tsx
+	deleted:    components/sections/Venue.tsx
+	deleted:    components/sections/WeddingDetails.tsx
+	deleted:    components/shared/MusicButton.tsx
+	deleted:    components/shared/ShareButton.tsx
+	modified:   next.config.ts
+	modified:   package-lock.json
+	modified:   package.json
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	app/about/
+	app/admin/
+	app/api/
+	app/auth/
+	app/checkout/
+	app/contact/
+	app/create/
+	app/dashboard/
+	app/demo/
+	app/forgot-password/
+	app/how-it-works/
+	app/invites/
+	app/login/
+	app/logout/
+	app/not-found.tsx
+	app/portfolio/
+	app/pricing/
+	app/privacy/
+	app/reset-password/
+	app/services/
+	app/signup/
+	app/templates/
+	app/terms/
+	components/context/
+	components/data/invites/
+	components/data/themes.ts
+	components/home/
+	components/layouts/
+	components/motion/
+	components/rsvp/
+	components/sections/couple/
+	components/sections/dressCode/
+	components/sections/families/
+	components/sections/houseDetails/
+	components/sections/owners/
+	components/sections/story/
+	components/shared/DeitySymbol.tsx
+	components/shared/GallerySlider.tsx
+	components/shared/LegacyOrchestrator.tsx
+	components/shared/PageTransitionWrapper.tsx
+	components/shared/ParallaxProviderWrapper.tsx
+	components/shared/ThemeSelectorHub.tsx
+	components/shared/category-card.tsx
+	components/shared/theme-card.tsx
+	components/templates/
+	components/types/
+	data/
+	lib/
+	prisma/
+	proxy.ts
+	public/images/categories/
+	public/images/deities/
+	public/images/editor-preview.png
+	public/images/hero-invitation.png
+	public/images/img.png
+	public/images/logo.png
+	public/images/themes/
+	public/sample-invitation.pdf
+	public/uploads/
+	scratch/
+	section_specification.md
+	supabase_setup.sql
+	types/
+	utils/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+

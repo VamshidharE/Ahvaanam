@@ -1,0 +1,148 @@
+use client";
+
+import React from "react";
+import { CompositionSchema } from "@/lib/composition/types";
+
+// Dynamic section component imports
+import HeroSection from "@/components/sections/hero";
+import CoupleSection from "@/components/sections/couple";
+import CountdownSection from "@/components/sections/countdown";
+import StorySection from "@/components/sections/story";
+import EventsSection from "@/components/sections/events";
+import GallerySection from "@/components/sections/gallery";
+import VenueSection from "@/components/sections/venue";
+import FamiliesSection from "@/components/sections/families";
+import RSVPSection from "@/components/sections/rsvp";
+import FAQSection from "@/components/sections/faq";
+import DressCodeSection from "@/components/sections/dressCode";
+import FooterSection from "@/components/sections/footer";
+
+const SECTION_COMPONENTS: Record<string, React.ComponentType<any>> = {
+  hero: HeroSection,
+  couple: CoupleSection,
+  countdown: CountdownSection,
+  story: StorySection,
+  events: EventsSection,
+  gallery: GallerySection,
+  venue: VenueSection,
+  families: FamiliesSection,
+  rsvp: RSVPSection,
+  faq: FAQSection,
+  dressCode: DressCodeSection,
+  footer: FooterSection,
+};
+
+function resolveBindingValue(path: string, data: any): any {
+  const parts = path.split(".");
+  let current = data;
+  for (const part of parts) {
+    if (current == null) return undefined;
+    current = current[part];
+  }
+  return current;
+}
+
+interface CompositionRendererProps {
+  composition: CompositionSchema;
+  invitationData: any;
+}
+
+export default function CompositionRenderer({ composition, invitationData }X2`          :20)  
+ 
+ 8
+6    at InviteContent (app/invites/[id]/page.tsx:239:8)  
+ 
+ :
+8    at GuestInvitePage (app/invites/[id]/page.tsx:402:7)  
+ 
+  
+ 
+  
+## Code Frame  
+ 
+ M
+K  59 |         return <VenueSection key={sectionId} bindings={bindings} />;  
+ 
+  
+   60 |       case "families":  
+ 
+ P
+N> 61 |         return <FamiliesSection key={sectionId} bindings={bindings} />;  
+ 
+  
+      |                ^  
+ 
+  
+   62 |       case "rsvp":  
+ 
+ L
+J  63 |         return <RSVPSection key={sectionId} bindings={bindings} />;  
+ 
+  
+   64 |       case "faq":  
+ 
+  
+ 
+ %
+#Next.js version: 16.2.9 (Turbopack)  
+ 
+" b   
+   j   B   x    X           
+       
+/read_file(C:\Users\Admin\invitecraft\AGENTS.md)
+@write_file(C:\Users\Admin\invitecraft\components\data\themes.ts)
+Jwrite_file(C:\Users\Admin\invitecraft\components\context\ThemeContext.tsx)
+Mwrite_file(C:\Users\Admin\invitecraft\components\shared\ThemeSelectorHub.tsx)
+6write_file(C:\Users\Admin\invitecraft\app\globals.css)
+Dwrite_file(C:\Users\Admin\invitecraft\components\data\invitation.ts)
+Swrite_file(C:\Users\Admin\invitecraft\components\templates\royal-temple\Layout.tsx)
+Twrite_file(C:\Users\Admin\invitecraft\components\templates\floral-garden\Layout.tsx)
+Swrite_file(C:\Users\Admin\invitecraft\components\templates\south-indian\Layout.tsx)
+Twrite_file(C:\Users\Admin\invitecraft\components\templates\palace-luxury\Layout.tsx)
+Uwrite_file(C:\Users\Admin\invitecraft\components\templates\lotus-serenity\Layout.tsx)
+Owrite_file(C:\Users\Admin\invitecraft\components\templates\marigold\Layout.tsx)
+Pwrite_file(C:\Users\Admin\invitecraft\components\templates\moonlight\Layout.tsx)
+Swrite_file(C:\Users\Admin\invitecraft\components\templates\grand-mandap\Layout.tsx)
+3write_file(C:\Users\Admin\invitecraft\app\page.tsx)
+ command(npm run)
+Ewrite_file(C:\Users\Admin\invitecraft\components\types\invitation.ts)
+Nwrite_file(C:\Users\Admin\invitecraft\components\templates\peacock\Layout.tsx)
+Owrite_file(C:\Users\Admin\invitecraft\components\templates\heritage\Layout.tsx)
+ command(npm run)
+9read_file(C:\Users\Admin\invitecraft\components\sections)
+%read_file(C:\Users\Admin\invitecraft)
+Icommand(Get-ChildItem -Recurse -Filter *.tsx | Select-String "sections/")
+mcommand(Get-ChildItem -Recurse -Filter *.tsx | Select-String -Pattern "components/Footer", "components/Hero")
+Qcommand(Get-ChildItem -Recurse -Filter *.tsx | Select-String "InvitationContext")
+  command(Get-ChildItem -Path components/templates -Recurse -Filter *.tsx | Select-String -Pattern "Background", "CouplePhoto", "MusicButton", "ShareButton")
+Ewrite_file(C:\Users\Admin\invitecraft\components\types\invitation.ts)
+ command(npm run)
+Fwrite_file(C:\Users\Admin\invitecraft\components\data\invitation.json)
+Bwrite_file(C:\Users\Admin\invitecraft\app\api\invitation\route.ts)
+>write_file(C:\Users\Admin\invitecraft\app\api\upload\route.ts)
+Swrite_file(C:\Users\Admin\invitecraft\components\context\InvitationDataContext.tsx)
+5write_file(C:\Users\Admin\invitecraft\app\layout.tsx)
+9write_file(C:\Users\Admin\invitecraft\app\admin\page.tsx)
+ command(npm run)
+Bwrite_file(C:\Users\Admin\invitecraft\app\api\invitation\route.ts)
+9write_file(C:\Users\Admin\invitecraft\app\admin\page.tsx)
+ command(npm run)
+9write_file(C:\Users\Admin\invitecraft\app\admin\page.tsx)
+ command(npm run)
+Kwrite_file(C:\Users\Admin\invitecraft\components\data\invites\default.json)
+ command(Copy-Item)
+Gwrite_file(C:\Users\Admin\invitecraft\app\api\invitation\[id]\route.ts)
+Rwrite_file(C:\Users\Admin\invitecraft\components\data\invites\kalyan-vasudha.json)
+>write_file(C:\Users\Admin\invitecraft\app\admin\[id]\page.tsx)
+ command(Remove-Item)
+fcommand(Get-ChildItem -Path components/templates -Recurse -Filter *.tsx | Select-String "onBackToHub")
+@write_file(C:\Users\Admin\invitecraft\app\invites\[id]\page.tsx)
+Iwrite_file(C:\Users\Admin\invitecraft\app\invites\[id]\selector\page.tsx)
+Ocommand(Get-ChildItem -Recurse -Filter *.tsx | Select-String "data/invitation")
+ command(Remove-Item)
+ command(npm run)
+9write_file(C:\Users\Admin\invitecraft\lib\auth\config.ts)
+Hwrite_file(C:\Users\Admin\i    nvitecraft\components\shared\DeitySymbol.tsx)
+ command(New-Item)
+  command(\(Get-Content -LiteralPath app/admin/\[id\]/page\.tsx \| Select-String -Pattern "Surname & Sacred Symbols"\)\.LineNumber)
+  command(node C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e

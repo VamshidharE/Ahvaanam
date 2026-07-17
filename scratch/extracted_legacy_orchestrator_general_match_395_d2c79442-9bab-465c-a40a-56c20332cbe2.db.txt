@@ -1,0 +1,129 @@
+a40a-56c20332cbe2                        6
+                 
+                 
+                   [Creating central legacy components orchestrator in components/shared/LegacyOrchestrator.tsx   Create LegacyOrchestrator.tsx               R h
+ 1  1
+ /"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+import { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Import reusable section components
+import HeroSection from "../sections/hero";
+import CoupleSection from "../sections/couple";
+import CountdownSection from "../sections/countdown";
+import StorySection from "../sections/story";
+import EventsSection from "../sections/events";
+import GallerySection from "../sections/gallery";
+import VenueSection from "../sections/venue";
+import FamiliesSection from "../sections/families";
+import RSVPSection from "../sections/rsvp";
+import FAQSection from "../sections/faq";
+import DressCodeSection from "../sections/dressCode";
+import FooterSection from "../sections/footer";
+
+interface LegacyOrchestratorProps {
+  themeId: string;
+  onBackToHub: () => void;
+  particlesComponent?: React.ComponentType<any>;
+  themeBgClass?: string;
+  loadingTitle?: string;
+  loadingSubtitle?: string;
+}
+
+export default function Legac     Enable \"housewarming\" in `data/categories/categories.ts`\n- `[x]` Create House Details component (`components/sections/houseDetails/`) and register it in component registry\n- `[x]` Register 10 premium themes in Theme Registry (`lib/theme/registry.ts`) and Template Registry (`lib/templates/registry.ts`)\n- `[x]` Define `getHousewarmingComposition` mapper in `lib/composition/templates.ts`\n- `[x]` Create HousewarmingPremiumLayout proxy at `components/templates/housewarming-premium/Layout.tsx`\n- `[x]` Map the 10 housewarming themes in guest invites router `app/invites/[id]/page.tsx`\n- `[x]` Configure English and Telugu sample content inside default config loader `lib/defaults/housewarming.ts`\n- `[x]` Run TypeScript and build compilation verification check\n","Description":"Update task checklist to complete for Housewarming category implementation","Overwrite":true,"TargetFile":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\task.md","toolAction":"Update task.md","toolSummary":"Checking off tasks in task.md"}:     
+    M2 k  k SN    ?a l+      nn[q  36 u   j M]N    [        R        &   #  ro 8  PM   '    |       F wW 
+~f f bMk    ~  mH      %  v U'    Jwrite_to_file* ArtifactMetadata* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$ecf2dfb7-b64e-479f-b9ff-fff55199f93ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                    Checking off tasks in task.md   Update task.md               R  
+     
+  # Housewarming Category Tasks
+
+- `[x]` Enable "housewarming" in `data/categories/categories.ts`
+- `[x]` Create House Details component (`components/sections/houseDetails/`) and register it in component registry
+- `[x]` Register 10 premium themes in Theme Registry (`lib/theme/registry.ts`) and Template Registry (`lib/templates/registry.ts`)
+- `[x]` Define `getHousewarmingComposition` mapper in `lib/composition/templates.ts`
+- `[x]` Create HousewarmingPremiumLayout proxy at `components/templates/housewarming-premium/Layout.tsx`
+- `[x]` Map the 10 housewarming themes in guest invites router `app/invites/[id]/page.tsx`
+- `[x]` Configure English and Telugu sample content inside default config loader `lib/defaults/housewarming.ts`
+- `[x]` Run TypeScript and build compilation verification check
+ _*]file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/task.md    
+
+ 
+         3
+/# Phase 6A: Premium Invitation Experience Tasks   !
+ # Housewarming Category Tasks       }
+y- `[x]` Update `app/invites/[id]/page.tsx` with cinematic loaders, bottom sheet RSVP, music waveform dock, and share FABs   D
+@- `[x]` Enable "housewarming" in `data/categories/categories.ts`   v
+r- `[x]` Create House Details component (`components/sections/houseDetails/`) and register it in component registry     
+  - `[x]` Register 10 premium themes in Theme Registry (`lib/theme/registry.ts`) and Template Registry (`lib/templates/registry.ts`)   X
+T- `[x]` Define `getHousewarmingComposition` mapper in `lib/composition/templates.ts`   l
+h- `[x]` Create HousewarmingPremiumLayout proxy at `components/templates/housewarming-premium/Layout.tsx`   ^
+Z- `[x]` Map the 10 housewarming themes in guest invites router `app/invites/[id]/page.tsx`   s
+o- `[x]` Configure English and Telugu sample content inside default config loader `lib/defaults/housewarming.ts`   C
+?- `[x]` Run TypeScript and build compilation verification check      B]file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/task.mdR  # Phase 6A: Premium Invitation Experience Tasks
+
+- `[x]` Update `app/invites/[id]/page.tsx` with cinematic loaders, bottom sheet RSVP, music waveform dock, and share FABs
+- `[x]` Run TypeScript and build compilation verification check
+       R BCompleted task checklist for Housewarming Category Implementation."               JUpdate task checklist to complete for Housewarming category implementation            {"ArtifactMetadata":{"RequestFeedback":false,"Summary":"Walkthrough summary of Housewarming Category Implementation, detailing the enabling of categories, registrations of 10 themes, mapping of Telugu and English contents, and compilation metrics.","UserFacing":true},"CodeContent":"# Walkthrough: Housewarming Category Implementation\n\nWe have successfully integrated the complete **Housewarming Category** into the Ahvaanam platform by reusing the existing Composition, Theme, Layout, and Motion Engines with 0 architecture changes.\n\n---\n\n## 1. Codebase Deliverables\n\n* **Housewarming Category Enabled**: Configured `\"housewarming\"` as `enabled: true` inside [categories  1               <   
+               "  
+ wymwjc5v write_to_file   {"ArtifactMetadata":{"RequestFeedback":false,"Summary":"Walkthrough summary of Housewarming Category Implementation, detailing the enabling of categories, registrations of 10 themes, mapping of Telugu and English contents, and compilation metrics.","UserFacing":true},"CodeContent":"# Walkthrough: Housewarming Category Implementation\n\nWe have successfully integrated the complete **Housewarming Category** into the Ahvaanam platform by reusing the existing Composition, Theme, Layout, and Motion Engines with 0 architecture changes.\n\n---\n\n## 1. Codebase Deliverables\n\n* **Housewarming Category Enabled**: Configured `\"housewarming\"` as `enabled: true` inside [categories.ts](file:///c:/Users/Admin/Ahvaanam/data/categories/categories.ts).\n* **House Details Section Component**: Created the manifest and visual component under [houseDetails](file:///c:/Users/Admin/Ahvaanam/components/sections/houseDetails/index.tsx) to render new home names and descriptions.\n* **10 Premium Mobile-First Themes**: Registered 10 diverse themes in the Theme Registry ([registry.ts](file:///c:/Users/Admin/Ahvaanam/lib/theme/registry.ts)) and Template Registry ([registry.ts](file:///c:/Users/Admin/Ahvaanam/lib/templates/registry.ts)):\n  1. `divine-griha` (Traditional gold \u0026 copper with Ganesha icons)\n  2. `modern-nest` (Minimal warm beige with clean margins)\n  3. `royal-palace` (Deep crimson red velvet with golden borders)\n  4. `emerald-estate` (Imperial emerald green with gold leafing)\n  5. `classic-ivory` (Pure ivory linen with bronze text)\n  6. `constellation-navy` (Deep navy with twinkling stars glow)\n  7. `warm-terracotta` (Earthy copper/terracotta textures)\n  8. `glassmorphic-oasis` (Frosted glass over liquid-blur gradients)\n  9. `rosegold-manor` (Matte black wood with rose-gold lines)\n  10. `botanical-garden` (watercolor sage and eucalyptus foliage)\n* **Telugu \u0026 English Combined Sample Content**: Predefined bilingual puja and housewarming details inside [housewarming.ts defaults](file:///c:/Users/Admin/Ahvaanam/lib/defaults/housewarming.ts).\n* **Dynamic Composition Mapping**: Added `getHousewarmingComposition` mapping inside [templates.ts](file:///c:/Users/Admin/Ahvaanam/lib/composition/templates.ts) to arrange sections dynamically:\n  `[\"hero\", \"families\", \"houseDetails\", \"countdown\", \"gallery\", \"venue\", \"rsvp\", \"footer\"]`\n\n---\n\n## 2. Editor \u0026 Viewer Routing Integration\n\n* **Zero Editor Changes**: Because the Dynamic Customizer Inspector is manifest-driven, the new `houseDetails` section and form inputs (hosts, address, date, time) appear and edit dynamically inside the existing admin customizer without any manual form coding!\n* **Viewer Proxy Routing**: Routed the 10 new themes inside [page.tsx](file:///c:/Users/Admin/Ahvaanam/app/invites/[id]/page.tsx) to use the lightweight proxy `HousewarmingPremiumLayout` which executes directly through the Composition Renderer.\n\n---\n\n## 3. Verification \u0026 Build Stats\n\n* **TypeScript Compilation (`npx tsc --noEmit`)**: Completed with **0 errors**.\n* **Next.js Production Build (`npm run build`)**: Completed successfully.\n  * Static generation: **28/28 routes compiled**.\n  * Total compilation time: **13.2 seconds**.\n","Description":"Create walkthrough.md walkthrough summary in artifact   z          ?  \", type: \"publish\", defaultPath: \"status\" }\n      ]\n    }\n  };\n\n  return modules;\n}\n","Description":"Rewrite registry.ts to include dynamic summary and completion functions in dynamic fallback compilation.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\lib\\builder\\registry.ts","toolAction":"Update builder registry.ts fallback metadata","toolSummary":"Updating builder registry fallback handlers inside lib/builder/registry.ts"}:     
+    M2       [ !        ra [  s   u     v   9   m   *  R    Bv    >OJ N     F Y [/'       ` k   0QO V    M   F    E5   m  q l  $a    *  .4   O    m  d+ D[H|k VO9     K# Su<  S    [ , 
+~     s y Ug  !   R     mh_j     np H.   z j -N ? ! ~ w m k   X       "$4d494374-7d8c-4205-8fb2-aae7c166e76bB     2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   1   2   2   2   2   0   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   1   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2
+     "Q         (   0 B!
+	sessionID  -3750763034362895579H  P  Z yDRSapqXBNfXjuMPmOymiA00  : 
+ autoJd              "           -(  2          6dce46b72          505192a0:       e9c821beB         R     Z       Mb       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  e Q         (   0 B!
+	sessionID  -3750763034362895579H  P  Z yDRSapqXBNfXjuMPmOymiA0" 14a6605b743c664b   gemini-default  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $2406dc2a-e9a9-4d3d-85dc-7b742b326c42  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  753   Gemini 3.5 Flash (Medium) f K j           "$4d494374-7d8c-4205-8fb2-aae7c166e76bB     2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   1   2   2   2   2   0   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   1   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2
+     "L          0 B!
+	sessionID  -3750763034362895579H6PPZ xTRSaviCEqvFjuMPjKGLkAg0  : 
+ autoJK     "             (  2          505192a0:       e9c821beB         R       Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  ` L          0 B!
+	sessionID  -3750763034362895579H6PPZ xTRSaviCEqvFjuMPjKGLkAg" 3b20c8c8b72e2eb3   gemini-default   
+ last_step_index  751  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $2406dc2a-e9a9-4d3d-85dc-7b742b326c42  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false  !
+ used_claude_conservative  false   Gemini 3.5 Flash (Medium) D n i   Z       "$4d494374-7d8c-4205-8fb2-aae7c166e76bB     2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   1   2   2   2   2   0   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   1   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2
+     "Q         (   0 B!
+	sessionID  -3750763034362895579H  P  Z wTRSaq3JHriujuMPo83eyQ80  : 
+ autoJd              "             (  2          a72de78f2          3170191f:       e9c821beB       jR     Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  e Q         (   0 B!
+	sessionID  -3750763034362895579H  P  Z wTRSaq3JHriujuMPo83eyQ8" 97d3e2b2e963db5f   gemini-default  !
+ used_claude_conservative  false   
+ last_step_index  749  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $2406dc2a-e9a9-4d3d-85dc-7b742b326c42  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false   Gemini 3.5 Flash (Medium) g         
+                                                                 1        |     ^   
+              2             X  b$ecf2dfb7-b64e-479f-b9ff-fff55199f93ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+              2             X  b$ecf2dfb7-b64e-479f-b9ff-fff55199f93ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                         
+               2             :            B            JO     J   (  0 B!
+	sessionID  -3750763034362895579H  PnZ O4dSaojTO53jjuMP2fKMKAX  b$89350b24-31df-4f3e-93fa-21854061e36fj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                 
+                                  *  
+               2             :            B            JO     J   (  0 B!
+	sessionID  -3750763034362895579H  PnZ O4dSaojTO53jjuMP2fKMKAX  b$89350b24-31df-4f3e-93fa-21854061e36fj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                 
+                                  
+  I will read `lib/composition/loader.ts` using `view_file` to see how the properties of the section manifest are parsed and resolve the iteration error.2(bot-36b1e2de-649d-4735-af63-

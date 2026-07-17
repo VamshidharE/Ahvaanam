@@ -1,0 +1,318 @@
+use client";
+2: 
+3: import React from "react";
+4: import { CompositionSchema } from "@/lib/composition/types";
+5: 
+6: // Dynamic section component imports
+7: import HeroSection from "@/components/sections/hero";
+8: import CoupleSection from "@/components/sections/couple";
+9: import CountdownSection from "@/components/sections/countdown";
+10: import StorySection from "@/components/sections/story";
+11: import EventsSection from "@/components/sections/events";
+12: import GallerySection from "@/components/sections/gallery";
+13: import VenueSection from "@/components/sections/venue";
+14: import FamiliesSection from "@/components/sections/families";
+15: import RSVPSection from "@/components/sections/rsvp";
+16: import FAQSection from "@/components/sections/faq";
+17: import DressCodeSection from "@/components/sections/dressCode";
+18: import FooterSection from "@/components/sections/footer";
+19: 
+20: const SECTION_COMPONENTS: Record<string, React.ComponentType<any>> = {
+21:   hero: HeroSection,
+22:   couple: CoupleSection,
+23:   countdown: CountdownSection,
+24:   story: StorySection,
+25:   events: EventsSection,
+26:   gallery: GallerySection,
+27:   venue: VenueSection,
+28:   families: FamiliesSection,
+29:   rsvp: RSVPSection,
+30:   faq: FAQSection,
+31:   dressCode: DressCodeSection,
+32:   footer: FooterSection,
+33: };
+34: 
+35: function resolveBindingValue(path: string, data: any): any {
+36:   const parts = path.split(".");
+37:   let current = data;
+38:   for (const part of parts) {
+39:     if (current == null) return undefined;
+40:     current = current[part];
+41:   }
+42:   return current;
+43: }
+44: 
+45: interface CompositionRendererProps {
+46:   composition: CompositionSchema;
+47:   invitationData: any;
+48: }
+49: 
+50: export default function CompositionRenderer({ composition, invitationData }
+The above content shows the entire, complete file contents of the requested file.
+   : btqll2xj      -
+(bot-1889a678-d8f9-4b7a-acf7-aee017cff58f     I will write a script to check all the match files we dumped from the SQLite database to see if any other match contains the complete, untruncated `CompositionRenderer.tsx` file (including the full render return statement).  
+2 (
+ z42uqj2t write_to_file   {"CodeContent":"const fs = require('fs');\nconst path = require('path');\n\nconst files = fs.readdirSync('scratch');\nlet candidates = [];\n\nfor (const file of files) {\n  if (file.startsWith('composition_pure_match_') \u0026\u0026 file.endsWith('.txt')) {\n    const filePath = path.join('scratch', file);\n    const content = fs.readFileSync(filePath, 'utf8');\n    \n    if (content.includes('export default function CompositionRenderer') \u0026\u0026 content.includ                                                                    7 r      |     j   
+              2             X  b$bbea40d5-c694-40df-80e5-b322fdb88ebdj      R
+$e814890c-6b84-44e9-9783-edb10a1b  " s      J      p   
+               b$cb079ec8-7747-414f-b109-d9421a9d73a6  R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2   
+               q    *  
+               b$cb079ec8-7747-414f-b109-d9421a9d73a6  R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2   
+               q        Build the first version of the Ahvaanam Celebration Builder.
+
+IMPORTANT
+
+Do NOT modify the Composition Engine.
+
+Do NOT modify the Registry.
+
+Do NOT modify Manifests.
+
+Do NOT modify the Preview Renderer.
+
+Do NOT change database schemas.
+
+Everything must continue working.
+
+==================================================
+
+Create a completely new Builder UI that sits above the existing engine.
+
+Architecture
+
+InvitationDataProvider
+           
+Celebration Builder
+           
+Live Preview
+           
+Existing Renderer
+
+==================================================
+
+Create a new folder
+
+components/builder/
+
+Inside create
+
+BuilderShell.tsx
+BuilderSidebar.tsx
+BuilderContent.tsx
+BuilderOverview.tsx
+BuilderModule.tsx
+BuilderProgress.tsx
+
+==================================================
+
+Builder Layout
+
+--------------------------------------------------
+
+LEFT
+
+Builder Sidebar
+
+Overview
+
+People
+
+Celebration
+
+Location
+
+Media
+
+Design
+
+Publish
+
+Bottom
+
+Advanced Studio
+
+--------------------------------------------------
+
+CENTER
+
+Large Phone Preview
+
+Reuse existing preview.
+
+Do not change preview implementation.
+
+--------------------------------------------------
+
+RIGHT
+
+Dynamic Builder Content
+
+NOT Property Inspector.
+
+Render Builder Modules.
+
+==================================================
+
+Builder Navigation
+
+Never display
+
+Hero
+
+Gallery Section
+
+Footer
+
+Bindings
+
+Manifest
+
+Registry
+
+Components
+
+Instead
+
+Overview
+
+People
+
+Celebration
+
+Location
+
+Media
+
+Design
+
+Publish
+
+==================================================
+
+Create Builder Blueprints
+
+lib/builder/
+
+Create
+
+types.ts
+
+registry.ts
+
+wedding.ts
+
+birthday.ts
+
+housewarming.ts
+
+==================================================
+
+Example
+
+export const weddingBuilder = {
+
+people:[
+"bride",
+"groom",
+"brideParents",
+"groomParents"
+],
+
+celebration:[
+"wedding",
+"reception",
+"haldi",
+"mehendi"
+],
+
+location:true,
+
+media:[
+"cover",
+"gallery",
+"music"
+],
+
+design:true,
+
+publish:true
+
+}
+
+==================================================
+
+BuilderShell
+
+Reads
+
+category
+
+Loads
+
+Builder Blueprint
+
+Renders navigation automatically.
+
+==================================================
+
+BuilderOverview
+
+Show
+
+Invitation Name
+
+Completion %
+
+Missing Items
+
+Continue Editing
+
+Last Saved
+
+==================================================
+
+Builder Progress
+
+Compute completion automatically.
+
+Example
+
+Bride Name empty
+
+   
+
+People incomplete
+
+Venue empty
+
+   
+
+Location incomplete
+
+Gallery empty
+
+   
+
+Media incomplete
+
+==================================================
+
+Advanced Studio
+
+Bottom button
+
+Open Studio
+
+Launch existing editor.
+
+No functionality removed.
+
+==================================================
+
+Rules
+
+Builder must never know about sections.
+
+Builder only k

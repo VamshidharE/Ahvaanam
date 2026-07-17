@@ -1,0 +1,117 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[40] Found match at index 16454795
+  Preview of match [40]:
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemeProvider from "@/components/theme/ThemeProvider";        
+ const mockHeroBindings = {   $
+   title: "Dev & Neha's Wedding",   7
+3  subtitle: "We Invite You to Celebrate Our U
+------------------------
+[41] Found match at index 17130903
+  Preview of match [41]:
+"use client";
+
+import React from "react";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+
+interface CelebrantSectionProps {
+  bindings: {
+    name?: string;
+    age?: number;
+  };
+  layoutId?: string;
+}
+
+export default function CelebrantSection({ bindings, layoutId }: CelebrantSecti
+------------------------
+[42] Found match at index 17132865
+  Preview of match [42]:
+"use client";
+
+import React from "react";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+
+interface CelebrantSectionProps {
+  bindings: {
+    name?: string;
+    age?: number;
+  };
+  layoutId?: string;
+}
+
+export default function CelebrantSection({ bindings, layoutId }: CelebrantSecti
+------------------------
+[43] Found match at index 17175519
+  Preview of match [43]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+[44] Found match at index 17186894
+  Preview of match [44]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+[45] Found match at index 17191221
+  Preview of match [45]:
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemeProvider from "@/components/theme/ThemeProvider";        
+ const mockHeroBindings = {   '
+#  title: "Ravi & Swetha's Sangeet",   7
+3  subtitle: "An Evening of Music, Dance, a
+------------------------
+[46] Found match at index 17637892
+  Preview of match [46]:
+"use client";       ?
+;import React, { useEffect, useState, useRef } from "react";   ;
+7import { ToggleLeft, ToggleRight } from "lucide-react";   S
+Oimport CompositionRenderer from "@/components/composition/CompositionRenderer";   `
+\import { getWeddingComposition, getBirthdayComposition } from "@/l
+------------------------
+[47] Found match at index 18115503
+  Preview of match [47]:
+"use client";
+
+import { useEffect, useState, useRef } from "react";
+import { ToggleLeft, ToggleRight } from "lucide-react";
+import CompositionRenderer from "@/components/composition/CompositionRenderer";
+import { getWeddingComposition, getBirthdayComposition } from "@/lib/composition/templates";
+------------------------
+[48] Found match at index 18370887
+  Preview of match [48]:
+"use client";
+
+import { useEffect, useState, useRef } from "react";
+import { ToggleLeft, ToggleRight } from "lucide-react";
+import CompositionRenderer from "@/components/composition/Composition        YZ uh \  ) .4S  SQLite format 3      @     P              	                                                   P .      	       8   B   @
+N
+ 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

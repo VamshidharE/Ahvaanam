@@ -1,0 +1,103 @@
+"use client";
+2: 
+3: import React, { useState, useEffect } from "react";
+4: import {
+5:   Palette, Heart, Sparkles, CheckCircle, Mail, MapPin,
+6:   Phone, Music, ArrowRight, ArrowLeft, QrCode, Image as ImageIcon,
+7:   Calendar, Gift, Smile, Plus, Eye, Smartphone, Monitor, Tablet,
+8:   Share2, ChevronLeft, ChevronRight, Zap, RefreshCw, Send, Download, ExternalLink,
+9:   ChevronDown, HelpCircle, Check, Play, Pause, User, Award, Layers, Star,
+10:   Clock, HeartHandshake, Map, Globe, MessageCircle
+11: } from "lucide-react";
+12: import Link from "next/link";
+13: import { motion, AnimatePresence } from "framer-motion";
+14: import Hero from "../components/home/Hero";
+15: import EventCategories from "../components/home/EventCategories";
+16: import TemplateGallery from "../components/home/TemplateGallery";
+17: import BuilderShowcase from "../components/home/BuilderShowcase";
+18: import Sharing from "../components/home/Sharing";
+19: import Footer from "../components/home/Footer";
+20: import Navbar from "../components/home/Navbar";
+21: import SectionReveal from "../components/home/SectionReveal";
+22: import SmoothScroll from "../components/home/SmoothScroll";
+23: import BackgroundBlobs from "../components/home/BackgroundBlobs";
+24: import FloatingElements from "../components/home/FloatingElements";
+25: 
+26: // --- FLOWING GOLD SPARKLES PARTICLES ---
+27: function GoldParticles({ count = 25 }: { count?: number }) {
+28:   const [particles, setParticles] = useState<Array<{ id: number; left: number; top: number; size: number; delay: number; duration: number }>>([]);
+29: 
+30:   useEffect(() => {
+31:     const items = Array.from({ length: count }).map((_, i) => ({
+32:       id: i,
+33:       left: Math.random() * 100,
+34:       top: Math.random() * 100,
+35:       size: Math.random() * 3 + 1,
+36:       delay: Math.random() * 5,
+37:       duration: 10 + Math.random() * 8
+38:     }));
+39:     setParticles(items);
+40:   }, [count]);
+41: 
+42:   return (
+43:     <div className="absolute inset-0 pointer-events-none overflow-hidden z   8    YZ uh \   (  l     =-10">
+44:       <style dangerouslySetInnerHTML={{
+45:         __html: `
+46:         @keyframes driftGold {
+47:           0% { transform: translateY(100vh) rotate(0deg) scale(1); opacity: 0; }
+48:           10% { opacity: 0.9; }
+49:           90% { opacity: 0.9; }
+50:           100% { transform: translateY(-20vh) translateX(60px) rotate(180deg) scale(0.6); opacity: 0; }
+51:         }
+52:         .gold-sparkle {
+53:           animation: driftGold 14s linear infinite;
+54:         }
+55:       `}} />
+56:       {particles.map((p) => (
+57:         <div
+58:           key={p.id}
+59:           className="gold-sparkle absolute rounded-full bg-[#D4AF37]/50 blur-[0.4px]"
+60:           style={{
+61:             left: `${p.left}%`,
+62:             width: `${p.size}px`,
+63:             height: `${p.size}px`,
+64:             animationDelay: `${p.delay}s`,
+65:             animationDuration: `${p.duration}s`,
+66:             top: `${p.top}vh`
+67:           }}
+68:         />
+69:       ))}
+70:     </div>
+71:   );
+72: }
+73: 
+74: // --- DRIFTING CHERRY BLOSSOMS ---
+75: function CherryBlossoms() {
+76:   const [petals, setPetals] = useState<Array<{ id: number; left: number; delay: number; duration: number; type: number }>>([]);
+77: 
+78:   useEffect(() => {
+79:     const items = Array.from({ length: 24 }).map((_, i) => ({
+80:       id: i,
+81:       left: Math.random() * 100,
+82:       delay: Math.random() * 6,
+83:       duration: 11 + Math.random() * 9,
+84:       type: (i % 3) + 1
+85:     }));
+86:     setPetals(items);
+87:   }, []);
+88: 
+89:   return (
+90:     <div className="absolute inset-0 pointer-events-none overflow-hidden z-20">
+91:       {petals.map((p) => (
+92:         <div
+93:           key={p.id}
+94:           className={`absolute top-[-30px] w-3 h-3 rounded-full bg-rose-200/50 blur-[0.3px] ${p.type === 1 ? "animate-petal-1" : p.type === 2 ? "animate-petal-2" : "animate-petal-3"
+95:             }`}
+96:           style={{
+97:             left: `${p.left}%`,
+98:             animationDelay: `${p.delay}s`,
+99:             animationDuration: `${p.duration}s`
+100:           }}
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+   : td2x7agv      3
+(bot-098e03e5-be96-4383-acb1-2c678605f16e     I will copy the reassembled homepage file over to `app/page.tsx` using `run_command` t

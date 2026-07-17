@@ -1,0 +1,56 @@
+use client');   	
+     }   &
+"    if (startIdx === -1) continue;    
+        :
+6    // Try to find if this contains the full component   c
+_    const hasComponentExport = content.includes('export default function CompositionRenderer');   J
+F    const hasResolveBinding = content.includes('resolveBindingValue');   L
+H    const hasSectionComponents = content.includes('SECTION_COMPONENTS');    
+        N
+J    if 
+------------------------
+[34] Found match at index 4392779
+  Preview of match [34]:
+"use client";
+2: 
+3: import { useEffect, useState } from "react";
+4: import { ToggleLeft, ToggleRight } from "lucide-react";
+5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+6: import { getWeddingComposition } from "@/lib/composition/templates";
+7: import { useInvitationData } from "../../context/InvitationDataContext";
+8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+9: 
+10: // --- TEMPLATE SPECIFIC PARTICLES ---
+11: import React, { useRef }X  ` *   *   k  }(    k      c6    U
+5 /        $   T#}           <   3C)     w  ){ L ;   V  	     w   O Z      H[ ;          N 8  \ #r   N
+    fo  L d    O   O   j + VA u F p $ zX &  N4u0Wm    . $ >J &^  T o  X    :c     T   [*  P7>  
+E`iBp   H  -    S      !R3>  PuZt#+          QH  z2]  > J       $z  W$ o   ^rQT! )     o    
+? 7       4  b     8 O1   #            `   b         E   {      x  4    >k    >,  cV[9  '  b  K `  O _6      W  C  !e  O7  lm   ] Y   y      N - }Oc["=  9    ij         3H4   +  S
+    3 Chm$P W% nC   9  c"  ;  lPF w X  J  w  .   $  f7  /# N  ;      5   X }  f     ~   <iY    u  Q [   ]
+ fN /G C p `  H C :9   z 2 iH)    3Lha    	   |E il   0      <      o  C    MV   0 (   0M - ! 9P	  &  x   T   5     ^pXv             ]f /      1  B  )s =   Q\ z 9Y   n     [	   3F2       ,2 ;   94S~         Mu;  1>m            _    \aZ  5   }_     /E.  }  \U    '  E      Z5 Q T "$ <H " g A ^,     <V ve   <   , "      0{6  "     $e   /  z   %  " V  @ E?l  |   J2   N p?Mb   G DMy # M              >|'v  T )j  L	     @A=O4      o    9gK  &~yBK8(   D~      X  v     +;  JGL  f oRT)-  L gS.) #H F  q f      pVv    q xp vw d  B>      LD     }     M 8  r o     K4"$      yq  ;Q  {e    r  x   1)=Z~    { s3 L    =a   3  VLuT  cJ l 26  `	{  ^W/ ,  }  \   CX ]   e ; Y|    :9   GP S} ! 6   "5Yd   s? 4      3  !     I,_ & Q        O%  M      -     ;   w    3V
+    t "           =xb U: ~ h U c  #  H  r           !  >i|@  n    ]a    6   {'    eO   W    J   >}q  Z  vs   M  n     {g )   D  -      Wz Rp  . J ,       O6  + o5>     $    Fw <j   l4   s  Yi ) x;4 4  5c    K  I  djJ         vB  _  JS  L 1  fH >        5 q H 	^i 
+F Y    -(_?   nQKJ   Op  r     yYi    @    ( wt    Q      3 & t(  h9h    ]} V  T     ] (     u 
+
+i  ;A    n  -G  ) ) w     "   9'flM       l .  ~     #   k       mt  q U  N  [   ]"            ]h      '= 	\ZO nkF  n 9Op o  6  3   . .?m z? W@ >Xe \ }Hp~G    = Z`sx  Gy Tl U@   v  9
+-  3[    2 @   q   /  s   c V P   G       ]  Z e $  i    , M    c    r     ? jTp ! ` nfP + w %  Cu     Q     3-     W  
+     eX )    " ;e M s!   o ZI T 5 b   1   "W    j   ]    J<? I'} [7  y  M    
+  '   O  %F! ~  c {h w_  Q 2  (     % 9 tl 2;      w  V  m   @s |  2b7] C|       U   	  n o[  l e Id            G    B  {1S  {   }     c  O  t % V           .C87 ;i  )e` l +M N  `    t oi  X     W[  ?    t    h!}    d    % )   	e   a  (  5 O M 9 `          p   "  '    =  R N17Z1	!  :bK% </kf  j e    ! { X   xwZ  L        _K  W   T  *    cQ    W l  K8  %E>  {w0 />       $ [#  {U  x  T  a  , yI  (f};q-S      '     X2     Y    /: F#    Jwrite_to_fileZ  **Analyzing the Errors**
+
+I've pinpointed a couple of critical errors in `app/admin/[id]/page.tsx`. One concerns a missing module, specifically '@/lib/theme/registry', and another flags an implicit 'any' type for the 'theme' parameter. The first seems like a straightforward import issue. The second likely indicates a type definition oversight I need to resolve.
+
+
+**Investigating the Discrepancy**
+
+I'm now diving into the inconsistency between the Phase 2D version of `app/admin/[id]/page.tsx` and the current version. The script `recover-registries.py` restored the file, but it seems to be generating errors that weren't present after Phase 2D. Specifically, the import of `theme/registry` is failing and the 'theme' parameter has an implicit 'any' type. I'm focusing on why the restored file, which *should* be identical, is now generating type errors that weren't present earlier. It's a key discrepancy to resolve.
+
+
+            Created At: 2026-07-12T08:53:59Z
+Completed At: 2026-07-12T08:54:00Z
+Created file file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/recover-admin-page.py with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission. s: d3l7tytz       
+(bot-853458a4-ad43-406e-ae87-610cac8761f1     I will execute the script to recover our clean admin portal page. Based on search history, it will scan bottom-up to capture the exact layout form we wrote in Phase 2D.   2  
+ l2ewjw9g  run_command   {"Co    4516-9955-f3a95111c7a0   wI will update `lib/composition/types.ts` to add the `layoutId` optional string property to the `SectionData` interface.   2 
+
+ ll351xmd  replace_file_content   {"AllowMultiple":false,"Description":"Add layoutId to SectionData in composition types.ts.","EndLine":9,"Instruction":"Add optional layoutId string property to SectionData in types.ts.","ReplacementContent":"  properties?: Record\u003cstring, any\u003e;\n  motionHooks?: Record\u003cstring, any\u003e;\n  layoutId?: string;","StartLine":5,"TargetContent":"  properties?: Record\u003cstring, any\u003e;\n  motionHooks?: Record\u003cstring, any\u003e;","TargetFile":"c:\\Users\\Admin\\Ahvaanam\\lib\\composition\\types.ts","toolAction":"Update composition types.ts","toolSummary":"Adding layoutId to SectionData type inside composition types"}:     
+    M2 < k     
+ 1 )       /      POx  M    ^ !(>    W  |5l

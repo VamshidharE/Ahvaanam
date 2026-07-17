@@ -1,0 +1,94 @@
+use client";       7
+3import React, { useEffect, useState } from "react";   C
+?import LayoutWrapper from "@/components/layouts/LayoutWrapper";   B
+>import MotionWrapper from "@/components/motion/MotionWrapper";       %
+!interface CountdownSectionProps {    
+  bindings: {    
+     title?: string;    
+     targetDate?: string;   $
+     postWeddingMessage?: string;    
+   };    
+   layoutId?: string;    
+   motionId?: string;    
+ }       g
+cexport default function CountdownSection({ bindings, layoutId, motionId }: CountdownSectionProps) {    
+
+  const {    #
+     title = "Party Countdown",    ,
+(    targetDate = "2026-12-14T19:00:00",    :
+6    postWeddingMessage = "The Celebration has begun!"     
+   } = bindings;       ^
+Z  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });   6
+2  const [isPassed, setIsPassed] = useState(false);        
+   useE          .  , \ ! 2s)g0 u a , G  +  ; N b_  5 c$P}   # $   [!   [ aM     == }n        `Y    B  4 w   !  Z u   5    8    nK      Ff        I _      4  h I I      E            H '  XT ,   i Q8    	    4  WGU7+c W	    ~ CVP  7 t%7$    r  ^qpZ  L w  0   iH q   q g  !  y   )L   {8   A b^d Ny   (q.Z5.s   )Z _    A =&H  (     Q,         x  [    p	$    Pj        9W :YH>JH  @    .Er  b  ra      0	    /;  d E [ R     sn3    N |E ED %d  ~j :0     r  :       .  : i- } K Zs  9     	  a ]  n xf   wB  {   }'   	Z     j     K ] s,     Ah Z       O   @Z %          U i jI    8  M,  9  S   e u   fp   o  ) u  : k    `'  5Q  :&  -, A:  \
+ i lN9?  )  3z ^ .m 1    mN   A          o   ]! C@    D+ |d -t\G E  b  y   kt   T       "$e34daa19-53d7-4cb0-bf3a-1321b5baf2f9B     2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   1   1   1   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2
+     "P     &   (   0 B!
+	sessionID  -3750763034362895579H  PYZ DhRSatuqIJLWjuMPiZe80Aw0  : 
+ autoJd q           "             (  2          8519c9b62          a1e3b298:       e9c821beB         R     Z         b     Rzw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  d P     &   (   0 B!
+	sessionID  -3750763034362895579H  PYZ DhRSatuqIJLWjuMPiZe80Aw" e74f6af66c53e075   gemini-default  9
+ last_execution_id $4cee851d-d665-4a35-88f9-437548b34cc6  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  243  #
+
+model_enum  MODEL_PLACEHOLDER_M20   Gemini 3.5 Flash (Medium) d js   R       "$e34daa19-53d7-4cb0-bf3a-1321b5baf2f9B     2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   1   1   1   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2
+     "P     !   (   0 B!
+	sessionID  -3750763034362895579H  PpZ CxRSatOvL_7cg8UPpKn1oQc0  : 
+ autoJc q           "             (  2          a1e3b2982  ~      0d0fb5b9:       e9c821beB         R     Z         b     =zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  d P     !   (   0 B!
+	sessionID  -3750763034362895579H  PpZ CxRSatOvL_7cg8UPpKn1oQc" 65026cef920a216d   gemini-default  !
+ used_claude_conservative  false   
+ last_step_index  241  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $4cee851d-d665-4a35-88f9-437548b34cc6  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false   Gemini 3.5 Flash (Medium) c br   B       "$e34daa19-53d7-4cb0-bf3a-1321b5baf2f9B     2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   1   1   1   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2
+     "M          0 B!
+	sessionID  -3750763034362895579H  PqZ CBRSap_jHYWqjuMPucfSsA40~: 
+ autoJa q           "             (~2  ~      0d0fb5b92  |      f572b54e:       e9c821beB         R     Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  a M          0 B!
+	sessionID  -3750763034362895579H  PqZ CBRSap_jHYWqjuMPucfSsA4" 1e404c0ea64755ed   gemini-default   
+ last_step_index  239  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $4cee851d-d665-4a35-88f9-437548b34cc6  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false  !
+ used_claude_conservative  false   Gemini 3.5 Flash (Medium) [   K K      U  t  L  |{X     s B8 % |
+ ! bE
+    s  qe@ x7  Z" > r       n   s       89?l i[G   i=       &'w X   	      LP       i / cf9w@r_ 7K      @    0 )          S   Q   x  +#    A P  n     `&3U   u  |   BZ   rCU        b   } &) EY    po  % S3  8  v  r!o(0z    hJ - sI   pK     rz gK1 !    _      V    mPQc       xJ  F>]     	 :  q   8 ]  ug  3wx    w   M*    %M  y     P  (     S\<5          \=h (OA }        9q    $   ? bt Wk   x{     )        }$ 6  Q W  7FS`M   (Y        M  -    p    {} `        A z   _     <_  R\    1  w#  xR   @  Mz }( p      )b      &  /h i  H R%M O r lck       c  "   !      D  ]< f U+T|`\   Y) & 0dE    \      >* ;$ ap D) B   -  '  g   #(      n     ?6     I   Hd    I   F    nz[Q x         T     + n E 4   K7D   O p >  .    M G  YP   M )   9   =T@   H^ V ;  @   [ (  0    b!|  F'   r      F  ]       > vF    %s         Vh! V    A o 84  x  zt <    >X    C }  .> -f   XZ  yy    B           %' U N U q     qx N V  <   }y  "e  p  d W  g  B  -{   oo S  y  `: X w  { ?      B+ O% Z{    Q] C   &   k^     h     M      D-^no> 6     y 5\   R    t "     C t  AwMk  / Ra  O      ?%   4FZT      Gv %     `   =e9  Dj    7 "  ~ "       J    R  j  P>[K m  % *  :Gn5r  "  !;  j      Gq#T :  @L  zj;%    V  +  % 1 j wi  t -}    rR /:C 	X b J - D!  >"   '  J    [ 
+  D ^    7'9 =r   Q   *toU KL T a   %&  v  YEd]+  _9A  oIZw"            J8  Q s!{ Xr a|#  & a$        }       o_ER     Q     9 ke  kl B F P/   B 0fP     ;$s B    :     x  i pZ (  j  c D95C  T y    !D  A eM lr1   b\3   q T9A@ =Z3E P\B !/ P   A   ~I     >    [{ u  ,  pig L    8     M u   6    C  H5 g , X i  {      z      +    B       
+n"  }      v  /  P     {  z!"        e  L ?0    x   D  P     7Y{o H Q nzM~ h? w   BD    OO   G   !R  t   Wx * d <  F )   a `  T     N  es   :E  A k   >  s X   ) < F  c   bu   Q , >   c5  ]    
+  ?   *Z  :;     , R	      /    Of      5 V     *    /  R   h r[V    g  E*  )     @Rm &> 6    ^x   v     ]          {   c     Ckt  }X  , ,    c      ? Q V'S    .   L> 1  Z l0, x L      P?A    W  $ 4 );B   : R   iU ,GG  { v 4<     M 8 q9  
+/  G Gd1   I   $    ux6  S   &    o  p> A/(   5 .     G1-A       L , {  M\ :   @ e  _  Y  %  (- ^ <   1 LU   G  9  Q9 c x  \   SZXK    [?     m            b K       b  , H l   lg \?  6	 <  P    < H
+Y    ~ Q       o "    n   O   
+s 6   AF    u 1Gz   J/  L 	x   l  LD  T -    8 2 8   c    Z  v     j T 	 WR  O	 "l    l      ~  'U' [pG    A  2&N  R      | O  ~6 =f$ 0g K  Z Y?    ]     9w*    H'(5    +z^5pXZ  J P  H   8    R   d w  B5!MsE    M #    L  ^  U    V     c z  9 z  L        Uo             W      o  n  q(RTy]     N gt5b\ \  K    #E   %  u  i       T 6 1  ;w        )   6h= 2 ~NI    b r 6p"t       *  K?   +tEl  N2>  u  7vu   A      1 i3^ L         O ,{ 
+[ s  q l  P  7s\    t  #9 j   Ps  F {        Ks  :       M. p@     N          d J  J s  sG  G    s v         Q  j    4O   0 t   R l     `P" eH [N B H E L >     j,     h  o	 [) W  s ib  `\ j SG0 I ' }      4    i # t  +         Q z   > M]    w    re:5   -   'y     }e   p               {   ^ d  d d    z  #[       ia  v '
+  u       9 ` 8vl   )   9  ( 5K  g     #!|&D ~ k1        p'      J|( V9 z    * + V )  h$]|8    Jwrite_to_file* ArtifactMetadata* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$803db09d-07f8-4bea-8614-502f0dcd057dj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   5Creating implementation plan for Composition Renderer   Create implementation_plan.md                   * w
+               " s
+ it0wq2wn write_to_file   {"ArtifactMetadata":{"RequestFeedback":true,"Summary":"Implementation plan for Phase 3B     Composition Renderer of Ahvaanam, designing the context providers, dynamic imports, suspense fallbacks, and performance loggers.","UserFacing":true},"CodeContent":"# Implementation Plan     Phase 3B: Composition Renderer\n\nBuild the Composition Renderer capable of executing complete invitation pages from a `CompositionSchema` document, incorporat                                                                                                                                                                                                             #               &   
+               2             :           yB           yJQ     "   (  	0 B!
+	sessionID  -3750763034362895579H 
+P  Z 9IpSaqGZNZqtjuMPvrOjyAgX  b$4b6055c1-1edd-4072-9733-cb036d432e2ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                 
+               y             y    *  
+               2             :           yB           yJQ     "   (  	0 B!
+	sessionID  -3750763034362895579H 
+P  Z 9IpSaqGZNZqtjuMPvrOjyAgX  b$4b6055c1-1edd-4072-9733-cb036d432e2ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                 
+               y             y   X
+  I will create the Category Blueprint registry file at `lib/categories/blueprint.ts` to implement the structured blueprint properties (colors, defaults, hidden/editable sections, terminology, and decorations) for Wedding, Birthday, and Housewarming.   **Defining Category Blueprints**
+
+Okay, I'm working on the `blueprint.ts` file now. I'm adding the complete specifications for three categories: "wedding," "birthday," and "housewarming." I'm structuring it all for the Task 1 specifications.
+
+
+2(bot-754e3483-cda8-49b9-834d-4d41370be8e7: R
+ xtqawbom write_to_file  '{"CodeContent":"export interface CategoryBlueprint {\n  id: string;\n  displayName: string;\n  icon: string;\n  colorPalette: {\n    primary: string;\n    secondary: string;\n    accent: string;\n    background: string;\n  };\n  defaultTheme: string;\n  defaultMotion: string;\n  defaultLayout: string;\n  defaultSections: string[];\n  editableSections: string[];\n  hiddenSections: string[];\n  sectionOrder: string[];\n  terminology: Record\u003cstring, string\u003e;\n  defaultSampleData: Record\u003cstring, any\u003e;\n  defaultMusic: string;\n  defaultFonts: {\n    heading: string;\n    body: string;\n  };\n  defaultDecorations: string[];\n}\n\nexport const CATEGORY_BLUEPRINTS: Record\u003cstring, CategoryBlueprint\u003e = {\n  wedding: {\n    id: \"wedding\",\n    displayName: \"Wedding Only\",\n    icon: \"Heart\",\n    colorPalette: {\n      primary: \"#C59B27\",\n      secondary: \"#EAE6DF\",\n      accent: \"#B0871B\",\n      background: \"#1F1A17\"\n    },\n    defaultTheme: \"luxury-gold\",\n    defaultMotion: \"luxury-motion\",\n    defaultLayout: \"hero-center\",\n    defaultSections: [\"hero\", \"couple\", \"countdown\", \"events\", \"gallery\", \"venue\", \"families\", \"rsvp\", \"footer\"],\n    editableSections: [\"hero\", \"couple\", \"countdown\", \"events\", \"gallery\", \"venue\", \"families\", \"rsvp\", \"footer\"],\n    hiddenSections: [],\n    sectionOrder: [\"hero\", \"couple\", \"countdown\", \"events\", \"gal

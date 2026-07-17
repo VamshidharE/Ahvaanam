@@ -1,0 +1,100 @@
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemeProvider from "@/components/theme/ThemeProvider";        
+ const mockHeroBindings = {   $
+   title: "Dev & Neha's Wedding",   7
+3  subtitle: "We Invite You to Celebrate Our Union",   &
+"  welcomeMessage: "Save the Date",   3
+/  heroImage: "/images/themes/royal-temple.jpg",    
+   ctaText: "RSVP Now",    
+   surname: "Dev Family",    
+   subText: "Traditions",    
+   enableHeaderMedia: true,   &
+"  headerMediaType: "god" as const,   &
+"  selectedGod: "ganesha" as const,    
+   headerMediaSize: 75,    
+   headerMediaSpacing: 25    
+ };        
+ const mockHeroProperties = {    
+   showScrollIndicator: true,    
+   overlayOpacity: 0.5,   &
+"  contentAlign: "center" as const,    
+   minHeight: "450px"    
+ };       /
++export default function TestLayoutsPage() {    
+
+  return (   M
+I    <div className="p-8 bg-zinc-100 min-h-screen space-y-12 select-none">   `
+\      <h1 className="text-xl font-bold uppercase tracking-wider text-slate-800 text-center">   8
+4        Layout Engine Structural Verification Canvas    
+       </h1>       8
+4      <div className="space-y-10 max-w-5xl mx-auto">   5
+1        {/* Layout 1: Centered Welcome Layout */}     
+          <div className="flex flex-col space-y-3 bg-white p-6 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative">   `
+\          <span className="text-[10px] uppercase font-bold text-amber-500 tracking-[1.5px]">   @
+<            1. Layout: Centered welcome Layout (hero-center)    
+           </span>   [
+W          <div className="rounded-2xl overflow-hidden border border-zinc-100 relative">   7
+3            <ThemeProvider themeId="luxury-gold" />    
+             <HeroSection   1
+-              properties={mockHeroProperties}   -
+)              bindings={mockHeroBindings}   (
+$              layoutId="hero-center"    
+             />    
+           </div>    
+         </div>       3
+/        {/* Layout 2: Split 2-Column Layout */}     
+          <div className="flex flex-col space-y-3 bg-white p-6 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative">   a
+]          <span className="text-[10px] uppercase font-bold text-purple-500 tracking-[1.5px]">   B
+>            2. Layout: Split 2-Column Grid Layout (hero-split)    
+           </span>   [
+W          <div className="rounded-2xl overflow-hidden border border-zinc-100 relative">   7
+3            <ThemeProvider themeId="luxury-gold" />    
+             <HeroSection   1
+-              properties={mockHeroProperties}   -
+)              bindings={mockHeroBindings}   '
+#              layoutId="hero-split"    
+             />    
+           </div>    
+         </div>    
+       </div>    
+
+    </div>    
+   );    
+ }      Bnfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/test-layouts.tsxX        +Create visual layouts test-layouts.tsx file             nly JPEG, PNG, and WEBP images are allowed.",
+78:   }),
+79:   name: z.string().min(1, "File name is required"),
+80: });
+81: 
+82: export const loginSchema = z.object({
+83:   email: z.string().email("Invalid email address"),
+84:   password: z.string().min(1, "Password is required"),
+85: });
+86: 
+87: export const rsvpSubmissionSchema = z.object({
+88:   guest_name: z.string().trim().min(2, "Name must be at least 2 characters long").max(100, "Name cannot exceed 100 characters"),
+89:   phone: z.string().regex(/^\+?[1-9]\d{1,14}$/, "Invalid phone number format. Use international format (e.g. +919999999999)"),
+90:   email: z.string().email("Invalid em u     h       "$f616b305-f2a6-450a-b2e7-4fd4aa3d95c2B     2   2   2   1   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   1   2   2   0   2   2   2   2   2   1   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2
+     "Q     ,   (   0 B!
+	sessionID  -3750763034362895579H  P  Z ZChSat_SFNKojuMPloGTiQo0  : 
+ autoJd              "           U(  2          f71093e92          efbe24f9:       e9c821beB         R     Z       +b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  e Q     ,   (   0 B!
+	sessionID  -3750763034362895579H  P  Z ZChSat_SFNKojuMPloGTiQo" a04d80c895db792f   gemini-default   
+ last_step_index  547  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $803db09d-07f8-4bea-8614-502f0dcd057d  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false  !
+ used_claude_conservative  false   Gemini 3.5 Flash (Medium) n v     j       "$f616b305-f2a6-450a-b2e7-4fd4aa3d95c2B     2   2   2   1   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   1   2   2   0   2   2   2   2   2   1   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2
+     "Q     G   (   0 B!
+	sessionID  -3750763034362895579H  P  Z YShSariKMqK7qfkP-66dqAY0  : 
+ autoJe              "             (  2          efbe24f92          b9c2a87a:       e9c821beB         R     Z         b     Bzw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  e Q     G   (   0 B!
+	sessionID  -3750763034362895579H  P  Z YShSariKMqK7qfkP-66dqAY" ea6f6a079651d2d4   gemini-default  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  545  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $803db09d-07f8-4bea-8614-502f0dcd057d   Gemini 3.5 Flash (Medium) o p     ^     "$803db09d-07f8-4bea-8614-502f0dcd057dB    

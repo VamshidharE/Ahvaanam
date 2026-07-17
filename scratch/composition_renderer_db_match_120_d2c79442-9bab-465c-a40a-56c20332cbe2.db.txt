@@ -1,0 +1,103 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider"    ;
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You
+------------------------
+[188] Found match at index 4432954
+  Preview of match [188]:
+"use client";
+
+import React from "react";
+import { getTheme } from "@/lib/theme/registry";
+
+interface ThemeProviderProps {
+  themeId: string;
+}
+
+export default fu        YZ twRJ  v   fUs     nD  |   ef /      O F>W\} y      X        0     D  z M            q  ?  $ a  u 
+ ) |     ?E  [    {       + 4
+------------------------
+[189] Found match at index 4640376
+  Preview of match [189]:
+"use client";
+
+import React from "react";
+import { getTheme } from "@/lib/theme/registry";
+
+interface ThemeProviderProps {
+  themeId: string;
+}
+
+export default fu        YZ twRJ  v   fUs     nD  |   ef /      O F>W\} y      X        0     D  z M            q  ?  $ a  u 
+ ) |     ?E  [    {       + 4
+------------------------
+   node scratch/extract_from_db.js   node scratch/extract_    	: 	:                                                                                                                                               U X   	  
+        
+               "  
+ ra6bpwvb 	view_file   {"AbsoluteP s X   	  (     8  
+               "  
+ ra6bpwvb 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\defaults\\wedding.ts","EndLine":160,"StartLine":140,"toolAction":"View defaults/wedding.ts lines","toolSummary":"Reading default family data lists inside lib/defaults/wedding.ts"}:     
+    M2 B  H BG   u  / >1  N$ -    +Q   DHLdkVs          k:F    ys a0    e  B?   <R *O l n   x f   	"|   X  & &0iN mhu j  /    ()     k6Il   qq . 9   J )     7 g6  H[] [ h %D ~X   Qvt P f  W	    1Z      8_    sD 5:  3         { +  'H  b  $ sJ FDx< {         ;   c    i iS.]   p  P
+.)?Z A!n2     X     v`a   8 ,58w 
+0  ;   $ v      7  I u[c1  m 5        |   m  `  \&   ( R  <| k       S k   p ^7  gp  :  iC (      jk!
+X U!B A   a     mG   T
+9   &   / |  |\`z        Dpi        v?F+     ++   I t    C   J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2             :             X  b$547f5b5d-a5d4-46ac-8031-57f0e7da98daj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  
+   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    9   
+                   @Reading default family data lists inside lib/defaults/wedding.ts   View defaults/wedding.ts lines                   * 	
+               "  
+ ra6bpwvb 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\defaults\\wedding.ts","EndLine":160,"StartLine":140,"toolAction":"View defaults/wedding.ts lines","toolSummary":"Reading default family data lists inside lib/defaults/wedding.ts"}:     
+    M2 B  H BG   u  / >1  N$ -    +Q   DHLdkVs          k:F    ys a0    e  B?   <R *O l n   x f   	"|   X  & &0iN mhu j  /    ()     k6Il   qq . 9   J )     7 g6  H[] [ h %D ~X   Qvt P f  W	    1Z      8_    sD 5:  3         { +  'H  b  $ sJ FDx< {         ;   c    i iS.]   p  P
+.)?Z A!n2     X     v`a   8 ,58w 
+0  ;   $ v      7  I u[c1  m 5        |   m  `  \&   ( R  <| k       S k   p ^7  gp  :  iC (      jk!
+X U!B A   a     mG   T
+9   &   / |  |\`z        Dpi        v?F+     ++   I t    C   J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2             :             X  b$547f5b5d-a5d4-46ac-8031-57f0e7da98daj      R
+$e814890c-6b84-44 B W            `   
+               2             :             B             JP     (   (   0 B!
+	sessionID  -3750763034362895579H  PoZ 7UdTarrGIO2ijuMP3qKZ8AgX  b$547f5b5d-a5d4-46ac-8031-57f0e7da98daj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  
+   "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+               2             :             B             JP     (   (   0 B!
+	sessionID  -3750763034362895579H  PoZ 7UdTarrGIO2ijuMP3qKZ8AgX  b$547f5b5d-a5d4-46ac-8031-57f0e7da98daj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  
+   "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+pI will view lines 140 to 160 of `lib/defaults/wedding.ts` to inspect the structure of the default families data.2(bot-89a91578-9b4c-43a9-95bf-414b767bb902:  
+ ra6bpwvb 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\defaults\\wedding.ts","EndLine":160,"StartLine":140,"toolAction":"View defaults/wedding.ts lines","toolSummary":"Reading default family data lists inside lib/defaults/wedding.ts"}:     
+    M2 B  H BG   u  / >1  N$ -    +Q   DHLdkVs          k:F    ys a0    e  B?   <R *O l n   x f   	"|   X  & &0iN mhu j  /    ()     k6Il   qq . 9   J )     7 g6  H[] [ h %D ~X   Qvt P f  W	    1Z      8_    sD 5:  3         { +  'H  b  $ sJ FDx< {         ;   c    i iS.]   p  P
+.)?Z A!n2     X     v`a   8 ,58w 
+0  ;   $ v      7  I u[c1  m 5        |   m  `  \&   ( R  <| k       S k   p ^7  gp  :  iC (      jk!
+X U!B A   a     mG   T
+9   &   / |  |\`z        Dpi        v?F+     ++   I t    C   J	view_fileBpI will view lines 140 to 160 of `lib/defaults/wedding.ts` to inspect the structure of the default families data.`     169] Found match at index 4005163
+  Preview of match [169]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[170] Found match at index 4005562
+  Preview of match [170]:
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemeProvider from "@/components/theme/ThemeProvider";        
+ const mockHeroBindings = {   $
+   title: "Dev & Neha's Wedding",   7
+3  subtitle: "We Invite You to Celebrate 

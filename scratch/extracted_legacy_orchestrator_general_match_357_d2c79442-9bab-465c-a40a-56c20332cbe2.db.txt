@@ -1,0 +1,248 @@
+  themeId: string;
+  onBackToHub: () => void;
+  particlesComponent?: React.ComponentType<any>;
+  themeBgClass?: string;
+  loadingTitle?: string;
+  loadingSubtitle?: string;
+}
+
+export default function LegacyOrchestrator({
+  themeId,
+  onBackToHub,
+  particlesComponent: Particles,
+  themeBgClass = "bg-stone-900",
+  loadingTitle = "Invitation",
+  loadingSubtitle = "Celebrating Love"
+}: LegacyOrchestratorProps) {
+  const { invitationData } = useInvitationData();
+  const [loading, setLoading] = useState(true);
+  const [playingMusic, setPlayingMusic] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    if (invitationData) {
+      const timer = setTimeout(() => setLoading(false), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [invitationData]);
+
+  if (!invitationData) return null;
+
+  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+  const invitation = isWrapped ? (invitationData as any).config : invitationData;
+
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+    if (playingMusic) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(() => {});
+    }
+    setPlayingMusic(!playingMusic);
+  };
+
+  const sectionOrder = invitation.sectionOrder || [];
+
+  const renderSectionComponent = (sectionId: string) => {
+    const sectionConfig = invitation[sectionId];
+    const isEnabled = sectionConfig?.enabled !== false;
+    if (!isEnabled) return null;
+
+    const properties = sectionConfig || {};
+    const bindings = sectionConfig || {};
+
+    switch (sectionId) {
+      case "hero":
+        return (
+          <HeroSection
+            key={sectionId}
+            properties={properties}
+            bindings={bindings}
+            themeId={themeId}
+            layoutId="hero-center"
+            motionId="luxury-motion"
+          />
+        );
+      case "couple":
+        return <CoupleSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "countdown":
+        return <CountdownSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "story":
+        return <StorySection key={sectionId} properties={properties} bindings={bindings} />;
+      case "events":
+        return <EventsSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "gallery":
+        return <GallerySection key={sectionId} properties={properties} bindings={bindings} />;
+      case "venue":
+        return <VenueSection key={sectionId} properties={properties} bindings={bindings} /             uppercase font-extrabold text-slate-500 tracking-[0.5px]\"\u003e\n                    {field.label} {field.required \u0026\u0026 \u003cspan className=\"text-[#C59B27]\"\u003e*\u003c/span\u003e}\n                  \u003c/label\u003e\n                )}\n                {renderFieldInput(field)}\n              \u003c/div\u003e\n            ))}\n          \u003c/div\u003e\n        \u003c/div\u003e","TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\builder\\BuilderModule.tsx","toolAction":"Dynamic warnings and emptyState in BuilderModule","toolSummary":"Updating warnings block in BuilderModule.tsx"}:     
+    M2  &I   l        ;
+  hM=(       w    B   `U   g a`  J  j S   R     "$0bf27f3d-8763-4c86-acc5-b7c5b528e73bB     2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   1   2   2   0   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   0   2   2   2
+     "P         (  0 B!
+	sessionID  -3750763034362895579H P  Z 2jJSapvNLvHXjuMPvaKMoQg0  : 
+ autoJd              "           X(  2          7a602e532          1a2d9762:       e9c821beB         R     Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  d P         (  0 B!
+	sessionID  -3750763034362895579H P  Z 2jJSapvNLvHXjuMPvaKMoQg" 2bf8abe818e9309e   gemini-default   
+ last_step_index  705  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $85f2d6f2-eb12-4f7b-a974-c8c425144fd4  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false  !
+ used_claude_conservative  false   Gemini 3.5 Flash (Medium) c p R   ^       "$0bf27f3d-8763-4c86-acc5-b7c5b528e73bB     2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   1   2   2   0   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   0   2   2   2
+     "Q         (  0 B!
+	sessionID  -3750763034362895579H  P  Z 1jJSaqK4LPLjjuMPhf7e-As0  : 
+ autoJe              "             (  2          1a2d97622          03d5172c:       e9c821beB         R     Z       0b         zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  e Q         (  0 B!
+	sessionID  -3750763034362895579H  P  Z 1jJSaqK4LPLjjuMPhf7e-As" 9711ce6f759117df   gemini-default   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  703  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $85f2d6f2-eb12-4f7b-a974-c8c425144fd4  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   Gemini 3.5 Flash (Medium) i l Q   V       "$0bf27f3d-8763-4c86-acc5-b7c5b528e73bB     2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   1   2   2   0   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   0   2   2   2
+     "P     .   (  0 B!
+	sessionID  -3750763034362895579H P  Z 0zJSaqDQO6LqqfkP3IvnwAU0  : 
+ autoJd              "           Q(  2          03d5172c2          ffddd34d:       e9c821beB         R    Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  d P     .   (  0 B!
+	sessionID  -3750763034362895579H P  Z 0zJSaqDQO6LqqfkP3IvnwAU" a2637ee5ba4c3f4f   gemini-default  !
+ used_claude_conservative  false   
+ last_step_index  701  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $85f2d6f2-eb12-4f7b-a974-c8c425144fd4  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false   Gemini 3.5 Flash (Medium) e    V  L8u   %T    pj          6K   *         k j D H'       ?      >     M     mQ ' mR  ?   UK!v o  (7	         l&    z  5DQ 1zp [   ( mQ j    '`  x O   `   N  M   WZ        E# U  a `    T          Eq L    7 C  )J=   tK   "we 5\    "   dH       ,       S      K  ^ p       1    2{o j TjhhSU *=U ;~ N  K !     5 T   z  "   :h          o "[IjA    y    x        Y  7ZPf8 P<  q   J   A    /=     (|  P  #wY n"   &8 -  >g_? L 6 s!  \ j          }(      l    >s  {  \  ~     
+   6    y8$ K     +8 -    U=        !gw      [$k   yh    N  "   K9*      TP   3I    :  C  8   FYZVM]k    ,C^-eUc       D   c  
+ tf   % q 1  I f C  h   E      7zS! <       ,2   j    0:      ")[   9*vQ   V k  J	view_file* AbsolutePath*
+toolAction* toolSummary2             :             B             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    5  6
+                 
+                 
+                   KReading default housewarming configurations in lib/defaults/housewarming.ts   View defaults/housewarming.ts               r  
+<file:///c:/Users/Admin/Ahvaanam/lib/defaults/housewarming.ts l"  import { InvitationConfig } from "../../components/types/invitation";
+
+/**
+ * Default configuration object for the Housewarming invitation category.
+ * Wrapped in the strongly-typed InvitationConfig structure.
+ */
+const housewarmingConfig: InvitationConfig = {
+  category: "housewarming",
+  themeId: "royal-temple",
+  config: {
+    themeId: "royal-temple",
+    sectionOrder: [
+      "hero",
+      "countdown",
+      "events",
+      "gallery",
+      "rsvp",
+      "footer"
+    ],
+    themeSettings: {
+      showParticles: true,
+      particleType: "dust",
+      borderStyle: "gold",
+      heroAnimation: "zoom",
+      buttonStyle: "rounded",
+      galleryStyle: "carousel",
+      countdownStyle: "glass"
+    },
+    music: {
+      enabled: true,
+      file: "/music/theme.mp3"
+    },
+    hero: {
+      id: "hero",
+      enabled: true,
+      title: "Griha Pravesh Invitation",
+      subtitle: "We request the pleasure of your company as we step into our new home and start a new chapter.",
+      welcomeMessage: "|| Shree Ganeshaay Namah ||",
+      heroImage: "/images/couple.jpg",
+      backgroundType: "image",
+      overlayOpacity: 0.45,
+      ctaText: "View Invitation",
+      musicAutoplay: false,
+      showParticles: true,
+      subText: "HOUSEWARMING INVITATION",
+      enableHeaderMedia: true,
+      headerMediaType: "god",
+      selectedGod: "ganesha",
+      headerMediaColor: "#C59B27",
+      headerMediaSize: 80,
+      headerMediaPosition: "top-middle",
+      headerMediaSpacing: 30
+    },
+    hosts: "Host Names",
+    address: "123 New Home Street, City",
+    date: "2026-12-31",
+    time: "10:00 AM",
+    countdown: {
+      id: "countdown",
+      enabled: true,
+      title: "Puja Countdown",
+      targetDate: "2026-12-31T10:00:00",
+      timezone: "IST",
+      customLabels: { days: "Days", hours: "Hours", minutes: "Minutes", seconds: "Seconds" },
+      hideAfterWedding: true,
+      postWeddingMessage: "We have moved in!"
+    },
+    events: [
+      {
+        id: "housewarming",
+        enabled: true,
+        title: "Griha Pravesham Puja & Lunch",
+        date: "31 Dec 2026",
+        time: "10:00 AM",
+        venue: "123 New Home Street, City",
+        description: "Traditional housewarming puja followed by lunch.",
+        icon: "    "
+      }
+    ],
+    gallery: {
+      id: "gallery",
+      enabled: true,
+      title: "Our New Home",
+      images: [
+        "/images/couple.jpg"
+      ],
+      layoutType: "carousel",
+      slideshowMode: true
+    },
+    rsvp: {
+      id: "rsvp",
+      enabled: true,
+      title: "Kindly RSVP",
+      contacts: [
+        { type: "whatsapp", label: "WhatsApp Coordinator", value: "919999999999" }
+      ]
+    },
+    footer: {
+      id: "footer",
+      enabled: true,
+      title: "Footer Credits",
+      creditText: "Designed with love by Ahvaanam Hub.",
+      salutation: "Welcome to our Abode."
+    }
+  }
+};
+
+export default housewarmingConfig;
+Xm`             
+A                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               E `      x     
+   
+           C  2           bX  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd   4 `            J   
+           C  2           b:             B             JP         (   0 B!
+	sessionID  -3750763034362895579H P  Z Y4VSaoCwMKmVjuMPiLia-A8X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+               b
+                                    *  
+           C  2           b:             B             JP         (   0 B!
+	sessionID  -3750763034362895579H P  Z Y4VSaoCwMKmVjuMPiLia-A8X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1      " _       v      B   
+               " L
+ 0r2m3x5n write_to_file   {"CodeContent":"{\n  \"id\": \"houseDetails\",\n  \"name\": \"House Details\",\n  \"category\": \"housewarming\",\n  \"properties\": {\n    \"enabled\": { \"type\": \"boolean\", \"default\": true }\n  },\n  \"bindings\": {\n    \"title\": { \"type\": \"text\", \"label\": \"Title\", \"default\": \"Our New Nest\" },\n    \"houseName\": { \"type\": \"text\", \"label\": \"House Name\", \"default\": \"Shree Nilayam\" },\n    \"description\": { \"type\": \"textarea\", \"label\": \"Description\", \"default\": \"A home built with love, dreams, and blessings. We welcome you to join our housewarming celebration.\" }\n  }\n}\n","Description":"Create houseDetails manifest.json","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\houseDetails\\manifest.json","toolAction":"Create houseDetails manifest","toolSummary":"Creating manifest for House Details Section component"}: E  E
+ E  M2 =[ 4W$`!  p6 q<     F  2u   l . fJL   QN J      P P4% + cW +  evA " 7  \      a        Yg  $ b`   `  K{  e      ;    	 A )\Gf   o { f  w M 5  9 m  +o    oSkHJCi %@    21qC      o@  ?    1      6  Y}>T iu I)     n        K	  S     x  ]SP L   Y<?  GJ
+   0J KH  j1VN    X  BLE    =n uz    /     \r    >"    |-  _  M r 1     h  F[   z !  SI   t`7 5 &)fgM  7N    B z   S*   
+  $      Wmo[  h   @ 	 rs j" 0  z  !       w  j  s z`  f  N  \ $a,  i H g   -t  b>z: T?  d~  |   	L    k Z      c        bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+               b
+                                    
+  I wi

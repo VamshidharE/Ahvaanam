@@ -1,0 +1,155 @@
+eted task checklist for Architecture Cleanup Sprint.","UserFacing":false},"CodeContent":"# Architecture Cleanup Sprint Tasks\n\n- `[x]` Audit every template Layout.tsx component\n- `[x]` Build shared LegacyOrchestrator component at `components/shared/LegacyOrchestrator.tsx`\n- `[x]` Centralize cou   3   (2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+115:   [MATCH 56] Found at index 27433006
+116:     Saved to scratch/composition_pure_match_56_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+117:   [MATCH 57] Found at index 27433636
+118:     Saved to scratch/composition_pure_match_57_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+119:   [MATCH 58] Found at index 28627339
+120:     Saved to scratch/composition_pure_match_58_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+121:   [MATCH 59] Found at index 28683103
+122:     Saved to scratch/composition_pure_match_59_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+123:   [MATCH 60] Found at index 28782916
+124:     Saved to scratch/composition_pure_match_60_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+125:   [MATCH 61] Found at index 28786603
+126:     Saved to scratch/composition_pure_match_61_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+127:   [MATCH 62] Found at index 28953831
+128:     Saved to scratch/composition_pure_match_62_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+129:   [MATCH 63] Found at index 29278858
+130:     Saved to scratch/composition_pure_match_63_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+131:   [MATCH 64] Found at index 29287178
+132:     Saved to scratch/composition_pure_match_64_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+133:   [MATCH 65] Found at index 29295394
+134:     Saved to scratch/composition_pure_match_65_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+135:   [MATCH 66] Found at index 29301270
+136:     Saved to scratch/composition_pure_match_66_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+137:   [MATCH 67] Found at index 29362490
+138:     Saved to scratch/composition_pure_match_67_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+139:   [MATCH 68] Found at index 29395057
+140:     Saved to scratch/composition_pure_match_68_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+141:   [MATCH 69] Found at index 29489227
+142:     Saved to scratch/composition_pure_match_69_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+143:   [MATCH 70] Found at index 29489857
+144:     Saved to scratch/composition_pure_match_70_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+145:   [MATCH 71] Found at index 29502669
+146:     Saved to scratch/composition_pure_match_71_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+147:   [MATCH 72] Found at index 29503300
+148:     Saved to scratch/composition_pure_match_72_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+149:   [MATCH 73] Found at index 30067795
+150:     Saved to scratch/composition_pure_match_73_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+151:   [MATCH 74] Found at index 30096433
+152:     Saved to scratch/composition_pure_match_74_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+153:   [MATCH 75] Found at index 30163427
+154:     Saved to scratch/composition_pure_match_75_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+155:   [MATCH 76] Found at index 30164012
+156:     Saved to scratch/composition_pure_match_76_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+157:   [MATCH 77] Found at index 30227672
+158:     Saved to scratch/composition_pure_match_77_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+159:   [MATCH 78] Found at index 30228374
+160:     Saved to scratch/composition_pure_match_78_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+161:   [MATCH 79] Found at index 30311162
+162:     Saved to scratch/composition_pure_match_79_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+163:   [MATCH 80] Found at index 31450632
+164:     Saved to scratch/composition_pure_match_80_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+165:   [MATCH 81] Found at index 31455405
+166:     Saved to scratch/composition_pure_match_81_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+167:   [MATCH 82] Found at index 31457108
+168:     Saved to scratch/composition_pure_match_82_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+169:   [MATCH 83] Found at index 31515174
+170:     Saved to scratch/composition_pure_match_83_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+171: Scanning C:\Users\Admin\.gemini\antigravity\conversations\d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal (5277752 bytes)...
+172:   [MATCH 1] Found at index 378072
+173:     Saved to sc    tored into thin orchestration shells. All business logic, countdown calculations, date parsing, gallery lightboxes, and music control codes were completely removed from individual layouts and centralized inside the shared [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx).\n\n| Template Layout | Remaining Business Logic | Remaining Duplicated Logic | Remaining Legacy Code | Status |\n| :--- | :--- | :--- | :--- | :--- |\n| **`marigold`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`peacock`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`heritage`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`moonlight`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`grand-mandap`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`modern-birthday`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`birthday-premium`**| None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`royal-temple`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`floral-garden`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`south-indian`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`palace-luxury`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`lotus-serenity`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`housewarming-premium`**| None | None | None | **100% Pure Composition Wrapper** |\n\n---\n\n## 2. Centralized Business Logic Summary\n* **Countdown Timer Calculations**: Moved entirely inside the reusable [CountdownSection](file:///c:/Users/Admin/Ahvaanam/components/sections/countdown/index.tsx).\n* **Date Parsing**: Moved entirely inside [CountdownSection](file:///c:/Users/Admin/Ahvaanam/components/sections/countdown/index.tsx).\n* **Gallery \u0026 Lightbox States**: Managed inside [GallerySection](file:///c:/Users/Admin/Ahvaanam/components/sections/gallery/index.tsx).\n* **Music Audio Elements \u0026 Toggles**: Managed inside [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx).\n* **RSVP Contacts**: Managed inside [RSVPSection](file:///c:/Users/Admin/Ahvaanam/components/sections/rsvp/index.tsx).\n* **Map Embed URL Resolution**: Managed inside [VenueSection](file:///c:/Users/Admin/Ahvaanam/components/sections/venue/index.tsx).\n","Description":"Create template_business_logic_audit.md business logic removal audit report.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\template_business_logic_audit.md","toolAction":"Create template_business_logic_audit.md","toolSummary":"Creating business logic audit and refactoring status report in artifact directory"}:     
+    M2     oYgF S  >\e   N        Tw] /      j    :2 U         o* Y  fUI      f  ; ]      1 ] 6 \q" &v    ?  %:     9 !(:BHU         9  'p p  B  m 2   }m      J a  fZ    0Q vx]Cm  "   3 >k7  $  `)J'       + z     % H  f qa .	   bT
+ p  EX           4{  [  )G         l  
+f  ^  D TD  \ z O| 4   8  i >          4     a  	  . M %        <%  S    ]    iw ~D      4H   nE9 3F     E   ,     = %  C   Sgk  x    RW `011    ~x=rt_ 1 j         "} 5        [  }f *   r{  [ V i  c(u   9  $  c      S    _ ,p 1EW     % u\   .  ee8  L    Y"  Oh *   E /   2Q   |a  *  ~ zJwrite_to_fileB  I will create the template business logic audit report at `template_business_logic_audit.md` in the artifact directory, documenting the removal of business logic from template layouts.`    +9442-9bab-465c-a40a-56c20332cbe2.db.txt
+55:   [MATCH 26] Found at index 20365422
+56:     Saved to scratch/composition_pure_match_26_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+57:   [MATCH 27] Found at index 20372865
+58:     Saved to scratch/composition_pure_match_27_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+59:   [MATCH 28] Found at index 20474138
+60:     Saved to scratch/composition_pure_match_28_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+61:   [MATCH 29] Found at index 20474840
+62:     Saved to scratch/composition_pure_match_29_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+63:   [MATCH 30] Found at index 24211783
+64:     Saved to scratch/composition_pure_match_30_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+65:   [MATCH 31] Found at index 24406712
+66:     Saved to scratch/composition_pure_match_31_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+67:   [MATCH 32] Found at index 24437059
+68:     Saved to scratch/composition_pure_match_32_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+69:   [MATCH 33] Found at index 24438762
+70:     Saved to scratch/composition_pure_match_33_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+71:   [MATCH 34] Found at index 24452762
+72:     Saved to scratch/composition_pure_match_34_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+73:   [MATCH 35] Found at index 24460172
+74:     Saved to scratch/composition_pure_match_35_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+75:   [MATCH 36] Found at index 24477516
+76:     Saved to scratch/composition_pure_match_36_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+77:   [MATCH 37] Found at index 24892782
+78:     Saved to scratch/composition_pure_match_37_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+79:   [MATCH 38] Found at index 24893484
+80:     Saved to scratch/composition_pure_match_38_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+81:   [MATCH 39] Found at index 24919230
+82:     Saved to scratch/composition_pure_match_39_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+83:   [MATCH 40] Found at index 24919860
+84:     Saved to scratch/composition_pure_match_40_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+85:   [MATCH 41] Found at index 25172703
+86:     Saved to scratch/composition_pure_match_41_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+87:   [MATCH 42] Found at index 25211472
+88:     Saved to scratch/composition_pure_match_42_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+89:   [MATCH 43] Found at index 25216199
+90:     Saved to scratch/composition_pure_match_43_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+91:   [MATCH 44] Found at index 25257193
+92:     Saved to scratch/composition_pure_match_44_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+93:   [MATCH 45] Found at index 26647037
+94:     Saved to scratch/composition_pure_match_45_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+95:   [MATCH 46] Found at index 26987206
+96:     Saved to scratch/composition_pure_match_46_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+97:   [MATCH 47] Found at index 26988728
+98:     Saved to scratch/composition_pure_match_47_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+99:   [MATCH 48] Found at index 26995630
+100:     Saved to scratch/composition_pure_match_48_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+101:   [MATCH 49] Found at index 27002454
+102:     Saved to scratch/composition_pure_match_49_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+103:   [MATCH 50] Found at index 27204247
+104:     Saved to scratch/composition_pure_match_50_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+105:   [MATCH 51] Found at index 27205467
+106:     Saved to scratch/composition_pure_match_51_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+107:   [MATCH 52] Found at index 27258846
+108:     Saved to scratch/composition_pure_match_52_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+109:   [MATCH 53] Found at index 27277579
+110:     Saved to scratch/composition_pure_match_53_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+111:   [MATCH 54] Found at index 27402749
+112:     Saved to scratch/composition_pure_match_54_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+113:   [MATCH 55] Found at index 27403334
+114:     Saved to scratch/composition_pure_match_55_d   -ytes: 22435
+Showing lines 1 to 344
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: Scanning C:\Users\Admin\.gemini\antigravity\conversations\011e974d-4561-41c5-89e8-12ee65991b97.db (47792128 bytes)...
+2: Scanning C:\Users\Admin\.gemini\antigravity\conversations\4d2a2c0e-d2da-4e70-9f33-907b27174fe7.db (24211456 bytes)...
+3: Scanning C:\Users\Admin\.gemini\antigravity\conversations\a0f22791-55ca-43b4-8360-a5c4170fc722.db (589824 bytes)...
+4: Scanning C:\Users\Admin\.gemini\antigravity\conversations\d2c79442-9bab-465c-a40a-56c20332cbe2.db (34369536 bytes)...
+5:   [MATCH 1] Found at index 5010602
+6:     Saved to scratch/composition_pure_match_1_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+7:   [MATCH 2] Found at index 5224620
+8:     Saved to scratch/composition_pure_match_2_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+9:   [MATCH 3] Found at index 5693282
+10:     Saved to scratch/composition_pure_match_3_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+11:   [MATCH 4] Found at index 7260257
+12:     Saved to scratch/composition_pure_match_4_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+13:   [MATCH 5] Found at index 10526558
+14:     Saved to scratch/composition_pure_match_5_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+15:   [MATCH 6] Found at index 14302401
+16:     Saved to scratch/composition_pure_match_6_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+17:   [MATCH 7] Found at index 14808666
+18:     Saved to scratch/composition_pure_match_7_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+19:   [MATCH 8] Found at index 14834198
+20:     Saved to scratch/composition_pure_match_8_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+21:   [MATCH 9] Found at index 16236506
+22:     Saved to scratch/composition_pure_match_9_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+23:   [MATCH 10] Found at index 16310200
+24:     Saved to scratch/composition_pure_match_10_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+25:   [MATCH 11] Found at index 16492467
+26:     Saved to scratch/composition_pure_match_11_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+27:   [MATCH 12] Found at index 16584803
+28:     Saved to scratch/composition_pure_match_12_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+29:   [MATCH 13] Found at index 16585505
+3

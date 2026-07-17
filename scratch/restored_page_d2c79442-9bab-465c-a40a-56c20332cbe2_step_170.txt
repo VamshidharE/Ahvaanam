@@ -1,0 +1,85 @@
+Created At: 2026-07-12T13:57:39Z
+Completed At: 2026-07-12T13:57:39Z
+File Path: `file:///c:/Users/Admin/Ahvaanam/app/contact/page.tsx`
+Total Lines: 261
+Total Bytes: 12545
+Showing lines 1 to 261
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: "use client";
+2: 
+3: import React, { useState } from "react";
+4: import { motion, AnimatePresence } from "framer-motion";
+5: import { 
+6:   Mail, 
+7:   Phone, 
+8:   MapPin, 
+9:   Clock, 
+10:   CheckCircle, 
+11:   ArrowLeft, 
+12:   MessageCircle, 
+13:   ChevronDown, 
+14:   Sparkles,
+15:   ArrowRight
+16: } from "lucide-react";
+17: import Link from "next/link";
+18: import Navbar from "../../components/home/Navbar";
+19: import Footer from "../../components/home/Footer";
+20: 
+21: const FAQs = [
+22:   {
+23:     question: "What is your typical turnaround time?",
+24:     answer: "Our standard turnaround time is 3 to 5 business days for draft review. Once you approve the details, the final live link and downloadable assets are delivered within 24 hours."
+25:   },
+26:   {
+27:     question: "Can I request changes after the invitation is live?",
+28:     answer: "Absolutely. We offer unlimited revisions during the design phase, and up to 3 complimentary revisions after the invitation is launched to update dates, timings, or details if plans change."
+29:   },
+30:   {
+31:     question: "Do you support custom background music?",
+32:     answer: "Yes, you can share any track (MP3 or YouTube link) and we will crop and optimize it as the background theme music for your digital invitation."
+33:   },
+34:   {
+35:     question: "Is there a limit to the number of guests I can share with?",
+36:     answer: "No, there are no guest limits. Once your invitation is ready, you can share it with thousands of guests via WhatsApp, email, or social networks at no extra cost."
+37:   }
+38: ];
+39: 
+40: export default fu
+<truncated 10164 bytes>
+q, idx) => (
+227:               <div 
+228:                 key={idx} 
+229:                 onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+230:                 className="border border-zinc-200 rounded-2xl bg-white/70 backdrop-blur-sm px-6 py-4 cursor-pointer hover:border-amber-300 transition-colors"
+231:               >
+232:                 <div className="flex items-center justify-between gap-4 select-none">
+233:                   <span className="font-semibold text-slate-800 text-sm">{faq.question}</span>
+234:                   <ChevronDown className={`transition-transform text-[#C49B27] ${activeFaq === idx ? "rotate-180" : ""}`} size={16} />
+235:                 </div>
+236:                 <div className={`overflow-hidden transition-all duration-300 ${activeFaq === idx ? "max-h-[200px] mt-3" : "max-h-0"}`}>
+237:                   <p className="text-xs leading-relaxed text-slate-500 border-t border-amber-100 pt-3">{faq.answer}</p>
+238:                 </div>
+239:               </div>
+240:             ))}
+241:           </div>
+242:         </div>
+243: 
+244:         {/* Map placeholder */}
+245:         <div className="space-y-4 text-center">
+246:           <div className="w-full h-80 rounded-[30px] border border-amber-200/50 bg-[#F4EFEB] overflow-hidden relative shadow-lg">
+247:             <div className="absolute inset-0 bg-stone-200/35 backdrop-blur-xs flex flex-col items-center justify-center text-center p-6 space-y-2">
+248:               <MapPin className="text-[#C49B27]" size={36} />
+249:               <h4 className="text-sm font-bold uppercase tracking-[1px] text-[#241E1C]">Banjara Hills, Hyderabad Studio</h4>
+250:               <p className="text-[10px] text-slate-500 max-w-xs font-semibold">Visit by appointment only. Coordinates: 17.4156 N, 78.4346 E</p>
+251:             </div>
+252:           </div>
+253:         </div>
+254: 
+255:       </main>
+256: 
+257:       <Footer />
+258:     </div>
+259:   );
+260: }
+261: 
+The above content shows the entire, complete file contents of the requested file.

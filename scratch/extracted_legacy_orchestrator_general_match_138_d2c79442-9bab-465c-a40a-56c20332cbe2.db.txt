@@ -1,0 +1,294 @@
+16} className="text-[#C49B27]" />
+50:             <span>Composer Engine</span>
+51:           </button>
+52:         </div>
+53:       </div>
+54:     );
+55:   }
+56: 
+57:   return (
+58:     <>
+59:       <LegacyOrchestrator
+60:         themeId="royal-temple"
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+   : kz9yqx9h       
+(bot-9f549e06-008d-4158-83d7-a7e6f81ea3b7   XI will view `lib/composition/templates.ts` to see how template compositions are defined.   2  
+ uhvcvjl0 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\composition\\templates.ts","StartLine":1,"toolAction":"View lib/composition/templates.ts","toolSummary":"Reading composition templates library file"}: 	  	
+ 	  M2      o :m      R A  g G4\    _Q    6  %1  -L @"  O  L  }+mR `Z; l_t ~ 	b u  M   3?    np S &&X R  C  r    UE    P   /  d   VG   2  g  8    F/WG#n (k             1o  } $    S1Q   \           5   ? : W AM,       t %CC[1     r    5 y    { A @  xO   ?  "     kDx>    KA  2         vu   -V+  H   XJV        S z  r<p   . ~"          !P=    :4pK6   ? w  ,] W9   ug  ` %m\C]       =     rH uLB'c $   g?z        i     c `     | ~ y -]Y X   z  Y `   Yz  33       Y     B l	  9 { :Iy  P C    )   ?#5 .            (! ?rr   ; HuW J $  H K PQ 1    P  S ft9  Mh  N { ]   &sfm e  AL    ;  Y  R~ g? Z  R            :w&4 >   ] Tn  2   W   ]# 6  #  H  |- = o   G"d8~       C      0        Q P       N]  n    8    W      (      Rm    (  ;(      a ,&   &   m  fn"$]        p sf 1    a < C g            "      0}    H ]       V v)  
+ o  S + G )e b  M^   <P   \     ?  G  q     _  {   L>  ^     Sz A # 2D  4 :/ AQ    PB"Yv    A      yP/ \HI bl,c H     ~ Ptz  k       v 6Y`7    C%  #        o @  r X*  K   c   8 	      PLc     R         ?_ )    GO     3      9 ?5  u1Y   \  k   tkX g<     s  ] -  z  N Q%I       %3   %  D-5W b   %    y 1   $;r   aW + 6O @ h  m Z-<   {   ~  /    W FK y    zi  0    .   S M7 U}w
+kJ	view_file      9    9Created At: 2026-07-12T14:11:29Z
+Completed At: 2026-07-12T14:11:29Z
+File Path: `file:///c:/Users/Admin/Ahvaanam/lib/composition/templates.ts`
+Total Lines: 214
+Total Bytes: 5851
+Showing lines 1 to 214
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import { CompositionSchema, SectionData } from "./types";
+2: 
+3: export function getWeddingComposition(config: any): CompositionSchema {
+4:   const sectionsOrder = config.sectionOrder || [
+5:     "hero", "couple", "countdown", "events", "story", "gallery", "venue", "families", "rsvp", "faq", "dressCode"
+6:   ];
+7:   
+8:   const sections: SectionData[] = sectionsOrder.map((sId: string) => {
+9:     const isSecEnabled = config[sId]?.enabled !== false;
+10:     let bindings: Record<string, string> = {};
+11: 
+12:     if (sId === "hero") {
+13:       bindings = {
+14:         title: "hero.title",
+15:         subtitle: "hero.subtitle",
+16:         welcomeMessage: "hero.welcomeMessage",
+17:         heroImage: "hero.heroImage",
+18:         ctaText: "hero.ctaText",
+19:         surname: "hero.surname",
+20:         subText: "hero.subText",
+21:         enableHeaderMedia: "hero.enableHeaderMedia",
+22:         headerMediaType: "hero.headerMediaType",
+23:         selectedGod: "hero.selectedGod",
+24:         selectedSymbol: "hero.selectedSymbol"
+25:       };
+26:     } els    e if (sId === "couple") {
+27:       bindings = {
+28:         title: "couple.title",
+29:         groomName: "groom.name",
+30:         groomParents: "groom.parents",
+31:         groomImage: "groom.image",
+32:         brideName: "bride.name",
+33:         brideParents: "bride.parents",
+34:         brideImage: "bride.image"
+35:       };
+36:     } else if (sId === "countdown") {
+37:       bindings = {
+38:         title: "countdown.title",
+39:         targetDate: "countdown.targetDate"
+40:       };
+41:     } else if (sId === "events") {
+42:       bindings = {
+43:         events: "events"
+44:       };
+45:     } else if (sId === "story") {
+46:       bindings = {
+47:         title: "story.title",
+48:         timeline: "story.timeline"
+49:       };
+50:     } else if (sId === "gallery") {
+51:       bindings = {
+52:         title: "gallery.title",
+53:         images: "gallery.images"
+54:       };
+55:     } else if (sId === "venue") {
+56:       bindings = {
+57:         title: "venue.title",
+58:         address: "venue.address",
+59:         mapEmbedUrl: "venue.mapEmbedUrl"
+60:       };
+61:     } else if (sId === "families") {
+62:       bindings = {
+63:         title: "families.title",
+64:         brideFamily: "families.brideFamily",
+65:         groomFamily: "families.groomFamily"
+66:       };
+67:     } else if (sId === "rsvp") {
+68:       bindings = {
+69:         title: "rsvp.title",
+70:         contacts: "rsvp.contacts"
+71:       };
+72:     } else if (sId === "faq") {
+73:       bindings = {
+74:         title: "faq.title",
+75:         entries: "faq.entries"
+76:       };
+77:     } else if (sId === "dressCode") {
+78:       bindings = {
+79:         title: "dressCode.title",
+80:         code: "dressCode.code",
+81:         description: "dressCode.description"
+82:       };
+83:     }
+84: 
+85:     return {
+86:       id: `sec-${sId}-node`,
+87:       type: sId === "venue" ? "venue" : sId,
+88:       bindings,
+89:       properties: {
+90:         enabled: isSecEnabled
+91:       }
+92:     };
+93:   });
+94: 
+95:   if (config.footer?.enabled && !sections.some(s => s.type === "footer")) {
+96:     sections.push({
+97:       id: "sec-footer-node",
+98:       type: "footer",
+99:       bindings: {
+100:         title: "footer.title",
+101:         creditText: "footer.creditText",
+102:         salutation: "footer.salutation"
+103:       },
+104:       properties: {
+105:         enabled: true
+106:       }
+107:     });
+108:   }
+109: 
+110:   return {
+111:     templateId: "wedding-general",
+112:     version: "1.0.0",
+113:     theme: config.themeId || "luxury-gold",
+114:     motion: config.motionId || "luxury-motion",
+115:     sections,
+116:     assets: {
+117:       music: config.music?.file
+118:     }
+119:   };
+120: }
+121: 
+122: export function getBirthdayComposition(config: any): CompositionSchema {
+123:   const sectionsOrder = config.sectionOrder || [
+124:     "hero", "celebrant", "countdown", "events", "gallery", "venue", "rsvp", "faq"
+125:   ];
+126: 
+127:   const sections: SectionData[] = sectionsOrder.map((sId: string) => {
+128:     const isSecEnabled = config[sId]?.enabled !== false;
+129:     let bindings: Record<string, string> = {};
+130: 
+131:     if (sId === "hero") {
+132:       bindings = {
+133:         title: "hero.title",
+134:         subtitle: "hero.subtitle",
+135:         welcomeMessage: "hero.welcomeMessage",
+136:         heroImage: "hero.heroImage",
+137:         ctaText: "hero.ctaText",
+138:         surname: "hero.surname",
+139:         subText: "hero.subText"
+140:       };
+141:     } else if (sId === "celebrant") {
+142:       bindings = {
+143:         name: "celebrant.name",
+144:         age: "age"
+145:       };
+146:     } else if (sId === "countdown") {
+147:       bindings = {
+148:         title: "countdown.title",
+149:         targetDate: "countdown.targetDate"
+150:       };
+151:     } else if (sId === "events") {
+152:       bindings = {
+153:         events: "events"
+154:       };
+155:     } else if (sId === "gallery")     {
+156:       bindings = {
+157:         title: "gallery.title",
+158:         images: "gallery.images"
+159:       };
+160:     } else if (sId === "venue") {
+161:       bindings = {
+162:         title: "venue.title",
+163:         address: "venue.address",
+164:         mapEmbedUrl: "venue.mapEmbedUrl"
+165:       };
+166:     } else if (sId === "rsvp") {
+167:       bindings = {
+168:         title: "rsvp.title",
+169:         contacts: "rsvp.contacts"
+170:       };
+171:     } else if (sId === "faq") {
+172:       bindings = {
+173:         title: "faq.title",
+174:         entries: "faq.entries"
+175:       };
+176:     }
+177: 
+178:     return {
+179:       id: `sec-${sId}-node`,
+180:       type: sId === "venue" ? "venue" : sId,
+181:       bindings,
+182:       properties: {
+183:         enabled: isSecEnabled
+184:       }
+185:     };
+186:   });
+187: 
+188:   if (config.footer?.enabled && !sections.some(s => s.type === "footer")) {
+189:     sections.push({
+190:       id: "sec-footer-node",
+191:       type: "footer",
+192:       bindings: {
+193:         title: "footer.title",
+194:         creditText: "footer.creditText",
+195:         salutation: "footer.salutation"
+196:       },
+197:       properties: {
+198:         enabled: true
+199:       }
+200:     });
+201:   }
+202: 
+203:   return {
+204:     templateId: "birthday-general",
+205:     version: "1.0.0",
+206:     theme: config.themeId || "luxury-gold",
+207:     motion: config.motionId || "luxury-motion",
+208:     sections,
+209:     assets: {
+210:       music: config.music?.file
+211:     }
+212:   };
+213: }
+214: 
+The above content shows the entire, complete file contents of the requested file.
+   : uhvcvjl0       
+(bot-69064e70-cfc8-4f4a-81ea-be40786622be   PI will list the contents of `lib/composition` to check if `types.ts` is missing.   2  
+ nnxg94da  list_dir   {"DirectoryPath":"c:\\Users\\Admin\\Ahvaanam\\lib\\composition","toolAction":"List lib/composition","toolSummary":"Listing lib/composition folder to see if types.ts is missing"}:     
+    M2  dx   8H C{  o]^   y 	  @`      C| f  D   KB -  ~j  p y    )    G     ] Wu  ,2  o     0S a & ^  *  C 2[2o  s$   $X~  m   >& f  a l G  Y  N z +F J	       (   6   4  z      2V O   !Q    w& s  
+ ] 0     :a 5% 'h~                 MZ| D ( W  
+~   | ~R  K  F  % 1  m   g   T@A   i "98L     3 BA G  [G   	 
+   o%9J    j 7   } (I   o    4}% .  5. 1)   B
+      k k     y1    2yi`  [ A " >         ? * A z w  * 06   8      xh    l       _ `     D    	    X       f y  [Ja{,J list_dir            Created At: 2026-07-12T14:11:34Z
+Completed At: 2026-07-12T14:11:34Z
+{"name":"templates.ts", "sizeBytes":"5851"}
+
+Summary: This directory contains 0 subdirectories and 1 files. @: nnxg94da      
+
+(bot-321baaab-b96b-4576-ad5b-982afb66deb1     I will view `scratch/restored_composition_types.ts_step_385.txt` which contains the missing `lib/composition/types.ts` code we extracted from the logs.   2  
+ 9lewkfch 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\scratch\\restored_composition_types.ts_step_385.txt","StartLine":1,"toolAction":"View restored composition/types.ts","toolSummary":"Reading the recovered composition/types.ts code"}:     
+    M2 qa R    m  ,  l  @     T    iA T m  >   + ,  q?E y  d Q -@ +y  U       2 ~ *    M   r  =?   O   >      F
+   y~w HD N   3 Q\ 0H  ;E oH=e ~. +   	   c x+    uo  	  H  uX1} G Pp ` 	 y8    u          +        
+d      1&  	@$ 8n V1eE   U=, S S B b            uZ!         fs ~/  q  cN}#3    u F[  w L  M z  @   m 3' l]  V      u  x ?   r >   =   !  k  A IU cj
+&   C m       [  c          &     L      R d b 4 4    i p*       R  m^ ' T      '4  ^   3 3     * 8    7B  G~ [    8  ^ 7 * ;   6X Uh W    ^k   J8f   }  9 A . G  a   O h  q jk   7R
+}    c  ;#         } ]     a
+o  9 O*X   2 )    gZ Dv!     :   G  C  u  . sSk     `  ~ 6  ~ I  9  1 p  ^LC4  tB *  W _  j~ 
+           P l;! p  7  #  3  N X x}l { h[I M   z<   twh    h  W    J Y  IED   v f % <z       _ l>   -i  	   ! 2i4@ ] U d [D  @  MW J  +y  U 	[      e    4 T3 + F] =             Created At: 2026-07-12T14:11:38Z    
+Error invalid tool call: There was a problem parsing the tool call. 
+Error Message: model output error: invalid tool call error (invalid_args) failed to read file: open c:/Users/Admin/Ahvaanam/scratch/restored_composition_types.ts_step_385.txt: The system cannot find the file specified. 
+Guidance: You are trying to correct your previous tool call error, you must focus on fixing the failed tool call with sequential tool calls and try again. Do not do parallel tool calls and if you are fixing multiple tool calls, do them one at a time. Do not apologize. 
+Retries remaining: 4.   : 9lewkfch       
+(bot-3d58dbd4-1f2a-4af9-aca4-9c6e6ec20b55   dI will list the files in the `scratch` directory to find the exact filenames of the recovered files.   2  
+ 5w4pwwad  list_dir   {"DirectoryPath":"c:\\Users\\Admin\\Ahvaanam\\scratch","toolAction":"List scratch directory","toolSummary":"Listing files in scratch to find restored code files"}:     
+    M2     \  s   
+   Z    	,   C    F2  u75+ 4 _6m      Xc Ym TW  V  A   O   ai  z  |p qN	 Gn i IO+Cg^  X     *  g     *T R v(   =b     h      Yjyk E sT  # { *I&   1,b{8 Cl"V u  WYN_  [ sd< B $   fI  	Y @#  y @P*    7 ^     } e  r k   eb    w~Js SI 8   w   ;  b    I U; )       w  ~     kk  6 yC      i}     U     BE  % 8F*@  < H        s` ? Qs{ p  y   9M    8r 0  2     $ ?  - p      ` .j        P 4N        g 2         T  6 \$ L>6     3  S       y $r   E$J  |   5          \l   U d_ fJFo2 x     6	      k>   E 	Q  M Z"        r     [  J list_dir            Created At: 2026-07-12T14:11:44Z
+Completed At: 2026-07-12T14:11:44Z
+{"name":"assemble_homepage.js", "sizeBytes":"1792"}
+{"name":"check_chunks.js", "sizeBytes":"529"}
+{"name":"extract.js", "sizeBytes":"1012"}
+{"name":"extract_all_views.js", "sizeBytes":"1404"}
+{"name":"extract_composition.js", "sizeBytes":"1519"}
+{"name":"extract_exact_page.js", "sizeBytes":"2223"}
+{"name":"extract_page.js", "sizeBytes":"1513"}
+{"name":"extracted_homepage_step_2408.txt", "sizeBytes":"4749"}
+{"name":"extracted_homepage_step_3369.txt", "sizeBytes":"4749"}
+{"name":"find_homepage.js", "sizeBytes":"1139"}
+{"name":"homepage_replace_011e974d-4561-41c5-89e8-12ee65991b97_step_2422_replacement.txt", "sizeBytes":"40"}
+{"name":"homepage_replace_011e974d-4561-41c5-89e8-12ee65991b97_step_2422_target.txt", "sizeBytes":"40"}
+{"name":"page_chunk_lines_100_to_155_step_2410.txt", "sizeBytes":"2580"}
+{"name":"page_chunk_lines_155_to_195_step_2399.txt", "sizeBytes":"3390"}
+{"name":"page_chunk_lines_195_to_397_step_2412.txt", "sizeBytes":"11359"}
+{"name":"page_chunk_lines_1_to_100_step_2408.txt", "sizeBytes":"4749"}
+{"name":"page_chunk_lines_1_to_100_step_3369.txt", "sizeBytes":"4749"}
+{"name":"page_chunk_lines_1_to_250_step_2761.txt", "sizeBytes":"20559"}
+{"name":"page_chunk_lines_1_to_91_step_3434.txt", "sizeBytes":"47067"}
+{"name":"reassembled_homepage.tsx", "sizeBytes":"17514"}
+{"name":"restored_d2c79442-9bab-465c-a40a-56c20332cbe2_step_309_extract_composition.js.txt", "sizeBytes":"1788"}
+{"name":"restored_d2c79442-9bab-465c-a40a-56c20332cbe2_step_313_extract_composition.js.txt", "sizeBytes":"1906"}
+{"name":"restored_d2c79442-9bab-465c-a40a-56c20332cbe2_step_322_search_composition_code.js.txt", "sizeBytes":"1956"

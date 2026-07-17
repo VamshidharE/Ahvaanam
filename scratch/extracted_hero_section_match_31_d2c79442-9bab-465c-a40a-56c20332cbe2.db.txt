@@ -1,0 +1,324 @@
+";
+    surnameColor?: string;
+  };
+  themeId?: string;
+  layoutId?: string;
+  motionId?: string;
+}
+
+export default function HeroSection({ properties, bindings, themeId, layoutId, motionId }: HeroSectionProps) {
+  const {
+    showScrollIndicator = true,
+    overlayOpacity = 0.45,
+    contentAlign = "center",
+    minHeight = "85vh",
+  } = properties;
+
+  const {
+    title = "",
+    subtitle = "",
+    welcomeMessage = "",
+    heroImage = "",
+    ctaText = "",
+    surname = "",
+    subText = "",
+    enableHeaderMedia = true,
+    headerMediaType = "god",
+    selectedGod = "ganesha",
+    selectedSymbol = "om",
+    headerMediaSize = 80,
+    headerMediaSpacing = 30,
+    showSurnameHeading = true,
+    surnameFont = "cinzel",
+    surnameColor = "var(--theme-accent)",
+  } = bindings;
+
+  const alignmentClass = 
+    contentAlign === "left" ? "text-left items-start" : 
+    contentAlign === "right" ? "text-right items-end" : 
+    "text-center items-center";
+
+  return (
+    <section 
+      className="relative flex flex-col justify-center items-center overflow-hidden w-full select-none"
+      style={{ 
+        minHeight: "var(--layout-min-height, 85vh)",
+        background: "var(--theme-gradient-backdrop, var(--theme-bg))"
+      }}
+    >
+      {/* Background Cover Image */}
+      {heroImage && (
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-102"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        />
+      )}
+
+      {/* Dark overlay */}
+      <div 
+        className="absolute inset-0 bg-black pointer-events-none"
+        style={{ opacity: overlayOpacity }}
+      />
+
+      {/* Hero content */}
+      <MotionWrapper
+        motionId={motionId}
+        defaultMotionId="luxury-motion"
+        type="reveal"
+        className="w-full flex justify-center items-center z-10"
+      >
+        <LayoutWrapper
+          layoutId={layoutId}
+          defaultLayoutId="hero-center"
+          className={`w-full max-w-4xl flex ${alignmentClass}`}
+          style={{ 
+            color: "var(--theme-text)",
+            fontFamily: "var(--theme-font-body)"
+          }}
+        >
+          {/* Left Side: Welcome, Title, Description, CTA */}
+          <div className="flex flex-col space-y-4 flex-1 text-center lg:text-left items-center lg:items-start w-full">
+            {/* Welcome Tagline */}
+            {welcomeMessage && (
+              <p 
+                className="text-xs uppercase tracking-[3px] font-semibold"
+                style={{ color: "var(--theme-accent)" }}
+              >
+                {welcomeMessage}
+              </p>
+            )}
+
+            {/* Main Title Heading */}
+            {title && (
+              <h1 
+                className="text-4xl md:text-6xl font-extrabold tracking-wide leading-tight"
+                style={{ fontFamily: "var(--theme-font-heading)" }}
+              >
+                {title}
+              </h1>
+            )}
+
+            {/* Subtitle / Details description */}
+            {subtitle && (
+              <p 
+                className="text-sm max-w-lg leading-relaxed whitespace-pre-line font-medium"
+                style={{ color: "var(--theme-secondary-text)" }}
+              >
+                {subtitle}
+              </p>
+            )}
+
+            {/* Call to Action Button */}
+            {ctaText && (
+              <div className="pt-2">
+                <MotionWrapper motionId={m    otionId} defaultMotionId="luxury-motion" type="hover">
+                  <MotionWrapper motionId={motionId} defaultMotionId="luxury-motion" type="tap">
+                    <button 
+                      type="button"
+                      className="px-8 py-3.5 text-xs font-bold uppercase tracking-[2px] transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer"
+                      style={{
+                        backgroundColor: "var(--theme-accent)",
+                        color: "#FFFFFF",
+                        borderRadius: "var(--theme-radius-button)",
+                        boxShadow: "var(--theme-shadow-button)",
+                        fontFamily: "var(--theme-font-heading)"
+                      }}
+                    >
+                      {ctaText}
+                    </button>
+                  </MotionWrapper>
+                </MotionWrapper>
+              </div>
+            )}
+          </div>
+
+          {/* Right Side: Deity Icon & Family Surname banner */}
+          {(enableHeaderMedia || (showSurnameHeading && surname)) && (
+            <div className="flex flex-col items-center justify-center space-y-5 flex-1 w-full pt-6 lg:pt-0">
+              {enableHeaderMedia && (
+                <div 
+                  style={{ 
+                    marginTop: `${headerMediaSpacing}px`,
+                    width: `${headerMediaSize}px`,
+                    height: `${headerMediaSize}px` 
+                  }}
+                  className="flex items-center justify-center shrink-0"
+                >
+                  <DeitySymbol
+                    type={headerMediaType}
+                    selectedGod={selectedGod}
+                    selectedSymbol={selectedSymbol}
+                    size={headerMediaSize}
+                  />
+                </div>
+              )}
+
+              {showSurnameHeading && surname && (
+                <div className="text-center animate-fadeIn">
+                  <h2 
+                    className="text-2xl md:text-3xl font-bold tracking-wider"
+                    style={{ 
+                      fontFamily: surnameFont === "great-vibes" ? "var(--font-great)" : surnameFont === "playfair" ? "var(--font-playfair)" : "var(--font-cinzel)",
+                      color: surnameColor 
+                    }}
+                  >
+                    {surname}
+                  </h2>
+                  {subText && (
+                    <span className="text-[10px] uppercase tracking-[2px] opacity-75 block mt-1" style={{ color: "var(--theme-secondary-text)" }}>
+                      {subText}
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+        </LayoutWrapper>
+      </MotionWrapper>
+
+      {/* Scroll indicator */}
+      {showScrollIndicator && (
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 z-10 animate-bounce opacity-85">
+          <span className="text-[8px] uppercase tracking-[1.5px] text-white/70 font-semibold">Scroll</span>
+          <div className="w-1 h-3 bg-white/60 rounded-full" />
+        </div>
+      )}
+    </section>
+  );
+}
+
+2             8     
+5file:///c:/Users/Admin/Ahvaanam/lib/registry/index.ts   import React, { lazy } from "react";
+import { SectionManifest } from "./types";
+import heroManifest from "@/components/sections/hero/manifest.json";
+import coupleManifest from "@/components/sections/couple/manifest.json";
+import countdownManifest from "@/components/sections/countdown/manifest.json";
+import storyManifest from "@/components/sections/story/manifest.json";
+import eventsManifest from "@/components/sections/events/manifest.json";
+import galleryManifest from "@/components/sections/gallery/manifest.json";
+import venueManifest from "@/components/sections/venue/manifest.json";
+import familiesManifest from "@/components/sections/families/manifest.json";
+import rsvpManifest from "@/components/sections/rsvp/manifest.json";
+import faqManifest from "@/components/sections/faq/manifest.json";
+import dressCodeManifest from "@/components/se    ctions/dressCode/manifest.json";
+import footerManifest from "@/components/sections/footer/manifest.json";
+import celebrantManifest from "@/components/sections/celebrant/manifest.json";
+import houseDetailsManifest from "@/components/sections/houseDetails/manifest.json";
+import ownersManifest from "@/components/sections/owners/manifest.json";
+
+import { SectionManifestSchema } from "./schema";
+
+const MANIFESTS: Record<string, SectionManifest> = {
+  hero: heroManifest as any,
+  couple: coupleManifest as any,
+  countdown: countdownManifest as any,
+  story: storyManifest as any,
+  events: eventsManifest as any,
+  gallery: galleryManifest as any,
+  venue: venueManifest as any,
+  families: familiesManifest as any,
+  rsvp: rsvpManifest as any,
+  faq: faqManifest as any,
+  dressCode: dressCodeManifest as any,
+  footer: footerManifest as any,
+  celebrant: celebrantManifest as any,
+  houseDetails: houseDetailsManifest as any,
+  owners: ownersManifest as any,
+};
+
+// Runtime validation during startup
+Object.entries(MANIFESTS).forEach(([id, manifest]) => {
+  const result = SectionManifestSchema.safeParse(manifest);
+  if (!result.success) {
+    console.error(`[Registry Error] Validation failed for section manifest: "${id}"`);
+    console.error(JSON.stringify(result.error.format(), null, 2));
+    throw new Error(`Section manifest "${id}" violates the canonical schema: ${result.error.message}`);
+  }
+});
+
+const COMPONENTS: Record<string, React.ComponentType<any>> = {
+  hero: lazy(() => import("@/components/sections/hero")),
+  celebrant: lazy(() => import("@/components/sections/celebrant")),
+  countdown: lazy(() => import("@/components/sections/countdown")),
+  events: lazy(() => import("@/components/sections/events")),
+  gallery: lazy(() => import("@/components/sections/gallery")),
+  venue: lazy(() => import("@/components/sections/venue")),
+  rsvp: lazy(() => import("@/components/sections/rsvp")),
+  faq: lazy(() => import("@/components/sections/faq")),
+  footer: lazy(() => import("@/components/sections/footer")),
+  couple: lazy(() => import("@/components/sections/couple")),
+  families: lazy(() => import("@/components/sections/families")),
+  dressCode: lazy(() => import("@/components/sections/dressCode")),
+  story: lazy(() => import("@/components/sections/story")),
+  houseDetails: lazy(() => import("@/components/sections/houseDetails")),
+  owners: lazy(() => import("@/components/sections/owners")),
+};
+
+export function getSectionManifest(id: string): SectionManifest | null {
+  return MANIFESTS[id] || null;
+}
+
+export function getSectionComponent(id: string): React.ComponentType<any> | null {
+  const lazyComp = COMPONENTS[id];
+  return lazyComp || null;
+}
+
+export function listSections(): SectionManifest[] {
+  return Object.values(MANIFESTS);
+}
+export * from "./types";
+2           >8    +
+Gfile:///c:/Users/Admin/Ahvaanam/components/sections/SectionRenderer.tsx  *"use client";
+
+import React from "react";
+import { AlertTriangle } from "lucide-react";
+import { getSectionManifest, getSectionComponent, SectionManifest } from "@/lib/registry";
+
+export interface SectionData {
+  id: string;
+  type: string;
+  variant?: string;
+  bindings?: Record<string, string>;
+  properties?: Record<string, any>;
+  motionHooks?: Record<string, any>;
+  layoutId?: string;
+}
+
+interface SectionRendererProps {
+  section: SectionData;
+  invitationData: any;
+  theme?: string;
+  motion?: string;
+}
+
+function getValueByPath(obj: any, path: string): any {
+  if (!obj) return undefined;
+  const parts = path.split(".");
+  let current = obj;
+  for (const part of parts) {
+    if (current && typeof current === "object" && part in current) {
+      current = current[part];
+    } else {
+      return undefined;
+    }
+  }
+  return current;
+}
+
+function resolveValue(invitationData: any, path: string): any {
+  let val = getValueByPath(invitationData, path);
+  if (val !== undefined) return val;
+
+  if (invitationData && invitationData.config) {
+    val = getValueByPath(invitationData.config, path);
+    if (val !== undefined) return val;
+  }
+  return undefined;
+}
+
+function ErrorFallback({ tit    le, message, details }: { title: string; message: string; details?: string }) {
+  return (
+    <div className="p-6 bg-red-50 border border-red-200 rounded-3xl text-red-800 space-y-3 max-w-lg mx-auto my-8 select-none">
+      <div className="flex items-center gap-2 font-bold text-sm">
+        <AlertTriangle className="text-red-650" size={18} />
+    

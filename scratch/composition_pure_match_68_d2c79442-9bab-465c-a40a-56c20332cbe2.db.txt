@@ -1,0 +1,400 @@
+includes('export default function CompositionRenderer');\n    const hasRegistry = content.includes('SECTION_COMPONENTS');\n    const hasResolve = content.includes('resolveBindingValue');\n    \n    if (hasExport \u0026\u0026 hasRegistry \u0026\u0026 hasResolve) {\n      // Exclude logs/command-outputs\n      const isLogFile = content.includes('Preview of match') || \n                         content.includes('Found match') || \n                         content.includes('run_command') || \n                         content.includes('CommandLine') ||\n                         content.includes('task-') ||\n                         content.includes('step_index') ||\n                         content.includes('\\\"tool_calls\\\"');\n                         \n      if (!isLogFile) {\n        foundCount++;\n        console.log(`[${foundCount}] Found possible REAL code file candidate: ${file} (size: ${content.length})`);\n        \n        let startIdx = content.indexOf('\"use client\";');\n        if (startIdx === -1) startIdx = content.indexOf('use client');\n        if (startIdx !== -1) {\n          let code = content.substring(startIdx);\n          \n          // Try to clean up\n          const endMarkers = ['\",\"Description\"', '\",\\n      \"Description\"', '\", \"Description\"', '\",\"description\"'];\n          for (const marker of endMarkers) {\n            const markerIdx = code.indexOf(marker);\n            if (markerIdx !== -1) {\n              code = code.substring(0, markerIdx);\n            }\n          }\n          \n          // Unescape backslashes and quotes\n          let parsed = code\n            .replace(/\\\\n/g, '\\n')\n            .replace(/\\\\\"/g, '\"')\n            .replace(/\\\\\\\\/g, '\\\\');\n            \n          const lastBrace = parsed.lastIndexOf('}');\n          if (lastBrace !== -1) {\n            parsed = parsed.substring(0, lastBrace + 1);\n          }\n          \n          console.log(\"  Parsed Code length:\", parsed.length);\n          console.log(\"  Code   '    erated dynamically.
+
+For every module supplied by the blueprint display:
+
+    Status
+    Summary
+    Missing Required Fields
+    Edit Action
+
+The Builder should not know what fields exist.
+
+It only renders what the blueprint defines.
+
+==================================================
+
+Future Requirement
+
+If a new event category is added later (Retirement, Anniversary, Festival, Memorial, Graduation, etc.)
+
+The Builder should work immediately by only creating a new Builder Blueprint.
+
+No Builder UI changes should be required.
+
+==================================================
+
+Definition of Done
+
+    Builder works for every category.
+    Zero event-specific labels in Builder components.
+    Everything comes from Builder Blueprint.
+    New categories require only blueprint creation.
+    Existing preview and rendering engine remain unchanged.
+    Existing Studio Editor remains unchanged. &
+$Redesign the Celebration Builder UI.  
+ 
+  
+ 
+  
+	IMPORTANT  
+ 
+  
+ 
+ %
+#Ahvaanam is a multi-event platform.  
+ 
+  
+ 
+ >
+<The Builder must NEVER hardcode any event-specific concepts.  
+ 
+  
+ 
+ '
+%Do NOT assume the event is a wedding.  
+ 
+  
+ 
+  
+ Do NOT use labels like:  
+ 
+ 	
+ - Bride  
+ 
+ 	
+ - Groom  
+ 
+ 	
+ - Haldi  
+ 
+  
+	- Mehendi  
+ 
+  
+ - Birthday Person  
+ 
+ 	
+ - Owner  
+ 
+  
+ - Baby  
+ 
+ 	
+ - House  
+ 
+  
+ 
+ I
+GThese must always come from the Category Blueprint / Builder Blueprint.  
+ 
+  
+ 
+ 4
+2==================================================  
+ 
+  
+ 
+  
+ GOAL  
+ 
+  
+ 
+ U
+SCreate ONE adaptive Builder that works for every current and future event category.  
+ 
+  
+ 
+ 0
+.The Builder UI must be completely data-driven.  
+ 
+  
+ 
+ 4
+2==================================================  
+ 
+  
+ 
+  
+ Architecture  
+ 
+  
+ 
+ 
+
+ Category  
+ 
+  
+	           
+ 
+  
+ Category Blueprint  
+ 
+  
+	           
+ 
+  
+ Builder Blueprint  
+ 
+  
+	           
+ 
+  
+
+Builder UI  
+ 
+  
+	           
+ 
+ 	
+ Preview  
+ 
+  
+ 
+ P
+NThe Builder should know NOTHING about weddings, birthdays, housewarmings, etc.  
+ 
+  
+ 
+ 2
+0It only renders whatever the blueprint provides.  
+ 
+  
+ 
+ 4
+2==================================================  
+ 
+  
+ 
+ 	
+ Example  
+ 
+  
+ 
+  
+ Wedding Blueprint  
+ 
+  
+ 
+  
+ People  
+ 
+ 	
+ - Bride  
+ 
+ 	
+ - Groom  
+ 
+  
+ - Bride Parents  
+ 
+  
+ - Groom Parents  
+ 
+  
+ 
+ 
+ Celebration  
+ 
+  
+	- Wedding  
+ 
+ 
+ - Reception  
+ 
+ 	
+ - Haldi  
+ 
+  
+ 
+ 4
+2--------------------------------------------------  
+ 
+  
+ 
+  
+ Birthday Blueprint  
+ 
+  
+ 
+  
+ People  
+ 
+ 
+ - Celebrant  
+ 
+  
+	- Parents  
+ 
+  
+ - Host  
+ 
+  
+ 
+ 
+ Celebration  
+ 
+  
+ - Cake Cutting  
+ 
+ 	
+ - Games  
+ 
+ 
+
+ - Dinner  
+ 
+  
+ 
+ 4
+2--------------------------------------------------  
+ 
+  
+ 
+  
+ Housewarming Blueprint  
+ 
+  
+ 
+  
+ People  
+ 
+ 
+
+ - Owners  
+ 
+ 
+
+ - Family  
+ 
+  
+ 
+ 
+ Celebration  
+ 
+  
+ - Gruhapravesam  
+ 
+  
+ - Vastu Puja  
+ 
+  
+ 
+ 4
+2--------------------------------------------------  
+ 
+  
+ 
+  
+ Corporate Blueprint  
+ 
+  
+ 
+  
+ People  
+ 
+ 
+ - Organizer  
+ 
+  
+	- Speaker  
+ 
+ 	
+ - Guest  
+ 
+  
+ 
+ 
+ Celebration  
+ 
+ 
+
+ - Agenda  
+ 
+  
+
+- Sessions  
+ 
+  
+ 
+ 4
+2==================================================  
+ 
+  
+ 
+ K
+IThe Builder UI must render ALL of these automatically from the blueprint.  
+ 
+  
+ 
+ !
+ No conditional statements like:  
+ 
+  
+ 
+  
+ if(category==="wedding")  
+ 
+  
+ 
+  
+ No switch cases.  
+ 
+  
+ 
+  
+ No hardcoded labels.  
+ 
+  
+ 
+ 4
+2==================================================  
+ 
+  
+ 
+ 3
+1Every Builder card must be generated dynamically.  
+ 
+  
+ 
+ 5
+3For every module supplied by the blueprint display:  
+ 
+  
+ 
+  
+
+    Status  
+ 
+ 
+     Summary  
+ 
+  
+     Missing Required Fields  
+ 
+  
+     Edit Action  
+ 
+  
+ 
+ 0
+.The Builder should not know what fields exist.  
+ 
+  
+ 
+ -
++It only renders what the blueprint defines.  
+ 
+  
+ 
+ 4
+2==================================================  
+ 
+  
+ 
+  
+ Future Requirement  
+ 
+  
+ 
+ h
+fIf a new event category is added later (Retirement, Anniversary, Festival, Me

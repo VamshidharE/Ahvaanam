@@ -1,0 +1,242 @@
+Open)}
+            className="w-14 h-14 rounded-full border-2 border-[#E3C16F] bg-[#5C0612] text-[#E3C16F] shadow-lg flex items-center justify-center focus:outline-none hover:scale-105 transition-transform animate-pulse"
+          >
+            {menuOpen ? <X size={20} /> : <Menu  !L   height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener("resize", resize);
+
+    let animationFrameId: number;
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach((p) => {
+        p.y += p.vy;
+        p.x += p.vx;
+        p.rotation += p.rotationSpeed;
+
+        if (p.y > height + 10) {
+          p.y = -20;
+          p.x = Math.random() * width;
+        }
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.beginPath();
+        
+        ctx.moveTo(0, -p.r);
+        ctx.lineTo(p.r / 1.5, 0);
+        ctx.lineTo(0, p.r);
+        ctx.lineTo(-p.r / 1.5, 0);
+        ctx.closePath();
+
+        ctx.fillStyle = `rgba(212, 175, 55, ${p.alpha})`; // Gold Foil Hex #D4AF37
+        ctx.shadowBlur = 5;
+        ctx.shadowColor = "#D4AF37";
+        ctx.fill();
+        ctx.restore();
+      });
+      animationFrameId = requestAnimationFrame(draw);
+    };
+    draw();
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0" />;
+};
+
+export default function PalaceLuxuryLayout({ onBackToHub }: { onBackToHub: () => void }) {
+  const { invitationData } = useInvitationData();
+  const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
+  const [playingMusic, setPlayingMusic] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  // Countdown timer state
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isWeddingPassed, setIsWeddingPassed] = useState(false);
+
+  useEffect(() => {
+    if (!invitationData) return;
+    setMounted(true);
+    const timer = setTimeout(() => setLoading(false), 2400);
+
+    const weddingDate = new Date(invitationData.countdown.targetDate).getTime();
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const difference = weddingDate - now;
+      if (difference <= 0) {
+        setIsWeddingPassed(true);
+      } else {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        });
+      }
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+    };
+  }, [invitationData]);
+
+  if (!invitationData) return null;
+  const invitation = invitationData;
+
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+    if (playingMusic) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(() => {});
+    }
+    setPlayingMusic(!playingMusic);
+  };
+
+  if (!mounted) return null;
+
+  // Auto-generate Navigation Items from enabled sections in order
+  const sectionLabels: Record<string, string> = {
+    hero: "Home",
+    couple: "Couple",
+    story: "Story",
+    events: "Events",
+    gallery: "Gallery",
+    venue: "Venues",
+    rsvp: "RSVP",
+    faq: "FAQ",
+    dressCode: "Theme"
+  };
+
+  const navItems = invitation.sectionOrder
+    .filter((id) => id !== "footer" && id !== "families" && (invitation as any)[id]?.enabled)
+    .map((id) => ({ id, label: sectionLabels[id] || id }));
+
+  return (
+    <div className="min-h-screen bg-[#1F1113] text-[#E3C16F] relative overflow-hidden font-sans selection:bg-[#E3C16F] selection:text-[#1F1113]">
+      <audio ref={audioRef} loop src={invitation.music.file} />
+
+      {/* --- VELVET CURTAIN OPENING LOADING SCREEN --- */}
+      <AnimatePresence>
+        {loading && (
+          <div className="fixed inset-0 z-50 flex overflow-h  !M border-[#1B4D22] bg-white">
+                    <h4 className="text-lg font-bold text-[#8C3E20] flex items-center gap-2 [font-family:var(--playfair),serif]">
+                      <HelpCircle size={16} /> {faq.question}
+                    </h4>
+                    <p className="text-emerald-950/70 mt-2 text-sm leading-relaxed [font-family:var(--lora),serif] pl-6">{faq.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        }
+
+        // 11. DRESS CODE
+        if (sectionId === "dressCode" && invitation.dressCode && invitation.dressCode.enabled) {
+          return (
+            <section id="dressCode" key={sectionId} className="py-24 px-6 max-w-2xl mx-auto text-center relative z-10">
+              <div className="p-10 rounded-[32px] border-4 border-[#1B4D22] bg-white shadow-md">
+                <h2 className="text-3xl text-[#8B4513] [font-family:var(--playfair),serif] mb-2">{invitation.dressCode.title}</h2>
+                <p className="text-xl text-[#8B4513] font-bold tracking-[1px] [font-family:var(--lora),serif]">{invitation.dressCode.code}</p>
+                <p className="text-emerald-950/70 text-sm max-w-md mx-auto leading-relaxed mt-4 [font-family:var(--lora),serif]">
+                  {invitation.dressCode.description}
+                </p>
+                {invitation.dressCode.colors && (
+                  <div className="flex gap-4 justify-center mt-6">
+                    {invitation.dressCode.colors.map((color, idx) => (
+                      <span
+                        key={idx}
+                        className="w-8 h-8 rounded-full border-2 border-[#1B4D22] shadow-sm"
+                        style={{ backgroundColor: color }}
+                        title={color}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </section>
+          );
+        }
+
+        // 12. FOOTER
+        if (sectionId === "footer" && invitation.footer.enabled) {
+          return (
+            <footer key={sectionId} className="border-t-4 border-[#C59B27] bg-[#8B4513] text-[#FDF6E2] py-12 text-center relative z-10">
+              <p className="text-xl font-bold [font-family:var(--playfair),serif] tracking-[1px]">{invitation.footer.salutation}</p>
+              <span className="text-[10px] tracking-[2px] uppercase text-yellow-100/50 block mt-1">|| Subhamastu ||</span>
+              <p className="text-yellow-100/30 text-xs mt-6">{invitation.footer.creditText}</p>
+            </footer>
+          );
+        }
+
+        return null;
+      })}
+    </div>
+  );
+}
+2             8      
+Pfile:///C:/Users/Admin/invitecraft/components/templates/palace-luxury/Layout.tsx    "use client";
+
+import { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInvitationData } from "../../context/InvitationDataContext";
+import { Calendar, MapPin, Clock, Phone, MessageCircle, Volume2, VolumeX, Menu, X, ArrowLeft, HelpCircle, Shirt } from "lucide-react";
+import Image from "next/image";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import DeitySymbol from "../../shared/DeitySymbol";
+
+// --- CASCADING GOLD FOIL DUST EFFECT (CANVAS) ---
+const GoldFoilParticles = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const particles = Array.from({ length: 45 }).map(() => ({
+      x: Math.random() * width,
+      y: Math.random() * -height,
+      r: Math.random() * 5 + 3,
+      vy: Math.random() * 1.5 + 0.8,
+      vx: (Math.random() - 0.5) * 0.4,
+      rotation: Math.random() * 360,
+      rotationSpeed: Math.random() * 2 - 1,
+      alpha: Math.random() * 0.6 + 0.4,
+    }));
+
+    const resize = () => {
+      width = canvas.width = window.innerWidth;
+     !NclassName="space-y-3">
+                    {invitation.families.brideFamily.map((member, idx) => (
+                      <div key={idx} className="flex justify-between border-b border-[#1B4D22]/20 pb-1.5 text-sm">
+                        <span className="text-emerald-900/50">{member.relation}</span>
+                        <span className="font-semibold">{member.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="p-6 rounded-2xl border-2 border-[#1B4D22] bg-[#F9EFCD]">
+                  <h3 className="text-lg font-bold text-[#8B4513] mb-4 text-center [font-family:var(--playfair),serif]">Groom's Family</h3>
+                  <div className="space-y-3">
+                    {invitation.families.groomFamily.map((member, idx) => (
+                      <div key={idx} className="flex justify-between border-b border-[#1B4D22]/20 pb-1.5 text-sm">
+                        <span className="text-emerald-900/50">{member.relation

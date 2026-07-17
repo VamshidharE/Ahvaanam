@@ -1,0 +1,100 @@
+"use client";
+
+import { useEffect, useState, useRef } from "react";
+import { ToggleLeft, ToggleRight } from "lucide-react";
+import CompositionRenderer from "@/components/composition/CompositionRenderer";
+import { getWeddingComposition, getBirthdayComposition } from "@/lib/composition/templates";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInvitationData } from "../../context/InvitationDataContext";
+import { Calendar, MapPin, Clock, Phone, MessageCircle, Volume2, VolumeX, Grid, ArrowLeft, HelpCircle, Shirt } from "lucide-react";
+import Image from "next/image";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import DeitySymbol from "../../shared/DeitySymbol";
+import GallerySlider from "../../shared/GallerySlider";
+
+// --- FLOWING PETALS PARTICLE EFFECT (CANVAS SENSITIVE) ---
+const FloralPetalParticles = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const particles = Array.from({ length: 30 }).map(() => ({
+      x: Math.random() * width,
+      y: Math.random() * -height,
+      r: Math.random() * 6 + 4,
+      d: Math.random() * 2 + 1,
+      vy: Math.random() * 1.2 + 0.8,
+      vx: Math.random() * 0.8 - 0.2,
+      rotation: Math.random() * 360,
+      rotationSpeed: Math.random() * 1.5 - 0.75,
+      opacity: Math.random() * 0.4 + 0.3,
+    }));
+
+    const resize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener("resize", resize);
+
+    let animationFrameId: number;
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach((p) => {
+        p.y += p.vy;
+        p.x += p.vx;
+        p.rotation += p.rotationSpeed;
+
+        if (p.y > height + 10) {
+          p.y = -20;
+          p.x = Math.random() * width;
+        }
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.beginPath();
+        
+        ctx.moveTo(0, -p.r);
+        ctx.bezierCurveTo(p.r, -p.r, p.r * 1.5, p.r / 2, 0, p.r * 1.5);
+        ctx.bezierCurveTo(-p.r * 1.5, p.r / 2, -p.r, -p.r, 0, -p.r);
+        
+        ctx.fillStyle = `rgba(244, 63, 94, ${p.opacity})`;
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = "#f43f5e";
+        ctx.fill();
+        ctx.restore();
+      });
+      animationFrameId = requestAnimationFrame(draw);
+    };
+    draw();
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0" />;
+};
+
+export default function FloralGardenLayout({ onBackToHub }: { onBackToHub: () => void }) {
+  const { invitationData } = useInvitationData();
+  const getAlignClass = (pos?: string) => {
+    if (pos === "top-left") return "flex flex-col items-start text-left w-full md:items-start";
+    if (pos === "top-right") return "flex flex-col items-end text-right w-full md:items-end";
+    return "flex flex-col items-center text-center w-full justify-center";
+  };
+  const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
+  const [useCompositionRenderer, setUseCompositionRenderer] = useState(false);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setUseCompositionRenderer(localStorage.getItem("useCompositionRenderer") === "true" ||X  `          #ed-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full\"\n          /\u003e\n        \u003c/div\u003e\n        \n        {/* Groom Portrait Image */}\n        \u003cdiv className=\"flex flex-col gap-1.5 w-full\"\u003e\n          \u003clabel className=\"text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]\"\u003eGroom's Portrait Image\u003c/label\u003e\n          \u003cdiv className=\"flex flex-col sm:flex-row gap-2 w-full\"\u003e\n            \u003cinput\n              type=\"text\"\n              value={invitationData.couple.groom.image}\n              onChange={(e) =\u003e updateInvitationData((prev: any) =\u003e ({\n                ...prev,\n                couple: {\n                  ...prev.couple,\n                  groom: { ...prev.couple.groom, image: e.target.value }\n                }\n              }))}\n              className=\"bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] flex-1 w-full\"\n            /\u003e\n            \u003cFileUploader\n              onUploadSuccess={(url) =\u003e updateInvitationData((prev: any) =\u003e ({\n                ...prev,\n                couple: {\n                  ...prev.couple,\n                  groom: { ...prev.couple.groom, image: url }\n                }\n              }))}\n              className=\"w-full sm:w-auto\"\n            /\u003e\n          \u003c/div\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n\n      {/* Bride Info */}\n      \u003cdiv className=\"card-minimal p-4 md:p-5 space-y-4\"\u003e\n        \u003ch3 className=\"text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/50 border-b border-zinc-100 pb-2\"\u003eThe Bride\u003c/h3\u003e\n        \u003cdiv className=\"flex flex-col gap-1 w-full\"\u003e\n          \u003clabel className=\"text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]\"\u003eBride's Name\u003c/label\u003e\n          \u003cinput\n            type=\"text\"\n            value={invitationData.couple.bride.name}\n            onChange={(e) =\u003e updateInvita

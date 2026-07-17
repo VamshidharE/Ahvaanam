@@ -1,0 +1,47 @@
+const fs = require('fs');
+const path = require('path');
+
+const logPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\.system_generated\\logs\\transcript.jsonl';
+
+try {
+  const content = fs.readFileSync(logPath, 'utf8');
+  const lines = content.split('\n').filter(l => l.trim());
+  console.log(`Read ${lines.length} lines from transcript.jsonl.`);
+
+  let matchCount = 0;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    try {
+      const obj = JSON.parse(line);
+      
+      // Look for mentions of TargetFile: components/composition/ or tool calls targeting it
+      const hasComposition = JSON.stringify(obj).toLowerCase().includes('components/composition') || JSON.stringify(obj).toLowerCase().includes('components\\composition');
+      
+      if (hasComposition) {
+        matchCount++;
+        console.log(`Match ${matchCount}: step_index=${obj.step_index}, source=${obj.source}, type=${obj.type}`);
+        // Let's print out what is there
+        if (obj.tool_calls) {
+          for (const tc of obj.tool_calls) {
+            console.log(`  Tool call: ${tc.name}`);
+            if (tc.args) {
+              console.log(`    TargetFile: ${tc.args.TargetFile}`);
+              let code = tc.args.CodeContent || tc.args.ReplacementContent;
+              if (code) {
+                console.log(`    Code length: ${code.length}`);
+                const fileBase = path.basename(tc.args.TargetFile);
+                fs.writeFileSync(`scratch/restored_composition_${fileBase}_step_${obj.step_index}.txt`, code);
+              }
+            }
+          }
+        }
+        if (obj.content && obj.content.includes('write_to_file')) {
+          console.log("  Contains write_to_file in content!");
+        }
+      }
+    } catch (e) {}
+  }
+  console.log(`Done. Found ${matchCount} matches.`);
+} catch (err) {
+  console.error('Error:', err);
+}

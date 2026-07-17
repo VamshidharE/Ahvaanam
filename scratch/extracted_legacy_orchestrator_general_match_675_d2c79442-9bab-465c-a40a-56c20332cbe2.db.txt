@@ -1,0 +1,113 @@
+indings: any; }' is not assignable to type 'IntrinsicAttributes & GallerySectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & GallerySectionProps'.
+components/shared/LegacyOrchestrator.tsx(1     3              N   
+               2             :            B            JN       &(  	0 B!
+	sessionID  -3750763034362895579H P Z Do9Sarz5JebZ4-EP_drDuQkX  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                 
+                                  *  
+               2             :            B            JN       &(  	0 B!
+	sessionID  -3750763034362895579H P Z Do9Sarz5JebZ4-EP_drDuQkX  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                 
+                                  
+oI have launched the type-checking task in the background. I will pause tool calls now and let it finish checks.2(bot-5de92958-92c6-4fba-8e1e-d326eb932871BoI have launched the type-checking task in the background. I will pause tool calls now and let it finish checks.` r     
+~  M2  a      k L  V?=}    A8}I    t [V  z+ e  o=  aE  W  A  6 E uo  \j i      Z [B\ ! *dB I<xY -   R    U r   * *M \W 3=f CJ     umber,Line | Format-Table -AutoSize -Wrap)
+  command(Select-String -Path "app\page.tsx" -Pattern "Celebrate|Moment|Style|white|empty" | Select-Object -Property LineNumber,Line)
+  command(Get-ChildItem -Recurse -Filter "*.tsx" -Path "app","components" | Select-String -Pattern "google|Google|signInWithPopup|GoogleAuth" | Where-Object { $_.Line -notmatch "font|maps|Maps|calendar|Calendar|coordinates|directions|location|venue" } | Select-Object -Property Filename,LineNumber,Line)
+ command(Test-Path)
+  command(Get-ChildItem -Recurse -Filter "*.tsx" -Path "app","components" | Select-String -Pattern "continue|Continue|google|signIn" | Where-Object { $_.Line -match "google|Google|signIn" -and $_.Line -notmatch "font|maps|Maps|calendar|Calendar|coordinates|directions|location|venue|pins" } | Select-Object -Property Filename,LineNumber,Line)
+  command(Get-ChildItem -Recurse -Filter "*.tsx" -Path "app","components" | Select-String -Pattern "Continue with" | Select-Object -Property Filename,LineNumber,Line)
+;command($env:NEXT_FONT_GOOGLE_MOCKED="true"; npm run build)
+ command(Test-Path)
+  command(Get-ChildItem -Recurse -Filter "*.tsx" -Path "app","components" | Select-String -Pattern "Palette|logo|Logo|Ahvaanam" | Where-Object { $_.Line -notmatch "import|//|ahvaanam@|ahvaanam.com|Ahvaanam Login|className" } | Select-Object -Property Filename,LineNumber,Line | Format-Table -AutoSize -Wrap)
+  command(Get-ChildItem -Recurse -Filter "*.tsx" -Path "components\home" | Select-String -Pattern "Palette|Ahvaanam" | Select-Object -Property Filename,LineNumber,Line | Format-Table -AutoSize -Wrap)
+  command(Get-ChildItem -Recurse -Filter "*.tsx" -Path "app" | Select-String -Pattern "Palette" | Select-Object -Property Filename,LineNumber,Line | Format-Table -AutoSize -Wrap)
+  command(Get-ChildItem -Recurse -Filter "*.tsx" -Path "app" | Select-String -Pattern '<Palette.*size=.*(22|24|32)' | Select-Object -Property Filename,LineNumber | Format-Table -AutoSize)
+  command(Get-ChildItem -Recurse -Filter "*.tsx" -Path "app" | Select-String -Pattern '<Palette.*size=.*(22|24|32)' | ForEach-Object { "$($_.Path):$($_.LineNumber)" })
+  command(Select-String -Path "components\home\ThemeSelectorHub.tsx" -Pattern "Palette|Ahvaanam|logo" -Context 1,1 | Select-Object -Property LineNumber,Line)
+acommand(Get-ChildItem -Recurse -Filter "ThemeSelectorHub.tsx" | Select-Object -Property FullName)
+:write_file(C:\Users\Admin\Ahvaanam\app\portfolio\page.tsx)
+  command(Get-ChildItem -Recurse -Filter "*.tsx" -Path "app","components" | Select-String -Pattern "import.*Palette" | ForEach-Object { "$($_.Path):$($_.LineNumber)" })
+  command(foreach \(\$file in @\("app\\not-found\.tsx", "app\\login\\page\.tsx", "app\\portfolio\\page\.tsx", "app\\pricing\\page\.tsx", "app\\create\\page\.tsx", "app\\create\\details\\page\.tsx", "app\\create\\theme\\page\.tsx"\)\) \{ \$imports = \(Select-String -Path \$file -Pattern "import\.\*Palette"\)\.Count; \$uses = \(Select-String -Path \$file -Pattern "<Palette\|Palette,\|Palette \}\|icon: Palette" \| Where-Object \{ \$_\.Line -notmatch "\^import" \}\)\.Count; Write-Output "\$file : imports=\$imports, uses=\$uses" \})
+  command(Get-ChildItem -Recurse -Filter "\*\.tsx" -Path "app","components" \| Select-String -Pattern 'src="/images/logo\.png"' \| ForEach-Object \{ "\$\(\$_\.Path\):\$\(\$_\.LineNumber\): \$\(\$_\.Line\.Trim\(\)\)" \})
+  command(Get-ChildItem -Recurse -Filter "*.tsx" -Path "app" | Select-String -Pattern "pt-28|pt-24|pt-20" | Select-Object -Property Filename,LineNumber,Line | Format-Table -AutoSize -Wrap)
+ccommand(Get-ChildItem -Recurse -Filter "route.ts" -Path "app\api" | ForEach-Object { $_.FullName })
+kcommand(Get-ChildItem -Recurse -Filter "*login*" -Path "app","components" | ForEach-Object { $_.FullName })
+Ucommand(Get-ChildItem -Recurse -Path "app\api\auth" | ForEach-Object { $_.FullName })
+^command(Get-ChildItem -Recurse -Path "app" -Filter "*login*" | ForEach-Object { $_.FullName })
+Ccommand(Get-ChildItem -Path "app" | ForEach-Object { $_.FullName })
+Qcommand(Get-ChildItem -Recurse -Path "app\auth" | ForEach-Object           1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             e +   H       "$b9df6dd8-dfd4-44a6-86e2-f5dd8f18b5a5B     2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   1   2   1   1   2
+     "L          0 B!
+	sessionID  -3750763034362895579HHP^Z I1VTasbbL8GCg8UPmtvX0Qg0  : 
+ autoJe              "             (  2          1829ad202          77362305:       e9c821beB         R     Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  ` L          0 B!
+	sessionID  -3750763034362895579HHP^Z I1VTasbbL8GCg8UPmtvX0Qg" fda0d6dfff45a59a   gemini-default   
+ last_step_index  625  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $24c66b1d-cdac-4252-8bd1-85c63e73688f  5
+trajectory_id $caf57629-637c-4871-a4b3-8d196466d06e   
+ used_claude  false  !
+ used_claude_conservative  false   Gemini 3.5 Flash (Medium) ^ d *   F       "$b9df6dd8-dfd4-44a6-86e2-f5dd8f18b5a5B     2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   1   2   1   1   2
+     "L          0 B!
+	sessionID  -3750763034362895579HePSZ H1VTaqvnG436juMPid2T6Qs0  : 
+ autoJd              "             (  2          773623052          f0af8d45:       e9c821beB       kR     Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  ` L          0 B!
+	sessionID  -3750763034362895579HePSZ H1VTaqvnG436juMPid2T6Qs" 1b3756d54e58c517   gemini-default   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  623  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $24c66b1d-cdac-4252-8bd1-85c63e73688f  5
+trajectory_id $caf57629-637c-4871-a4b3-8d196466d06e   Gemini 3.5 Flash (Medium) ] c )   D       "$b9df6dd8-dfd4-44a6-86e2-f5dd8f18b5a5B     2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   1   2   1   1   2
+     "K        r0 B!
+	sessionID  -3750763034362895579H PYZ G1VTavLPIK2AqfkPpaSCyQk0  : 
+ autoJe              "             (  2          f0af8d452          0d9b5e71:       e9c821beB         R     Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  _ K        r0 B!
+	sessionID  -3750763034362895579H PYZ G1VTavLPIK2AqfkPpaSCyQk" 185cdd457edf0c3f   gemini-default   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  621  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $24c66b1d-cdac-4252-8bd1-85c63e73688f  5
+trajectory_id $caf57629-637c-4871-a4b3-8d196466d06e   Gemini 3.5 Flash (Medium) \    og" npx tsc --noEmit(       c:\Users\Admin\Ahvaanam0 ` '    
+  components/shared/LegacyOrchestrator.tsx(92,47): error TS2322: Type '{ key: "couple"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & CoupleSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & CoupleSectionProps'.
+components/shared/LegacyOrchestrator.tsx(94,50): error TS2322: Type '{ key: "countdown"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & CountdownSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & CountdownSectionProps'.
+components/shared/LegacyOrchestrator.tsx(96,46): error TS2322: Type '{ key: "story"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & StorySectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & StorySectionProps'.
+components/shared/LegacyOrchestrator.tsx(98,47): error TS2322: Type '{ key: "events"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & EventsSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & EventsSectionProps'.
+components/shared/LegacyOrchestrator.tsx(100,48): error TS2322: Type '{ key: "gallery"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & GallerySectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & GallerySectionProps'.
+components/shared/LegacyOrchestrator.tsx(102,46): error TS2322: Type '{ key: "venue"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & VenueSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & VenueSectionProps'.
+components/shared/LegacyOrchestrator.tsx(104,49): error TS2322: Type '{ key: "families"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & FamiliesSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FamiliesSectionProps'.
+components/shared/LegacyOrchestrator.tsx(106,45): error TS2322: Type '{ key: "rsvp"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & RSVPSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & RSVPSectionProps'.
+components/shared/LegacyOrchestrator.tsx(108,44): error TS2322: Type '{ key: "faq"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & FAQSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FAQSectionProps'.
+components/shared/LegacyOrchestrator.tsx(110,50): error TS2322: Type '{ key: "dressCode"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & DressCodeSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & DressCodeSectionProps'.
+components/shared/LegacyOrchestrator.tsx(112,47): error TS2322: Type '{ key: "footer"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & FooterSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FooterSectionProps'.
+components/shared/LegacyOrchestrator.tsx(114,50): error TS2322: Type '{ key: "celebrant"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & CelebrantSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & CelebrantSectionProps'.
+components/shared/LegacyOrchestrator.tsx(116,53): error TS2322: Type '{ key: "houseDetails"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & HouseDetailsProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & HouseDetailsProps'.
+components/shared/LegacyOrchestrator.tsx(118,47): error TS2322: Type '{ key: "owners"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & OwnersProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & OwnersProps'.
+   npx tsc --noEmit   npx tsc --noEmit    { $_.FullName })
+Pcommand(Get-ChildItem -Recurse -Path "app\api" | ForEach-Object { $_.FullName })
+  command(Get-ChildItem -Recurse -Filter "*.tsx" -Path "app","components" | Select-String -Pattern "/api/auth/login" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+ocommand(Get-ChildItem -Path "C:\Users\Admin\Ahvaanam" -Filter "middleware.ts" | ForEach-Object { $_.FullName })
+Scommand(Get-ChildItem -Path "C:\Users\Admin\Ahvaanam" | ForEach-Object { $_.Name })
+Lcommand(Get-ChildItem -Path "prisma","lib" | ForEach-Object { $_.FullName })
+Qcommand(Get-ChildItem -Recurse -Path "lib\auth" | ForEach-Object { $_.FullName })
+ncommand(Select-String -Path ".env" -Pattern "ADMIN|SECRET|PASSWORD" | Select-Object -Property LineNumber,Line)
+`command(Get-ChildItem -Recurse -Filter "*route.ts" -Path "app" | ForEach-Object { $_.FullName })
+  command(Get-ChildItem -Recurse -Filter "*.ts*" -Path "app","components","lib","utils" | Select-String -Pattern "AUTH_CONFIG" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+  command(Get-ChildItem -Recurse -Filter "*.ts*" -Path "app","components","lib","utils" | Select-String -Pattern "ADMIN_EMAIL" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+  command(Get-ChildItem -Recurse -Path "app" -Filter "*.ts*" | Select-String -Pattern "PBKDF2|hash|decrypt|verify" | Select-O

@@ -1,0 +1,253 @@
+: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & FAQSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FAQSectionProps'.
+components/shared/LegacyOrchestrator.tsx(107,50): error TS2322: Type '{ key: "dressCode"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & DressCodeSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & DressCodeSectionProps'.
+components/shared/LegacyOrchestrator.tsx(109,47): error TS2322: Type '{ key: "footer"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & FooterSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FooterSectionProps'.
+
+
+Log: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-703.log
+</SYSTEM_MESSAGE>  
+       
+(bot-f196b35b-25ee-4148-8b34-e44b7ce53d52   }I will search the transcript logs for any files ever created under the paths `lib/layouts/` or `lib/motion/` to restore them.   2  
+ 3e5q0obr write_to_file   {"CodeContent":"import json\nimport os\n\ntranscript_path = r   :e. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.   : p4cfea5o       
+(bot-88cbee45-a83c-4573-9aa5-61fe8781254f   ~I will re-run the TypeScript type checks to verify if the restored `templates.ts` and imports resolve the compiler complaints.   2  
+ pwhp2q5a  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript dry-run verification check"}:     
+    M2  E h`      F     	)^   w]C jF7  K -G     xF | c 	 #      kg    '&   7j   4  \    | 7 gY =| imO  j      =* f   +    g0  7    ?#  s~ /z ~| t/^a 8  , Z
+  o     jT   pae\h& >  y#m          ' 5     AN   Q   #M ?     '  0  A d t}  +  mGj 8  fw T   :  y         R   k !,9GD   g      k    9r   ) %  -  H @      Qs       f +  0h    }E F 9   \&    s gU ,& Ih k kHCF  X[m a h    ~ K Z  rH9Y    N]$  !UV  Q   *?9 >c   i *1f vp h k  pa8 { .8N]     Q    : ~  rM	9   w  $:  ^6 D  K 8  Z V  ^|    u  T 5M ^   ? [
+ f  RI  G0    L    d  Q6  EV  8p$  C  )  `hp`             ,m Lu.nd o     B |2  7  (U   # \  x 4   P"[ N     2  2   %) {   > x 	   0 _?}"         55  3 b5 /) { p CW t;XA I     b       ? 6 _           :   M4 l D y    DyA W n   =  eP0  9E    .'   b P xI     _     I^  1 . t   #2#LL :                h P9 o[Q3 Bx( * 8 Zb"C    @ *c t  g                 }     o  k  _c G\" l	i   $ qw e   Q.v   ;  v    &  ]  \     J] 2Hx   1       k \   )     6    *  j  "z   ` @> VZ;o\ bh g    w T   z c   Bt        c     u   1 LY&   i  i   T= -O    :}  Tt   {         x,d     B /             U       %v4   ~ M   ZSW           F(  ? &  x|   ;+5N ;  I  ?  ?    7   aw     ^          . +d  V V@ V  +  ? D7 /     Z V     E  %  B   ?Kp  7
+ V  \  g [  ?Q { 
+R7 f   Ff     i=   M     3k i:#d  $     Q3Jf   BpO%       -U  ~M ? 1,i  ^6    {  k    u   T    B   I /    s?  d   %  /E[5q  TC@ Z   |  ]*Q% '   n   G } I  \X L   Q    x   e      z1Y;Gs  j c6  =}  E    q.       2sQr   _            *>Z  {   _   H f x  f    ;  % f  ?9$j  9  '  *U u   2           I, C&   e'      jp \ \T `  H   L / (\  ^a, HcU 8 S   _  (J4  ~  LFDAgA      Jq0   `   4 [ 1  \ WfV $   k    ]J6 I+\   yvI3   %    < x a ]               , =   a   1  b      } >   sq  S|   I F  w           9"    >[<   )6   e -  C  Z  b SM} v  P  k|@ B   am1Oe< L     a ;|      &       ]P O     U z ^]W V-    VRE   H(         > 6 7   "    M     N k     _e D-        %U_c x  c    {    ,N  FT M& { }%I  m   $  0    :0}TxL Z        G       I W  W       S    <pX      8 P j   a     \  7F  8S    z  O          _ ?35 :  M) t     J         p *G2 |  _   %   }x   q   +o   #<6 H     c   '   ;      IZZ   P x   " e #El   x  X  " p    : % 8 -/   y     >c<   "    rA >'        o&  >   [)  v yB/ G  ED    a	  G }QW V %=( #   V LZBk    .      W+    MJ\R8|      ) 2 Dp   '4 %> %  9   J run_commandZ  **Analyzing Type Checking Errors**
+
+I'm now diving into the remaining type-checking errors. Specifically, I'm questioning whether `c:\Users\Admin\Ahvaanam\lib\composition\templates.ts` needs to be exported in `lib/composition/index.ts`. Further, I noticed that the type errors are showing issues with `components/templates/floral-garden/Layout`. I need to revisit that.
+
+
+            Created At: 2026-07-12T08:53:06Z
+Tool is running as a background task with task id: d2c79442-9bab-465c-a40a-56c20332cbe2/task-703
+Task Description: npx tsc --noEmit
+Task logs are available at: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-703.log n: pwhp2q5a       
+(bot-3cab7fb5-baf7-4ea0-a806-aa353da8215f   oI have launched the type-checking task in the background. I will pause tool calls now and let it finish checks. )           
+    M2        O   i \~: X  z   ]      $         p   }       K} /    -     lu ''tL    =4yWK   s    4   w  ]A  M k8 p  ; ^  C      2      D        The following is a <SYSTEM_MESSAGE> not actually sent by the user. It is provided by the system as important information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp   ;ion/CompositionRenderer\";\nimport { getBirthdayComposition, getWeddingComposition } from \"@/lib/composition/templates\";","StartLine":3,"TargetContent":"import React, { useEffect, useState, useRef } from \"react\";\nimport { motion, AnimatePresence } from \"framer-motion\";\nimport { useInvitationData } from \"../../context/InvitationDataContext\";\nimport { Calendar, MapPin, Clock, Phone, Volume2, VolumeX, Menu, X, HelpCircle, Sparkles } from \"lucide-react\";\nimport Lightbox from \"yet-another-react-lightbox\";\nimport \"yet-another-react-lightbox/styles.css\";","TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\birthday-premium\\Layout.tsx","toolAction":"Update Layout.tsx imports","toolSummary":"Adding composition imports in birthday-premium Layout.tsx"}:     
+    M2    -g  * t      e 	 J0 
+   ) ,h    JE<     /  ]N      "  :       |   O    ri  -      Y 5    f (     4X  s  uT  s'$     W^6 -   n     `? W    o    w d ,9  y  vF         p   A  O) X  r    7 `      A   5sB   F`  J$H(  ;K  C         %   }ll  N  6   R       8VDk# X  (   T      $   u L   ltc   (  \S W (      R   F   [Bl W D    E f%|/       H.2f  s { H/
+!#    t  h r     gP   e    XR i%  #xOEn&k    o Y7   pU ,' m J<\ 7N  X +Gw   Q-   Y z}U> 	f   S    iz  ~  [ ~)Q  pG@e ~    J   l       SnA   dh ,          Yt     S   EQ H  (+  }}  4<5L   L :  *D    >  _  G~    >;  @ \ZG       Z   a                JC    n(      H= j :
+a)JP  <w    '   p  9 C ~7^ t   '  B b    u  -    J.   U   v   <S  !  ~    s    yU%8g    ?      
+  O      B    [     k    e { R  s t '& 9p ^ \  pev  wh       w D" E   Q  c  0  vM,o   U8|   4Yw  R     J    (      m f g    G  L(	 - [  D     S^ g v    YZ a * G   h    ) p{  q       b   +   u 'O*     "   G NG  D   w$ ;!7               {[$   llp(   q       {  U       k  0   \5      4 I  e   d ` 8 !( /   K 4f i'r   ws 8    = }  Y  g i  hulib	  / )       ^          ,  u   B [T(a      9   ,  G 3 ;          %        k     O   q s   .       D< S        %nU`   c /     Z )fR 8  yo a      m     m n A}    #"Z [   j -   [ s   S{ 4 8  p  ,@ 6     / KB%H d         !
+>   !   wQ   k x      B    pP o   cF9'   ,    X(    D    =  
+c ) > +1 2      ?  7: D J0      [3     Ld\O  \  0w 4
+  f 	    Lp     I   	  I   ?     $3  ou+1?:\    .  D          \ T  #d m   .No       @   y	 7H^     x      Aq#6   6          g u l hWE  K  / F| 
+   m  s v   u!& s  =UE 	  A     ,  <zG    0  E>  t0 j ^& *x  !^v 4  d I    #    a  2   H   |* - _ U I 62a -    b   c    |oK[b5Q|F5	      I      ? i     #         |  dK    z# T
+  
+    u3    .c   G v   #  Q   7 :  ]   in m      O     i a   U        `o = z/` t Mr!_ U@p f F        WH  
+u=((  #G + A< ;   Ee wn   sc   Q  p  K      )A         l[ [  k*{lW X  !        N7 F]   D    A # 8  3S"\P{   + %        x  P h ;t[ RcL      c    H E   J replace_file_content            Created At: 2026-07-12T08:53:00Z
+Completed At: 2026-07-12T08:53:00Z
+The following changes were made by the replace_file_content tool to: c:\Users\Admin\Ahvaanam\components\templates\birthday-premium\Layout.tsx. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -3,9 +3,11 @@
+ import React, { useEffect, useState, useRef } from "react";
+ import { motion, AnimatePresence } from "framer-motion";
+ import { useInvitationData } from "../../context/InvitationDataContext";
+-import { Calendar, MapPin, Clock, Phone, Volume2, VolumeX, Menu, X, HelpCircle, Sparkles } from "lucide-react";
++import { Calendar, MapPin, Clock, Phone, Volume2, VolumeX, Menu, X, HelpCircle, Sparkles, ToggleLeft, ToggleRight } from "lucide-react";
+ import Lightbox from "yet-another-react-lightbox";
+ import "yet-another-react-lightbox/styles.css";
++import CompositionRenderer from "@/components/composition/CompositionRenderer";
++import { getBirthdayComposition, getWeddingComposition } from "@/lib/composition/templates";
+ 
+ // Dynamic Google Fonts configuration for birthday themes
+ const THEME_FONTS: Record<string, string> = {
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last chang   @ero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're
+------------------------
+[788] Found match at index 1071824
+  Preview of match [788]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+[185] Found match at index 4121330
+  Preview of match [185]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[789] Found match at index 1072211
+  Preview of match [789]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[118] Found match at index 29075614
+  Preview of match [118]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeMessage: "Wedd
+------------------------
+[790] Found match at index 1072412
+  Preview of match [790]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeMessage: "Weddi
+------------------------
+[186] Found match at index 4121716
+  Preview of match [186]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[791] Found match at index 1072799
+  Preview of match [791]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[119] Found match at index 29076001
+  Preview of match [119]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the 
+------------------------
+[792] Found match at index 1073000
+  Preview of match [792]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[187] Found match at index 4122102
+  Preview of match [187]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[793] Found match at index 1073387
+  Preview of match [793]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[120] Found match at index 29076388
+  Preview of match [120]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider"    ;
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "Yo
+------------------------
+[794] Found match at index 1073588
+  Preview of match [794]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider"    ;
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Lov   <{
+117:       music: config.music?.file
+118:     }
+119:   };
+120: }
+121: 
+122: export function getBirthdayComposition(config: any): CompositionSchema {
+123:   const sectionsOrder = config.sectionOrder || [
+124:     "hero", "celebrant", "countdown", "events", "gallery", "venue", "rsvp", "faq"
+125:   ];
+126: 
+127:   const sections: SectionData[] = sectionsOrder.map((sId: string) => {
+128:     const isSecEnabled = config[sId]?.enabled !== false;
+129:     let bindings: Record<string, string> = {};
+130: 
+131:     if (sId === "hero") {
+132:       bindings = {
+133:         title: "hero.title",
+134:         subtitle: "hero.subtitle",
+135:         welcomeMessage: "hero.welcomeMessage",
+136:         heroImage: "hero.heroImage",
+137:         ctaText: "hero.ctaText",
+138:         surname: "hero.surname",
+139:         subText: "hero.subText"
+140:       };
+141:     } else if (sId === "celebrant") {
+142:       bindings = {
+143:         name: "celebrant.name",
+144:         age: "age"
+145:       };
+146:     } else if (sId === "countdown") {
+147:       bindings = {
+148:         title: "countdown.title",
+149:         targetDate: "countdown.targetDate"
+150:       };
+151:     } else if (sId === "events") {
+152:       bindings = {
+153:         events: "events"
+154:       };
+155:     } else if (sId === "gallery") {
+156:       bindings = {
+157:         title: "gallery.title",
+158:         images: "gallery.images"
+159:       };
+160:     } else if (sId === "venue") {
+161:       bin

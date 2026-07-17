@@ -1,0 +1,258 @@
+Created At: 2026-07-05T20:53:54Z
+Completed At: 2026-07-05T20:53:54Z
+File Path: `file:///C:/Users/Admin/.gemini/antigravity/brain/011e974d-4561-41c5-89e8-12ee65991b97/scratch/draft_migration_report.md`
+Total Lines: 479
+Total Bytes: 33608
+Showing lines 1 to 250
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: # Codebase Audit: Wedding-Specific Logic & Customization Elements
+2: 
+3: This document audits all occurrences of wedding-specific keywords across the Ahvaanam codebase and provides a detailed migration strategy to generalize the system for all invitation categories.
+4: 
+5: ## Keyword Occurrences Summary
+6: 
+7: | Keyword | Matches Count |
+8: |---|---|
+9: | `bride` | 205 |
+10: | `bridefamily` | 19 |
+11: | `engagement` | 15 |
+12: | `groom` | 207 |
+13: | `groomfamily` | 19 |
+14: | `marriage` | 36 |
+15: | `muhurtham` | 20 |
+16: | `wedding` | 233 |
+17: | `wedding ceremony` | 8 |
+18: | `wedding invitation` | 28 |
+19: 
+20: ## Audit Breakdown by Component Group
+21: 
+22: ### 1. Design Templates (Specific Theme Layouts)
+23: 
+24: #### [Layout.tsx](components/templates/floral-garden/Layout.tsx)
+25: **Path:** `file:///components/templates/floral-garden/Layout.tsx`
+26: 
+27: | Keyword | Lines | Hardcoded? | Recommendation |
+28: |---|---|---|---|
+29: | `bride` | L375, L613, L707, L711, L713, L715, L1083, L1087 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+30: | `bridefamily` | L1087 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+31: | `groom` | L375, L613, L681, L685, L687, L689, L1107, L1111 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+32: | `groomfamily` | L1111 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+33: | `wedding` | L201, L215, L221, L225, L229, L557, L743, L745, L861 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+34: | `wedding invitation` | L557 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+35: 
+36: #### [Layout.tsx](components/templates/grand-mandap/Layout.tsx)
+37: **Path:** `file:///components/templates/grand-mandap/Layout.tsx`
+38: 
+39: | Keyword | Lines | Hardcoded? | Recommendation |
+40: |---|---|---|---|
+41: | `bride` | L367, L435, L615, L709, L713, L715, L717, L1083 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+42: | `bridefamily` | L1083 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+43: | `groom` | L367, L435, L615, L683, L687, L689, L691, L1083 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+44: | `groomfamily` | L1083 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+45: | `wedding` | L191, L205, L211, L215, L219, L559, L745, L747 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+46: | `wedding invitation` | L559 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+47: 
+48: #### [Layout.tsx](components/templates/heritage/Layout.tsx)
+49: **Path:** `file:///components/templates/heritage/Layout.tsx`
+50: 
+51: | Keyword | Lines | Hardcoded? | Recommendation |
+52: |---|---|---|---|
+53: | `bride` | L347, L415, L595, L689, L693, L695, L697, L1065, L1069 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+54: | `bridefamily` | L1069 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+55: | `groom` | L347, L415, L595, L663, L667, L669, L671, L1089, L1093 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+56: | `groomfamily` | L1093 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+57: | `muhurtham` | L843 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+58: | `wedding` | L173, L187, L193, L197, L201, L539, L725, L727 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+59: | `wedding invitation` | L539 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+60: 
+61: #### [Layout.tsx](components/templates/lotus-serenity/Layout.tsx)
+62: **Path:** `file:///components/templates/lotus-serenity/Layout.tsx`
+63: 
+64: | Keyword | Lines | Hardcoded? | Recommendation |
+65: |---|---|---|---|
+66: | `bride` | L383, L621, L715, L719, L721, L723, L1091, L1095 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+67: | `bridefamily` | L1095 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+68: | `groom` | L383, L621, L689, L693, L695, L697, L1115, L1119 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+69: | `groomfamily` | L1119 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+70: | `wedding` | L205, L219, L225, L229, L233, L565, L751, L753, L869 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+71: | `wedding invitation` | L565 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+72: 
+73: #### [Layout.tsx](components/templates/marigold/Layout.tsx)
+74: **Path:** `file:///components/templates/marigold/Layout.tsx`
+75: 
+76: | Keyword | Lines | Hardcoded? | Recommendation |
+77: |---|---|---|---|
+78: | `bride` | L381, L449, L629, L723, L727, L729, L731, L1099, L1103 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+79: | `bridefamily` | L1103 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+80: | `groom` | L381, L449, L629, L697, L701, L703, L705, L1123, L1127 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+81: | `groomfamily` | L1127 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+82: | `wedding` | L207, L221, L227, L231, L235, L573, L759, L761 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+83: | `wedding invitation` | L573 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+84: 
+85: #### [Layout.tsx](components/templates/moonlight/Layout.tsx)
+86: **Path:** `file:///components/templates/moonlight/Layout.tsx`
+87: 
+88: | Keyword | Lines | Hardcoded? | Recommendation |
+89: |---|---|---|---|
+90: | `bride` | L177, L319, L366, L368, L369, L370, L553 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+91: | `bridefamily` | L553 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+92: | `groom` | L177, L319, L353, L355, L356, L357, L553 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+93: | `groomfamily` | L553 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+94: | `wedding` | L90, L97, L100, L102, L104, L176, L291, L384, L385 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+95: | `wedding invitation` | L291 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+96: 
+97: #### [Layout.tsx](components/templates/palace-luxury/Layout.tsx)
+98: **Path:** `file:///components/templates/palace-luxury/Layout.tsx`
+99: 
+100: | Keyword | Lines | Hardcoded? | Recommendation |
+101: |---|---|---|---|
+102: | `bride` | L194, L353, L400, L402, L404, L405, L406, L590, L592 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+103: | `bridefamily` | L592 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+104: | `groom` | L183, L353, L386, L388, L390, L391, L392, L602, L604 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+105: | `groomfamily` | L604 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+106: | `muhurtham` | L479 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+107: | `wedding` | L103, L110, L113, L115, L117, L207, L320, L420, L421 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+108: | `wedding invitation` | L320 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+109: 
+110: #### [Layout.tsx](components/templates/peacock/Layout.tsx)
+111: **Path:** `file:///components/templates/peacock/Layout.tsx`
+112: 
+113: | Keyword | Lines | Hardcoded? | Recommendation |
+114: |---|---|---|---|
+115: | `bride` | L349, L447, L625, L719, L723, L725, L727, L1093 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+116: | `bridefamily` | L1093 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+117: | `groom` | L349, L447, L625, L693, L697, L699, L701, L1093 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+118: | `groomfamily` | L1093 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+119: | `wedding` | L175, L189, L195, L199, L203, L569, L755, L757 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+120: | `wedding invitation` | L569 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+121: 
+122: #### [Layout.tsx](components/templates/royal-temple/Layout.tsx)
+123: **Path:** `file:///components/templates/royal-temple/Layout.tsx`
+124: 
+125: | Keyword | Lines | Hardcoded? | Recommendation |
+126: |---|---|---|---|
+127: | `bride` | L419, L505, L703, L799, L815, L817, L829, L831, L833, L1215... | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+128: | `bridefamily` | L1219 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+129: | `groom` | L419, L505, L703, L759, L775, L777, L789, L791, L793, L1239... | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+130: | `groomfamily` | L1243 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+131: | `wedding` | L239, L253, L259, L263, L267, L629, L861, L863, L977 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+132: | `wedding invitation` | L629 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+133: 
+134: #### [Layout.tsx](components/templates/south-indian/Layout.tsx)
+135: **Path:** `file:///components/templates/south-indian/Layout.tsx`
+136: 
+137: | Keyword | Lines | Hardcoded? | Recommendation |
+138: |---|---|---|---|
+139: | `bride` | L385, L453, L667, L765, L769, L771, L773, L1141, L1145 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+140: | `bridefamily` | L1145 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+141: | `groom` | L385, L453, L667, L737, L741, L743, L745, L1165, L1169 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+142: | `groomfamily` | L1169 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+143: | `muhurtham` | L919 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+144: | `wedding` | L199, L213, L219, L223, L227, L583, L801, L803 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+145: | `wedding invitation` | L583 | Yes (Visual Labels/Decorations) | Keep Wedding-Specific (only loaded for Wedding themes) |
+146: 
+147: ### 2. Creator Panel & Editor Wizard
+148: 
+149: #### [ClientEditor.tsx](app/admin/[id]/ClientEditor.tsx)
+150: **Path:** `file:///app/admin/[id]/ClientEditor.tsx`
+151: 
+152: | Keyword | Lines | Hardcoded? | Recommendation |
+153: |---|---|---|---|
+154: | `bride` | L290, L431, L586, L588, L591, L594, L599, L606, L609, L614... | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+155: | `groom` | L290, L431, L509, L511, L514, L517, L522, L529, L532, L537... | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+156: | `wedding` | L5, L185, L342, L671, L677, L1006, L1298 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+157: 
+158: #### [page.tsx](app/admin/[id]/page.tsx)
+159: **Path:** `file:///app/admin/[id]/page.tsx`
+160: 
+161: | Keyword | Lines | Hardcoded? | Recommendation |
+162: |---|---|---|---|
+163: | `bride` | L301, L757, L759, L761, L764, L769, L776, L779, L784, L791... | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+164: | `groom` | L301, L693, L695, L697, L700, L705, L712, L715, L720, L727... | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+165: | `wedding` | L6, L333, L826, L830 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+166: 
+167: #### [page.tsx](app/create/details/page.tsx)
+168: **Path:** `file:///app/create/details/page.tsx`
+169: 
+170: | Keyword | Lines | Hardcoded? | Recommendation |
+171: |---|---|---|---|
+172: | `bride` | L17, L35, L36, L44, L48, L63, L176, L178, L181, L182... | Yes (Inputs ask specifically for Bride/Groom) | Generalize forms (render inputs dynamically based on category metadata) |
+173: | `groom` | L16, L35, L36, L44, L48, L62, L162, L164, L167, L168... | Yes (Inputs ask specifically for Bride/Groom) | Generalize forms (render inputs dynamically based on category metadata) |
+174: 
+175: #### [page.tsx](app/create/page.tsx)
+176: **Path:** `file:///app/create/page.tsx`
+177: 
+178: | Keyword | Lines | Hardcoded? | Recommendation |
+179: |---|---|---|---|
+180: | `bride` | L23, L45, L46, L60, L75, L92, L282, L285, L286, L287... | Yes (Inputs ask specifically for Bride/Groom) | Generalize forms (render inputs dynamically based on category metadata) |
+181: | `groom` | L24, L45, L46, L60, L74, L91, L293, L296, L297, L298... | Yes (Inputs ask specifically for Bride/Groom) | Generalize forms (render inputs dynamically based on category metadata) |
+182: 
+183: #### [page.tsx](app/dashboard/page.tsx)
+184: **Path:** `file:///app/dashboard/page.tsx`
+185: 
+186: | Keyword | Lines | Hardcoded? | Recommendation |
+187: |---|---|---|---|
+188: | `bride` | L13, L131, L134, L200, L217, L523, L733 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+189: | `groom` | L12, L131, L134, L200, L217, L523, L733 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+190: | `wedding` | L75, L129, L139, L142, L217, L218, L309, L375, L409, L432... | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+191: | `wedding invitation` | L129, L217, L309, L409, L432, L482 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+192: 
+193: #### [ThemeSelectorHub.tsx](components/shared/ThemeSelectorHub.tsx)
+194: **Path:** `file:///components/shared/ThemeSelectorHub.tsx`
+195: 
+196: | Keyword | Lines | Hardcoded? | Recommendation |
+197: |---|---|---|---|
+198: | `wedding` | L64 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+199: 
+200: ### 3. Database Helpers & API Layer
+201: 
+202: #### [route.ts](app/api/invitation/route.ts)
+203: **Path:** `file:///app/api/invitation/route.ts`
+204: 
+205: | Keyword | Lines | Hardcoded? | Recommendation |
+206: |---|---|---|---|
+207: | `bride` | L96, L120, L127 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+208: | `groom` | L96, L119, L127 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+209: 
+210: #### [db.ts](lib/db.ts)
+211: **Path:** `file:///lib/db.ts`
+212: 
+213: | Keyword | Lines | Hardcoded? | Recommendation |
+214: |---|---|---|---|
+215: | `bride` | L34 | Yes (Schema structure restricts names to groom/bride) | Generalize schema (make couple optional, use host/partner metadata fields) |
+216: | `groom` | L33 | Yes (Schema structure restricts names to groom/bride) | Generalize schema (make couple optional, use host/partner metadata fields) |
+217: 
+218: #### [default-template.json](lib/default-template.json)
+219: **Path:** `file:///lib/default-template.json`
+220: 
+221: | Keyword | Lines | Hardcoded? | Recommendation |
+222: |---|---|---|---|
+223: | `bride` | L66, L67, L68, L69, L128, L129 | Yes (Schema structure restricts names to groom/bride) | Generalize schema (make couple optional, use host/partner metadata fields) |
+224: | `bridefamily` | L128 | Yes (Schema structure restricts names to groom/bride) | Generalize schema (make couple optional, use host/partner metadata fields) |
+225: | `groom` | L60, L61, L62, L63, L131, L132 | Yes (Schema structure restricts names to groom/bride) | Generalize schema (make couple optional, use host/partner metadata fields) |
+226: | `groomfamily` | L131 | Yes (Schema structure restricts names to groom/bride) | Generalize schema (make couple optional, use host/partner metadata fields) |
+227: | `marriage` | L107, L108, L143, L146, L147 | Yes (Schema structure restricts names to groom/bride) | Generalize schema (make couple optional, use host/partner metadata fields) |
+228: | `muhurtham` | L76, L104 | Yes (Schema structure restricts names to groom/bride) | Generalize schema (make couple optional, use host/partner metadata fields) |
+229: | `wedding` | L46, L80, L81, L102, L104, L138, L142 | Yes (Schema structure restricts names to groom/bride) | Generalize schema (make couple optional, use host/partner metadata fields) |
+230: | `wedding ceremony` | L104 | Yes (Schema structure restricts names to groom/bride) | Generalize schema (make couple optional, use host/partner metadata fields) |
+231: | `wedding invitation` | L46 | Yes (Schema structure restricts names to groom/bride) | Generalize schema (make couple optional, use host/partner metadata fields) |
+232: 
+233: #### [validation.ts](lib/validation.ts)
+234: **Path:** `file:///lib/validation.ts`
+235: 
+236: | Keyword | Lines | Hardcoded? | Recommendation |
+237: |---|---|---|---|
+238: | `bride` | L10, L46, L47, L57, L62, L63, L66 | Yes (Schema structure restricts names to groom/bride) | Generalize schema (make couple optional, use host/partner metadata fields) |
+239: | `groom` | L10, L46, L47, L56, L57, L60, L63 | Yes (Schema structure restricts names to groom/bride) | Generalize schema (make couple optional, use host/partner metadata fields) |
+240: 
+241: ### 4. Main Landing Site & Landing Components
+242: 
+243: #### [page.tsx](app/page.tsx)
+244: **Path:** `file:///app/page.tsx`
+245: 
+246: | Keyword | Lines | Hardcoded? | Recommendation |
+247: |---|---|---|---|
+248: | `engagement` | L161, L203, L219 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+249: | `wedding` | L148, L160, L202, L297 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+250: | `wedding invitation` | L202 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

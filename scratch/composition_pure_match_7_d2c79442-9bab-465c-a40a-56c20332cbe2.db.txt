@@ -1,0 +1,100 @@
+udes('export default function CompositionRenderer');   C
+?    const hasRegistry = content.includes('SECTION_COMPONENTS');   C
+?    const hasResolve = content.includes('resolveBindingValue');    
+        5
+1    if (hasExport && hasRegistry && hasResolve) {   )
+%      // Exclude logs/command-outputs   D
+@      const isLogFile = content.includes('Preview of match') ||    @
+<                         content.includes('Found match') ||    @
+<                         content.includes('run_command') ||    ?
+;                         content.includes('CommandLine') ||   9
+5                         content.includes('task-') ||   >
+:                         content.includes('step_index') ||   @
+<                         content.includes('\"tool_calls\"');    
+                              
+       if (!isLogFile) {    
+         foundCount++;   v
+r        console.log(`[${foundCount}] Found possible REAL code file candidate: ${file} (size: ${content.length})`);    
+            <
+8        let startIdx = content.indexOf('"use client";');   J
+F        if (startIdx === -1) startIdx = content.indexOf('use client');   "
+         if (startIdx !== -1) {   5
+1          let code = content.substring(startIdx);    
+
+              
+           // Try to clean up   w
+s          const endMarkers = ['","Description"', '",\n      "Description"', '", "Description"', '","description"'];   0
+,          for (const marker of endMarkers) {   7
+3            const markerIdx = code.indexOf(marker);   '
+#            if (markerIdx !== -1) {   6
+2              code = code.substring(0, markerIdx);    
+            }    
+           }    
+
+             0
+,          // Unescape backslashes and quotes    
+           let parsed = code   &
+"            .replace(/\\n/g, '\n')   %
+!            .replace(/\\"/g, '"')   (
+$            .replace(/\\\\/g, '\\');    
+                8
+4          const lastBrace = parsed.lastIndexOf('}');   %
+!          if (lastBrace !== -1) {   <
+8            parsed = parsed.substring(0, lastBrace + 1);    
+           }    
+
+             B
+>          console.log("  Parsed Code length:", parsed.length);   W
+S          console.log("  Code Ends with: ", parsed.substring(parsed.length - 100));    
+
+              
+           // Save it!   \
+X          fs.writeFileSync(`scratch/real_renderer_candidate_${foundCount}.tsx`, parsed);   
+	        }    
+       }   	
+     }    
+   }    
+ }   $
+ console.log('Search complete.');      B<file:///c:/Users/Admin/Ahvaanam/scratch/extract_real_file.jsX     ?Extract real CompositionRenderer code by excluding log headers.       ]  9 CG   -dm  [  - g
+     *W  j  ' /  "K    B     ~      9      g     q OKe   h    P 9`1  |i   d6  (     W     q z  Q  D &      uV  y * WIc   A _T  1rd dH      YV S  M   @ v < Bo4~ o  P   A     d  O  \D\fE+  _=h  h \ !  x    4%[f       	     .  g   B c =<   A  a ! =     3,E    T7 GNhX* P1  z
+ a  )|    > @     3{  D    @<  !tx   Q   O    S     J     r m 8 C   /\ @   "=  #r  j  n  1C     b  (+  G  A 2 A      b, \Ut)H   1   K          s    t o6   o   J
+ 5  m go;     >I c     li     K   Gy       ~  [      c  A	Q     W   g 1    	  3&      RL c l     mC        mV[    n  G o s:  a j  $~o vo (TQn   oW% {      Z  0r%  F   I G ,*   \ R  	 d  +6  D q  m   < [ #O zs   b>    P A  r  I`  +/     XZ     b    d       M k  ew[4 M 7 r`  vZ:5Q             `   K : jS/} i  k    + Q      r3     A[ p u9F 7n ^ D     <C8
+ =  3 w ,- p  j   g cs  i&d p   gd@      L N >@      5   (
+ ^
+     z    D '*y @  3xF% M $   qX     'u  N    =D}; gS(i  k    _    . ;  6  8    N Je 4_1L  D n.JusE  4e  P   m    wg  M b a<u m   M    :          k}-4 3  HF W    E.TMb !l  $Dn   9 ,S      h   @    /   G   ; ]C S {    p     K  3      D           T B  ,4 _   $      )g   ,8  n   |  E, 89S     tzt        .V 
+ 3  D  i, /C     ;e   S   NqD  cj     e<
+    mi        s(  A>UV     2K    - \f G  f    T~     _  5   /  t  kU 2  /  T k  l   @ On  h  SS o    `  c  c       gL       o`        x   0  U     lFs                  OM~@  `  =  3 Q  v       7r%q } ?@. ?c'g_          1       .   T      6   B  B     3"   x P    y3  DK
+ )   ^R$ L 9cD  l  r B   2              Z  ^ NY z n         J 	G  K   [DmK3Y<v      _  :M  u eMK qYg         |  % 3 f      N  c          	_+  )  at;    k   q+ k     c   g<*    G O  U#",    0-B 	 l
+   4   8O  W8!    g "      |      T  kx x   LV  l3^ {_:T   1U     "    z |2#       i \ 6 fh             .   \CP W    ^c +.wJ:    	 :@* j 	  v jk  ?_ rIP] |hL  <    X z^"        Z .c  . ^  7 p  r  6
+ .  / @i  HJwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2             :             B            X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        5
+                 
+                 
+                  UCreating a script to extract the actual CompositionRenderer code from candidate files   Write extract_real_file script               R -
+     
+  const fs = require('fs');
+const path = require('path');
+
+const files = fs.readdirSync('scratch');
+let foundCount = 0;
+
+for (const file of files) {
+  if (file.startsWith('composition_pure_match_') && file.endsWith('.txt')) {
+    const filePath = path.join('scratch', file);
+    const content = fs.readFileSync(filePath, 'utf8');
+    
+    // Core requirements of the CompositionRenderer code
+    const hasExport = content.includes('export default function CompositionRenderer');
+    const hasRegistry = content.includes('SECTION_COMPONENTS');
+    const hasResolve = content.includes('resolveBindingValue');
+    
+    if (hasExport && hasRegistry && hasResolve) {
+      // Exclude logs/command-outputs
+      const isLogFile = content.includes('Preview of match') || 
+                         content.includes('Found match') || 
+                         content.includes('run_command') || 
+                         content.includes('CommandLine') ||
+                         content.includes('task-') ||
+                         content

@@ -1,0 +1,115 @@
+dings: any; }' is not assignable to type 'IntrinsicAttributes & FamiliesSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FamiliesSectionProps'.
+components/shared/LegacyOrchestrator.tsx(103,45): error TS2322: Type '{ key: "rsvp"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & RSVPSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & RSVPSectionProps'.
+components/shared/LegacyOrchestrator.tsx(105,44): error TS2322: Type '{ key: "faq"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & FAQSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FAQSectionProps'.
+components/shared/LegacyOrchestrator.tsx(107,50): error TS2322: Type '{ key: "dressCode"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & DressCodeSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & DressCodeSectionProps'.
+components/shared/LegacyOrchestrator.tsx(109,47): error TS2322: Type '{ key: "footer"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & FooterSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FooterSectionProps'.
+
+
+Log: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-703.log
+</SYSTEM_MESSAGE>  
+       
+(bot-f196b35b-25ee-4148-8b34-e44b7ce53d52   }I will search the transcript logs for any files ever created under the paths `lib/layouts/` or `lib/motion/` to restore them.   2  
+ 3e5q0obr write_to_file   {"CodeContent":"import json\nimport os\n\ntranscript_path = r\"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\.system_generated\\logs\\transcript_full.jsonl\"\nprint(\"Scanning transcript for lib/layouts and lib/motion...\")\n\nrecovered = {}\n\nwith open(transcript_path, \"r\", encoding=\"utf-8\") as f:\n    for i, line in enumerate(f    ):\n        if \"write_to_file\" in line and (\"lib/layouts\" in line or \"lib/motion\" in line):\n            data = json.loads(line)\n            for tc in data.get(\"tool_calls\", []):\n                if tc.get(\"name\") == \"write_to_file\":\n                    args = tc.get(\"args\", {})\n                    tgt = args.get(\"TargetFile\", \"\")\n                    content = args.get(\"CodeContent\", \"\")\n                    \n                    if tgt and content:\n                        tgt_clean = tgt.strip('\"').replace('\\\\\\\\', '\\\\')\n                        recovered[tgt_clean] = content\n\n# Write recovered files\nfor path, code in recovered.items():\n    if isinstance(code, str):\n        if code.startswith('\"') and code.endswith('\"'):\n            code = code[1:-1]\n        code = code.replace('\\\\n', '\\n').replace('\\\\t', '\\t').replace('\\\\\"', '\"').replace('\\\\\\\\', '\\\\')\n    \n    if not os.path.isabs(path):\n        path = os.path.abspath(os.path.join(r\"c:\\Users\\Admin\\Ahvaanam\", path))\n        \n    print(f\"Restoring recovered file: {path}\")\n    os.makedirs(os.path.dirname(path), exist_ok=True)\n    with open(path, \"w\", encoding=\"utf-8\") as out:\n        out.write(code)\n\nprint(\"Layout/Motion registries recovery complete!\")\n","Description":"Create python script to recover layout and motion registries","Overwrite":true,"TargetFile":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\scratch\\recover-registries.py","toolAction":"Create python script","toolSummary":"Creating script to recover layouts and motion registries from transcript log"}:     
+    M2  D   S  o '   X84S     u %   U^    G      q     Km        x   o+=GT !    -Q    i+2f  9     f4 [ &E/"8  )    1  +  q  c    Q
+T  'H#2L z  < , F0 o*  64  )qx    @    Z   7 f n 9 P   U         T q   u ^g. l  A   qR 7  = x    2#  sNx *z5@T H  f vG  c       9    4 `/F     	    V D                    4   a ~  vJ 4   n     JP      Q  T! 3!x v W              d[ k   u    e     a_    j Cy  U    h  xX2  1       v             k[      n    y*    	j  | Z /O   6U    ,    o   5     >$  3  0 X~Y.  C/R\  R &B ^ u l     #V  r>=~  AP r    D    '  R,  W o@   \0 H        W #J  	    Kg   y $    A} v[ YI~U        M    Jwrite_to_file            Created At: 2026-07-12T08:53:20Z
+Completed At: 2026-07-12T08:53:20Z
+Created file file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/recover-registries.py with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission. s: 3e5q0obr       
+(bot-2e9476fc-e4d3-4f2d-b21c-57dab3249c50   KI will run the recovery script to restore layout and motion registry files.   2  
+ 09ihadc5  run_command   {"CommandLine":"python \"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\scratch\\recover-registries.py\"","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run python recovery script","toolSummary":"Running recovery script to restore Layout and Motion registry files"}:i g
+e  M2 Z:  l + V++      " _d  f   W>] c' e   e    .    =    BS $ S  '   s  Z  N    c7 : tNN  |  BU I OJ run_command      
+    	Created At: 2026-07-12T08:53:23Z
+Completed At: 2026-07-12T08:53:26Z
+
+				The command completed successfully.
+				Output:
+				Scanning transcript for lib/layouts and lib/motion...
+Restoring recovered file: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\implementation_plan.md
+Restoring recovered file: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\task.md
+Restoring recovered file: c:\Users\Admin\Ahvaanam\lib\layouts\types.ts
+Restoring recovered file: c:\Users\Admin\Ahvaanam\lib\layouts\registry.ts
+Restoring recovered file: c:\Users\Admin\Ahvaanam\components\layouts\LayoutWrapper.tsx
+Restoring recovered file: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\walkthrough.md
+Restoring recovered file: c:\Users\Admin\Ahvaanam\l    ib\motion\types.ts
+Restoring recovered file: c:\Users\Admin\Ahvaanam\lib\motion\registry.ts
+Restoring recovered file: c:\Users\Admin\Ahvaanam\components\motion\MotionWrapper.tsx
+Restoring recovered file: c:\Users\Admin\Ahvaanam\app\admin\[id]\page.tsx
+Restoring recovered file: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\scratch\recover-registries.py
+Layout/Motion registries recovery complete!
+
+   : 09ihadc5       
+(bot-3b998f19-9383-479c-823e-898e4e1c3ceb   {I will run `git diff` on `app/admin/[id]/page.tsx` to check if the restored file matches our correct, clean Page 2D layout.   2  
+ cjqj72nz  run_command   {"CommandLine":"git diff app/admin/[id]/page.tsx","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":2000,"toolAction":"Check diff for page.tsx","toolSummary":"Checking diff of app/admin/[id]/page.tsx to trace any overwrites"}: 	  	
+ 	  M2 &      X   ">J a   [C 4      <wR`5      A  &     K3vqy p hd]  ;  T  s    _  1*INH r.      H!  XUJP	P E   =-    8  D  V    D oO   u g  V- f        }  
+ e  Z_"-B     {  P
+    `   b +M   85q  ^  i     H      AV"   1  A  ,)k  2    }C E  ,  +=5 % 7j   li 7_ p| : n Z 4P  D2 4  o  SU    g1BC ^T{  A y5 [#     z   E     w. n    _ Y  :  X^   m  F-    P         (pT  (  \" (|K|Uvs   LB H+`     R /m4 [6D    e    
+  C      *  B  / D  ^ j   
+ +       L    6yr  W$    (E     [ p+SR Z   .WT  P <  !  x L      BGr     ? } [ q1 YY    +Ej    K dkRx% xR     Sm8H  {n  V. h9s_       L  F     .\    )}@^ ^"\  E     4K   l  | k Jp 8"5 ?U++/W   s  _ 
+  6 ]F  &6    "  &   ,3 [    M7J  ) J 8M  ,    k1 5 x QN       G  8        ^  .  6 #$A-       M       1   G  * m   _     6 p  0   I \    ^_  E 
+  (:z  r         m I  9  sD  $'K   <7 | ;>    H Zb     u  F)NR?n   \ o "      G     p   T\5-g    %       4?     -  Z 6       ~de
+      S  g!> ( D   r  &  nCu1 2    a#+5@. 	 =  c ( 3 }# t  8 j=      o   q ^o$  ] ;   |E` &/z sP, n  &      QnC K
+ i  kA   _(    
+ )r f	  Xl  n ,  jg \        `    vIy    " , :6  b   Z      $ I         9hon   Xu_ X`  a	rN1  )  u   3<  
+ Bt     #/ > SA   /WJ run_command            Created At: 2026-07-12T08:53:29Z
+Completed At: 2026-07-12T08:53:33Z
+
+				The command completed successfully.
+			Stdout:
+			
+			Stderr:
+			
+ 4: cjqj72nz      
+(bot-d3e206f2-6372-497e-8009-97e108ad7e80   cI will view the beginning of `components/sections/couple/index.tsx` to check what props it accepts.   2  
+ 9nq792go 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\couple\\index.tsx","EndLine":25,"StartLine":1,"toolAction":"View CoupleSection index.tsx","toolSummary":"Reading couple/index.tsx imports and prop interfaces"}: 
+  
+
+ 
+  M2     o  o%"  Q  xO  aE   lt' ~  zY 7      XXa   q   +W  a    ?m 7^F    ^U Vg z            c n     >  *a#!P[z -  ;Y + zv PQ{  5L  %   ?      I X c   H }ei8o/  Q    K` d   iTu     W    PtL       |   L I  4X V? 4       _        h   EL7  C 2) Yi  J [    O  + s  Q       J  i a            %   J    !>E: 7 .1O  <%hL)),       *   0    
+    ?    3    < #   q 7 j    B:L! "   7   z cJE  SW ,  t($      }   2Q     w    Z  h    g {I!z <   p v        =cI a=\g           q* Wr    p  
+3g#?L  !  G@   o N L  g 3  & BX      /K w X  C   	 ,        K      , wY      ,yb! a    oa '3 T   - A    K     :m    `  Kydb	 D  :8 0  MI  g dN $ Y  Z pYw        )    jw #\ H h	%[   w>       a O] n =   ? S% -    $ 9  @  N ^  !d  V<m  5g  &*k^  ^ PAkQ,   < ]vP  B ^     
+bM[ iAV*  LQKgR         8^u     8  ;/Q B  ?z   Ph , ;     ! & r]     ct   C s f ] Fnz   @C  R  D   M  &ffB ,[T  	  Y   N     0        BW  W f   >U'R    }        u       1f- r   ] b U 7 VY!    Z    u  ) t     ND   O  V     R  C A    F  KJ*     .   4d  S'  4 ,  !G             <         / Cn  8  k @     <  3   o  nfU g  W :  W I    ns$            <a   I <jc@2gE     M    E  %+   l> -Q@    Z[ F )   8 Im t ? =    rt  P/ p       ms V 	
+=   la 0Vyr*   |  G !   \ v h	.7Rg   t   4V     #           U    E Yo  Mh 4u h    "V D  = [
+E   )  ne   L     [  6       +  3|C  . h  &  'Y y	y;z        	zV I G   P  {  0 A    JJ	view_file      
+    
+Created At: 2026-07-12T08:53:36Z
+Completed At: 2026-0   !7-12T08:53:36Z
+File Path: `file:///c:/Users/Admin/Ahvaanam/components/sections/couple/index.tsx`
+Total Lines: 110
+Total Bytes: 3793
+Showing lines 1 to 25
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: "use client";
+2: 
+3: import React from "react";
+4: import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+5: import MotionWrapper from "@/components/motion/MotionWrapper";
+6: 
+7: interface CoupleSectionProps {
+8:   bindings: {
+9:     title?: string;
+10:     groomName?: string;
+11:     groomParents?: string;
+12:     groomImage?: string;
+13:     brideName?: string;
+14:     brideParents?: string;
+15:     brideImage?: string;
+16:   };
+17:   layoutId?: string;
+18:   motionId?: string;
+19: }
+20: 
+21: export default function CoupleSection({ bindings, layoutId, motionId }: CoupleSectionProps) {
+22:   const {
+23:     title = "The Couple",
+24:     groomName = "Groom Name",
+25:     groomParents = "Groom Parents",
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+   : 9nq792go      A
+(bot-9e34d643-15d2-470c-82fc-7eb4f5004c59     I will modify `components/shared/LegacyOrchestrator.tsx` to stop passing the unsupported `properties` prop to section components, keeping only the required `bindings` prop. This resolves the remaining compiler warnings.  2 <
+ b8g7574j  replace_file_content   {"AllowMultiple":false,"Description":"Remove properties prop from sections in LegacyOrchestrator.","EndLine":110,"Instruction":"Remove properties={properties} from all section render cases except hero.","ReplacementContent":"      case \"couple\":\n        return \u003cCoupleSection key={sectionId} bindings={bindings} /\u003e;\n      case \"countdown\":\n        return \u003cCountdownSection key={sectionId} bindings={bindings} /\u003e;\n      case \"story\":\n        return \u003cStorySection key={sectionId} bindings={bindings} /\u003e;\n      case \"events\":\n        return \u003cEventsSection key={sectionId} bindings={bindings} /\u003e;\n      case \"gallery\":\n        return \u003cGallerySection key={sectionId} bindings={bindings} /\u003e;\n      case \"venue\":\n        return \u003cVenueSection key={sectionId} bindings={bindings} /\u003e;\n      case \"families\":\n        return \u003cFamiliesSection key={sectionId} bindings={bindings} /\u003e;\n      case \"rsvp\":\n        return \u003cRSVPSection key={sectionId} bindings={bindings} /\u003e;\n      case \"faq\":\n        return \u003cFAQSection key={sectionId} bindings={bindings} /\u003e;\n      case \"dressCode\":\n        return \u003cDressCodeSection key={sectionId} bindings={bindings} /\u003e;\n      case \"footer\":\n        return \u003cFooterSection key={sectionId} bindings={bindings} /\u003e;","StartLine":88,"TargetContent":"      case \"couple\":\n        return \u003cCoupleSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"countdown\":\n        return \u003cCountdownSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"story\":\n        return \u003cStorySection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"events\":\n        return \u003cEventsSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"gallery\":\n        return \u003cGallerySection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"venue\":\n        return \u003cVenueSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"families\":\n        return \u003cFamiliesSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"rsvp\":\n        return \u003cRSVPSection key={sectionId} properties={properties} bindings={bi   "ndings} /\u003e;\n      case \"faq\":\n        return \u003cFAQSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"dressCode\":\n        return \u003cDressCodeSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"footer\":\n        return \u003cFooterSection key={sectionId} properties={properties} bindings={bindings} /\u003e;","TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","toolAction":"Remove properties props","toolSummary":"Removing properties prop in LegacyOrchestrator cases"}: $  #
+ #  M2   $T ;b   \  )  6  v    qf }      V T X #u

@@ -1,0 +1,105 @@
+"use client";        
+ import React from "react";       "
+ // Reusable section components   2
+.import HeroSection from "../../sections/hero";   6
+2import CoupleSection from "../../sections/couple";   <
+8import CountdownSection from "../../sections/countdown";   4
+0import StorySection from "../../sec
+------------------------
+[96] Found match at index 26661972
+  Preview of match [96]:
+"use client";
+
+import React from "react";
+
+// Reusable section components
+import HeroSection from "../../sections/hero";
+import CoupleSection from "../../sections/couple";
+import CountdownSection from "../../sections/countdown";
+import StorySection from "../../sections/story";
+import EventsSection f
+------------------------
+[97] Found match at index 26749670
+  Preview of match [97]:
+"use client";       ?
+;import React, { useEffect, useState, useRef } from "react";   I
+Eimport { useInvitationData } from "../context/InvitationDataContext";   X
+Timport { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";   <
+8import { motion, AnimatePresence } from "framer
+------------------------
+[98] Found match at index 26757056
+  Preview of match [98]:
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+import { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Import re
+------------------------
+[99] Found match at index 27421590
+  Preview of match [99]:
+"use client";
+
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { WeddingInvitationConfig } from "../types/invitation";
+
+interface InvitationDataContextProps {
+  invitationData: WeddingInvitationConfig | null;
+  loading: boolean;
+  error: string | null;
+  updateI
+------------------------
+[100] Found match at index 28682363
+  Preview of match [100]:
+"use client";
+
+import React, { useState, useEffect   B, useRef, use } from "react";
+import Link from "next/link";
+import { InvitationDataProvider, useInvitationData } from "../../../components/context/InvitationDataContext";
+import { getCategory } from "@/lib/categories/utils";
+import { getManifest 
+------------------------
+[101] Found match at index 31149836
+  Preview of match [101]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeM    essage: "W
+------------------------
+[102] Found match at index 31159654
+  Preview of match [102]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[103] Found match at index 31168683
+  Preview of match [103]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+   node scratch/extract_from_db.js   node scratch/extract_        YZ v J :OG IO   SQLite format 3      @     P          ~   	                                                   P .      	       8   B   @
+N
+ 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   

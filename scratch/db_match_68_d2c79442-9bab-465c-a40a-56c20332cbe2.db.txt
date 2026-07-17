@@ -1,0 +1,136 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeMessage: "Wedding invitation",
+  heroImage: "/images/themes/royal-temple.jpg",
+  ctaText: "RSVP Now",
+  surname: "Karthik Family",
+  subText: "Traditional Om Salutations",
+  enableHeaderMedia: true,
+  headerMediaType: "god" as const,
+  selectedGod: "ganesha" as const,
+  headerMediaSize: 80,
+  headerMediaSpacing: 20
+};
+
+const mockHeroProperties = {
+  showScrollIndicator: true,
+  overlayOpacity: 0.5,
+  contentAlign: "center" as const,
+  minHeight: "450px"
+};
+
+export default function TestThemesPage() {
+  return (
+    <div className="p-8 bg-zinc-100 min-h-screen space-y-12">
+      <h1 className="text-xl font-bold uppercase tracking-wider text-slate-800 text-center">
+        Theme Engine Verification Canvas
+      </h1>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Column 1: Luxury Gold Theme */}
+        <div className="flex flex-col space-y-3 bg-white p-4 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative">
+          <span className="text-[10px] uppercase font-bold text-amber-500 tracking-[1.5px] px-2">
+            1. Luxury Gold (royal-temple fallback)
+          </span>
+          <div className="rounded-2xl overflow-hidden border border-zinc-100 relative">
+            <ThemeProvider themeId="luxury-gold" />
+            <HeroSection
+              properties={mockHeroProperties}
+              bindings={mockHeroBindings}
+            />
+          </div>
+        </div>
+
+        {/* Column 2: Midnight Black Theme */}
+        <div className="flex flex-col space-y-3 bg-white p-4 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative">
+          <span className="text-[10px] uppercase font-bold text-purple-500 tracking-[1.5px] px-2">
+            2. Midnight Black (Electric Violet Accent)
+          </span>
+          <div className="rounded-2xl overflow-hidden border border-zinc-100 relative">
+            <ThemeProvider themeId="midnight-black" />
+            <HeroSection
+              properties={mockHeroProperties}
+              bindings={mockHeroBindings}
+            />
+          </div>
+        </div>
+
+        {/* Column 3: Modern Glass Theme */}
+        <div className="flex flex-col space-y-3 bg-white p-4 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative">
+          <span className="text-[10px] upperca    se font-bold text-cyan-500 tracking-[1.5px] px-2">
+            3. Modern Glass (Cyan Accent / Capsule Buttons)
+          </span>
+          <div className="rounded-2xl overflow-hidden border border-zinc-100 relative">
+            <ThemeProvider themeId="modern-glass" />
+            <HeroSection
+              properties={mockHeroProperties}
+              bindings={mockHeroBindings}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+  2             8     
+4file:///c:/Users/Admin/Ahvaanam/lib/layouts/types.ts   export interface LayoutStyles {
+  display?: "flex" | "grid";
+  flexDirection?: "column" | "row";
+  columnsDesktop?: number;
+  alignItems?: "center" | "flex-start" | "flex-end";
+  paddingMobile?: string;
+  paddingDesktop?: string;
+  gap?: string;
+  minHeight?: string;
+}
+
+export interface LayoutDefinition {
+  id: string;
+  name: string;
+  baseId?: string; // parent layout ID to inherit from
+  sectionType: string; // targets hero, countdown, events, etc.
+  styles: LayoutStyles;
+}
+2           `8     
+7file:///c:/Users/Admin/Ahvaanam/lib/layouts/registry.ts   import { LayoutDefinition } from "./types";
+
+const LAYOUTS: Record<string, LayoutDefinition> = {
+  // --- HERO LAYOUTS ---
+  "hero-base": {
+    id: "hero-base",
+    name: "Hero Base",
+    sectionType: "hero",
+    styles: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      paddingMobile: "3rem 1.5rem",
+      paddingDesktop: "6rem 4rem",
+      gap: "1.5rem",
+      minHeight: "80vh",
+    },
+  },
+  "hero-center": {
+    id: "hero-center",
+    name: "Hero Center",
+    baseId: "hero-base",
+    sectionType: "hero",
+    styles: {
+      alignItems: "center",
+      minHeight: "85vh",
+    },
+  },
+  "hero-split": {
+    id: "hero-split",
+    name: "Hero Split",
+    baseId: "hero-base",
+    sectionType: "hero",
+    styles: {
+      display: "grid",

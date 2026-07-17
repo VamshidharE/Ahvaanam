@@ -1,0 +1,144 @@
+ize legacy rendering logic for template layouts.\"","Overwrite":"true","TargetFi
+le":"\"c:\\\\Users\\\\Admin\\\\Ahvaanam\\\\components\\\\shared\\\\LegacyOrchestrator.tsx\"","toolAction":"\"Create 
+LegacyOrchestrator.tsx\"","toolSummary":"\"Creating central legacy components orchestrator in 
+components/shared/LegacyOrchestrator.tsx\""}}],"truncated_fields":["tool_calls"]}
+C:\Users\Admin\.gemini\antigravity\brain\d2c79442-    onst config = isWrapped ? (invitationData as any).config : invitationData;
+39:     const comp = getWeddingComposition(config);
+40:     return (
+41:       <div className="min-h-screen text-white relative overflow-hidden select-none" style={{ backgroundColor: "var(--theme-bg, #0C0714)" }}>
+42:         <CompositionRenderer composition={comp} invitationData={invitationData} />
+43:         <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 select-none pointer-events-auto">
+44:           <button
+45:             onClick={handleToggleRenderer}
+46:             className="flex items-center gap-2 px-4 py-2.5 bg-black/60 hover:bg-black/80 backdrop-blur-md text-white rounded-full shadow-lg border border-purple-500/20 text-[10px] font-bold uppercase tracking-[1px] transition-all cursor-pointer"
+47:             title="Switch Renderer Engine"
+48:           >
+49:             <ToggleRight size={16} className="text-[#C49B27]" />
+50:             <span>Composer Engine</span>
+51:           </button>
+52:         </div>
+53:       </div>
+54:     );
+55:   }
+56: 
+57:   return (
+58:     <>
+59:       <LegacyOrchestrator
+60:         themeId="floral-garden"
+61:         onBackToHub={onBackToHub}
+62:         particlesComponent={floralgardenParticles}
+63:         themeBgClass="bg-[#FAF9F6]"
+64:         loadingTitle="Floral Garden Invitation"
+65:         loadingSubtitle="Celebrating Love"
+66:       />
+67:       <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 select-none pointer-events-auto">
+68:         <button
+69:           onClick={handleToggleRenderer}
+70:           className="flex items-center gap-2 px-4 py-2.5 bg-black/60 hover:bg-black/80 backdrop-blur-md text-white rounded-full shadow-lg border border-purple-500/20 text-[10px] font-bold uppercase tracking-[1px] transition-all cursor-pointer"
+71:           title="Switch Renderer Engine"
+72:         >
+73:           <ToggleLeft size={16} className="text-white/60" />
+74:           <span>Legacy Switch</span>
+75:         </button>
+76:       </div>
+77:     </>
+78:   );
+79: }
+80: 
+The above content shows the entire, complete file contents of the requested file.
+  
+: 0jo0y38x       
+(bot-3e44d1f6-e9d5-4664-bf02-495ede7bfd60   UI will search for any files in the workspace containing `Orchestrator` in their name.   2 
+
+ g7etq7im  run_command   {"CommandLine":"dir -Filter \"*Orchestrator*\" -Recurse -File -ErrorAction SilentlyContinue","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":2000,"toolAction":"Search orchestrator files","toolSummary":"Searching workspace for orchestrator files"}:     
+    M2 H g   ax     % --  .	+o  % M R'6    ` T 4{j C{   T       &ewv  }V,   1    l      $y    _: '  )l7 [    H Jh:90 EO`  B 3W | p#'       Z  P     Q       a Z    # i     M  c\   ;2       @ )h27         B D  $I bX5           y         ~    *   m        EP  K h  n|`R  ]    u  d O!] [ Z     ;_   G   6   / Q. 2 S     ?  Z    t            .. pu         E8{  Y        d   Y7'              t. tY i .    i   2        & '    +S     P    Zy& ;  - `    ;d F  3U   ;<Q;P 3  1Sg!&{=@ DutSH  [ . bc   ; "        O 0  )    2/     F 1'  . RRo d   <Tq    }' Fp      >r90T   Vb  ^Y-   )   j | ?   /U o    N  8m     i M iQ   ; fA[)j   *   Gl   :  J5 O Ff @        `      ]      8|.IL      7          3T   jOD  Ne 4U      l           A=  - @X
+  .|    Z           RB6 p e     %  "       &    =pN #   L%*    B69       4'       y   H ( Y'  9 l l  ? P#     h $ 92 y      Ph        u7 h           M*   Mz	N#Ki  } CN}' C_  ~  ` )	 w{/  {      \    '  \   /  '!f ~   k  g   t ,z  %A  o  JG <     Z     ?      m #7     o  L+yM     {8z  Cf     k   iHqvtp J run_command            Created At: 2026-07-12T08:49:54Z
+Completed At: 2026-07-12T08:49:58Z
+
+				The command completed successfully.
+			Stdout:
+			
+			Stderr:
+			
+ 4: g7etq7im      	
+(bot-921c2017-2631-4700-ab69-f25617b1fd21   gI will run a search on our conversation logs to trace when and how `LegacyOrchestrator` was introduced.   2  
+ 6b3dageh  run_command   {"CommandLine":"Select-String -Path \"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56     g  J" o  v  ^" < Z    < 5  i  (J   - m      q  k      Y O  NXB    b  ;   c
+M  Mz     >9 F= -V@4R   g:    jq+^ |  2  ^ T  "   TcE   R m ~   g M  ?   p   r ro ' ^  1 -            jf+     < -6  T     8 x Z  + %j    < $D^dp      \#  yt9  ,  70 g |h  I n    "    IQ   0b    '/A   sie"e    w_     LC-   %  (t `A  p8    LS DO V  k GtY    h  N 7\  ZH   3  x 
+y@  ZFou_"e  }   l w      \      '3  f ^l {j    3      {A*A)n I	   '  p      a M _O.l m   ^2a  [f# 8+      3 J K c       ` J2    k     s E{ N    n T  o  0  XlEZ)?  ] -  Z >  _D}    H!I  K    C , #   u  5     > 
+#  %  8    <l    W ^   < Q Gd    Kz    &( n  Bf S~   +MN  *    kd{    b  W 2 ?  z     C !   n9a      U  ?+  {k  y    KN 1       B  1@  P  M% /\>            [ } 2 {  5        5:W    -:) [P  nd     pm{e  ] - M-  N   K z t *   7  r  9 ' ?	    ! [wL    bi  5         E .  v
+   :44 o  ['G    U   |MsTA    H       q= ] vO   y      d F[   \  T  >        [ AP?    <  w          X     s K)G    ^c                          E I)b     U o 	 e0       U:  ? ;  W2 A  8              b        J >( B AZ   A ~%GF 3 - "      Q/      o     {9  C ! A2~  z       l ;    {       #   nD W / t 0 I   0_  =  VE    %   A  "v @-   lt       ;! > ,   z Bs |DhS  >_- 94 2    ('bj   ^  Jmpb. z A  '     <    y0p   +  ]  MP0 ~   /  q    >   W" a   4Y  T       a   PY dL        m   | + `,   0 `  8K  !E     X    F  n v   B  g   T   d  yK v7 #  ~h    nI #  ( =    ! ,I {   ) Aj    t  ;}  Zh    8 	M 0  "GH  F  _ Z0  hm? r(z I  	\E }= x        c    I   
+u     
+    Th    R    H ;   e$   M   w @c Ic FAA 
+ 4 h /"bm qt+    _    T  T  |  Mb   3 ? < 	 % 3 +            S   : S r j l	    ! #C]"    !}    ,B A)6{X lvl(o     W9  _f Y  5 nk b /+  a C X  + +O   }   ( 7    !5    X z[4 nG   g1  {A>  [ *ar    H  , L  8    X&   z   FQ  [ ;h &[ B  ?   ~F2   : 8F   ]I    Jp  k    `   p!z    /  cYISfLk  ! h   = N  d  e  r ok U  +   { c  .U     m   u z  W 4)   p       x   J   n} k H$  Ai  z   (          < `8(Q  !rC "    ;   M =    ) [ 5- b   g%~ n     7 B<  A\j  vi  }-   4 f  o 	      6  P  u +H    }X/  v C'>j X  Z  Xyh.d  E    yE&    _K    V    <\ ~          = (      @
+ 0L   a   ) z  x (  S 5rxk     v  V  4    e@ J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2             :             B             X  b$b08b332d-19b3-41ee-aa84-b94bad6246efj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    :  6
+                 
+                 
+                   2Reading background block in Hero section index.tsx  $View hero index.tsx background setup               r  
+Bfile:///c:/Users/Admin/Ahvaanam/components/sections/hero/index.tsx E m"    return (
+    <section 
+      className="relative flex flex-col justify-center items-center overflow-hidden w-full select-none"
+      style={{ 
+        minHeight: "var(--layout-min-height, 85vh)",
+        background: "var(--theme-gradient-backdrop, var(--theme-bg))"
+      }}
+    >
+      {/* Background Cover Image */}
+      {heroImage && (
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-102"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        />
+      )}
+
+      {/* Dark overlay */}
+      <div 
+        className="absolute inset-0 bg-black pointer-events-none"
+        style={{ opacity: overlayOpacity }}
+      />
+
+      {/* Hero content */}
+      <MotionWrapper
+        motionId={motionId}
+        defaultMotionId="luxury-motion"
+        type="reveal"
+        className="w-full flex justify-center items-center z-10"
+      >
+        <LayoutWrapper
+          layoutId={layoutId}
+          defaultLayoutId="hero-center"
+          className={`w-full max-w-4xl flex ${alignmentClass}`}
+          style={{ 
+            color: "var(--theme-text)",
+            fontFamily: "var(--theme-font-body)"
+          }}
+        >
+          {/* Left Side: Welcome, Title, Description, CTA */}
+          <div className="flex flex-col space-y-4 flex-1 text-center lg:text-left items-center lg:items-start w-full">
+            {/* Welcome Tagline */}X  ` ;        b  (k2  _     u     I c]  $  3  v q  x^A    Y  r K r   <!]  Y 0 <* dq iJ    { /  TI \I"     z   h  r       G 2   	A   f           9 V)  J:n D   a\T 7< .  R i $ ^
+Z ^          o[  F|       M  [-  S 2    0  O N  
+1 + N    , (V P D2  vG  dm   B;  z{  v u #K  MnS A 6|5  or  )    * : 0   `   ?   wT  Z L  r` ; 
+   TT   BlP " zL      6q   - 	`   ` VP  {    ?      ~   *t:2o w  >    cK     v.&   M \ /"  9[ 8o U   :   j k   U    B #  ^ F i  ZQa   #(  \~L7   A     cz  2WH{?B   +j   <hy 1 M    }   %  s T   T V &CE  @   >u,  . R  -   T  f a >  J_g  cy     * 6  g~D  <S3 d 9 y 6  &   6= 'aA u 
+   lS  	`  _%     q 0     K.M t    ^    N3  f3k  3 S _N    uk?]  U2a   C     g      7.@     :~6  <  rE  c ` q   w   Fl9   B  :4  9 I    5 TQ  ' )  j W   T   q  #9 X .    [ l       b    K   <y    V  v   6Bf #}2  l  ?     	 H_  c>    XK B|    #~= :Y:   w:   H>  wT    +   f  R;          "   H X 
+7    ~   7nSF5      ! qq
+9            VQL _2 1o b  >] H q-F 	w*# &   N   h   |   { B 9\-M  V >/ q   
+ - aXI       Y$ +=         k\
+     y 8     |Y   ]  @dF @ W  VG  P :E ? ReS N  s  (G    F_  f      F- ? ' ! LV mK` 
+  C v  X9o   6. !   v        &   F=!^&RN*   wq   H &    H6     Y    p09 5b u.   1       W 9     4!x + `w ! B ?O  RezY     , Z        )   s +f   /a wX K  }  m    d  { H  9 @3RQ { 9S o   [     m      ~         A i*    w
+ "L  wb)   $KL &T}q|  C              ]q r  kz: kQ U acY     x@     , f       0H c      *T              o FH  S   1y   cc.   E e  O      \ $  D  ,uE J+ma 9\ L   *    K"   Y E%   l   QD     D    .f   R u   9  5%C &   6 p?~      2  w  Z  QX       I  0C 7  I  ^  *1iG      g S8 U u / `-       k k$        ` N     & <W g 
+k *  T& "   R1  ]E   j   R]B  xZ  g   %J    L   y{z   b>  $   LA 70      7   p      ]   *    .12} j#3d     " C/'   * "Y7 F  [ D  ]'         	C   }  Q  {  SAz      ~ o    D cs  M   3 & 4  8! 2     Q  ^|   _     7  h    V   1   uq   0  is      	    2 1X@ 	   (&i|   &W  $    z @    m&l4 t K  "    1Na   { hd F  '}T	'e        M `  T CS     %Z>~    02 dgp           7w !   ; S       N       @,1:b  h   w    =       J b         #'         .   Q . ;  F <    & r   b    &   q    _-     7 ~ |=o,  O h     _    ) 	>   T  u Wz 9  >  	    Lpc   jz      Q        z    }  n  d    d<	 Xt }  	6T  *# &^Qd   hd[  L }   c   	\    |               nw9Hw  2   ,  * vI  nU k   C   a G `2  +   b f  R   P     h ?   '  -   Q  :% j`Z@ Q4     H   y) `(,'|   2 s 7  ^i    3 kg!  7) t :qO        M      %  KI w  #   +  E        l5C          B     s   - ] J   UX 	f: NJ  Gf   E c9^	o "   Z  W  Ok T 6 lG  [ ^ p  /   <{ 9 !x     % K   l       SE% cI )  N ph3  D     m %  	  n A#-  ]S ^  Y  g  m|  C      N 7>     H3  P   pZu   t   L7 	   *    Gc f*JE   !zeqO    ~  5 )  A     6C  7  .8  o    U m A  M    y u y$* S`
+ ;      V      )    n       j  %    ?i[X          r  8  ~ L    &i O5f   E
+D  o a  Y.j       _   *      c   K G7 3     r      r   p G <    A+  -  9f  rc        L   = B  y Z   8  ?0o    N  Y w0    x]   Y    6     5o ch 
+   #{   $E        aO  s1-HG et{'       d    ` AJ Z        dV         /       	 R 0o	L      Sg     z   vC 1 j   4_I   'm 4] /[/4/UK  r F  (  X \      _|cH   i       +    _I c ' / \ xW  T          `  2 a   U H   h |       s       B     w   a  7 =q   ^4            N  Y       n    v[ |8Br *I z       4-   7       I a P rZ<    -a T   a   U  s  C     K  ;       A E"   L   tDnQ  g.pb      y  o& #2  j    8_ 4 +      JM    W  w0   P5C {   d _   H  p 9  ^ .   C  Q( eYd   . 9 XU j}0   r         { C    z      t     	P  v.    FkE J    -R hYk   c          yxX  q    hwo(%  v 4G   a5{   %. X \     = b    F6&]H    i           53 a w  " f,h   r    B p#a     b  | FJAM $  ;N  ??y~( ik r   j  qIL=    ,h     b  6D     E . 1w      R i     s   t     '         K^h  c g  v      B    a:f   J   n l      P ]  w    -   l  \=e    [ t,C     h2I  >U r2      *   \
+ #J9R) [     0? |Q t H          	 d       g "  1     K   ~{ V~    E    z    "   l     H      , 6 ?0 x   NHm =  s  IQx       T  T R	D   b  HK   g q       w  "     ] v    7 E  
+   w0  F z 1   pv#}       7   9\ OF Mv      _R  m       h<{  Tn    i  \Y 0Y G    Z_ co  O V      4 ; %   ]o   | / + D       	u            .}  >  j   #,       4$ 	        !     E   6V  @  (RU     nW :   a  '  D  ; S  L$      T~*h  W08 Xp!    u_ L !#    &RX  Z   ?  h[H u8Q  lu zM y  k 9  !!  f           4  {  L  y      "  _ U U    N   j     C    b  u T{  A  c ,t        0 D  Xo: @Tv 4f   '     4 F /
+   T   2 '     Vw   @   l  >e        H  ,W ;   J)   ;c     R _  =  1   T[ u    M?U# |    q  J    P4    V@   4@j]6 z   l? S    1 * t @ .   xU Q      a %  ,   $ p       m18   uI    ('P  <   Z  6 	   < M  ; i      46     m  /  ym          ^     -I B   =a       k  n J' pb  }W   7p \ < ?3  
+} @     : ^     k  :   *>2}    o{d    # o   Q X  z  c J  ]  #   b+     l,  . 	f   Mu       2      vF{ j/ X7Y  I  F8 0   c  Z   7 P?    v    &       d     yS1* F -}   ^  _K< "d5     	|  Q     ( + >   y %  f q  v   N    -a   B  C4Ef   !*       R}&  f\5P   }	R 
+A    8 \ Y Y <   y   n   j      O      m_  $  &VL ?zzx Avs g T\ =     QW  9 m  j  R  J          W    'w R   H D     z     n$ uU H2 H   N"  u    H V "    &   %K(  J  W'#    s   4 :,  0m    E  B  xX'     , N ;.!1   B      M  t r    @ _N+ }K O  >   I  (  B      J X  B ]     sr   x T  J = D b y  b O6 Hf w  55         /6    U o.  i  W  .  '   t S 1   	  C! &_  G        y &      g  R 6   =v     2 _    J 0>   l  x d  5e& / *^> j = T J  qA  y1Z2 \  8s     +         L     ! Z|  _           E   K /] \  {  I  e9v [ u      m  ~   i T p  j  9E           xx    :E G c  1Z50    /!     1  2  tE   M M|[     *]   e , } J  < L   `   
+H;  K9 [  5v[e  r{K  !  E  8V   $?A    z    6p f?    n  L r  CN B
+`+ ?  aR    p#G*      B    ? H  +cN
+W' S    C E    b 6 dT      [ ]       wr       ,j    X t \A x  xd X   qsI       w  } - L  	 _- ? / g  J" o  v  ^" < Z    < 5  i  (J   - m      q  k      Y O  NXB    b  ;   c
+M  Mz     >9 F= -V@4R   g:    jq+^ |  2  ^ T  "   TcE   R m ~   g M  ?   p   r ro ' ^  1 -            jf+     < -6  T     8 x Z  + %j    < $D^dp      \#  yt9  ,  70 g |h  I n    "    IQ   0b    '/A   sie"e    w_     LC-   %  (t `A  p8    LS DO V  k GtY    h  N 7\  ZH   3  x 
+y@  ZFou_"e  }   l w      \      '3  f ^l {j    3      {A*A)n I	   '  p      a M _O.l m   ^2a  [f# 8+      3 J K c       ` J2    k     s E{ N    n T  o  0  XlEZ)?  ] -  Z >  _D}    H!I  K    C , #   u  5     > 
+#  %  8    <l    W ^   < Q Gd    Kz    &( n  Bf S~   +MN  

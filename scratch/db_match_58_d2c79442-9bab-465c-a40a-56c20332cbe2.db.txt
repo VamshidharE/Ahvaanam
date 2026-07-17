@@ -1,0 +1,82 @@
+"use client";
+
+import React from "react";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+import MotionWrapper from "@/components/motion/MotionWrapper";
+
+interface HouseDetailsProps {
+  bindings: {
+    title?: string;
+    houseName?: string;
+    description?: string;
+  };
+  layoutId?: string;
+  motionId?: string;
+}
+
+export default function HouseDetailsSection({ bindings, layoutId, motionId }: HouseDetailsProps) {
+  const {
+    title = "Our New Nest",
+    houseName = "Shree Nilayam",
+    description = "A home built with love, dreams, and blessings. We welcome you to join our housewarming celebration."
+  } = bindings;
+
+  return (
+    <MotionWrapper
+      motionId={motionId}
+      defaultMotionId="luxury-motion"
+      type="reveal"
+      className="w-full"
+    >
+      <LayoutWrapper
+        layoutId={layoutId}
+        defaultLayoutId="story-stack"
+        className="py-24 px-6 max-w-5xl mx-auto border-b border-white/5 text-center select-none"
+        style={{ 
+          fontFamily: "var(--theme-font-body)",
+          color: "var(--theme-text)"
+        }}
+      >
+        <div className="max-w-2xl mx-auto space-y-3">
+          <h2 
+            className="text-xs uppercase tracking-[3px] font-bold"
+            style={{ color: "var(--theme-accent)" }}
+          >
+            {title}
+          </h2>
+          <p 
+            className="text-3xl md:text-4xl font-extrabold uppercase tracking-[0.5px]"
+            style={{ fontFamily: "var(--theme-font-heading)" }}
+          >
+            Introducing Our New Home
+          </p>
+        </div>
+
+        <div 
+          className="border border-white/5 p-8 md:p-12 max-w-xl mx-auto space-y-6 w-full"
+          style={{ 
+            backgroundColor: "var(--theme-card-bg)",
+            borderRadius: "var(--theme-radius-card)",
+            borderColor: "var(--theme-border)",
+            boxShadow: "var(--theme-shadow-card)"
+          }}
+        >
+          <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-amber-400 to-orange-600 flex items-center justify-center text-3xl shadow-m     C    C   !   w                                                                                               <   ?   @   A   B   D   E   F   G   H   I   J   n   p   q   z   {   |   }                                                                                                                                           4   7   >   ?   @   d   f   g   h   i   j   l   j   i   h   g   f   d   @   ?   >   7   4                                                                                                                                           }   |   {   z   q   p   n   J   I   H   G   F   E   D   B   A   @   ?   <                                                                                               w   #   !            6-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        $
+                 
+                   ZCreating React houseDetails layout component in components/sections/houseDetails/index.tsx   Create houseDetails layout                   *  
+               "  
+ hs96m } c   	  8     <  
+               "  
+ nm0nrd1f 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\registry\\index.ts","EndLine":35,"StartLine":1,"toolAction":"View registry index.ts  9 c      2     8   
+               "  
+ nm0nrd1f 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\registry\\index.ts","EndLine":35,"StartLine":1,"toolAction":"View registry index.ts top lines","toolSummary":"Inspecting imports and manifesting registry maps in lib/registry/index.ts"}:     
+    M2  {O    h  (W     ' /   hL  9 8 0 _    :    T     ) 6   bC n V    }    + F 1 N' 6  P   WN%Z  x   |E lS    y :  E        f. S  Py. p G  W;A=         oD  !  s  
+  6     b b     z-7 b    yxF' & "    :  M - b`8 
+=_  5    4   "    '    G     C  h   C    t   q9 @8   R}0 e@  } j jc   t  }   y  KX   m     u  6  j bh x / h^  V.   M    :  3' Y 0  WZ  x  e}        2  y  ;M  j dN4   m : ]       I ] g 7     t b            N   
+           +  2             :            B            JP         (   0 B!
+	sessionID  -3750763034362895579H  PnZ Z4VSat_5BoqbjuMPuNbxuAsX  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                 
+                                  *  
+           + 

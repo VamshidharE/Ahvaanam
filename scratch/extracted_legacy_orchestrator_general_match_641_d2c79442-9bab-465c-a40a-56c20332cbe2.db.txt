@@ -1,0 +1,193 @@
+a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                     
+  I will create a reusable shared legacy orchestrator component at `components/shared/LegacyOrchestrator.tsx` to centralize all legacy rendering, particles background canvas, audio triggers, and navigation. This removes duplicate date parsing, RSVP, countdown, and gallery code from all individual template layouts.  
+**Identifying Redundancies**
+
+I've observed a concerning pattern. Across nearly all layout files, I'm finding identical code blocks for essential elements. We are talking about countdown calculations, lightbox behavior, volume switches, maps, and RSVP logic. It's screaming for refactoring!
+
+
+**Refining Abstraction Strategy**
+
+I'm now zeroing in on a crucial point. If templates leverag   f   L{   	   |      0  
+             " u
+ hhqkph9r write_to_file  8{"CodeContent":"\"use client\";\n\nimport React, { useEffect, useState, useRef } from \"react\";\nimport { useInvitationData } from \"../context/InvitationDataContext\";\nimport { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from \"lucide-react\";\nimport { motion, AnimatePresence } from \"framer-motion\";\n\n// Import reusable section components\nimport HeroSection from \"../sections/hero\";\nimport CoupleSectio       Zz      ~      z   
+               2             X  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+               2             X  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                      
+  I will create a reusable shared legacy orchestrator component at `components/shared/LegacyOrchestrator.tsx` to centralize all legacy rendering, particles background canvas, audio triggers, and navigation. This  @ {              T   
+             " u
+ hhqkph9r write_to_file  8{"CodeContent":"\"use client\";\n\nimport React, { useEffect, useState, useRef } from \"react\";\nimport { useInvitationData } from \"../context/InvitationDataContext\";\nimport { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from \"lucide-react\";\nimport { motion, AnimatePresence } from \"framer-motion\";\n\n// Import reusable section components\nimport HeroSection from \"../sections/hero\";\nimport CoupleSecti   g  y y       j      |   
+               " M
+ yygep6ba  grep_search   {"CaseInsensitive":false,"IsRegex":false,"MatchPerLine":true,"Query":"countdown.targetDate","SearchPath":"c:\\Users\\Admin\\Ahvaanam\\components\\templates","toolAction":"Search for countdown calculations in templates","toolSummary":"Searching for inline countdown calculations in template layouts"}: J  J
+ J  M2   u [ k`)      )  F     w   7r     3 8   W J `  G A  :;     B Y6iV    km  	 ) o $ f  ;A  <4P _   ^ ?!W	H  ;    w         sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"celebrant\":\n        return \u003cCelebrantSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"houseDetails\":\n        return \u003cHouseDetailsSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"owners\":\n        return \u003cOwnersSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      default:\n        return null;","StartLine":109,"TargetContent":"      case \"dressCode\":\n        return \u003cDressCodeSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"footer\":\n        return \u003cFooterSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      default:\n        return null;","TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","toolAction":"Update LegacyOrchestrator cases","toolSummary":"Adding celebrant, houseDetails, and owners switch cases in LegacyOrchestrator.tsx"}:     
+    M2 *   R 5 n    m #jQ;  + y  y  !6         ;   @   I18     t  n sC > o   r&  ZW     7 +xHA     ?  6   ' K X"    O7 #     l    2  o ~h  d   oUT  u   l  aF:k  1 C[ U}(  ?e t IYF      aJ replace_file_content*AllowMultiple* Description* EndLine* Instruction* ReplacementContent*	StartLine*TargetContent*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   QAdding celebrant, houseDetails, and owners switch cases in LegacyOrchestrator.tsx   Update LegacyOrchestrator cases                   *  
+               " 
+ 7o6wn9vd  replace_file_content   {"AllowMultiple":false,"Description":"Add celebrant, houseDetails, and owners switch cases.","EndLine":115,"Instruction":"Insert cases for celebrant, houseDetails, and owners before default case.","ReplacementContent":"      case \"dressCode\":\n        return \u003cDressCodeSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"footer\":\n        return \u003cFooterSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"celebrant\":\n        return \u003cCelebrantSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"houseDetails\":\n        return \u003cHouseDetailsSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"owners\":\n        return \u003cOwnersSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      default:\n        return null;","StartLine":109,"TargetContent":"      case \"dressCode\":\n        return \u003cDressCodeSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"footer\":\n        return \u003cFooterSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      default:\n        return null;","TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","toolAction":"Update LegacyOrchestrator cases","toolSummary":"Adding celebrant, houseDetails, and owners switch cases in LegacyOrchestrator.tsx"}:     
+    M2 *   R 5 n    m #jQ;  + y  y  !6         ;   @   I18     t  n sC > o   r&  ZW     7 +xHA     ?  6   ' K X"    O7 #     l    2  o ~h  d   oUT  u   l  aF:k  1 C[ U}(  ?e t IYF      aJ replace_file_content*AllowMultiple* Description* EndLine* Instruction* ReplacementContent*	StartLine*TargetContent*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   QAdding celebrant, houseDetails, and owners switch cases in LegacyOrchestrator.tsx   Update LegacyOrchestrator cases                   R }
+ 	
+  
+IInsert cases for celebrant, houseDetails, and owners before default case.  @ J  
+        case "dressCode":
+        return <DressCodeSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "footer":
+        return <FooterSection key={sectionId} properties={properties} bindings={bindings} />;
+      default:
+        return null;         case "dressCode":
+        return <DressCodeSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "footer":
+        return <FooterSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "celebrant":
+        return <CelebrantSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "houseDetails":
+        return <HouseDetailsSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "owners":
+        return <OwnersSection key={sectionId} properties={properties} bindings={bindings} />;
+      default:
+        return null;0m8s"  *Hfile:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx2K
+ file:///c:/Users/Admin/Ahvaanam (components/shared/LegacyOrchestrator.tsx  l
+ l  :     :  
+"use client";       ?
+;import React, { useEffect, useState, useRef } from "react";   I
+Eimport { useInvitationData } from "../context/InvitationDataContext";   X
+Timport { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";   <
+8import { motion, AnimatePresence } from "framer-motion";       )
+%// Import reusable section components   /
++import HeroSection from "../sections/hero";   3
+/import CoupleSection from "../sections/couple";   9
+5import CountdownSection from "../sections/countdown";   1
+-import StorySection from "../sections/story";   3
+/import EventsSection from "../sections/events";   5
+1import GallerySection from "../sections/gallery";   1
+-import VenueSection from "../sections/venue";   7
+3import FamiliesSection from "../sections/families";   /
++import RSVPSection from "../sections/rsvp";   -
+)import FAQSection from "../sections/faq";   9
+5import DressCodeSection from "../sections/dressCode";   3
+/import FooterSection from "../sections/footer";   9
+5import CelebrantSection from "../sections/celebrant";   ?
+;import HouseDetailsSection from "../sections/houseDetails";   3
+/import OwnersSection from "../sections/owners";       '
+#interface LegacyOrchestratorProps {    
+   themeId: string;    
+   onBackToHub: () => void;   4
+0  particlesComponent?: React.ComponentType<any>;    
+   themeBgClass?: string;    
+   loadingTitle?: string;    
+   loadingSubtitle?: string;    
+ }       0
+,export default function LegacyOrchestrator({    
+
+  themeId,    
+   onBackToHub,   $
+   particlesComponent: Particles,   $
+   themeBgClass = "bg-stone-900",   "
+   loadingTitle = "Invitation",   *
+&  loadingSubtitle = "Celebrating Love"   !
+ }: LegacyOrchestratorProps) {   5
+1  const { invitationData } = useInvitationData();   3
+/  const [loading, setLoading] = useState(true);   >
+:  const [playingMusic, setPlayingMusic] = useState(false);   =
+9  const audioRef = useRef<HTMLAudioElement | null>(null);        
+   useEffect(() => {    
+     if (invitationData) {   B
+>      const timer = setTimeout(() => setLoading(false), 1500);   +
+'      return () => clearTimeout(timer);   	
+     }    
+   }, [invitationData]);       '
+#  if (!invitationData) return null;       e
+a  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;   U
+Q  const invitation = isWrapped ? (invitationData as any).config : invitationData;       !
+   const toggleMusic = () => {   &
+"    if (!audioRef.current) return;    
+     if (playingMusic) {   #
+       audioRef.current.pause();    
+     } else {   2
+.      audioRef.current.play().catch(() => {});   	
+     }   '
+#    setPlayingMusic(!playingMusic);    
+   };       9
+5  const sectionOrder = invitation.sectionOrder || [];       =
+9  const renderSectionComponent = (sectionId: string) => {   4
+0    const sectionConfig = invitation[sectionId];   ;
+7    const isEnabled = sectionConfig?.enabled !== fals    ync\('C:/Users/Admin/Ahvaanam/app/page\.tsx', 'utf8'\)\.split\('\\n'\); lines\.forEach\(\(l, idx\) => \{ if \(l\.includes\('EventCategories'\)\) console\.log\(idx\+1, ':', l\); \}\);")
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+  command(node -e "const fs = require\('fs'\); const path = require\('path'\); function walk\(dir\) \{ const list = fs\.readdirSync\(dir\); list\.forEach\(file => \{ const filepath = path\.join\(dir, file\); if \(file\.toLowerCase\(\)\.includes\('navbar'\)\) \{ console\.log\(filepath\); \} const stat = fs\.statSync\(filepath\); if \(stat\.isDirectory\(\) && !file\.startsWith\('\.'\) && file !== 'node_modules'\) \{ walk\(filepath\); \} \}\); \} walk\('C:/Users/Admin/Ahvaanam'\);")
+>write_file(C:\Users\Admin\Ahvaanam\components\home\Navbar.tsx)
+ command(npm run)
+ command(npm install)
+Ewrite_file(C:\Users\Admin\Ahvaanam\components\home\SectionReveal.tsx)
+Dwrite_file(C:\Users\Admin\Ahvaanam\components\home\SmoothScroll.tsx)
+Gwrite_file(C:\Users\Admin\Ahvaanam\components\home\BackgroundBlobs.tsx)
+ command(npm run)
+ command(npm install)
+Hwrite_file(C:\Users\Admin\Ahvaanam\components\home\FloatingElements.tsx)
+<write_file(C:\Users\Admin\Ahvaanam\components\home\Hero.tsx)
+ command(npm run)
+Qwrite_file(C:\Users\Admin\Ahvaanam\components\shared\ParallaxProviderWrapper.tsx)
+ command(npm run)
+Gwrite_file(C:\Users\Admin\Ahvaanam\components\home\EventCategories.tsx)
+Gwrite_file(C:\Users\Admin\Ahvaanam\components\home\TemplateGallery.tsx)
+Gwrite_file(C:\Users\Admin\Ahvaanam\components\home\BuilderShowcase.tsx)
+?write_file(C:\Users\Admin\Ahvaanam\components\home\Sharing.tsx)
+>write_file(C:\Users\Admin\Ahvaanam\components\home\Footer.tsx)
+ command(npm run)
+Owrite_file(C:\Users\Admin\Ahvaanam\components\shared\PageTransitionWrapper.tsx)
+)read_file(C:\Users\Admin\Ahvaanam\public)
+@write_file(C:\Users\Admin\Ahvaanam\public\sample-invitation.pdf)
+5write_file(C:\Users\Admin\Ahvaanam\app\demo\page.tsx)
+8write_file(C:\Users\Admin\Ahvaanam\app\contact\page.tsx)
+Awrite_file(C:\Users\Admin\Ahvaanam\app\templates\[slug]\page.tsx)
+9write_file(C:\Users\Admin\Ahvaanam\app\services\page.tsx)
+=write_file(C:\Users\Admin\Ahvaanam\app\how-it-works\page.tsx)
+6write_file(C:\Users\Admin\Ahvaanam\app\about\page.tsx)
+8write_file(C:\Users\Admin\Ahvaanam\app\privacy\page.tsx)
+6write_file(C:\Users\Admin\Ahvaanam\app\terms\page.tsx)
+5write_file(C:\Users\Admin\Ahvaanam\app\not-found.tsx)
+\command($env:NEXT_FONT_GOOGLE_MOCKED="true"; npm run build --prefix C:\Users\Admin\Ahvaanam)
+?write_file(C:\Users\Admin\Ahvaanam\app\api\invitation\route.ts)
+"read_file(C:\Users\Admin\Ahvaanam)
+2write_file(C:\Users\Admin\Ahvaanam\next.config.ts)
+ command(npm run)
+2write_file(C:\Users\Admin\Ahvaanam\next.config.ts)
+  command(Remove-Item -Recurse -Force C:\Users\Admin\Ahvaanam\.next; $env:NEXT_FONT_GOOGLE_MOCKED="true"; npm run build --prefix C:\Users\Admin\Ahvaanam)
+ command(Select-String)
+ command(Select-String)
+ command(Select-String)
+ command(Select-String)
+ command(Select-String)
+Gwrite_file(C:\Users\Admin\Ahvaanam\components\shared\GallerySlider.tsx)
+Pwrite_file(C:\Users\Admin\Ahvaanam\components\templates\royal-temple\Layout.tsx)
+Qwrite_file(C:\Users\Admin\Ahvaanam\components\templates\floral-garden\Layout.tsx)
+  command(node C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\update_templates_slider\.js)
+ command(git diff)
+ command(git status)
+  command(node C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\update_templates_slider_v2\.js)
+ command(Select-String)
+ command(Select-String)
+ command(Remove-Item)
+ command(Remove-Item)
+ command(Select-String)
+ command(Select-String)
+  command(node C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12

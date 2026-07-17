@@ -1,0 +1,35 @@
+use client');\n    }\n    if (startIdx === -1) continue;\n    \n    // Try to find if this contains the full component\n    const hasComponentExport = content.includes('export default function CompositionRenderer');\n    const hasResolveBinding = content.includes('resolveBindingValue');\n    const hasSectionComponents = content.includes('SECTION_COMPONENTS');\n    \n    if (hasComponentExport \u0026\u0026 hasResolveBinding \u0026\u0026 hasSectionComponents) {\n      // Let's try to extract the JSON-escaped string\n      // It starts with \"use client\" and should end around the end of the file.\n      // Let's find the closing quote if it starts with a double quote\n      let parsedCode = '';\n      try {\n        // If the match starts with double quote (which means it's part of a JSON record)\n        if (content.startsWith('\"')) {\n          // Find the matching end quote\n          // Since it's a JSON string, let's find the next unescaped quote that finishes the string\n          // We can parse the prefix using JSON.parse\n          // Let's find the end of the JSON string\n          let endIdx = content.indexOf('\",\"Description\"');\n          if (endIdx === -1) {\n            endIdx = content.indexOf('\",\\n      \"Description\"');\n          }\n          if (endIdx === -1) {\n            endIdx = content.indexOf('\", \"Description\"');\n          }\n          if (endIdx !== -1) {\n            const jsonString = content.substring(0, endIdx + 1);\n            parsedCode = JSON.parse(jsonString);\n          }\n        }\n      } catch (e) {\n        // Fallback: regular string clean up\n      }\n      \n      // If we couldn't parse it as JSON, let's clean it up manually\n      if (!parsedCode) {\n        let codeContent = content.substring(startIdx);\n        // Remove trailing database junk or JSON fields\n        // In the database log, it might be followed by description, targetFile, etc.\n        const endMarkers = ['\",\"Description\"', '\",\\n      \"Description\"', '\", \"Description\"'];\n        for (const marker of endMarkers) {\n          const markerIdx = codeContent.indexOf(marker);\n          if (markerIdx !== -1) {\n            codeContent = codeContent.substring(0, markerIdx);\n              3 \  'l6     t     ":"6000"}
+{"name":"composition_renderer_db_match_398_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_399_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_39_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_39_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_3_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_3_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_400_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_401_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_402_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_403_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_404_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_405_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_406_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_407_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_408_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_409_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_40_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_40_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_410_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_411_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_412_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_413_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_414_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_415_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_416_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_417_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_418_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_419_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_41_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_41_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_420_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_421_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"composition_renderer_db_match_422_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt", "sizeBytes":"6000"}
+{"name":"com

@@ -1,0 +1,174 @@
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInvitationData } from "../../context/InvitationDataContext";
+import { Calendar, MapPin, Clock, Phone, Volume2, VolumeX, Menu, X, HelpCircle, Sparkles } from "lucide-react";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+
+// Dynamic Google Fonts configuration for birthday themes
+const THEME_FONTS: Record<string, string> = {
+  midnight: "Cinzel",
+  marble: "Bodoni+Moda",
+  emerald: "Cormorant+Garamond",
+  navy: "Cinzel",
+  burgundy: "Lora",
+  champagne: "Cormorant+Garamond",
+  glass: "Inter",
+  rosegold: "Playfair+Display",
+  artdeco: "Cinzel+Decorative",
+  botanical: "Lora"
+};
+
+// Theme configuration mapper
+const THEME_CONFIGS: Record<string, any> = {
+  midnight: {
+    bgClass: "bg-[#0F0F0F] text-[#F5E6C4]",
+    primaryColor: "#D4AF37",
+    textColor: "#F5E6C4",
+    accentColor: "#C5A028",
+    cardClass: "bg-[#1C1C1C] border border-[#D4AF37]/25",
+    btnClass: "bg-gradient-to-r from-[#D4AF37] to-[#B0871B] text-black font-bold uppercase",
+    ornament: "   ",
+    glowClass: "shadow-[0_0_20px_rgba(212,175,55,0.15)]",
+    fontFamily: "Cinzel, serif"
+  },
+  marble: {
+    bgClass: "bg-[#FAF9F6] text-[#241E1C]",
+    primaryColor: "#C5A880",
+    textColor: "#241E1C",
+    accentColor: "#A38760",
+    cardClass: "bg-white border border-stone-200 shadow-sm",
+    btnClass: "bg-stone-900 text-white font-medium uppercase tracking-[2px]",
+    ornament: "Invite",
+    fontFamily: "'Bodoni Moda', serif"
+  },
+  emerald: {
+    bgClass: "bg-[#041D14] text-[#EAE6DF]",
+    primaryColor: "#E5C07B",
+    textColor: "#EAE6DF",
+    accentColor: "#D4AF37",
+    cardClass: "bg-[#0B3527] border border-[#E5C07B]/30",
+    btnClass: "bg-gradient-to-r from-[#E5C07B] to-[#B28F50] text-[#062319] font-bold uppercase",
+    ornament: "    ",
+    fontFamily: "'Cormorant Garamond', serif"
+  },
+  navy: {
+    bgClass: "bg-[#050B1B] text-[#E0E1DD]",
+    primaryColor: "#F1C40F",
+    textColor: "#E0E1DD",
+    accentColor: "#FFD700",
+    cardClass: "bg-[#1C2541] border border-[#F1C40F]/20",
+    btnClass: "bg-[#F1C40F] text-slate-950 font-bold uppercase",
+    ornament: "   ",
+    fontFamily: "Cinzel, serif"
+  },
+  burgundy: {
+    bgClass: "bg-[#25030C] text-[#F3E8EE]",
+    primaryColor: "#DFBA6B",
+    textColor: "#F3E8EE",
+    accentColor: "#C89E5F",
+    cardClass: "bg-[#430919] border border-[#DFBA6B]/20",
+    btnClass: "bg-[#DFBA6B] text-slate-900 font-semibold uppercase",
+    ornament: "   ",
+    fontFamily: "Lora, serif"
+  },
+  champagne: {
+    bgClass: "bg-[#FAF5EC] text-[#2D2219]",
+    primaryColor: "#C89E5F",
+    textColor: "#2D2219",
+    accentColor: "#9D7438",
+    cardClass: "bg-white border border-[#C89E5F]/20 shadow-sm",
+    btnClass: "bg-[#C89E5F] text-white tracking-widest uppercase font-bold",
+    ornament: "Celebration",
+    fontFamily: "'Cormorant Garamond', serif"
+  },
+  glass: {
+    bgClass: "bg-[#050814] text-white",
+    primaryColor: "#007AFF",
+    textColor: "#FFFFFF",
+    accentColor: "#FF2D55",
+    cardClass: "bg-white/5 border border-white/10 backdrop-blur-md",
+    btnClass: "bg-white text-slate-900 font-bold uppercase",
+    ornament: "   ",
+    fontFamily: "I    nter, sans-serif"
+  },
+  rosegold: {
+    bgClass: "bg-[#080808] text-[#F6D3C8]",
+    primaryColor: "#D39E82",
+    textColor: "#F6D3C8",
+    accentColor: "#B57B61",
+    cardClass: "bg-[#181818] border border-[#D39E82]/20",
+    btnClass: "bg-gradient-to-r from-[#D39E82] to-[#B57B61] text-black font-bold uppercase",
+    ornament: "   ",
+    fontFamily: "'Playfair Display', serif"
+  },
+  artdeco: {
+    bgClass: "bg-[#0A0A0C] text-[#E5A93C]",
+    primaryColor: "#C59E3F",
+    textColor: "#E5A93C",
+    accentColor: "#93701E",
+    cardClass: "bg-[#17181C] border border-[#C59E3F]/30",
+    btnClass: "bg-gradient-to-br from-[#C59E3F] to-[#93701E] text-black font-bold uppercase tracking-widest",
+    ornament: "         ",
+    fontFamily: "'Cinzel Decorative', serif"
+  },
+  botanical: {
+    bgClass: "bg-[#F4F2E9] text-[#2B3E34]",
+    primaryColor: "#7A9D82",
+    textColor: "#2B3E34",
+    accentColor: "#4E6E56",
+    cardClass: "bg-white border border-stone-200 shadow-sm",
+    btnClass: "bg-[#2B3E34] text-white font-bold uppercase",
+    ornament: "    ",
+    fontFamily: "Lora, serif"
+  }
+};
+
+// Animated theme particle background compiler
+const DynamicParticles = ({ themeId }: { themeId: string }) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    // Particle definitions based on the selected theme ID
+    const count = themeId === "glass" ? 45 : themeId === "navy" ? 90 : themeId === "midnight" || themeId === "champagne" ? 50 : 0;
+    if (count === 0) return;
+
+    const particles = Array.from({ length: count }).map(() => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: themeId === "glass" ? Math.random() * 5 + 2 : Math.random() * 2 + 0.5,
+      color: themeId === "glass" 
+        ? "rgba(192, 86, 254, 0.15)" 
+        : themeId === "navy" 
+          ? "rgba(241, 196, 15, 0.4)" 
+          : "rgba(212, 175, 55, 0.35)",
+      speed: Math.random() * 0.4 + 0.1,
+      angle: Math.random() * Math.PI * 2,
+    }));
+
+    const resize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener("resize", resize);
+
+    let frameId: number;
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach((p) => {
+        if (themeId === "glass") {
+          // drift upwards
+          p.y -= p.speed * 0.7;
+          if (p.y < -10) p.y = height + 10;
+        } else {
+          p.x += Math.cos(p.angl

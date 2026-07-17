@@ -1,0 +1,63 @@
+includes('export default function CompositionRenderer');\n    const hasRegistry = content.includes('SECTION_COMPONENTS');\n    const hasResolve = content.includes('resolveBindingValue');\n    \n    if (hasExport \u0026\u0026 hasRegistry \u0026\u0026 hasResolve) {\n      console.log(`Checking candidate: ${file} (size: ${content.length})`);\n      \n      // Let's find \"use client\" as the starting point of the file\n      let startIdx = content.indexOf('\"use client\";');\n      if (startIdx === -1) startIdx = content.indexOf('use client');\n      if (startIdx === -1) continue;\n      \n      let cleanCode = content.substring(startIdx);\n      \n      // Remove trailing SQLite/JSON metadata if any\n      const endMarkers = ['\",\"Description\"', '\",\\n      \"Description\"', '\", \"Description\"', '\",\"description\"'];\n      for (const marker of endMarkers) {\n        const markerIdx = cleanCode.indexOf(marker);\n        if (markerIdx !== -1) {\n          cleanCode = cleanCode.substring(0, markerIdx);\n        }\n      }\n      \n      // Unescape double-escaped JSON string characters\n      let parsed = cleanCode\n        .replace(/\\\\n/g, '\\n')\n        .replace(/\\\\\"/g, '\"')\n        .replace(/\\\\\\\\/g, '\\\\');\n        \n      // Ensure it ends cleanly at the last closing brace of the component\n      const lastBrace = parsed.lastIndexOf('}');\n      if (lastBrace !== -1) {\n        parsed = parsed.substring(0, lastBrace + 1);\n      }\n      \n      // Check if this parsed code looks complete and has no truncated comments\n      if (parsed.includes('export default function CompositionRenderer') \u0026\u0026 parsed.trim().endsWith('}') \u0026\u0026 !parsed.includes('truncated')) {\n        console.log(`  -\u003e FOUND EXCELLENT COMPLETE CODE in ${file} (length: ${parsed.length})`);\n        // Let's verify if there is any binary garbage (like control characters or multiple consecutive spaces representing SQLite pages)\n        const hasBinaryGarbage = parsed.includes('SQLite') || parsed.includes('Page') || parsed.match(/[\\x00-\\x08\\x0B\\x0C\\x0E-\\x1F]/);\n        if (!hasBinaryGarbage) {\n          bestMatch = parsed;\n          bestMatchFile = file;\n          break;\n        } else {\n          console.log(`  -\u003e File ${file} contains binary garbage, skipping.`);\n        }\n      }\n    }\n  }\n}\n\nif (bestMatch) {\n  const destPath = 'components/composition/CompositionRenderer.tsx';\n  fs.mkdirSync(path.dirname(destPath), { recursive: true });\n  fs.writeFileSync(destPath, bestMatch);\n  console.log(`Successfully restored perfect, complete CompositionRenderer.tsx from ${bestMatchFile}!`);\n} else {\n  console.log('No perfect match found. Let\\'s try a looser check.');\n  // Looser check: take the match that has the longest cleaned content with no binary garbage\n  let longestCode = '';\n  let longestFile = '';\n  for (const file of files) {\n    if (file.startsWith('composition_pure_match_') \u0026\u0026 file.endsWith('.txt')) {\n      const filePath = path.join(scratchDir = 'scratch', file);\n      const content = fs.readFileSync(filePath, 'utf8');\n      \n      if (content.includes('export default function CompositionRenderer')) {\n        let cleaned = content;\n        let startIdx = cleaned.indexOf('\"use client\";');\n        if (startIdx === -1) startIdx = cleaned.indexOf('use client');\n        if (startIdx !== -1) cleaned = cleaned.sub    ng nulls with spaces    
+   let content = '';   ,
+(  for (let i = 0; i < buf.length; i++) {    
+     const charCode = buf[i];    
+     if (charCode === 0) {    
+       content += ' ';   7
+3    } else if (charCode >= 32 && charCode <= 126) {   3
+/      content += String.fromCharCode(charCode);   J
+F    } else if (charCode === 10 || charCode === 13 || charCode === 9) {   3
+/      content += String.fromCharCode(charCode);    
+     } else {    
+       content += ' ';   	
+     }    
+   }       ;
+7  // Exact first import line in CompositionRenderer.tsx   P
+L  const searchStr = 'import HeroSection from "@/components/sections/hero";';   -
+)  const searchStr = 'SECTION_COMPONENTS';    
+   let idx = 0;    
+   let matches = 0;   >
+:  while ((idx = content.indexOf(searchStr, idx)) !== -1) {    
+     matches++;   @
+<    console.log(`[${matches}] Found match at index ${idx}`);   E
+A    // Find the start of the file: look backward for "use client"   @
+<    let startIdx = content.lastIndexOf('"use client"', idx);    
+     if (startIdx === -1) {   <
+8      startIdx = content.lastIndexOf('use client', idx);   	
+     }   2
+.    if (startIdx === -1) startIdx = idx - 100;    
+        A
+=    // Grab 6000 characters to make sure we get the full file   C
+?    const slice = content.substring(startIdx, startIdx + 6000);   8
+4    console.log(`  Preview of match [${matches}]:`);   -
+)    console.log(slice.substring(0, 500));   0
+,    console.log("------------------------");    
+         
+     // Save to scratch   s
+o    fs.writeFileSync(`scratch/composition_renderer_db_match_${matches}_${path.basename(filePath)}.txt`, slice);    
+     idx += searchStr.length;    
+   }    
+ }       	
+ try {    
+   extractFromBinary(dbPath);   !
+   extractFromBinary(walPath);    
+ } catch (err) {    
+   console.error(err);    
+ }      B:file:///c:/Users/Admin/Ahvaanam/scratch/extract_from_db.jsR  const fs = require('fs');
+const path = require('path');
+
+const dbPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\conversations\\d2c79442-9bab-465c-a40a-56c20332cbe2.db';
+const walPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\conversations\\d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal';
+
+function extractFromBinary(filePath) {
+  if (!fs.existsSync(filePath)) {
+    console.log(`File not found: ${filePath}`);
+    return;
+  }
+  console.log(`Scanning ${filePath} (${fs.statSync(filePath).size} bytes)`);
+  const buf = fs.readFileSync(filePath);
+  
+  // Convert buffer to string replacing nulls with spaces
+  let content = '';
+  for (let i = 0; i < buf.length; i++) {
+    const cha

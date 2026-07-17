@@ -1,0 +1,138 @@
+File":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","toolAction":"Update LegacyOrchestrator cases","toolSummary":"Adding celebrant, houseDetails, and owners switch cases in LegacyOrchestrator.tsx"}:     
+    M2 *   R 5 n    m #jQ;  + y  y  !6         ;   @   I18     t  n sC > o   r&  ZW     7 +xHA     ?  6   ' K X"    O7 #     l    2  o ~h  d   oUT  u   l  aF:k  1 C[ U}(  ?e t IYF      aJ replace_file_contentB}I will add the remaining switch cases for `celebrant`, `houseDetails`, and `owners` inside the legacy orchestrator component.`    Xnd execution', 'Semantic search'."},"toolAction":{"type":"string","description":"Brief 2-5 word summary of what this tool is doing. Capitalize like a sentence. Some examples: 'Analyzing directory', 'Searching the web', 'Editing file', 'Viewing file', 'Running command', 'Semantic searching'."}},"additionalProperties":false,"type":"object","required":["toolSummary","toolAction"]}: list_permissionsB  
+ manage_subagents   Manage existing subagents.
+	Actions:
+	* 'list': List all active subagents and their conversation IDs.
+	* 'kill': Terminate specific subagents and all their descendants.
+	* 'kill_all': Terminate all subagents and all their descendants.
+
+	When a subagent is killed, its branched workspaces will be deleted, but its logs and artifacts will be preserved.   {"$schema":"https://json-schema.org/draft/2020-12/schema","properties":{"Action":{"type":"string","enum":["list","kill","kill_all"],"description":"The action to perform. Must be 'list' (list all active subagents), 'kill' (terminate specific subagents and all their descendants), or 'kill_all' (terminate all subagents and all their descendants)."},"ConversationIds":{"items":{"type":"string"},"type":"array","description":"The IDs of the subagents to kill. Required for 'kill'."},"toolSummary":{"type":"string","description":"Brief 2-5 word noun phrase describing what this tool call is about. Capitalize like a sentence. Some examples: 'Directory analysis', 'Web search', 'File edit', 'Command execution', 'Semantic search'."},"toolAction":{"type":"string","description":"Brief 2-5 word summary of what this tool is doing. Capitalize like a sentence. Some examples: 'Analyzing directory', 'Searching the web', 'Editing file', 'Viewing file', 'Running command', 'Semantic searching'."}},"additionalProperties":false,"type":"object","required":["Action","toolSummary","toolAction"]}: manage_subagentsB  
+ manage_task   Manage background tasks. Use this tool to list running tasks or interact with tasks that were sent to the background.
+
+Actions:
+- 'list': List all currently running background tasks
+- 'kill': Cancel the task's execution
+- 'status': Check the task's current status and log file location
+- 'send_input': Send input to a running task
+
+When mentioning tasks to the user, avoid using full task IDs and start timestamps; keep them human-readable.  	{"$schema":"https://json-schema.org/draft/2020-12/schema","properties":{"Action":{"type":"string","enum":["list","kill","status","send_input"],"description":"The action to perform: 'list' (list all running tasks), 'kill' (cancel the task), 'status' (check the task status and log URI), 'send_input' (send input to a running task)."},"TaskId":{"type":"string","description":"The task ID to manage. Required when Action is 'kill', 'status', or 'send_input'."},"Input":{"type":"string","description":"The input to send to the task. Required when Action is 'send_input'."},"toolSummary":{"type":"string","description":"Brief 2-5 word noun phrase describing what this tool call is about. Capitalize like a sentence. Some examples: 'Directory analysis', 'Web search', 'File edit', 'Command execution', 'Semantic search'."},"toolAction":{"type":"string","description":"Brief 2-5 word summary of what this tool is doing. Capitalize like a sentence. Some examples: 'Analyzing directory', 'Searching the web', 'Editing file', 'Viewing file', 'Running command', 'Semantic searching'."}},"additionalProperties":false,"type":"object","required":["Action","toolSummary","toolAction"]}: manage_taskB .
+ multi_replace_file_content   Use this tool to edit an existing file. Follow these rules:
+1. Use this tool ONLY when you are making MULTIPLE, NON-CONTIGUOUS edits to the same file (i.e., you are changing more than one separate block of text). If you are making a single contiguous block of edits, use the replace_file_content tool instead.
+2. Do NOT use this tool if you are only editing a single contiguous block of lines.
+3. Do NOT make multiple parallel calls to this tool or the replace_file_content tool for the same file.
+4. To edit multiple, non-adjacent lines o    min\invitecraft\AGENTS.md)
+@write_file(C:\Users\Admin\invitecraft\components\data\themes.ts)
+Jwrite_file(C:\Users\Admin\invitecraft\components\context\ThemeContext.tsx)
+Mwrite_file(C:\Users\Admin\invitecraft\components\shared\ThemeSelectorHub.tsx)
+6write_file(C:\Users\Admin\invitecraft\app\globals.css)
+Dwrite_file(C:\Users\Admin\invitecraft\components\data\invitation.ts)
+Swrite_file(C:\Users\Admin\invitecraft\components\templates\royal-temple\Layout.tsx)
+Twrite_file(C:\Users\Admin\invitecraft\components\templates\floral-garden\Layout.tsx)
+Swrite_file(C:\Users\Admin\invitecraft\components\templates\south-indian\Layout.tsx)
+Twrite_file(C:\Users\Admin\invitecraft\components\templates\palace-luxury\Layout.tsx)
+Uwrite_file(C:\Users\Admin\invitecraft\components\templates\lotus-serenity\Layout.tsx)
+Owrite_file(C:\Users\Admin\invitecraft\components\templates\marigold\Layout.tsx)
+Pwrite_file(C:\Users\Admin\invitecraft\components\templates\moonlight\Layout.tsx)
+Swrite_file(C:\Users\Admin\invitecraft\components\templates\grand-mandap\Layout.tsx)
+3write_file(C:\Users\Admin\invitecraft\app\page.tsx)
+ command(npm run)
+Ewrite_file(C:\Users\Admin\invitecraft\components\types\invitation.ts)
+Nwrite_file(C:\Users\Admin\invitecraft\components\templates\peacock\Layout.tsx)
+Owrite_file(C:\Users\Admin\invitecraft\components\templates\heritage\Layout.tsx)
+ command(npm run)
+9read_file(C:\Users\Admin\invitecraft\components\sections)
+%read_file(C:\Users\Admin\invitecraft)
+Icommand(Get-ChildItem -Recurse -Filter *.tsx | Select-String "sections/")
+mcommand(Get-ChildItem -Recurse -Filter *.tsx | Select-String -Pattern "components/Footer", "components/Hero")
+Qcommand(Get-ChildItem -Recurse -Filter *.tsx | Select-String "InvitationContext")
+  command(Get-ChildItem -Path components/templates -Recurse -Filter *.tsx | Select-String -Pattern "Background", "CouplePhoto", "MusicButton", "ShareButton")
+Ewrite_file(C:\Users\Admin\invitecraft\components\types\invitation.ts)
+ command(npm run)
+Fwrite_file(C:\Users\Admin\invitecraft\components\data\invitation.json)
+Bwrite_file(C:\Users\Admin\invitecraft\app\api\invitation\route.ts)
+>write_file(C:\Users\Admin\invitecraft\app\api\upload\route.ts)
+Swrite_file(C:\Users\Admin\invitecraft\components\context\InvitationDataContext.tsx)
+5write_file(C:\Users\Admin\invitecraft\app\layout.tsx)
+9write_file(C:\Users\Admin\invitecraft\app\admin\page.tsx)
+ command(npm run)
+Bwrite_file(C:\Users\Admin\invitecraft\app\api\invitation\route.ts)
+9write_file(C:\Users\Admin\invitecraft\app\admin\page.tsx)
+ command(npm run)
+9write_file(C:\Users\Admin\invitecraft\app\admin\page.tsx)
+ command(npm run)
+Kwrite_file(C:\Users\Admin\invitecraft\components\data\invites\default.json)
+ command(Copy-Item)
+Gwrite_file(C:\Users\Admin\invitecraft\app\api\invitation\[id]\route.ts)
+Rwrite_file(C:\Users\Admin\invitecraft\components\data\invites\kalyan-vasudha.json)
+>write_file(C:\Users\Admin\invitecraft\app\admin\[id]\page.tsx)
+ command(Remove-Item)
+fcommand(Get-ChildItem -Path components/templates -Recurse -Filter *.tsx | Select-String "onBackToHub")
+@write_file(C:\Users\Admin\invitecraft\app\invites\[id]\page.tsx)
+Iwrite_file(C:\Users\Admin\invitecraft\app\invites\[id]\selector\page.tsx)
+Ocommand(Get-ChildItem -Recurse -Filter *.tsx | Select-String "data/invitation")
+ command(Remove-Item)
+ command(npm run)
+9write_file(C:\Users\Admin\invitecraft\lib\auth\config.ts)
+Hwrite_file(C:\Users\Admin\invitecraft\components\shared\DeitySymbol.tsx)
+ command(New-Item)
+  command(\(Get-Content -LiteralPath app/admin/\[id\]/page\.tsx \| Select-String -Pattern "Surname & Sacred Symbols"\)\.LineNumber)
+  command(node C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\update_templates\.js)
+  command(Get-Content -LiteralPath components/templates/floral-garden/Layout.tsx | Select-String -Pattern "showSurnameHeading" -Context 0,20)
+  command(node C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\update_templates\.js)
+  command(node C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e    
+g 
+g !                      B        , l   p   
+               "  
+ tf8xsik1  run_command   {"CommandLine":"node scratch/cleanup-layouts.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Execute layout cleanup script","toolSummary":"Running cleanup layouts script to refactor template Layouts"}:     
+    M2     j BJ)     { p g|  V  W  G{r:h -         V  k+;   7    H    ZQ          9 \pj I   r  N G)    R     t J  42   /#    O: q J       DI     j_{    m ]\ M   |  - 40_7P    I     3  52k g s$   : oC    n   J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    9  6
+                 
+  	              
+                   ;Running cleanup layouts script to refactor template Layouts   Execute layout cleanup script                .
+*
+ command  node scratch/cleanup-layouts.js      *  
+               "  
+ tf8xsik1  run_command   {"CommandLine":"node scratch/cleanup-layouts.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Execute layout cleanup script","toolSummary":"Running cleanup layouts script to refactor template Layouts"}:     
+    M2     j BJ)     { p g|  V  W  G{r:h -         V  k+;   7    H    ZQ          9 \pj I   r  N G)    R     t J  42   /#    O: q J       DI     j_{    m ]\ M   |  - 40_7P    I     3  52k g s$   : oC    n   J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    9  6
+                 
+  	              
+                   ;Running cleanup layouts script to refactor template Layouts   Execute layout cleanup script                 r  o
+*
+ command  node scratch/cleanup-layouts.js  node scratch/cleanup-layouts\.js  * Execute layout cleanup script  0 .
+*
+ command  node scratch/cleanup-layouts.js   	  
+r  o
+*
+ command  node scratch/cleanup-layouts.js  node scratch/cleanup-layouts\.js  * Execute layout cleanup script [
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	  /  "+
+)command(node scratch/cleanup-layouts\.js)      c:\Users\Admin\AhvaanamX ` '    
+  Successfully refactored birthday-premium layout!
+Successfully refactored floral-garden layout!
+Successfully refactored grand-mandap layout!
+Successfully refactored heritage layout!
+Skipping housewarming-premium (already orchestrator layout)
+   node scratch/cleanup-layouts.js   node scratch/cleanup-layouts.js                
+   
+               2             :             B             JN     z |(   0 B!
+	sessionID  -3750763034362895579H P^Z AI9SapGrHPzGjuMPv5znkQsX  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+               2             :             B             JN     z |(   0 B!
+	sessionID  -3750763034362895579H P^Z AI9SapGrHPzGjuMPv5znkQsX  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+kI will execute our cleanup script to automatically refactor all 12 templates to clean orchestration shells.2(bot-e41823af-2944-4d46-9b4c-3f6e0986a511:  
+ tf8xsik1  run_command   {"CommandLine":"node scratch/cleanup-layouts.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Execute layout cleanup script","toolSummary":"Running cleanup layouts script to refactor template Layouts"}:     
+    M2     j BJ)     { p g|  V  W  G{r:h -         V  k+;   7    H    ZQ          9 \pj I   r  N G)    R     t J  42   /#    O: q J       DI     j_{    m ]\ M   |  - 40_7P    I     3  52k g s$   : oC    n   J run_commandBkI will execute our cleanup script to automatically refactor all 12 templates to clean orchestration shells.`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     L               t   
+           $  2             :             B             JP     !   (   0 B!
+	sessionID  -3750763034362895579H  P{Z 9o5SavXyK5qtjuMPvrOjyAgX  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+           $  2             :             B             JP     !   (   0 B!
+	sessionID  

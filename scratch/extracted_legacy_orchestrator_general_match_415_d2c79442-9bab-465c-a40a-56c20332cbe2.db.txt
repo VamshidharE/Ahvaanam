@@ -1,0 +1,112 @@
+only the required `bindings` prop. This resolves the remaining compiler warnings.  2 <
+ b8g7574j  replace_file_content   {"AllowMultiple":false,"Description":"Remove properties prop from sections in LegacyOrchestrator.","EndLine":110,"Instruction":"Remove properties={properties} from all section render cases except hero.","ReplacementContent":"      case \"couple\":\n        return \u003cCoupleSection key={sectionId} bindings={bindings} /\u003e;\n      case \"countdown\":\n        return \u003cCountdownSection key={sectionId} bindings={bindings} /\u003e;\n      case \"story\":\n        return \u003cStorySection key={sectionId} bindings={bindings} /\u003e;\n      case \"events\":\n        return \u003cEventsSection key={sectionId} bindings={bindings} /\u003e;\n      case \"gallery\":\n        return \u003cGallerySection key={sectionId} bindings={bindings} /\u003e;\n      case \"venue\":\n        return \u003cVenueSection key={sectionId} bindings={bindings} /\u003e;\n      case \"families\":\n        return \u003cFamiliesSection key={sectionId} bindings={bindings} /\u003e;\n      case \"rsvp\":\n        return \u003cRSVPSection key={sectionId} bindings={bindings} /\u003e;\n      case \"faq\":\n        return \u003cFAQSection key={sectionId} bindings={bindings} /\u003e;\n      case \"dressCode\":\n        return \u003cDressCodeSection key={sectionId} bindings={bindings} /\u003e;\n      case \"footer\":\n        return \u003cFooterSection key={sectionId} bindings={bindings} /\u003e;","StartLine":88,"TargetContent":"      case \"couple\":\n        return \u003cCoupleSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"countdown\":\n        return \u003cCountdownSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"story\":\n        return \u003cStorySection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"events\":\n        return \u003cEventsSection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"gallery\":\n        return \u003cGallerySection key={sectionId} properties={properties} bindings={bindings} /\u003e;\n      case \"venue\":\n        return \u003cVenueSect                             -      &     t   
+               "  
+ p5f4in99 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\composition\\templates.ts","EndLine":280,"StartLine":230,"toolAction":"View templates.ts housewarming composition","toolSummary":"Reading getHousewarmingComposition function mapping in lib/composition/templates.ts"}: 	  	
+ 	  M2      hRg U   <   e(/ 
+ T   ]     !   0n   q    P       k #'v  T  k Z    Q      * + X g {    
+ c &^  &  e    n   l    G wM	    	  i         <      (            V  q   x  4   ! I d~ ,   p D	   Y-    <a Qg  %p  b_  ;U	U*  8m  [  d   m9 {  )>  _M4 [
+) /FX  )G   *` B   M  R] 8    O DWz    p  N {> wy6   %C ^56{   & e     :1    j `         -  S   { ro    "'   .    K [    fh dx%  +j  
+ ^ s  FA~ v&7	    Cn   u ?  <    t E~      y8R  Uj {  1 8       (   e.  B  O       E b    m&   ~ X4 \   3  9 SWd   O  B V k  Q 5  @owWt/  F $  4\  `       h a  7| 9      yQ Q ?E _ q8 J)  P    Q & B  ~ \  * b      :   3  k H'>X   o z \ N{   qJ Q  N    R     #     B, N  2     ? L "v       fb   i[E # <H nv w5    
+ <> tq *  :   h q 9       D  I  / 4 1j ^*90 z       &   4P #K]\   D  q 6   :      3}l h  ) l     Tz_     R 33 &aq H   N    <   ##1  k  S z  / q s>* J k  w r  i  M& s     a  \  h    n{ i  MS  e ;  T. O _     V 9     xM  ,  =    b    c     :2v B^+   ;  
+  St    -Wv # 3h a#      )z Sg  <  "n\d0&  <'vH    lFS 
+     n `(N   'l    ]  O   (=  D  
+  K-    a        e   tw6  Cf  " x  i /    %      h  ^      D ,            b   
+               2             :             B             JQ     #   (  
+0 B!
+	sessionID  -3750763034362895579H  P  Z HItSauvFOprcqfkP3obpiQ0X  b$4b6055c1-1edd-4072-9733-cb036d432e2ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+               2             :             B             JQ     #   (  
+0 B!
+	sessionID  -3750763034362895579H  P  Z HItSauvFOprcqfkP3obpiQ0X  b$4b6055c1-1edd-4072-9733-cb036d432e2ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+  I will view lines 230 to 280 of `lib/composition/templates.ts` using `view_file` to confirm that the `owners` section bindings are mapped correctly inside `getHousewarmingComposition`.2(bot-65382dd8-d771-47ad-a5bd-bb53d52e0592:  
+ p5f4in99 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\composition\\templates.ts","EndLine":280,"StartLine":230,"toolAction":"View templates.ts housewarming composition","toolSummary":"Reading getHousewarmingComposition function mapping in lib/composition/templates.ts"}: 	  	
+ 	  M2      hRg U   <   e(/ 
+ T   ]     !   0n   q    P       k #'v  T  k Z    Q      * + X g {    
+ c &^  &  e    n   l    G wM	    	  i         <      (            V  q   x  4   ! I d~ ,   p D	   Y-    <a Qg  %p  b_  ;U	U*  8m  [  d   m9 {  )>  _M4 [
+) /FX  )G   *` B   M  R] 8    O DWz    p  N {> wy6   %C ^56{   & e     :1    j `         -  S   { ro    "'   .    K [    fh dx%  +j  
+ ^ s  FA~ v&7	    Cn   u ?  <    t E~      y8R  Uj {  1 8       (   e.  B  O       E b    m&   ~ X4 \   3  9 SWd   O  B V k  Q 5  @owWt/  F $  4\  `       h a  7| 9      yQ Q ?E _ q8 J)  P    Q & B  ~ \  * b      :   3  k H'>X   o z \ N{   qJ Q  N    R     #     B, N  2     ? L "v       fb   i[E # <H nv w5    
+ <> tq *  :   h q 9       D  I  / 4 1j ^*90 z       &   4P #K]\   D  q 6   :      3}l h  ) l     Tz_     R 33 &aq H   N    <   ##1  k  S z  / q s>* J k  w r  i  M& s     a  \  h    n{ i  MS  e ;  T. O _     V 9     xM  ,  =    b    c     :2v B^+   ;  
+  St    -Wv # 3h a#      )z Sg  <  "n\d0&  <'vH    lFS 
+     n `(N   'l    ]  O   (=  D  
+  K-    a        e   tw6  Cf  " x  i /    %      h  ^  L qq   8      Zs A   VQwZ 6K} dL\F #xY;  n d< M H/ l =  Pb h8 ,   >        6 w   q   C   OARr ,    qXI%P'@   z  Z* WJ	view_fileB  I will view lines 230 to 280 of `lib/composition/templates.ts` using `view_file` to confirm that the `owners` section bindings are mapped correctly inside `getHousewarmingComposition`.`        
+ugr	 * |   &v   G    d |  7  4O       &t Xj  3  u    W  `r G   :  P=8  *    ) ^  s     Q 7  fJ D       `    	 ;    t    G  P  
+r bj [,Z  r "     +      q  C _   RS   | _   O  W   ( -o   5 ^ yH B     E  KM6    k[
+   8  ?\K  B    F   cd    E 8     yX       S M| &  |  ^<w    >    C    f y      # .f Jv]V^ `q# b 'v          t
+   =   NG r    !@  - | 0 K6 @a   *P LX     =   =? h     R      w    @  p% [; 1  x$ R9   *    |#        1aq  + Kf# /#     %     b  3b  &     QrX=tCx ,   &;    4    .1  E  (   :     7  ?    R[ v%.V<   _ J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2             :             B             X  b$4b6055c1-1edd-4072-9733-cb036d432e2ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    ;  6
+                 
+                 
+                   -Reading imports in SectionInspector component  #View SectionInspector.tsx top lines                   *  
+               "  
+ 66yhjxbh 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\app\\admin\\\\[id]\\components\\SectionInspector.tsx","EndLine":50,"StartLine":1,"toolAction":"View SectionInspector.tsx top lines","toolSummary":"Reading imports in SectionInspector component"}:     
+    M2 Fk~  & ` 4m3    c}<      jx/ B [        !#T    r   ^ ZQ  ?  *    v` f~   u g$ V.   6    4 C,\*# :    J   WC      K I    Y >3     k      V  e l  =n%     >    r  gS }  $  l`    c   
+ugr	 * |   &v   G    d |  7  4O       &t Xj  3  u    W  `r G   :  P=8  *    ) ^  s     Q 7  fJ D       `    	 ;    t    G  P  
+r bj [,Z  r "     +      q  C _   RS   | _   O  W   ( -o   5 ^ yH B     E  KM6    k[
+   8  ?\K  B    F   cd    E 8     yX       S M| &  |  ^<w    >    C    f y      # .f Jv]V^ `q# b 'v          t
+   =   NG r    !@  - | 0 K6 @a   *P LX     =   =? h     R      w    @  p% [; 1  x$ R9   *    |#        1aq  + Kf# /#     %     b  3b  &     QrX=tCx ,   &;    4    .1  E  (   :     7  ?    R[ v%.V<   _ J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2             :             B             X  b$4b6055c1-1edd-4072-9733-cb036d432e2ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    ;  6
+                 
+                 
+                   -Reading imports in SectionInspector component  #View SectionInspector.tsx top lines               r 
+Rfile:///c:/Users/Admin/Ahvaanam/app/admin/%5Bid%5D/components/SectionInspector.tsx 1"  "use client";
+
+import React from "react";
+import { getSectionManifest } from "@/lib/registry";
+import FileUploader from "@/components/ui/FileUploader";
+import { Plus, Trash2 } from "lucide-react";
+
+interface SectionInspectorProps {
+  type: string;
+  invitationData: any;
+  updateInvitationData: (updater: any) => void;
+}
+
+export default function SectionInspector({ type, invitationData, updateInvitationData }: SectionInspectorProps) {
+  const manifest = getSectionManifest(type);
+
+  if (!manifest) {
+    return (
+      <div className="p-4 bg-amber-50 border border-amber-200 text-amber-800 rounded-xl text-xs font-semibold select-none">
+        No manifest found for section type: '{type}'
+      </div>
+    );
+  }
+
+  const isWrapped = invitationData && "config" in invitationData;
+  const configObj = isWrapped ? invitationData.config : invitationData;
+
+  const getValueByPath = (path: string): any => {
+    if (!configObj) return "";
+    const parts = path.split(".");
+    let current = configObj;
+    for (const part of parts) {
+      if (current && typeof current === "object" && part in current) {
+        current = current[part];
+      } else {
+        return undefined;
+      }
+    }
+    return current;
+  };
+
+  const updateValueByPath = (path: string, value: any) => {
+    updateInvitationData((prev: any) => {
+      const next = { ...prev };
+      const target = isWrapped ? next.config : next;
+      if (target) {
+        const parts = path.split(".");
+        let current = target;
+        for (let i = 0; i < parts.length - 1; i++) {
+          const part = parts[i];X  ` |                                       emptyState: \"Upload cover banners and configure welcomers.\",\n      fields: [\n        { key: \"title\", label: \"Hero Title\", placeholder: `${categoryDef?.name || \"Event\"} Celebration`, type: \"text\", defaultPath: \"hero.title\", required: true },\n        { key: \"subtitle\", label: \"Welcome Subtitle\", placeholder: \"We invite you to join us...\", type: \"textarea\", defaultPath: \"hero.subtitle\" },\n        { key: \"heroImage\", label: \"Cover Image\", placeholder: \"/images/cover.jpg\", type: \"image\", defaultPath: \"hero.heroImage\" }\n      ]\n    },\n    gallery: {\n      id: \"gallery\",\n      title: \"Photos Album\",\n      description: \"Upload memory captures.\",\n      icon: \"image\",\n      importance: \"medium\",\n      estimatedCompletionTime: \"2 min\",\n      required: false,\n      summary: (config) =\u003e {\n        const images = getValueByPath(config, \"gallery.images\") || [];\n        return `${images.length} gallery images uploaded`;\n      },\n      completion: (config) =\u003e {\n        const images = getValueByPath(config, \"gallery.images\") || [];\n        if (images.length === 0) return { status: \"warning\", message: \"Photos album is empty\" };\n        return { status: \"success\", message: \"Completed\" };\n      },\n      emptyState: \"Add photos to gallery album.\",\n      fields: [\n        { key: \"images\", label: \"Gallery Images\", placeholder: \"\", type: \"list\", defaultPath: \"gallery.images\" }\n      ]\n    },\n    music: {\n      id: \"music\",\n      title: \"Background Music\",\n      description: \"Attach background track songs.\",\n      icon: \"audio\",\n      importance: \"low\",\n      estimatedCompletionTime: \"1 min\",\n      required: false,\n      summary: (config) =\u003e {\n        const active = getValueByPath(config, \"music.enabled\");\n        return active ? \"Autoplay active\" : \"Music disabled\";\n      },\n      completion: (config) =\u003e {\n        return { status: \"success\", message: \"Completed\" };\n      },\n      emptyState: \"Select background music track paths.\",\n      fields: [\n        { key: \"enabled\", label: \"Music Autoplay\", placeholder: \"\", type: \"boolean\", defaultPath: \"music.enabled\" },\n        { key: \"file\", label: \"Audio Song File Path\", placeholder: \"/music/theme.mp3\", type: \"audio\", defaultPath: \"music.file\" }\n      ]\n    },\n    design: {\n      id: \"design\",\n      title: \"Active Theme Style\",\n      description: \"Select the design stylesheet for this invitation.\",\n      icon: \"palette\",\n      importance: \"high\",\n      estimatedCompletionTime: \"1 min\",\n      required: true,\n      summary: (config) =\u003e {\n        return `Theme: ${getValueByPath(config, \"themeId\") || \"royal-temple\"}`;\n      },\n      completion: (config) =\u003e {\n        return { status: \"success\", message: \"Completed\" };\n      },\n      emptyState: \"Select design colors.\",\n      fields: [\n        { key: \"theme\", label: \"Select Theme Style\", placeholder: \"\", type: \"theme\", defaultPath: \"themeId\" }\n      ]\n    },\n    publish: {\n      id: \"publish\",\n      title: \"Publication Status\",\n      description: \"Toggle status codes to publish or save drafts.\",\n      icon: \"send\",\n      importance: \"high\",\n      estimatedCompletionTime: \"1 min\",\n      required: true,\n      summary: (config) =\u003e {\n        return `Status: ${getValueByPath(config, \"status\") || \"draft\"}`;\n      },\n      completion: (config) =\u003e {\n        return { status: \"success\", message: \"Completed\" };\n      },\n      emptyState: \"Publish active drafts.\",\n      fields: [\n        { key: \"status\", label: \"Publish State\", placeholder: \"\", type: \"publish\", defaultPath: \"status\" }\n      ]\n    }\n  };\n\n  return modules;\n}\n","Description":"Rewrite registry.ts to include dynamic summary and completion functions in dynamic fallback compilation.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\lib\\builder\\registry.ts","toolAction":"Update builder re    file: c:\Users\Admin\Ahvaanam\lib\layouts\registry.ts
+Restoring recovered file: c:\Users\Admin\Ahvaanam\components\layouts\LayoutWrapper.tsx
+Restoring recovered file: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\walkthrough.md
+Restoring recovered file: c:\Users\Admin\Ahvaanam\lib\motion\types.ts
+Restoring recovered file: c:\Users\Admin\Ahvaanam\lib\motion\registry.ts
+Restoring recovered file: c:\Users\Admin\Ahvaanam\componen

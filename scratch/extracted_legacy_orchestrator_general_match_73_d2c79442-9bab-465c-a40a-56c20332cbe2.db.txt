@@ -1,0 +1,201 @@
+use client";    
+ 2:    3
+/3: import { useEffect, useState } from "react";   >
+:4: import { ToggleLeft, ToggleRight } from "lucide-react";   V
+R5: import CompositionRenderer from "@/components/composition/CompositionRenderer";   K
+G6: import { getWeddingComposition } from "@/lib/composition/templates";   O
+K7: import { useInvitationData } from "../../context/InvitationDataContext";   H
+D8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";    
+ 9:    .
+*10: // --- TEMPLATE SPECIFIC PARTICLES ---    
+ 11: import React, { useRef }    
+"use client";        
+ import React from "react";   @
+<import { CompositionSchema } from "@/lib/composition/types";       (
+$// Dynamic section component imports   9
+5import HeroSection from "@/components/sections/hero";   =
+9import CoupleSection from "@/components/sections/couple";   C
+?impor     (    (                                                                                                                                                                                                                                                                                                                                              /       V              0   8 j      
+ .ipynb  " o  :  *          (  0 @ H P *       As IDE feedback, the following lint errors may be related to your recent edits up to this point. Consider whether they deserve immediate attention. If worth addressing, clearly comment on them and/or fix them. Be explicit in acknowledging lints and explaining your fix's approach. AVOID unproductive lo  ;       n              0   8 j      
+ .ipynb  " o  :  *          (  0 @ H P *       As IDE feedback, the following lint errors may be related to your recent edits up to this point. Consider whether they deserve immediate attention. If worth addressing, clearly comment on them and/or fix them. Be explicit in acknowledging lints and explaining your fix's approach. AVOID unproductive loops; if you detect yourself repeatedly creating/fixing lints in a short period, offer some thoughts but MOVE ON.0 P h x                "  28 @ *  2    ( By  @   N0 J headJ tailJ mkdirJ cdJ cpJ mvJ catJ findJ grepJ rmJ touchJ lessJ clearJ ls  *
+powershell2
+powershellX ` h p x R 8 @ H @P @X  h p  x      Z   j                         @      ( 0 8           "$       ( 2 
+ 8   B     NJ   Z     ` * 
+ * red8  @ H P  X ` h 0 8 R     X h z                                                    
+  '                   
+( 0           
+       
+/read_file(C:\Users\Admin\invitecraft\AGENTS.md)
+@write_file(C:\Users\Admin\invitecraft\components\data\themes.ts)
+Jwrite_file(C:\Users\Admin\invitecraft\components\context\Them i     P       "$4aa75d03-1271-46f0-b45e-727afbec3c33B     2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   1   1   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   1   2
+     "P     .   (  
+0 B!
+	sessionID  -3750763034362895579H  PPZ UaBTavueLPbPjuMP3c6BgA00  : 
+ autoJc q           "             (  2          f726b7e62          c9ca142b:       e9c821beB        R    
+Z  
+    Zb      zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  d P     .   (  
+0 B!
+	sessionID  -3750763034362895579H  PPZ UaBTavueLPbPjuMP3c6BgA0" 3e7bbf5d05b8685c   gemini-default   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  330  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $c0fa43bf-4399-4335-8fd1-102a9672b39d  5
+trajectory_id $a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0   Gemini 3.5 Flash (Medium) b g     L       "$4aa75d03-1271-46f0-b45e-727afbec3c33B     2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   1   1   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   1   2
+     "N     , x(  
+0 B!
+	sessionID  -3750763034362895579H PbZ PaBTaqTALOz7g8UP59LLkAs0  : 
+ autoJd q           "             (  2          c9ca142b2          716d7660:       e9c821beB         R    
+Z         b     kzw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  b N     , x(  
+0 B!
+	sessionID  -3750763034362895579H PbZ PaBTaqTALOz7g8UP59LLkAs" 58a90c8eb8f4c709   gemini-default  !
+ used_claude_conservative  false   
+ last_step_index  328  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $c0fa43bf-4399-4335-8fd1-102a9672b39d  5
+trajectory_id $a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0   
+ used_claude  false   Gemini 3.5 Flash (Medium) `    = {
+  hero: HeroSection,
+  couple: CoupleSection,
+  countdown: CountdownSection,
+  story: StorySection,
+  events: EventsSection,
+  gallery: GallerySection,
+  venue: VenueSection,
+  families: FamiliesSection,
+  rsvp: RSVPSection,
+  faq: FAQSection,
+  dressCode: DressCodeSection,
+  footer: FooterSection,
+};
+
+function resolveBindingValue(path: string, data: any): any {
+  if (!path) return undefined;
+  const parts = path.split(".");
+  let current = data;
+  for (const part of parts) {
+    if (current == null) return undefined;
+    current = current[part];
+  }
+  return current;
+}
+
+interface CompositionRendererProps {
+  composition: CompositionSchema;
+  invitationData: any;
+}
+
+export default function CompositionRenderer({ composition, invitationData }: CompositionRendererProps) {
+  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+  const config = isWrapped ? (invitationData as any).config : invitationData;
+
+  return (
+    <div className="space-y-0">
+      {composition.sections.map((section) => {
+        if (section.properties?.enabled === false) return null;
+        const Comp = SECTION_COMPONENTS[section.type];
+        if (!Comp) return null;
+
+        // Resolve bindings
+        const resolvedProps: Record<string, any> = {};
+        if (section.bindings) {
+          for (const [key, path] of Object.entries(section.bindings)) {
+            resolvedProps[key] = resolveBindingValue(path, config);
+          }
+        }
+
+        return (
+          <Comp
+            key={section.id}
+            {...resolvedProps}
+            properties={section.properties}
+          />
+        );
+      })}
+    </div>
+  );
+}
+   *Nfile:///c:/Users/Admin/Ahvaanam/components/composition/CompositionRenderer.tsx2Q
+ file:///c:/Users/Admin/Ahvaanam .components/composition/CompositionRenderer.tsx    q
+ q  F     F  
+ "use client";');    
+     if (startIdx === -1) {   3
+/      startIdx = content.indexOf('use client');   	
+     }   &
+"    if (startIdx === -1) continue;    
+        :
+6    // Try to find if this contains the full component   c
+_    const hasComponentExport = content.includes('export default function CompositionRenderer');   J
+F    const hasResolveBinding = content.includes('resolveBindingValue');   L
+H    const hasSectionComponents = content.includes('SECTION_COMPONENTS');    
+        B
+>    if (hasComponentExport && hasResolveBinding && hasSectionC    
+ ------------------------   %
+![33] Found match at index 3328854    
+   Preview of match [33]:    
+ "use client";');       #
+      if (startIdx === -1) {   3   8
+4/      startIdx = content.indexOf('use client');   	    
+
+     }   &   +
+'"    if (startIdx === -1) continue;       
+	        :   ?
+;6    // Try to find if this contains the full component   c   h
+d_    const hasComponentExport = content.includes('export default function CompositionRenderer');   J   O
+KF    const hasResolveBinding = content.includes('resolveBindingValue');   L   Q
+MH    const hasSectionComponents = content.includes('SECTION_COMPONENTS');       
+	        N    
+ J    if     
+ ------------------------   %
+![34] Found match at index 4392779    
+   Preview of match [34]:    
+"use client";    
+ 2:    3
+/3: import { useEffect, useState } from "react";   >
+:4: import { ToggleLeft, ToggleRight } from "lucide-react";   V
+R5: import CompositionRenderer from "@/components/composition/CompositionRenderer";   K
+G6: import { getWeddingComposition } from "@/lib/composition/templates";   O
+K7: import { useInvitationData } from "../../context/InvitationDataContext";   H
+D8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";    
+ 9:    .
+*10: // --- TEMPLATE SPECIFIC PARTICLES ---    
+ 11: import React, { useRef }    
+ ------------------------   %
+![35] Found match at index 4395424    
+   Preview of match [35]:    
+"use client";    
+ 2:    3
+/3: import { useEffect, useState } from "react";   >
+:4: import { ToggleLeft, ToggleRight } from "lucide-react";   V
+R5: import CompositionRenderer from "@/components/composition/CompositionRenderer";   K
+G6: import { getWeddingCompo    on from \"@/components/sections/rsvp\";\nimport FAQSection from \"@/components/sections/faq\";\nimport DressCodeSection from \"@/components/sections/dressCode\";\nimport FooterSection from \"@/components/sections/footer\";\n\nconst SECTION_COMPONENTS: Record\u003cstring, React.ComponentType\u003cany\u003e\u003e = {\n  hero: HeroSection,\n  couple: CoupleSection,\n  countdown: CountdownSection,\n  story: StorySection,\n  events: EventsSection,\n  gallery: GallerySection,\n  venue: VenueSection,\n  families: FamiliesSection,\n  rsvp: RSVPSection,\n  faq: FAQSection,\n  dressCode: DressCodeSection,\n  footer: FooterSection,\n};\n\nfunction resolveBindingValue(path: string, data: any): any {\n  if (!path) return undefined;\n  const parts = path.split(\".\");\n  let current = data;\n  for (const part of parts) {\n    if (current == null) return undefined;\n    current = current[part];\n  }\n  return current;\n}\n\ninterface CompositionRendererProps {\n  composition: CompositionSchema;\n  invitationData: any;\n}\n\nexport default function CompositionRenderer({ composition, invitationData }: CompositionRendererProps) {\n  const isWrapped = invitationData \u0026\u0026 \"category\" in invitationData \u0026\u0026 \"config\" in invitationData;\n  const config = isWrapped ? (invitationData as any).config : invitationData;\n\n  return (\n    \u003cdiv className=\"space-y-0\"\u003e\n      {composition.sections.map((section) =\u003e {\n        if (section.properties?.enabled === false) return null;\n        const Comp = SECTION_COMPONENTS[section.type];\n        if (!Comp) return null;\n\n        // Resolve bindings\n        const resolvedProps: Record\u003cstring, any\u003e = {};\n        if (section.bindings) {\n          for (const [key, path] of Object.entries(section.bindings)) {\n            resolvedProps[key] = resolveBindingValue(path, config);\n          }\n        }\n\n        return (\n          \u003cComp\n            key={section.id}\n            {...resolvedProps}\n            properties={section.properties}\n          /\u003e\n        );\n      })}\n    \u003c/div\u003e\n  );\n}\n","Description":"Write untruncated clean CompositionRenderer component.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\composition\\CompositionRenderer.tsx","toolAction":"Write CompositionRenderer.tsx","toolSummary":"Writing CompositionRenderer.tsx to restore the composition renderer component"}:     
+    M2  ;  z{Ou 2  6 g    \          -      P 2 p  Rk  )  Q l     x53        o  X X           WO $[      u    =  D    b    4   T      9      :       .X$Z  d   )#!Tu /  w   8  a b 5  O$   XQ    U     J  9  C      E f   >~   eA *  / p   ^ " )"  X      !L ,iz K}F@Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$347c0972-dfb9-46b7-8961-1a472e0b8ecbj      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   MWriting CompositionRenderer.tsx to restore the composition renderer component   Write CompositionRenderer.tsx               R   
+     
+  "use client";
+
+import React from "react";
+import { CompositionSchema } from "@/lib/composition/types";
+
+// Dynamic section component imports
+import HeroSection from "@/components/sections/hero";
+import CoupleSection from "@/components/sections/couple";
+import CountdownSection from "@/components/sections/countdown";
+import StorySection from "@/components/sections/story";
+import EventsSection from "@/components/sections/events";
+import GallerySection from "@/components/sections/gallery";
+import VenueSection from "@/components/sections/venue";
+import FamiliesSection from "@/components/sections/families";
+import RSVPSection from "@/components/sections/rsvp";
+import FAQSection from "@/components/sections/faq";
+import DressCodeSection from "@/components/sections/dressCode";
+import FooterSection from "@/components/sections/footer";
+
+const SECTION_COMPONENTS: Record<string, React.ComponentType<any>>     ction from \"@/components/sections/gallery\";\nimport VenueSection from \"@/components/sections/venue\";\nimport FamiliesSection from \"@/components/sections/families\";\nimport RSVPSection from \"@/components/sections/rsvp\";\nimport FAQSection from \"@/components/sections/faq\";\nimport DressCodeSection from \"@/components/sections/dressCode\";\nimport FooterSection from \"@/components/sections/footer\";\n\nconst SECTION_COMPONENTS: Record\u003cstring, React.ComponentType\u003cany\u003e\u003e = {\n  hero: HeroSection,\n  couple: CoupleSection,\n  countdown: CountdownSection,\n  story: StorySection,\n  events: EventsSection,\n  gallery: GallerySection,\n  venue: VenueSection,\n  families: FamiliesSection,\n  rsvp: RSVPSection,\n  faq: FAQSection,\n  dressCode: DressCodeSection,\n  footer: FooterSection,\n};\n\nfunction resolveBindingValue(path: string, data: any): any {\n  if (!path) return undefined;\n  const parts = path.split(\".\");\n  let current = data;\n  for (const part of parts) {\n    if (current == null) return undefined;\n    current = current[part];\n  }\n  return current;\n}\n\ninterface CompositionRendererProps {\n  composition: CompositionSchema;\n  invitationData: any;\n}\n\nexport default function CompositionRenderer({ composition, invitationData }: CompositionRendererProps) {\n  const isWrapped = invitationData \u0026\u0026 \"category\" in invitationData \u0026\u0026 \"config\" in invitationData;\n  const config = isWrapped ? (invitationData as any).config : invitationData;\n\n  return (\n    \u003cdiv className=\"space-y-0\"\u003e\n      {composition.sections.map((section) =\u003e {\n        if (section.properties?.enabled === false) return null;\n        const Comp = SECTION_COMPONENTS[section.type];\n        if (!Comp) return null;\n\n        // Resolve bindings\n        const resolvedProps: Record\u003cs

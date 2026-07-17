@@ -1,0 +1,94 @@
+acyOrchestrator` component from the `orchestrator` folder. This preserves all existing import paths with zero code churn.2(bot-8f888591-857d-41de-9fbc-d74abce541c3B  I will rewrite `components/shared/LegacyOrchestrator.tsx` to directly re-export our centralized `LegacyOrchestrator` component from the `orchestrator` folder. This preserves all existing import paths with zero code churn.`  k C      N      ~   
+               "  
+ 560byq5e write_to_file   {"CodeContent":"\"use client\";\n\nimport React, { useState, useEffect } from \"react\";\nimport { useInvitationData } from \"../context/InvitationDataContext\";\n\nimport AudioOrchestrator from \"./AudioOrchestrator\";\nimport BackgroundEffects from \"./BackgroundEffects\";\nimport LoadingExperience from \"./LoadingExperience\";\nimport SectionPipeline from \"./SectionPipeline\";\nimport TemplateFrame from \"./TemplateFrame\";\nimport ScrollController from \"./ScrollController\";\nimport ShareController from \"./ShareController\";\n\ninterface LegacyOrchestratorProps {\n  themeId: string;\n  onBackToHub: () =\u003e void;\n  particlesComponent?: React.ComponentType\u003cany\u003e;\n  themeBgClass?: string;\n  loadingTitle?: string;\n  loadingSubtitle?: string;\n}\n\nexport default function LegacyOrchestrator({\n  themeId,\n  onBackToHub,\n  particlesComponent,\n  themeBgClass = \"bg-stone-900\",\n  loadingTitle = \"Invitation\",\n  loadingSubtitle = \"Celebrating Love\"\n}: LegacyOrchestratorProps) {\n  const { invitationData } = useInvitationData();\n  const [loading, setLoading] = useState(true);\n\n  useEffect(() =\u003e {\n    if (invitationData) {\n      const timer = setTimeout(() =\u003e setLoading(false), 1200);\n      return () =\u003e clearTimeout(timer);\n    }\n  }, [invitationData]);\n\n  if (!invitationData) return null;\n\n  const isWrapped = invitationData \u0026\u0026 \"category\" in invitationData \u0026\u0026 \"config\" in invitationData;\n  const invitation = isWrapped ? (invitationData as any).config : invitationData;\n  const sectionOrder = invitation.sectionOrder || [];\n\n  return (\n    \u003cScrollController\u003e\n      \u003cTemplateFrame themeBgClass={themeBgClass} onBackToHub={onBackToHub}\u003e\n        {/* Loading overlay screen */}\n        \u003cLoadingExperience loading={loading} title={loadingTitle} subtitle={loadingSubtitle} /\u003e\n\n        {/* Particles canvas */}\n        \u003cBackgroundEffects\n          showParticles={invitation.themeSettings?.showParticles}\n          particlesComponent={particlesComponent}\n        /\u003e\n\n        {/* Audio background playback */}\n        \u003cAudioOrchestrator\n          musicFile={invitation.music?.file}\n          musicEnabled={invitation.music?.enabled}\n        /\u003e\n\n        {/* Share buttons */}\n        \u003cShareController /\u003e\n\n        {/* Sections pipeline render block */}\n        \u003cSectionPipeline\n          sectionOrder={sectionOrd           {/* Sections pipeline render block */}\n        \u003cSectionPipeline\n          sectionOrder={sectionOrder}\n          invitation={invitation}\n          themeId={themeId}\n        /\u003e\n      \u003c/TemplateFrame\u003e\n    \u003c/ScrollController\u003e\n  );\n}\nexport { default as AudioOrchestrator } from \"./AudioOrchestrator\";\nexport { default as BackgroundEffects } from \"./BackgroundEffects\";\nexport { default as LoadingExperience } from \"./LoadingExperience\";\nexport { default as SectionPipeline } from \"./SectionPipeline\";\nexport { default as TemplateFrame } from \"./TemplateFrame\";\nexport { default as ScrollController } from \"./ScrollController\";\nexport { default as ShareController } from \"./ShareController\";\n","Description":"Create master index coordinator to bind all components together.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\orchestrator\\index.tsx","toolAction":"Create index.tsx coordinator","toolSummary":"Creating orchestrators coordinator index inside components/shared/orchestrator/index.tsx"}:     
+    M2     |  f$    p ha  x  "    1 A f  U ] \9_ -%     s" ?    ) rv6 +   1       ^   \    L  X  L 0 _f  9!   HP    X?;     =3  % - j   !   z v s |J    k      k"     ) <p    ];         $   |NX   Z Ml  w Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2           N:           NB           TX  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                M      3
+               N
+               P
+               T  XCreating orchestrators coordinator index inside components/shared/orchestrator/index.tsx   Create index.tsx coordinator             OR 2
+     
+  "use client";
+
+import React, { useState, useEffect } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+
+import AudioOrchestrator from "./AudioOrchestrator";
+import BackgroundEffects from "./BackgroundEffects";
+import LoadingExperience from "./LoadingExperience";
+import SectionPipeline from "./SectionPipeline";
+import TemplateFrame from "./TemplateFrame";
+import ScrollController from "./ScrollController";
+import ShareController from "./ShareController";
+
+interface LegacyOrchestratorProps {
+  themeId: string;
+  onBackToHub: () => void;
+  particlesComponent?: React.ComponentType<any>;
+  themeBgClass?: string;
+  loadingTitle?: string;
+  loadingSubtitle?: string;
+}
+
+export default function LegacyOrchestrator({
+  themeId,
+  onBackToHub,
+  particlesComponent,
+  themeBgClass = "bg-stone-900",
+  loadingTitle = "Invitation",
+  loadingSubtitle = "Celebrating Love"
+}: LegacyOrchestratorProps) {
+  const { invitationData } = useInvitationData();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (invitationData) {
+      const timer = setTimeout(() => setLoading(false), 1200);
+      return () => clearTimeout(timer);
+    }
+  }, [invitationData]);
+
+  if (!invitationData) return null;
+
+  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+  const invitation = isWrapped ? (invitationData as any).config : invitationData;
+  const sectionOrder = invitation.sectionOrder || [];
+
+  return (
+    <ScrollController>
+      <TemplateFrame themeBgClass={themeBgClass} onBackToHub={onBackToHub}>
+        {/* Loading overlay screen */}
+        <LoadingExperience loading={loading} title={loadingTitle} subtitle={loadingSubtitle} />
+
+        {/* Particles canvas */}
+        <BackgroundEffects
+          showParticles={invitation.themeSettings?.showParticles}
+          particlesComponent={particlesComponent}
+        />
+
+        {/* Audio background playback */}
+        <AudioOrchestrator
+          musicFile={invitation.music?.file}
+          musicEnabled={invitation.music?.enabled}
+        />
+
+        {/* Share buttons */}
+        <ShareController />
+
+        {/* Sections pipeline render block */}
+        <SectionPipeline
+          sectionOrder={sectionOrder}
+          invitation={invitation}
+          themeId=    .2(bot-76472af7-ec62-4ede-924e-6fa4fed9c779:  
+ 560byq5e write_to_file   {"CodeContent":"\"use client\";\n\nimport React, { useState, useEffect } from \"react\";\nimport { useInvitationData } from \"../context/InvitationDataContext\";\n\nimport AudioOrchestrator from \"./AudioOrchestrator\";\nimport BackgroundEffects from \"./BackgroundEffects\";\nimport LoadingExperience from \"./LoadingExperience\";\nimport SectionPipeline from \"./SectionPipeline\";\nimport TemplateFrame from \"./TemplateFrame\";\nimport ScrollController from \"./ScrollController\";\nimport ShareController from \"./ShareController\";\n\ninterface LegacyOrchestratorProps {\n  themeId: string;\n  onBackToHub: () =\u003e void;\n  particlesComponent?: React.ComponentType\u003cany\u003e;\n  themeBgClass?: string;\n  loadingTitle?: string;\n  loadingSubtitle?: string;\n}\n\nexport default function LegacyOrchestrator({\n  themeId,\n  onBackToHub,\n  particlesComponent,\n  themeBgClass = \"bg-stone-900\",\n  loadingTitle = \"Invitation\",\n  loadingSubtitle = \"Celebrating Love\"\n}: LegacyOrchestratorProps) {\n  const { invitationData } = useInvitationData();\n  const [loading, setLoading] = useState(true);\n\n  useEffect(() =\u003e {\n    if (invitationData) {\n      const timer = setTimeout(() =\u003e setLoading(false), 1200);\n      return () =\u003e clearTimeout(timer);\n    }\n  }, [invitationData]);\n\n  if (!invitationData) return null;\n\n  const isWrapped = invitationData \u0026\u0026 \"category\" in invitationData \u0026\u0026 \"config\" in invitationData;\n  const invitation = isWrapped ? (invitationData as any).config : invitationData;\n  const sectionOrder = invitation.sectionOrder || [];\n\n  return (\n    \u003cScrollController\u003e\n      \u003cTemplateFrame themeBgClass={themeBgClass} onBackToHub={onBackToHub}\u003e\n        {/* Loading overlay screen */}\n        \u003cLoadingExperience loading={loading} title={loadingTitle} subtitle={loadingSubtitle} /\u003e\n\n        {/* Particles canvas */}\n        \u003cBackgroundEffects\n          showParticles={invitation.themeSettings?.showParticles}\n          particlesComponent={particlesComponent}\n        /\u003e\n\n        {/* Audio background playback */}\n        \u003cAudioOrchestrator\n          musicFile={invitation.music?.file}\n          musicEnabled={invitation.music?.enabled}\n        /\u003e\n\n        {/* Share buttons */}\n        \u003cShareController /\u003e\n\n        {/* Sections pipeline render block */}\n        \u003cSectionPipeline\n          sectionOrder={sectionOrder}\n          invitation={invitation}\n          themeId={themeId}\n        /\u003e\n      \u003c/TemplateFrame\u003e\n    \u003c/ScrollController\u003e\n  );\n}\nexport { default as AudioOrchestrator } from \"./AudioOrchestrator\";\nexport { default as BackgroundEffects } from \"./BackgroundEffects\";\nexport { default as LoadingExperience } from \"./LoadingExperience\";\nexport { default as SectionPipeline } from \"./SectionPipeline\";\nexport { default as TemplateFrame } from \"./TemplateFrame\";\nexport { default as ScrollController } from \"./ScrollController\";\nexport { default as ShareController } from \"./ShareController\";\n","Description":"Create master index coordinator to bind all components together.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\orchestrator\\index.tsx","toolAction":"Create index.tsx coordinator","toolSummary":"Creating orchestrators coordinator index inside components/shared/orchestrator/index.tsx"}:     
+    M2     |  f$    p ha  x  "    1 A f  U ] \9_ -%     s" ?    ) rv6 +   1       ^   \    L  X  L 0 _f  9!   HP    X?;     =3  % - j   !   z v s |J    k      k"     ) <p    ];         $   |NX   Z Ml  w Jwrite_to_fileB  I will create the master coordinator entry file at `components/shared/orchestrator/index.tsx` to bind the sub-orchestrators (`AudioOrchestrator`, `BackgroundEffects`, `LoadingExperience`, `SectionPipeline`, `TemplateFrame`, `ScrollController`, `ShareController`) together into a single, clean LegacyOrchestrator component.`    }er}\n          invitation={invitation}\n          themeId={themeId}\n        /\u003e\n      \u003c/TemplateFrame\u003e\n    \u003c/ScrollController\u003e\n  );\n}\nexport { default as AudioOrchestrator } from \"./AudioOrchestrator\";\nexport { default as BackgroundEffects } from \"./BackgroundEffects\";\nexport { default as LoadingExperience } from \"./LoadingExperience\";\nexport { default as SectionPipeline } from \"./SectionPipeline\";\nexport { default as TemplateFrame } from \"./TemplateFrame\";\nexport { default as ScrollController } from \"./ScrollController\";\nexport { default as ShareController } from \"./ShareController\";\n","Description":"Create master index coordinator to bind all components together.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\orchestrator\\index.tsx","toolAction":"Create index.tsx coordinator","toolSummary":"Creating orchestrators coordinator index inside components/shared/orchestrator/index.tsx"}:     
+    M2     |  f$    p ha  x  "    1 A f  U ] \9_ -%     s" ?    ) rv6 +   1       ^   \    L  X  L 0 _f  9!   HP    X?;     =3  % - j   !   z v s |J    k      k"     ) <p    ];         $   |NX   Z Ml  w Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2           N:           NB           TX  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                M      3
+               N
+               P
+               T  XCreating orchestrators coordinator index inside components/shared/orchestrator/index.tsx   Create index.tsx coordinator             O    *  
+               "  
+ 560byq5e write_to_file   {"CodeContent":"\"use client\";\n\nimport React, { useState, useEffect } from \"react\";\nimport { useInvitationData } from \"../context/InvitationDataContext\";\n\nimport AudioOrchestrator from \"./AudioOrchestrator\";\nimport BackgroundEffects from \"./BackgroundEffects\";\nimport LoadingExperience from \"./LoadingExperience\";\nimport SectionPipeline from \"./SectionPipeline\";\nimport TemplateFrame from \"./TemplateFrame\";\nimport ScrollController from \"./ScrollController\";\nimport ShareController from \"./ShareController\";\n\ninterface LegacyOrchestratorProps {\n  themeId: string;\n  onBackToHub: () =\u003e void;\n  particlesComponent?: React.ComponentType\u003cany\u003e;\n  themeBgClass?: string;\n  loadingTitle?: string;\n  loadingSubtitle?: string;\n}\n\nexport default function LegacyOrchestrator({\n  themeId,\n  onBackToHub,\n  particlesComponent,\n  themeBgClass = \"bg-stone-900\",\n  loadingTitle = \"Invitation\",\n  loadingSubtitle = \"Celebrating Love\"\n}: LegacyOrchestratorProps) {\n  const { invitationData } = useInvitationData();\n  const [loading, setLoading] = useState(true);\n\n  useEffect(() =\u003e {\n    if (invitationData) {\n      const timer = setTimeout(() =\u003e setLoading(false), 1200);\n      return () =\u003e clearTimeout(timer);\n    }\n  }, [invitationData]);\n\n  if (!invitationData) return null;\n\n  const isWrapped = invitationData \u0026\u0026 \"category\" in invitationData \u0026\u0026 \"config\" in invitationData;\n  const invitation = isWrapped ? (invitationData as any).config : invitationData;\n  const sectionOrder = invitation.sectionOrder || [];\n\n  return (\n    \u003cScrollController\u003e\n      \u003cTemplateFrame themeBgClass={themeBgClass} onBackToHub={onBackToHub}\u003e\n        {/* Loading overlay screen */}\n        \u003cLoadingExperience loading={loading} title={loadingTitle} subtitle={loadingSubtitle} /\u003e\n\n        {/* Particles canvas */}\n        \u003cBackgroundEffects\n          showParticles={invitation.themeSettings?.showParticles}\n          particlesComponent={particlesComponent}\n        /\u003e\n\n        {/* Audio background playb

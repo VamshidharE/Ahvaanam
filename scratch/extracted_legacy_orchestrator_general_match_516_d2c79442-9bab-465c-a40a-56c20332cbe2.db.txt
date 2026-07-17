@@ -1,0 +1,270 @@
+use client";
+2: 
+3: import { useEffect, useState } from "react";
+4: import { ToggleLeft, ToggleRight } from "lucide-react";
+5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+6: import { getWeddingComposition } from "@/lib/composition/templates";
+7: import { useInvitationData } from "../../context/InvitationDataContext";
+8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+9: 
+10: // --- TEMPLATE SPECIFIC PARTICLES ---
+11: import React, { useRef } from "react";
+12: const floralgardenParticles = () => null;
+13: 
+14: 
+15: export default function FloralGardenLayout({ onBackToHub }: { onBackToHub: () => void }) {
+16:   const { invitationData } = useInvitationData();
+17:   const [useCompositionRenderer, setUseCompositionRenderer] = useState(false);
+18: 
+19:   useEffect(() => {
+20:     if (typeof window !== "undefined"    eSelectorHub.tsx", "sizeBytes":"6244"}
+{"name":"category-card.tsx", "sizeBytes":"2805"}
+{"name":"orchestrator", "isDir":true}
+{"name":"theme-card.tsx", "sizeBytes":"2235"}
+
+Summary: This directory contains 1 subdirectories and 10 files.   : p61t41od       
+(bot-6b940e7b-73ad-4f31-828f-262e8f2b05a6   iI will list the contents of `components/shared/orchestrator` to see if `LegacyOrchestrator` is inside it. r2  
+ 7m8z3jtk  list_dir   {"DirectoryPath":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\orchestrator","toolAction":"List orchestrator directory","toolSummary":"Listing files in components/shared/orchestrator directory"}:     
+    M2 -   .         2  _ SR n w\           o n%     b+\!H  h  O  t  '  ?   lf       &     4T  r?         F   {    ] b     gk 8  &) ,  	 ;b ^Pm h 3 J    3   J list_dir     g   SCreated At: 2026-07-12T08:49:32Z
+Completed At: 2026-07-12T08:49:32Z
+Empty directory !: 7m8z3jtk       
+(bot-e43c0370-5e5e-4b6a-be95-0babc8b20eb0   HI will run `git status` to see what files have been modified or deleted.   2  
+ q833wbr1  run_command   {"CommandLine":"git status","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":2000,"toolAction":"Check git status","toolSummary":"Checking git status to see deleted or modified files"}:     
+    M2 ?         1keu_    U C      u   ^    $   	  g      M  uD7!J0_ycx {q:8        P      =Khvu           }   N  B  Mh.  _U 5h r            4    eg2    2L     +      7  U $    	^  b }  b
+bB |]  [2  #w    @      p R   ` v"Xd |      r       
+:        f  x    U     N x  G    3\ $ PK8   4 K   Z   n  Or   
+  +   XyF   	       |^:   > ( #z S @ .E   r h  1     t  K x nLh M     3 t        Ck  . N  $[XQ   ^   { 8 	  T".@p  "	O   Az @  s  H a ]#  w\Mu '"I4  y1 :   4  o}J run_command            Created At: 2026-07-12T08:49:36Z
+Completed At: 2026-07-12T08:49:36Z
+
+				The command completed successfully.
+				Output:
+				On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .gitignore
+	modified:   app/globals.css
+	modified:   app/layout.tsx
+	modified:   app/page.tsx
+	deleted:    components/Footer.tsx
+	deleted:    components/Hero.tsx
+	deleted:    components/background/Background.tsx
+	deleted:    components/background/Corners.tsx
+	deleted:    components/background/Glow.tsx
+	deleted:    components/background/LightRays.tsx
+	deleted:    components/data/invitation.ts
+	deleted:    components/effects/GoldDust.tsx
+	deleted:    components/effects/Petals.tsx
+	deleted:    components/hero/CouplePhoto.tsx
+	deleted:    components/hero/RoyalFrame.tsx
+	deleted:    components/sections/Countdown.tsx
+	deleted:    components/sections/Gallery.tsx
+	deleted:    components/sections/PremiumGallery.tsx
+	deleted:    components/sections/RSVP.tsx
+	deleted:    components/sections/Timeline.tsx
+	deleted:    components/sections/Venue.tsx
+	deleted:    components/sections/WeddingDetails.tsx
+	deleted:    components/shared/MusicButton.tsx
+	deleted:    components/shared/ShareButton.tsx
+	modified:   next.config.ts
+	modified:   package-lock.json
+	modified:   package.json
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	app/about/
+	app/admin/
+	app/api/
+	app/auth/
+	app/checkout/
+	app/contact/
+	app/create/
+	app/dashboard/
+	app/demo/
+	app/forgot-password/
+	app/how-it-works/
+	app/invites/
+	app/login/
+	app/logout/
+	app/not-found.tsx
+	app/portfolio/
+	app/pricing/
+	app/privacy/
+	app/reset-password/
+	app/services/
+	app/signup/
+	app/templates/
+	app/terms/
+	components/composition/
+	components/context/
+	components/data/invites/
+	components/data/themes.ts
+	components/home/
+	components/rsvp/
+	components/sections/SectionRenderer.tsx
+	components/sections/celebrant/
+	components/sections/countdown/
+	components/sections/couple/
+	components/sections/dressCode/
+	components/sections/events/
+	components/sections/families/
+	components/sections/faq/
+	components/sections/footer/
+	components/sections/gallery/
+	components/sections/hero/
+	     $    $                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               0      Z              0   8 j      
+ .ipynb  " o  :  *          (  0 @ H P *       As IDE feedback, the following lint errors may be related to your recent edits up to this point. Consider whether they deserve immediate attention. If worth addressing, clearly comment on them and/or fix them. Be explicit in acknowledging lints and explaining your fix's approach. AVOID unproductive loops; if you detect yourself repeatedly creating/fixing lints in a short period, offer some thoughts but MOVE ON.0 P h x                "  28 @ *  2     j     R       "$4221b728-5dd5-4290-b663-2edbd364a56cB     1   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   0   2   1   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2
+     "O         (  	0 B!
+	sessionID  -3750763034362895579HkPVZ clNTavuADf7cg8UPpKn1oQc0  : 
+ autoJe              "             (  2          d121b1ad2          103578bd:       e9c821beB         R    
+Z         b     Dzw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  c O         (  	0 B!
+	sessionID  -3750763034362895579HkPVZ clNTavuADf7cg8UPpKn1oQc" 8aaeff69b527d9d3   gemini-default   
+ last_step_index  837  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $a14da8b9-31e7-4946-a588-45ca9a302e76  5
+trajectory_id $238586bc-fc92-4743-a54e-2cd8faa721f3   
+ used_claude  false  !
+ used_claude_conservative  false   Gemini 3.5 Flash (Medium) c j     R       "$4221b728-5dd5-4290-b663-2edbd364a56cB     1   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   0   2   1   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2
+     "P         (  	0 B!
+	sessionID  -3750763034362895579H  PfZ blNTaq3nMZ3tg8UP6Y_nuAc0  : 
+ autoJc              "           W(  2          103578bd2          f66c2902:       e9c821beB       {R    
+Z         b     Bzw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  d P         (  	0 B!
+	sessionID  -3750763034362895579H  PfZ blNTaq3nMZ3tg8UP6Y_nuAc" 31a9dc9535dbff4f   gemini-default  5
+trajectory_id $238586bc-fc92-4743-a54e-2cd8faa721f3   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  835  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $a14da8b9-31e7-4946-a588-45ca9a302e76   Gemini 3.5 Flash (Medium) c    vaanam\components\templates\lotus-serenity\Layout.tsx
+ 
+ line_number 	       M@
++
+ line_content          <LegacyOrchestrator
+  *  
+J
+ path B @c:\Users\Admin\Ahvaanam\components\templates\marigold\Layout.tsx
+ 
+ line_number 	        @
+S
+ line_content C Aimport LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+  *  
+J
+ path B @c:\Users\Admin\Ahvaanam\components\templates\marigold\Layout.tsx
+ 
+ line_number 	       M@
++
+ line_content          <LegacyOrchestrator
+  *  
+Q
+ path I Gc:\Users\Admin\Ahvaanam\components\templates\modern-birthday\Layout.tsx
+ 
+ line_number 	        @
+S
+ line_content C Aimport LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+  *  
+Q
+ path I Gc:\Users\Admin\Ahvaanam\components\templates\modern-birthday\Layout.tsx
+ 
+ line_number 	       M@
++
+ line_content          <LegacyOrchestrator
+  *  
+K
+ path C Ac:\Users\Admin\Ahvaanam\components\templates\moonlight\Layout.tsx
+ 
+ line_number 	        @
+S
+ line_content C Aimport LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+  *  
+K
+ path C Ac:\Users\Admin\Ahvaanam\components\templates\moonlight\Layout.tsx
+ 
+ line_number 	       M@
++
+ line_content          <LegacyOrchestrator
+  *  
+O
+ path G Ec:\Users\Admin\Ahvaanam\components\templates\palace-luxury\Layout.tsx
+ 
+ line_number 	        @
+S
+ line_content C Aimport LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+  *  
+O
+ path G Ec:\Users\Admin\Ahvaanam\components\templates\palace-luxury\Layout.tsx
+ 
+ line_number 	      ``@
++
+ line_content          <LegacyOrchestrator
+  *  
+I
+ path A ?c:\Users\Admin\Ahvaanam\components\templates\peacock\Layout.tsx
+ 
+ line_number 	        @
+S
+ line_content C Aimport LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+  *  
+I
+ path A ?c:\Users\Admin\Ahvaanam\components\templates\peacock\Layout.tsx
+ 
+ line_number 	       M@
++
+ line_content          <LegacyOrchestrator
+  *  
+N
+ path F Dc:\Users\Admin\Ahvaanam\components\templates\royal-temple\Layout.tsx
+ 
+ line_number 	        @
+S
+ line_content C Aimport LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+  *  
+N
+ path F Dc:\Users\Admin\Ahvaanam\components\templates\royal-temple\Layout.tsx
+ 
+ line_number 	       M@
++
+ line_content          <LegacyOrchestrator
+  *  
+N
+ path F Dc:\Users\Admin\Ahvaanam\components\templates\south-indian\Layout.tsx
+ 
+ line_number 	        @
+S
+ line_content C Aimport LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+  *  
+N
+ path F Dc:\Users\Admin\Ahvaanam\components\templates\south-indian\Layout.tsx
+ 
+ line_number 	       M@
++
+ line_content          <LegacyOrchestrator   
+(bot-70d147cf-5de0-4106-9ed6-dd82e06d4420   NI will list the contents of `components/shared` to see what files exist there.   2  
+ p61t41od  list_dir   {"DirectoryPath":"c:\\Users\\Admin\\Ahvaanam\\components\\shared","toolAction":"List shared components","toolSummary":"Listing files in components/shared directory"}:     
+    M2 B0      'B R =E   y @L           #    4  c   = L' p    o  5         ;  I  .   yG s         QP       N  &   v   S /   Y q:3 x"q  a /     Z]      )   !     7  n          }   4 !}  qj  l >  z    e   >       ! 4s   P       %6DJ    +  %  j   =  g      5   G$   #    V  =<  'C      *z2  H  !     B  h 
+     c 0       ;vI     B "Z 	( G   _F} O d      M3\    `=  [   J  h    ?*Zk  w Y   I   PU [   S    W   nA    C[? = 
+2 9<     n4( nQ   l      jF97  o  _w #z 	 $<*  lc%   f   Z?  |$     @  4>      -  |  w G       < {  9o  9 _   z}
+    s !d /&7   I  F   y      JS `H   ;S  1} g       ^z   a 9  dmR S, Z A x       j  	=     "        ~1    l   2 Z N ' 9 N2 '   w  r1   A"i-    4*  &n     W  i      - F6    )   E  8   LJ list_dir            Created At: 2026-07-12T08:49:29Z
+Completed At: 2026-07-12T08:49:29Z
+{"name":"DeitySymbol.tsx", "sizeBytes":"11366"}
+{"name":"GallerySlider.tsx", "sizeBytes":"3810"}
+{"name":"PageTransitionWrapper.tsx", "sizeBytes":"665"}
+{"name":"ParallaxProviderWrapper.tsx", "sizeBytes":"229"}
+{"name":"ScrollButton.tsx", "sizeBytes":"1558"}
+{"name":"ScrollProgress.tsx", "sizeBytes":"495"}
+{"name":"SectionDivider.tsx", "sizeBytes":"915"}
+{"name":"Them    \heritage\\Layout.tsx","LineNumber":59,"LineContent":"      \u003cLegacyOrchestrator"}
+{"File":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\lotus-serenity\\Layout.tsx","LineNumber":8,"LineContent":"import LegacyOrchestrator from \"../../shared/LegacyOrchestrator\";"}
+{"File":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\lotus-serenity\\Layout.tsx","LineNumber":59,"LineContent":"      \u003cLegacyOrchestrator"}
+{"File":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\marigold\\Layout.tsx","LineNumber":8,"LineContent":"import LegacyOrchestrator from \"../../shared/LegacyOrchestrator\";"}
+{"File":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\marigold\\Layout.tsx","LineNumber":59,"LineContent":"      \u003cLegacyOrchestrator"}
+{"File":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\modern-birthday\\Layout.tsx","LineNumber":8,"LineContent":"import LegacyOrchestrator from \"../../shared/LegacyOrchestrator\";"}
+{"File":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\modern-birthday\\Layout.tsx","LineNumber":59,"LineContent":"      \u003cLegacyOrchestrator"}
+{"File":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\moonlight\\Layout.tsx","LineNumber":8,"LineContent":"import LegacyOrchestrator from \"../../shared/LegacyOrchestrator\";"}
+{"File":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\moonlight\\Layout.tsx","LineNumber":59,"LineContent":"      \u003cLegacyOrchestrator"}
+{"File":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\palace-luxury\\Layout.tsx","LineNumber":8,"LineContent":"import LegacyOrchestrator from \"../../shared/LegacyOrchestrator\";"}
+{"File":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\palace-luxury\\Layout.tsx","LineNumber":131,"LineContent":"      \u003cLegacyOrchestrator"}
+{"File":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\peacock\\L

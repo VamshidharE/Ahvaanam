@@ -1,0 +1,338 @@
+use client";
+
+import React, { useEffect, useState } from "react";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+import MotionWrapper from "@/components/motion/MotionWrapper";
+
+interface CountdownSectionProps {
+  bindings: {
+    title?: string;
+    targetDate?: string;
+    postWeddingMessage?: string;
+  };
+  layoutId?: string;
+  motionId?: string;
+}
+
+export default function CountdownSection({ bindings, layoutId, motionId }: CountdownSectionProps) {
+  const { 
+    title = "Party Countdown", 
+    targetDate = "2026-12-14T19:00:00", 
+    postWeddingMessage = "The Celebration has begun!" 
+  } = bindings;
+
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  con    st [isPassed, setIsPassed] = useState(false);
+
+  useEffect(() => {
+    if (!targetDate) return;
+    const targetTime = new Date(targetDate).getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const difference = targetTime - now;
+      if (difference <= 0) {
+        setIsPassed(true);
+      } else {
+        setIsPassed(false);
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        });
+      }
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, [targetDate]);
+
+  return (
+    <MotionWrapper
+      motionId={motionId}
+      defaultMotionId="luxury-motion"
+      type="reveal"
+      className="w-full"
+    >
+      <LayoutWrapper
+        layoutId={layoutId}
+        defaultLayoutId="story-stack"
+        className="py-20 px-6 border-b border-white/5 text-center select-none"
+        style={{ 
+          fontFamily: "var(--theme-font-body)",
+          color: "var(--theme-text)",
+          background: "var(--theme-card-bg, rgba(255, 255, 255, 0.02))"
+        }}
+      >
+        <div className="max-w-4xl mx-auto space-y-10 w-full">
+          <div className="space-y-2">
+            <h3 
+              className="text-xs uppercase tracking-[3px] font-bold"
+              style={{ 
+                color: "var(--theme-accent)",
+                fontFamily: "var(--theme-font-heading)" 
+              }}
+            >
+              {title}
+            </h3>
+          </div>
+          {isPassed ? (
+            <p 
+              className="text-lg uppercase tracking-[1.5px] font-bold animate-pulse"
+              style={{ color: "var(--theme-accent)" }}
+            >
+              {postWeddingMessage}
+            </p>
+          ) : (
+            <div className="grid grid-cols-4 gap-4 max-w-md mx-auto w-full">
+              {Object.entries(timeLeft).map(([label, value]) => (
+                <div 
+                  key={label} 
+                  className="border border-white/5 py-4 flex flex-col justify-center shadow-xs"
+                  style={{ 
+                    backgroundColor: "var(--theme-card-bg)",
+                    borderColor: "var(--theme-border)",
+                    borderRadius: "var(--theme-radius-card)",
+                    boxShadow: "var(--theme-shadow-card)"
+                  }}
+                >
+                  <span 
+                    className="text-2xl md:text-3xl font-extrabold"
+                    style={{ color: "var(--theme-accent)" }}
+                  >
+                    {value}
+                  </span>
+                  <span 
+                    className="text-[9px] uppercase tracking-[1px] font-bold mt-1"
+                    style={{ color: "var(--theme-secondary-text)" }}
+                  >
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </LayoutWrapper>
+    </MotionWrapper>
+  );
+}
+2             8     
+Dfile:///c:/Users/Admin/Ahvaanam/components/sections/events/index.tsx   "use client";
+
+import React from "react";
+import { Calendar, Clock, MapPin } from "lucide-react";
+
+interface EventItem {
+  enabled?: boolean;
+  icon?: string;
+  title: string;
+  date: string;
+  time: string;
+  venue: string;
+  description?: string;
+}
+
+interface EventsSectionProps {
+  bindings: {
+    events?: EventItem[];
+  };
+}
+
+export default function EventsSection({ bindings }: EventsSectionProps) {
+  const { events = [] } = bindings;
+
+  return (
+    <section className="py-24 px-6 max-w-5xl mx-auto border-b border-white/5 select-none">
+      <div className="space-y-12">
+        <div className="text-center max-w-2xl mx-auto space-y-3">
+          <h2 className="text-xs uppercase tracking-[3px] font-bold text-amber-400">Schedule</h2>
+          <p cla    ssName="text-3xl md:text-4xl font-extrabold uppercase tracking-[0.5px]">Celebration Program</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          {events.map((event, idx) => {
+            if (event.enabled === false) return null;
+            return (
+              <div key={idx} className="bg-white/[0.02] border border-white/5 p-6 rounded-2xl hover:border-purple-500/20 transition-all space-y-4">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">{event.icon || "    "}</span>
+                  <h3 className="text-lg font-bold">{event.title}</h3>
+                </div>
+                <div className="space-y-2 text-xs text-white/60">
+                  <p className="flex items-center gap-2">
+                    <Calendar size={13} className="text-purple-400" /> {event.date}
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <Clock size={13} className="text-purple-400" /> {event.time}
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <MapPin size={13} className="text-purple-400" /> {event.venue}
+                  </p>
+                </div>
+                {event.description && (
+                  <p className="text-xs text-white/40 leading-relaxed pt-2 font-medium">
+                    {event.description}
+                  </p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+2             8     
+Efile:///c:/Users/Admin/Ahvaanam/components/sections/gallery/index.tsx   "use client";
+
+import React, { useState } from "react";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+
+interface GallerySectionProps {
+  bindings: {
+    title?: string;
+    images?: string[];
+  };
+}
+
+export default function GallerySection({ bindings }: GallerySectionProps) {
+  const { title = "Moments", images = [] } = bindings;
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+
+  return (
+    <section className="py-24 px-6 max-w-5xl mx-auto border-b border-white/5 text-center select-none">
+      <div className="space-y-12">
+        <div className="max-w-2xl mx-auto space-y-3">
+          <h2 className="text-xs uppercase tracking-[3px] font-bold text-amber-400">Gallery</h2>
+          <p className="text-3xl md:text-4xl font-extrabold uppercase tracking-[0.5px]">{title}</p>
+        </div>
+
+        {images && images.length > 0 ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            {images.map((img, idx) => (
+              <div
+                key={idx}
+                onClick={() => {
+                  setLightboxIndex(idx);
+                  setLightboxOpen(true);
+                }}
+                className="aspect-square bg-white/[0.02] border border-white/5 rounded-2xl overflow-hidden cursor-pointer hover:border-purple-500/30 transition-all group relative"
+              >
+                <img
+                  src={img}
+                  alt="Gallery Moment"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12 border border-dashed border-white/10 rounded-3xl bg-white/[0.01]">
+            <p className="text-white/30 text-xs font-semibold uppercase tracking-[1.5px]">No images added yet.</p>
+          </div>
+        )}
+      </div>
+
+      <Lightbox
+        open={lightboxOpen}
+        close={() => setLightboxOpen(false)}
+        index={lightboxIndex}
+        slides={images.map((img) => ({ src: img }))}
+      />
+    </section>
+  );
+}
+2             8     
+Cfile:///c:/Users/Admin/Ahvaanam/components/sections/venue/index.tsx   "use client";
+
+import React     from "react";
+import { MapPin } from "lucide-react";
+
+interface VenueSectionProps {
+  bindings: {
+    title?: string;
+    address?: string;
+    mapEmbedUrl?: string;
+  };
+}
+
+export default function VenueSection({ bindings }: VenueSectionProps) {
+  const { title = "Location Map", address = "Grand Party Hall, City", mapEmbedUrl = "" } = bindings;
+
+  // Compute maps search link fallback if mapEmbedUrl is not set
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+
+  return (
+    <section className="py-24 px-6 max-w-5xl mx-auto border-b border-white/5 text-center select-none">
+      <div className="space-y-12">
+        <div className="max-w-2xl mx-auto space-y-3">
+          <h2 className="text-xs uppercase tracking-[3px] font-bold text-purple-400">The Venue</h2>
+          <p className="text-3xl md:text-4xl font-extrabold uppercase tracking-[0.5px]">{title}</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 items-center bg-white/[0.01] border border-white/5 p-8 rounded-3xl text-left">
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold uppercase tracking-[0.5px]">Party Location</h3>
+            <p className="text-xs text-white/60 leading-relaxed font-sans font-medium">{address}</p>
+            {mapsUrl && (
+              <div className="pt-2">
+                <a
+                  href={mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/10 px-5 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-[1px] transition-all"
+                >
+                  <MapPin size={12} className="text-purple-400" /> Open in Google Maps
+                </a>
+              </div>
+            )}
+          </div>
+          {mapEmbedUrl ? (
+            <iframe
+              src={mapEmbedUrl}
+              className="w-full h-64 border-0 rounded-2xl"
+              allowFullScreen
+              loading="lazy"
+            />
+          ) : (
+            <div className="h-64 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-xs text-white/30 font-bold tracking-[1.5px] uppercase">
+              Google Map Embed
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+2           48    
+Bfile:///c:/Users/Admin/Ahvaanam/components/sections/rsvp/index.tsx   "use client";
+
+import React from "react";
+import { MessageCircle, Phone } from "lucide-react";
+
+interface ContactItem {
+  type: string;
+  label: string;
+  value: string;
+}
+
+interface RSVPSectionProps {
+  bindings: {
+    title?: string;
+    contacts?: ContactItem[];
+  };
+}
+
+export default function RSVPSection({ bindings }: RSVPSectionProps) {
+  const { title = "Confirm Attendance", contacts = [] } = bindings;
+
+  return (
+    <section className="py-24 px-6 max-w-5xl mx-auto border-b border-white/5 text-center select-none">
+      <div className="space-y-12">
+        <div className="max-w-2xl mx-auto space-y

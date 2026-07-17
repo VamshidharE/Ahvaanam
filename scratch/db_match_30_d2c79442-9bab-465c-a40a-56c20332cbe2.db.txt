@@ -1,0 +1,39 @@
+"use client";
+2: 
+3: import { useEffect, useState } from "react";
+4: import { ToggleLeft, ToggleRight } from "lucide-react";
+5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+6: import { getWeddingComposition } from "@/lib/composition/templates";
+7: import { useInvitationData } from "../../context/InvitationDataContext";
+8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+9: 
+10: // --- TEMPLATE SPECIFIC PARTICLES ---
+11: import React, { useRef } from "react";
+12: const royaltempleParticles = () => nu   cipient":"d2c79442-9bab-465c-a40a-56c20332cbe2", "sender":"d2c79442-9bab-465c-a40a-56c20332cbe2/task-
+FOUND in file: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\.system_generated\messages\95b812c0-15ac-4d8b-b032-8b5f9c773e15.json (size: 9504)
+  Line 1: {"id":"95b812c0-15ac-4d8b-b032-8b5f9c773e15", "recipient":"d2c79442-9bab-465c-a40a-56c20332cbe2", "sender":"d2c79442-9bab-465c-a40a-56c20332cbe2/task-
+FOUND in file: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\.system_generated\messages\d8b7dd03-a2dd-47d1-8b26-9692ef026be9.json (size: 9342)
+  Line 1: {"id":"d8b7dd03-a2dd-47d1-8b26-9692ef026be9", "recipient":"d2c79442-9bab-465c-a40a-56c20332cbe2", "sender":"d2c79442-9bab-465c-a40a-56c20332cbe2/task-
+FOUND in file: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\architectural_audit.md (size: 17920)
+  Line 126: C -->|Compiles Composition Schema| D[CompositionRenderer]
+  Line 229: * **`CompositionRenderer`** (`components/composition/CompositionRenderer.tsx`): Reads composition schemas, lazy-loads section components from the regi
+  Line 296: 3. **`components/composition/CompositionRenderer.tsx`**: Renders section layout modules based on composition schemas.
+Done.
+
+   : 6iwhz8da       
+(bot-b2a5f969-864f-4328-88df-f0fbdb8117cd     I will list the subdirectories inside the system generated folder of the current conversation to see where background task logs are stored.   2  
+ wikkt44v  list_dir   {"DirectoryPath":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\.system_generated","toolAction":"List system_generated directory","toolSummary":"Checking the contents of the system_generated directory"}:   
+   M2   \O  A p^[l     >   	   A = 2  WY p u7   \)  C + 
+YZ+   Kf   0 U 8m O      ~( =P S  > 9  } ` "   R  .       L i 5 j     P 3   ~     ] m  jWm  [     Z e !J  \ `X z   ^E { cC+        q    zD@i    -    K PUStn  Pq          {  ! h5h e$  6       _  U 
+   P   nG  L U $   L o BNM H  6'  t    bXC j l |     zV E  c   H5O  !/?   %#   X 8      7     e u ;} ~ p oL^ R        f    z   z'-  '   Z ,~ n v  
+     g +  B  l7 e  fs  WSL    Fc M   8  b  4 |   yZ =e  f ! F # 6s   Q n  /%811n    F-m   A  A  u  $ H       O       +"   7 Z f? M  pU        I   } dr   . _  m/       27   NkM  ( 8       x<    }   ~ m   D =  U  (     e LC* :r8 nw    K-   '       ?V         H `  ' $ _    < U     E    )O   k/w   [ q   	 ~     l   ` \     j  @  j \   Yd ) N} g Swzp  ]        d    m      f- TIuM        IL     	>/p           ' '     O  ^B [9       el ~P A  -  ? b~  C w :             w60  W       De -52     m  `    4 6Y        o,    3>   =B    >  t     1   F     {  P5I HI j    C    C%   E v O-7 A2'  {  L)vU pC -H L     qU / P        u 1   P    0 M      An r  3  R        S t  _?  !    4     iK^x 5jZ `  \hLn 0   \    8    %)  `      A aK   X*Ujy X{   8 s   C  If  }] a;y  Z   3      )j   G j  (   L         [ c|#  # &  x  Na   w       eD   88   p`J   )   e       l " Ji    u  
+     D  b  HV     _n X[6 N| O ?  I;Y    U   u     8  EtR^mv5u  (#     AW    , i  J  }A  eh * -     
+     y   1  ~E  K   *  ? 0   S;   Q  T      o   +   0C  :y!a   B         1  @  # v  R   gt   U  j  S(  H sf t ~l *     ,   , T O   %   e 2k #  2] 3  ?       Q S 8 x  B 	c  j   E7   b  m  Mv  nam     G7  p ,z] x      d      H R  1K 0    Wu j    e    2  _           T A        ?          (%   j    @  x  X     J list_dir            Created At: 2026-07-12T14:11:11Z
+Completed At: 2026-07-12T14:11:12Z
+{"name":"logs", "isDir":true}
+{"name":"messages", "isDir":true}
+{"name":"tasks", "isDir":true}
+
+Summary: This directory contains 3 subdirectories and 0 files. Q: wikkt44v       
+(bot-5c71046b-da88-4de7-a889-5d5a59d83509   [I will list the logs inside the `tasks` directory to see what tasks were executed recently.   2  
+ e6ljkeds  list_dir   {"DirectoryPath":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c794

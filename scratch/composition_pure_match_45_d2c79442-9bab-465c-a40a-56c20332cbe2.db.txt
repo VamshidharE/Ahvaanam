@@ -1,0 +1,38 @@
+use client');   	
+     }   &
+"    if (startIdx === -1) continue;    
+        :
+6    // Try to find if this contains the full component   c
+_    const hasComponentExport = content.includes('export default function CompositionRenderer');   J
+F    const hasResolveBinding = content.includes('resolveBindingValue');   L
+H    const hasSectionComponents = content.includes('SECTION_COMPONENTS');    
+        N
+J    if 
+------------------------
+Scanning C:\Users\Admin\.gemini\antigravity\conversations\d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal (5055272 bytes)
+   .st_${theme.id}`,
+-    templateId: theme.id,
+-    category: "wedding",
+-    editor: {
+-      sections: WEDDING_SECTIONS,
+-      navigation: WEDDING_NAVIGATION,
+-      defaultExpanded: ["hero", "couple", "events"],
+-      displayOrder: WEDDING_SECTIONS.map((s) => s.id)
+-    },
+-    features: WEDDING_FEATURES,
+-    defaults: createWeddingDefaults(theme.id),
+-    version: "1.0.0",
+-    description: theme.desc
+-  })),
+ // Birthday shared sections configuration
+ const BIRTHDAY_SECTIONS = [
+   {
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.   : pz0gmct6  ~   
+(bot-9a3e14e4-c4ad-438e-80ad-8b0392e98991     I will run a compilation check to verify the syntax fix in `lib/template-manifests/registry.ts` and make sure everything is completely type-safe.   2  
+ 6673qk0e  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\Users\Admin\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Verify code compilation","toolSummary":"Re-checking type safety with npx tsc --noEmit"}:     
+    M2 1 ~     iZrkJ     |   Ft} 2 X   c V  t  7      6 C&  u  a       _    O s ~+S    h F?QO j[aV      %    cm,o eW           u [hc     }  R     " 9 J         z   !     .  .write_to_file   {"CodeContent":"\"u > ;      4      >   
+               "  
+ jc2vmfwd write_to_file   {"CodeContent":"\"use client\";\n\nimport React from \"react\";\n\n// Reusable section components\nimport HeroSection from \"../../sections/hero\";\nimport CoupleSection from \"../../sections/couple\";\nimport CountdownSection from \"../../sections/countdown\";\nimport StorySection from \"../../sections/story\";\nimport EventsSection from \"../../sections/events\";\nimport GallerySection from \"../../sections/gallery\";\nimport VenueSection from \"../../sections/venue\";\nimport FamiliesSection from \"../../sections/families\";\nimport RSVPSection from \"../../sections/rsvp\";\nimport FAQSection from \"../../sections/faq\";\nimport DressCodeSection from \"../../sections/dressCode\";\nimport FooterSection from \"../../sections/footer\";\nimport CelebrantSection from \"../../sections/celebrant\";\nimport HouseDetailsSection from \"../../sections/houseDetails\";\nimport OwnersSection from \"../../sections/owners\";\n\ninterface SectionPipelineProps {\n  sectionOrder: string[];\n  invitation: any;\n  themeId: string;\n}\n\nexport default function SectionPipeline({ sectionOrder, invitation, themeId }: SectionPipelineProps) {\n  const renderSectionComponent = (sectionId: string) =\u003e {\n    const sectionConfig = invitation[sectionId];\n    const isEnabled = sectionConfig?.enabled !== false;\n    if (!isEnabled) return null;\n\n    const bindings = sectionConfig || {};\n\n    switch (sectionId) {\n      case \"hero\":\n        return (\n          \u003cHeroSection\n            key={sectionId}\n            properties={bindings}\n            bindings={bindings}\n            themeId={themeId}\n            layoutId=\"hero-center\"\n            motionId=\"luxury-motion\"\n          /\u003e\n        );\n      case \"couple\":\n        return \u003cCoupleSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"countdown\":\n        return \u003cCountdownSection key={sectionId} bindings={bindings} /\u003e;\n      case \"story\":\n        return \u003cStorySection key={sectionId} bindings={bindings} /\u003e;\n      case \"events\":\n        return \u003cEventsSection key={sectionId} bindings={bindings} /\u003e;\n      case \"gallery\":\n        return \u003cGallerySection key={sectionId} bindings={bindings} /\u003e;\n      case \"venue\":\n        return \u003cVenueSection key={sectionId} bindings={bindings} /\u003e;\n      case \"families\":\n        return \u003cFamiliesSection key={sectionId} bindings={bindings} /\u003e;\n      case \"rsvp\":\n        return \u003cRSVPSection key={sectionId} bindings={bindings} /\u003e;\n      case \"faq\":\n        return \u003cFAQSection key={sectionId} bindings={bindings} /\u003e;\n      case \"dressCode\":\n        return \u003cDressCodeSection key={sectionId} bindings={bindings} /\u003e;\n      case \"footer\":\n        return \u003cFooterSection key={sectionId} bindings={bindings} /\u003e;\n      case \"celebrant\":\n        return \u003cCelebrantSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"houseDetails\":\n        return \u003cHouseDetailsSection key={sectionId} bindings={bindings} /\u003e;\n      case \"owners\":\n        return \u003cOwnersSection key={sectionId} bindings={bindings} /\u003e;\n      default:\n        return null;\n    }\n  };\n\n  return (\n    \u003cdiv className=\"space-y-12\"\u003e\n      {sectionOrder.map((sectionId: string) =\u003e renderSectionComponent(sectionId))}\n    \u003c/div\u003e\n  );\n}\n","Description":"Create SectionPipeline component to loop over and render sections pipeline.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\orchestrator\\SectionPipeline.tsx","toolAction":"Create SectionPipeline.tsx","toolSummary":"Creating section pipeline component in components/shared/orchestrator/SectionPipeline.tsx"}:     
+    M2  N Q   [ Pr  c m R w YB5a.    )   r S n 8 D '   O    n I  

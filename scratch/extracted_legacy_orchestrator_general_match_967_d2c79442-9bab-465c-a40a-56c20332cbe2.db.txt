@@ -1,0 +1,272 @@
+onId))}    
+       </div>    
+
+    </div>    
+   );    
+ }   -
+)export { default } from "./orchestrator";   #
+ export * from "./orchestrator";      BHfile:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsxR 2"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+import { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Import reusable section components
+import HeroSection from "../sections/hero";
+import CoupleSection from "../sections/couple";
+import CountdownSection from "../sections/countdown";
+import StorySection from "../sections/story";
+import EventsSection from "../sections/events";
+import GallerySection from "../sections/gallery";
+import VenueSection from "../sections/venue";
+import FamiliesSection from "../sections/families";
+import RSVPSection from "../sections/rsvp";
+import FAQSection from "../sections/faq";
+import DressCodeSection from "../sections/dressCode";
+import FooterSection from "../sections/footer";
+import CelebrantSection from "../sections/celebrant";
+import HouseDetailsSection from "../sections/houseDetails";
+import OwnersSection from "../sections/owners";
+
+interface LegacyOrchestratorProps {
+  themeId: string;
+  onBackToHub: () => void;
+  particlesComponent?: React.ComponentType<any>;
+  themeBgClass?: string;
+  loadingTitle?: string;
+  loadingSubtitle?: string;
+}
+
+export default function LegacyOrchestrator({
+  themeId,
+  onBackToHub,
+  particlesComponent: Particles,
+  themeBgClass = "bg-stone-900",
+  loadingTitle = "Invitation",
+  loadingSubtitle = "Celebrating Love"
+}: LegacyOrchestratorProps) {
+  const { invitationData } = useInvitationData();
+  const [loading, setLoading] = useState(true);
+  const [playingMusic, setPlayingMusic] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    if (invitationData) {
+      const timer = setTimeout(() => setLoading(false), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [invitationData]);
+
+  if (!invitationData) return null;
+
+  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+  const invitation = isWrapped ? (invitationData as any).config : invitationData;
+
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+    if (playingMusic) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(() => {});
+    }
+    setPlayingMusic(!playingMusic);
+  };
+
+  const sectionOrder = invitation.sectionOrder || [];
+
+  const renderSectionCompo    nent = (sectionId: string) => {
+    const sectionConfig = invitation[sectionId];
+    const isEnabled = sectionConfig?.enabled !== false;
+    if (!isEnabled) return null;
+
+    const properties = sectionConfig || {};
+    const bindings = sectionConfig || {};
+
+    switch (sectionId) {
+      case "hero":
+        return (
+          <HeroSection
+            key={sectionId}
+            properties={properties}
+            bindings={bindings}
+            themeId={themeId}
+            layoutId="hero-center"
+            motionId="luxury-motion"
+          />
+        );
+      case "couple":
+        return <CoupleSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "countdown":
+        return <CountdownSection key={sectionId} bindings={bindings} />;
+      case "story":
+        return <StorySection key={sectionId} bindings={bindings} />;
+      case "events":
+        return <EventsSection key={sectionId} bindings={bindings} />;
+      case "gallery":
+        return <GallerySection key={sectionId} bindings={bindings} />;
+      case "venue":
+        return <VenueSection key={sectionId} bindings={bindings} />;
+      case "families":
+        return <FamiliesSection key={sectionId} bindings={bindings} />;
+      case "rsvp":
+        return <RSVPSection key={sectionId} bindings={bindings} />;
+      case "faq":
+        return <FAQSection key={sectionId} bindings={bindings} />;
+      case "dressCode":
+        return <DressCodeSection key={sectionId} bindings={bindings} />;
+      case "footer":
+        return <FooterSection key={sectionId} bindings={bindings} />;
+      case "celebrant":
+        return <CelebrantSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "houseDetails":
+        return <HouseDetailsSection key={sectionId} bindings={bindings} />;
+      case "owners":
+        return <OwnersSection key={sectionId} bindings={bindings} />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className={`min-h-screen relative overflow-hidden ${themeBgClass}`}>
+      {invitation.music?.enabled && invitation.music?.file && (
+        <audio ref={audioRef} loop src={invitation.music.file} />
+      )}
+
+      {/* Loading overlay */}
+      <AnimatePresence>
+        {loading && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-[#FFFDF5] flex flex-col items-center justify-center text-center p-6"
+          >
+            <h2 className="text-[#FF8800] text-xs uppercase tracking-[4px] mb-1 font-bold">{loadingTitle}</h2>
+            <p className="text-amber-900/40 text-xs font-semibold">{loadingSubtitle}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Particles canvas overlay */}
+      {invitation.themeSettings?.showParticles && Particles && <Particles />}
+
+      {/* Floating utility buttons */}
+      <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-4">
+        <button
+          onClick={onBackToHub}
+          className="flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40 bg-white/90 text-[#FF8800] backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
+        >
+          <ArrowLeft size={20} />
+        </button>
+        {invitation.music?.enabled && (
+          <button
+            onClick={toggleMusic}
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40 bg-white/90 text-[#FF8800] backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
+          >
+            {playingMusic ? <Volume2 size={20} /> : <VolumeX size={20} />}
+          </button>
+        )}
+      </div>
+
+      {/* Dynamic sections container */}
+      <div className="space-y-12">
+        {sectionOrder.map((sectionId: string) => renderSectionComponent(sectionId))}
+      </div>
+    </div>
+  );
+}
+    aRe-export LegacyOrchestrator from orchestrator folder to maintain import backwards compatibility.   {F  aj        r  N       Z    K-m }!       R Jwrite_to_fileZ  **Identifying the Core Issue**
+
+I've pinpointed candidate 3 as the probable start for the composition renderer. My progress hit a snag, halting around line 50. I need to figure out why. Aha, the culprit is most likely the `extract_real_file.js`, where a substring of `6000` was specified, where the limit may be insufficient. The endMarkers were included, but insufficient.
+
+
+            Created At: 2026-07-12T14:19:14Z
+Completed At: 2026-07-12T14:19:14Z
+Created file file:///c:/Users/Admin/Ahvaanam/scratch/find_full_composition.js with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission. b: z42uqj2t       
+(bot-41ac2e24-d1ad-40ec-8456-86692d648e22   )I will run the search and ranking script. p2  
+ 5oh2j6w3  run_command   {"CommandLine":"node scratch/find_full_composition.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run find_full_composition.js","toolSummary":"Running search script to isolate the longest valid composition renderer candidate"}:     
+    M2  g       v  9A  5    _ 8P Y ] 1    b x$  ;  o U I   <             A A !   Zh   7d_  7  =   Vp j     !     j   f < Q   | W" m  c   J run_command      A    @Created At: 2026-07-12T14:19:18Z
+Completed At: 2026-07-12T14:19:29Z
+
+				The command completed successfully.
+				Output:
+				<truncated 14 lines>
+-----------------------------------------
+[Candidate 6] File: composition_pure_match_4_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt, Length: 5500
+  Ends with: t-4aa8c7b3-4113-47af-aa86-7cd77f2440c7     I will update the search script to scan for `"SECTION_COMPONENTS"`, which is a highly specific variable uni
+-----------------------------------------
+[Candidate 7] File: composition_pure_match_12_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 5493
+  Ends with:   4 2==================================================              BuilderOverview              Show              Invitation Name              Compl
+-----------------------------------------
+[Candidate 8] File: composition_pure_match_3_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt, Length: 5490
+  Ends with: 20332cbe2/task-406).  The following is a <SYSTEM_MESSAGE> not actually sent by the user. It is provided by the system as important information to pay 
+-----------------------------------------
+[Candidate 9] File: composition_pure_match_10_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 5487
+  Ends with: FIC PARTICLES --- 11: import React, { useRef } ------------------------ [35] Found match at index 4395424   Preview of match [35]: "use client"; 2:  3
+-----------------------------------------
+[Candidate 10] File: composition_pure_match_11_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 5487
+  Ends with: FIC PARTICLES --- 11: import React, { useRef } ------------------------ [36] Found match at index 4496572   Preview of match [36]: "use client";  impo
+-----------------------------------------
+[Candidate 11] File: composition_pure_match_23_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 5482
+  Ends with:  : H.  :n  @s (n  a(     5T  F j     Q( ~  Y  > A w   o       7_    j Y >| F   ,   5^     J C i 3^             T     1    jZT    MH  J cj           	 
+-----------------------------------------
+[Candidate 12] File: composition_pure_match_15_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt, Length: 5478
+  Ends with: } from "react"; 4: import { ToggleLeft, ToggleRight } from "lucide-react"; 5: import CompositionRenderer from "@/components/composition/CompositionRen
+-----------------------------------------
+[Candidate 13] File: composition_pure_match_7_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 5478
+  Ends with: t { ToggleLeft, ToggleRight } from "lucide-react"; 5: import CompositionRenderer from "@/components/composition/CompositionRenderer"; 6: import { getW
+-----------------------------------------
+[Candidate 14] File: composition_pure_match_2_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 5469
+  Ends with:          S                                                                                                                                                                                                                                                                               7 H            R   
+               2           {:             B             JN       &(  
+0 B!
+	sessionID  -3750763034362895579H P Z 7I9Sapn5AqGdjuMPpqzW4QYX  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+               {
+                                    *  
+               2           {:             B             JN       &(  
+0 B!
+	sessionID  -3750763034362895579H P Z 7I9Sapn5AqGdjuMPpqzW4QYX  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+               {
+                                    
+oI have launched the type-checking task in the background. I will pause tool calls now and let it finish checks.2(bot-4e1eeadb-3971-49f4-b005-1cbb204bab1bBoI have launched the type-checking task in the background. I will pause tool calls now and let it finish checks.` r     
+~  M2 Vr zr   ia5     /  47  5  o  d  p xb D  +  [=Y 1 8  5nvv (     
+/s R    0   :   aJm [ vo | k  :d W P:nK _      . 6   S    ) G      & N    ^   
+               "  
+ wueopwcn  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript compiler validation on modular orchestrator changes"}:     
+    M2   -  j  pmi^Nw    [`  _ { 8 K& f       &(   2   I     & Z    ~ kgt+&  y     W sd  rRE{ p{     [p )H  rt  _f     +? e   g@|Q  5g N  Tu
+ 9O  T ~  E   _      5 O  QOf   8 u,  ! g     : J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             B           sX  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    6  G
+                 
+  	              
+                 
+               s  FRunning TypeScript compiler validation on modular orchestrator changes   Verify types safety                 
+ 
+ command  npx tsc --noEmit  
+.d2c79442-9bab-465c-a40a-56c20332cbe2/task-1223 {file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1223.log" npx tsc --noEmit(     *  
+               "  
+ wueopwcn  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript compiler validation on modular orchestrator changes"}:     
+    M2   -  j  pmi^Nw    [`  _ { 8 K& f       &(   2   I     & Z    ~ kgt+&  y     W sd  rRE{ p{     [p )H  rt  _f     +? e   g@|Q  5g N  Tu
+ 9O  T ~  E   _      5 O  QOf   8 u,  ! g     : J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             B           sX  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    6  G
+                 
+  	              
+                 
+               s  FRunning TypeScript compiler validation on modular orchestrator changes   Verify types safety                 <  9
+ 
+ command  npx tsc --noEmit  npx  * Verify types safety  !  
+ 
+ command  npx tsc --noEmit   	~
+<  9
+ 
+ command  npx tsc --noEmit  npx  * Verify types safety >
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	     " 
+ command(npx) 	  
+.d2c79442-9bab-465c-a40a-56c20332cbe2/task-1223 {file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1223.log" npx tsc --noEmit(       c:\Users\Admin\Ahvaanam0 ` '    
+  components/shared/orchestrator/index.tsx(4,35): error TS2307: Cannot find module '../context/InvitationDataContext' or its corresponding type declarations.
+   npx tsc --noEmit   npx tsc --noEmit    x = cleanCode.indexOf(marker);\n        if (m

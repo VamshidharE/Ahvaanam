@@ -1,0 +1,131 @@
+any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & RSVPSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & RSVPSectionProps'.
+components/shared/LegacyOrchestrator.tsx(108,44): error TS2322: Type '{ key: "faq"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & FAQSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FAQSectionProps'.
+components/shared/LegacyOrchestrator.tsx(110,50): error TS2322: Type '{ key: "dressCode"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & DressCodeSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & DressCodeSectionProps'.
+components/shared/LegacyOrchestrator.tsx(112,47): error TS2322: Type '{ key: "footer"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & FooterSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FooterSectionProps'.
+components/shared/LegacyOrchestrator.tsx(114,50): error TS2322: Type '{ key: "celebrant"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & CelebrantSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & CelebrantSectionProps'.
+components/shared/LegacyOrchestrator.tsx(116,53): error TS2322: Type '{ key: "houseDetails"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & HouseDetailsProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & HouseDetailsProps'.
+components/shared/LegacyOrchestrator.tsx(118,47): error TS2322: Type '{ key: "owners"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & OwnersProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & OwnersProps'.
+
+
+Log: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1173.log  task_notification" )
+$fe5373d1-3015-406f-87c5-b08366a49be3 $d2c79442-9bab-465c-a40a-56c20332cbe2 .d2c79442-9bab-465c-a40a-56c20332cbe2/task-1173( 2           bR[
+YRunning TypeScript validation check on thin templates layout refactoring changes finishedb  
+  
+$d2c79442-9bab-465c-a40a-56c20332cbe2  	   
+ nol34jbm  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript validation check on thin templates layout refactoring changes"}:     
+    M2   W6    A+  rXG   O, 9Ta  \   [U$ i h h \% !  [!wa     A & +  ad     h  6 l s. l Y  '-y   i  ^TS j 
+   {D   q W        1u      R  8KR'   z ^F R  e{    T2     G p       Eb} t2     l    Q8 # Y Z % 03   5^   G  f"    o  iLX"ru6      Q   m  `    T _    > ,V      A  CH   o   : k  o - \  T   )   M E ] P  qa k z g \{!KE       	mGxJ >       G h : B  
+ } g  .   =  [  t f B     r     ar'      2      Ir _ l. 6 5O  Cb  i    H? &DT L FPJ run_command" !Task id "d2c79442-9bab-465c-a40a-56c20332cbe2/task-1173" finished with result:
+
+				The command failed with exit code: 1
+				Output:
+				components/shared/LegacyOrche    strator.tsx(92,47): error TS2322: Type '{ key: "couple"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & CoupleSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & CoupleSectionProps'.
+components/shared/LegacyOrchestrator.tsx(94,50): error TS2322: Type '{ key: "countdown"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & CountdownSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & CountdownSectionProps'.
+components/shared/LegacyOrchestrator.tsx(96,46): error TS2322: Type '{ key: "story"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & StorySectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & StorySectionProps'.
+components/shared/LegacyOrchestrator.tsx(98,47): error TS2322: Type '{ key: "events"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & EventsSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & EventsSectionProps'.
+components/shared/LegacyOrchestrator.tsx(100,48): error TS2322: Type '{ key: "gallery"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & GallerySectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & GallerySectionProps'.
+components/shared/LegacyOrchestrator.tsx(102,46): error TS2322: Type '{ key: "venue"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & VenueSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & VenueSectionProps'.
+components/shared/LegacyOrchestrator.tsx(104,49): error TS2322: Type '{ key: "families"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & FamiliesSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FamiliesSectionProps'.
+components/shared/LegacyOrchestrator.tsx(106,45): error TS2322: Type '{ key: "rsvp"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & RSVPSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & RSVPSectionProps'.
+components/shared/LegacyOrchestrator.tsx(108,44): error TS2322: Type '{ key: "faq"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & FAQSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FAQSectionProps'.
+components/shared/LegacyOrchestrator.tsx(110,50): error TS2322: Type '{ key: "dressCode"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & DressCodeSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & DressCodeSectionProps'.
+components/shared/LegacyOrchestrator.tsx(112,47): error TS2322: Type '{ key: "footer"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & FooterSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FooterSectionProps'.
+components/shared/LegacyOrchestrator.tsx(114,50): error TS2322: Type '{ key: "celebrant"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & CelebrantSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & CelebrantSectionProps'.
+components/shared/LegacyOrchestrator.tsx(116,53): error TS2322: Type '{ key: "houseDetails"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & HouseDetailsProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & HouseDetailsProps'.
+components/shared/LegacyOrchestrator.tsx(118,47): error TS2322: Type '{ key: "owners"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & OwnersProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & OwnersProps'.
+
+
+Log: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1173.log    	  	  "                       Z     	        (  
+               "  
+ lkfkwzmp 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\couple\\index.tsx","EndLine":25,"StartLine":1,"toolAction":"View couple index.tsx top lines","toolSummary":"Reading CoupleSectionProps definition in couple/index.tsx"}:     
+    M2 *   f ^    Z A_ +  L8 5      1QZ    # k J v&    ~     L 6 
+U   67Q l    y+Q    = |-    3*tD;   r.L   K 
+ r  +p 0  X    *>    )     S`  Q    g       EFN) *V   .  F    ~     g: d   L -\ m9OY     |xEe,}  x ^81  j " 4J W)h        _  ~   m ^  < ~mF|  Z        4IT H-         rt zU*/cZ      8   <    ,  K 2_x T*Wy   " d ]W     u  xz   s  	  e E N   1  !     z e   4   b0 x    g    :  Tx     'G      o  f} v    z +   9=1  B J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2            :            X  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                   :   
+                  9Reading CoupleSectionProps definition in couple/index.tsx   View couple index.tsx top lines                  *  
+               "  
+ lkfkwzmp 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\couple\\index.tsx","EndLine":25,"StartLine":1,"toolAction":"View couple index.tsx top lines","toolSummary":"Reading CoupleSectionProps definition in couple/index.tsx"}:     
+    M2 *   f ^    Z A_ +  L8 5      1QZ    # k J v&    ~     L 6 
+U   67Q l    y+Q    = |-    3*tD;   r.L   K 
+ r  +p 0  X    *>    )     S`  Q    g       EFN) *V   .  F    ~     g: d   L -\ m9OY     |xEe,}  x ^81  j " 4J W)h        _  ~   m ^  < ~mF|  Z        4IT H-         rt zU*/cZ      8   <    ,  K 2_x T*Wy   " d ]W     u  xz   s  	  e E N   1  !     z e   4   b0 x    g    :  Tx     'G      o  f} v    z +   9=1  B J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2            :            X  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                   :   
+                  9Reading CoupleSectionProps definition in couple/index.tsx   View couple index.tsx top lines              rH
+Dfile:///c:/Users/Admin/Ahvaanam/components/sections/couple/index.tsx   |              ^   
+               2             :            B            JO     +   (  	0 B!
+	sessionID  -3750763034362895579HMPtZ EY9Sar_VJebVjuMPyOCa2QwX  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                 
+                                  *  
+               2             :            B            JO     +   (  	0 B!
+	sessionID  -3750763034362895579HMPtZ EY9Sar_VJebVjuMPyOCa2QwX  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                 
+                                  
+  I will view `components/sections/couple/index.tsx` using `view_file` to see its property interface structure. This will guide how we pass props to sections inside the orchestrator.2(bot-c672396b-fcb9-4aa1-881e-e1136205ca86:  
+ lkfkwzmp 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\couple\\index.tsx","EndLine":25,"StartLine":1,"toolAction":"View couple index.tsx top lines","toolSummary":"Reading CoupleSectionProps definition in couple/index.tsx"}:     
+    M2 *   f ^    Z A_ +  L8 5      1QZ    # k J v&    ~     L 6 
+U   67Q l    y+Q    = |-    3*tD;   r.L   K 
+ r  +p 0  X    *>    )     S`  Q    g       EFN) *V   .  F    ~     g: d   L -\ m9OY     |xEe,}  x ^81  j " 4J W)h        _  ~   m ^  < ~mF|  Z        4IT H-         rt zU*/cZ      8   <    ,  K 2_x T*Wy   " d ]W     u  xz   s  	  e E N   1  !     z e   4   b0 x    g    :  Tx     'G      o  f} v    z +   9=1  B J	view_fileB  I will view `components/sections/couple/index.tsx` using `view_file` to see its property interface structure. This will guide how we pass props to sections inside the orchestrator.`      >  >                                                                                                                                                                           l        z     V   
+               2            X  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                    *  
+               2            X  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                  d
+ I will view lines 91 to 1202(bot-3f972033-95ac-408a-ad4c-54a4c326ea54B I will view lines 91 to 120                    
+           b  b$1b00ed85-9cfa-4138-8093-ec925366d0e7  R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2  "
+               b
+               b             b    *  
+           b  b$1b00ed85-9cfa-4138-8093-ec925366d0e7  R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2  "
+               b
+               b             b      >        d         
+               "  
+ lkfkwzmp 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\couple\\index.tsx","EndLine":25,"StartLine":1,"toolAction":"View couple index.tsx top lines","toolSummary":"Reading CoupleSectionProps definition in couple/index.tsx"}:     
+    M2 *   f ^    Z A_ +  L8 5      1QZ    # k J v&    ~     L 6 
+U   67Q l    y+Q    = |-    3*tD;   r.L   K 
+ r  +p 0  X    *>    )     S`  Q    g       EFN) *V   .  F    ~     g: d   L -\ m9OY     |xEe,}  x ^81  j " 4J W)h        _  ~   m ^  < ~mF|  Z        4IT H-         rt zU*/cZ      8   <    ,  K 2_x T*Wy   " d ]W     u  xz   s  	  e E N   1  !     z e   4   b0 x    g    :  Tx     'G      o  f} v    z +   9=1  B J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2            :            B            X  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                   :  3
+                
+                
+                  9Reading CoupleSectionProps definition in couple/index.tsx   View couple index.tsx top lines                  *  
+               "  
+ lkfkwzmp 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\couple\\index.tsx","EndLine":25,"StartLine":1,"toolAction":"View couple index.tsx top lines","toolSummary":"Reading CoupleSectionProps definition in couple/index.tsx"}:     
+    M2 *   f ^    Z A_ +  L8 5      1QZ    # k J v&    ~     L 6 
+U   67Q l    y+Q    = |-    3*tD;   r.L   K 
+ r  +p 0  X    *>    )     S`  Q    g       EFN) *V   .  F    ~     g: d   L -\ m9OY     |xEe,}  x ^81  j " 4J W)h        _  ~   m ^  < ~mF|  Z        4IT H-         rt zU*/cZ      8   <    ,  K 2_x T*Wy   " d ]W     u  xz   s  	  e E N   1  !     z e   4   b0 x    g    :  Tx     'G      o  f} v    z +   9=1  B J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2            :            B            X  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                   :  3
+                
+                
+                  9Reading CoupleSectionProps definition in couple/index.tsx   View couple index.tsx top lines              r  
+Dfile:///c:/Users/Admin/Ahvaanam/components/sections/couple/index.tsx  "  "use client";
+
+import React from "react";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+import MotionWrapper from "@/components/motion

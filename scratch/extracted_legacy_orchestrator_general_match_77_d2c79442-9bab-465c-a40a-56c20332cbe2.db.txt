@@ -1,0 +1,294 @@
+: error TS1005: ';' expected.
+components/sections/venue/index.tsx(2,17): error TS1005: ';' expected.
+components/sections/venue/index.tsx(2,23): error TS1109: Expression expected.
+components/shared/LegacyOrchestrator.tsx(1,7): error TS1128: Declaration or statement expected.
+components/shared/LegacyOrchestrator.tsx(1,20): error TS1005: ';' expected.
+components/shared/LegacyOrchestrator.tsx(3,7): error TS1128: Declaration or statement expected.
+components/shared/LegacyOrchestrator.tsx(3,23): error TS1005: ';' expected.
+components/shared/LegacyOrchestrator.tsx(5,7): error TS1128: Declaration or statement expected.
+components/shared/LegacyOrchestrator.tsx(5,19): error TS1005: ';' expected.
+components/shared/LegacyOrchestrator.tsx(7,7): error TS1128: Declaration or statement expected.
+components/shared/LegacyOrchestrator.tsx(7,20): error TS1005: ';' expected.
+components/shared/LegacyOrchestrator.tsx(9,7): error TS1128: Declaration or statement expected.
+components/shared/LegacyOrchestrator.tsx(9,21): error TS1005: ';' expected.
+components/shared/LegacyOrchestrator.tsx(11,7): error TS1128: Declaration or statement expected.
+components/shared/LegacyOrchestrator.tsx(11,19): error TS1005: ';' expected.
+components/shared/LegacyOrchestrator.tsx(13,7): error TS1128: Declaration or statement expected.
+components/share    d/LegacyOrchestrator.tsx(13,22): error TS1005: ';' expected.
+components/shared/LegacyOrchestrator.tsx(15,7): error TS1128: Declaration or statement expected.
+components/shared/LegacyOrchestrator.tsx(15,18): error TS1005: ';' expected.
+components/shared/LegacyOrchestrator.tsx(17,7): error TS1128: Declaration or statement expected.
+components/shared/LegacyOrchestrator.tsx(17,17): error TS1005: ';' expected.
+components/shared/LegacyOrchestrator.tsx(19,7): error TS1128: Declaration or statement expected.
+components/shared/LegacyOrchestrator.tsx(19,23): error TS1005: ';' expected.
+components/shared/LegacyOrchestrator.tsx(21,7): error TS1128: Declaration or statement expected.
+components/shared/LegacyOrchestrator.tsx(21,20): error TS1005: ';' expected.
+
+   : tzmfceok       
+(bot-c95538fe-1132-4551-b79c-94525bed8710     I will run a `git status` check to see if the modified or truncated section files and `LegacyOrchestrator.tsx` are tracked in git. If they are, we can restore them to their original states.   2  
+ fh0v2z7i  run_command   {"CommandLine":"git status","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Check git status","toolSummary":"Running git status to verify tracked and modified files status"}:     
+    M2 xr k    n>G 3    VJ*  #    n  u e 2 >h$    V }  TJV  *  x  t v    L      ;}v  	    r;   0FU         J  )           r; `7 j O   e G vf U  O _&
+@~ c    &f +F   a   \/   I  =L   X   i?  E O 2     l<   7  ;U   Gk I
+ w  %  A    zwA 0   mt .          -O   F O      xno {     L%h    ^ ]  3   <K l     i/   / J  F= {?  m               :       B    Z  ]     \kJ     pn z  a    k   o     | - e   6  >c 3Z    ` g      g     c   r   5dI  X{   ~ vL   A f p   V    ? K   /KR  A3nD0 q      ( 0  M   	T x|     Z Z   pc i)\   8   *     m    y k w       ~       0\K/    ws  
+ue    t     &Y EF    *o|   ?  !  XTkUd=    {
+ c     8]p vq .~H H I    D     0+   !     % " <  >J       O  H(     a~>Gf      h  A :    c jx!E k     p d   m P     x #l b  x& ;i7    H ! k 3X  d  )5 +-   S 	     a         J     f 7y  ` q 9{q `a      RQj)?    y Q   J9     /y  "        >: y    X     o v v zTX   Q R) i UT2I,           "    4  _ J { O' !cJ    M\    kB  *   j	WgTo  WZ   `3   2   >d  7 8  4 Nc ~]  Bx       3 {    (:1<j 6   H @
+W  Ms   &   (  2 q Y
+n /p2 U 3&  L M      M;     1  ?R     glt  x ]  Ym  9d M]    w  <[ U *d i  ! @C9I  j 7        r  L   l a  d     a,( ]   g [x  +   <   m!;   V 2fi p rA p ,   ]      i Jc   z          A O  ]+ g &`~i  5     nT ~^B 9  -`SK      7D Y  i  _  j &  YR    QP   xKu    2 .7 >  t  	T  	2     ? ]     D    \    	   w0   QJ :  ;Q6  ^ L     Eu}H    $ z o Z  yD5 ~  &   me =       @     :b    +mr0     B     x    Zk   !            d  tw UR   H*    cZot]  ~>_9   1 T    A.  w\i      vI    A$  mm,ZP %     E  [   ; f ,E_u Ey     Ve      Lq J  E  &  o #        @Dm{K }Onu3 ( Z6   ^d[   }  C 9  oVl        % #    #     ^x     r * B<      !  &     C       o p > ?  ` !U |   GN H&U|} [   e}           vw x@        hBuw M  r  T; q p   ]WX M
+ /  I r    x k a |6c   [y    = K #  kY@         L           _ nfb     dO   4   $   N/t !>  |   E    k  ,    h3 s2  J3   f ^#  u  #MOE     2Q       *        4 )A    X `  5&  @ =}9  h       :&  ]  A    (    P g`        }   ;      2    EV     @ u 2    TQ[*W ;P| J   <j   /    |F 
+ A       m q  	  F ;E  cI-    qbxE   ~ kH   s=  } b5  `$ [  -I
+  Q Ufjp  3PP2$        |     g   | (w  3  1&*   xz  8     E p N@q ' 	 >  =       '          |m T  v U CRz     !  N X   )   \ E  a- g ?  I  
+    ? u   m     B~  /g- ~ ?  ^   ^	  `   r1i: . y`   5^  p >IU # tL      e J ^W : 2;  @   O$.G ; v| 8s    ;         Zv@ W * r2    * M   ?P C   -c   m W    ] ! 2 j
+    I 2c n     4 X    kRyG2 l   Pl    b|   O$      J    _ 9 '      l  F    HO$ ?  D}  rN  J  =    ~F4       PI n  ,      Va   J J run_command            Created At: 2026-07-12T14:23:21Z
+Completed At: 2026-07-12T14:23:21Z
+
+				The command completed successfully.
+				Output:
+				On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git     restore <file>..." to discard changes in working directory)
+	modified:   app/page.tsx
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	app/about/
+	app/admin/
+	app/api/
+	app/auth/
+	app/checkout/
+	app/contact/
+	app/create/
+	app/dashboard/
+	app/demo/
+	app/forgot-password/
+	app/how-it-works/
+	app/invites/
+	app/login/
+	app/logout/
+	app/not-found.tsx
+	app/portfolio/
+	app/pricing/
+	app/privacy/
+	app/reset-password/
+	app/services/
+	app/signup/
+	app/templates/
+	app/terms/
+	components/composition/
+	components/context/
+	components/data/invites/
+	components/data/themes.ts
+	components/home/
+	components/layouts/
+	components/motion/
+	components/rsvp/
+	components/sections/countdown/
+	components/sections/couple/
+	components/sections/dressCode/
+	components/sections/events/
+	components/sections/families/
+	components/sections/faq/
+	components/sections/footer/
+	components/sections/gallery/
+	components/sections/hero/
+	components/sections/houseDetails/
+	components/sections/owners/
+	components/sections/rsvp/
+	components/sections/story/
+	components/sections/venue/
+	components/shared/DeitySymbol.tsx
+	components/shared/GallerySlider.tsx
+	components/shared/LegacyOrchestrator.tsx
+	components/shared/PageTransitionWrapper.tsx
+	components/shared/ParallaxProviderWrapper.tsx
+	components/shared/ThemeSelectorHub.tsx
+	components/shared/category-card.tsx
+	components/shared/theme-card.tsx
+	components/templates/
+	components/types/
+	data/
+	lib/
+	prisma/
+	proxy.ts
+	public/images/categories/
+	public/images/deities/
+	public/images/editor-preview.png
+	public/images/hero-invitation.png
+	public/images/img.png
+	public/images/logo.png
+	public/images/themes/
+	public/sample-invitation.pdf
+	public/uploads/
+	scratch/
+	section_specification.md
+	supabase_setup.sql
+	types/
+	utils/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+   : fh0v2z7i      -
+(bot-c8fae4d1-433a-4149-be88-ce6ebd57e80f     I will write a script to search the SQLite database files for the full code of `components/shared/LegacyOrchestrator.tsx` and all modified components under `components/sections/`, extracting their original untruncated content.   2 +
+ kes4zne0 write_to_file   {"CodeContent":"const fs = require('fs');\nconst path = require('path');\n\nconst dbPath = 'C:\\\\Users\\\\Admin\\\\.gemini\\\\antigravity\\\\conversations\\\\d2c79442-9bab-465c-a40a-56c20332cbe2.db';\nconst walPath = 'C:\\\\Users\\\\Admin\\\\.gemini\\\\antigravity\\\\conversations\\\\d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal';\n\nfunction scanFile(filePath, searchStr, fileLabel) {\n  if (!fs.existsSync(filePath)) return;\n  const buf = fs.readFileSync(filePath);\n  \n  // Convert buffer to string replacing nulls with spaces\n  let content = '';\n  for (let i = 0; i \u003c buf.length; i++) {\n    const charCode = buf[i];\n    if (charCode === 0) {\n      content += ' ';\n    } else if (charCode \u003e= 32 \u0026\u0026 charCode \u003c= 126) {\n      content += String.fromCharCode(charCode);\n    } else if (charCode === 10 || charCode === 13 || charCode === 9) {\n      content += String.fromCharCode(charCode);\n    } else {\n      content += ' ';\n    }\n  }\n\n  let idx = 0;\n  let matches = 0;\n  while ((idx = content.indexOf(searchStr, idx)) !== -1) {\n    const surrounding = content.substring(Math.max(0, idx - 1000), idx + 2000);\n    const isOurScript = surrounding.includes('extract_legacy_orchestrator') || \n                        surrounding.includes('extract_from_db');\n                        \n    if (!isOurScript) {\n      matches++;\n      let startIdx = content.lastIndexOf('use client', idx);\n      if (startIdx === -1 || startIdx \u003c idx - 1000) {\n        startIdx = idx - 100;\n      }\n      \n      const slice = content.substring(startIdx, startIdx + 12000); // Grab large slice for complete file\n      const outName = `scratch/extracted_${fileLabel}_match_${matches}_${path.basename(filePath)}.txt`;\n      fs.writeFileSync(outName, slice);\n      console.log(`Saved match ${matches} of ${fileLabel} to ${outName}`);\n    }\n    idx += searchStr.length;\n     rs\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\scratch\\extract\.py)
+ command(npm run)
+~command(python C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\scratch\\fix_unicode\.py)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm install)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npx)
+ command(npx)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+  command(python C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\audit_wedding_logic\.py)
+  command(python C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\aggregate_audit\.py)
+  command(python C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\generate_migration_report\.py)
+ command(npx)
+ command(npx)
+ command(npx)
+ command(npx)
+ command(npx)
+ command(npx)
+}command(node C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\4d2a2c0e-d2da-4e70-9f33-907b27174fe7\\scratch\\check_braces\.js)
+}command(node C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\4d2a2c0e-d2da-4e70-9f33-907b27174fe7\\scratch\\check_braces\.js)
+}command(node C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\4d2a2c0e-d2da-4e70-9f33-907b27174fe7\\scratch\\check_braces\.js)
+ command(npx)
+ command(npx)
+ command(npx)
+ command(npx)
+ command(Copy-Item)
+ command(npx)
+ command(npx)
+ command(npx)
+ command(npm run)
+ command(npm run)
+ command(npx)
+ command(npx)
+ command(npm run)
+  command(Select-String -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\\*\\\.system_generated\\logs\\transcript_full\.jsonl" -Pattern "app/admin/\\\[id\\\]/page\.tsx" \| select -first 10)
+  command(Select-String -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\\.system_generated\\logs\\transcript_full\.jsonl" -Pattern "replace_file_content" \| Select-String -Pattern "admin" \| select -first 10)
+ command(git log)
+ read_file(*)
+write_file(*) $mcp(chrome_devtools/evaluate_script) ?  read_url(*) 
+command(*) $mcp(chrome_devtools/evaluate_script)"  
+ python
+ python3
+ python2
+ node
+ ruby
+ perl
+ lua
+ php
+ bash
+ sh
+ zsh
+ fish
+ csh
+ tcsh
+ ksh
+ dash
+ ash
+ source
+ eval
+ exec
+ rm
+ rmdir
+ shred
+ sudo
+ su
+ doas
+ curl
+ wget
+ ssh
+ scp
+ rsync
+ nc
+ ncat
+ pip
+ pip3
+ pipx
+ cargo
+ go
+ dd
+ mkfs
+ fdisk
+ mount
+ umount
+ chown
+ chmod
+ chroot
+ kill
+ killall
+ reboot
+ halt  git  hg  g4  jj  svn  blaze  bazel  make  ninja  gradle  mvn  buck  buck2  pants  scons  cmake  meson  just  forge  glaze 	buildozer  npm  yarn  pnpm  bun  brew  apt  apt-get  dnf  pacman  docker  podman  kubectl  gcloud  gsutil  bq  firebase  az  aws  fileutil build_cleaner  stubby  rapid  mendel  guitar  boq  gcl  f1-sql  bluze 	rpcreplay  flex 	systemctl 
+journalctl 	launchctl  
+ git  
+ push
+ clean
+ reset  
+ brew  
+	uninstall
+ remove )
+ kubectl  
+ delete
+ drain
+ cordon
+ taint  
+ docker  
+ run
+ exec
+ rm
+ rmi  
+ podman  
+ run
+ exec
+ rm
+ rmi :
+	systemctl -
+ restart
+ stop
+ start
+ enable
+ disable
+ mask  
+	launchctl  
+ unload
+ remove                   z      
+    *   @    gemini-3.5-flash-low  !
+                    @  )       ?              ( N0 8 @dH                     
+)
+#disable-teamwork-forced-flash-model    
+ 
+ jetski-generative-ui    
+ 
+ enable-profiles    
+ 
+ enable-learn-slash-command    
+ 
+ enable-owl-slash-command    
+ 
+ enable-state-accumulator                        p  X          >  (   0 8  X   h r              @  )       ?x   
+                             *             ( 0
+@ H X ` h x              "+( 2          (  0 8 8 @ H P X ` h   p x    :      d   (  0  @ J   Z   Z     2   2   2   2   2   2   2   0   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   1   2    l.jsonl" | Select-Object -Index 305,306,307,308,309,310,311,312)
+  command(Select-String -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript_full.jsonl" -Pattern "app/api/auth" | Where-Object { $_.LineNumber -gt 312 } | Select-Object -Property LineNumber,Line -First 10)
+  command(Select-String -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript_full.jsonl" -Pattern "app/api/auth/login" | Select-Object -Property LineNumber,Line -First 10)
+  command(Get-ChildItem -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs" | ForEach-Object { $_.FullName })
+  command(Get-ChildItem -Recurse -Filter "*.ts*" -Path "app","components","lib","utils" | Select-String -Pattern "signSession" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+?write_file(C:\Users\Admin\Ahvaanam\app\api\auth\login\route.ts)
+@write_file(C:\Users\Admin\Ahvaanam\app\api\auth\logout\route.ts)
+  command(Get-ChildItem -Recurse -Filter "\*\.tsx" -Path "app","components" \| Select-String -Pattern "logo\.png" \| ForEach-Object \{ "\$\(\$_\.Path\):\$\(\$_\.LineNumber\): \$\(\$_\.Line\.Trim\(\)\)" \})
+ command(Copy-Item)
+ command(Copy-Item)
+ command(git checkout)
+ command(Select-S

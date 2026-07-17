@@ -1,0 +1,124 @@
+   return <FooterSection key={sectionId} bindings={bindings} />;0a8s"  *Hfile:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx2K
+ file:///c:/Users/Admin/Ahvaanam (components/shared/LegacyOrchestrator.tsx  {
+ {  D     D  
+"use client";       ?
+;import React, { useEffect, useState, useRef } from "react";   I
+Eimport { useInvitationData } from "../context/InvitationDataContext";   X
+Timport { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";   <
+8import { motion, AnimatePresence } from "framer-motion";       )
+%// Import reusable section components   /
++import HeroSection from "../sections/hero";   3
+/import CoupleSection from "../sections/couple";   9
+5import CountdownSection from "../sections/countdown";   1
+-import StorySection from "../sections/story";   3
+/import EventsSection from "../sections/events";   5
+1import GallerySection from "../sections/gallery";   1
+-import VenueSection from "../sections/venue";   7
+3import FamiliesSection from "../sections/families";   /
++import RSVPSection from "../sections/rsvp";   -
+)import FAQSection from "../sections/faq";   9
+5import DressCodeSecti    on_match_4_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 5 of rsvp_section to scratch/extracted_rsvp_section_match_5_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 6 of rsvp_section to scratch/extracted_rsvp_section_match_6_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 7 of rsvp_section to scratch/extracted_rsvp_section_match_7_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 8 of rsvp_section to scratch/extracted_rsvp_section_match_8_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Extraction complete.
+
+Last progress: 1s ago
+
+
+REMINDER: Do not call this tool again to poll or wait for updates. You will be automatically notified when the task completes or a message arrives. If you need a bounded wait, use the `schedule` tool -- it waits silently in the background and suppresses its notification if you are woken by another event.
+
+The following is a <SYSTEM_MESSAGE> not actually sent by the user. It is provided by the system as important information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp=2026-07-12T14:23:49Z sender=d2c79442-9bab-465c-a40a-56c20332cbe2/task-492 priority=MESSAGE_PRIORITY_HIGH content=Task id "d2c79442-9bab-465c-a40a-56c20332cbe2/task-492" finished with result:
+
+				The command completed successfully.
+				Output:
+				<truncated 55 lines>
+Saved match 29 of countdown_section to scratch/extracted_countdown_section_match_29_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 30 of countdown_section to scratch/extracted_countdown_section_match_30_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 31 of countdown_section to scratch/extracted_countdown_section_match_31_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 32 of countdown_section to scratch/extracted_countdown_section_match_32_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 33 of countdown_section to scratch/extracted_countdown_section_match_33_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 34 of countdown_section to scratch/extracted_countdown_section_match_34_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 35 of countdown_section to scratch/extracted_countdown_section_match_35_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 36 of countdown_section to scratch/extracted_countdown_section_match_36_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 37 of countdown_section to scratch/extracted_countdown_section_match_37_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 38 of countdown_section to scratch/extracted_countdown_section_match_38_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 39 of countdown_section to scratch/extracted_countdown_section_match_39_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 40 of countdown_section to scratch/extracted_countdown_section_match_40_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 41 of countdown_section to scratch/extracted_countdown_section_match_41_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 42 of countdown_section to scratch/extracted_countdown_section_match_42_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 43 of countdown_section to scratch/extracted_countdown_section_match_43_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 1 of countdown_section to scratch/extracted_countdown_section_match_1_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+Saved match 2 of countdown_section to scratch/extracted_countdown_section_match_2_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+Saved match 3 of countdown_section to scratch/extracted_countdown_section_match_3_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+Saved match 4 of countdown_section to scratch/extracted_countdown_section_match_4_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+Saved match 1 of hero_section to scratch/extracted_hero_section_match_1_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 2 of hero_section to scratch/extracted_hero_section_match_2_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 3 of hero_section to scratch/extracted_hero_section_match_3_d2c79442-9bab-465c-a40a-56c    `rsvp`, `faq`, `footer`).2(bot-d1a720c3-e4bc-4413-9927-241c6329b4e8:  
+ 7a43ha5e  replace_file_content   {"AllowMultiple":false,"Description":"Align props structure for static sections.","EndLine":115,"Instruction":"Omit layoutId and motionId for static section components.","ReplacementContent":"      case \"events\":\n        return \u003cEventsSection key={sectionId} bindings={bindings} /\u003e;\n      case \"gallery\":\n        return \u003cGallerySection key={sectionId} bindings={bindings} /\u003e;\n      case \"venue\":\n        return \u003cVenueSection key={sectionId} bindings={bindings} /\u003e;\n      case \"families\":\n        return \u003cFamiliesSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"rsvp\":\n        return \u003cRSVPSection key={sectionId} bindings={bindings} /\u003e;\n      case \"faq\":\n        return \u003cFAQSection key={sectionId} bindings={bindings} /\u003e;\n      case \"dressCode\":\n        return \u003cDressCodeSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"footer\":\n        return \u003cFooterSection key={sectionId} bindings={bindings} /\u003e;","StartLine":97,"TargetContent":"      case \"events\":\n        return \u003cEventsSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"gallery\":\n        return \u003cGallerySection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"venue\":\n        return \u003cVenueSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"families\":\n        return \u003cFamiliesSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"rsvp\":\n        return \u003cRSVPSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"faq\":\n        return \u003cFAQSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"dressCode\":\n        return \u003cDressCodeSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;\n      case \"footer\":\n        return \u003cFooterSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" className=\"bg-[#FFFDF5]\" /\u003e || \u003cFooterSection key={sectionId} bindings={bindings} layoutId=\"hero-center\" motionId=\"luxury-motion\" /\u003e;","TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","toolAction":"Fix LegacyOrchestrator static cases props","toolSummary":"Removing layoutId and motionId for static components in LegacyOrchestrator.tsx"}:     
+    M2  M   )  l   c[*@  C   ):   F  +m\B  
+^ A\ y  W	 c ~y_B ` g         ^  ] D  * %    H                    At    X   at- x yK   c#  P  ?  q     { I^   -_E   e %%x .  1N  u -  @    f {*  ,  a V C   7 k X       E` 4:%     { x H]   \ P  R  P 0   { V'H BA    1 &1l #{}   [ #K         ^    P0;    f9 m    
+O  dRr     zh#  w-      M   ;   d  U   @   .h B   9  * p   {    N 2ZHhf    bsu  p+d=  vo( 5 _S   e LN   '   v  s     cs  ;T '  6  P%o` .L vb     !   K p          g  M    6E%  FW g  % `s  O`r^     s!X      e   8    \  =  m \ Q {   Y b  a  i   l  w  1 b   j      !%    L  v  ? DN + d       ~;   #  S1A    = v  so   G m @5 
+*    ql= F[  F  C~d  ?      q>M 0% Q b%  mu  #n X$      \j-  R]iE      f     f)  `,  -&  n    ^7mul  _]D3LM -6      3  8    Q:L   A6f 3ur 	    D2S8' W s   ixl$f       lBj    ' 	     M      95   1>lt * x    T  P  R     `    g| O~ Po l 
+ 9  K ^?  n   > Y 
+ f H {   ?O   p &CK:a  u    0  
+ ( ccy@    Dq1 =r   J replace_file_contentB  I will update `components/shared/LegacyOrchestrator.tsx` to omit `layoutId` and `motionId` props for sections that do not utilize dynamic layouts or motions (`events`, `gallery`, `venue`, `rsvp`, `faq`, `footer`).`     6 c R ' 5aY   5d   k{    ]  ||   z  ^r #  M     ;# '   v   5 > u    K m +u   n x  C  E    mp n> Jwrite_to_file            Created At: 2026-07-12T14:23:25Z
+Completed At: 2026-07-12T14:23:26Z
+Created file file:///c:/Users/Admin/Ahvaanam/scratch/extract_legacy_orchestrator.js with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission. d: kes4zne0       
+(bot-dca68c0a-51a5-4a08-b6d7-f879382f7d35   %I will execute the extraction script. w2  
+ 4qnqqu7l  run_command   {"CommandLine":"node scratch/extract_legacy_orchestrator.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run extract_legacy_orchestrator.js","toolSummary":"Executing script to extract LegacyOrchestrator and section files from database"}:     
+    M2 Z2 5   yD     ~#lP  d 8         1^ d0  (       b a p  O
+      ?w K{  #Z` $   4H   ` m .7	_3y   1 . tS   W dw  *zR 0   CTfD  I       W  lJ run_commandB               Created At: 2026-07-12T14:23:29Z
+Tool is running as a background task with task id: d2c79442-9bab-465c-a40a-56c20332cbe2/task-492
+Task Description: node scratch/extract_legacy_orchestrator.js
+Task logs are available at: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-492.log w: 4qnqqu7l       
+(bot-9183d28a-b28b-4a93-ba76-1114c26c2f5c   .I will wait for the extraction task to finish.   2  
+ dsc740xu  schedule   {"DurationSeconds":"2","Prompt":"Check status of LegacyOrchestrator extraction task","TimerCondition":"d2c79442-9bab-465c-a40a-56c20332cbe2/task-492","toolAction":"Wait for task completion","toolSummary":"Scheduling timer to wait for task 492 to complete"}:     
+    M2  	  -  = c  >  E?6/ S 8         E      [ OJc4  A   
+  Z t     T  @  /}Z S   i  /    &D V  4    l 7v <). h  ; KfM' rQ(  ! *.2J schedule            Created At: 2026-07-12T14:23:39Z
+Tool is running as a background task with task id: d2c79442-9bab-465c-a40a-56c20332cbe2/task-494
+Task Description: Timer: 2s, Prompt: Check status of LegacyOrchestrator extraction task
+Task logs are available at: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-494.log   : dsc740xu       
+(bot-54bfa3c9-0e16-4689-a0e4-bb0dc14b3e03   KI will wait for the extraction task to finish.
+No more tools for this step.        a _
+]  M2   r <_     P    $_]Q ,d  I    S}R   y | /  XW   % }z      =  }   ;  HK ( :  n4    )\y]         The following is a <SYSTEM_MESSAGE> not actually sent by the user. It is provided by the system as important information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp=2026-07-12T14:23:42Z sender=d2c79442-9bab-465c-a40a-56c20332cbe2/task-494 priority=MESSAGE_PRIORITY_HIGH content=Check status of LegacyOrchestrator extraction task
+</SYSTEM_MESSAGE> ~       
+(bot-46c50be9-f2c0-458b-80a3-5a19043b8265   DI will check if the LegacyOrchestrator extraction task has finished. r2  
+ h11awwur  manage_task   {"Action":"status","TaskId":"d2c79442-9bab-465c-a40a-56c20332cbe2/task-492","toolAction":"Check task status","toolSummary":"Checking status of LegacyOrchestrator extraction background task"}:j h
+f  M2  ]    E    U  [   eK  X  
+'   -Q     I      >_   1p 6Z! +     %    V    9      c2s    T3[Af	  v: J manage_task      P    PCreated At: 2026-07-12T14:23:50Z
+Completed At: 2026-07-12T14:23:50Z
+Task: d2c79442-9bab-465c-a40a-56c20332cbe2/task-492
+Status: DONE
+Log: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\.system_generated\tasks\task-492.log
+Log output:
+<truncated 114 lines>
+tch_40_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 1 of rsvp_section to scratch/extracted_rsvp_section_match_1_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 2 of rsvp_section to scratch/extracted_rsvp_section_match_2_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 3 of rsvp_section to scratch/extracted_rsvp_section_match_3_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Saved match 4 of rsvp_section to scratch/extracted_rsvp_secti              h (            0   
+           C  2             :             B             JO     %   (  	0 B!
+	sessionID  -3750763034362895579H.P\Z OI9SatWoNunJjuMP1_fWgQwX  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+           C  2             :             B             JO     %   (  	0 B!
+	sessionID  -3750763034362895579H.P\Z OI9SatWoNunJjuMP1_fWgQwX  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+}I will run the Next.js production build check. This guarantees that our thin template layouts refactoring compiles correctly.2(bot-ee0c646b-cf01-4204-8b1d-16aef45e0038:  
+ cg2qw7np  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running Next.js production build verification check"}:     
+    M2  c  \   t$ *i fU8 { e T'  x      ak       	>{k  I    eh  % EH N  j(   e@n   )9    : ~[T  =  /
+  l , i  )0   5h    n h z ;      }  5H a  0    &  u+     wMp B    e  T  ?  !               g    = 4  u     = {    &      
+.   o{  c - iS          P' r4 Kt    R },& {   ^ 5G   XS ^    }:	  o WJ run_commandB}I will run the Next.js production build check. This guarantees that our thin template layouts refactoring compiles correctly.`   
+    	  ~       q )      d H   :

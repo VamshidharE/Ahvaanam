@@ -1,0 +1,69 @@
+use client\";\n\nimport React from \"react\";\nimport DeitySymbol from \"@/components/shared/DeitySymbol\";\n\ninterface HeroSectionProps {\n  properties: {\n    showScrollIndicator?: boolean;\n    overlayOpacity?: number;\n    contentAlign?: \"left\" | \"center\" | \"right\";\n    minHeight?: string;\n  };\n  bindings: {\n    title?: string;\n    subtitle?: string;\n    welcomeMessage?: string;\n    heroImage?: string;\n    ctaText?: string;\n    surname?: string;\n    subText?: string;\n    enableHeaderMedia?: boolean;\n    headerMediaType?: \"god\" | \"symbol\";\n    selectedGod?: \"ganesha\" | \"venkateswara\" | \"lakshmi\" | \"shiva\" | \"krishna\";\n    selectedSymbol?: \"om\" | \"swastik\" | \"shree\" | \"kalash\" | \"nandi\";\n    headerMediaSize?: number;\n    headerMediaSpacing?: number;\n    showSurnameHeading?: boolean;\n    surnameFont?: \"cinzel\" | \"playfair\" | \"great-vibes\";\n    surnameColor?: string;\n  };\n  themeId?: string;\n}\n\nexport default function HeroSection({ properties, bindings, themeId }: HeroSectionProps) {\n  const {\n    showScrollIndicator = true,\n    overlayOpacity = 0.45,\n    contentAlign = \"center\",\n    minHeight = \"85vh\",\n  } = properties;\n\n  const {\n    title = \"\",\n    subtitle = \"\",\n    welcomeMessage = \"\",\n    heroImage = \"\",\n    ctaText = \"\",\n    surname = \"\",\n    subText = \"\",\n    enableHeaderMedia = true,\n    headerMediaType = \"god\",\n    selectedGod = \"ganesha\",\n    selectedSymbol = \"om\",\n    headerMediaSize = 80,\n    headerMediaSpacing = 30,\n    showSurnameHeading = true,\n    surnameFont = \"cinzel\",\n    surnameColor = \"#C59B27\",\n  } = bindings;\n\n  const alignmentClass = \n    contentAlign === \"left\" ? \"text-left items-start\" : \n    contentAlign === \"right\" ? \"text-right items-end\" : \n    \"text-center items-center\";\n\n  return (\n    \u003csection \n      className=\"relative flex flex-col justify-center items-center overflow-hidden w-full select-none\"\n      style={{ minHeight }}\n    \u003e\n      {/* Background Cover Image */}\n      {heroImage \u0026\u0026 (\n        \u003cdiv \n          className=\"absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-105\"\n          style={{ backgroundImage: `url(${heroImage})` }}\n        /\u003e\n      )}\n\n      {/* Dark overlay */}\n      \u003cdiv \n        className=\"absolute inset-0 bg-black pointer-events-none\"\n        style={{ opacity: overlayOpacity }}\n      /\u003e\n\n      {/* Hero content */}\n      \u003cdiv className={`relative z-10 w-full max-w-4xl px-6 py-12 flex flex-col ${alignmentClass} text-white space-y-6`}\u003e\n        {/* Deity Symbol if enabled */}\n        {enableH  	` W u                 
+               2             :             B             JQ         (  	0 B!
+	sessionID  -3750763034362895579H  P  Z fCRSapqEC8HOg8UPh9jX-AoX  b$a7eca9b4-c0fd-49c2-a5f5-3bc6a5616aa9j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+               2             :             B             JQ         (  	0 B!
+	sessionID  -3750763034362895579H  P  Z fCRSapqEC8HOg8UPh9  	]    A0X  b$a7eca9b4-c0fd-49c2-a5f5-3bc6a5616aa9j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+  I will create the JSON schema manifest file for the Hero section at `components/sections/hero/manifest.json`. This lists metadata, dynamic bindings, and style config definitions.2(bot-8aa2f64f-b229-4345-a7ce-f3a73ae0caf1:  
+ f5yuvh6u write_to_file   {"CodeContent":"{\n  \"id\": \"hero\",\n  \"name\": \"Welcome Hero Banner\",\n  \"category\": \"common\",\n  \"properties\": [\n    {\n      \"key\": \"showScrollIndicator\",\n      \"label\": \"Scroll Indicator\",\n      \"type\": \"boolean\",\n      \"default\": true\n    },\n    {\n      \"key\": \"overlayOpacity\",\n      \"label\": \"Overlay Opacity\",\n      \"type\": \"number\",\n      \"default\": 0.45\n    },\n    {\n      \"key\": \"contentAlign\",\n      \"label\": \"Content Alignment\",\n      \"type\": \"select\",\n      \"default\": \"center\",\n      \"options\": [\"left\", \"center\", \"right\"]\n    },\n    {\n      \"key\": \"minHeight\",\n      \"label\": \"Minimum Height\",\n      \"type\": \"string\",\n      \"default\": \"85vh\"\n    }\n  ],\n  \"bindings\": {\n    \"title\": {\n      \"type\": \"string\",\n      \"defaultPath\": \"hero.title\",\n      \"description\": \"Primary heading text\"\n    },\n    \"subtitle\": {\n      \"type\": \"string\",\n      \"defaultPath\": \"hero.subtitle\",\n      \"description\": \"Secondary tagline or subtitle\"\n    },\n    \"welcomeMessage\": {\n      \"type\": \"string\",\n      \"defaultPath\": \"hero.welcomeMessage\",\n      \"description\": \"Short welcome salutation note\"\n    },\n    \"heroImage\": {\n      \"type\": \"image\",\n      \"defaultPath\": \"hero.heroImage\",\n      \"description\": \"Background cover backdrop image\"\n    },\n    \"ctaText\": {\n      \"type\": \"string\",\n      \"defaultPath\": \"hero.ctaText\",\n      \"description\": \"Call-to-action button text label\"\n    },\n    \"surname\": {\n      \"type\": \"string\",\n      \"defaultPath\": \"hero.surname\",\n      \"description\": \"Family surname\"\n    },\n    \"subText\": {\n      \"type\": \"string\",\n      \"defaultPath\": \"hero.subText\",\n      \"description\": \"Deity symbol salutation tagline\"\n    }\n  },\n  \"supportedThemes\": [\n    \"royal-temple\",\n    \"floral-garden\",\n    \"south-indian\",\n    \"palace-luxury\",\n    \"lotus-serenity\",\n    \"midnight\",\n    \"marble\",\n    \"emerald\",\n    \"navy\",\n    \"burgundy\",\n    \"champagne\",\n    \"glass\",\n    \"rosegold\",\n    \"artdeco\",\n    \"botanical\"\n  ],\n  \"supportedMotions\": [\n    \"fade-in-up\",\n    \"reveal\",\n    \"zoom-in\",\n    \"none\"\n  ]\n}\n","Description":"Create Hero Section schema manifest.json","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\hero\\manifest.json","toolAction":"Create manifest.json","toolSummary":"Creating schema manifest for Hero Section"}:     
+    M2         &    Q =F  G^ '           2    N d 9P OR  }/> ~     %  ,I h y  +} r   !G 7  !St y,6x|        ]O dl 1   Kb   VK* *       _}  2*z  7 }  Vl        E }'   = Lk  6  ^ 0 .2  0 %E  f  w       {   M   g  F q       +  @  Om J  8  9"  ^s x   bQ?   `!m } a+   {U       	 N ;0  n      65  +  0c  5    _ YG 2w!   / W@
+n.\ Be8   6     s /  [    ev[d	y      e Uj    y $i      "    $ 6    1g   i >"   ol  EK  &  - c    |    y f E       )       H    k 6 <;b  H      Jwrite_to_fileB  I will create the JSON schema manifest file for the Hero section at `components/sections/hero/manifest.json`. This lists metadata, dynamic bindings, and style config definitions.`                                                                                                                                                                                                                                                                                                                                                                                                         lcome Hero Banner\",\n  \"category\": \"common\",\n  \"properties\": [\n    {\n      \"key\": \"showScrollIndicator\",\n      \"label\": \"Scroll Indicator\",\n      \"type\": \"boolean\",\n      \"default\": true\n    },\n    {\n      \"key\": \"overlayOpacity\",\n      \"label\": \"Overlay Opacity\",\n      \"type\": \"number\",\n      \"default\": 0.45\n    },\n    {\n      \"key\": \"contentAlign\",\n      \"label\": \"Content Alignment\",\n      \"type\": \"select\",\n      \"default\": \"center\",\n      \"options\": [\"left\", \"center\", \"right\"]\n    },\n    {\n      \"key\": \"minHeight\",\n      \"label\": \"Minimum Height\",\n      \"type\": \"string\",\n      \"default\": \"85vh\"\n    }\n  ],\n  \"bindings\": {\n    \"title\": {\n      \"type\": \"string\",\n      \"defaultPath\": \"hero.title\",\n      \"description\": \"Primary heading text\"\n    },\n    \"subtitle\": {\n      \"type\": \"string\",\n      \"defaultPath\": \"hero.subtitle\",\n      \"description\": \"Secondary tagline or subtitle\"\n    },\n    \"welcomeMessage\": {\n      \"type\": \"string\",\n      \"defaultPath\": \"hero.welcomeMessage\",\n      \"description\": \"Short welcome salutation note\"\n    },\n    \"heroImage\": {\n      \"type\": \"image\",\n      \"defaultPath\": \"hero.heroImage\",\n      \"description\": \"Background cover backdrop image\"\n    },\n    \"ctaText\": {\n      \"type\": \"string\",\n      \"defaultPath\": \"hero.ctaText\",\n      \"description\": \"Call-to-action button text label\"\n    },\n    \"surname\": {\n      \"type\": \"string\",\n      \"defaultPath\": \"hero.surname\",\n      \"description\": \"Family surname\"\n    },\n    \"subText\": {\n      \"type\": \"string\",\n      \"defaultPath\": \"hero.subText\",\n      \"description\": \"Deity symbol salutation tagline\"\n    }\n  },\n  \"supportedThemes\": [\n    \"royal-temple\",\n    \"floral-garden\",\n    \"south-indian\",\n    \"palace-luxury\",\n    \"lotus-serenity\",\n    \"midnight\",\n    \"marble\",\n    \"emerald\",\n    \"navy\",\n    \"burgundy\",\n    \"champagne\",\n    \"glass\",\n    \"rosegold\",\n    \"artdeco\",\n    \"botanical\"\n  ],\n  \"supportedMotions\": [\n    \"fade-in-up\",\n    \"reveal\",\n    \"zoom-in\",\n    \"none\"\n  ]\n}\n","Description":"Create Hero Section schema manifest.json","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\hero\\manifest.json","toolAction":"Create manifest.json","toolSummary":"Creating schema manifest for Hero Section"}:     
+    M2         &    Q =F  G^ '           2    N d 9P OR  }/> ~     %  ,I h y  +} r   !G 7  !St y,6x|        ]O dl 1   Kb   VK* *       _}  2*z  7 }  Vl        E }'   = Lk  6  ^ 0 .2  0 %E  f  w       {   M   g  F q       +  @  Om J  8  9"  ^s x   bQ?   `!m } a+   {U       	 N ;0  n      65  +  0c  5    _ YG 2w!   / W@
+n.\ Be8   6     s /  [    ev[d	y      e Uj    y $i      "    $ 6    1g   i >"   ol  EK  &  - c    |    y f E       )       H    k 6 <;b  H      Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$a7eca9b4-c0fd-49c2-a5f5-3bc6a5616aa9j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   )Creating schema manifest for Hero Section   Create manifest.json               R %
+     
+  {
+  "id": "hero",
+  "name": "Welcome Hero Banner",
+  "category": "common",
+  "properties": [
+    {
+      "key": "showScrollIndicator",
+      "label": "Scroll Indicator",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "key": "overlayOpacity",
+      "label": "Overlay Opacity",
+      "type": "number",
+      "default": 0.45
+    },
+    {
+      "key": "contentAlign",
+      "label": "Content Alignment",
+      "type": "select",
+      "default": "center",
+      "options": ["left", "center", "right"]
+    },
+    {
+      "key": "minHeight",
+      "label": "Minimum Height",
+      "type": "string",
+      "default": "85vh"
+    }
+  ],
+  "bindin    py-Item)
+ command(Copy-Item)
+ command(Copy-Item)
+ command(Copy-Item)
+ command(Copy-Item)
+ command(Copy-Item)
+ command(Copy-Item)
+ command(Copy-Item)
+ command(Copy-Item)
+ command(Copy-Item)
+  command(node C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\copy_theme_thumbnails\.js)
+  command(node C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\copy_original_flats\.js)
+ command(python --version)
+  command(python -c "from PIL import Image; img = Image\.open\(r'C:\\Use

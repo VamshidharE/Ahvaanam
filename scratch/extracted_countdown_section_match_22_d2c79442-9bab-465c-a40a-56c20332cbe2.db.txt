@@ -1,0 +1,115 @@
+use client";
+
+import React, { useEffect, useState } from "react";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+
+interface CountdownSectionProps {
+  bindings: {
+    title?: string;
+    targetDate?: string;
+    postWeddingMessage?: string;
+  };
+  layoutId?: string;
+}
+
+export default function CountdownSection({ bindings, layoutId }: CountdownSectionProps) {
+  const { 
+    title = "Party Countdown", 
+    targetDate = "2026-12-14T19:00:00", 
+    postWeddingMessage = "The Celebration has begun!" 
+  } = bindings;
+
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isPassed, setIsPassed] = useState(false);
+
+  useEffect(() => {
+    if (!targetDate) return;
+    const targetTime = new Date(targetDate).getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const difference = targetTime - now;
+      if (difference <= 0) {
+        setIsPassed(true);
+      } else {
+        setIsPassed(false);
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        });
+      }
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, [targetDate]);
+
+  return (
+    <LayoutWrapper
+      layoutId={layoutId}
+      defaultLayoutId="story-stack"
+      className="py-20 px-6 border-b border-white/5 text-center select-none"
+      style={{ 
+        fontFamily: "var(--theme-font-body)",
+        color: "var(--theme-text)",
+        background: "rgba(139, 92, 246, 0.03)"
+      }}
+    >
+      <div className="max-w-4xl mx-auto space-y-10 w-full">
+        <div className="space-y-2">
+          <h3 
+            className="text-xs uppercase tracking-[3px] font-bold"
+            style={{ 
+              color: "var(--theme-accent)",
+              fontFamily: "var(--theme-font-heading)" 
+            }}
+          >
+            {title}
+          </h3>
+        </div>
+        {isPassed ? (
+          <p 
+            className="text-lg uppercase tracking-[1.5px] font-bold animate-pulse"
+            style={{ color: "var(--theme-accent)" }}
+          >
+            {postWeddingMessage}
+          </p>
+        ) : (
+          <div className="grid grid-cols-4 gap-4 max-w-md mx-auto w-full">
+            {Object.entries(timeLeft).map(([label, value]) => (
+              <div 
+                key={label} 
+                className="border border-white/5 py-4 flex flex-col justify-center shadow-xs"
+                style={{ 
+                  backgroundColor: "var(--theme-card-bg)",
+                  borderColor: "var(--theme-border)",
+                  borderRadius: "var(--theme-radius-card)",
+                  boxShadow: "var(--theme-shadow-card)"
+                }}
+              >
+                <span 
+                  className="text-2xl md:text-3xl font-extrabold"
+                  style={{ color: "var(--theme-accent)" }}
+                >
+                  {value}
+                </span>
+                <span 
+                  className="text-[9px] uppercase tracking-[1px] font-bold mt-1"
+                  style={{ color: "var(--theme-secondary-text)" }}
+                >
+                  {label}
+                </span>
+     = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });\n  const [isPassed, setIsPassed] = useState(false);\n\n  useEffect(() =\u003e {\n    if (!targetDate) return;\n    const targetTime = new Date(targetDate).getTime();\n\n    const updateCountdown = () =\u003e {\n      const now = new Date().getTime();\n      const difference = targetTime - now;\n      if (difference \u003c= 0) {\n        setIsPassed(true);\n      } else {\n        setIsPassed(false);\n        setTimeLeft({\n          days: Math.floor(difference / (1000 * 60 * 60 * 24)),\n          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),\n          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),\n          seconds: Math.floor((difference % (1000 * 60)) / 1000),\n        });\n      }\n    };\n\n    updateCountdown();\n    const interval = setInterval(updateCountdown, 1000);\n    return () =\u003e clearInterval(interval);\n  }, [targetDate]);\n\n  return (\n    \u003cLayoutWrapper\n      layoutId={layoutId}\n      defaultLayoutId=\"story-stack\"\n      className=\"py-20 px-6 border-b border-white/5 text-center select-none\"\n      style={{ \n        fontFamily: \"var(--theme-font-body)\",\n        color: \"var(--theme-text)\",\n        background: \"rgba(139, 92, 246, 0.03)\"\n      }}\n    \u003e\n      \u003cdiv className=\"max-w-4xl mx-auto space-y-10 w-full\"\u003e\n        \u003cdiv className=\"space-y-2\"\u003e\n          \u003ch3 \n            className=\"text-xs uppercase tracking-[3px] font-bold\"\n            style={{ \n              color: \"var(--theme-accent)\",\n              fontFamily: \"var(--theme-font-heading)\" \n            }}\n          \u003e\n            {title}\n          \u003c/h3\u003e\n        \u003c/div\u003e\n        {isPassed ? (\n          \u003cp \n            className=\"text-lg uppercase tracking-[1.5px] font-bold animate-pulse\"\n            style={{ color: \"var(--theme-accent)\" }}\n          \u003e\n            {postWeddingMessage}\n          \u003c/p\u003e\n        ) : (\n          \u003cdiv className=\"grid grid-cols-4 gap-4 max-w-md mx-auto w-full\"\u003e\n            {Object.entries(timeLeft).map(([label, value]) =\u003e (\n              \u003cdiv \n                key={label} \n                className=\"border border-white/5 py-4 flex flex-col justify-center shadow-xs\"\n                style={{ \n                  backgroundColor: \"var(--theme-card-bg)\",\n                  borderColor: \"var(--theme-border)\",\n                  borderRadius: \"var(--theme-radius-card)\",\n                  boxShadow: \"var(--theme-shadow-card)\"\n                }}\n              \u003e\n                \u003cspan \n                  className=\"text-2xl md:text-3xl font-extrabold\"\n                  style={{ color: \"var(--theme-accent)\" }}\n                \u003e\n                  {value}\n                \u003c/span\u003e\n                \u003cspan \n                  className=\"text-[9px] uppercase tracking-[1px] font-bold mt-1\"\n                  style={{ color: \"var(--theme-secondary-text)\" }}\n                \u003e\n                  {label}\n                \u003c/span\u003e\n              \u003c/div\u003e\n            ))}\n          \u003c/div\u003e\n        )}\n      \u003c/div\u003e\n    \u003c/LayoutWrapper\u003e\n  );\n}\n","Description":"Update countdown layout section to support LayoutWrapper","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\countdown\\index.tsx","toolAction":"Update countdown component","toolSummary":"Integrating LayoutWrapper in Countdown Section component"}:     
+    M2   =   o-  ? ;   O:    U"   e9  q M    "  ;.  m  *  ]  X  p5Vf                E  um   f    z $ w\ Wr1       (   	u    E  )   y \M   3  7  > b    r      f0#N & a`8     0E  !V  J[   &7 J;    0      f   7   ] t  !   ?/ R  A o zzn  ( K    v      '7yQ  cM      p  R   Jwrite_to_fileB  I will update `components/sections/countdown/index.tsx` to support the new `layoutId` prop, wrapping the countdown panel with the responsive `LayoutWrapper`.`     .floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),\n          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),\n          seconds: Math.floor((difference % (1000 * 60)) / 1000),\n        });\n      }\n    };\n\n    updateCountdown();\n    const interval = setInterval(updateCountdown, 1000);\n    return () =\u003e clearInterval(interval);\n  }, [targetDate]);\n\n  return (\n    \u003cLayoutWrapper\n      layoutId={layoutId}\n      defaultLayoutId=\"story-stack\"\n      className=\"py-20 px-6 border-b border-white/5 text-center select-none\"\n      style={{ \n        fontFamily: \"var(--theme-font-body)\",\n        color: \"var(--theme-text)\",\n        background: \"rgba(139, 92, 246, 0.03)\"\n      }}\n    \u003e\n      \u003cdiv className=\"max-w-4xl mx-auto space-y-10 w-full\"\u003e\n        \u003cdiv className=\"space-y-2\"\u003e\n          \u003ch3 \n            className=\"text-xs uppercase tracking-[3px] font-bold\"\n            style={{ \n              color: \"var(--theme-accent)\",\n              fontFamily: \"var(--theme-font-heading)\" \n            }}\n          \u003e\n            {title}\n          \u003c/h3\u003e\n        \u003c/div\u003e\n        {isPassed ? (\n          \u003cp \n            className=\"text-lg uppercase tracking-[1.5px] font-bold animate-pulse\"\n            style={{ color: \"var(--theme-accent)\" }}\n          \u003e\n            {postWeddingMessage}\n          \u003c/p\u003e\n        ) : (\n          \u003cdiv className=\"grid grid-cols-4 gap-4 max-w-md mx-auto w-full\"\u003e\n            {Object.entries(timeLeft).map(([label, value]) =\u003e (\n              \u003cdiv \n                key={label} \n                className=\"border border-white/5 py-4 flex flex-col justify-center shadow-xs\"\n                style={{ \n                  backgroundColor: \"var(--theme-card-bg)\",\n                  borderColor: \"var(--theme-border)\",\n                  borderRadius: \"var(--theme-radius-card)\",\n                  boxShadow: \"var(--theme-shadow-card)\"\n                }}\n              \u003e\n                \u003cspan \n                  className=\"text-2xl md:text-3xl font-extrabold\"\n                  style={{ color: \"var(--theme-accent)\" }}\n                \u003e\n                  {value}\n                \u003c/span\u003e\n                \u003cspan \n                  className=\"text-[9px] uppercase tracking-[1px] font-bold mt-1\"\n                  style={{ color: \"var(--theme-secondary-text)\" }}\n                \u003e\n                  {label}\n                \u003c/span\u003e\n              \u003c/div\u003e\n            ))}\n          \u003c/div\u003e\n        )}\n      \u003c/div\u003e\n    \u003c/LayoutWrapper\u003e\n  );\n}\n","Description":"Update countdown layout section to support LayoutWrapper","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\countdown\\index.tsx","toolAction":"Update countdown component","toolSummary":"Integrating LayoutWrapper in Countdown Section component"}:     
+    M2   =   o-  ? ;   O:    U"   e9  q M    "  ;.  m  *  ]  X  p5Vf                E  um   f    z $ w\ Wr1       (   	u    E  )   y \M   3  7  > b    r      f0#N & a`8     0E  !V  J[   &7 J;    0      f   7   ] t  !   ?/ R  A o zzn  ( K    v      '7yQ  cM      p  R   Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2            :            B            X  b$85f2d6f2-eb12-4f7b-a974-c8c425144fd4j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                       3
+                
+                
+                  8Integrating LayoutWrapper in Countdown Section component   Update countdown component                  * '
+               " #
+ lbe79os9 write_to_file  !{"CodeContent":"\"use client\";\n\nimport React, { useEffect, useState } from \"react\";\nimport LayoutWrapper from \"@/components/layouts/LayoutWrapper\";\n\ninterface CountdownSectionProps {\n  bindings: {\n    title?: string;\n    targetDate?: string;\n        postWeddingMessage?: string;\n  };\n  layoutId?: string;\n}\n\nexport default function CountdownSection({ bindings, layoutId }: CountdownSectionProps) {\n  const { \n    title = \"Party Countdown\", \n    targetDate = \"2026-12-14T19:00:00\", \n    postWeddingMessage = \"The Celebration has begun!\" \n  } = bindings;\n\n  const [timeLef

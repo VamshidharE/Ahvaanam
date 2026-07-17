@@ -1,0 +1,204 @@
+use client";
+
+import React, { useEffect, useState } from "react";
+
+interface CountdownSectionProps {
+  bindings: {
+    title?: string;
+    targetDate?: string;
+    postWeddingMessage?: string;
+  };
+}
+
+export default function CountdownSection({ bindings }: CountdownSectionProps) {
+  const { 
+    title = "Party Countdown", 
+    targetDate = "2026-12-14T19:00:00", 
+    postWeddingMessage = "The Celebration has begun!" 
+  } = bindings;
+
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isPassed, setIsPassed] = useState(false);
+
+  useEffect(() => {
+    if (!targetDate) return;
+    const targetTime = new Date(targetDate).getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const difference = targetTime - now;
+      if (difference <= 0) {
+        setIsPassed(true);
+      } else {
+        setIsPassed(false);
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        });
+      }
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, [targetDate]);
+
+  return (
+    <section 
+      className="py-20 px-6 border-b border-white/5 text-center select-none"
+      style={{ 
+        fontFamily: "var(--theme-font-body)",
+        color: "var(--theme-text)",
+        background: "rgba(139, 92, 246, 0.03)"
+      }}
+    >
+      <div className="max-w-4xl mx-auto space-y-10">
+        <div className="space-y-2">
+          <h3 
+            className="text-xs uppercase tracking-[3px] font-bold"
+            style={{ 
+              color: "var(--theme-accent)",
+              fontFamily: "var(--theme-font-heading)" 
+            }}
+          >
+            {title}
+          </h3>
+        </div>
+        {isPassed ? (
+          <p 
+            className="text-lg uppercase tracking-[1.5px] font-bold animate-pulse"
+            style={{ color: "var(--theme-accent)" }}
+          >
+            {postWeddingMessage}
+          </p>
+        ) : (
+          <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
+            {Object.entries(timeLeft).map(([label, value]) => (
+              <div 
+                key={label} 
+                className="border border-white/5 py-4 flex flex-col justify-center shadow-xs"
+                style={{ 
+                  backgroundColor: "var(--theme-card-bg)",
+                  borderColor: "var(--theme-border)",
+                  borderRadius: "var(--theme-radius-card)",
+                  boxShadow: "var(--theme-shadow-card)"
+                }}
+              >
+                <span 
+                  className="text-2xl md:text-3xl font-extrabold"
+                  style={{ color: "var(--theme-accent)" }}
+                >
+                  {value}
+                </span>
+                <span 
+                  className="text-[9px] uppercase tracking-[1px] font-bold mt-1"
+                  style={{ color: "var(--theme-secondary-text)" }}
+                >
+                  {label}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+    8Update countdown layout section to support LayoutWrapper          #  onById(id);
+31:     if (!invite) {
+32:       return NextResponse.json({ error: "Invitation profile not found" }, { status: 404 });
+33:     }
+34: 
+35:     if (invite.user_id !== user.id) {
+36:       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+37:     }
+38: 
+39:     // 2. Enforce payment checks before publishing
+40:     if (invite.payment_status !== "paid") {
+41:       return NextResponse.json({ error: "Payment Required" }, { status: 402 });
+42:     }
+43: 
+44:     // 3. Mark as published
+45:     await publishInvitation(id, supabase);
+46:     return NextResponse.json({ success: true });
+47:   } catch (error) {
+48:     return NextRespons y     p       "$803db09d-07f8-4bea-8614-502f0dcd057dB     2   2   2   2   2   0   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   1   2   2   2   2   1   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2
+     "Q     +   (   0 B!
+	sessionID  -3750763034362895579H  P  Z VyhSavWxJ7DQg8UP7rjhqAc0  : 
+ autoJe              "             (  2          f0a1554b2          3d7bd8de:       e9c821beB  h      R     Z         b         zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  e Q     +   (   0 B!
+	sessionID  -3750763034362895579H  P  Z VyhSavWxJ7DQg8UP7rjhqAc" 4b3f9599de26dc22   gemini-default  !
+ used_claude_conservative  false   
+ last_step_index  541  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $c3b94424-8a4b-48b9-9443-6b0ed9cfdb20  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false   Gemini 3.5 Flash (Medium) r k     T     "$c3b94424-8a4b-48b9-9443-6b0ed9cfdb20B     2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2
+     "P     %   (   0 B!
+	sessionID  -3750763034362895579H P  Z 7idSas3ALqn_juMP8K-W4A40  : 
+ autoJe              "             (  2          3d7bd8de2          82067518:       e9c821beB         R     Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  d P     %   (   0 B!
+	sessionID  -3750763034362895579H P  Z 7idSas3ALqn_juMP8K-W4A4" 272269bbc67eb71c   gemini-default  !
+ used_claude_conservative  false   
+ last_step_index  539  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $5507a9d5-0270-41c5-a314-7a7a35a3d490  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false   Gemini 3.5 Flash (Medium) d j     R       "$c3b94424-8a4b-48b9-9443-6b0ed9cfdb20B     2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2
+     "N          0 B!
+	sessionID  -3750763034362895579H  P  Z 6idSarOiLt6ujuMP65KIqQ00  : 
+ autoJe              "             (  2          820675182          ff835693:       e9c821beB         R     Z        b         zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  b N          0 B!
+	sessionID  -3750763034362895579H  P  Z 6idSarOiLt6ujuMP65KIqQ0" 5ca56bdfd29143ae   gemini-default   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  537  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $5507a9d5-0270-41c5-a314-7a7a35a3d490  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   Gemini 3.5 Flash (Medium) c     M    M                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ; 8            V   
+               2             :             B             JN     # &(  0 B!
+	sessionID  -3750763034362895579H P Z pTJSaqHmGNTx4-EPh-Sl8AMX  b$85f2d6f2-eb12-4f7b-a974-c8c425144fd4j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+               2             :             B             JN     # &(  0 B!
+	sessionID  -3750763034362895579H P Z pTJSaqHmGNTx4-EPh-Sl8AMX  b$85f2d6f2-eb12-4f7b-a974-c8c425144fd4j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+oI have launched the type-checking task in the background. I will pause tool calls now and let it finish checks.2(bot-135d95b0-9e51-425f-ac6d-6fc49daa4812BoI have launched the type-checking task in the background. I will pause tool calls now and let it finish checks.` r     
+~  M2 IP k G        ^    6   z   A ' :[GS   ; e n ;    _      W *0K i    ,      %      v  "  H ~   ~ M   $;    A    [& C  cV8 P p 7        N 
+      
+               "  
+ w9i2aoit  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript type checker compiler check"}:     
+    M2       J    ] @ 5a  2  L    0  -  ^^  qK       & ; L   O );     P-M 8    y/      k-$n \ 	 / <T  Djn  8   > Y'  ,  < UPu+B   L .X   |    D t   <G   OY)  s  LJ run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             B             X  b$85f2d6f2-eb12-4f7b-a974-c8c425144fd4j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    0  H
+                 
+  	              
+                 
+                   .Running TypeScript type checker compiler check   Verify types safety                 
+ 
+ command  npx tsc --noEmit  
+-d2c79442-9bab-465c-a40a-56c20332cbe2/task-695 zfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-695.log" npx tsc --noEmit(     *  
+               "  
+ w9i2aoit  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript type checker compiler check"}:     
+    M2       J    ] @ 5a  2  L    0  -  ^^  qK       & ; L   O );     P-M 8    y/      k-$n \ 	 / <T  Djn  8   > Y'  ,  < UPu+B   L .X   |    D t   <G   OY)  s  LJ run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             B             X  b$85f2d6f2-eb12-4f7b-a974-c8c425144fd4j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    0  H
+                 
+  	              
+                 
+                   .Running TypeScript type checker compiler check   Verify types safety                 <  9
+ 
+ command  npx tsc --noEmit  npx  * Verify types safety  !  
+ 
+ command  npx tsc --noEmit   	~
+<  9
+ 
+ command  npx tsc --noEmit  npx  * Verify types safety >
+$e814890c-6b84-44e9-9783-edb10a1bb4dd        " 
+ command(npx) 	  
+-d2c79442-9bab-465c-a40a-56c20332cbe2/task-695 zfile:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-695.log" npx tsc --noEmit(   D  c:\Users\Admin\Ahvaanam0 ` '   npx tsc --noEmit   npx tsc --noEmit    ero-center)\n          \u003c/span\u003e\n          \u003cdiv className=\"rounded-2xl overflow-hidden border border-zinc-100 relative\"\u003e\n            \u003cThemeProvider themeId=\"luxury-gold\" /\u003e\n            \u003cHeroSection\n              properties={mockHeroProperties}\n              bindings={mockHeroBindings}\n              layoutId=\"h

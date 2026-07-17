@@ -1,0 +1,85 @@
+ngs: any; }' is not assignable to type 'IntrinsicAttributes & DressCodeSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & DressCodeSectionProps'.
+components/shared/LegacyOrchestrator.tsx(109,47): error TS2322: Type '{ key: "footer"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & FooterSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FooterSectionProps'.
+components/templates/birthday-premium/Layout.tsx(278,25): error TS2304: Cannot find name 'getBirthdayComposition'.
+components/templates/birthday-premium/Layout.tsx(278,58): error TS2304: Cannot find name 'getWeddingComposition'.
+components/templates/birthday-premium/Layout.tsx(281,10): error TS2552: Cannot find name 'CompositionRenderer'. Did you mean 'useCompositionRenderer'?
+components/templates/birthday-premium/Layout.tsx(288,14): error TS2304: Cannot find na    me 'ToggleRight'.
+components/templates/birthday-premium/Layout.tsx(780,12): error TS2304: Cannot find name 'ToggleLeft'.
+components/templates/floral-garden/Layout.tsx(6,39): error TS2307: Cannot find module '@/lib/composition/templates' or its corresponding type declarations.
+components/templates/grand-mandap/Layout.tsx(6,39): error TS2307: Cannot find module '@/lib/composition/templates' or its corresponding type declarations.
+components/templates/heritage/Layout.tsx(6,39): error TS2307: Cannot find module '@/lib/composition/templates' or its corresponding type declarations.
+components/templates/lotus-serenity/Layout.tsx(6,39): error TS2307: Cannot find module '@/lib/composition/templates' or its corresponding type declarations.
+components/templates/marigold/Layout.tsx(6,39): error TS2307: Cannot find module '@/lib/composition/templates' or its corresponding type declarations.
+components/templates/modern-birthday/Layout.tsx(6,40): error TS2307: Cannot find module '@/lib/composition/templates' or its corresponding type declarations.
+components/templates/moonlight/Layout.tsx(6,39): error TS2307: Cannot find module '@/lib/composition/templates' or its corresponding type declarations.
+components/templates/palace-luxury/Layout.tsx(6,39): error TS2307: Cannot find module '@/lib/composition/templates' or its corresponding type declarations.
+components/templates/peacock/Layout.tsx(6,39): error TS2307: Cannot find module '@/lib/composition/templates' or its corresponding type declarations.
+components/templates/royal-temple/Layout.tsx(6,39): error TS2307: Cannot find module '@/lib/composition/templates' or its corresponding type declarations.
+components/templates/south-indian/Layout.tsx(6,39): error TS2307: Cannot find module '@/lib/composition/templates' or its corresponding type declarations.
+
+
+Log: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-675.log
+</SYSTEM_MESSAGE>         z
+(bot-b0e48c0e-6a2c-4020-8ccc-880d3c41bd7d     I will scan the transcript logs to search for any files containing `LayoutWrapper` or `MotionWrapper` in their target path, to restore them.   2 j
+ a1b3rlun write_to_file   {"CodeContent":"import json\n\ntranscript_path = r\"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\.system_generated\\logs\\transcript_full.jsonl\"\nprint(\"Scanning transcript for wrapper components...\")\n\nwith open(transcript_path, \"r\", encoding=\"utf-8\") as f:\n    for i, line in enumerate(f):\n        if \"write_to_file\" in line and (\"LayoutWrapper\" in line or \"MotionWrapper\" in line):\n            data = json.loads(line)\n            for tc in data.get(\"tool_calls\", []):\n                if tc.get(\"name\") == \"write_to_file\":\n                    tgt = tc[\"args\"].get(\"TargetFile\", \"\")\n                    print(f\"Step {data.get('step_index')}: {tgt}\")\n","Description":"Search for LayoutWrapper and MotionWrapper in transcript","Overwrite":true,"TargetFile":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\scratch\\find-wrappers.py","toolAction":"Create python script","toolSummary":"Creating script to locate LayoutWrapper and MotionWrapper file writes in the transcript log"}: a  a
+ a  M2 Z/   S   SZu  /  bl ]      |    j  T =  N   < 9 r/  _\     D     8       # B      dB 9r    /&<   Kz    j2    8 3b ,   D`         o  ^    )        9 7          Z  +     3    Mb_  a  -  7  Ry m    T _ U  G `  9 TS ; `    ne  Y}:]Is :|G   u He    y{  p     t *  w <6    	 .f    j     .q   Ym} H%  # B  U    	  id }   F            F H ~c~lV H     / _      _ d    kg   [.    x=% E   O4    c  r4 S        i{0 j 4 o & h R  v `        _       - RI        Y3  S9  5    
+ X r ;  ' } R,   M\   	 C 9    (   7      w;  Ja      3    #   S `=  rd aa   T] T  p  LrS j`j R< `    *Y  mp       Q;  E$X kg<%5)U  b  j Oh   bt'  5;kw   eh   0  ^ b       Ig 8j  yN      X 2   /         _: i;E#   Uz (.   Nt  +;  r>H  *LH  f 
+   4  M+   '  B O $  # g -&S   $ t  ' ;.  T3M|# Y +/        
+     tZ               4F                  A         |cH H '  `+m      9 t   C tw   <    1    O{4  jBRE            m.{              g   tcA O )`b d  +      J  d OZ h  },  h  7     =x #)<  V    N  "      +{8 t    0B     b9j $  A C , Dt9XTLe  6     r   dE T I   8L (  8AV       
+  0   8Q sr  S }o  g xq       X @RcQ i X x  G     x Y xB gy   U  E    .P 
+     1  hcD w7 @       0o P       >   E     .R V F     9LE O!DS    2 t ; n H    W O  SK1K #     ivJfn	   ^| ;  dF    *   P N2 ;   ,y0k ` 8      c  E    pEk   jgv |x n    + \ s ] @ GcaU :  ]  q     >y  
+z1   A s)u|   e ! aj R  Vy
+   =j      = sg<     "        ] <  D    6Lv  k  
+Q  ^     {   2     # zK    B   f#   a{   >  ;  ~ V K [[Y #  y  g3   F   A0 1  q
+?1    IZ  {Lw   Cp   = "Ab{T   m P
+ 1  g$'       7  a    P` pzN     #  0'zA2      1             r k k 6  70  J  E " r    D     9       8    #  K Y  C w  L@ -  J j =    K{ ^  %  sL      )  [Kr g  @T  &Y    N        ' N    m  s  w   u 7j6P r q  iy
+       i GT49  q	    D  ]   z>  & CNy  8 O     ( ; ^ {(    8vM   54 ^ D.t B ^ 
+  7u/:sc      R%  G\   P    e oU  ;   ? $   0 8       4  * >R  Uvz7 D  ) V " P     C 24       A   "!g  "(w L !  "   #  K  8    GJS P)  /2k !         9yd OS        u  ad   &     6<Ba  <           X     * '+         " X "     um  
+ C @        %  " cQ t m  9    I     ^     !  y      6     ' 3 N  R) }xtx   :p  } W e S8+   D ? 1    '      z*   N      k a   bM   => d@ ]U  _  O  $!    0    b$    M    t     8 > ^   !   U     \   4 1    
+ {      ;T ^i 8   c  X  CQ - Xi    P  m    i &   C7C_f    #e [   *  \  (*    W  mZ    *i  Q    O8     ;     @E   LPl          G  \ H)  j e     +cf8  '     ;     yIF           2\"q( n  1Au fs v c z   wC   - g     d   } [X_ * m{ R %  ]:  v _ u M~  c  
+@9   z0T    l 2.   sx~ H"    t v/ S=  <  0' \  }P    Z  . S% S    1      6c  h Vl Z     ]+   L vxGxxw h#  E   cC/ FX     Y   S 	n 7 
+ s.=  }    B  A .   iAl 14D  '(Z    S    /5D   c  u  Wex e  t%  lb  c^; ]  K % |    l\ X ~c 
+ TV=   M'  eI
+'sz{ w F   U % G $-z v H r + 3    	3        IN	   H    L    y]+^   ?  }/=,    f rIk e 5 D l [Q          Zvw  mTM   ; ,           l<XfK    x T  fuC  ' l  ) " c:      ,    f     ~G cW L 6 p 1    ] ;   nPt r3{       <  ]   .     ChaK #a `= 0 ( @ o L[ = P hS   v  '  ((w 0    |s  ^ DD@ (   C2C NN# Y A  l kvSW 8 I   -  < B  ,5 b + a & &  y2 s  jh%    Y   ]]  "   "w$%Y~  K     ,AE      7%        @    hx i     )  m   ?4g        +  w)C    &  U      +   O  B ( s    "  m.R     b ,`R 5     E  %k E U GwH  1N p    6   ]    s  G     p       vVuB A  )> d m  A   Z3 U6  m     x   =  d$  V       O       k    v(g   t+    Ll   E L  jQ l F    O GMA$   +  = I   :D u    l  @O%| #{ hZ     &?b    K  L l       n71q  t  ! ^s  /   U | F           3QK9    k 0  X    ol        G /a <Q V    :  c    RO[[w    h@g*w    I     a     8]     qvJ Uu_ v y :Q b t %  C  BS} 0)D N 1    9   ~_ A ("o      _  |G g a7Y  Z 88 ,]     :   y B    ]  r0 l]    G> >       68  g) [RPg  N 1S c&  P f % 9 &C}  C     $h9/5         % # Tc  y      Zs      Wdl V ,   Z   _     4 7  6PgXa     0-     fQ u   W9  K   FN (ty k% - ]  <  3=  7=74 <    Pc  k   0# 4 />   &3  Iv        i] ^V  ?b A    KQ i  0  *`  X*   l~  \ w  Y  c]   vT m  ]   M U  + 3 
+ KW   C }e9    .9U  S  k      $   y A    |     ; l } @  e   ^8   (*6  yi- 98<Py     -U             h ' .   m -( n F  o   @    A        Lv  o    -t l U"7  F  $      ~w pb\+     >  ~       8     so   L    WI X  n   ( #   1` *7- &1  	 ' Ig  S    L_   ]    Q w   !       ;     |\|  v. =M 	m 5
+E #    -GX;u         Zs      N I3   M *:  8          /r       Ar  z   6I  3\9 o          [   ='  # d     TA  g ^ e   *Q  Rxv  Mt%  x=  P   U  <qr  ~A   I  2   a   ""Q  !  K 
+ %     a  f   ' b R   Pa
+ p  
+ ^T t 1  I#  B  * M^   + z  { m w=:ZZi$    &   9yV     \L    4y  h `! t      \  A(  j"# ?      H      h  V   w       oANs'  XWm
+ l   :  Zwu     <~   c: j'       p   ]L sb  Xxz g   +  a   K  q +\ dXS N  !     {# J06 3   *  0"   ?Lt     2\   x9  H>  d   k u   8 '          2      %3   +  &!      ?   I3> :f 
+   8           ++f       pe U     8   o _     `f]  C{N        `zF    1_ 6   DS ,p x6   C   = um   }T       k7f          @  Kb y<
+  I             8  y  zG s+l  5  <4).      e{"   (  ~x         Fg  
+ v(     _  5     P 6y    | >2U    9 XX. ] ^     !V2    e   D   r |__     l  S    b #z   5
+{    Lh         ". EQ    A 1}  ,      E    w S    Tm    z  *     mV   ?%{  )s 
+5 bw+  e   C  5      =Uv   T       \ /   5O 1  ]    E       N  I `*      _    *-           $  c     e] HtKu I      +       5 e! 1  ! g t  9 t  h    w    I  m   9  e   zq h     3D 3 q0  O  Y ;     dk` g+ L\   x"        ,{ = @   %               V<# W  /          o 3x__2   "b y X5}  +1   M   1*   D 2        VZ    Zq   >     L  T=  7 ~+]     #C  A  s      W   Mwwr    v}    ?C$ FH D' \   H] 5@  2hX    6    u    5  1 0 i  n   
+ g          0    m<      4     } 0q   t  ~~  }6MX,   &9a    p j 1C  7 qH  [ :   sg0  :]     <    <gW *F  G   G o m
+  9 tX   6. ~-    j   q  /   n^     O"~    t         n u B   TW  <  8 `  q{   U    ^0| /    Y S xY n    D   3   =    0 B jm  /h  D Jll 8 /E    L  [    t"   '     b   9x }N  r T  < ;       m        # b,`Rg_ 	+ 8  <VF # k ;' {  ^O~
+      h'o kt3] j        &   xk    ` N    gd     [   0 WVR Z ' e      {  \  L k^ cn  < D U:  3HH    s  Z=    ] <\p #    "*      >       IP m  #   _ Yn  5X =k 
+ F   a3b   Hl  x n   sO     2  
+-}"}.4 ?*s7 nv   [>     XF       4f  \ l '    j| m  /\* J9 g k 05   g    Q O     o   l1    0G6      1    s  %<     z8~ y ND  "_   d   q p 8w  x, 	      +_    "  x   S t  L   Dt '     [^!   8    y  4 l    c P  8Q      i  /$
+Xb	 ;  R|n    oS     %%x  |m4W   \  ]  ] 	  h  0L  )S  ! h c\[    [O   5  ^;=  >     < y  -  G     wW~: @   -z* m W]gC m I 2  =       ! W  L  M j_  Y    _ w  vb <  uZ   x0  2 = t   B     RU     Ju oQ I 6 }} % cD' #  o             &C GI    q  M J0 ~3m                 }    w H      [v ; 
+ 	     V   / 
+$     & +5G)JRen G       # S'cM  wm a y       U 
+A     %  N  L/ Y   Z&            n y      +^l ^ \   p 72B    Cw 0 :P.HF f_  K   Y  2A4  ;  NC, B  \     j   
+ * |7Kc9[     dat|   u  rC J4 ) 1  b   I  q  `P  	  y   c    s    0 ' I u Z  Y    h         6= A      f k  :S     r 	      ~~7 g'i `  |rI  Mn 8      R` p&+ IG  lg'   ~       !    3  *bK"  p    V   ~ C4   \  5T lc*  ( E x0  `6   B     +    Y           | `Y]:   I` ]    v   <3 v   H or5 p  z 4  T=  H  +9  ? ZN   - _n!kb  EH [D1  }     <,   
+ ?;   1  Z C  d  vc  '/       Sp  QR   $ % 9BN=1 A    SJP n
+B ^% %   _(  [+_ U(      t  ]  Bc(     {  - %+|q  J s      8 |   `      j' @7    '  Y . &  K  1 /r>F_ ,    x "  .G|   )   U < ]   [  ]l . La 2 M #ck   >  3> o    /!  A -  J   { xa . ~ ~ {   =    GU    $  t     .         T   NJ  ' e  + t  K  ~Ia/c(L T]2e# }a?f,i; F KI^ j b  J+ d\< Mz $#    E       L~  \ 6    z 89  =%M:
+           _   S    T  G:  .] 'nCS  C   =K	A    W      j  # bpY9 {P gJ         b# v  v [  %o    YI      l]   V  t %          $ !/ L6 Qh[ b  ]w 
+   $ v   G   |        #    m ?E       2    i 2   W   i     l< |9 F#   f  ),  8      }  ^  _ c7 v   _  u6GZ )e  0 j W   ~ 7    ;_7"|   N     ' xL O BYN      sGlz,     (    	  Rx   #D	       <  IM       @yk          "M, M7    _4D   S X/GV  @	    ZRC " 6   2 : 4     ,  {G      $-B " |Wo  y     T_  T+      ]nq`i   z         yo :     j ng)  ! v dV V 
+<  ^ 7  ?q  $hW'    x  s cf -     ,      +[      >[     >'1|D P a>  CP  Z; q M   4                H            4A=W mZI8t     A   Y Y  G r &h`/      H     /   ? Hw     O X  v      B *	 h   S]A H_u i2    WZ>  Z	  u WX ,h   S^ m        ,     )AW  b    -    $  D|  *  U  eZ    $|U      N .        > 'k   \ B+  r`      bc~ 5 j    q      .                C  1Y     5  
+    # 9    2g   x   \L  	U  / M    }   =    c  ;&   8 9  4 F    #   R  jHt~    U     M  8        ' w N  q  S 8S@ p}  y     a SZ? d  + 4    3 #  MX , 6    P.; \    r ' E   	 J      r y     $ k M         c  -  2O\v2   	L   5I 4  *   ]&	 n  -i  [ 	A     JI  bsV0  Z  m    v   zT9t] f 
+QO i e        R    1T 0S  @     4    A    (  t42O   	^ +fD 6hx_ z  O p      :O    b     (h!   	  ! kK  L 	w2  K           *   }	 m. 8C  9   h  z	fA[       @ ? WlK {  S H  X    pX 6   f#8`   < a  0)a   ?   -     ;   ZW  =  lsv   i{sV `   9e  +   + A f;x 3T r s 8B\ +   1    x   S yx1U   {a   r Q x-  b )   F  qU   X    ~{       mz +; 
+  G  7   y~2> :  `$bt       |     Jt9  ekfm)   6   o U    )  or   h     8 L   \   ( nTZf  Z  &j ,   uv  ~ 7     ~  .y     ab      t   
+  S7Nn   u       fKZ   '  C 2       ! Z#D>U  | 	   Ct a  i <    |   ,) oF        u?u U   Al* es `9           H  IBc Si.g  
+9 OL   
+     Bg   67 
+ S   }4  aXU8Bm 3n]=  RZ        U?/  @}      *  Y_ 0  }  : u  P{   *         7  %Z aZ    @   R   3 [;.K   $: J  x$i B{0 1[E    I  JkEA  W p     bD  $ Q    m|    ln (  H -L 6-M   &l[ -r5H    0 r~v/H   H   SNt      n  M   q  K3aK B  8        X     2  ?d         ^ +~  l  ;]   
+ 0              EkUJ"f f+  PL  8~m# A  8 "   XV@ M   /
+r8        ?  tn  C  jP w GF 8  U #je        Nx  ki   =   'C  ^ d   %          l    !  0   ((z $~b  :O  6   e+] lwT T |       e       s m    o  Z ; 0 C\    [        &  6      n ^ j|   *! < $ V(.   `
+ G    -  	 JD\  -  Yt*^ ] . &whs 5  K d bP ( o         3 r     {   U;    @[    XQ [@   CX Y     k  6    Cy ,\7/:H H.Tl  N1     ;   k8`X u   ^      #  x;  e`     T ns` G&w)  t Y     , a  @ { AU    ccM?Jj      >j  5  > +h 	9   c     lD  N }  3 .	    X
+~ AN[   f   k Q oH       2=  IVI   / S .  eq    k1      6 g   c    q& W sk  Zw- o X[  x  j     _  /sa   h               _           V     c  . s     Ga0 
+ ;   eLS ^  Y_  /    ^   A%  IZ vQ     II      M  T cO
+ BV  &n 0*>DN z       b X    (Y  % e    Yj  
+ 9j{    H  Ys1          )   x B Z    b   kL Yj    1( a ]    + } W' K  e   O   /h( ax#_V      +     4  M  w  H 3  _WZ       !  eO$  W   r   9 c     i    b 6= +k N   8(  O +   5 DL "   d &.  =`]   .]r2  }m `V t   $ . du {    %w   hB   X      ),   C  f;      t \  ^Q#    V<= OM   K  Y   <  !  k     5 rV  K  mj  8 <  Q   Zg       ,^(;4k M      .S   s     X   4          q~ 5 Ca }    HMOc    0&5 	         | pO        M *  d v  Zv  D  a    x 7  7 d  ,w    ]@9 3    -\g '   K     T  

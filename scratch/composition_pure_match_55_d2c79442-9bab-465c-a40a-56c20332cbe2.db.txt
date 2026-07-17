@@ -1,0 +1,147 @@
+use client');
+    }
+    if (startIdx === -1) continue;
+    
+    // Try to find if this contains the full component
+    const hasComponentExport = content.includes('export default function CompositionRenderer');
+    const hasResolveBinding = content.includes('resolveBindingValue');
+    const hasSectionComponents = content.includes('SECTION_COMPONENTS');
+    
+    if (hasComponentExport && hasResolveBinding && hasSectionC
+------------------------
+[33] Found match at index 3328854
+  Preview of match [33]:
+"use client";');    
+     if (startIdx === -1) {   3
+/      startIdx = content.indexOf('use client');   	
+     }   &
+"    if (startIdx === -1) continue;    
+        :
+6    // Try to find if this contains the full component   c
+_    const hasComponentExport = content.includes('export default function CompositionRenderer');   J
+F    const hasResolveBinding = content.includes('resolveBindingValue');   L
+H    const hasSectionComponents = content.includes('SECTION_COMPONENTS');    
+        N
+J    if 
+------------------------
+[34] Found match at index 4392779
+  Preview of match [34]:
+"use client";
+2: 
+3: import { useEffect, useState } from "react";
+4: import { ToggleLeft, ToggleRight } from "lucide-react";
+5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+6: import { getWeddingComposition } from "@/lib/composition/templates";
+7: import { useInvitationData } from "../../context/InvitationDataContext";
+8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+9: 
+10: // --- TEMPLATE SPECIFIC PARTICLES ---
+11: import React, { useRef }
+------------------------
+[35] Found match at index 4395424
+  Preview of match [35]:
+"use client";
+2: 
+3: import { useEffect, useState } from "react";
+4: import { ToggleLeft, ToggleRight } from "lucide-react";
+5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+6: import { getWeddingComposition } from "@/lib/composition/templates";
+7: import { useInvitationData } from "../../context/InvitationDataContext";
+8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+9: 
+10: // --- TEMPLATE SPECIFIC PARTICLES ---
+11: import React, { useRef }
+------------------------
+[36] Found match at index 4496572
+  Preview of match [36]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[123] Found match at index 29082480
+   node scratch/extract_from_db.js   node scratch/extract_from_db.js   G     3 Op~1 JQ b         W  W                                         J 	        l       
+               "  
+ lmt7gzt3  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolActi
+------------------------
+[37] Found match at index 4504744
+  Preview of match [37]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[123] Found match at index 29082480
+   node scratch/extract_from_db.js   node scratch/extract_from_db.js   G     3 Op~1 JQ b         W  W                                         J 	        l       
+               "  
+ lmt7gzt3  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":50   %er');
+    const hasResolveBinding = content.includes('resolveBindingValue');
+    const hasSectionComponents = content.includes('SECTION_COMPONENTS');
+    
+    if (hasComponentExport && hasResolveBinding && hasSectionC
+------------------------
+[32] Found match at index 3328223
+  Preview of match [32]:
+"use client";');
+    if (startIdx === -1) {
+      startIdx = content.indexOf('use client');
+    }
+    if (startIdx === -1) continue;
+    
+    // Try to find if this contains the full component
+    const hasComponentExport = content.includes('export default function CompositionRenderer');
+    const hasResolveBinding = content.includes('resolveBindingValue');
+    const hasSectionComponents = content.includes('SECTION_COMPONENTS');
+    
+    if (hasComponentExport && hasResolveBinding && hasSectionC
+------------------------
+[33] Found match at index 3328854
+  Preview of match [33]:
+"use client";');    
+     if (startIdx === -1) {   3
+/      startIdx = content.indexOf('use client');   	
+     }   &
+"    if (startIdx === -1) continue;    
+        :
+6    // Try to find if this contains the full component   c
+_    const hasComponentExport = content.includes('export default function CompositionRenderer');   J
+F    const hasResolveBinding = content.includes('resolveBindingValue');   L
+H    const hasSectionComponents = content.includes('SECTION_COMPONENTS');    
+        N
+J    if 
+------------------------
+[34] Found match at index 4392779
+  Preview of match [34]:
+"use client";
+2: 
+3: import { useEffect, useState } from "react";
+4: import { ToggleLeft, ToggleRight } from "lucide-react";
+5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+6: import { getWeddingComposition } from "@/lib/composition/templates";
+7: import { useInvitationData } from "../../context/InvitationDataContext";
+8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+9: 
+10: // --- TEMPLATE SPECIFIC PARTICLES ---
+11: import React, { useRef }
+------------------------
+[35] Found match at index 4395424
+  Preview of match [35]:
+"use client";
+2: 
+3: import { useEffect, useState } from "react";
+4: import { ToggleLeft, ToggleRight } from "lucide-react";
+5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+6: import { getWeddingComposition } from "@/lib/composition/templates";
+7: import { useInvitationData } from "../../context/InvitationDataContext";
+8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+9: 
+10: // --- TEMPLATE SPECIFIC PARTICLES ---
+11: import React, { useRef }
+------------------------
+[36] Found match at index 4496572
+  Preview of match [36]:
+"use client";
+
+impo

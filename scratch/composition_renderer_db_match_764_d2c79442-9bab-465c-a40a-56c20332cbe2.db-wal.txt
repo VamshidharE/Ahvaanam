@@ -1,0 +1,168 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvid
+------------------------
+[109] Found match at index 29043680
+  Preview of match [109]:
+"use client";
+
+import React from "react";
+import HeroSection from          3 Op~1  #   Vl     "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+[84] Found match at index 26157782
+  Preview of match [84]:
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { useInvitationData } from "../c
+------------------------
+[110] Found match at index 29070654
+  Preview of match [110]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeMessage: "Weddi
+------------------------
+[69] Found match at index 22735945
+  Preview of match [69]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvid
+------------------------
+[111] Found match at index 29071040
+  Preview of match [111]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[70] Found match at index 22744974
+  Preview of match [70]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvid
+------------------------
+[112] Found match at index 29071426
+  Preview of match [112]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider"    ;
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You
+------------------------
+[71] Found match at index 23766024
+  Preview of match [71]:
+"use client";
+2: 
+3: import React, { useEffect, useState, useRef } from "react";
+4: import { useInvitationData 
+------------------------
+[113] Found match at index 29073679
+  Preview of match [113]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[181] Found match at index 4091072
+  Preview of match [181]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[114] Found match at index 29074066
+  Preview of match [114]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider"    ;
+   P    YZ uh \ v  @        
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and L
+------------------------
+[182] Found match at index 4118136
+  Preview of match [182]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[115] Found match at index 29074453
+  Preview of match [115]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeMessage: "Weddi
+------------------------
+[183] Found match at index 4118522
+  Preview of match [183]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[116] Found match at index 29074840
+   node scratch/extract_from_db.js   node scratch/extract_from_db.js   G     3 Op~1 F7E Q` m     W  W                                         J 	        l       
+               "  
+ lmt7gzt3  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run extract_from_db.js","toolSummary":"Executing database scan script to locate the composition renderer code"}:     
+    M2  ,  n hp N5.v +'  9  e  a K   -;?E|     bg'   6           r D  -      0  )   T   T      w  +     H   q!  F      5 ]0q     i*  J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2            :            X  b$4aa75d03-12   	        l   ,   
+               "  
+ lmt7gzt3  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run extract_from_db.js","toolSummary":"Executing database scan script to locate the composition renderer code"}:     
+    M2  ,  n hp N5.v +'  9  e  a K   -;?E|     bg'   6           r D  -      0  )   T   T      w  +     H   q!  F      5 ]0q     i*  J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2            :            X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                   :  4
+                
+  	             
+                   FExecuting database scan script to locate the composition renderer code   Run extract_from_db.js               .
+*
+ command  node scratch/extract_from_db.js      *  
+               "  
+ lmt7gzt3  run_command   {"CommandLine":"node scr

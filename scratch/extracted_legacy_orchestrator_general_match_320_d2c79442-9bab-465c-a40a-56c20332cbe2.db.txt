@@ -1,0 +1,166 @@
+milar across templates.
+
+
+**Refactoring Layout Structures**
+
+I'm now contemplating refactoring the component templates. The plan is to replace the existing files with thin composition shells using a `LegacyOrchestrator`. This approach, I believe, will significantly streamline the architecture.
+
+
+**Evaluating Composition Implementation**
+
+I'm now diving into the implementation of the composition renderer. I've observed the toggle logic for switching between renderers, stored locally, and adjusted via the URL params. I think the conditional rendering based on `useCompositionRenderer` works as anticipated.
+
+
+2(bot-0e9a832e-d377-4723-a705-1c9243ebaa8c: C
+ f49fb3yr 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\floral-garden\\Layout.tsx","EndLine":100,"StartLine":1,"toolAction":"View floral-garden Layout.tsx top lines","toolSummary":"Reading top of Floral Garden template layout in floral-garden/Layout.tsx"}: A  A
+ A  M2   W mA <   U  {x9d    $7   t C  j @ K  ) f   -    0 C     4      fx V   DPhe  N I	      >  U]      u X"  !8 r    F =  <    ._<=      +     N.^   7=Z  p  6 ~Q4     P   ONI  _    s   wMtX         g  y	Y wG  *     	U  *J >  h @   :=    *  	    < (4p 7fO      xlj  `O     / g6s       !l  !n 4 2b l    E  0 g   {        ): <l D #>A   8%   p^ zt F A    ;  #] a     K `      d X       |     ,   
+               " 
+ u0fcftw1 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\templates\\peacock\\Layout.tsx","EndLine":150,"StartLine":1,"toolAction":"View peacock Layout.tsx","toolSummary":"Reading template layout for Peacock template in components/templates/peacock/Layout.tsx"}:    
+
+ 
+  M2    ~  :77-w    L= ']zz /    
+LU    %    .  w        P (Yq #  )  ^     t xx x    p  )   ~-5 |     Z    pJ               w  D     t 0& =a  +x e  <T1@    i        w  w    a{l  <  V    (    x `y f X 7	  EW  bs O   !  74   0   {16. E b   _    Bi  N L    w   l      v < > q U - 1a     %V  F  :    V   f   aT^p=lg   L L  *  ,  E  `! F,H Rx   '?   $,  cuf4/g Ut    Q    M    VBE3a     1 Y,          1        P  d         t ~ D%=  D }  _         v  g VK      .     2u  F  L	   k   u p      a   h S  "32d  +    !    /a            Z  n  W= .   U      t P  \  y Q  u  rB       gb       +Y e: o  V  ; T,jA  j F $1 #    nE  ! %
+ ~  j I   %    - q ! +1    - u 	
+    h & W Z   m  E D    p$ X}    
+   6    .    <    i A,&   *  rr    z  #  Uo     z    -fZ 6?   * A 6e        bbW M X  8  0    c b   ZV#c "  
+  L     gS  : om    w,{  -  w:c -   ep% 1@ oW8M    1m    8_ 5rb    B<     R      +    ^ r T 	     c  S        '&      M      9}      c    U Z1a|O G   ~ v ^= t[ kr j  C   f     W  X   z +    aa    [g+r k r  XC  P   z    _      t   K  a     X     -  wd_u M  FI Z   i D  2  g     8          a        N x  ~ r=! j     -9<    l27    A = z0   .6   O O 0}\   )N  O  Q?M   1  Db      H        k    w U YI  % X     i  |  U     i 
+I	Tw 7R @ t F/+     (!    j[} a  _cK C  WH{z v   8          `3
+   /   )k?[  e? \I   5&  |><#  i  6X>2{<-    b _      L$ 9 `   8:R n {    N? X   1 6d   LW].Th]  L    B     1 lSO9 g h  J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2             :             B             X  b$954adff5-e78c-4f26-b4b4-508d3bb6e752j     L          v                                                                                                                    s P      ~     `   
+               2             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+               2             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     
+wI will view `lib/categories/utils.ts` using `view_file` to see how fields are defined for the "house-warming" category.2(bot-d511c240-3ef0-41ab-aec9-af81d96c7a3b:  
+ zkdghr5u 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\categories\\utils.ts","toolAction":"View utils.ts","toolSummary":"Reading category form field definitions in lib/categories/utils.ts"}:     
+    M2  
+ +<         Sc  | bb   \w    Si  \ n    lkB? "k   R :    Rq 
+ L2       C'   < b{s    =   O@  W   Rr  H          
+      K  A   ] &c Nef  L'      =   .h     m* ei       'I      e  w1JNm A	     %+   3    5 B  { u  + Dq   Y%   r     i [j }  G      _ ?"   ~ [ '    f  +jp)     J s    \  :      @11 ;. V     `	 	 &    Vu   3         C 20 nS3"Q    g      p  ] 	  P6cJ&   '  cJ{:y 4` 7y   K}<k  U     m      N   4  8       (D, J | s(  D  KvL	8  C 9    # xcq   E77 =P`    >      (   BN       s )m !"q {     i       " u<5i  3a Rr   vhR     J3  8   { ] b     5e{w   @    $    n "   g   o(-     X       d v@+ [*g_J	view_fileBwI will view `lib/categories/utils.ts` using `view_file` to see how fields are defined for the "house-warming" category.`    Q   	  >     H  
+               "  
+ zkdghr5u 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\categories\\utils.ts","toolAction":"View utils.ts","toolSummary":"Reading category form field definitions in lib/categories/utils.ts"}:     
+    M2  
+ +<         Sc  | bb   \w    Si  \ n    lkB? "k   R :    Rq 
+ L2       C'   < b{s    =   O@  W   Rr  H          
+      K  A   ] &c Nef  L'      =   .h     m* ei       'I      e  w1JNm A	     %+   3    5 B  { u  + Dq   Y%   r     i [j }  G      _ ?"   ~ [ '    f  +jp)     J s    \  :      @11 ;. V     `	 	 &    Vu   3         C 20 nS3"Q    g      p  ] 	  P6cJ&   '  cJ{:y 4 	 P            v   
+               2             :           LB           LJP     '   (  
+0 B!
+	sessionID  -3750763034362895579H  P^Z Q4VSati0JML5juMPjsOc8QsX  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                 
+               L             L    *  
+               2             :           LB           LJP     '   (  
+0 B!
+	sessionID  -3750763034362895579H  P^Z Q4VSati0JML5juMPjsOc8QsX  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                 
+               L             L    
+wI will view `lib/categories/utils.ts` using `view_file` to see how fields are defined for the "house-warming" category.2(bot-d511c240-3ef0-41ab-aec9-af81d96c7a3b:  
+ zkdghr5u 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\categories\\utils.ts","toolAction":"View utils.ts","toolSummary":"Reading category form field definitions in lib/categories/utils.ts"}:     
+    M2  
+ +<         Sc  | bb   \w    Si  \ n    lkB? "k   R :    Rq 
+ L2       C'   < b{s    =   O@  W   Rr  H          
+      K  A   ] &c Nef  L'      =   .h     m* ei       'I      e  w1JNm A	     %+   3    5 B  { u  + Dq   Y%   r     i [j }  G      _ ?"   ~ [ '    f  +jp)     J s    \  :      @11 ;. V     `	 	 &    Vu   3         C 20 nS3"Q    g      p  ] 	  P6cJ&   '  cJ{:y 4` 7y   K}<k  U     m      N   4  8       (D, J | s(  D  KvL	8  C 9    # xcq   E77 =P`    >      (   BN       s )m !"q {     i       " u<5i  3a Rr   vhR     J3  8   { ] b     5e{w   @    $    n "   g   o(-     X       d v@+ [*g_J	view_fileBwI will view `lib/categories/utils.ts` using `view_file` to see how fields are defined for the "house-warming" category.`        C                                                                                                                                                                                                                                                               - S      d     n   
+           	  "  
+ 02647fqc 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\categories\\index.ts","toolAction":"View categories index.ts","toolSummary":"Reading categories definitions inside lib/categories/index.ts"}:     
+    M2 r  y 	 6 i        F   B     m   p7M    )  R   # f=    ~  ! d G       *    \   ;    4 '   ID      t4 <      .   J}61   |'    f$d   C   ~% Dt d      `Q yq|@  ' n     rS     J     X;    3  m+ ^   & K4J	view_file* AbsolutePath*
+toolAction* toolSummary2           G:           GX  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                G  /  "
+               G
+               H  =Reading categories definitions inside lib/categories/index.ts   View categories index.ts             G    *  
+           	  "  
+ 02647fqc 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\categories\\index.ts","toolAction":"View categories index.ts","toolSummary":"Reading categories definitions inside lib/categories/index.ts"}:     
+    M2 r  y 	 6 i        F   B     m   p7M    )  R   # f=    ~  ! d G       *    \   ;    4 '   ID      t4 <      .   J}61   |'    f$d   C   ~% Dt d      `Q yq|@  ' n     rS     J     X;    3  m+ ^   & K4J	view_file* AbsolutePath*
+toolAction* toolSummary2           G:           GX  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                G  /  "
+               G
+               H  =Reading categories definitions inside lib/categories/index.ts   View categories index.ts             Gr<
+7file:///c:/Users/Admin/Ahvaanam/lib/categories/index.ts      R            x   
+               2            :           HB           HJN       z(  
+0 B!
+	sessionID  -3750763034362895579H P\Z RoVSasrUKaGdjuMPpqzW4QYX  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     "
+                
+               H             H    *  
+               2            :           HB           HJN       z(  
+0 B!
+	sessionID  -3750763034362895579H P\Z RoVSasrUKaGdjuMPpqzW4QYX  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     "
+                
+               H             H    
+  I will view the main category definition map file at `lib/categories/index.ts` to see how the "house-warming" fields are defined.2(bot-6fe1d937-099a-470b-9534-a1ed1c78c3ee:  
+ 02647fqc 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\categories\\index.ts","toolAction":"View categories index.ts","toolSummary":"Reading categories definitions inside lib/categories/index.ts"}:     
+    M2 r  y 	 6 i        F   B     m   p7M    )  R   # f=    ~  ! d G       *    \   ;    4 '   ID      t4 <      .   J}61   |'    f$d   C   ~% Dt d      `Q yq|@  ' n     rS     J     X;    3  m+ ^   & K4J	view_fileB  I will view the main category definition map file at `lib/categories/index.ts` to see how the "house-warming" fields are defined.`  1 Q      8     "   
+               "  
+ zkdghr5u 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\categories\\utils.ts","toolAction":"View utils.ts","toolSummary":"Reading category form field definitions in lib/categories/utils.ts"}:     
+    M2  
+ +<         Sc  | bb   \w    Si  \ n    lkB? "k   R :    Rq 
+ L2       C'   < b{s    =   O@  W   Rr  H          
+      K  A   ] &c Nef  L'      =   .h     m* ei       'I      e  w1JNm A	     %+   3    5 B  { u  + Dq   Y%   r     i [j }  G      _ ?"   ~ [ '    f  +jp)     J s    \  :      @11 ;. V     `	 	 &    Vu   3         C 20 nS3"Q    g      p  ] 	  P6cJ&   '  cJ{:y 4` 7y   K}<k  U     m      N   4  8       (D, J | s(  D  KvL        	8  C 9    # xcq   E77 =P`    >      (   BN       s )m !"q {     i       " u<5i  3a Rr   vhR     J3  8   { ] b     5e{w   @    $    n "   g   o(-     X       d v@+ [*g_J	view_file* AbsolutePath*
+toolAction* toolSummary2           L:           LB           OX  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                L  .  3
+               L
+               N
+               O  BReading category form field definitions in lib/categories/utils.ts  View utils.ts             M    * 	
+               "  
+ zkdghr5u 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\categories\\utils.ts","toolAction":"View utils.ts","toolSummary":"Reading category form field definitions in lib/categories/utils.ts"}:     
+    M2  
+ +<         Sc  | bb   \w    Si  \ n    lkB? "k   R :    Rq 
+ L2       C'   < b{s    =   O@  W   Rr  H          
+      K  A   ] &c Nef  L'      =   .h     m* ei       'I      e  w1JNm A	     %+   3    5 B  { u  + Dq   Y%   r     i [j }  G      _ ?"   ~ [ '    f  +jp)     J s    \  :      @11 ;. V     `	 	 &    Vu   3         C 20 nS3"Q    g      p  ] 	  P6cJ&   '  cJ{:y 4` 7y   K}<k  U     m      N   4  8       (D, J | s(  D  KvL	8  C 9    # xcq   E77 =P`    >      (   BN       s )m !"q {     i       " u<5i  3a Rr   vhR     J3  8   { ] b     5e{w   @    $    n "   g   o(-     X       d v@+ [*g_J	view_file* AbsolutePath*
+toolAction* toolSummary2           L:           LB           OX  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                L  .  3
+               L
+               N
+               O  BReading category form field definitions in lib/categories/utils.ts  View utils.ts             Mr  
+7file:///c:/Users/Admin/Ahvaanam/lib/categories/utils.ts B"  import { CategoryDefinition, FieldDefinition } from "./types";
+import { CATEGORY_MAP, ALL_CATEGORIES } from "./index";
+
+/**
+ * Retrieves the category definition for a given category ID.
+ * 
+ * @param id The unique identifier of the invitation category (e.g. "wedding").
+ * @returns The CategoryDefinition if found, otherwise undefined.
+ */
+export function getCategory(id: string): CategoryDefinition | undefined {
+  return CATEGORY_MAP[id];
+}
+
+/**
+ * Retrieves the field definitions for a given category ID.
+ * Returns an empty array if the category is not found.
+ * 
+ * @param id The unique identifier of the invitation category.
+ * @returns An array of FieldDefinition objects belonging to the category.
+ */
+export function getCategoryFields(id: string): FieldDefinition[] {
+  const category = getCategory(id);
+  return category ? category.fields : [];
+}
+
+/**
+ * Retrieves the unique group names (e.g. "basics", "event_details")
+ * used within a given category's field definitions, preserving order of appearance.
+ * Returns an empty array if the category is not found.
+ * 
+ * @param id The unique identifier of the invitation category.
+ * @returns An array of unique group names used in the category's fields.
+ */
+export function getCategoryGroups(id: string): string[] {
+  const fields = getCategoryFields(id);
+  const groups: string[] = [];
+  for (const field of fields) {
+    if (!groups.includes(field.group)) {
+      groups.push(field.group);
+    }
+  }
+  return groups;
+}
+
+/**
+ * Retrieves an array of all available category names mapped to their IDs.
+ * Useful for building dropdowns, navigation lists, or wizard category selection.
+ * 
+ * @returns An array of objects containing the id and na

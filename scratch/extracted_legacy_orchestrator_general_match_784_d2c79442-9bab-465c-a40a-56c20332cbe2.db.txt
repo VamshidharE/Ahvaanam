@@ -1,0 +1,950 @@
+use client";
+
+import { useEffect, useState } from "react";
+import { ToggleLeft, ToggleRight } from "lucide-react";
+import CompositionRenderer from "@/components/composition/CompositionRenderer";
+import { ${compositionFunc} } from "@/lib/composition/templates";
+import { useInvitationData } from "../../context/InvitationDataContext";
+import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+
+// --- TEMPLATE SPECIFIC PARTICLES ---
+import React, { useRef } from "react";
+${particleCode || `const ${dirName.replace(/-/g, '')}Particles = () => null;\n`}
+
+export default function ${componentName}({ onBackToHub }: { onBackToHub: () => void }) {
+  const { invitationData } = useInvitationData();
+  const [useCompositionRenderer, setUseCompositionRenderer] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setUseCompositionRenderer(localStorage.getItem("useCompositionRenderer") === "true" ||
+        new URLSearchParams(window.location.search).get("useCompositionRenderer") === "true");
+    }
+  }, []);
+
+  const handleToggleRenderer = () => {
+    const nextVal = !useCompositionRenderer;
+    setUseCompositionRenderer(nextVal);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("useCompositionRenderer", String(nextVal));
+    }
+  };
+
+  if (!invitationData) return null;
+
+  if (useCompositionRenderer) {
+    const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+    const config = isWrapped ? (invitationData as any).config : invitationData;
+    const comp = ${compositionFunc}(config);
+    return (
+      <div className="min-h-screen text-white relative overflow-hidden select-none" style={{ backgroundColor: "var(--theme-bg, #0C0714)" }}>
+        <CompositionRenderer composition={comp} invitationData={invitationData} />
+        <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 select-none pointer-events-auto">
+          <button
+            onClick={handleToggleRenderer}
+            className="flex items-center gap-2 px-4 py-2.5 bg-black/60 hover:bg-black/80 backdrop-blur-md text-white rounded-full shadow-lg border border-purple-500/20 text-[10px] font-bold uppercase tracking-[1px] transition-all cursor-pointer"
+            title="Switch Renderer Engine"
+          >
+            <ToggleRight size={16} className="text-[#C49B27]" />
+            <span>Composer Engine</span>
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <LegacyOrchestrator
+        themeId="${dirName}"
+        onBackToHub={onBackToHub}
+        particlesComponent={${particleName || `${dirName.replace(/-/g, '')}Particles`}}
+        themeBgClass="bg-[#FAF9F6]"
+        loadingTitle="${displayTitle} Invitation"
+        loadingSubtitle="Celebrating Love"
+      />
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 select-none pointer-events-auto">
+        <button
+          onClick={handleToggleRenderer}
+          className="flex items-center gap-2 px-4 py-2.5 bg-black/60 hover:bg-black/80 backdrop-blur-md text-white rounded-full shadow-lg border border-purple-500/20 text-[10px] font-bold uppercase tracking-[1px] transition-all cursor-pointer"
+          title="Switch Renderer Engine"
+        >
+          <ToggleLeft size={16} className="text-white/60" />
+          <span>Legacy Switch</span>
+        </button>
+      </div>
+    </>
+  );
+}
+`;
+
+  fs.writeFileSync(layoutPath, cleanCode, 'utf8');
+  console.log(`Successfully refactored ${dirName}     layout!`);
+});
+2             8    Phase 6A     Premium Invitation Experience
+
+Objective
+
+Transform the guest invitation experience into a premium, cinematic, mobile-first journey.
+
+Do NOT change the editor.
+
+Do NOT change the Composition Engine.
+
+Do NOT change Themes, Layouts or Motion Engine architecture.
+
+Use the existing platform.
+
+------------------------------------------------
+
+Tasks
+
+1. Redesign the invitation viewing experience.
+
+Focus on:
+
+- Hero entrance
+- Smooth section transitions
+- Elegant loading screen
+- Premium typography hierarchy
+- Beautiful spacing
+- Scroll storytelling
+- Music controls
+- Sticky RSVP button
+- Floating navigation
+- Share FAB
+- Back-to-top FAB
+
+------------------------------------------------
+
+2. Premium Hero
+
+Design a cinematic Hero experience.
+
+Include:
+
+- Large hero image
+- Elegant title
+- Subtitle
+- Date
+- Scroll indicator
+- Soft background animation
+
+------------------------------------------------
+
+3. Navigation
+
+Create a mobile-first floating navigation.
+
+Sections:
+
+Home
+
+Story
+
+Gallery
+
+Venue
+
+RSVP
+
+------------------------------------------------
+
+4. Guest Experience
+
+Improve:
+
+Loading
+
+Scrolling
+
+Music
+
+Maps
+
+Gallery
+
+Countdown
+
+RSVP
+
+Share
+
+------------------------------------------------
+
+5. Mobile Polish
+
+Everything should feel like a premium mobile application.
+
+Use:
+
+Bottom sheets
+
+Glass cards
+
+Smooth gestures
+
+Elegant shadows
+
+Large touch targets
+
+------------------------------------------------
+
+6. Performance
+
+Maintain 60 FPS.
+
+Lazy load heavy sections.
+
+Images should be optimized.
+
+------------------------------------------------
+
+Deliverables
+
+    Premium invitation experience
+
+    Mobile-first UX
+
+    No regression
+
+    Existing architecture unchanged
+
+    Build passes   proceed    Build the complete Housewarming category using the existing architecture.
+
+Requirements:
+
+- Do NOT create new engines.
+- Reuse Composition Engine.
+- Reuse Theme Engine.
+- Reuse Layout Engine.
+- Reuse Motion Engine.
+- Reuse Dynamic Inspector.
+
+Deliver:
+
+1. Housewarming category configuration
+2. 10 premium mobile-first themes
+3. Appropriate icons and decorations
+4. Telugu and English sample content
+5. Invitation sections:
+   - Hero
+   - Family
+   - House Details
+   - Muhurtham
+   - Gallery
+   - Map
+   - RSVP
+   - Footer
+6. Theme previews
+7. Fully editable through the existing editor
+
+No architecture changes.
+No editor changes.
+No renderer changes.    ## Error Type
+Runtime TypeError
+
+## Error Message
+manifest.properties is not iterable
+
+
+    at <unknown> (lib/composition/loader.ts:52:35)
+    at Array.forEach (<anonymous>:null:null)
+    at loadComposition (lib/composition/loader.ts:32:17)
+    at CompositionRenderer (components/composition/CompositionRenderer.tsx:123:37)
+    at HousewarmingPremiumLayout (components/templates/housewarming-premium/Layout.tsx:25:7)
+    at <unknown> (app/invites/[id]/page.tsx:235:20)
+    at InviteContent (app/invites/[id]/page.tsx:239:8)
+    at GuestInvitePage (app/invites/[id]/page.tsx:402:7)
+
+## Code Frame
+  50 | ...   const resolvedProperties: Record<string, any> = {};
+  51 | ...   if (manifest && manifest.properties) {
+> 52 | ...     for (const prop of manifest.properties) {
+     |                                     ^
+  53 | ...       const userVal = section.properties?.[prop.key];
+  54 | ...       resolvedProperties[prop.key] = userVal !== undefined ? userV...
+  55 | ...     }
+
+Next.js version: 16.2.9 (Turbopack)
+    Print the manifest.properties value for both the working Hero section and the failing HouseDetails section, and compare their structures.    Refactor the Component Registry so every section manifest follows one canonical schema.
+
+Requirements:
+
+1. Audit every registered section manifest.
+
+2. Ensure every manifest uses the exact same schema.
+
+3. Reject invalid manifests during startup.
+
+4. Add runtime validation.
+
+5. Add TypeScript typing for manifests.
+
+6. Add a registry validation script that runs during build.
+
+If any manifest violates the schema, fail the build with a clear error showing:
+
+- Section name
+- File path
+- Invalid field
+- Expe    cted schema
+- Actual schema
+
+Do NOT support multiple manifest formats.
+
+One schema only.    PHASE 8     CATEGORY EXPERIENCE SYSTEM
+
+STOP creating categories by copying Wedding.
+
+We are redesigning the product experience.
+
+Do NOT modify the architecture.
+
+Do NOT modify the Composition Engine.
+
+Do NOT modify Theme, Layout or Motion Engines.
+
+We will ONLY improve category-specific experiences.
+
+=====================================================
+
+OBJECTIVE
+
+Every category should feel like a completely different product.
+
+The editor should adapt automatically.
+
+The invitation should adapt automatically.
+
+The terminology should adapt automatically.
+
+The default sections should adapt automatically.
+
+=====================================================
+
+TASK 1
+
+Create a Category Blueprint system.
+
+Each category must define:
+
+- displayName
+- icon
+- color palette
+- default theme
+- default motion
+- default layout
+- default sections
+- editable sections
+- hidden sections
+- section order
+- terminology
+- default sample data
+- default music
+- default fonts
+- default decorations
+
+=====================================================
+
+TASK 2
+
+Housewarming
+
+Completely redesign it.
+
+DO NOT reuse Wedding terminology.
+
+Replace:
+
+Bride
+
+Groom
+
+Bride Family
+
+Groom Family
+
+Love Story
+
+Wedding Events
+
+with
+
+Home Owners
+
+Family Members
+
+Gruhapravesam Muhurtham
+
+Pooja Schedule
+
+House Details
+
+House Gallery
+
+Special Guests
+
+Blessings
+
+Location
+
+RSVP
+
+=====================================================
+
+TASK 3
+
+Editor Adaptation
+
+The editor must become category-aware.
+
+Housewarming editor should automatically show:
+
+     Home Details
+
+     Owners
+
+     Muhurtham
+
+     Pooja Schedule
+
+                   Family
+
+     Gallery
+
+     Venue
+
+    RSVP
+
+NO wedding fields.
+
+=====================================================
+
+TASK 4
+
+Viewer Experience
+
+Redesign Housewarming.
+
+Premium hero.
+
+Warm lighting.
+
+Temple bells ambience.
+
+Animated diya glow.
+
+Floating flower petals.
+
+Soft incense smoke.
+
+Premium typography.
+
+Better spacing.
+
+Beautiful cards.
+
+Elegant section transitions.
+
+=====================================================
+
+TASK 5
+
+Category Assets
+
+Create dedicated assets.
+
+Housewarming:
+
+Diya
+
+Kalash
+
+Door Toran
+
+Lotus
+
+Temple Bells
+
+Rangoli
+
+Traditional Patterns
+
+Copper textures
+
+Warm gradients
+
+=====================================================
+
+TASK 6
+
+Category Motion
+
+Housewarming should NOT use Wedding motion.
+
+Create:
+
+Housewarming Motion
+
+with
+
+slow diya glow
+
+soft petals
+
+light particles
+
+gentle reveals
+
+warm lighting
+
+=====================================================
+
+TASK 7
+
+Category Validation
+
+Ensure:
+
+No wedding labels remain.
+
+No wedding sample data remains.
+
+No wedding icons remain.
+
+No wedding defaults remain.
+
+=====================================================
+
+DELIVERABLE
+
+Housewarming should feel like it was designed from scratch.
+
+NOT copied from Wedding.
+
+Architecture remains unchanged.
+
+Only category experience changes.    PHASE 9     PREMIUM TEMPLATE SYSTEM
+
+STOP thinking like a developer.
+
+Think like a Creative Director.
+
+Architecture is frozen.
+
+DO NOT modify:
+
+- Composition Engine
+- Theme Engine
+- Layout Engine
+- Motion Engine
+- Component Registry
+- Editor
+
+We are ONLY improving the product.
+
+==================================================
+
+OBJECTIVE
+
+Every template must feel handcrafted.
+
+No two templates should look related.
+
+A user should immediately identify:
+
+Luxury
+
+Modern
+
+Traditional
+
+Editorial
+
+Glass
+
+Minimal
+
+Royal
+
+Temple
+
+Botanical
+
+Premium
+
+within 3 seconds.
+
+==================================================
+
+TASK 1
+
+Audit every existing template.
+
+Group them by visual similarity.
+
+If two templates look more than 30% similar,
+
+redesign one of them.
+
+==================================================
+
+TASK 2
+
+Create Design Languages.
+
+Each template belongs to ONE design language.
+
+Examples:
+
+Royal Heritage
+
+Temple Grandeur
+
+Modern Luxury
+
+Editorial Magazine
+
+Minimal Zen
+
+Botanical Garden
+
+Glass Elegance
+
+Vintage Paper
+
+Luxury Black Gold
+
+Contemporary Indian
+
+Every language has:
+
+Typogr    aphy
+
+Spacing
+
+Borders
+
+Cards
+
+Buttons
+
+Icons
+
+Patterns
+
+Decorations
+
+Motion Personality
+
+==================================================
+
+TASK 3
+
+Completely redesign every Hero.
+
+Each Hero must have:
+
+unique composition
+
+unique typography
+
+unique spacing
+
+unique imagery
+
+unique entrance
+
+==================================================
+
+TASK 4
+
+Every section should receive
+
+category-aware redesigns.
+
+Examples:
+
+Housewarming
+
+Temple cards
+
+Copper texture
+
+Warm paper
+
+Soft diya lighting
+
+Wedding
+
+Royal arches
+
+Mandap
+
+Floral overlays
+
+Birthday
+
+Luxury celebration
+
+Elegant confetti
+
+Soft glowing lights
+
+NOT cartoon graphics.
+
+==================================================
+
+TASK 5
+
+Microinteractions
+
+Add:
+
+Button feedback
+
+Card hover
+
+Image reveal
+
+Music pulse
+
+Countdown animations
+
+Gallery transitions
+
+Floating ornaments
+
+Premium page transitions
+
+==================================================
+
+TASK 6
+
+Premium Mobile UX
+
+Everything should feel like
+
+an expensive mobile application.
+
+==================================================
+
+TASK 7
+
+Accessibility
+
+Contrast
+
+Readable fonts
+
+Large touch targets
+
+Reduced motion
+
+==================================================
+
+DELIVERABLES
+
+Before/After screenshots
+
+Visual design audit
+
+Similarity score
+
+Accessibility report
+
+Performance impact
+
+No architecture changes.   PHASE 10     PROFESSIONAL INVITATION EDITOR
+
+We are redesigning the editor.
+
+Architecture remains unchanged.
+
+Do NOT modify:
+
+- Composition Engine
+- Theme Engine
+- Motion Engine
+- Layout Engine
+
+================================================
+
+OBJECTIVE
+
+The editor should feel closer to:
+
+Canva
+
+Framer
+
+Webflow
+
+Figma
+
+than a settings form.
+
+================================================
+
+LEFT SIDEBAR
+
+Sections
+
+Layers
+
+Assets
+
+Pages
+
+History
+
+================================================
+
+RIGHT SIDEBAR
+
+Properties
+
+Typography
+
+Spacing
+
+Theme
+
+Animation
+
+Effects
+
+Visibility
+
+================================================
+
+CENTER
+
+Large live phone preview
+
+Zoom
+
+Responsive preview
+
+Grid toggle
+
+Safe area
+
+================================================
+
+TOP BAR
+
+Undo
+
+Redo
+
+Preview
+
+Publish
+
+Save
+
+History
+
+Share
+
+================================================
+
+BOTTOM BAR
+
+Quick add section
+
+Duplicate
+
+Delete
+
+Move
+
+================================================
+
+SECTION CARDS
+
+Instead of checkboxes,
+
+each section should become a visual card.
+
+Example
+
+     Hero
+
+Visible
+
+Animation
+
+Theme
+
+Duplicate
+
+Delete
+
+Drag Handle
+
+================================================
+
+PROPERTY EDITOR
+
+Context aware.
+
+Selecting Hero
+
+shows Hero properties.
+
+Selecting Gallery
+
+shows Gallery properties.
+
+Selecting Countdown
+
+shows Countdown properties.
+
+================================================
+
+MEDIA LIBRARY
+
+Upload
+
+Crop
+
+Compress
+
+Replace
+
+Delete
+
+AI Enhance
+
+================================================
+
+LIVE EXPERIENCE
+
+Everything updates instantly.
+
+No page refreshes.
+
+No loading.
+
+================================================
+
+DELIVERABLE
+
+A premium editor comparable to modern design tools.
+
+No architecture changes.    Architecture Cleanup Sprint
+
+Objective
+
+Remove all remaining business logic from template Layout components.
+
+Templates should only compose sections.
+
+Tasks
+
+1. Audit every template Layout.tsx.
+
+2.

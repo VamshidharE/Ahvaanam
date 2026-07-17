@@ -1,0 +1,88 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeMessage: "Weddi
+------------------------
+[177] Found match at index 4065991
+  Preview of match [177]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[178] Found match at index 4066377
+  Preview of match [178]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/t        YZ uh \      #z'SQLite format 3      @     P              	                                                   P .      	       8   B   @
+N
+ 	          
+------------------------
+[179] Found match at index 4090300
+  Preview of match [179]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+con      0   4 m?cg <  | /   q       5X t  N  u    %  g  I   L \ 	u  ;0 *    p ,0  tv  p+ 3 ayxp   i "  -   yb  @              | 3ks ?  p  G #  w  P Xz 4 A +0+ Y  1 X      x J grep_search* CaseInsensitive* IsRegex* MatchPerLine* Query*
+SearchPath*
+toolAction* toolSummary2             :             B             X  b$547f5b5d-a5d4-46ac-8031-57f0e7da98daj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  
+   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    @  6
+                 
+                 
+                   JSearching for brideFamily references inside lib folder configuration files   Search for brideFamily                   *  
+               "  
+ gfnzbzpq  grep_search   {"CaseInsensitive":false,"IsRegex":false,"MatchPerLine":true,"Query":"brideFamily","SearchPath":"c:\\Users\\Admin\\Ahvaanam\\lib","toolAction":"Search for brideFamily","toolSummary":"Searching for brideFamily references inside lib folder configuration files"}:     
+    M2   G  =        O~        v  9  s HE}   =.  g     S]  ~ 6  /  7   B -   fiD(u    p   C3 q  *T7 P%&u 2~ql  >         ?;J~}u   )i E'{A)  IBODKC  0   h    |u |  )ZL        \G  7 - u    	K 1u  K ZR$     ~   >S6F&<J O1 ,8 2 ep  D  y      f{Q     p     ctb k0     [   Z>    Q
+ +4D[ W k f)  /O 
+2 gM      o= E<@   # X9Ys     @       Bt     -  ,   J o"     @n'  d J   /}    d \  ] ~:)SI'   2IjE F     z p  t    {= K ?+  p9 =`z\{ D >      O /  5# FL? o s    T Q   X}  O    \(]x/     ~ P %`_  BE  uDq*:  D4  e   O  i L      =D       r.  =   *   0   4 m?cg <  | /   q       5X t  N  u    %  g  I   L \ 	u  ;0 *    p ,0  tv  p+ 3 ayxp   i "  -   yb  @              | 3ks ?  p  G #  w  P Xz 4 A +0+ Y  1 X      x J grep_search* CaseInsensitive* IsRegex* MatchPerLine* Query*
+SearchPath*
+toolAction* toolSummary2             :             B             X  b$547f5b5d-a5d4-46ac-8031-57f0e7da98daj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  
+   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    @  6
+                 
+                 
+                   JSearching for brideFamily references inside lib folder configuration files   Search for brideFamily               j  
+ brideFamily   builder/housewarming.ts:29:      { key: "brideFamily", label: "Family Members List", placeholder: "Uncle, Aunts, near and dear ones...", type: "textarea", defaultPath: "families.brideFamily" },
+composition/templates.ts:64:        brideFamily: "families.brideFamily",
+composition/templates.ts:241:        brideFamily: "families.brideFamily",
+default-template.json:128:    "brideFamily": [
+defaults/engagement.ts:146:      brideFamily: [
+defaults/wedding.ts:146:      brideFamily: [
+template-manifests/registry.ts:97:    editableFields: ["families.title", "families.brideFamily", "families.groomFamily"],
+template-manifests/registry.ts:471:      "families.brideFamily",
+"  
+ builder/housewarming.ts           { key: "brideFamily", label: "Family Members List", placeholder: "Uncle, Aunts, near and dear ones...", type: "textarea", defaultPath: "families.brideFamily" },"3c:\Users\Admin\Ahvaanam\lib\builder\housewarming.ts"  
+ composition/templates.ts ? ,        brideFamily: "families.brideFamily","4c:\Users\Admin\Ahvaanam\lib\composition\templates.ts"  
+ composition/templates.ts    ,        brideFamily: "families.brideFamily","4c:\Users\Admin\Ahvaanam\lib\composition\templates.ts"b
+ default-template.json        "brideFamily": ["1c:\Users\Admin\Ahvaanam\lib\default-template.json"e
+ defaults/engagement.ts           brideFamily: ["2c:\Users\Admin\Ahvaanam\lib\defaults\engagement.ts"_
+ defaults/wedding.ts           brideFamily: ["/c:\Users\Admin\Ahvaanam\lib\defaults\wedding.ts"  
+ template-manifests/registry.ts ` W    editableFields: ["families.title", "families.brideFamily", "families.groomFamily"],":c:\Users\Admin\Ahvaanam\lib\template-manifests\registry.ts"~
+ template-manifests/registry.ts           "families.brideFamily",":c:\Users\Admin\Ahvaanam\lib\template-manifests\registry.ts8 @ RlC:\Program Files\Git\cmd\git.exe grep --untracked --no-recurse-submodules --fixed-strings -nI -- brideFamilyZ#file:///c:/Users/Admin/Ahvaanam/lib          R                                                                       = Y      z     x   
+               2           *X  b$547f5b5d-a5d4-46ac-8031-57f0e7da98daj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  
+   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+               *    *  
+               2           *X  b$547f5b5d-a5d4-46ac-8031-57f0e7da98daj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  
+   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+               *    
+<I will update `components/sections/families/index.tsx` using   **Analyzing Data Structure Discrepanc

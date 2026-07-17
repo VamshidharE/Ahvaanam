@@ -1,0 +1,130 @@
+use client');
+4:     }
+5:     if (startIdx === -1) continue;
+6:     
+7:     // Try to find if this contains the full component
+8:     const hasComponentExport = content.includes('export default function CompositionRenderer');
+9:     const hasResolveBinding = content.includes('resolveBindingValue');
+10:     const hasSectionComponents = content.includes('SECTION_COMPONENTS');
+11:     
+12:     if (hasComponentExport && hasResolveBinding && hasSectionC
+13: ------------------------
+14: [33] Found match at index 3328854
+15:   Preview of match [33]:
+16: "use client";');    
+17:      if (startIdx === -1) {   3
+18: /      startIdx = content.indexOf('use client');   	
+19:      }   &
+20: "    if (startIdx === -1) continue;    
+21:         :
+22: 6    // Try to find if this contains the full component   c
+23: _    const hasComponentExport = content.includes('export default function CompositionRenderer');   J
+24: F    const hasResolveBinding = content.includes('resolveBindingValue');   L
+25: H    const hasSectionComponents = content.includes('SECTION_COMPONENTS');    
+26:         N
+27: J    if 
+28: ------------------------
+29: [34] Found match at index 4392779
+30:   Preview of match [34]:
+31: "use client";
+32: 2: 
+33: 3: import { useEffect, useState } from "react";
+34: 4: import { ToggleLeft, ToggleRight } from "lucide-react";
+35: 5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+36: 6: import { getWeddingComposition } from "@/lib/composition/templates";
+37: 7: import { useInvitationData } from "../../context/InvitationDataContext";
+38: 8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+39: 9: 
+40: 10: // --- TEMPLATE SPECIFIC PARTICLES ---
+41: 11: import React, { useRef }
+42: ------------------------
+43: [35] Found match at index 4395424
+44:   Preview of match [35]:
+45: "use client";
+46: 2: 
+47: 3: import { useEffect, useState } from "react";
+48: 4: import { ToggleLeft, ToggleRight } from "lucide-react";
+49: 5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+50: 6: import { getWeddingComposition } from "@/lib/composition/templates";
+51: 7: import { useInvitationData } from "../../context/InvitationDataContext";
+52: 8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+53: 9: 
+54: 10: // --- TEMPLATE SPECIFIC PARTICLES ---
+55: 11: import React, { useRef }
+56: ------------------------
+57: [36] Found match at index 4496572
+58:   Preview of match [36]:
+59: "use client";
+60: 
+61: import React from "react";
+62: import HeroSection from "@/components/sections/hero";
+63: import ThemeProvi
+64: ------------------------
+65: [123] Found match at index 29082480
+66:    node scratch/extract_from_db.js   node scratch/extract_from_db.js   G     3 Op~1 JQ b         W  W                                         J 	        l       
+67:                "  
+68:  lmt7gzt3  run_command   {"Command         3 [5 - W3}        Line":"node scratch/extract_from_db.js","Cwd":"c:\Users\Admin\Ahvaanam","WaitMsBeforeAsync":5000,"toolActi
+69: ------------------------
+70: [37] Found match at index 4504744
+71:   Preview of match [37]:
+72: "use client";
+73: 
+74: import React from "react";
+75: import HeroSection from "@/components/sections/hero";
+76: import ThemeProvi
+77: ------------------------
+78: [123] Found match at index 29082480
+79:    node scratch/extract_from_db.js   node scratch/extract_from_db.js   G     3 Op~1 JQ b         W  W                                         J 	        l       
+80:                "  
+81:  lmt7gzt3  run_command   {"CommandLine":"node scratch/extract_from_db.js","Cwd":"c:\Users\Admin\Ahvaanam","WaitMsBeforeAsync":50   %er');
+82:     const hasResolveBinding = content.includes('resolveBindingValue');
+83:     const hasSectionComponents = content.includes('SECTION_COMPONENTS');
+84:     
+85:     if (hasComponentExport && hasResolveBinding && hasSectionC
+86: ------------------------
+87: [32] Found match at index 3328223
+88:   Preview of match [32]:
+89: "use client";');
+90:     if (startIdx === -1) {
+91:       startIdx = content.indexOf('use client');
+92:     }
+93:     if (startIdx === -1) continue;
+94:     
+95:     // Try to find if this contains the full component
+96:     const hasComponentExport = content.includes('export default function CompositionRenderer');
+97:     const hasResolveBinding = content.includes('resolveBindingValue');
+98:     const hasSectionComponents = content.includes('SECTION_COMPONENTS');
+99:     
+100:     if (hasComponentExport && hasResolveBinding && hasSectionC
+101: ------------------------
+102: [33] Found match at index 3328854
+103:   Preview of match [33]:
+104: "use client";');    
+105:      if (startIdx === -1) {   3
+106: /      startIdx = content.indexOf('use client');   	
+107:      }   &
+108: "    if (startIdx === -1) continue;    
+109:         :
+110: 6    // Try to find if this contains the full component   c
+111: _    const hasComponentExport = content.includes('export default function CompositionRenderer');   J
+112: F    const hasResolveBinding = content.includes('resolveBindingValue');   L
+113: H    const hasSectionComponents = content.includes('SECTION_COMPONENTS');    
+114:         N
+115: J    if 
+116: ------------------------
+117: [34] Found match at index 4392779
+118:   Preview of match [34]:
+119: "use client";
+120: 2: 
+121: 3: import { useEffect, useState } from "react";
+122: 4: import { ToggleLeft, ToggleRight } from "lucide-react";
+123: 5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+124: 6: import { getWeddingComposition } from "@/lib/composition/templates";
+125: 7: import { useInvitationData } from "../../context/InvitationDataContext";
+126: 8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+127: 9: 
+128: 10: // --- TEMPLATE SPECIFIC PARTICLES ---
+129: 11: import React, { useRef }
+The above content shows the entire, complete file contents of the requested file.
+   : x9x7hfqj      H
+(bot-20ed6f9c-4e60-4878-9064-04aa76

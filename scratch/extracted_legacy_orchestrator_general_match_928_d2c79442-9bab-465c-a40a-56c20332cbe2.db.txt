@@ -1,0 +1,149 @@
+use client\";\n\nimport React, { useState, useEffect } from \"react\";\nimport { useInvitationData } from \"../context/InvitationDataContext\";\n\nimport AudioOrchestrator from \"./AudioOrchestrator\";\nimport BackgroundEffects from \"./BackgroundEffects\";\nimport LoadingExperience from \"./LoadingExperience\";\nimport SectionPipeline from \"./SectionPipeline\";\nimport TemplateFrame from \"./TemplateFrame\";\nimport ScrollController from \"./ScrollController\";\nimport ShareController from \"./ShareController\";\n\ninterface LegacyOrchestratorProps {\n  themeId: string;\n  onBackToHub: () =\u003e void;\n  particlesComponent?: React.ComponentType\u003cany\u003e;\n  themeBgClass?: string;\n  loadingTitle?: string;\n  loadingSubtitle?: string;\n}\n\nexport default function LegacyOrchestrator({\n  themeId,\n  onBackToHub,\n  particlesComponent,\n  themeBgClass = \"bg-stone-900\",\n  loadingTitle = \"Invitation\",\n  loadingSubtitle = \"Celebrating Love\"\n}: LegacyOrchestratorProps) {\n  const { invitationData } = useInvitationData();\n  const [loading, setLoading] = useState(true);\n\n  useEffect(() =\u003e {\n    if (invitationData) {\n      const timer = setTimeout(() =\u003e setLoading(false), 1200);\n      return () =\u003e clearTimeout(timer);\n    }\n  }, [invitationData]);\n\n  if (!invitationData) return null;\n\n  const isWrapped = invitationData \u0026\u0026 \"category\" in invitationData \u0026\u0026 \"config\" in invitationData;\n  const invitation = isWrapped ? (invitationData as any).config : invitationData;\n  const sectionOrder = invitation.sectionOrder || [];\n\n  return (\n    \u003cScrollController\u003e\n      \u003cTemplateFrame themeBgClass={themeBgClass} onBackToHub={onBackToHub}\u003e\n        {/* Loading overlay screen */}\n        \u003cLoadingExperience loading={loading} title={loadingTitle} subtitle={loadingSubtitle} /\u003e\n\n        {/* Particles canvas */}\n        \u003cBackgroundEffects\n          showParticles={invitation.themeSettings?.showParticles}\n          particlesComponent={particlesComponent}\n        /\u003e\n\n        {/* Audio background playback */}\n        \u003cAudioOrchestrator\n          musicFile={invitation.music?.file}\n          musicEnabled={invitation.music?.enabled}\n        /\u003e\n\n        {/* Share buttons */}\n        \u003cShareController /\u003e\n\n         {themeId}
+        />
+      </TemplateFrame>
+    </ScrollController>
+  );
+}
+export { default as AudioOrchestrator } from "./AudioOrchestrator";
+export { default as BackgroundEffects } from "./BackgroundEffects";
+export { default as LoadingExperience } from "./LoadingExperience";
+export { default as SectionPipeline } from "./SectionPipeline";
+export { default as TemplateFrame } from "./TemplateFrame";
+export { default as ScrollController } from "./ScrollController";
+export { default as ShareController } from "./ShareController";
+   *Hfile:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/index.tsx2K
+ file:///c:/Users/Admin/Ahvaanam (components/shared/orchestrator/index.tsx     
+          
+"use client";       7
+3import React, { useState, useEffect } from "react";   I
+Eimport { useInvitationData } from "../context/InvitationDataContext";       8
+4import AudioOrchestrator from "./AudioOrchestrator";   8
+4import BackgroundEffects from "./BackgroundEffects";   8
+4import LoadingExperience from "./LoadingExperience";   4
+0import SectionPipeline from "./SectionPipeline";   0
+,import TemplateFrame from "./TemplateFrame";   6
+2import ScrollController from "./ScrollController";   4
+0import ShareController from "./ShareController";       '
+#interface LegacyOrchestratorProps {    
+   themeId: string;    
+   onBackToHub: () => void;   4
+0  particlesComponent?: React.ComponentType<any>;    
+   themeBgClass?: string;    
+   loadingTitle?: string;    
+   loadingSubtitle?: string;    
+ }       0
+,export default function LegacyOrchestrator({    
+
+  themeId,    
+   onBackToHub,    
+   particlesComponent,   $
+   themeBgClass = "bg-stone-900",   "
+   loadingTitle = "Invitation",   *
+&  loadingSubtitle = "Celebrating Love"   !
+ }: LegacyOrchestratorProps) {   5
+1  const { invitationData } = useInvitationData();   3
+/  const [loading, setLoading] = useState(true);        
+   useEffect(() => {    
+     if (invitationData) {   B
+>      const timer = setTimeout(() => setLoading(false), 1200);   +
+'      return () => clearTimeout(timer);   	
+     }    
+   }, [invitationData]);       '
+#  if (!invitationData) return null;       e
+a  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;   U
+Q  const invitation = isWrapped ? (invitationData as any).config : invitationData;   9
+5  const sectionOrder = invitation.sectionOrder || [];        
+
+  return (    
+     <ScrollController>   O
+K      <TemplateFrame themeBgClass={themeBgClass} onBackToHub={onBackToHub}>   *
+&        {/* Loading overlay screen */}   c
+_        <LoadingExperience loading={loading} title={loadingTitle} subtitle={loadingSubtitle} />       $
+         {/* Particles canvas */}    
+         <BackgroundEffects   E
+A          showParticles={invitation.themeSettings?.showParticles}   5
+1          particlesComponent={particlesComponent}    
+
+        />       -
+)        {/* Audio background playback */}    
+         <AudioOrchestrator   0
+,          musicFile={invitation.music?.file}   6
+2          musicEnabled={invitation.music?.enabled}    
+
+        />       !
+         {/* Share buttons */}    
+         <ShareController />       2
+.        {/* Sections pipeline render block */}    
+         <SectionPipeline   )
+%          sectionOrder={sectionOrder}   %
+!          invitation={invitation}    
+           themeId={themeId}    
+
+        />    
+       </TemplateFrame>    
+     </ScrollController>    
+   );    
+ }   G
+Cexport { default as AudioOrchestrator } from "./AudioOrchestrator";   G
+Cexport { default as BackgroundEffects } from "./BackgroundEffects";   G
+Cexport { default as LoadingExperience } from "./LoadingExperience";   C
+?export { default as SectionPipeline } from "./SectionPipeline";   ?
+;export { default as TemplateFrame } from "./TemplateFrame";   E
+Aexport { default as ScrollController } from "./ScrollController";   C
+?export { default as ShareController } from "./ShareController";      BHfile:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/index.tsxX     @Create master index coordinator to bind all components together.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             _ E   	  |     <  
+               "  
+ 0sr9u0yx write_to_file   {"CodeContent":"export { default } from \"./orchestrator\";\nexport * from \"./orchestrator\";\n","Description":"Re-export LegacyOrchestrator from orchestrator folder to maintain import backwards compatibility.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","toolAction":"Re-export LegacyOrchestrator","toolSummary":"Re-exporting LegacyOrchestrator from components/shared/orchestrator/index.tsx inside LegacyOrchestrator.tsx"}:     
+    M2 U*{   t   B=p xf 5!y`     o  W H   m  p
+  B 	1p   p  f    "b~` 1u L    ; ,1f ]7  U      ^ $G            =  <6 =     s_    :    Q7D4   &Bp x *u  (~  Ij % _ |          W  >  /!  x 	1] X   .9EB   *c&   r  |z~ EYKr6 IQ        @ l    mZ4  v Qt~ WvC!     C    [   ',,(      ; (  O5 o       %      l H8? '     c   O    B E 1]   c      Y bP   } {  :+ ! P^    `   :"!   U  	  BN f) f     ) 5 el+  'B   ~  H  u   /z M  &r  1 v I    @ Jwrite_to_file* CodeContent* Descri _ D                
+               2             :             B             JP         (  
+0 B!
+	sessionID  -3750763034362895579HXP  Z 3Y9SapvOAb7KjuMPv_752AEX  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+               2             :             B             JP         (  
+0 B!
+	sessionID  -3750763034362895579HXP  Z 3Y9SapvOAb7KjuMPv_752AEX  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+  I will rewrite `components/shared/LegacyOrchestrator.tsx` to directly re-export our centralized `LegacyOrchestrator` component from the `orchestrator` folder. This preserves all existing import paths with zero code churn.2(bot-8f888591-857d-41de-9fbc-d74abce541c3:  
+ 0sr9u0yx write_to_file   {"CodeContent":"export { default } from \"./orchestrator\";\nexport * from \"./orchestrator\";\n","Description":"Re-export LegacyOrchestrator from orchestrator folder to maintain import backwards compatibility.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","toolAction":"Re-export LegacyOrchestrator","toolSummary":"Re-exporting LegacyOrchestrator from components/shared/orchestrator/index.tsx inside LegacyOrchestrator.tsx"}:     
+    M2 U*{   t   B=p xf 5!y`     o  W H   m  p
+  B 	1p   p  f    "b~` 1u L    ; ,1f ]7  U      ^ $G            =  <6 =     s_    :    Q7D4   &Bp x *u  (~  Ij % _ |          W  >  /!  x 	1] X   .9EB   *c&   r  |z~ EYKr6 IQ        @ l    mZ4  v Qt~ WvC!     C    [   ',,(      ; (  O5 o       %      l H8? '     c   O    B E 1]   c      Y bP   } {  :+ ! P^    `   :"!   U  	  BN f) f     ) 5 el+  'B   ~  H  u   /z M  &r  1 v I    @ Jwrite_to_fileB  I will rewrite `components/shared/LegacyOrchestrator.tsx` to directly re-export our centralized `LegacyOrchestrator` component from the `orchestrator` folder. This preserves all existing import paths with zero code churn.`      R    R [                                                                              s G   	  "     >  
+               "  
+ wueopwcn  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript compiler validation on modular orchestrator changes"}:     
+    M2   -  j  pmi^Nw    [`  _ { 8 K& f       &(   2   I     & Z    ~ kgt+&  y     W sd  rRE{ p{     [p )H  rt  _f     +? e   g@|Q  5g N  Tu
+ 9O  T ~  E   _      5 O  QOf   8 u,  ! g     : J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    6   
+                   FRunning TypeScript compiler validation on modular orchestrator changes   Verify types safety                   *  
+               "  
+ wueopwcn  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript compiler validation on modular orchestrator changes"}:     
+    M2   -  j  pmi^Nw    [`  _ { 8 K& f       &(   2   I     & Z    ~ kgt+&  y     W sd  rRE{ p{     [p )H  rt  _f     +? e   g@|Q  5g N  Tu
+ 9O  T ~  E   _      5 O  QOf   8 u,  ! g     : J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    6   
+                   FRunning TypeScript compiler validation on modular orchestrator changes   Verify types safety                 D  c:\Users\Admin\AhvaanamX ` '   npx tsc --noEmit   npx tsc --noEmit   F            x   
+              2             :             B             JN       y(  
+0 B!
+	sessionID  -3750763034362895579H P]Z 349SavGZOsrajuMPkOzNqAsX  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+              2             :             B             JN       y(  
+0 B!
+	sessionID  -3750763034362895579H P]Z 349SavGZOsrajuMPkOzNqAsX  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+xI will run the TypeScript dry-run verification to verify there are no compilation issues across our new modular folders.2(bot-f82d8c6f-df24-4c20-be67-078a85bf172c:  
+ wueopwcn  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript compiler validation on modular orchestrator changes"}:     
+    M2   -  j  pmi^Nw    [`  _ { 8 K& f       &(   2   I     & Z    ~ kgt+&  y     W sd  rRE{ p{     [p )H  rt  _f     +? e   g@|Q  5g N  Tu
+ 9O  T ~  E   _      5 O  QOf   8 u,  ! g     : J run_commandBxI will run the TypeScript dry-run verification to verify there are no compilation issues across our new modular folders.`     E      ~          
+               "  
+ 0sr9u0yx write_to_file   {"CodeContent":"export { default } from \"./orchestrator\";\nexport * from \"./orchestrator\";\n","Description":"Re-export LegacyOrchestrator from orchestrator folder to maintain import backwards compatibility.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","toolAction":"Re-export LegacyOrchestrator","toolSummary":"Re-exporting LegacyOrchestrator from components/shared/orchestrator/index.tsx inside LegacyOrchestrator.tsx"}:     
+    M2 U*{   t   B=p xf 5!y`     o  W H   m  p
+  B 	1p   p  f    "b~` 1u L    ; ,1f ]7  U      ^ $G            =  <6 =     s_    :    Q7D4   &Bp x *u  (~  Ij % _ |          W  >  /!  x 	1] X   .9EB   *c&   r  |z~ EYKr6 IQ        @ l            mZ4  v Qt~ WvC!     C    [   ',,(      ; (  O5 o       %      l H8? '     c   O    B E 1]   c      Y bP   } {  :+ ! P^    `   :"!   U  	  BN f) f     ) 5 el+  'B   ~  H  u   /z M  &r  1 v I    @ Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$b2e00b4a-30d6-4

@@ -1,0 +1,37 @@
+use client\";\n\nimport React from \"react\";\nimport { CompositionSchema } from \"@/lib/composition/types\";\n\n// Dynamic section component imports\nimport HeroSection from \"@/components/sections/hero\";\nimport CoupleSection from \"@/components/sections/couple\";\nimport CountdownSection from \"@/components/sections/countdown\";\nimport StorySection from \"@/components/sections/story\";\nimport EventsSection from \"@/components/sections/events\";\nimport GallerySection from \"@/components/sections/gallery\";\nimport VenueSection from \"@/components/sections/venue\";\nimport FamiliesSection from \"@/components/sections/families\";\nimport RSVPSection from \"@/components/sections/rsvp\";\nimport FAQSection from \"@/components/sections/faq\";\nimport DressCodeSection from \"@/components/sections/dressCode\";\nimport FooterSection from \"@/components/sections/footer\";\n\nconst SECTION_COMPONENTS: Record<string, React.ComponentType<any>> = {\n  hero: HeroSection,\n  couple: CoupleSection,\n  countdown: CountdownSection,\n  story: StorySection,\n  events: EventsSection,\n  gallery: GallerySection,\n  venue: VenueSection,\n  families: FamiliesSection,\n  rsvp: RSVPSection,\n  faq: FAQSection,\n  dressCode: DressCodeSection,\n  footer: FooterSection,\n};\n\nfunction resolveBindingValue(path: string, data: any): any {\n  const parts = path.split(\".\");\n  let current = data;\n  for (const part of parts) {\n    if (current == null) return undefined;\n    current = current[part];\n  }\n  return current;\n}\n\ninterface CompositionRendererProps {\n  composition: CompositionSchema;\n  invitationData: any;\n}\n\nexport default function CompositionRenderer({ composition, invitationData }: CompositionRe   x  FfJ.     a L   }x o   X 4   ^  5?}y   a3 Fm  v ^ \O v  s-  V     B#7>  i , x  #  .# rj|    ~I Y       k     9$  Y     \+    O 5  9 7  %        { ~H      j  D    j g 9    [  G   8 % B/    "uv W     _F .6           )  ]c^ bl    GQ   p7TicW  >88         #'D       V  zF+Jwrite_to_file            Created At: 2026-07-12T14:13:01Z
+Completed At: 2026-07-12T14:13:01Z
+Created file file:///c:/Users/Admin/Ahvaanam/scratch/check_transcript_full.js with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission. b: r53xwlkb       
+(bot-f6f73bf5-8b5d-45da-8215-8b2bb722ffba   8I will run the search script on `transcript_full.jsonl`. }2  
+ 14zv3380  run_command   {"CommandLine":"node scratch/check_transcript_full.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run check_transcript_full.js","toolSummary":"Executing search script for step 385/387 in current full logs file"}:     
+    M2      Z  &   UO  d   RJ A-     > d~2t: M:p   ? 2#`J   s   i0  @|      = 7X _tS     W  w=   N     h 2Vn!  x     = kQ      w q      ;  J run_command            Created At: 2026-07-12T14:13:07Z
+Completed At: 2026-07-12T14:13:14Z
+
+				The command completed successfully.
+				Output:
+				Searching step_index in transcript_full.jsonl (207 lines)
+Found step_index=363 in transcript_full.jsonl! (tool calls: run_command)
+  Args: {
+  "CommandLine": "npx tsc --noEmit",
+  "Cwd": "c:\\Users\\Admin\\Ahvaanam",
+  "WaitMsBeforeAsync": 10000,
+  "toolAction": "Verify compilation",
+  "toolSummary": "Running type check compilation to verify restored files compatibility"
+}
+Found step_index=367 in transcript_full.jsonl! (tool calls: run_command)
+  Args: {
+  "CommandLine": "node scratch/check_transcript_full.js",
+  "Cwd": "c:\\Users\\Admin\\Ahvaanam",
+  "WaitMsBeforeAsync": 5000,
+  "toolAction": "Run check_transcript_full.js",
+  "toolSummary": "Running script to inspect step range of current full logs file"
+}
+
+   : 14zv3380       
+(bot-cd58908f-e3f5-4fb4-9685-017c9409dcea     I will view the restored `components/composition/CompositionRenderer.tsx` to see how much of it is present and what is missing or truncated at the end.   2  
+ cty2cmdl 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\composition\\CompositionRenderer.tsx","StartLine":1,"toolAction":"View CompositionRenderer.tsx","toolSummary":"Viewing restored CompositionRenderer to check for truncation issues"}:     
+    M2  Q , I    s  o m         F  l/ C     .      "  G ^V    
+8   r   -  8    TeU      gh%   Qe:(      ^ > H U  K7  7           du x]T         x r   1Hq  	]  e  	-M\$  ];\c       L     8_        w    D  $nd   _     )j> 8 < :x          " g   w % % E|  W f i gr 6#,   A1 GR Do<  F 4   /   0 [    ]   w  ]@    B Ol4 9  0  S .46<Q 2  : '      c   &!Z , {    } IB t4  `  qe<[    H  (l '               
+    s S  n 7 I       (q{o{ u  i !`  8 }IK=  yq   G D ]Ir          U ) 4d    ;o     D V  !  	;q      @Mc< T   o\Vl         6  *y  f    ZL         
+     B "   Av NhE e dl    j%p  k d  a(    O  x2      N Q   L@`U >J-   ) 7   RA^  R;D  Z_   S k   b r o   Sy    ?t(f $ +    k] F       9 Q [ [  8 J J  h   ^ D  l   7   @w  H  o W    #  a      d z  ,      n   3lk U  K#    t#+     $ 5f  5T   9  0 y   ,D  b A EA   h     \Kz     j Y   >       r   =  I $8f 8   8 5,  m W   o_ 8z%]  v  Lu     4 sG  }0 K    #v         &  ++   * u    ; t   :  ]        d2  =    O r J h;( Fg     5%,eLq   |  %  So   <6g f l'+ +1     xl            o @  R0*t }JJ    ad$SB*  lq :        L +i@ R   d   _F ~ }  '              +rIX ; z  0  !? P    Mx2  t7X )     H  G9 ~ " v       
+M  K   	asT9   P]v  \   "  v   !zJ     [ S   kX @   ]   a}   + +.0  ]x            u    y    +   :    +   Bg#  a     h         7 ,      UHr       i 4?|'"  "    ?   ? W*C  ` u  L ?6  s     p      T  \    v x R @  ,  Hn  (       %**A  h  k1     U K  \ 3  1  M4I`y   &   DD  I     N   _     d> '        e   b  = ;  	    ; k  RL<% /       B. 2W      Yz S j  .l JNw   h7      5 #  s  r i   _ :xW 4zI    Q's/    Ms/Ry    _`     " BN|     )F  83S  _ 7   &h   c   Y|0'|Q 7     rs. I've pinpointed that the code's size was consistently around this limit. Now, I'm checking the `transcript_full.jsonl` files to see if the untruncated content is preserved th

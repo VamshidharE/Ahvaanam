@@ -1,0 +1,97 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[184] Found match at index 4118908
+  Preview    ratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run extract_from_db.js","toolSummary":"Running database scan script to locate the composition renderer code"}:     
+    M2 S W   v e  0hu   E  M    ) * k     d      &Z a1 d K       df   D   G9  H  wga   Ze e |{6     g s G     9  1 yW     {  66  G   J run_command            Created At: 2026-07-12T14:14:13Z
+Tool is running as a background task with task id: d2c79442-9bab-465c-a40a-56c20332cbe2/task-386
+Task Description: node scratch/extract_from_db.js
+Task logs are available at: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-386.log s: xhqhc4jp       
+(bot-b8b7d2aa-de7b-4d90-8452-eb07b2060a1e   KI will wait for the database scan task to complete and report its findings.   2  
+ rozs8g8y  schedule   {"DurationSeconds":"2","Prompt":"Check on database search task status","TimerCondition":"d2c79442-9bab-465c-a40a-56c20332cbe2/task-386","toolAction":"Wait for task completion","toolSummary":"Scheduling timer to wait for db search task to complete"}:     
+    M2    3Gr (; qC o     
+Muo   Q _  k      ZUF 
+ g_  B9p  c |    n     " !  g  j   "Zq      !6     +WJA r I  (  ff  5  %    '    [iM    ex B  Y  I    k t  g  DCE   Z   2Y&  Xj  } ?Z "
+  4  D       WJ!  U   &  @ .ji Byj  O     i S   e    U  C    >  q m 6   ~   rK    G      4 5 W   	|Edi P .o           kn    J    , O    8`)     [&%  ?        >U z    ,   ` 9
+T (      r  s W    S z  |N7GI   c       g   X     Q t  c 3<E  =wO ` A   ,I*      e  P  + , V     5 /(h' $  |   'L      @    [       W- Bg ;  3           "   q ax      y 5  J schedule      E    ECreated At: 2026-07-12T14:14:25Z
+Completed At: 2026-07-12T14:14:25Z
+Wait cancelled (agent already has undelivered messages from d2c79442-9bab-465c-a40a-56c20332cbe2/task-386).
+
+The following is a <SYSTEM_MESSAGE> not actually sent by the user. It is provided by the system as important information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp=2026-07-12T14:14:21Z sender=d2c79442-9bab-465c-a40a-56c20332cbe2/task-386 priority=MESSAGE_PRIORITY_HIGH content=Task id "d2c79442-9bab-465c-a40a-56c20332cbe2/task-386" finished with result:
+
+				The command completed successfully.
+				Output:
+				<truncated 3326 lines>
+------------------------
+[169] Found match at index 4005163
+  Preview of match [169]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[170] Found match at index 4005562
+  Preview of match [170]:
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemeProvider from "@/components/theme/ThemeProvider";        
+ const mockHeroBindings = {   $
+   title: "Dev & Neha's Wedding",   7
+3  subtitle: "We Invite You to Celebrate Our U
+------------------------
+[171] Found match at index 4006707
+  Preview of match [171]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+[172] Found match at index 4007093
+  Preview of match [172]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+[173] Found match at index 4007492
+  Preview of match [173]:
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemeProvider from "@/compo    s   =U   
+ v     * u > S? 3 Z g    c- 
+    ? 2 n q  u     Bx   J db  Eo   N  	 ?       ;x>! u d	'J  l  Z          C$U CC     
+  d    *o j  !D ' q #7 ~    Y6`      5 9        p    I     *B  r P6! )  oK     ]  (      O+  X m   ; '     S!j  5m0  J [DZ    Y   3^    O    c.|     }   |"NJ},@  8l  3   y Q 5   ] k0    /C   F \|>O S+p ,  5O         -  * @   '       * X   ]  =W | =  $ cEk   ?    % Tu     ! d   @   [     ] [   ^ B   @ g 0A A   fh?     K  3  Q * 
+ z        >?) ?       yS	     S    .   `       H   \        q T  zn  2  " R | J  *    taoH  H w$ lf   &0T*T       Y\        Lw&Rx k     z     V  |r{LMJ   C   M` =     n 5   w  ~   4D s;  vc |    Nt m  P  _|;        ~@     }  )w. L 
+W q    7  0D      q 	   (   * ?    c         ~ 3.  M6 z  Ks  l 'Q ) A$M : / &2   ._4rgm   k;   30K . G 	    Mi   | x  X   *   d4DUb  ^N)V>r    q    &              7O   x        d             ?       j   z7 H    @i X/   >  G^/   8      A   ` =        qB 79     W *    +W @-NF           ]   	 V9       \  P jU t	     -7   P    u[  zv% T9  u  4p 8     A d  S }T 7 4q   9|       Kr   _  e W   w  p +\s  8L. 9mt h   Gj   K$  q |  j Z5i2 N   <         Ytp &PG  2  3 1    PFPg  +l n @  =  a  C j  &o   MI   +C G xCVdw  +plR    P   : .5Z  Kz ~9   :       0    $   ` =^Q   }   3   ,$   uq    I8  h  - xvy    Y       / By ;M  4 k Tb    V ? *g    !    F    u     v8 {  -  % t H D     `        l  9 q?   eC    z    ?F   m   G {= _,  v   @)#    -  Y   F >r  v>   l p            ;  ?cU    To|  `   sVtF  o\  
+  J5..  A~2. ]        & V    I* u= :,   F

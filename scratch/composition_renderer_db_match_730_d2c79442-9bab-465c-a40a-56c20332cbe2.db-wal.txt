@@ -1,0 +1,189 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[83] Found match at index 26059128
+  Preview of match [83]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvid
+------------------------
+[109] Found match at index 29043680
+  Preview of match [109]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+[84] Found match at index 26157782
+  Preview of match [84]:
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { useInvitationData } from "../c
+------------------------
+[110] Found match at index 29070654
+  Preview of match [110]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeMessage: "Weddi
+------------------------
+[69] Found match at index 22735945
+  Preview of match [69]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvid
+------------------------
+   node scratch/extract_from_db.js   node scratch/extract_from_db.js         3 Op~1  U   :        9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemeProvider from "@/components/theme/ThemeProvider";        
+ const mockHeroBindings = {   '
+#  title: "Ravi & Swetha's Sangeet",   7
+3  subtitle: "An Evening of Music, Dance, and Love",   '
+#  welcomeMessage: "You're Invited",   3
+/  heroImage: "/images/themes/royal-temple.jpg",    
+   ctaText: "RSVP Now",    
+   surname: "Ravi Family",    
+   subText: "Ceremonies",    
+   
+------------------------
+[98] Found match at index 18373289
+  Preview of match [98]:
+"use client";
+
+import { useEffect, useState, useRef } from "react";
+import { ToggleLeft, ToggleRight } from "lucide-react";
+import CompositionRenderer from "@/components/composition/CompositionRenderer";
+import { getWeddingComposition, getBirthdayComposition } from "@/lib/composition/templates";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInvitationData } from "../../context/InvitationDataContext";
+import { Calendar, MapPin, Clock, Phone, MessageCircle, Volume2
+------------------------
+[99] Found match at index 22726131
+  Preview of match [99]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeMessage: "Wedding invitation",
+  heroImage: "/images/themes/royal-temple.jpg",
+  ctaText: "RSVP Now",
+  surname: "Karthik Family",
+  subText: "Traditional Om Salutations",
+  enableHeaderMedia: true,
+  headerMediaTyp
+------------------------
+[100] Found match at index 22735945
+  Preview of match [100]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the Date",
+  heroImage: "/images/themes/royal-temple.jpg",
+  ctaText: "RSVP Now",
+  surname: "Dev Family",
+  subText: "Traditions",
+  enableHeaderMedia: true,
+  headerMediaType: "god" as const,
+  selectedG
+------------------------
+[101] Found match at index 22744974
+  Preview of match [101]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider"    ;
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're Invited",
+  heroImage: "/images/themes/royal-temple.jpg",
+  ctaText: "RSVP Now",
+  surname: "Ravi Family",
+  subText: "Ceremonies",
+  enableHeaderMedia: true,
+  headerMediaType: "god" as const,
+  
+------------------------
+[102] Found match at index 26040281
+  Preview of match [102]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeMessage: "Wedding invitation",
+  heroImage: "/images/themes/royal-temple.jpg",
+  ctaText: "RSVP Now",
+  surname: "Karthik Family",
+  subText: "Traditional Om Salutations",
+  enableHeaderMedia: true,
+  headerMediaTyp
+------------------------
+[103] Found match at index 26050095
+  Preview of match [103]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the Date",
+  heroImage: "/images/themes/royal-temple.jpg",
+  ctaText: "RSVP Now",
+  surname: "Dev Family",
+  subText: "Traditions",
+  enableHeaderMedia: true,
+  headerMediaType: "god" as const,
+  selectedG
+------------------------
+[104] Found match at index 26059128
+  Preview of match [104]:
+"use client";
+
+import React fr   G     3 Op~1              W  W                                         J 	        l       
+               

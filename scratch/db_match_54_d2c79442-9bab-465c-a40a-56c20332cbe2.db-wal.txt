@@ -1,0 +1,135 @@
+"use client";
+
+import React from "react";
+
+// Reusable section components
+import HeroSection from "../../sections/hero";
+import CoupleSection from "../../sections/couple";
+import CountdownSection from "../../sections/countdown";
+import StorySection from "../../sections/story";
+import EventsSection f
+------------------------
+[97] Found match at index 26749670
+  Preview of match [97]:
+"use client";       ?
+;import React, { useEffect, useState, useRef } from "react";   I
+Eimport { useInvitationData } from "../context/InvitationDataContext";   X
+Timport { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";   <
+8import { motion, AnimatePresence } from "framer
+------------------------
+[98] Found match at index 26757056
+  Preview of match [98]:
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+import { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Import re
+------------------------
+[99] Found match at index 27421590
+  Preview of match [99]:
+"use client";
+
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { WeddingInvitationConfig } from "../types/invitation";
+
+interface InvitationDataContextProps {
+  invitationData: WeddingInvitationConfig | null;
+  loading: boolean;
+  error: string | null;
+  updateI
+------------------------
+[100] Found match at index 28682363
+   node scratch/extract_from_db.js   node scratch/extract_   ]    YZ v J :6  B       ^from_db.js   ?
+ ?<truncated 750 lines>
+
+// Import re
+------------------------
+[65] Found match at index 20489559
+  Preview of match [65]:
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+import { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Import re
+------------------------
+[66] Found match at index 20751390
+  Preview of match [66]:
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+import { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Import re
+------------------------
+[67] Found match at index 20963484
+  Preview of match [67]:
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+import { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Import re
+------------------------
+[68] Found match at index 22726131
+  Preview of match [68]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeMessage: "Weddi
+------------------------
+[69] Found match at index 22735945
+  Preview of match [69]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[70] Found match at index 22744974
+  Preview of match [70]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider"    ;
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You
+------------------------
+[71] Found match at index 23766024
+  Preview of match [71]:
+"use client";
+2: 
+3: import React, { useEffect, useState, useRef } from "react";
+4: import { useInvitationData } from "../context/InvitationDataContext";
+5: import { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";
+6: import { motion, AnimatePresence } from "framer-mo
+------------------------
+[72] Found match at index 23877734
+  Preview of match [72]:
+"use client";
+
+import React, { useEffect, useState, 

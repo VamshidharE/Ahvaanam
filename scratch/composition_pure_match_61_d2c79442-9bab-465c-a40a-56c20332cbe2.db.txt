@@ -1,0 +1,31 @@
+e new DB extraction dumps for matches that are actually `CompositionRenderer.tsx` (containing both `SECTION_COMPONENTS` and the component export `CompositionRenderer`) and restore it.`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             0 9     X              0   8 j      
+ .ipynb  " o  :  *          (  0 @ H P *       As IDE feedback, the following lint errors may be related to your recent edits up to this point. Consider whether they deserve immediate attention. If worth addressing, clearly comment on them and/or fix them. Be explicit in acknowledging lints and explaining your fix's approach. AVOID unproductive loops; if you detect yourself repeatedly creating/fixing lints in a short period, offer some thoughts but MOVE ON.0 P h x                "  28 @ *  2    ( By  @   N0 J headJ tailJ mkdirJ cdJ cpJ mvJ catJ findJ grepJ rmJ touchJ lessJ clearJ ls  *
+powershell2
+powershellX ` h p x R 8 @ H @P @X  h p  x      Z   j                         @      ( 0 8           "$       ( 2 
+ 8   B     NJ   Z     ` * 
+ * red8  @ H P  X ` h 0 8 R     X h z                                                    
+  '                   
+( 0           
+       
+/read_file(C:\Users\Admin\invitecraft\AGENTS.md)
+@write_file(C:\Users\Admin\invitecraft\components\data\themes.ts)
+Jwrite_file(C:\Users\Admin\invitecraft\components\context\ThemeContext.tsx)
+Mwrite_file(C:\Users\Admin\invitecraft\components\shared\ThemeSelectorHub.tsx)
+6write_file(C:\User f 9   J       "$4aa75d03-1271-46f0-b45e-727afbec3c33B     2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   1   1   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   1   2
+     "N       n(   0 B!
+	sessionID  -3750763034362895579H PXZ NaFTauiZI5aojuMP_K3IqQY0  : 
+ autoJd q           "             (  2          af44f95b2          8a372658:       e9c821beB         R     Z       8b      zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  b N       n(   0 B!
+	sessionID  -3750763034362895579H PXZ NaFTauiZI5aojuMP_K3IqQY" 5f29598434d3b6e7   gemini-default  5
+trajectory_id $a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  384  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $c0fa43bf-4399-4335-8fd1-102a9672b39d   Gemini 3.5 Flash (Medium) _    nes = content.split('\\n');\n          for (let i = 0; i \u003c lines.length; i++) {\n            if (lines[i].toLowerCase().includes('compositionrenderer')) {\n              console.log(`  Line ${i+1}: ${lines[i].substring(0, 150).trim()}`);\n            }\n          }\n        }\n      } catch (e) {}\n    }\n  }\n}\n\ntry {\n  searchDir(brainDir);\n} catch (err) {\n  console.error('Error:', err);\n}\nconsole.log('Done.');\n","Description":"Search all brain files recursively for CompositionRenderer case-insensitive.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\scratch\\find_homepage.js","toolAction":"Write find_homepage script","toolSummary":"Updating find_homepage script to search for CompositionRenderer in all brain files"}:     
+    M2  W  p?V   . _ D 2  .!  6Qce  u 6 5 ` z    _^    ^j Y  m ^   mM  [;   7 5 +  fl   ^ 4 z d I   7 hV   RHe. h    Q k-  wD    ?  
+    ( MEF$  t   l  =  s     q5   U W c   ^        L  1X  2b  y F  2   ~W h7 6x N   	   }       '  I  :    $   b  m ED 	 a      )m+f  EY   no   #         3m      . 7 M  jb -   g    \A:f  SP 8      R  Zs  D+	-*('R G       Z_ 2 vsY   `V   >L% f  &    m '5     Nd  gI-N 
+         8 >+ w      J ;x= I   b    zFo X     P   {  1      C       }     +,b l       k,         y  
+f      k  (b =2 d       Q  U   n ]f   c{  w     > G b      [ :   Pz`S k H  t   v   b- !#F {p    .mu r.eS N V   <  y     W2   &,>    \ Fz[_         au F 4   J     ,] >     F  ^ .
+ZZ          qjJ\  ;m.      +Y    zB Cx  . .   zL    L    	 ij >)a    #0v    / 3 Y|p  +c  :  V w        q w }   .   3K      eR dK  . 5 r]    =  Z/u%    P    $ ~l0 z>   xM  ZE  2 5hGzj  T    7   v  *  3 8 3    ;  K                 < 3z
+ II  :  ( [6nZ    vVH'    B g  k >- @   |w

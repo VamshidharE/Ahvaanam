@@ -1,0 +1,82 @@
+use client\";\n\nimport React, { useEffect, useState } from \"react\";\nimport LayoutWrapper from \"@/components/layouts/LayoutWrapper\";\nimport MotionWrapper from \"@/components/motion/MotionWrapper\";\n\ninterface CountdownSectionProps {\n  bindings: {\n    title?: string;\n    targetDate?: string;\n    postWeddingMessage?: string;\n  };\n  layoutId?: string;\n  motionId?: string;\n}\n\nexport default function CountdownSection({ bindings, layoutId, motionId }: CountdownSectionProps) {\n  const { \n    title = \"Party Countdown\", \n    targetDate = \"2026-12-14T19:00:00\", \n    postWeddingMessage = \"The Celebration has begun!\" \n  } = bindings;\n\n  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });\n  const [isPassed, setIsPassed] = useState(false);\n\n  useEffect(() =\u003e {\n    if (!targetDate) return;\n    const targetTime = new Date(targetDate).getTime();\n\n    const updateCountdown = () =\u003e {\n      const now = new Date().getTime();\n      const difference = targetTime -   X Z V                
+               2             :             B             JQ         	(   0 B!
+	sessionID  -3750763034362895579H7P 	Z tTNSatn3BoWqjuMPucfSsA4X  b$6c9a896a-1c4e-4405-b450-2c5928aa879aj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+               2             :             B             JQ         	(   0 B!
+	sessionID  -3750763034362895579H7P 	Z tTNSatn3BoWqjuMPucfSsA4X  b$6c9a896a-1c4e-4405-b450-2c5928aa879aj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                   )
+  I will update `components/sections/countdown/index.tsx` to support the `motionId` prop, wrapping the layout inside `MotionWrapper`.2(bot-20c9b482-e786-4ebc-b5f3-a01c01ff96e4: &
+ tqj7m2kv write_to_file  ${"CodeContent":"\"use client\";\n\nimport React, { useEffect, useState } from \"react\";\nimport LayoutWrapper from \"@/components/layouts/LayoutWrapper\";\nimport MotionWrapper from \"@/components/motion/MotionWrapper\";\n\ninterface CountdownSectionProps {\n  bindings: {\n    title?: string;\n    targetDate?: string;\n    postWeddingMessage?: string;\n  };\n  layoutId?: string;\n  motionId?: string;\n}\n\nexport default function CountdownSection({ bindings, layoutId, motionId }: CountdownSectionProps) {\n  const { \n    title = \"Party Countdown\", \n    targetDate = \"2026-12-14T19:00:00\", \n    postWeddingMessage = \"The Celebration has begun!\" \n  } = bindings;\n\n  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });\n  const [isPassed, setIsPassed] = useState(false);\n\n  useEffect(() =\u003e {\n    if (!targetDate) return;\n    const targetTime = new Date(targetDate).getTime();\n\n    const updateCountdown = () =\u003e {\n      const    Z    
+  
+  A                                                                                                                                                     f        ~     F   
+               2             X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-46 7          t   n   
+               "  
+ crgzwngx  run_command   {"CommandLine":"node scratch/search_all_commands.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run search_all_commands.js","toolSummary":"Running the command history search script across all logs"}:     
+    M2    ) "    X  YK  g UY [  A v     f  W K    6P@   y     0,/             p  $H {  (   x w Zh  ; } q    R     d7c QQ X 8   To K3 p[ J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    9  6
+                 
+  	              
+                   9Running the command history search script across all logs   Run search_all_commands.js                2
+.
+ command #node scratch/search_all_commands.js      *  
+               "  
+ crgzwngx  run_command   {"CommandLine":"node scratch/search_all_commands.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run search_all_commands.js","toolSummary":"Running the command history search script across all logs"}:     
+    M2    ) "    X  YK  g UY [  A v     f  W K    6P@   y     0,/             p  $H {  (   x w Zh  ; } q    R     d7c QQ X 8   To K3 p[ J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    9  6
+                 
+  	              
+                   9Running the command history search script across all logs   Run search_all_commands.js                 w  t
+.
+ command #node scratch/search_all_commands.js $node scratch/search_all_commands\.js  * Run search_all_commands.js  4 2
+.
+ command #node scratch/search_all_commands.js   	  
+w  t
+.
+ command #node scratch/search_all_commands.js $node scratch/search_all_commands\.js  * Run search_all_commands.js .
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0              c:\Users\Admin\AhvaanamX ` '    
+  Folder: 011e974d-4561-41c5-89e8-12ee65991b97, Step: 2621, Command: git status; git log -n 5 --stat
+Folder: 011e974d-4561-41c5-89e8-12ee65991b97, Step: 2629, Command: git log --diff-filter=D --summary
+Folder: d2c79442-9bab-465c-a40a-56c20332cbe2, Step: 165, Command: git status
+  #node scratch/search_all_commands.js  #node scratch/search_all_commands.js                `   
+               2             :             B             JN     $ s(   0 B!
+	sessionID  -3750763034362895579H P]Z Vp9TapD8C86cjuMP2Kb0gQEX  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+               2             :             B             JN     $ s(   0 B!
+	sessionID  -3750763034362895579H P]Z Vp9TapD8C86cjuMP2Kb0gQEX  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+EI will run the command search script to trace any git reset commands.2(bot-65175b91-0970-451e-92ba-898b3718db84:  
+ crgzwngx  run_command   {"CommandLine":"node scratch/search_all_commands.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run search_all_commands.js","toolSummary":"Running the command history search script across all logs"}:     
+    M2    ) "    X  YK  g UY [  A v     f  W K    6P@   y     0,/             p  $H {  (   x w Zh  ; } q    R     d7c QQ X 8   To K3 p[ J run_commandBEI will run the command search script to trace any git reset commands.`        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      c j            *   
+               2             :           xB           xJP     )   (   0 B!
+	sessionID  -3750763034362895579H P  Z uDRSaoCMHan_juMP8K-W4A4X  b$4d494374-7d8c-4205-8fb2-aae7c166e76bj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                 
+               x             x    *  
+               2             :           xB           xJP     )   (   0 B!
+	sessionID  -3750763034362895579H P  Z uDRSaoCMHan_juMP8K-W4A4X  b$4d494374-7d8c-4205-8fb2-aae7c166e76bj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+                 
+               x             x   !
+gI will create the families greetings layout component file at `components/sections/families/index.tsx`.2(bot-72e510d9-78d0-4ba4-8884-a8a5ad0bff94:  
+ ehr68tfe write_to_file   {"CodeContent":"\"      Z i       D      d   
+               " a
+ pi80r567 write_to_file  #{"CodeContent":"\"use client\";\n\nimport React from \"react\";\nimport LayoutWrapper from \"@/components/layouts/LayoutWrapper\";\nimport MotionWrapper from \"@/components/motion/MotionWrapper\";\n\ninterface CoupleSectionProps {\n  bindings: {\n    title?: string;\n    groomName?: string;\n    groomParents?: string;\n    groomImage?: string;\n    brideName?: string;\n    brideParents?: string;\n    brideImage?: string;\n  };\n  layoutId?: string;\n  motionId?: string;\n}\n\nexport default function CoupleSection({ bindings, layoutId, motionId }: CoupleSectionProps) {\n  const {\n    title = \"The Couple\",\n    groomName = \"Groom Name\",\n    groomParents = \"Groom Parents\",\n    groomImage = \"\",\n    brideName = \"Bride Name\",\n    brideParents = \"Bride Parents\",\n    brideImage = \"\"\n  } = bindings;\n\n  return (\n    \u003cMotionWrapper\n      motionId={motionId}\n      defaultMotionId=\"luxury-motion\"\n      type=\"reveal\"\n      className=\"w-full\"\n    \u003e\n      \u003cLayoutWrapper\n        layoutId={layoutId}\n        defaultLayoutId=\"story-stack\"\n        className=\"py-24 px-6 max-w-5xl mx-auto border-b border-white/5 text-center select-none\"\n        style={{ \      
+ tern "app/api/auth" | Where-Object { $_.LineNumber -gt 312 } | Select-Object -Property LineNumber,Line -First 10)
+  command(Select-String -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript_full.jsonl" -Pattern "app/api/auth/login" | Select-Object -Property LineNumber,Line -First 10)
+  command(Get-ChildItem -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs" | ForEach-Object { $_.FullName })
+  command(Get-ChildItem -Recurse -Filter "*.ts*" -Path "app","components","lib","utils" | Select-String -Pattern "signSession" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+?write_file(C:\Users\Admin\Ahvaanam\app\api\auth\login\route.ts)
+@write_file(C:\Users\Admin\Ahvaanam\app\api\auth\logout\route.ts)
+  comman

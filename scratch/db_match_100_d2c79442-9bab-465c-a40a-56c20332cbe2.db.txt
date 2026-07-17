@@ -1,0 +1,109 @@
+"use client";
+
+import React, { useState, useEffect   B, useRef, use } from "react";
+import Link from "next/link";
+import { InvitationDataProvider, useInvitationData } from "../../../components/context/InvitationDataContext";
+import { getCategory } from "@/lib/categories/utils";
+import { getManifest } from "@/lib/template-manifests";
+import { getTheme, listThemes } from "@/lib/theme/registry";
+import { listMotionPacks } from "@/lib/motion/registry";
+import { 
+  Sliders, Heart, Calendar, Clock, MapPin, 
+  Phone, HelpCircle, Save, ArrowLeft, Plus, 
+  Trash2, ArrowUp, ArrowDown, Eye, Smartphone, Monitor, Tablet,
+  ChevronDown, Undo2, Redo2, Share2, Layers, Image, FileText,
+  History, Settings, Type, Grid, Sparkles, Check, Copy, AlertCircle,
+  Crop, Compass, Maximize2
+} from "lucide-react";
+
+import ConfettiCanvas from "@/components/ui/ConfettiCanvas";
+import SectionInspector from "./components/SectionInspector";
+import BuilderShell from "@/components/builder/BuilderShell";
+
+const IconLookup: Record<string, React.ComponentType<any>> = {
+  Sliders: Sliders,
+  Heart: Heart,
+  Calendar: Calendar,
+  MapPin: MapPin,
+  Clock: Clock,
+  Phone: Phone,
+  HelpCircle: HelpCircle,
+  Plus: Plus,
+  Trash2: Trash2,
+  ArrowUp: ArrowUp,
+  ArrowDown: ArrowDown
+};
+
+function AdminPortalContent({ clientId, onOpenBuilder }: { clientId: string; onOpenBuilder?: () => void }) {
+  const { invitationData, loading, error, updateInvitationData, saveConfig } = useInvitationData();
+  
+  // Professional Editor Layout State
+  const [activeLeftTab, setActiveLeftTab] = useState<"sections" | "assets" | "themes" | "history">("sections");
+  const [selectedSectionId, setSelectedSectionId] = useState<string>("hero");
+  const [showGrid, setShowGrid] = useState(false);
+  const [showSafeArea, setShowSafeArea] = useState(true);
+  
+  const [saving, setSaving] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
+  const [triggerConfetti, setTriggerConfetti] = useState(false);
+  
+  // Media Library Dialog State
+  const [showMediaModal, setShowMediaModal] = useState(false);
+  const [aiEnhancing, setAiEnhancing] = useState(false);
+  const [compressRatio, setCompressRatio] = useState<string | null>(null);
+
+  const [previewDevice, setPreviewDevice] = useState<"mobile" | "tablet" | "desktop">("mobile");
+  const [zoomScale, setZoomScale] = useState(0.9);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+  const selectedCategory = isWrapped ? (invitationData as any).category : "wedding";
+  const catDef = getCategory(selectedCategory);
+
+  const data = isWrapped ? (invitationData as any).config : invitationData;
+  const themeIdVal = invitationData?.themeId || data?.themeId || "royal-temple";
+  const manifest = getManifest(themeIdVal);
+
+  const isSectionSupported = (sectionId: string, features: any): boolean => {
+    if (!features) return true;
+    if (sectionId === "gallery") return !!features.supportsGallery;
+    if (sectionId === "countdown") return !!features.supportsCountdown;
+    if (sectionId === "story") return !!features.supportsStory;
+    if (sectionId === "rsvp") return !!features.supportsRSVP;
+    if (sectionId === "events") return !!features.supportsSchedule;
+    if (sectionId === "venue") return !!features.supportsMaps;
+    if (sectionId === "families") return !!features.supportsFamily;
+    if (sectionId === "footer") return !!features.supportsBranding;
+    return true;
+  };
+
+  const sectionsOrder = data?.sectionOrder || [];
+  const enabledThemes = listThemes();
+  const enabledMotions = listMotionPacks();
+
+  const showToast = (message: string, type: "success" | "error") => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 4000);
+  };
+
+  const handleSave = async () => {
+    setSaving(true);
+    const result = await saveConfig();
+    setSaving(false);
+    
+    if (result.success) {
+      showToast("Invitation details saved successfully!", "success");
+      setTriggerConfetti(true);
+      setTimeout(() => setTriggerConfetti(false), 5000   C);
+      
+      if (iframeRef.current) {
+        iframeRef.current.src = iframeRef.current.src;
+      }
+    } else {
+      showToast(result.error || "Failed to save configuration.", "error");
+    }
+  };
+
+  const moveSection = (index: number, direction: "up" | "down") => {
+    updateInvitationData((prev: any) => {
+      const target = prev.config ||

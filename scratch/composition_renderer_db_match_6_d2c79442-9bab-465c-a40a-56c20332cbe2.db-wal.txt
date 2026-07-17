@@ -1,0 +1,109 @@
+"use client"', idx);
+    if (startIdx === -1) {
+      startIdx = content.lastIndexOf('use client', idx);
+    }
+    if (startIdx === -1) startIdx = idx - 100;
+    
+    // Grab 6000 characters to make sure we get the full file
+    const slice = content.substring(startIdx, startIdx + 6000);
+    console.log(`  Preview of match [${matches}]:`);
+    console.log(slice.substring(0, 500));
+    console.log("------------------------");
+    
+    // Save to scratch
+    fs.writeFileSync(`scratch/composition_renderer_db_match_${matches}_${path.basename(filePath)}.txt`, slice);
+    idx += searchStr.length;
+  }
+}
+
+try {
+  extractFromBinary(dbPath);
+  extractFromBinary(walPath);
+} catch (err) {
+  console.error(err);
+}
+    NUpdate SQLite search for CompositionRenderer using SECTION_COMPONENTS keyword.         3 S `      <t        L ;z         U`&  pk L  ky  G+   3S       <&D     i   *  W "  *  v   ( *    e oK  ,      E      t   {    U+ ;  J  +)N  E  / W ?  "  5  p%  =UT Vc1  e      @ S        5_   oU  + %     8     v~zQVQ   \  *o, _R8   T    D/  l j Y  > 7   = tz  L : b       vZ5  M    [       Nb "  =p      5 r<e S     [   6_   lEVKj p     E    1 n  oB  1        	  S    _.{  	W :   o2       s( V4 |  ;  8   #Y      VL  J 7   ! zHIuU2gm    =a         &%p*s!c  :i  dz    eEt  q   &  mb X  
+  9n       dF   j7 &Vc      [ B  ) 2U   Z RB  >e  C   MR#Z 
+& a E  Bc  O  'C1   ;$$ 33  w+ v 4    {G V9o"       i  W     K cV    k76     3   |      &  j   <        :wK*   W wLI'    N  M  HQ p ;    "    7  &  0    {  hP I    ]     ]d  ":n m o   k %c  5 d Z 3 3HBS     !  L  &<c C 6B 	J%$  m y-   R1,     r<V  z \  hn  h  >     z  B   p?  E  n ~ Fp   G l      a  .]   \      ' =  e {Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   DUpdating SQLite search script to look for SECTION_COMPONENTS keyword   Write extract_from_db script               R 5
+     
+  const fs = require('fs');
+const path = require('path');
+
+const dbPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\conversations\\d2c79442-9bab-465c-a40a-56c20332cbe2.db';
+const walPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\conversations\\d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal';
+
+function extractFromBinary(filePath) {
+  if (!fs.existsSync(filePath)) {
+    console.log(`File not found: ${filePath}`);
+    return;
+  }
+  console.log(`Scanning ${filePath} (${fs.statSync(filePath).size} bytes)`);
+  const buf = fs.readFileSync(filePath);
+  
+  // Convert buffer to string replacing nulls with spaces
+  let content = '';
+  for (let i = 0; i < buf.length; i++) {
+    const charCode = buf[i];
+    if (charCode === 0) {
+      content += ' ';
+    } else if (charCode >= 32 && charCode <= 126) {
+      content += String.fromCharCode(charCode);
+    } else if (charCode === 10 || charCode === 13 || charCode === 9) {
+      content += String.fromCharCode(charCode);
+    } else {
+      content += ' ';
+    }
+  }
+
+  const searchStr = 'SECTION_COMPONENTS';
+  let idx = 0;
+  let matches = 0;
+  while ((idx = content.indexOf(searchStr, idx)) !== -1) {
+    matches++;
+    console.log(`[${matches}] Found match at index ${idx}`);
+    // Find the start of the file: look backward for "use client"
+    let startIdx = content.lastIndexOf('"use client"', idx);
+    if (startIdx === -1) {
+      startIdx = content.lastIndexOf('use client', idx);
+    }
+    if (startIdx === -1) startIdx = idx - 100;
+    
+    const slice = content.substring(startIdx, startIdx + 6000);
+    console.log(`  Preview of match [${matches}]:`);
+    console.log(slice.substring(0, 500));
+    console.log("------------------------");
+    
+    // Save to scratch
+    fs.writeFileSync(`scratch/composition_renderer_db_match_${matches}_${path.basename(filePath)}.txt`, slice);
+    idx += searchStr.length;
+  }
+}
+
+try {
+  extractFromBinary(dbPath);
+  extractFromBinary(walPath);
+} catch (err) {
+  console.error(err);
+}
+ {*:file:///c:/Users/Admin/Ahvaanam/scratch/extract_from_db.js2=
+ file:///c:/Users/Admin/Ahvaanam  scratch/extract_from_db.js    $
+ $    =     
+ const fs = require('fs');   !
+ const path = require('path');       t
+pconst dbPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\conversations\\d2c79442-9bab-465c-a40a-56c20332cbe2.db';   y
+uconst walPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\conversations\\d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal';       *
+&function extractFromBinary(filePath) {   %
+!  if (!fs.existsSync(filePath)) {   3
+/    console.log(`File not found: ${filePath}`);    
+     return;    
+   }   P
+L  console.log(`Scanning ${filePath} (${fs.statSync(filePath).size} bytes)`);   ,
+(  const buf = fs.readFileSync(filePath);    
+      =
+9  // Convert buffer to string replaci         3 S `         c    gravity\\\\conversations\\\\d2c79442-9bab-465c-a40a-56c20332cbe2.db';\nconst walPath = 'C:\\\\Users\\\\Admin\\\\.gemini\\\\antigravity\\\\conversations\\\\d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal';\n\nfunction extractFromBinary(filePath) {\n  if (!fs.existsSync(filePath)) {\n    console.log(`File not found: ${filePath}`);\n    return;\n  }\n  console.log(`Scanning ${filePath} (${fs.statSync(filePath).size} bytes)`);\n  const buf = fs.readFileSync(filePath);\n  \n  // Convert buffer to string replacing nulls with spaces\n  let content = '';\n  for (let i = 0; i \u003c buf.length; i++) {\n    const charCode = buf[i];\n    if (charCode === 0) {\n      content += ' ';\n    } else if (charCode \u003e= 32 \u0026\u0026 charCode \u003c= 126) {\n      content += String.fromCharCode(charCode);\n    } else if (charCode === 10 || charCode === 13 || charCode === 9) {\n      content += String.fromCharCode(charCode);\n    } else {\n      content += ' ';\n    }\n  }\n\n  const searchStr = 'SECTION_COMPONENTS';\n  let idx = 0;\n  let matches = 0;\n  while (

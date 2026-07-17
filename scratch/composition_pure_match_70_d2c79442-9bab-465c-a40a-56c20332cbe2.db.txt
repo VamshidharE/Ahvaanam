@@ -1,0 +1,68 @@
+use client');   	
+     }   &
+"    if (startIdx === -1) continue;    
+        :
+6    // Try to find if this contains the full component   c
+_    const hasComponentExport = content.includes('export default function CompositionRenderer');   J
+F    const hasResolveBinding = content.includes('resolveBindingValue');   L
+H    const hasSectionComponents = content.includes('SECTION_COMPONENTS');    
+        N
+J    if 
+------------------------
+[34] Found match at index 4392779
+  Preview of match [34]:
+"use client";
+2: 
+3: import { useEffect, useState } from "react";
+4: import { ToggleLeft, ToggleRight } from "lucide-react";
+5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+6: import { getWeddingComposition } from "@/lib/composition/templates";
+7: import { useInvitationData } from "../../context/InvitationDataContext";
+8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+9: 
+10: // --- TEMPLATE SPECIFIC PARTICLES ---
+11: import React, { useRef }
+------------------------
+[35] Found match at index 4395424
+  Preview of match [35]:
+"use client";
+2: 
+3: import { useEffect, useState } from "react";
+4: import { ToggleLeft, ToggleRight } from "lucide-react";
+5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+6: import { getWeddingComposition } from "@/lib/composition/templates";
+7: import { useInvitationData } from "../../context/InvitationDataContext";
+8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+9: 
+10: // --- TEMPLATE SPECIFIC PARTICLES ---
+11: import React, { useRef }
+------------------------
+[36] Found match at index 4496572
+  Preview of match [36]:
+"use client";
+
+import React from "react";
+im     .  . u v    K   c e    Cw    ]  Y}k z< KGg           3 c3G   R/              K  
+sFn A   ~ | "  Tf  C     2  = '       T  #   h uU      
+ 0 ; Q       BQ   mU-av0 l Q0     K $ ? AW1 C4K J         a! xbe    4y   = R  d      5	 <   ;   9    
+   %;kpfN0
+8      \   gSQ   }9 ~  C   '  t   	 e>  ! V g  r}=  5b4 0      nX  o     \[y \  q  v mW2&     Y          O> iU     e    ) o.  Q3 f     Iw    %     k(   U -*  d     =lh >  H     SI        '  	?Co|   ? 	; 6  )u  @  jR  r  l         S  l J h  q  Y T   vv   n   s 9  -a  @  	   9F{    D:(  [b   bb   ]E        r  E
+uI  ;5 9 =A  hS{    xR)    ~GRa>^ _| n    .  >  x[    f t W  5 k      ~     d   
+               2             X  b$6cbfd4d1-7498-4d67-8506-5d42476faf3dj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  
+   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+               2             X  b$6cbfd4d1-7498-4d67-8506-5d42476faf3dj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  
+   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     
+|I will update `lib/builder/wedding.ts` using `write_to_file` to support the unified dynamic step groupings and module lists.2(bot-7ded40f8-5dd4-4f93-acee-c79820239b49B|I will update `lib/builder/wedding.ts` using `write_to_file` to support the unified dynamic step groupings and module lists.`   1 j              T   
+               " ^
+ 2o5mppv3 write_to_file   {"CodeContent":"export type FieldType = \"text\" | \"textarea\" | \"image\" | \"audio\" | \"boolean\" | \"list\" | \"theme\" | \"publish\";\n\nexport interface StepGroup {\n  id: string;\n  label: string;\n  icon: string;\n  modules: string[];\n}\n\nexport interface BuilderBlueprint {\n  steps: StepGroup[];\n}\n\nexport interface ModuleField {\n  key: string;\n  label: string;\n  placeholder: string;\n  type: FieldType;\n  defaultPath: string;\n  required?: boolean;\n}\n\nexport interface BuilderModuleDefinition {\n  id: string;\n  title: string;\n  description: string;\n  fields: ModuleField[];\n}\n","Description":"Update types.ts definitions to support theme and publish custom control fields.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\lib\\builder\\types.ts","toolAction":"Update builder types.ts","toolSummary":"Updating types definitions file in lib/builder/types.ts"}: W  W
+ W  M2 n ] o G    t  :6 , r{3 d  4v  {'q        1  D   r  0    J   j  r^ F2         ` L    a  I.  $       5   "  ! [  -$   :   } 9vZ  |   S  l   g$-   )ZUN v   H' u  M Z u $      BC' PS    8 .   5S{    H  ^'    7hOs ` H   - d  V 5# %h	    R     t-          [`   N      ptb  EG{>   *1  jH + WG OW[ 6   i = $  f Y e x 8 M K e       = `   ^  ( =S|  ?.z	  T\ 5*4      ~    <KP       &  Ms  V   5 F ~ B qZ   ~w{  m 	  w   A ( T                  u mm     A J    )I=i;C             W g     t: "f 3 (  W2   M  $z/g Gu   1 % $n  K Xv    / b    'dP  4   J  YX Y    J _$ q  YQ +   G   #  D r+  |   >-  8   UG n    l>   +    D  K E !<@t"^C  5 ' h  \  u9  x   jAK7  0 ?AB        % t vb] o=       G        J  o     Kq  [ eW m     ~(   @ {} xr    D 8vD   8w             eD Fa++JY f  S~ Zp@!8$ /  F
+* "} 3  K D  N  1     Y9u   Y  e    y     U  r   / a J        9  ui 4 W   e    >n .  +N  [N  5cWc0 ?            6 1  1c    Kk>   
+  _ ,W C     !     Zx ZV_  !      y p4  C :Ma   " < 7       p     $1g8| $  B /  ~9  O    9u   zM   %s w_[   I   /    '    R W10            X|   R /nG n    T  9 T-]     ]j   .  {'	_ z,#  V [   X Z    2u ;   A i    f Y  w #h m/=W   ?N ]D      drL {U ,    f    \z  2    5  W    TWBG * p =X   La"     f  / 5 &   dg 1 Q       K 9k @ ~    ?  N (b$v*  fRo4  7     ' #?N    0  +      c wm a  T  GD=  g]      %y  p4    a | Q N    #*    1   6 }  _  '   B*Tb  n{ A  qU     u   \    	 I  %p< XE      X  @          E   n    { u S     z ' o=    M,   H` W xa^JK 1`4Z =S G   D  Lp     o   ,    [ *o
+ *U    )	f    z v 8K=  j         gd 	t    D l   9  ` 7  ~    L6{ 2      Eo { x   !rF!    z  2ld   A ` H d  v      Qt  t"R  P   J     Z       J    U-  S  q,p    K     
+  f  Sc tt>( Z B   r0085 V Q  )      Wo6   	 v\ *   ? M   K    /        I 	 !bJ+t FS     X     E         O6M  RHIR     O  6    '   #ort { ToggleLeft, ToggleRight } from "lucide-react";
+import CompositionRenderer from "@/components/composition/CompositionRenderer";
+import { getWeddingComposition, getBirthdayComposition }

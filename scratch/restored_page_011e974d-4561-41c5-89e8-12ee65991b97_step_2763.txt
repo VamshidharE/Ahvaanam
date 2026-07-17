@@ -1,0 +1,61 @@
+Created At: 2026-07-05T20:53:58Z
+Completed At: 2026-07-05T20:53:58Z
+File Path: `file:///C:/Users/Admin/.gemini/antigravity/brain/011e974d-4561-41c5-89e8-12ee65991b97/scratch/draft_migration_report.md`
+Total Lines: 479
+Total Bytes: 33608
+Showing lines 250 to 479
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+250: | `wedding invitation` | L202 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+251: 
+252: #### [EventCategories.tsx](components/home/EventCategories.tsx)
+253: **Path:** `file:///components/home/EventCategories.tsx`
+254: 
+255: | Keyword | Lines | Hardcoded? | Recommendation |
+256: |---|---|---|---|
+257: | `engagement` | L29, L30, L34, L35 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+258: | `wedding` | L20, L21, L25, L26, L129, L193 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+259: | `wedding invitation` | L25 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+260: 
+261: #### [Footer.tsx](components/home/Footer.tsx)
+262: **Path:** `file:///components/home/Footer.tsx`
+263: 
+264: | Keyword | Lines | Hardcoded? | Recommendation |
+265: |---|---|---|---|
+266: | `engagement` | L80 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+267: | `wedding` | L79 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+268: 
+269: #### [Hero.tsx](components/home/Hero.tsx)
+270: **Path:** `file:///components/home/Hero.tsx`
+271: 
+272: | Keyword | Lines | Hardcoded? | Recommendation |
+273: |---|---|---|---|
+274: | `engagement` | L88 | Yes (Labels or UI Text) | Generalize UI strings with generic term
+<truncated 12758 bytes>
+## [invitation.ts](components/types/invitation.ts)
+454: **Path:** `file:///components/types/invitation.ts`
+455: 
+456: | Keyword | Lines | Hardcoded? | Recommendation |
+457: |---|---|---|---|
+458: | `bride` | L41, L93 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+459: | `bridefamily` | L93 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+460: | `groom` | L35, L94 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+461: | `groomfamily` | L94 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+462: | `wedding` | L64, L65, L68, L173 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+463: 
+464: #### [categories.ts](data/categories/categories.ts)
+465: **Path:** `file:///data/categories/categories.ts`
+466: 
+467: | Keyword | Lines | Hardcoded? | Recommendation |
+468: |---|---|---|---|
+469: | `engagement` | L27, L28, L29, L32 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+470: | `wedding` | L5, L6, L7, L8, L10 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+471: | `wedding invitation` | L8 | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+472: 
+473: #### [themes.ts](data/themes/themes.ts)
+474: **Path:** `file:///data/themes/themes.ts`
+475: 
+476: | Keyword | Lines | Hardcoded? | Recommendation |
+477: |---|---|---|---|
+478: | `wedding` | L6, L16, L26, L36, L46, L56, L66, L76, L86, L88... | Yes (Labels or UI Text) | Generalize UI strings with generic terms (e.g. 'Hosts' or 'Event Names') |
+479: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,306 @@
+use client";
+
+import React, { useEffect, useState } from "react";
+
+interface CountdownSectionProps {
+  bindings: {
+    title?: string;
+    targetDate?: string;
+    postWeddingMessage?: string;
+  };
+}
+
+export default function CountdownSection({ bindings }: CountdownSectionProps) {
+  const { 
+    title = "Party Countdown", 
+    targetDate = "2026-12-14T19:00:00", 
+    postWeddingMessage = "The Celebration has begun!" 
+  } = bindings;
+
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isPassed, setIsPassed] = useState(false);
+
+  useEffect(() => {
+    if (!targetDate) return;
+    const targetTime = new Date(targetDate).getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const difference = targetTime - now;
+      if (difference <= 0) {
+        setIsPassed(true);
+      } else {
+        setIsPassed(false);
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        });
+      }
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, [targetDate]);
+
+  return (
+    <section 
+      className="py-20 px-6 border-b border-white/5 text-center select-none"
+      style={{ 
+        fontFamily: "var(--theme-font-body)",
+        color: "var(--theme-text)",
+        background: "rgba(139, 92, 246, 0.03)"
+      }}
+    >
+      <div className="max-w-4xl mx-auto space-y-10">
+        <div className="space-y-2">
+          <h3 
+            className="text-xs uppercase tracking-[3px] font-bold"
+            style={{ 
+              color: "var(--theme-accent)",
+              fontFamily: "var(--theme-font-heading)" 
+            }}
+          >
+            {title}
+          </h3>
+        </div>
+        {isPassed ? (
+          <p 
+            className="text-lg uppercase tracking-[1.5px] font-bold animate-pulse"
+            style={{ color: "var(--theme-accent)" }}
+          >
+            {postWeddingMessage}
+          </p>
+        ) : (
+          <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
+            {Object.entries(timeLeft).map(([label, value]) => (
+              <div 
+                key={label} 
+                className="border border-white/5 py-4 flex flex-c    ol justify-center shadow-xs"
+                style={{ 
+                  backgroundColor: "var(--theme-card-bg)",
+                  borderColor: "var(--theme-border)",
+                  borderRadius: "var(--theme-radius-card)",
+                  shadow: "var(--theme-shadow-card)"
+                }}
+              >
+                <span 
+                  className="text-2xl md:text-3xl font-extrabold"
+                  style={{ color: "var(--theme-accent)" }}
+                >
+                  {value}
+                </span>
+                <span 
+                  className="text-[9px] uppercase tracking-[1px] font-bold mt-1"
+                  style={{ color: "var(--theme-secondary-text)" }}
+                >
+                  {label}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+   *Gfile:///c:/Users/Admin/Ahvaanam/components/sections/countdown/index.tsx2J
+ file:///c:/Users/Admin/Ahvaanam 'components/sections/countdown/index.tsx    7
+ 7  # E  #  
+"use client";       7
+3import React, { useEffect, useState } from "react";       %
+!interface CountdownSectionProps {    
+  bindings: {    
+     title?: string;    
+     targetDate?: string;   $
+     postWeddingMessage?: string;    
+   };    
+ }       S
+Oexport default function CountdownSection({ bindings }: CountdownSectionProps) {    
+
+  const {    #
+     title = "Party Countdown",    ,
+(    targetDate = "2026-12-14T19:00:00",    :
+6    postWeddingMessage = "The Celebration has begun!"     
+   } = bindings;       ^
+Z  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });   6
+2  const [isPassed, setIsPassed] = useState(false);        
+   useEffect(() => {    
+     if (!targetDate) return;   :
+6    const targetTime = new Date(targetDate).getTime();       '
+#    const updateCountdown = () => {   +
+'      const now = new Date().getTime();   .
+*      const difference = targetTime - now;    
+       if (difference <= 0) {    
+         setIsPassed(true);    
+       } else {    
+         setIsPassed(false);    
+         setTimeLeft({   C
+?          days: Math.floor(difference / (1000 * 60 * 60 * 24)),   Y
+U          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),   Q
+M          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),   E
+A          seconds: Math.floor((difference % (1000 * 60)) / 1000),    
+         });    
+       }   
+
+     };        
+     updateCountdown();   <
+8    const interval = setInterval(updateCountdown, 1000);   -
+)    return () => clearInterval(interval);    
+   }, [targetDate]);        
+
+  return (   i
+e    <section className="py-20 px-6 bg-purple-950/10 border-b border-white/5 text-center select-none">    
+    <section    P
+L      className="py-20 px-6 border-b border-white/5 text-center select-none"    
+       style={{    1
+-        fontFamily: "var(--theme-font-body)",   '
+#        color: "var(--theme-text)",   2
+.        background: "rgba(139, 92, 246, 0.03)"    
+       }}   	
+     >   8
+4      <div className="max-w-4xl mx-auto space-y-10">   '
+#        <div className="space-y-2">   e
+a          <h3 className="text-xs uppercase tracking-[3px] font-bold text-purple-400">{title}</h3>    
+           <h3    F
+B            className="text-xs uppercase tracking-[3px] font-bold"    
+             style={{    /
++              color: "var(--theme-accent)",   :
+6              fontFamily: "var(--theme-font-heading)"     
+             }}    
+           >    
+             {title}    
+           </h3>    
+         </div>    
+         {isPassed ? (   q
+m          <p className="text-amber-400 text-lg uppercase tracking-[1.5px] font-bold">{postWeddingMessage}</p>    
+          <p    V
+R            className="text-lg uppercase tracking-[1.5px] font-bold animate-pulse"   8
+4            style={{ color: "var(--theme-accent)" }}    
+           >   $
+             {postWeddingMessage}    
+           </p>    
+        ) : (   G
+C          <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">   C
+?            {Objec    t.entries(timeLeft).map(([label, value]) => (     
+               <div key={label} className="bg-white/[0.03] border border-white/5 rounded-2xl py-4 flex flex-col justify-center">   g
+c                <span className="text-2xl md:text-3xl font-extrabold text-amber-400">{value}</span>   u
+q                <span className="text-[9px] uppercase tracking-[1px] text-white/40 font-bold mt-1">{label}</span>    
+               <div     
+                 key={label}    a
+]                className="border border-white/5 py-4 flex flex-col justify-center shadow-xs"    
+                 style={{    >
+:                  backgroundColor: "var(--theme-card-bg)",   9
+5                  borderColor: "var(--theme-border)",   ?
+;                  borderRadius: "var(--theme-radius-card)",   8
+4                  shadow: "var(--theme-shadow-card)"    
+                 }}    
+               >    
+                 <span    E
+A                  className="text-2xl md:text-3xl font-extrabold"   >
+:                  style={{ color: "var(--theme-accent)" }}    
+                 >    
+                   {value}    
+                 </span>    
+                 <span    T
+P                  className="text-[9px] uppercase tracking-[1px] font-bold mt-1"   F
+B                  style={{ color: "var(--theme-secondary-text)" }}    
+                 >    
+                   {label}    
+                 </span>    
+               </div>    
+             ))}    
+           </div>    
+
+        )}    
+       </div>    
+     </section>    
+   );    
+ }      BGfile:///c:/Users/Admin/Ahvaanam/components/sections/countdown/index.tsxR  "use client";
+
+import React, { useEffect, useState } from "react";
+
+interface CountdownSectionProps {
+  bindings: {
+    title?: string;
+    targetDate?: string;
+    postWeddingMessage?: string;
+  };
+}
+
+export default function CountdownSection({ bindings }: CountdownSectionProps) {
+  const { 
+    title = "Party Countdown", 
+    targetDate = "2026-12-14T19:00:00", 
+    postWeddingMessage = "The Celebration has begun!" 
+  } = bindings;
+
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isPassed, setIsPassed] = useState(false);
+
+  useEffect(() => {
+    if (!targetDate) return;
+    const targetTime = new Date(targetDate).getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const difference = targetTime - now;
+      if (difference <= 0) {
+        setIsPassed(true);
+      } else {
+        setIsPassed(false);
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        });
+      }
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, [targetDate]);
+
+  return (
+    <section className="py-20 px-6 bg-purple-950/10 border-b border-white/5 text-center select-none">
+      <div className="max-w-4xl mx-auto space-y-10">
+        <div className="space-y-2">
+          <h3 className="text-xs uppercase tracking-[3px] font-bold text-purple-400">{title}</h3>
+        </div>
+        {isPassed ? (
+          <p className="text-amber-400 text-lg uppercase tracking-[1.5px] font-bold">{postWeddingMessage}</p>
+        ) : (
+          <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
+            {Object.entries(timeLeft).map(([label, value]) => (
+              <div key={label} className="bg-white/[0.03] border border-white/5 rounded-2xl py-4 flex flex-col justify-center">
+                <span className="text-2xl md:text-3xl font-extrabold text-amber-400">{value}</span>
+                <span className="text-[9px] uppercase tracking-[1px] text-white/40 font-bold mt-1">{label}</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+    )Update countdown section for theme tokens    generator.go:287
+  | google3/third_party/gemini_coder/framework/generator/generator.(*PlannerGenerator).generateWithModelOutputRetry
+  | 	third_party/gemini_coder/framework/generator/planner_generator.go:149
+  | google3/third_party/gemini_coder/framework/generator/generator.(*PlannerGenerator).Generate
+  | 	third_party/gemini_coder/framework/generator/planner_generator.go:87
+  | google3/third_party/gemini_coder/framework/executor/executor.(*Executor).runInvocation
+  | 	third_party/gemini_coder/framework/executor/executor.go:495
+  | google3/third_party/gemini_coder/framework/executor/executor.(*Executor).runExecution
+  | 	third_party/gemini_coder/framework/executor/executor.go:393
+  | google3/third_party/gemini_coder/framework/executor/executor.(*Executor).Execute
+  | 	third_party/gemini_coder/framework/executor/executor.go:366
+  | google3/third_party/gemini_coder/framework/executor/agentexecutor/agentexecutor.(*AgentExecutor).Run
+  | 	third_party/gemini_coder/framework/executor/agentexecutor/agentexecutor.go:317
+  | google3/third_party/jetski/cortex/cortex.(*CascadeManager).executeOne.func1
+  | 	third_party/jetski/cortex/cascade_manager.go:1623
+  | google3/third_party/jetski/cortex/cortex.(*CascadeManager).executeOne.func2
+  | 	third_party/jetski/cortex/cascade_manager.

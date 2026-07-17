@@ -1,0 +1,161 @@
+"use client";
+
+import React from "react";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+import MotionWrapper from "@/components/motion/MotionWrapper";
+
+interface FamiliesSectionProps {
+  bindings: {
+    title?: string;
+    brideFamily?: string;
+    groomFamily?: string;
+  };
+  layoutId?: string;
+  motionId?: string;
+}
+
+export default function FamiliesSection({ bindings, layoutId, motionId }: FamiliesSectionProps) {
+  const {
+    title = "Warm Greetings",
+    brideFamily = "",
+    groomFamily = ""
+  } = bindings;
+
+  const formatFamily = (family: any) => {
+    if (typeof family === "string") return family;
+    if (Array.isArray(family)) {
+      return family
+        .map((f: any) => {
+          if (f && typeof f === "object") {
+            const rel = f.relation ? `${f.relation}: ` : "";
+            const nm = f.name || "";
+            return `${rel}${nm}`;
+              }
+          return String(f);
+        })
+        .join("\n");
+    }
+    return "";
+  };
+
+  const formattedBride = formatFamily(brideFamily);
+  const formattedGroom = formatFamily(groomFamily);
+
+  const isHousewarming = typeof document !== "undefined" && document.querySelector("[data-category='housewarming']") !== null;
+
+  return (
+    <MotionWrapper
+      motionId={motionId}
+      defaultMotionId="luxury-motion"
+      type="reveal"
+      className="w-full"
+    >
+      <LayoutWrapper
+        layoutId={layoutId}
+        defaultLayoutId="story-stack"
+        className="py-24 px-6 max-w-5xl mx-auto border-b border-white/5 text-center select-none"
+        style={{ 
+          fontFamily: "var(--theme-font-body)",
+          color: "var(--theme-text)"
+        }}
+      >
+        <div className="max-w-2xl mx-auto space-y-3">
+          <h2 
+            className="text-xs uppercase tracking-[3px] font-bold"
+            style={{ color: "var(--theme-accent)" }}
+          >
+            {title}
+          </h2>
+          <p 
+            className="text-3xl md:text-4xl font-extrabold uppercase tracking-[0.5px]"
+            style={{ fontFamily: "var(--theme-font-heading)" }}
+          >
+            {isHousewarming ? "Family & Hosts" : "With Blessings From"}
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 w-full mt-10">
+          {/* Bride Family / Family Members */}
+          {brideFamily && (
+            <div 
+              className="border border-white/5 p-8 rounded-3xl space-y-3 text-center"
+              style={{ 
+                backgroundColor: "var(--theme-card-bg)",
+                borderRadius: "var(--theme-radius-card)",
+                borderColor: "var(--theme-border)",
+                boxShadow: "var(--theme-shadow-card)"
+              }}
+            >
+              <h3 className="text-sm font-bold uppercase tracking-[1.5px]" style={{ color: "var(--theme-accent)" }}>
+                {isHousewarming ? "Family Members" : "Bride's Family"}
+              </h3>
+              <p className="text-xs text-white/70 whitespace-pre-line leading-relaxed font-sans font-medium">{brideFamily}</p>
+            </div>
+          )}
+
+          {/* Groom Family / Inviting Hosts */}
+          {groomFamily && (
+            <div 
+              className="border border-white/5 p-8 rounded-3xl space-y-3 text-center"
+              style={{ 
+                backgroundColor: "var(--theme-card-bg)",
+                borderRadius: "var(--theme-radius-card)",
+                borderColor: "var(--theme-border)",
+                boxShadow: "var(--theme-shadow-card)"
+              }}
+            >
+              <h3 className="text-sm font-bold uppercase tracking-[1.5px]" style={{ color: "var(--theme-accent)" }}>
+                {isHousewarming ? "Inviting Hosts / Special Guests" : "Groom's Family"}
+              </h3>
+              <p className="text-xs text-white/70 whitespace-pre-line leading-relaxed font-sans font-medium">{groomFamily}</p>
+            </div>
+          )}
+        </div>
+      </LayoutWrapper>
+    </MotionWrapper>
+  );
+}
+  j '
+  
+           {/* Bride Family / Family Members */}
+          {brideFamily && (
+            <div 
+              className="border border-white/5 p-8 rounded-3xl space-y-3 text-center"
+              style={{ 
+                backgroundColor: "var(--theme-card-bg)",
+                borderRadius: "var(--theme-radius-card)",
+                borderColor: "var(--theme-border)",
+                boxShadow: "var(--theme-shadow-card)"
+              }}
+            >
+              <h3 className="text-sm font-bold uppercase tracking-[1.5px]" style={{ color: "var(--theme-accent)" }}>
+                {isHousewarming ? "Family Members" : "Bride's Family"}
+              </h3>
+              <p className="text-xs text-white/70 whitespace-pre-line leading-relaxed font-sans font-medium">{brideFamily}</p>
+            </div>
+          )}
+ 
+          {/* Groom Family / Inviting Hosts */}
+          {groomFamily && (
+            <div 
+              className="border border-white/5 p-8 rounded-3xl space-y-3 te    xt-center"
+              style={{ 
+                backgroundColor: "var(--theme-card-bg)",
+                borderRadius: "var(--theme-radius-card)",
+                borderColor: "var(--theme-border)",
+                boxShadow: "var(--theme-shadow-card)"
+              }}
+            >
+              <h3 className="text-sm font-bold uppercase tracking-[1.5px]" style={{ color: "var(--theme-accent)" }}>
+                {isHousewarming ? "Inviting Hosts / Special Guests" : "Groom's Family"}
+              </h3>
+              <p className="text-xs text-white/70 whitespace-pre-line leading-relaxed font-sans font-medium">{groomFamily}</p>
+            </div>
+          )}            {/* Bride Family / Family Members */}
+          {formattedBride && (
+            <div 
+              className="border border-white/5 p-8 rounded-3xl space-y-3 text-center"
+              style={{ 
+                backgroundColor: "var(--theme-card-bg)",
+                borderRadius: "var(--theme-radius-card)",
+           

@@ -1,0 +1,1 @@
+I will check the content of `components/home/Hero.tsx` to see if it matches the hero of the official website shown in the user's screenshot.

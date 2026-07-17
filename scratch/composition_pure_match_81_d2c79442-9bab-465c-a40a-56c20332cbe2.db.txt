@@ -1,0 +1,37 @@
+use client');   	
+107:      }   &
+108: "    if (startIdx === -1) continue;    
+109:         :
+110: 6    // Try to find if this contains the full component   c
+111: _    const hasComponentExport = content.includes('export default function CompositionRenderer');   J
+112: F    const hasResolveBinding = content.includes('resolveBindingValue');   L
+113: H    const hasSectionComponents = content.includes('SECTION_COMPONENTS');    
+114:         N
+115: J    if 
+116: ------------------------
+117: [34] Found match at index 4392779
+118:   Preview of match [34]:
+119: "use client";
+120: 2: 
+121: 3: import { useEffect, useState } from "react";
+122: 4: import { ToggleLeft, ToggleRight } from "lucide-react";
+123: 5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+124: 6: import { getWeddingComposition } from "@/lib/composition/templates";
+125: 7: import { useInvitationData } from "../../context/InvitationDataContext";
+126: 8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+127: 9: 
+128: 10: // --- TEMPLATE SPECIFIC PARTICLES ---
+129: 11: import React, { useRef }
+The above content shows the entire, complete file contents of the requested file.
+   : x9x7hfqj      H
+(bot-20ed6f9c-4e60-4878-9064-04aa7645aff7     I will write a script to filter the SQLite database match dumps by excluding database log terms like `Preview of match`, `Found match`, `CommandLine`, `run_command`, etc. This will filter out the log messages and reveal the actual original source code.   2 ?
+ hh9yn844 write_to_file   {"CodeContent":"const fs = require('fs');\nconst path = require('path');\n\nconst files = fs.readdirSync('scratch');\nlet foundCount = 0;\n\nfor (const file of files) {\n  if (file.startsWith('composition_pure_match_') \u0026\u0026 file.endsWith('.txt')) {\n    const filePath = path.join('scratch', file);\n    const content = fs.readFileSync(filePath, 'utf8');\n    \n    // Core requirements of the CompositionRenderer code\n    const hasExport = content.includes('export default function CompositionRenderer');\n    const hasRegistry = content.includes('SECTION_COMPONENTS');\n    const hasResolve = content.includes('resolveBindingValue');\n    \n    if (hasExport \u0026\u0026 hasRegistry \u0026\u0026 hasResolve) {\n      /    / Exclude logs/command-outputs\n      const isLogFile = content.includes('Preview of match') || \n                         content.includes('Found match') || \n                         content.includes('run_command') || \n                         content.includes('CommandLine') ||\n                         content.includes('task-') ||\n                         content.includes('step_index') ||\n                         content.includes('\\\"tool_calls\\\"');\n                         \n      if (!isLogFile) {\n        foundCount++;\n        console.log(`[${foundCount}] Found possible REAL code file candidate: ${file} (size: ${content.length})`);\n        \n        let startIdx = content.indexOf('\"use client\";');\n        if (startIdx === -1) startIdx = content.indexOf('use client');\n        if (startIdx !== -1) {\n          let code = content.substring(startIdx);\n          \n          // Try to clean up\n          const endMarkers = ['\",\"Description\"', '\",\\n      \"Description\"', '\", \"Description\"', '\",\"description\"'];\n          for (const marker of endMarkers) {\n            const markerIdx = code.indexOf(marker);\n            if (markerIdx !== -1) {\n              code = code.substring(0, markerIdx);\n            }\n          }\n          \n          // Unescape backslashes and quotes\n          let parsed = code\n            .replace(/\\\\n/g, '\\n')\n            .replace(/\\\\\"/g, '\"')\n            .replace(/\\\\\\\\/g, '\\\\');\n            \n          const lastBrace = parsed.lastIndexOf('}');\n          if (lastBrace !== -1) {\n            parsed = parsed.substring(0, lastBrace + 1);\n          }\n          \n          console.log(\"  Parsed Code length:\", parsed.length);\n          console.log(\"  Code Ends with: \", parsed.substring(parsed.length - 100));\n          \n          // Save it!\n          fs.writeFileSync(`scratch/real_renderer_candidate_${foundCount}.tsx`, parsed);\n        }\n      }\n    }\n  }\n}\nconsole.log('Search complete.');\n","Description":"Extract real CompositionRenderer code by excluding log headers.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\scratch\\extract_real_file.js","toolAction":"Write extract_real_file script","toolSummary":"Creating a script to extract the actual CompositionRenderer code from candidate files"}: '  '
+ '  M2 j   5 b t  8      )v1   |   ]     CN# ' G+ t rG   	_  dN      sdH  6  <    C  YE   H   O  V   Y   Xq         >j v  H ,  @ h  ?X  )    @j &~ -    "  P  !   u$1  k  
+   } ?Hp    :      ' :C     \ f  WA   R    j- !    A V   (   * Q    _ 8      %  3&    0      a  @ pl G *   :  k?^y  ~G ]  &   1H R    K   [o    1  zt b  nu 2 =/  ny  CY  1   ^Q  oJ          z   y ZGQ      l;     :    { C   ~   +   ji    R      ky     $ 3N p      s +/  *      #  Bp^ 4%  d      s ; w =}  !#     CR7    ,       ]  R%X     4  Q g_ P    6      ZM    ? $ !/   w            h    OB  b        y #\ID/  
+ K    A )R@  qMr$ v 1`  p     E u N j = s 0 F/Y `    .    8     f $y y /)    N    ?=E%f g   S@       6 6  5  Ap       #     k B >  D      N    V  {      vi"      / '  =	  V         Q  v&  $  A   [ 6K     :   
+   V t  S  H !  @>  k iG8   Kf Q   I f    v  X ~     E olfp  0   r       U   p  ;55Q   ]   P O(   *=  q         n =  ^ j!a    ,          \ &!a oL  LNf oC    Z  ]   #  \  
+} 3   >    
+  07 L   3 VZr  a      oO  D q _    e   q .  \T kJ     !t  =L'         j  ] R  G    0] D- j T  782        )  	Ay;   > $;e>s$4   p(/  N?  =  &  - X   g  9    ,  e m cA       M    9     %l v R  	   + 6    t   19 ?AM} V     b    LB2    r    ]S K +  T e _U   j t vh     |i [ t          =O n$ ?  6  R  x m    l   ;     Z  ]    Z   s   U  $ @   $a    < `'xJ IY H8:  
+R6
+ 
+ :  j6   <     | ;    e <X  #U 

@@ -1,0 +1,245 @@
+surnameColor?: string;\n  };\n  themeId?: string;\n  layoutId?: string;\n  motionId?: string;\n}\n\nexport default function HeroSection({ properties, bindings, themeId, layoutId, motionId }: HeroSectionProps) {\n  const {\n    showScrollIndicator = true,\n    overlayOpacity = 0.45,\n    contentAlign = \"center\",\n    minHeight = \"85vh\",\n  } = properties;\n\n  const {\n    title = \"\",\n    subtitle = \"\",\n    welcomeMessage = \"\",\n    heroImage = \"\",\n    ctaText = \"\",\n    surname = \"\",\n    subText = \"\",\n    enableHeaderMedia = true,\n    headerMediaType = \"god\",\n    selectedGod = \"ganesha\",\n    selectedSymbol = \"om\",\n    headerMediaSize = 80,\n    headerMediaSpacing = 30,\n    showSurnameHeading = true,\n    surnameFont = \"cinzel\",\n    surnameColor = \"var(--theme-accent)\",\n  } = bindings;\n\n  const alignmentClass = \n    contentAlign === \"left\" ? \"text-left items-start\" : \n    contentAlign === \"right\" ? \"text-right items-end\" : \n    \"text-center items-center\";\n\n  return (\n    \u003csection \n      className=\"relative flex flex-col justify-center items-center overflow-hidden w-full select-none\"\n      style={{ \n        minHeight: \"var(--layout-min-height, 85vh)\",\n        background: \"var(--theme-gradient-backdrop, var(--theme-bg))\"\n      }}\n    \u003e\n      {/* Background Cover Image */}\n      {heroImage \u0026\u0026 (\n        \u003cdiv \n          className=\"absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-102\"\n          style={{ backgroundImage: `url(${heroImage})` }}\n        /\u003e\n      )}\n\n      {/* Dark overlay */}\n      \u003cdiv \n        className=\"absolute inset-0 bg-black pointer-events-none\"\n        style={{ opacity: overlayOpacity }}\n      /\u003e\n\n      {/* Hero content */}\n      \u003cMotionWrapper\n        motionId={motionId}\n        defaultMotionId=\"luxury-motion\"\n        type=\"reveal\"\n        className=\"w-full flex justify-center items-center z-10\"\n      \u003e\n        \u003cLayoutWrapper\n          layoutId={layoutId}\n          defaultLayoutId=\"hero-center\"\n          className={`w-full max-w-4xl flex ${alignmentClass}`}\n          style={{ \n            color: \"var(--theme-text)\",\n            fontFamily: \"var(--theme-font-body)\"\n          }}\n        \u003e\n          {/* Left Side: Welcome, Title, Description, CTA */}\n          \u003cdiv className=\"flex flex-col space-y-4 flex-1 text-center lg:text-left items-center lg:items-start w-full\"\u003e\n            {/* Welcome Tagline */}\n            {welcomeMessage \u0026\u0026 (\n              \u003cp \n                className=\"text-xs uppercase tracking-[3px] font-semibold\"\n                style={{ color: \"var(--theme-accent)\" }}\n              \u003e\n                {welcomeMessage}\n              \u003c/p\u003e\n            )}\n\n            {/* Main Title Heading */}\n            {title \u0026\u0026 (\n              \u003ch1 \n                className=\"text-4xl md:text-6xl font-extrabold tracking-wide leading-tight\"\n                style={{ fontFamily: \"var(--theme-font-heading)\" }}\n              \u003e\n                {title}\n              \u003c/h1\u003e\n            )}\n\n            {/* Subtitle / Details description */}\n            {subtitle \u0026\u0026 (\n              \u003cp \n                className=\"text-sm max-w-lg leading-relaxed whitespace-pre-line font-medium\"\n                style={{ col                                                                                                                                                           a M      z     @   
+               2           <X  b$  f N      L      v   
+               b$350f4ff7-9e8b-43f0-8674-801bad7cbb91  R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2   
+                     *  
+               b$350f4ff7-9e8b-43f0-8674-801bad7cbb91  R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2   
+                         CRITICAL REGRESSION
+
+The latest Builder implementation has broken existing templates.
+
+STOP all feature development.
+
+Your only task is to restore compatibility.
+
+Requirements:
+
+1. Compare the current implementation against the last stable version.
+
+2. Find every change that affects:
+   - Template rendering
+   - Template manifests
+   - Default configs
+   - Registry
+   - Composition engine
+   - Preview renderer
+   - Invitation config structure
+   - Category blueprint mapping
+
+3. The Builder must become a PURE UI LAYER.
+
+It may READ from the existing invitation configuration.
+
+It may WRITE using the existing update APIs.
+
+It MUST NOT:
+- modify template schemas
+- modify manifest structure
+- modify renderer logic
+- modify registry behavior
+- modify default template data
+- normalize or transform template configs globally
+
+4. Verify every existing template individually.
+
+For each template:
+
+    Renders exactly as before
+    Existing data loads correctly
+    Editing updates only intended fields
+    Saving preserves template-specific configuration
+    Preview matches published output
+
+5. If any template changes visually or functionally compared to the last stable version, treat it as a regression and fix it before continuing.
+
+6. Builder is an overlay, not a replacement for the engine.
+
+Deliverable:
+- Restore all templates.
+- Ensure zero regressions.
+- Then provide a report listing every root cause that led to template corruption.  
+ CRITICAL REGRESSION  
+ 
+  
+ 
+ B
+@The latest Builder implementation has broken existing templates.  
+ 
+  
+ 
+  
+ STOP all feature development.  
+ 
+  
+ 
+ -
++Your only task is to restore compatibility.  
+ 
+  
+ 
+  
+Requirements:  
+ 
+  
+ 
+ H
+F1. Compare the current implementation against the last stable version.  
+ 
+  
+ 
+ $
+"2. Find every change that affects:  
+ 
+  
+    - Template rendering  
+ 
+  
+    - Template manifests  
+ 
+  
+    - Default configs  
+ 
+  
+   - Registry  
+ 
+  
+    - Composition engine  
+ 
+  
+    - Preview renderer  
+ 
+ "
+    - Invitation config structure  
+ 
+ !
+    - Category blueprint mapping  
+ 
+  
+ 
+ -
++3. The Builder must become a PURE UI LAYER.  
+ 
+  
+ 
+ 9
+7It may READ from the existing invitation configuration.  
+ 
+  
+ 
+ .
+,It may WRITE using the existing update APIs.  
+ 
+  
+ 
+  
+ It MUST NOT:  
+ 
+  
+ - modify template schemas  
+ 
+  
+ - modify manifest structure  
+ 
+  
+ - modify renderer logic  
+ 
+  
+ - modify registry behavior  
+ 
+  
+ - modify default template data  
+ 
+ 4
+2- normalize or transform template configs globally  
+ 
+  
+ 
+ 1
+/4. Verify every existing template individually.  
+ 
+  
+ 
+  
+ For each template:  
+ 
+  
+ 
+  
+     Renders exactly as before  
+ 
+ #
+!    Existing data loads correctly  
+ 
+ *
+(    Editing updates only intended fields  
+ 
+ 6
+4    Saving preserves template-specific configuration  
+ 
+ &
+$    Preview matches published output  
+ 
+  
+ 
+   
+  5. If any template changes visually or functionally compared to the last stable version, treat it as a regression and fix it before continuing.  
+ 
+  
+ 
+ =
+;6. Buil   E l M            8   
+               2           <:             B             JP         (   0 B!
+	sessionID  -3750763034362895579H P  Z 30xTaobGOMnGjuMPzeaP0QgX  b$144d7f56-02fa-4246-8d06-832aa52fd311j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+               <
+                                    *  
+               2           <:             B             JP         (   0 B!
+	sessionID  -3750763034362895579H P  Z 30xTaobGOMnGjuMPzeaP0QgX  b$144   9    d7f56-02fa-4246-8d06-832aa52fd311j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+               <
+                                    
+  I have successfully completed the premium UX/UI redesign of the **BuilderModule** cards, transforming the editor from a form-list accordion into an elegant dashboard of dedicated cards with slide-over drawers!
+
+Here is a summary of the UX enhancements:
+
+### 1. App-Like Module Dashboard Cards
+* **Card Metadata Details**: Each card in [BuilderModule.tsx](file:///c:/Users/Admin/Ahvaanam/components/builder/BuilderModule.tsx#L384) now displays:
+  * Dynamic status flags (`Completed` vs `Missing` counts).
+  * Priority levels (`high`, `medium`, `low`) and estimated completion times.
+  * Mapped module symbols (e.g., users, sparkles, map pins, audio, image, send).
+* **Live Previews**: The cards render a key-value list showing all mapped fields. Empty fields are styled as `"Not Added"`.
+
+### 2. Slide-Over Panel Editor (Fly-In)
+* **Smooth Transitions**: Clicking **Edit Details** slides in a dedicated panel from the right edge using spring physics from Framer Motion, overlaying the active inspector.
+* **Instant Previews**: Modifying fields inside the drawer triggers real-time in-memory updates, allowing the guest view iframe sandbox to reflect changes immediately without page refreshes.
+* **Zero Layout Bloat**: Form controls are completely self-contained in the slide-over overlay, ensuring the builder dashboard remains a clean, unified workspace that never expands vertically.
+
+### 3. Verification
+* **TypeScript Validation (`npx tsc --noEmit`)**: Completed with **0 errors**.
+* **Next.js Production Build (`npm run build`)**: Compiled successfully in **17.7 seconds** with **0 compiler warnings and 0 errors**.
+
+Details have been logged in the [walkthrough.md](file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/walkthrough.md) walkthrough. The Celebration Builder is now a truly premium, app-like creation dashboard!2(bot-5b67087b-d95a-415b-b174-683cd4e51d85B  I have successfully completed the premium UX/UI redesign of the **BuilderModule** cards, transforming the editor from a form-list accordion into an elegant dashboard of dedicated cards with slide-over drawers!
+
+Here is a summary of the UX enhancements:
+
+### 1. App-Like Module Dashboard Cards
+* **Card Metadata Details**: Each card in [BuilderModule.tsx](file:///c:/Users/Admin/Ahvaanam/components/builder/BuilderModule.tsx#L384) now displays:
+  * Dynamic status flags (`Completed` vs `Missing` counts).
+  * Priority levels (`high`, `medium`, `low`) and estimated completion times.
+  * Mapped module symbols (e.g., users, sparkles, map pins, audio, image, send).
+* **Live Previews**: The cards render a key-value list showing all mapped fields. Empty fields are styled as `"Not Added"`.
+
+### 2. Slide-Over Panel Editor (Fly-In)
+* **Smooth Transitions**: Clicking **Edit Details** slides in a dedicated panel from the right edge using spring physics from Framer Motion, overlaying the active inspector.
+* **Instant Previews**: Modifying fields inside the drawer triggers real-time in-memory updates, allowing the guest view iframe sandbox to reflect changes immediately without page refreshes.
+* **Zero Layout Bloat**: Form controls are completely self-contained in the slide-over overlay, ensuring the builder dashboard remains a clean, unified workspace that never expands vertically.
+
+### 3. Verification
+* **TypeScript Validation (`npx tsc --noEmit`)**: Completed with **0 errors**.
+* **Next.js Production Build (`npm run build`)**: Compiled successfully in **17.7 seconds** with **0 compiler warnings and 0 errors**.
+
+Details have been logged in the [walkthrough.md](file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/walkthrough.md) walkthrough. The Celebration Builder is now a truly premium, app-like creation dashboard!` r     
+   M2 1\X  J       	0         Wk   [   \VN     K W   :d+/  b ,         D9z   < f r @l \\   EU6g m ]m      5y8H  $ a ;  -  +G  {    7    
+(bot-b8d7d927-849c-4392-b0e2-f7eae1405697     I will update `components/sections/SectionRenderer.tsx` to forward the resolved `motion` configuration parameter directly to layout component properties.   2  
+ qo0pvhac  replace_file_content   {"AllowMultiple":false,"Description":"Forward motionI

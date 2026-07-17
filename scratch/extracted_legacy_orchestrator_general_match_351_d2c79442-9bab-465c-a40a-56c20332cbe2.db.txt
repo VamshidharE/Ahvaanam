@@ -1,0 +1,222 @@
+eSection from \"../sections/dressCode\";\nimport FooterSection from \"../sections/footer\";","TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","toolAction":"Update LegacyOrchestrator imports","toolSummary":"Adding celebrant, houseDetails, and owners imports in LegacyOrchestrator.tsx"}:     
+    M2 CD        zvv-  Z" HR  a               =     Y       !b   6!      y # Z        - K  | W    X|  l    ( _   ; [    3     j  s}         u -g    }c   X  " M/#Jz  ,    ;  ^  - L%  ~fx 6i L / ]  [ _n     ].     ~    7  M  O j V  y              ]  d&  6;m:   9  r - ' ~   / 1       E0  u f     +    <F ;n;       9    ]  \'     #P B   s
+-/#    ?  q  U v   \                  :( M1kg  ^ [=kC j   9G  8~ #3/  #    . z^L}   l1` C: x ) E 2O     'R 0 `bt |g     u_. *W M+    Ei    /R tgU   G% .T    va    \    bc     5      F !W  `   Z   3  _`[Y    /p 6   ! s     S 3 o   e{   u     2  s    y Ej   6^   U   	  Ft B  A    3   G <_ '          p-jK  6   ev  V  
+   e@K   !   Y ?Z O0G  5   ]N   a  HJ}  )
+          TD < (     G  J replace_file_contentB  I will update `components/shared/LegacyOrchestrator.tsx` to include imports and rendering paths for `celebrant`, `houseDetails`, and `owners` section components. This covers all possible template layouts.`      o KMH/t]  m   } A c ~mI3  iq         -  BvqN 	 p`   ?y OL,      `u       i [kp }     B/X      8  1C  5R     /  K7     >o )          U81   C  w0  ti @! O .    3N`6    dM    i  }6 i  
+	V3 jt #3J	view_file* AbsolutePath*
+toolAction* toolSummary2             :             B             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    3  6
+                 
+                 
+                   ?Reading config initializer in lib/config/createDefaultConfig.ts   View createDefaultConfig.ts                   *  
+               "  
+ eihiy7ws 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\config\\createDefaultConfig.ts","toolAction":"View createDefaultConfig.ts","toolSummary":"Reading config initializer in lib/config/createDefaultConfig.ts"}:     
+    M2    ^n.0   H  [ /  n  v    H8      $Bm      F   Q w ]  q o  k R | A{ %t ?}    ;  @ ] { (   $X 	}h          -       Y S   F  I  pK   9  2    &   Z  (    ^        '  bN Q < l W^]    
+  E"  B)=z  |`@   Z     o qc X@ o KMH/t]  m   } A c ~mI3  iq         -  BvqN 	 p`   ?y OL,      `u       i [kp }     B/X      8  1C  5R     /  K7     >o )          U81   C  w0  ti @! O .    3N`6    dM    i  }6 i  
+	V3 jt #3J	view_file* AbsolutePath*
+toolAction* toolSummary2             :             B             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                    3  6
+                 
+                 
+                   ?Reading config initializer in lib/config/createDefaultConfig.ts   View createDefaultConfig.ts               r  
+Afile:///c:/Users/Admin/Ahvaanam/lib/config/createDefaultConfig.ts ="  import { InvitationConfig } from "../../components/types/invitation";
+import weddingConfig from "../defaults/wedding";
+import engagementConfig from "../defaults/engagement";
+import birthdayConfig from "../defaults/birthday";
+import housewarmingConfig from "../defaults/housewarming";
+import retirementConfig from "../defaults/retirement";
+import halfsareeConfig from "../defaults/halfsaree";
+import babyshowerConfig from "../defaults/babyshower";
+import namingceremonyConfig from "../defaults/namingceremony";
+import corporateConfig from "../defaults/corporate";
+import festivalConfig from "../defaults/festival";
+
+/**
+ * Creates and returns a deep clone of the default configuration template for the specified category.
+ * Returns a strongly-typed InvitationConfig structure.
+ *
+ * @param categoryId The category ID to get the default configuration for (e.g., "wedding", "birthday").
+ * @returns A deep cloned copy of the default configuration wrapper for the category.
+ * @throws Error if the categoryId is invalid, unknown, or not supported.
+ */
+export function createDefaultConfig(categoryId: string): InvitationConfig {
+  let sourceConfig: InvitationConfig;
+
+  switch (categoryId.toLowerCase()) {
+    case "wedding":
+      sourceConfig = weddingConfig;
+      break;
+    case "engagement":
+      sourceConfig = engagementConfig;
+      break;
+    case "birthday":
+      sourceConfig = birthdayConfig;
+      break;
+    case "housewarming":
+      sourceConfig = housewarmingConfig;
+      break;
+    case "retirement":
+      sourceConfig = retirementConfig;
+      break;
+    case "halfsaree":
+      sourceConfig = halfsareeConfig;
+      break;
+    case "babyshower":
+      sourceConfig = babyshowerConfig;
+      break;
+    case "namingceremony":
+      sourceConfig = namingceremonyConfig;
+      break;
+    case "corporate":
+      sourceConfig = corporateConfig;
+      break;
+    case "festival":
+      sourceConfig = festivalConfig;
+      break;
+    default:
+      throw new Error(`Unknown invitation category: "${categoryId}"`);
+  }
+
+  // Deep clone the object using JSON serialization/deserialization to ensure no shared references
+  return JSON.parse(JSON.stringify(sourceConfig)) as InvitationConfig;
+}
+X>`                                                                                                                           Section component"}:     
+    M2  @^5      S   T\ $     _     R  ii " [ u     Bm,k    }D   q   ! A1  }  [  nH   @ Z{  Y     #7$       U &  0 f    S 	hI ip < D  b     G  ZJ  ^ )  U OC1  [I gW   !Ez  a  3 Z {!   B\c 9'     5    Y | 
+sc  n OG| {  C  xS      ^ iE  1H + Rv _g    q  
+u  H    5     1T      mpb	  m     9h   Y>]     + {    _ iL% t /&?)       X  h ,]  ) F   6  ]    =P  b) ?  ;  AR. d 1   Yu   _TM L    [   ~   r    w$J$5 g   ` |                  /    9  >  RY 	  E  y  9    e           k   08  x  M] x   Y	  ` DpG    o % \2 v  s  ^     V  5 $f   p        AQ     [ l   hwG     k  3 c 4  N $  /      P   0+ :^ * 3  B  J      | Sh^  p y  a.?q E   "     ? [ Qy *6 ngd  h  I  0 Rg -'   X    99 F      id       jz   m "~S  Mb10 9     { g7 waS    1B *     G g 5   	            *       HRo  rD  w    M Xw
+H 1    	 jB( '    :Zl
+ c  *{ l   @     +N  Z  d -     R 9 XJ e   \[ UB L I [ *  #        &      ? u  ?   K       4 +z    
+ q   ,6  q{H &      R  Fe   6 >      u   ASO o  u8 ;b  q      i  sw  7 U {   3    8   :L  ^.)       W  r= Z6  8   -=OC  ?  _9   |  g   t 9 w  P     rm    $ 7 ) G Z     SM      &_6 T  " x    n  N  fd    *0   B+ 	K _  u%~t    Q     }5]    _ Q        kR  XV I Y          v  M g4*    m`6  P     ! :a h1    @   |  >     ! H >,'   v  ) *  M    v	cY}H      U2E   /k d& 
+  {: &  AFI   J   'lQ9!  : GSao  )       Q     p    Xv *      / TH   A:F+      + I    }D ~        Iv6v $k  w       64      'Z        oA D\ 18  ;  z   )2 i q w   f w   4       *    NA LO     " 9v 3 F     m 3  xk;   2Q V-/8 O  | 3  L     
+w  U %  d   =  	9   L /  @ B I yg   ;P 	            @;   n  :x 	     Sl  F`  Is    9Q }   {  vF2 e Z  v   *  .;Uogx  E  5 m7   ""    ~Pc  z`   )  T#I  b  \e _   Ay9H G b   r       E  xf   1 q S, IR u  ^
+B      9  q  g  G# +.   <    u  #    S< g  u  XM P  d5w( f   N  J D  X  '       wlW           *,        4 1  B (      O      8O b  Z  s a8         d   E *   W      uB 6b^  p   R,I   @ k P     Bh  S	    1 =	   m?$       . z  Z U b F           Lz 
+q{    S d_  a     9      kn>!  	v;}      t~]S     oz5    .x  &  _AMi<9  \6  | P9   e  Xd{  6^0 $     !   L :  I   AsFE      pJ replace_file_content            Created At: 2026-07-11T12:05:45Z
+Completed At: 2026-07-11T12:05:45Z
+The following changes were made by the replace_file_content tool to: c:\Users\Admin\Ahvaanam\components\sections\celebrant\index.tsx. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -42,7 +42,7 @@
+             backgroundColor: "var(--theme-card-bg)",
+             borderRadius: "var(--theme-radius-card)",
+             borderColor: "var(--theme-border)",
+-            shadow: "var(--theme-shadow-card)"
++            boxShadow: "var(--theme-shadow-card)"
+           }}
+         >
+           <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-tr from-amber-400 to-purple-600 p-1">
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.   : kwecgd2n      
+
+(bot-55fb6ca5-1007-4647-ac6d-c590d1291bec   ~I will update `components/sections/countdown/index.tsx` to fix the CSS shadow key name to `boxShadow` in the style dictionary.   2 	
+ qmbrtxu2  replace_file_content   {"AllowMultiple":false,"Description":"Fix shadow CSS variable key name to boxShadow.","EndLine":91,"Instruction":"Rename shadow to boxShadow in the element styles object.","ReplacementContent":"                  backgroundColor: \"var(--theme-card-bg)\",\n                  borderColor: \"var(--theme-border)\",\n                  borderRadius: \"var(--theme-radius-card)\",\n                  boxShadow: \"var(--theme-shadow-card)\"","StartLine":81,"TargetContent":"                  backgroundColor: \"var(--theme-card-bg)\",\n                  borderColor: \"var(--theme-border)\",\n                  borderRadius: \"var(--theme-radius-card)\",\n                  shadow: \"var(--theme-shadow-card)\"","TargetFile":"c:\\Users\\Ad    >;
+      case "families":
+        return <FamiliesSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "rsvp":
+        return <RSVPSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "faq":
+        return <FAQSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "dressCode":
+        return <DressCodeSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "footer":
+        return <FooterSection key={sectionId} properties={properties} bindings={bindings} />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className={`min-h-screen relative overflow-hidden ${themeBgClass}`}>
+      {invitation.music?.enabled && invitation.music?.file && (
+        <audio ref={audioRef} loop src={invitation.music.file} />
+      )}
+
+      {/* Loading overlay */}
+      <AnimatePresence>
+        {loading && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-[#FFFDF5] flex flex-col items-center justify-center text-center p-6"
+          >
+            <h2 className="text-[#FF8800] text-xs uppercase tracking-[4px] mb-1 font-bold">{loadingTitle}</h2>
+            <p className="text-amber-900/40 text-xs font-semibold">{loadingSubtitle}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Particles canvas overlay */}
+      {invitation.themeSettings?.showParticles && Particles && <Particles />}
+
+      {/* Floating utility buttons */}
+      <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-4">
+        <button
+          onClick={onBackToHub}
+          className="flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40 bg-white/90 text-[#FF8800] backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
+        >
+          <ArrowLeft size={20} />
+        </button>
+        {invitation.music?.enabled && (
+          <button
+            onClick={toggleMusic}
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40 bg-white/90 text-[#FF8800] backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
+          >
+            {playingMusic ? <Volume2 size={20} /> : <VolumeX size={20} />}
+          </button>
+        )}
+      </div>
+
+      {/* Dynamic sections container */}
+      <div className="space-y-12">
+        {sectionOrder.map((sectionId: string) => renderSectionComponent(sectionId))}
+      </div>
+    </div>
+  );
+}
+  j 
+
+ 
+
+  // Import reusable section components
+import HeroSection from "../sections/hero";
+import CoupleSection from "../sections/couple";
+import CountdownSection from "../sections/countdown";
+import StorySection from "../sections/story";
+import EventsSection from "../sections/events";
+import GallerySection from "../sections/gallery";
+import VenueSection from "../sections/venue";
+import FamiliesSection from "../sections/families";
+import RSVPSection from "../sections/rsvp";
+import FAQSection from "../sections/faq";
+import DressCodeSection from "../sections/dressCode";
+import FooterSection from "../sections/footer";   // Import reusable section components
+import HeroSection from "../sections/hero";
+import CoupleSection from "../sections/couple";
+import CountdownSection from "../sections/countdown";
+import StorySection from "../sections/story";
+import EventsSection from "../sections/events";
+import GallerySection from "../sections/gallery";
+import VenueSection from "../sections/venue";
+import FamiliesSection from "../sections/families";
+import RSVPSection from "../sections/rsvp";
+import FAQSection from "../sections/faq";
+import DressCodeSection from "../sections/dressCode";
+import FooterSection from "../sections/footer";
+import CelebrantSection from "../sections/celebrant";
+import HouseDetailsSection from "../sections/houseDetails";
+import OwnersSection from "../sections/owners";0 8 (   EImport celebrant, houseDetails, and owners inside LegacyOrchestrator.          8   !       !   #   w                         A ^      |     ~   
+              2             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2        ^      |      x   
+              2             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+              2             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                    Z
+rI will create the manifest file for the House Details section at `components/sections/houseDetails/manifest.json`.   **Analyzing Configuration Defaults**
+
+I've been examining the default configurations, specifically within `lib/defaults/housewarming.ts`. I noticed the configurations for the "Housewarming category configuration", and am getting to work on it now! I'm starting to consider how to best handle the new information and incorporate the requested deliverable.
+
+
+**Mapping Section Components**
+
+I'm now mapping out the required invitation sections to existing or new components. Specifically, I'm assigning `"hero"` to `Hero`, `"families"` to `Family`, and considering whether to map `"houseDetails"` to `"celebrant"` or create a dedicated `"houseDetails"` component. I'm leanin

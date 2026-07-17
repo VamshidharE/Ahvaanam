@@ -1,0 +1,177 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowLeft, Sparkles, Loader, AlertCircle } from "lucide-react";
+import { useInvitationData } from "../../components/context/InvitationDataContext";
+import { CATEGORIES } from "../../data/categories/categories";
+import { getTemplatesByCategory } from "@/lib/templates";
+import { getCategoryFields } from "@/lib/categories/utils";
+import CategoryCard from "../../components/shared/category-card";
+import ThemeCard from "../../components/shared/theme-card";
+
+export default function CategorySelectionPage() {
+  const router = useRouter();
+  const { 
+    selectedCategory, 
+    setSelectedCategory, 
+    selectedTheme, 
+    setSelectedTheme,
+    invitationData,
+    updateInvitationData,
+    saveConfig
+  } = useInvitationData();
+
+  // Local state for dynamic form inputs and creation loader
+  const [formData, setFormData] = useState<Record<string, string>>({});
+  const [creating, setCreating] = useState(false);
+  const [loadingStep, setLoadingStep] = useState(0);
+  const [error, setError] = useState<string | null>(null);
+
+  // Retrieve field definitions dynamically based on selected category
+  const fields = selectedCategory ? getCategoryFields(selectedCategory) : [];
+
+  // Reset form inputs when selected category changes
+  useEffect(() => {
+    if (selectedCategory) {
+      const initialForm: Record<string, string> = {};
+      const categoryFields = getCategoryFields(selectedCategory);
+      categoryFields.forEach((field) => {
+        initialForm[field.key] = "";
+      });
+      setFormData(initialForm);
+    }
+  }, [selectedCategory]);
+
+  const handleFieldChange = (key: string, value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
+
+  const isFormValid = () => {
+    return fields.every((field) => !field.required || (formData[field.key] && formData[    field.key].trim() !== ""));
+  };
+
+  // Filter enabled categories and sort by displayOrder
+  const enabledCategories = CATEGORIES
+    .filter((cat) => cat.enabled)
+    .sort((a, b) => a.displayOrder - b.displayOrder);
+
+  // Filter themes linked to selected category
+  const filteredThemes = selectedCategory ? getTemplatesByCategory(selectedCategory).map(template => ({
+    id: template.id,
+    categoryId: template.category,
+    slug: template.id,
+    name: template.name,
+    description: template.description,
+    coverImage: template.previewImage,
+    enabled: true,
+    displayOrder: 1
+  })) : [];
+
+  // Find active category details
+  const activeCategory = CATEGORIES.find((cat) => cat.id === selectedCategory);
+
+  const handleCreateInvitation = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isFormValid()) {
+      setError("Please fill out all required fields.");
+      return;
+    }
+
+    setCreating(true);
+    setError(null);
+    setLoadingStep(0);
+
+    // Sequence progress indicator messages every 600ms
+    const stepInterval = setInterval(() => {
+      setLoadingStep((prev) => (prev + 1) % 3);
+    }, 600);
+
+    // Dynamic slug generation based on filled names
+    const groomVal = formData["groom.name"] || formData["celebrant.name"] || formData["hosts"] || formData["baby.name"] || formData["mother.name"] || formData["company"] || formData["festivalName"] || "";
+    const brideVal = formData["bride.name"] || formData["father.name"] || formData["eventTitle"] || "";
+
+    let slugBase = "";
+    if (groomVal && brideVal) {
+      slugBase = `${groomVal.trim()}-${brideVal.trim()}`;
+    } else if (groomVal) {
+      slugBase = groomVal.trim();
+    } else {
+      slugBase = "invitation";
+    }
+
+    let slug = slugBase
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, "")
+      .replace(/-+/g, "-");
+    if (!slug) slug = "invitation-" + Math.floor(1000 + Math.random() * 9000);
+
+    // Backwards-compatible payload values ensuring API Zod schema passes
+    const groomPayload = groomVal.trim().length >= 2 ? groomVal.trim() : "Host";
+    const bridePayload = brideVal.trim().length >= 2 ? brideVal.trim() : "Guest";
+
+    // Step 5: Collect and preserve dynamic metadata in local storage
+    const tempCollectedData = {
+      category: selectedCategory,
+      themeId: selectedTheme,
+      formData: formData,
+    };
+    localStorage.setItem("pending_invitation_metadata", JSON.stringify(tempCollectedData));
+
+    const minWaitTime = new Promise((resolve) => setTimeout(resolve, 1800));
+
+    try {
+      let res = await fetch("/api/invitation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          id: slug, 
+          groom: groomPayload, 
+          bride: bridePayload,
+          surname: "",
+          themeId: selectedTheme 
+        }),
+      });
+
+      let data = await res.json();
+
+      // Auto-retry with random suffix if slug exists
+      if (!res.ok && data.error?.toLowerCase().includes("already exists")) {
+        slug = `${slug}-${Math.floor(100 + Math.random() * 900)}`;
+        res = await fetch("/api/invitation", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ 
+            id: slug, 
+            groom: groomPayload, 
+            bride: bridePayload,
+            surname: "",
+            themeId: selectedTheme 
+          }),
+        });
+        data = await res.json();
+      }
+
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to initiate invitation profile");
+      }
+
+      // Complete min loader duration for visual polish
+      await minWaitTime;
+
+      clearInterval(stepInterval);
+      window.location.href = `/admin/${data.id}`;
+    } catch (err: any) {
+      clearInterval(stepInterval);
+      setError(err.message || "Failed to generate invitation. Try again.");
+      setCreating(false);
+    }
+  };
+
+  // Determine current active visual wizard step
+  let currentStep = 1;
+  if (sel

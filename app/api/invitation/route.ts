@@ -1,0 +1,281 @@
+import { NextResponse } from "next/server";
+import { createClient } from "@/utils/supabase/server";
+import { getInvitations, createInvitation, getInvitationById } from "@/lib/db";
+import defaultTemplate from "@/lib/default-template.json";
+import { creationSchema } from "@/lib/validation";
+import { categoryExists, getCategoryFields } from "@/lib/categories/utils";
+import { createDefaultConfig } from "@/lib/config/createDefaultConfig";
+
+interface NormalizedPayload {
+  id: string;
+  category: string;
+  themeId: string;
+  metadata: Record<string, string>;
+}
+
+/**
+ * Normalizes input bodies from legacy flat payloads and new category metadata payloads
+ * into a single unified data structure.
+ */
+function normalizeInvitationPayload(body: any): NormalizedPayload {
+  const id = body.id || "";
+  const themeId = body.themeId || body.metadata?.themeId || "royal-temple";
+  
+  if (body.category && body.category !== "wedding") {
+    return {
+      id,
+      category: body.category,
+      themeId,
+      metadata: body.metadata || {}
+    };
+  }
+  
+  const category = body.category || "wedding";
+  const metadata: Record<string, string> = {};
+  
+  if (body.metadata) {
+    Object.assign(metadata, body.metadata);
+  } else {
+    // Map legacy parameters to metadata structures
+    metadata["groom.name"] = body.groom || "";
+    metadata["bride.name"] = body.bride || "";
+    metadata["surname"] = body.surname || "";
+  }
+  
+  return {
+    id,
+    category,
+    themeId,
+    metadata
+  };
+}
+
+/**
+ * Validates dynamic metadata field constraints mapped from categories.
+ */
+function validateNormalizedPayload(payload: NormalizedPayload): { success: boolean; error?: string } {
+  if (!payload.id || typeof payload.id !== "string") {
+    return { success: false, error: "Invitation URL slug is required." };
+  }
+  if (!/^[a-z0-9-]+$/.test(payload.id)) {
+    return { success: false, error: "URL slug must only contain lowercase letters, numbers, and dashes." };
+  }
+  if (payload.id.length < 3 || payload.id.length > 50) {
+    return { success: false, error: "URL slug must be between 3 and 50 characters." };
+  }
+
+  if (!categoryExists(payload.category)) {
+    return { success: false, error: `Unsupported category: "${payload.category}"` };
+  }
+
+  if (!payload.themeId || typeof payload.themeId !== "string" || payload.themeId.trim() === "") {
+    return { success: false, error: "Theme ID is required." };
+  }
+
+  const fields = getCategoryFields(payload.category).filter(f => !["venue", "date", "time", "address"].includes(f.key));
+  for (const field of fields) {
+    if (field.required) {
+      const val = payload.metadata[field.key];
+      if (!val || val.trim() === "") {
+        return { success: false, error: `Field "${field.label}" is required.` };
+      }
+    }
+  }
+
+  return { success: true };
+}
+
+/**
+ * Helper to dynamically set properties at nested paths.
+ */
+function setNestedProperty(obj: any, path: string, value: any) {
+  const parts = path.split(".");
+  let current = obj;
+  for (let i = 0; i < parts.length - 1; i++) {
+    const part = parts[i];
+    if (!(part in current)) {
+      current[part] = {};
+    }
+    current = current[part];
+  }
+  current[parts[parts.length - 1]] = value;
+}
+
+export async function GET() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    const invites = await getInvitations(supabase);
+    const inviteIds = invites.map(i => i.id);
+    const rsvpStatsMap: Record<string, { accepted: number; declined: number; guestCount: number }> = {};
+    const viewsCountMap: Record<string, number> = {};
+    
+    inviteIds.forEach(id => {
+      rsvpStatsMap[id] = { accepted: 0, declined: 0, guestCount: 0 };
+      viewsCountMap[id] = 0;
+    });
+
+    if (inviteIds.length > 0) {
+      // 1. Fetch RSVPs
+      const { data: rsvps } = await supabase
+        .from("rsvps")
+        .select("invitation_id, attending, guest_count")
+        .in("invitation_id", inviteIds);
+
+      (rsvps || []).forEach(r => {
+        const id = r.invitation_id;
+        if (rsvpStatsMap[id]) {
+          if (r.attending) {
+            rsvpStatsMap[id].accepted += 1;
+            rsvpStatsMap[id].guestCount += (r.guest_count || 1);
+          } else {
+            rsvpStatsMap[id].declined += 1;
+          }
+        }
+      });
+
+      // 2. Fetch Views
+      const { data: views } = await supabase
+        .from("invitation_views")
+        .select("invitation_id")
+        .in("invitation_id", inviteIds);
+
+      (views || []).forEach(v => {
+        const id = v.invitation_id;
+        if (viewsCountMap[id] !== undefined) {
+          viewsCountMap[id] += 1;
+        }
+      });
+    }
+
+    const payload = invites.map(i => ({
+      ...i,
+      acceptedCount: rsvpStatsMap[i.id]?.accepted || 0,
+      declinedCount: rsvpStatsMap[i.id]?.declined || 0,
+      pendingCount: 0,
+      guestCount: rsvpStatsMap[i.id]?.guestCount || 0,
+      viewsCount: viewsCountMap[i.id] || 0
+    }));
+
+    return NextResponse.json(payload);
+  } catch (error) {
+    return NextResponse.json({ error: "Failed to fetch invitation profiles" }, { status: 500 });
+  }
+}
+
+export async function POST(request: Request) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    const body = await request.json();
+    const isLegacyWedding = !body.category || body.category === "wedding";
+
+    let slug = "";
+    let finalConfig: any;
+
+    if (isLegacyWedding) {
+      // Run the original legacy validation exactly as before
+      const parsed = creationSchema.safeParse(body);
+      if (!parsed.success) {
+        return NextResponse.json({ 
+          error: "Validation failed", 
+          details: parsed.error.issues.map(err => ({ path: err.path.join("."), message: err.message })) 
+        }, { status: 400 });
+      }
+
+      const { id, groom, bride, surname, themeId } = parsed.data;
+      slug = id;
+
+      // Check globally if client profile already exists (slug must be unique)
+      let exists = false;
+      try {
+        const existing = await getInvitationById(slug).catch(() => null);
+        if (existing) {
+          exists = true;
+        }
+      } catch {
+        exists = false;
+      }
+
+      if (exists) {
+        return NextResponse.json({ error: "An invitation with this URL slug already exists." }, { status: 400 });
+      }
+
+      // Clone starter default JSON config to seed the profile
+      const config = JSON.parse(JSON.stringify(defaultTemplate));
+
+      // Seed config with user inputs
+      config.themeId = themeId || "royal-temple";
+      if (config.couple) {
+        config.couple.groom.name = groom;
+        config.couple.bride.name = bride;
+      }
+      if (config.hero) {
+        config.hero.surname = surname || "";
+        config.hero.showSurnameHeading = !!surname;
+      }
+      if (config.footer) {
+        config.footer.salutation = `Bound by Matrimony. ${groom} & ${bride}.`;
+      }
+
+      finalConfig = config;
+    } else {
+      // New category payload validation and construction
+      const normalized = normalizeInvitationPayload(body);
+      const validation = validateNormalizedPayload(normalized);
+      if (!validation.success) {
+        return NextResponse.json({ error: validation.error }, { status: 400 });
+      }
+
+      slug = normalized.id;
+
+      // Check globally if client profile already exists (slug must be unique)
+      let exists = false;
+      try {
+        const existing = await getInvitationById(slug).catch(() => null);
+        if (existing) {
+          exists = true;
+        }
+      } catch {
+        exists = false;
+      }
+
+      if (exists) {
+        return NextResponse.json({ error: "An invitation with this URL slug already exists." }, { status: 400 });
+      }
+
+      // Retrieve default category template structures and merge values
+      const wrapper = createDefaultConfig(normalized.category);
+      wrapper.themeId = normalized.themeId;
+      if (wrapper.config) {
+        wrapper.config.themeId = normalized.themeId;
+        // Dynamically populate fields
+        for (const [key, value] of Object.entries(normalized.metadata)) {
+          setNestedProperty(wrapper.config, key, value);
+        }
+      }
+
+      finalConfig = wrapper;
+    }
+
+    // Save newly created invitation config via db helper with owner metadata
+    await createInvitation(slug, finalConfig, user.id, supabase);
+    return NextResponse.json({ success: true, id: slug });
+  } catch (error) {
+    return NextResponse.json({ error: "Failed to create client invitation profile" }, { status: 500 });
+  }
+}

@@ -1,0 +1,35 @@
+"use client";        
+ import React from "react";   <
+8import { motion, AnimatePresence } from "framer-motion";       &
+"interface LoadingExperienceProps {    
+   loading: boolean;    
+   title: string;    
+   subtitle: string;    
+ }       e
+aexport default function LoadingExperience({ loading, title, subtitle }: LoadingExperienceProps) {    
+
+  return (    
+     <AnimatePresence>    
+       {loading && (    
+         <motion.div   &
+"          initial={{ opacity: 1 }}   #
+           exit={{ opacity: 0 }}    
+{          className="fixed inset-0 z-50 bg-[#FFFDF5] flex flex-col items-center justify-center text-center p-6 select-none"   
+	        >   i
+e          <h2 className="text-[#FF8800] text-xs uppercase tracking-[4px] mb-1 font-bold">{title}</h2>   S
+O          <p className="text-amber-900/40 text-xs font-semibold">{subtitle}</p>    
+         </motion.div>    
+       )}    
+     </AnimatePresence>    
+   );    
+ }      BTfile:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/LoadingExperience.tsxX     FCreate LoadingExperience component to handle loader animation overlay.   c~  D   V$ W p_$ F$]  GD / Ay!^$ '   X    6 2  6  b  -}
+   K>
+E    5fl++W   r km J b +%>}  ?w@  (  G .      _,>    " ] <      7> x     &"Y*  kX  "      Hz _ 5    x b  t=    1* "  " e" v    9 Hn           "  i ]     "i  (            0         Q $_N Rq #c  u   q   c x o r E 5  }HE Q 9   J> N   t  "   Q&("    HJgelE<9y Hz    ID    H4;   nK  H  (n u 	  D  "  D  D     I @XYk[ TL       t y   b \     |  5i ~E  JT  X  S     X L{  e   g|R 1 S, y q"   BD[   )f   g^E c   m  ;   I]  B H J$].    H 2 ;*/       D / bg+  C 4  @D R  #  ,   H F$ [ k   )2  kX           _   z  4  >  jo(      (  H  _ 1 (D H      Y  9 Qr M   i1!_ l    z  q  J hnF =) W        tqez  2 ]      dS h") L  O   H   +M   t;  [  $ m ic " m OWl]Q\ U  }  d D  D mE <aD$k&"     ,C_     j|, +      P <  V \ o  Y*        a   8  "  vA*d qB     ; vN   ' )#q     (Lj i  De   lm L  O     69    J l <   I9  /  ocU   T 1r ;    W)s)  9 "  2 ERvV' - ND d H \$[FG p9u $  6  * m D   RC  w  d   D$ 7  +  ,  @D  H   ./U: R * G    0        ,  qVH[    A  p^$ Q     E 1E     P$e+zp         q0R1 iO
+  8 EA>  (` /f0 <   R i     ~  B 2   d  H Z   ds      )  *DR  M;D$ o;"   _  	   q|i      D   E  E < 2  )M."  L| Ik     t[   )  H[  r         D$E v        %#>}   x        ( E @   9/ +  M  x -6 0     ^ v~  	  ;  X Tkt q   q    y  /l    9   ! =   H > #/    I xy    E V p ?   5I   " :  r  u6a  H6Y k   )H m  x      ev u ,J[d    7 o  M mPny  r ^ )B   k Mk  t Y}X  r >G  )      B f    # 7 b IA L  A  Y  ,y >      `C6     2   G  fb a  h  s   iT  "  l     T  D$T/R <4H  H         %, Hq  Hn{ p   'fXz" &62 1~"b QN"     G  9l 
+ QdN  EO >       !e   C[R } >   4    , O K     $     R     F O   RR L  * u  5 C     Q  q r  t b   O -   x 'eG      fq    T 0  O_ .  2 a  D             ) b  m/R ND   a  I  I   D        X  "     _dNY f.  ^ B _      <d $m   $        -q!i    ! $  @P 0   \         s     \ i L  W< 6  RP  g $   dQ 8 'Y    g   F .c #    2  o !6~ ` V y .     {~   V<D    Z$  O   LD   Hn]  Hq a1  ,  '] 9  w       Hhj"bt"   PD
+  .H")  h|  k R  -2']  '  c    $ H Dd   _ &   LB s5  !% 
+0   ~ $   <k   F E gsc ! gB L 4 g i)]        ~ (s MMc mk a   T  $ 2 13ey  o^ 6V : 6  |   D      b    lZ    &  0  E@    @ g"R  '  ^  ^$  H~ |      ^`D: _    ;g   ^ "   qI C [  hO"/     O*d   O    (    $     'sP  <  ~ '   GT  "  @ N     ]   Q|   q   \s P{    ?  , ? E - !E /m  T  T !  9_x    M. Ha L_    ~     u eB@$ E+"  5 p"    33qD$w    q       e> "r 5/  3  c iSg &   hO2  ) *7   r[   1  9E&  wS ;          # 3I  H   (9  Q   D+ ) ;bH w sb      E?R 1h  l#        1 6 z    D
+S  ") \v" lr    H.  GD      g&R  (R GD  4    D  m.  b  V      H     *? P      7;rE av5# . {    1 c Qm[e X 3V)s)) b  "     R   Pk  9* ;F%   9;   8 /   I]W B H! 3  F  "  *     )| g "  GD"=ID<;          +P   kD/   /z  H L^   1H  U      ) 8&  d M   u  0  s%   7      IDATr h^ <L :  r  s \*    X .   -"   Q I D   (  lDJ  
+     (  +("  X" m  H ^$?O{G D -  )~ z]      8   >     O     qR  6 > ?)r\ +1  \     M  )) mI6fr  V (G  (          M [ l< g  m	yE m    
+  "      /  U ^  -d    0     + K -  H .L   "b   r)V.   i}[    ^4 LRQ  J  t  bB  dN- _ <  &0">t    f|= ~F   # & /(   [ i  TCf>:V 6w   c q,    x
+   7s    Wm  6  3\     3 a     &   *  R H + y L@  5  N  @D R *  " \      Yv"  f s       H .P 1O  i x "    v"b     X yCmZK pe    >L  Cu9I   6@       L   K>  } !r         {II ,   #  T 	D"   $  <$  P3   d  t  m Du$   #] H G    2H   L|  z  H   a  Ws   @$  |r ;  U   p.&   }  E$  4|{N$   w  EZ   H E0*N")  t>j g

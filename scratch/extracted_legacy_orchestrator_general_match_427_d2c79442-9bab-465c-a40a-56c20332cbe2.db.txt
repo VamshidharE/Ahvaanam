@@ -1,0 +1,116 @@
+to delete the corrupted files and restore the intended versions.
+
+
+**Tracking Build Failures**
+
+I'm now investigating a build failure related to a "Module not found" error, specifically `../../shared/LegacyOrchestrator` within several template layouts. It looks like the issue is with `components/templates/...` being pulled into the build. I'm trying to determine why those untracked files are influencing my session.
+
+
+            Created At: 2026-07-12T08:52:10Z
+Completed At: 2026-07-12T08:52:10Z
+Created file file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/scratch/find-wrappers.py with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission. q: a1b3rlun       
+(bot-ebfe3bf3-2472-4756-baac-3550a10912c9   \I will run the wrapper check script to search for the missing helper wrapper file creations.   2  
+ f5cc6zvd  run_command   {"CommandLine":"python \"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\scratch\\find-wrappers.py\"","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run python find-wrappers script","toolSummary":"Running python script to find LayoutWrapper and MotionWrapper writes"}:d b
+`  M2  R   >    k    Q' ;r f| YM    9l  G ec      #   95  v' G    
+n  +R p}   9    l:     o=SqR  J run_command            Created At: 2026-07-12T08:52:13Z
+Completed At: 2026-07-12T08:52:17Z
+
+				The command completed successfully.
+				Output:
+				Scanning transcript for wrapper components...
+Step 666: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\implementation_plan.md
+Step 670: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\task.md
+Step 676: c:\Users\Admin\Ahvaanam\components\layouts\LayoutWrapper.tsx
+Step 686: c:\Users\Admin\Ahvaanam\components\sections\hero\index.tsx
+Step 688: c:\Users\Admin\Ahvaanam\components\sections\celebrant\index.tsx
+Step 690: c:\Users\Admin\Ahvaanam\components\sections\countdown\index.tsx
+Step 702: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\task.md
+Step 704: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\walkthrough.md
+Step 708: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\implementation_plan.md
+Step 712: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\task.md
+Step 718: c:\Users\Admin\Ahvaanam\components\motion\MotionWrapper.tsx
+Step 722: c:\Users\Admin\Ahvaanam\components\sections\hero\index.tsx
+Step 724: c:\Users\Admin\Ahvaanam\components\sections\celebrant\index.tsx
+Step 726: c:\Users\Admin\Ahvaanam\components\sections\countdown\index.tsx
+Step 738: C:\Users\Admin\.gemini\antigravity\brain\d2c79442-9bab-465c-a40a-56c20332cbe2\task.md
+Step 740: C:\Users\Admin\.gemini\antigravity\brain\d2c7944   m(  t42O   	^ +fD 6hx_ z  O p      :O    b     (h!   	  ! kK  L 	w2  K           *   }	 m. 8C  9   h  z	fA[       @ ? WlK {  S H  X    pX 6   f#8`   < a  0)a   ?   -     ;   ZW  =  lsv   i{sV `   9e  +   + A f;x 3T r s 8B\ +   1    x   S yx1U   {a   r Q x-  b )   F  qU   X    ~{       mz +; 
+  G  7   y~2> :  `$bt   |     Jt9  ekfm)   6   o U    )  or   h     8 L   \   ( nTZf  Z  &j ,   uv  ~ 7     ~  .y     ab      t   
+  S7Nn   u       fKZ   '  C 2       ! Z#D>U  | 	   Ct a  i <    |   ,) oF        u?u U   Al* es `9           H  IBc Si.g  
+9 OL   
+     Bg   67 
+ S   }4  aXU8Bm 3n]=  RZ        U?/  @}      *  Y_ 0  }  : u  P{   *         7  %Z aZ    @   R   3 [;.K   $: J  x$i B{0 1[E    I  JkEA  W p     bD  $ Q    m|    ln (  H -L 6-M   &l[ -r5H    0 r~v/H   H   SNt      n  M   q  K3aK B  8        X     2  ?d         ^ +~  l  ;]   
+ 0              EkUJ"f f+  PL  8~m# A  8 "   XV@ M   /
+r8        ?  tn  C  jP w GF 8  U #je        Nx  ki   =   'C  ^ d   %          l    !  0   ((z $~b  :O  6   e+] lwT T |       e       s m    o  Z ; 0 C\    [        &  6      n ^ j|   *! < $ V(.   `
+ G    -  	 JD\  -  Yt*^ ] . &whs 5  K d bP ( o         3 r     {   U;    @[    XQ [@   CX Y     k  6    Cy ,\7/:H H.Tl  N1     ;   k8`X u   ^      #  x;  e`     T ns` G&w)  t Y     , a  @ { AU    ccM?Jj      >j  5  > +h 	9   c     lD  N }  3 .	    X
+~ AN[   f   k Q oH       2=  IVI   / S .  eq    k1      6 g   c    q& W sk  Zw- o X[  x  j     _  /sa   h               _           V     c  . s     Ga0 
+ ;   eLS ^  Y_  /    ^   A%  IZ vQ     II      M  T cO
+ BV  &n 0*>DN z       b X    (Y  % e    Yj  
+ 9j{    H  Ys1          )   x B Z    b   kL Yj    1( a ]    + } W' K  e   O   /h( ax#_V      +     4  M  w  H 3  _WZ       !  eO$  W   r   9 c     i    b 6= +k N   8(  O +   5 DL "   d &.  =`]   .]r2  }m `V t   $ . du {    %w   hB   X      ),   C  f;      t \  ^Q#    V<= OM   K  Y   <  !  k     5 rV  K  mj  8 <  Q   Zg       ,^(;4k M      .S   s     X   4          q~ 5 Ca }    HMOc    0&5 	         | pO        M *  d v  Zv  D  a    x 7  7 d  ,w    ]@9 3    -\g '   K     T   {     /  Z  T L} D L  Q          H~5    N   8F k\  {S z  \ g  Fw  \f E'(C        ux      C    n@    q  ; Q T  P l {  0  /       P"   %   e  /\     +    j6   m  9       J
+ / |s "    .   w    W c
+  z  w  0      C_ <           . 4  [F  C  C \d    xg~}~_ (  E l     S     \2   ?       -   <7{N <    h Swn    65   R} -  C T   J  L   ).4  M  9d `     w n =\MI)9 s  |  ,           e d j\D  _v.  n K   j9       W y  ]\P87  N zsb  ` 9  4b   ;4       : 7e   SAv    B      q    0 f n !5 =$I      d  d J * c  D  u    s I  S *   .%! (         [l.M  J @ j5   N t V  Gm  t h z k     <R     7 ,8  C    c    } %o s   h  L   Ld<DE  U  F  K   >	 F   ~    [)  gb   S|  ~   H        T               
+y     3  _s u5  H      +F               i .-Z M ya= JV    B(    lh    --~  ZV    d  j|   =    5   ; C   3 5 O  h _l  A  vl     5      P   [%m  j    )]_    >    h  a5 \0I_ hi    J n     Zk    cL     < } C ~    -= R     cq       swY=(;b   l  >  !    B  U    GL .  * uB ^  a  ^ )   % m     ~1j    }:/ $ UP  .   (  A ]     u     F    /  u 	 O  RaB ` R }   '   `*  - ,     N    E  2 Z      S  C    u j       J  K M   S ,a Rq  -$  W  |  \$*  i5     %  Ca]7:Z  } o    E, N#  Q  w bY5      5`,m}} c    R9 EqH   N  #   -|   !R w    L  &N    y  d :       4
+  ,   _      =  L! xi  l 	E         d    , x+     K Z n   -hSxl      ,   4Z   9       z gb     ]J L .    !  :.B\  &  RY   (Vr  %BpJ        r   @g    ?      >q     ;Q J^ c  ee3 m } 0 b         k6   /Z   y#  	    l     ?+  hA 
+   
+duV5 ;  +  w( ''N     {   yV j w  {Q  y/ % <U   g J | J $    I %  vjI(   c   m|   0     0b     Y  Q    Z  X_k~    I " Z, Cn "  Z % zy  ^  1 j?LW|    '     a RJ      7  ! f_  (.   |$ t |(f-  P  7    t     k 8   y(   8Z ?.{- {    cN8D .    '  O N!    5	  u P Jwrite_to_fileZ  **Analyzing Compiler Errors**
+
+Okay, so I'm currently focused on these compiler errors, specifically the "Cannot find module" errors within the `components/sections` directory. It looks like `MotionWrapper` and `LayoutWrapper` are missing. I need to figure out why thes /   (  (                                                                                                                                                                                                                                                                                                 g            f   
+              2             :             B             JO     .   (  0 B!
+	sessionID  -3750763034362895579H-P_Z Vk5Tavu1G5aojuMP_K3IqQYX  b$350f4ff7-9e8b-43f0-8674-801bad7cbb91j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+              2             :             B             JO     .   (  0 B!
+	sessionID  -3750763034362895579H-P_Z Vk5Tavu1G5aojuMP_K3IqQYX  b$350f4ff7-9e8b-43f0-8674-801bad7cbb91j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+  I will run the Next.js production build check. This guarantees that all templates, components, and the upgraded builder compile successfully.2(bot-166af056-d4a9-4a2c-b462-711938ff9d3e:  
+ 5dw06hjj  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running Next.js production build verification check"}:     
+    M2 {   C Y R  I     h                b  ] PE   z O3  J6   Aaw= <D      / /vg  '\#    x !    z_W       % + w        YB   {     Ll Yk fy`e   fB  OH    I#  U W   4   S   L  :      kg 7 	 K  [ 7  ' t eQk 0 @ 	  e     " w\ + pqj @ & f|7   &1 KgV 7   E  Z<  ^       ^ @ 	  :   x[  e(  J run_commandB  I will run the Next.js production build check. This guarantees that all templates, components, and the upgraded builder compile successfully.`           R     @ e 
+               b$350f4ff7-9e8b-43f0-8674-801bad7cbb91  R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2   
+                     e  *  
+               b$350f4ff7-9e8b-43f0-8674-801bad7cbb91  R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2   
+                        
+  [Message] timestamp=2026-07-12T08:20:34Z sender=d2c79442-9bab-465c-a40a-56c20332cbe2/task-1508 priority=MESSAGE_PRIORITY_HIGH content=Task id "d2c79442-9bab-465c-a40a-56c20332cbe2/task-1508" finished with result:
+
+				The command completed successfully.
+			Stdout:
+			
+			Stderr:
+			
+
+Log: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1508.log   
+QRunning TypeScript compiler validation on regression compatibility fixes finished   Task id "d2c79442-9bab-465c-a40a-56c20332cbe2/task-1508" finished with result:
+
+				The command completed successfully.
+			Stdout:
+			
+			Stderr:
+			
+
+Log: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1508.log  task_notification"  
+$665e0f70-777a-4c09-8b19-f604a3970c2a $d2c79442-9bab-465c-a40a-56c20332cbe2 .d2c79442-9bab-465c-a40a-56c20332cbe2/task-1508( 2           MRS
+QRunning TypeScript compiler validation on regression compatibility fixes finishedb  
+  
+$d2c79442-9bab-465c-a40a-56c20332cbe2      
+ uat0g9fx  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript compiler validation on regression compatibility fixes"}:     
+    M2   ]&  8 _   y` ,   b    $ b,  d?* ,  C&   [  19s VrM      "    '     L    s  y l 
+    4    g) O  f [  Z      8:`YY    * _ M     QMje7	 %k   7-   Hq ` nk`   ~   R k&;      tq            -    0: |^ N ? Ou   mH      (   ^   J  f _     X   S       : Z  5 t  I  (k 'nh  J run_command"  Task id "d2c79442-9bab-465c-a40a-56c20332cbe2/task-1508" finished with result:
+
+				The command completed successfully.
+			Stdout:
+			
+			Stderr:
+			
+
+Log: file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1508.log   _:///c:/Users/Admin/Ahvaanam/components/sections/families/index.tsx)\n* **Reason for change**: \n  1. Added a `formatFamily()` serialization helper to prevent React runtime rendering crashes when legacy defaults passed arrays of objects (`{relation, name}`) instead of clean strings.\n  2. Changed `isHousewarming` from a DOM selector check (`document.querySelector(\"[data-category='housewarming']\")`) to a scoped React context category lookup (`invitationData?.category`).\n\n---\n\n## 2. Root Cause of Category Terminology Corruption\n\nThe primary regression where **wedding templates displayed housewarming terminology** (\"Family Members\" instead of \"Bride's Family\") was caused by:\n\n1. **Global DOM Checking Leaks**: The families section component conditionally checked the DOM for any element matching `[data-category='housewarming']`.\n2. **Builder Sidebar Matches**: When the Celebration Builder was introduced, the new sidebar components and category selection dropdowns injected category attributes (e.g. `data-category=\"housewarming\"`) directly into the parent document structure.\n3. **Selector Pollution**: Because the preview iframe and the parent workspace shared a single browser session, the families component queried the document, matched the sidebar category tag, and incorrectly evaluated `isHousewarming = true` on wedding invitation previews.\n\n---\n\n## 3. Restoration \u0026 Clean Overlay Blueprint\n\nTo restore the pure presentation layer architecture and guarantee zero template alterations:\n\n1. **Section Component Restoration**: We will restore `components/sections/families/index.tsx` to its exact original state (restoring DOM-based category checks and removing any uploader parsing helpers).\n2. **Presenter Normalization**: The uploader must sanitize and stringify input lists at the **Builder Presentation Layer** (`lib/builder/` or `components/builder/`) before committing updates to the database client, ensuring the underlying components only receive their expected types.\n3. **No Local Layout Modifiers**: All dynamic category adapters (like terminology translations) must reside in the Category Blueprints or Builder overlays, leaving the template registry and rendering engines frozen.\n","Description":"Create regression_report.md audit report.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\regression_report.md","toolAction":"Create regression_report.md","toolSummary":"Creating regression audit report inside the artifact directory"}: K  K
+ K  M2      t  %  |  f}  |*r N    7    2     ("?   "       0 z  1(        G*    L    E\  = !#_ i 9   <  W h  -   :     ;C                 fT  |\-    	   A2  ^  - k-"   *u  g}  N      p   \L  |   W  c         g 9         {    F zhOQ &<         =R    8    ` a  3m  )1   VC     )  U     ,^ &G2 x     /  N^g1          T}b       I I  Y   Y   z   x]f^   U       {L !    4 yV   &    a;K  nJ  {i  Kp  gsKSX  *    `  X    ^z z    <vW} VJ ,?     Cq   !   @'  + Z  9  K   H    hs Z^K{   x    -  E?  _        R ,  T 1    l      V      +  v" ` = nz Z  I `        W     f       I   [r  T W 5   kY     4 NT$   
+  Y l #  o  3   q  / 	K 5 ju    :  t) M  s       #   0  bw   * |  f
+    9D   Z   !  >b     (W P      T  @ _$ 
+Wx E   `   <      ~  f  l ~. e  /x $  [ -9  j{    u     JHm A 9   ~ z  @     _ I u ;k !4$-  jL & 7       >    W   V@ :       G       m   uT-"CHI \ @    2*Z  s     r TW  Jp  O         [   M- p6  U        | i T  @Y   9h %a   ]       ]   t Z  jk />0    -(  b )  #} + y_ 6.ZVh a i oE  s   ]   m  h   MP    w v Z    P    |O     }   G Rc1A   G    = m D %^      >  #  O M O  "y *
+  
+Y    q 1B   9 x  b Y  J        ms ="0 @6W0@ *g 
+5W)   5 *   R  /t ?W k  /  s     wi c;L    ?   *Wb    V U c   "  $/`     y  I u( O      (  oL   Z 8q mpR    1 B  r   Ad_E j  H { ?l|  % 3y5S  "    j     J \D ?D{   

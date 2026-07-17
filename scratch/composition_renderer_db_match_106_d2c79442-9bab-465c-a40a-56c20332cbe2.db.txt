@@ -1,0 +1,120 @@
+"use client"', idx);
+    if (startIdx === -1) {
+      startIdx = content.lastIndexOf('use client', idx);
+    }
+    if (startIdx === -1) startIdx = idx - 100;
+    
+    // Grab about 4000 characters
+    const slice = content.substring(startIdx, startIdx + 4500);
+    console.log(`  Preview of match [${matches}]:`);
+    console.log(slice.substring(0, 300));
+    console.log("------------------------");
+    
+    // Save to scratch
+    fs.writeFileSync(`scratch/db_match_${matches}_${path.basename(filePath)}.txt`, slice);
+    idx += searchStr.length;
+  }
+}
+
+try {
+  extractFromBinary(dbPath);
+  extractFromBinary(walPath);
+} catch (err) {
+  console.error(err);
+}
+    ?Refine SQLite search specifically for CompositionRenderer code.   hP B &3      k      >rm  ?  0    *TC    X  B ^Z   K     V  X      pLO  O     ,J7 J     4R   n     H  _ * ,#  ea N} `v     ;  a4 R .   2      96B       6      <> O  gT  G I8 z  r6 @ i   c [`"     m    7  CqXo 2 0kx V    `     $  5  * R ?=%O  J    t Mt"   $    hLQ d     Z /{I  >O<bw '    u p  a  E
+[   &   8#  Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      R
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   WModifying script to search specifically for CompositionRenderer imports in SQLite files   Write extract_from_db script               R 9
+     
+  const fs = require('fs');
+const path = require('path');
+
+const dbPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\conversations\\d2c79442-9bab-465c-a40a-56c20332cbe2.db';
+const walPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\conversations\\d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal';
+
+function extractFromBinary(filePath) {
+  if (!fs.existsSync(filePath)) {
+    console.log(`File not found: ${filePath}`);
+    return;
+  }
+  console.log(`Scanning ${filePath} (${fs.statSync(filePath).size} bytes)`);
+  const buf = fs.readFileSync(filePath);
+  
+  // Convert buffer to string replacing nulls with spaces
+  let content = '';
+  for (let i = 0; i < buf.length; i++) {
+    const charCode = buf[i];
+    if (charCode === 0) {
+      content += ' ';
+    } else if (charCode >= 32 && charCode <= 126) {
+      content += String.fromCharCode(charCode);
+    } else if (charCode === 10 || charCode === 13 || charCode === 9) {
+      content += String.fromCharCode(charCode);
+    } else {
+      content += ' ';
+    }
+  }
+
+  // Exact first import line in CompositionRenderer.tsx
+  const searchStr = 'import HeroSection from "@/components/sections/hero";';
+  let idx = 0;
+  let matches = 0;
+  while ((idx = content.indexOf(searchStr, idx)) !== -1) {
+    matches++;
+    console.log(`[${matches}] Found match at index ${idx}`);
+    // Find the start of the file: look backward for "use client"
+    let startIdx = content.lastIndexOf('"use client"', idx);
+    if (startIdx === -1) {
+      startIdx = content.lastIndexOf('use client', idx);
+    }
+    if (startIdx === -1) startIdx = idx - 100;
+    
+    // Grab 6000 characters to make sure we get the full file
+    const slice = content.substring(startIdx, startIdx + 6000);
+    console.log(`  Preview of match [${matches}]:`);
+    console.log(slice.substring(0, 500));
+    console.log("------------------------");
+    
+    // Save to scratch
+    fs.writeFileSync(`scratch/composition_renderer_db_match_${matches}_${path.basename(filePath)}.txt`, slice);
+    idx += searchStr.length;
+  }
+}
+
+try {
+  extractFromBinary(dbPath);
+  extractFromBinary(walPath);
+} catch (err) {
+  console.error(err);
+}
+ {*:file:///c:/Users/Admin/Ahvaanam/scratch/extract_from_db.js2=
+ file:///c:/Users/Admin/Ahvaanam  scratch/extract_from_db.js    '
+ '    =     
+ const fs = require('fs');   !
+ const path = require('path');       t
+pconst dbPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\conversations\\d2c79442-9bab-465c-a40a-56c20332cbe2.db';   y
+uconst walPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\conversations\\d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal';       *
+&function extractFromBinary(filePath) {   %
+!  if (!fs.existsSync(filePath)) {   3
+/    console.log(`File not found: ${filePath}`);    
+     return;    
+   }   P
+L  console.log(`Scanning ${filePath} (${fs.statSync(filePath).size} bytes)`);   ,
+(  const buf = fs.readFileSync(filePath);    
+      `
+\  // Convert buffer to string replacing nulls with spaces to avoid string termination issues   =
+9  // Convert buffer to string replacing nulls with spaces    
+   let content = '';   ,
+(  for (let i = 0; i < buf.length; i++) {    
+     const charCode = buf[i];    
+     if (charCode === 0) {    
+       content += ' ';   7
+3    } else if (charCode >= 32 && charCode <= 126) {   3
+/      content += String.from     E  Eu003cdiv className=\"flex items-center gap-3\"\u003e\n              \u003cspan className=\"text-[9px] uppercase font-bold text-slate-500\"\u003eZoom: {Math.round(zoomScale * 100)}%\u003c/span\u003e\n              \u003cdiv className=\"flex items-center gap-1 bg-[#1C1C21] p-1 border border-[#2E2E35] rounded-lg\"\u0                   ~   
+              " R
+ z85xabl2 write_to_file  >{"CodeContent":"\"use client\";\n\nimport React, { useState } from \"react\";\nimport { useInvitationData } from \"../context/InvitationDataContext\";\nimport { getBuilderBlueprint } from \"@/lib/builder/registry\";\nimport BuilderSidebar from \"./BuilderSidebar\";\nimport BuilderContent from \"./BuilderContent\";\nimport { ArrowLeft, Save, Eye, Smartphone, Monitor, Tablet } from \"lucide-react\";\n\ninterface BuilderShellProps {\n  clientId: string;\n  onOpenStudio: () =\u003e void;\n}\n\nexport default function BuilderShell({ clientId, onOpenStudio }: BuilderShellProps) {\n  const { invitationData, updateInvitationData, saveConfig } = useInvitationData();\n  const [activeTab, setActiveTab] = useState\u003cstring\u003e(\"overview\");\n  const [previewDevice, setPreviewD

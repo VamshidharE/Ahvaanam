@@ -1,0 +1,233 @@
+estrator({    
+
+  themeId,    
+   onBackToHub,    
+   particlesComponent,   $
+   themeBgClass = "bg-stone-900",   "
+   loadingTitle = "Invitation",   *
+&  loadingSubtitle = "Celebrating Love"   !
+ }: LegacyOrchestratorProps) {   5
+1  const { invitationData } = useInvitationData();   3
+/  const [loading, setLoading] = useState(true);        
+   useEffect(() => {    
+     if (invitationData) {   B
+>      const timer = setTimeout(() => setLoading(false), 1200);   +
+'      return () => clearTimeout(timer);   	
+     }    
+   }, [invitationData]);       '
+#  if (!invitationData) return null;       e
+a  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;   U
+Q  const invitation = isWrapped ? (invitationData as any).config : invitationData;   9
+5  const sectionOrder = invitation.sectionOrder || [];        
+
+  return (    
+     <ScrollController>   O
+K      <TemplateFrame themeBgClass={themeBgClass} onBackToHub={onBackToHub}>   *
+&        {/* Loading overlay screen */}   c
+_        <LoadingExperience loading={loading} title={loadingTitle} subtitle={loadingSubtitle} />       $
+         {/* Particles canvas */}    
+         <BackgroundEffects   E
+A          showParticles={invitation.themeSettings?.showParticles}   5
+1          particlesComponent={particlesComponent}    
+
+        />       -
+)        {/* Audio background playback */}    
+         <AudioOrchestrator   0
+,          musicFil    e={invitation.music?.file}   6
+2          musicEnabled={invitation.music?.enabled}    
+
+        />       !
+         {/* Share buttons */}    
+         <ShareController />       2
+.        {/* Sections pipeline render block */}    
+         <SectionPipeline   )
+%          sectionOrder={sectionOrder}   %
+!          invitation={invitation}    
+           themeId={themeId}    
+
+        />    
+       </TemplateFrame>    
+     </ScrollController>    
+   );    
+ }   G
+Cexport { default as AudioOrchestrator } from "./AudioOrchestrator";   G
+Cexport { default as BackgroundEffects } from "./BackgroundEffects";   G
+Cexport { default as LoadingExperience } from "./LoadingExperience";   C
+?export { default as SectionPipeline } from "./SectionPipeline";   ?
+;export { default as TemplateFrame } from "./TemplateFrame";   E
+Aexport { default as ScrollController } from "./ScrollController";   C
+?export { default as ShareController } from "./ShareController";      BHfile:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/index.tsxR  "use client";
+
+import React, { useState, useEffect } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+
+import AudioOrchestrator from "./AudioOrchestrator";
+import BackgroundEffects from "./BackgroundEffects";
+import LoadingExperience from "./LoadingExperience";
+import SectionPipeline from "./SectionPipeline";
+import TemplateFrame from "./TemplateFrame";
+import ScrollController from "./ScrollController";
+import ShareController from "./ShareController";
+
+interface LegacyOrchestratorProps {
+  themeId: string;
+  onBackToHub: () => void;
+  particlesComponent?: React.ComponentType<any>;
+  themeBgClass?: string;
+  loadingTitle?: string;
+  loadingSubtitle?: string;
+}
+
+export default function LegacyOrchestrator({
+  themeId,
+  onBackToHub,
+  particlesComponent,
+  themeBgClass = "bg-stone-900",
+  loadingTitle = "Invitation",
+  loadingSubtitle = "Celebrating Love"
+}: LegacyOrchestratorProps) {
+  const { invitationData } = useInvitationData();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (invitationData) {
+      const timer = setTimeout(() => setLoading(false), 1200);
+      return () => clearTimeout(timer);
+    }
+  }, [invitationData]);
+
+  if (!invitationData) return null;
+
+  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+  const invitation = isWrapped ? (invitationData as any).config : invitationData;
+  const sectionOrder = invitation.sectionOrder || [];
+
+  return (
+    <ScrollController>
+      <TemplateFrame themeBgClass={themeBgClass} onBackToHub={onBackToHub}>
+        {/* Loading overlay screen */}
+        <LoadingExperience loading={loading} title={loadingTitle} subtitle={loadingSubtitle} />
+
+        {/* Particles canvas */}
+        <BackgroundEffects
+          showParticles={invitation.themeSettings?.showParticles}
+          particlesComponent={particlesComponent}
+        />
+
+        {/* Audio background playback */}
+        <AudioOrchestrator
+          musicFile={invitation.music?.file}
+          musicEnabled={invitation.music?.enabled}
+        />
+
+        {/* Share buttons */}
+        <ShareController />
+
+        {/* Sections pipeline render block */}
+        <SectionPipeline
+          sectionOrder={sectionOrder}
+          invitation={invitation}
+          themeId={themeId}
+        />
+      </TemplateFrame>
+    </ScrollController>
+  );
+}
+export { default as AudioOrchestrator } from "./AudioOrchestrator";
+export { default as BackgroundEffects } from "./BackgroundEffects";
+export { default as LoadingExperience } from "./LoadingExperience";
+export { default as SectionPipeline } from "./SectionPipeline";
+export { default as TemplateFrame } from "./TemplateFrame";
+export { default as ScrollController } from "./ScrollController";
+export { default as ShareController } from "./ShareController";
+  j  
+  
+Eimport { useInvitationData } from "../context/InvitationDataContext"; Himport { useInvitationData } from "../../context/InvitationDataContext";0 8 (   /Fix relative import path for useInvitationData.    k k                                                                                                                          3 P      ~     `   
+               2             X  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+               2             X  b$b2e0 ~ O      z H    @   
+           r  "  
+ wvdlrbug  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running Next.js production build verification check"}:     
+    M2  
+]              n       HH` g  *}   B e f z $j&   6#    X o'  7q < #  Q
+  (7   | j F      > < R   P  [ M     F X      b
+`c c  <*J :
+ o ~ r O :   5Aw N `    J  { l  Z  Km    :'m  &  b      
+5  Th s  A   y    |a$ B 6  %  h2 zgy    &	^      iz &lX'r   Z;f ?[    g    t.    !  C |       C +[w   6 J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    0  6
+                 
+  	              
+                   3Running Next.js production build verification check   Test Next.js build                 
+ 
+ command npm run build  
+.d2c79442-9bab-465c-a40a-56c20332cbe2/task-1231 {file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1231.log"npm run build(     *  
+           r  "  
+ wvdlrbug  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running Next.js production build verification check"}:     
+    M2  
+]              n       HH` g  *}   B e f z $j&   6#    X o'  7q < #  Q
+  (7   | j F      > < R   P  [ M     F X      b
+`c c  <*J :
+ o ~ r O :   5Aw N `    J  { l  Z  Km    :'m  &  b      
+5  Th s  A   y    |a$ B 6  %  h2 zgy    &	^      iz &lX'r   Z;f ?[    g    t.    !  C |       C +[w   6 J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    0  6
+                 
+  	              
+                   3Running Next.js production build verification check   Test Next.js build                 <  9
+ 
+ command npm run build  npm run  * Test Next.js build     
+ 
+ command npm run build   	  
+<  9
+ 
+ command npm run build  npm run  * Test Next.js build B
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	     " 
+ command(npm run) 	  
+.d2c79442-9bab-465c-a40a-56c20332cbe2/task-1231 {file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1231.log"npm run build(       c:\Users\Admin\Ahvaanam` N    
+  
+> ahvaanam@0.1.0 build
+> node scripts/validate-manifests.js && next build
+
+Auditing registered section manifests against canonical schema...
+    All section manifests are valid and follow the canonical schema!
+    Next.js 16.2.9 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+    Compiled successfully in 13.7s
+  Running TypeScript ...
+  Finished TypeScript in 10.5s ...
+  Collecting page data using 7 worke 	 O      : H        
+           r  "  
+ wvdlrbug  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running Next.js production build verification check"}:     
+    M2  
+]              n       HH` g  *}   B e f z $j&   6#    X o'  7q < #  Q
+  (7   | j F      > < R   P  [ M     F X      b
+`c c  <*J :
+ o ~ r O :   5Aw N `    J  { l  Z  Km    :'m  &  b      
+5  Th s  A   y    |a$ B 6  %  h2 zgy    &	^      iz &lX'r   Z;f ?[    g    t.    !  C |       C +[w   6 J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2                          2:G$      ~       ;Xt GB | J    Um   	?    51x  m : >     :   W  '  w` ((iaG6    q     Xu)    (  8} h XA ^ j   = j       R  u rA  d^  7 ^  prj .   w F 22      i   [  P           oV:  9 &  "  y  c )   {:f  C     \Py x!    { -        5    8q l  7 y  DP #     _           "    $          s I     g3y   	   xA            #    "   O 9u]  *  :I @Ar   2 I}   />c   Q /  
+
+      0 ]  >    G    xY-S  hY   yW*/7 `~ ntG       l 2 %^  p   7  h2  ;   0   #   9! ego  @ ,*E a  aI `;$s  vf1Y#.      "      ZQ\         \ .  < WNz  j 	  o  U(p F s.    / K H  Vu}  r   9 ` r< *@
+Y{ x  pj: o       0p    q e9  S         ?o	T    I s i  }V  .K ;T; 1]mQ [       I %   ]Y   v <Y i  G4    \ 4| B  &E\    \    "!   l    SHOe  R     (     D.)  R     c   ^J  SLE  2  {l   i  |tkX     >   @    TZu   }  8vL  ;/Pb ZRxOBf  6  {  7Mb U  a u >E 6  [     h        7 R    c  AJB   -h  1w    v   	' %X  B  $     l  b     h   ~s<    G1 3 $  a  l    Vn        d   5 Lb 0  |7/n2+ T   7B    O3    $  k   A    A   
+ ?   y 0 }9  pB Qb k D HcS3       .?e4   KP m       +  & K0n 4(,5          F(c}x s lNe= f       Z    z .    @  5l r  d* z    T   ] (                 %^E$ b  l> y \ gM >B  ]L    +E     ; h        \|m U       #=NY     	"     RC    q   :^   T  @\'TE  @    Id    M  i<_ x )( W   F  :        : ?     i   E",      [  $     t-h  Y   B  ' ,   P  @                   T    6> :1]    %/cy  Sz M  JPd  = #O   ~ c       sr   mI  rx;M   ]      p  r N *;B ]  O);     	:+ : d  0z+`  J3!X3   '  Rv  HQ  % &4y/    o CU   [y   s{ X lY] $    J  c<  $   D     42D R c      L                   l  / # [sS n       ;   ,I  
+t   6 /   8T <_     y   K  
+  }  1    	  W/a  	\ 6     uh a   R m :0       A %N o 9  J list_dir     g   SCreated At: 2026-07-12T14:19:05Z
+Completed At: 2026-07-12T14:19:05Z
+Empty directory !: cpt5ps84      5
+(bot-f21fa5cb-44fb-4a0c-b7c7-7941e51dc658     I will view `scratch/real_renderer_candidate_3.tsx` (Candidate 3) to see its content and check if it is indeed the start of the composition renderer.  2 ,
+ btqll2xj 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\scratch\\real_renderer_candidate_3.tsx","StartLine":1,"toolAction":"View real_renderer_candidate_3","toolSummary":"Reading candidate 3 code to check if it's the start of CompositionRenderer"}: *  *
+ *  M2  x o  3F      K l  H   
+  %  L am  ) %T  ^2d     s<        J D
+ &  H   hC   a l   s'@  *T Z  i U       j  LhH     |    KV  V>   |
+R          o~   n\ F   J   T,  .     b :    h   , |i    (B  E&  4B  {v 9m9   @  i: |   {* FGi   u1   is    6  D    z      r t C7 t+  Q2<vv [   y  | _F	 9         B  u u *[ J } + V        k ll  y    i l     p ? _  4  d9-   P  pI_            J    q,    "  P1X  84    | z   G}      C 39 7   $  w       Z "7"kp     1C    7: m}    X< ~o     $     NV4Fg2qin Z Q}          ) 
+8 RitXDr  $   @* L      M     +  q j     
+   + (  . 4   $g{         G    [>J Y   >     )    e   r      vz5 F  {]8!     }  +	bce =U            KN o    [ r '   &Q  P ~  ~ I  (%%k/V } 5*E"     5 $  q   w  #       e    C!j   Pie3"      B v= Q G          \cKkk    1 D ?      "b ] h  w x  T  G   $    6   O.# e% .;W     j     D 7   	 ?  Qw c`     %"R ]        % ,I   BU)   2 I  G"      unLdA $ e,   *   :  4  +          ;= qM  {x   S ]    +               s A 5>0     "0 !             0  C& 5tg  Y 2   e5  Jy B  B    hZ w       C O  HiD Z[     8/P n 0 < 7Rg0   
+   T  #      z'        T  )  I ~ 0 U  UD_U  gP  	K       
+Y    x<k
+      >g   I  kl  K  \ :o ,            5D         p   N     h  8  $ M - d  kI    ]  K((      g O4 u 	    M ' _    B       Xy T`    .H)w    #7    bb Vi}3 F            B  V3a  / R  M17  1+ .  J  teJ\ E | "  V  &/   jOA 7 u WO b  hq  \# S  C     _u 
+ o  (W r      ?!        A1h    i} 1 (a  Z  A   k   J  pc     u . }t ( Z     8  D]    D             vL? J     R DK !Y c _  b]     mW   un  3{        B* '  8X      <     8 W TP R h  ` { k w  BC 	 pv  x   *w  b   >c   <9  e  
+y  Hd    UZ    -.H     #y   .   #[      u nIdI  [I "w (m:3 f    S        ]        \'  d        VT <SC  2     *   '  Q f   Ed   S 2   _ G#}EH    ]=  m     4   c,|z?vidE u  
+-  ~J  \      p   Q  c K    + ?'  #Q38 o _- r t                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     

@@ -1,0 +1,1 @@
+I will view the restored `app/page.tsx` to see what was in the Initial commit of the application and verify if it represents the correct stable state.

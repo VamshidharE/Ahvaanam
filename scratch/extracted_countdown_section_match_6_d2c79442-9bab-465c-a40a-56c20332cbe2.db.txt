@@ -1,0 +1,114 @@
+use client\";\n\nimport React, { useEffect, useState } from \"react\";\n\ninterface CountdownSectionProps {\n  bindings: {\n    title?: string;\n    targetDate?: string;\n    postWeddingMessage?: string;\n  };\n}\n\nexport default function CountdownSection({ bindings }: CountdownSectionProps) {\n  const { \n    title = \"Party Countdown\", \n    targetDate = \"2026-12-14T19:00:00\", \n    postWeddingMessage = \"The Celebration has begun!\" \n  } = bindings;\n\n  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });\n  const [isPassed, setIsPassed] = useState(false);\n\n  useEffect(() =\u003e {\n    if (!t       P      z         
+               2           .X  b$bc3033ce-468a-4103-a22f-54c2f03f835ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+               .    *  
+               2           .X  b$bc3033ce-468a-4103-a22f-54c2f03f835ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+               .    
+  I will create the Countdown layout component file at `components/sections/countdown/index.tsx`. This encapsulates the Muhurtham countdown calculation and rendering logic.   **Examining Countdown Code**
+
+I've been looking into the countdown implementation, specifically `components/sections/countdown/index.tsx`. I see the `timeLeft` state is managed using `useState`, with days, hours, minutes, and seconds. It's also worth noting the use of the countdown code in `layout.tsx`.
+
+
+2(bot-b6c9b1f5-89f8-4181-be76-746718808b50B  I will create the Countdown layout component file at `components/sections/countdown/index.tsx`. This encapsulates the Muhurtham countdown calculation and rendering logic.Z      `  & A      B         
+           e  "  
+ wdpmlt5q write_to_file   {"CodeContent":"\"use client\";\n\nimport React from \"react\";\nimport { motion } from \"framer-motion\";\n\ninterface CelebrantSectionProps {\n  bindings: {\n    name?: string;\n    age?: number;\n  };\n}\n\nexport default function CelebrantSection({ bindings }: CelebrantSectionProps) {\n  const { name = \"Celebrant Name\", age = 25 } = bindings;\n\n  return (\n    \u003csection className=\"py-24 px-6 max-w-5xl mx-auto border-b border-white/5 text-center select-none\"\u003e\n      \u003cdiv className=\"space-y-12\"\u003e\n        \u003cdiv className=\"max-w-2xl mx-auto space-y-3\"\u003e\n          \u003ch2 className=\"text-xs uppercase tracking-[3px] font-bold text-amber-400\"\u003eThe Celebrant\u003c/h2\u003e\n          \u003cp className=\"text-3xl md:text-4xl font-extrabold uppercase tracking-[0.5px]\"\u003eMeet the Birthday Star\u003c/p\u003e\n        \u003c/div\u003e\n\n        \u003cdiv className=\"bg-white/[0.02] border border-white/5 p-8 md:p-12 rounded-3xl max-w-xl mx-auto space-y-6\"\u003e\n          \u003cdiv className=\"w-32 h-32 mx-auto rounded-full bg-gradient-to-tr from-amber-400 to-purple-600 p-1\"\u003e\n            \u003cdiv className=\"w-full h-full rounded-full bg-[#130B1E] flex items-center justify-center text-4xl\"\u003e\n                  \n            \u003c/div\u003e\n          \u003c/div\u003e\n          \u003cdiv className=\"space-y-2\"\u003e\n            \u003ch3 className=\"text-2xl font-bold\"\u003e{name}\u003c/h3\u003e\n            \u003cp className=\"text-xs uppercase tracking-[2px] font-bold text-purple-400\"\u003eTurning {age} Years Young\u003c/p\u003e\n          \u003c/div\u003e\n                  \u003cp className=\"text-xs text-white/50 max-w-md mx-auto leading-relaxed font-sans font-medium\"\u003e\n            Join us as we raise a toast to another year of accomplishments, laughter, and beautiful memories!\n          \u003c/p\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n    \u003c/section\u003e\n  );\n}\n","Description":"Create celebrant visual layout index.tsx","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\celebrant\\index.tsx","toolAction":"Create celebrant layout","toolSummary":"Creating React celebrant layout component in components/sections/celebrant/index.tsx"}:     
+    M2 2       Tl  Bv ?5I g  9c7   z+Q   o ?      ! (R   ~ 3C    }/ q  I W)B       s0\K  -E5  d       m     m  iM     ] b     ?% ,A   |uJ y         >  3   X  tr ;   K  $ Y>  vD    )  w    M ;  eb     J :  a    3       q   > w J  Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$bc3033ce-468a-4103-a22f-54c2f03f835ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   TCreating React celebrant layout component in components/sections/celebrant/index.tsx   Create celebrant layout                   *  
+           e  "  
+ wdpmlt5q write_to_file   {"CodeContent":"\"use client\";\n\nimport React from \"react\";\nimport { motion } from \"framer-motion\";\n\ninterface CelebrantSectionProps {\n  bindings: {\n    name?: string;\n    age?: number;\n  };\n}\n\nexport default function CelebrantSection({ bindings }: CelebrantSectionProps) {\n  const { name = \"Celebrant Name\", age = 25 } = bindings;\n\n  return (\n    \u003csection className=\"py-24 px-6 max-w-5xl mx-auto border-b border-white/5 text-center select-none\"\u003e\n      \u003cdiv className=\"space-y-12\"\u003e\n        \u003cdiv className=\"max-w-2xl mx-auto space-y-3\"\u003e\n          \u003ch2 className=\"text-xs uppercase tracking-[3px] font-bold text-amber-400\"\u003eThe Celebrant\u003c/h2\u003e\n          \u003cp className=\"text-3xl md:text-4xl font-extrabold uppercase tracking-[0.5px]\"\u003eMeet the Birthday Star\u003c/p\u003e\n        \u003c/div\u003e\n\n        \u003cdiv className=\"bg-white/[0.02] border border-white/5 p-8 md:p-12 rounded-3xl max-w-xl mx-auto space-y-6\"\u003e\n          \u003cdiv className=\"w-32 h-32 mx-auto rounded-full bg-gradient-to-tr from-amber-400 to-purple-600 p-1\"\u003e\n            \u003cdiv className=\"w-full h-full rounded-full bg-[#130B1E] flex items-center justify-center text-4xl\"\u003e\n                  \n            \u003c/div\u003e\n          \u003c/div\u003e\n          \u003cdiv className=\"space-y-2\"\u003e\n            \u003ch3 className=\"text-2xl font-bold\"\u003e{name}\u003c/h3\u003e\n            \u003cp className=\"text-xs uppercase tracking-[2px] font-bold text-purple-400\"\u003eTurning {age} Years Young\u003c/p\u003e\n          \u003c/div\u003e\n          \u003cp className=\"text-xs text-white/50 max-w-md mx-auto leading-relaxed font-sans font-medium\"\u003e\n            Join us as we raise a toast to another year of accomplishments, laughter, and beautiful memories!\n          \u003c/p\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n    \u003c/section\u003e\n  );\n}\n","Description":"Create celebrant visual layout index.tsx","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\celebrant\\index.tsx","toolAction":"Create celebrant layout","toolSummary":"Creating React celebrant layout component in components/sections/celebrant/index.tsx"}:     
+    M2 2       Tl  Bv ?5I g  9c7   z+Q   o ?      ! (R   ~ 3C    }/ q  I W)B       s0\K  -E5  d       m     m  iM     ] b     ?% ,A   |uJ y         >  3   X  tr ;   K  $ Y>  vD    )  w    M ;  eb     J :  a    3       q   > w J  Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$bc3033ce-468a-4103-a22f-54c2f03f835ej          R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   TCreating React celebrant layout component in components/sections/celebrant/index.tsx   Create celebrant layout               R  
+     
+  "use client";
+
+import React from "react";
+import { motion } from "framer-motion";
+
+interface CelebrantSectionProps {
+  bindings: {
+    name?: string;
+    age?: number;
+  };
+}
+
+export default function CelebrantSection({ bindings }: CelebrantSectionProps) {
+  const { name = "Celebrant Name", age = 25 } = bindings;
+
+  return (
+    <section className="py-24 px-6 max-w-5xl mx-auto border-b border-white/5 text-center select-none">
+      <div className="space-y-12">
+        <div className="max-w-2xl mx-auto space-y-3">
+          <h2 className="text-xs uppercase tracking-[3px] font-bold text-amber-400">The Celebrant</h2>
+          <p className="text-3xl md:text-4xl font-extrabold uppercase tracking-[0.5px]">Meet the Birthday Star</p>
+        </div>
+
+        <div className="bg-white/[0.02] border border-white/5 p-8 md:p-12 rounded-3xl max-w-xl mx-auto space-y-6">
+          <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-tr from-amber-400 to-purple-600 p-1">
+            <div className="w-full h-full rounded-full bg-[#130B1E] flex items-center justify-center text-4xl">
+                  
+            </div>
+          </div>
+          <div className="space-y-2">
+            <h3 className="text-2xl font-bold">{name}</h3>
+            <p className="text-xs uppercase tracking-[2px] font-bold text-purple-400">Turning {age} Years Young</p>
+          </div>
+          <p className="text-xs text-white/50 max-w-md mx-auto leading-relaxed font-sans font-medium">
+            Join us as we raise a toast to another year of accomplishments, laughter, and beautiful memories!
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+   *Gfile:///c:/Users/Admin/Ahvaanam/components/sections/celebrant/index.tsx2J
+ file:///c:/Users/Admin/Ahvaanam 'components/sections/celebrant/index.tsx     
+          
+"use client";        
+ import React from "react";   +
+'import { motion } from "framer-motion";       %
+!interface CelebrantSectionProps {    
+  bindings: {    
+     name?: string;    
+     age?: number;    
+   };    
+ }       S
+Oexport default function CelebrantSection({ bindings }: CelebrantSectionProps) {   =
+9  const { name = "Celebrant Name", age = 25 } = bindings;        
+
+  return (   j
+f    <section className="py-24 px-6 max-w-5xl mx-auto border-b border-white/5 text-center select-none">   &
+"      <div className="space-y-12">   9
+5        <div className="max-w-2xl mx-auto space-y-3">   j
+f          <h2 className="text-xs uppercase tracking-[3px] font-bold text-amber-400">The Celebrant</h2>   v
+r          <p className="text-3xl md:text-4xl font-extrabold uppercase tracking-[0.5px]">Meet the Birthday Star</p>    
+         </div>       v
+r        <div className="bg-white/[0.02] border border-white/5 p-8 md:p-12 rounded-3xl max-w-xl mx-auto space-y-6">   q
+m          <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-tr from-amber-400 to-purple-600 p-1">   s
+o            <div className="w-full h-full rounded-full bg-[#130B1E] flex items-center justify-center text-4xl">    
+                       
+             </div>    
+           </div>   )
+%          <div className="space-y-2">   >
+:            <h3 className="text-2xl font-bold">{name}</h3>   w
+s            <p className="text-xs uppercase tracking-[2px] font-bold text-purple-400">Turning {age} Years Young</p>    
+           </div>   j
+f          <p className="text-xs text-white/50 max-w-md mx-auto leading-relaxed font-sans font-medium">   q
+m            Join us as we raise a toast to another year of accomplishments, laughter, and beautiful memories!    
+           </p>    
+         </div>    
+       </div>    
+     </section>    
+   );    
+ }      BGfile:///c:/Users/Admin/Ahvaanam/components/sections/celebrant/index.tsxX     (Create celebrant visual layout index.tsx    ot-5a3e316c-cf13-49e2-a5ab-d2631486d73e: ^
+ 7ytm0kuq write_to_file  2{"CodeContent":"import { CompositionSchema, SectionData } from \"./types\";\n\nexport function getWeddingComposition(config: any): CompositionSchema {\n  const sectionsOrder = config.sectionOrder || [\n    \"hero\", \"couple\", \"countdown\", \"events\", \"stor

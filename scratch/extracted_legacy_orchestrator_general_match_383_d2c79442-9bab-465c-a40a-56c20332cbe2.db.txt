@@ -1,0 +1,162 @@
+    0  b	2# .h  h       o       =  s :0 	        =      Q 9S     H(    n )e l H  r 7\   q  F  g` Jwrite_to_fileB  I will create a reusable shared legacy orchestrator component at `components/shared/LegacyOrchestrator.tsx` to centralize all legacy rendering, particles background canvas, audio triggers, and navigation. This removes duplicate date parsing, RSVP, countdown, and gallery code from all individual template layouts.Z         `      X  X [                                                                                y x      x     r   
+           @  2           LX  b$4b6055c1-1edd-4072-9733-cb036d432e2ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+               L    *  
+           @  2           LX  b$4b6055c1-1edd-4072-9733-cb036d432e2ej      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+               L    
+  I will view lines 570 to 670 of `app/admin/[id]/ClientEditor.tsx` to inspect how the couple settings panel binds its form values.2(bot-8ecef821-a2a1-4390-9ac2-ae365d0875fc:  
+ 4fjqtt8x 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\app\\admin\\\\[id]\\ClientEditor.tsx","EndLine":670,"StartLine":570,"toolAction":"View ClientEditor.tsx Couple inputs","toolSummary":"Reading couple input fields in editor client component"}:     
+    M2 q   }   QP u !nt  L     L  zs      *v          p  
+)H  P         2    Y }  P )  
+   ^N?k  m  [     	     ,  |P{"   ;j dm   y \ +  1     ?9    > p  ?Q   
+ 	   &
+]     y _            p9i  6         @"+ F= N      V 	  z  C 1   O ' S y    f  8    "   X% J    5 ,   a   (L{a&  }16 s]     ~  tJ	view_fileB  I will view lines 570 to 670 of `app/admin/[id]/ClientEditor.tsx` to inspect how the couple settings panel binds its form values.`    w            0   
+               "  
+ i5k65k1m  grep_search   {"CaseInsensitive":false,"IsRegex":false,"MatchPerLine":true,"Query":"couple.bride.name","SearchPath":"c:\\Users\\Admin\\Ahvaanam\\app\\admin\\\\[id]","toolAction":"Search for bride binding form","toolSummary":"Searching for bride form fields in editor client component"}:     
+    M2 ,  	 BPY   j  GN    ! '  ~   Lo Cz go;y   V   Y  $X       O       X   ]9  "~  SW q     =7 ]vD     c ( |   1g?(X >h         `{   xa  q    y     	  U/    _     s   :, C X     9   #S  y  }nl   K   {5  \ Q -       pEn   9  4@      +  b  x)
+    R /sT   M9X    s)  b7     H  g   \  E  Q      _  M'   C%/ {       f>  T  "\ g+6   & U      \"  U TQ& f $# U      Bq 6     dd   * D    N z ; S -GP         ^p     ^z    ? X 1       j4   # n  Qz ^ ^ m  zh   .~   45  p   k $    t  Jq     [?E    )   E p-  j    ~   ba   p     
+?*v  "[B,b n   8   , 5m '  O 4    1     YS+p i )`%D  QT   WA    X 1 sa3 j  OR  # ]D A    KH>7          mAr)  j-V #  , 9
+>Fm      N}  a  S  +  u]d   D{   w
+s  ^ Wy ,   |  R  w  e qd  T  \ r d, Y { M.    % I %    *& (  < (   c  t  5|  <           o @ v )  n ) w<+6 + &    |    g   ]   )^         -BzK  4     C      f J {  u EH#   BtEvQ   *    /`   V GH* s  d| I      l ;  !   S  v-  w 9 )     >   a 3 '  lxox ( R ' YS  q f  "   iqVy \  @l& J 9X:  m6  pBsg(    }    
+n   )     'X  Bt   n  n "      j!    e          ]  n       g  $ b%Y .      q    ` < { Zf@       Fa = 4 G  cp~ %P0- c    S  b4
+   T2  0     6 E% YF  ze   Z lSNZn\5?r    9 v k   g  (*  W]  k ^X   
+I]Y  h        8   Z  	  K       ? $aPh A;   [  glG   `    H/ e    H         k 	#_ C/   ? *Q   0 v  9  < 6   }&U     g <)u `     zr       " $        B QB]0 +RC*  ; | r  1  % O d  =` _ !o ]       u Qa      ]`j   ^ ?_ S 
+kvg / Y SP li  P $   ,L  1D      { H $T mD     K^ 7      u      M >8  n5z   68 *  s 	   S  ^  j " &  iy  'o.  >  xU4  g^ c  >.-V1  RMa     F    W ! a # _ b6>u    ]       D 0oo+        ;   U ez   B    0
+e    p  Ijq    ?. W B4W          x  >  q Q  ) > 40H   X  0 Lv^' &  L    gR A^  Hd 2 Sb     D   [ $ br   C      I    T   J   |   +S(    5(0    n5  8I         l   R  "    } @   {s2    ^~Y$~W   i CVT _  _ q <6 O  y      5 9  _ 0    K- u6  b   c      K(4   93   |L\     < c3Z =;2YR <  0Ue >  F M [U          % lJ  H J-      q&C  -  T   ZEO m     U+ D  Ov  }   N     %  U^    V   .    "i    ^  s } '#.  9 9  #    T*j   U   h )      P          - ` ec\ K'  H\ t/% i        ) ,4 !b D G4z    J   0qpF    a &   [ Hx  ( M _5 dB          ' f   h  C   S  8< Y   >D }  *   L        [        r 8A" [~   c       S k   Wd   5  & < } =  f  <dH   , =N  R>    <  ^B1 I      7)*+Z D     ; :    a    ^   ^J grep_search* CaseInsensitive* IsRegex* MatchPerLine* Query*
+SearchPath*
+toolAction* toolSumm   F   IegacyOrchestrator.tsx","toolAction":"Create LegacyOrchestrator.tsx","toolSummary":"Creating central legacy components orchestrator in components/shared/LegacyOrchestrator.tsx"}: ;  ;
+ ;  M2 l        P  #    O E   d  	 =*L%  h `sv ; G  x+    E:  E     gh* nS </  { d, 	m      I   	 # W   -n Z^ ! g    2 0 #T   t      a        ^ a- 5  ]K    :  :*(       3j   c  !  )Zl9    +   K  (B   Ns  % U   )5lXbD % |]    n  -W  ] S  VWr zWoY3-|  e S  gfG^     FT    A            I\ } d l     l 	/ 7L  E   4  x_         Ix  xm ?   b   8o_  l   t   7/        6  `]  I<  4  @   .    e   X1H  t    kG  Cx
+   -. ^,        - a
+j    o  r} gBL)        ' rv`          N ` c*  @ uKeO  	A  n N  8 b           i R  U   [#b@r    6 by    ,Z   T o9?    NdY w #   V   vm   7p  ?(<  H7 >RT    j3C  :7 i$ - ;    o _F     A  !xj    2    _G  { ;   :  Q /    +i? y % <0 HhD  [L   O   "   :    A{WuB 8N>*K Q*5^       s]     
+  `4T^<        O  >|  =      '   h     h   xU vA  P  9#  1    $:  w  1_D( <  ) #,  M ;    mG    G -yO    8  (R /k     0k   J $ s o  ]" K       V,q FJg: h < > {g   p Zz/ w- $    w #   EWW(  S 3       L   m  cn   0    {    L \     Q     B    0    S1[M zm >  V G     F    Fh       z       F     ] #   	   #     3 D   ] j| , =XO9 - E     PK   M S         R     b ; 4?q! z vZ{   78G      J   A{Am    k         @  J      =  y   S ~ ( w  0      q  3  -      :  .  Ce  I  E   {9              R     )k  v  L  8 g#  s        cde#X(E  7   9   y  Ga *    u   r        G  T 1    - f9     "^bJJ       Xu     UF  O  h    ^W  a> %&  6  5%  lNXo ]1cF K +  05  y   : \ 35   ?$      H     & X     n  $! PI  tvL  G h    {gB  :      o  ' m 1\   s J   U   n g EF  }   Y$ 3 <!   f     q   L S   M ] 4     n" & ( q}   j$+  `    $ -p  BU  c ] K  tS:      S    6    
+^&      , Uo G    ItV  6 B      r      i    C   6 g 43        |N] u    . 	M o      OV     Kn `G )s    _%         P !9         ti     q            Ad [L!  W O
+         G  )    \  a        -P 3  V  p2 R4    i    1  5"F  =dm     Ls      (K    c  >   oPf   o   Le   aXL   6F  S QK   #      r&P -/    k     >\   OKF    B	   4     f*  g &H  ^3   qCu {  !      	T^       HjZ W _  
+T     "8h  {I]      } 9:  D     L B    /      vc;     t}   )ZC   ]7 IQ  ,   [l <      N  $     (q 9:  g  [ n W""lC           =9  u sX    -     + 4 e K   's eb-l    ~ r        M  @X(    T X  x 2|T  h  [    "  1f     ^     3U   < + m w  <  r, GT2 OOr  A     v dD  4 F A oT      u% & :j s  ^on      = 2 *  G 0  wc k25n  X en      
+  6 n y   qY RO{ h+ u  $ < B0 _/"e    H         h`   n $  KY,Pf _^    ?Bp -V  m     Qs   ' d   oP(@4k        Uk   )     uT      ! 1      & :    #	r   dl 7a   1  #   V   /& !  ~ T+   @r_   /d *  ;    #   N   `(   z  u     $q 2   }l @vP]d ; u    OF   fAZd X   U:$  j[ `=  /   ^    $ t N  " . L W    Ym d  9 "   s     _(.gm    Q       d    B    o      yGQ >  D^ .    YomE \ ;  ZX    %  bs   :    m 9h {  a  l}         SiKe# "+ r lE  2XNW   , | '      J   ) 8H  "       {   0   c Vn        & '      2     	 n A' x8]x
++  S M\Sc	    {*    m   
+N N   F     &/ 0     W V  f   o      z     4P S Y   B  	q     }Wf      LZ   Z    & 8| - ,    u )4  [  0  I1    U     % 6S & Hn      8#    %GZ}    
+ W> '-   !     !C         Pg h        ! CW JT    Y 1    ". P     g  b ( y m  ||   bip _0 & ]>;] P |  __  E 2Xz    |    0a 5     F k F   	Rj     uc   _  B(   i 2         B-=  h-    [ voqx L    S K    9  	    ; bd  	   UU,  uo)   7   z    	   V e  y&f^   /        l E  7 * hkm L7   h w   i \   h        	>'fL   { x    	     h4_ D .    W.\    \ c8 .Q  	 Y	   m    z    C  d); U         ^    s  	  (4  5   |!\] j  =    F  F8  W  &   y6 u  Z  ,n *  7 xYiLEy u 
+     &V    "Rrt      zr i
+ , i 0 S K	?71Ng   J]y @  V  Mk t c @;"  ; ! i^  6       X   ;   a G  s   v   M       H T     .{  L   T   `n3 R @    a   m       b        z   6 )  Y     \ eM    9 e bM  . '  Bi  P  } z  J  z9 b    /1     MM     F  {   m _ 5 .G@kT{	 Yd  f  n   ~       E g  R ;  V      / N B t   c  e  Qp #  /    I l<  6  n   % r )U    S     P%3+  5       L#&Hx 3e- G3  i  /]o    >    U  I ?&O  U g       ^ 1    ]B16    y j    ] kX  `    2&    >zv  c ? m O &i              J z) 7 #  j      {    M            R   
+ 	
+ 	
+aInject HousewarmingPremiumLayout import and add case handlers matching the 10 theme/template IDs.  @ J  
+bimport PremiumBirthdayTemplateLayout from "../../../components/templates/birthday-premium/Layout";   import PremiumBirthdayTemplateLayout from "../../../components/templates/birthday-premium/Layout";
+import HousewarmingPremiumLayout from "../../../components/templates/housewarming-premium/Layout";0 8 J  
+            case "rosegold":
+          case "artdeco":
+          case "botanical":
+            return <PremiumBirthdayTemplateLayout onBackToHub={dummyBack} />;             case "rosegold":
+          case "artdeco":
+          case "botanical":
+            return <PremiumBirthdayTemplateLayout onBackToHub={dummyBack} />;
+          case "divine-griha":
+          case "modern-nest":
+          case "royal-palace":
+          case "emerald-estate":
+          case "classic-ivory":
+          case "constellation-navy":
+          case "warm-terracotta":
+          case "glassmorphic-oasis":
+          case "rosegold-manor":
+          case "botanical-garden":
+            return <HousewarmingPremiumLayout onBackToHub={dummyBack} />;0  8  "}*=file:///c:/Users/Admin/Ahvaanam/app/invites/%5Bid%5D/page.tsx2<
+ file:///c:/Users/Admin/Ahvaanam  app/invites/[id]/page.tsx    
+                
+"use client";       D
+@import React, { use, useState, useEffect, useRef } from "react";   r
+nimport { InvitationDataProvider, useInvitationData } from "../../../components/context/InvitationDataContext";   Q
+Mimport RsvpSubmissionForm from "../../../components/rsvp/RsvpSubmissionForm";   <
+8import { motion, AnimatePresence } from "framer-motion";     
+  import { Home, Calendar, Image as ImageIcon, MapPin, MessageCircle, Share2, ArrowUp, Volume2, VolumeX, Sparkles } from "lucide-react";       ,
+(// Import all 10 visual template layouts   V
+Rimport RoyalTempleLayout from "../../../components/templates/royal-temple/Layout";   X
+Timport FloralGardenLayout from "../../../components/templates/floral-garden/Layout";   a
+]import SouthIndianTraditionalLayout from "../../../components/templates/south-indian/Layout";   X
+Timport PalaceLuxuryLayout from "../../../components/templates/palace-luxury/Layout";   Z
+Vimport LotusSerenityLayout from "../../../components/templates/lotus-serenity/Layout";   O
+Kimport MarigoldLayout from "../../../components/templates/marigold/Layout";   M
+Iimport PeacockLayout from "../../../components/templates/peacock/Layout";   O
+Kimport HeritageLayout from "../../../components/templates/heritage/Layout";   Q
+Mimport MoonlightLayout from "../../../components/templates/moonlight/Layout";   V
+Rimport GrandMandapLayout from "../../../components/templates/grand-mandap/Layout";   \
+Ximport ModernBirthdayLayout from "../../../components/templates/modern-birthday/Layout";   f
+bimport PremiumBirthdayTemplateLayout from "../../../components/templates/birthday-premium/Layout";   f
+bimport HousewarmingPremiumLayout from "../../../components/templates/housewarming-premium/Layout";       @
+<function InviteContent({ clientId }: { clientId: string }) {   >
+:  const { invitationData, loading } = useInvitationData();        
+   // State controls   9
+5  const [showLoader, setShowLoader] = useState(true);   @
+<  const [rsvpSheetOpen, setRsvpSheetOpen] = useState(false);   @
+<  const [showBackToTop, setShowBackToTop] = useState(false);   >
+:  const [playingMusic, setPlayingMusic] = useState(false);   F
+B  const [showToast, setShowToast] = useState<string | null>(null);       6
+2  const audioRef = useRef<HTMLAudioElement>(null);        
+   useEffect(() => {   /
++    if (loading || !invitationData) return;       '
+#    // Fades out loader after delay   I
+E    const loaderTimer = setTimeout(() => setShowLoader(false), 2200);       .
+*    // Scroll listener for back-to-top FAB   $
+     const handleScroll = () => {   1
+-      setShowBackToTop(window.scrollY > 400);   
+
+     };   8
+4    window.addEventListener("scroll", handleScroll);        
+     // Analytics record view   (
+$    const recordView = async () => {    
+       try {      NN
+J        let visitorToken = localStorage.getItem("ahvaanam_visitor_token");    
+         if (!visitorToken) {   G
+C          if (typeof crypto !== "undefined" && crypto.randomUUID) {   3
+/            visitorToken = crypto.randomUUID();    
+           } else {   d
+`            visitorToken = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {   5
+1              const r = (Math.random() * 16) | 0,   8
+4                v = c === "x" ? r : (r & 0x3) | 0x8;   (
+$              return v.toString(16);    
+             });    
+           }   K
+G          localStorage.setItem("ahvaanam_visitor_token", visitorToken);   
+	        }       =
+9        await fetch(`/api/invitation/${clientId}/view`, {    
+           method: "POST",   >
+:          headers: { "Content-Type": "application/json" },   D
+@          body: JSON.stringify({ visitor_token: visitorToken }),    
+         });    
+       } catch (err) {   C
+?        console.error("Failed to record analytics view:", err);    
+       }   
+
+     };        
+     recordView();        
+     return () => {   $
+       clearTimeout(loaderTimer);   =
+9      window.removeEventListener("scroll", handleScroll);   
+
+     };   .
+*  }, [clientId, loading, invitationData]);       '
+#  if (loading || !invitationData) {    
+     return (   b
+^      <div className="min-h-screen bg-[#05020B] flex items-center justify-center text-center">   8
+4        <div className="flex flex-col items-center">     
+            <div className="w-12 h-12 border-2 border-yellow-500 border-t-transparent rounded-full animate-spin mb-4 animate-duration-[1s]" />     
+            <h2 className="text-[#C59B27] text-[10px] uppercase tracking-[3px] font-semibold animate-pulse">Loading Invitation</h2>    
+         </div>    
+       </div>   
+
+     );    
+   }       C
+?  const activeTheme = invitationData.themeId || "royal-temple";   !
+   const dummyBack = () => {};       !
+   const toggleMusic = () => {   &
+"    if (!audioRef.current) return;    
+     if (playingMusic) {   #
+       audioRef.current.pause();    
+     } else {   2
+.      audioRef.current.play().catch(() => {});   	
+     }   '
+#    setPlayingMusic(!playingMusic);    
+   };       '
+#  const handleShare = async () => {   B
+>    if (typeof navigator !== "un

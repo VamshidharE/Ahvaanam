@@ -1,0 +1,50 @@
+"use client"', idx);
+    if (startIdx === -1) {
+      startIdx = content.lastIndexOf('use client', idx);
+    }
+    if (startIdx === -1) startIdx = idx - 100;
+    
+    // Grab 6000 characters to make sure we get the full file
+    const slice = content.substring(startIdx, startIdx + 6000);
+    console.log(`  Preview of match [${matches}]:`);
+    console.log(slice.substring(0, 500));
+    console.log("------------------------");
+    
+    // Save to scratch
+    fs.writeFileSync(`scratch/composition_renderer_db_match_${matches}_${path.basename(filePath)}.txt`, slice);
+    idx += searchStr.length;
+  }
+}
+
+try {
+  extractFromBinary(dbPath);
+  extractFromBinary(walPath);
+} catch (err) {
+  console.error(err);
+}
+ {*:file:///c:/Users/Admin/Ahvaanam/scratch/extract_from_db.js2=
+ file:///c:/Users/Admin/Ahvaanam  scratch/extract_from_db.js        ?Refine SQLite search specifically for CompositionRenderer code.   I, KO rh 9  I3    y s    eK "%>   9'/ | Kh  fMB<  t Z   {  TB   <,     X,]< cR %    e  !12 K     /  N : tjH   ) YF K   qz    8        7 &^ qE Y     p\ 3  b  k    v    L    ., .e Xf e+1 l [ Jf?  3   u&    S - K 9  uZ      =V      ' B      #f a0     %b V   V   S 4@  }y p    7 L   S G P    =P vD&M  5  F  {1  6  ^ i     _     v  
+ 
+ 
+        =  d 
+    X C   d    h   !r2 Y   TX  O q            , c*    q  <    0   u f #P & F  \  `3  L l  3q&   Y     IDAT      kT    $    6 >  o  t Nr        N    TO[    AL d  <  ="n<  Q i  G   u      qV@        &h 7~E  1E + s   =\ 1L C   x   9  3 !S    .   M {  -  I   1  [}  v%[9     ,3 \ n4w  dXyf         A           d nr2   U\  X  1]L   )  a>  R V}  $     Z    
+ & 9 <  2+ " M  +z	    b  `w              %           `    O o L,[  Ve  6&     K* s)    -6ebH6'& 2   m,3  @   c   ! Y $ _ m8      7
+30   A# @   7  J 9xQS   V dQ> eJ x_  & I Sg   ` \   ]  
+  [ f      (    ;s        ] C   c  ?C  o S )  %fw  = -e x   t t t   
+X JuT     L `0 p   /  2r  A  j   @  Ym,3f   9 t C   aDq   Pv^ c .  c  Q+1 D.  P V/ i \F   M   r	!  '    ' !  +        	 B3c    P6   xt  %     i    G 9    
+ 
+ 
+ V   <6    Z  AF    d  2 e
+ h]#  ML       l 8 e   *       Ld: n ^       J
+c ~ &c5 ,  c+  L kA6 |   $  R2&?     P   O  U  8  (   r  A k|` a i ]   @` gs%   >d 1 ?   7c  ?@C *    8  Wh   2f    N KW@W@W |   	%  3     d %       V v  Y!     )  r+ 6 L.  p/0  r1  up^#  eC<T          &s r   6S%  N  Er   q    o= k  )t 3    ) l  r  3    D f  K q    z,dLOG l ? 	l`UPa    e  ; _  p+/=Z   ^+t    F}S     Lm--        7   x}{;ZQ     , @m[        p     h  Ayi):        h m    7  9  V[    n = v *h         ]     |   }  w   v        : Q         bC       n  '    R-c    BBp           Pvs !   Z_        # J  IX  2 lgb 9c H         "    v'           `U $I               1 Bj_ |  |N  u      1E$L   (        ,    	H  ]P   2  uSC       ce  MM   o    V  kk     cOa    *           w       6m S v           n L       r ~  y U    m    & 4w   
+    % x   (()  kw        ^X {      k     /  .      m k va   x  8p  u]      /     p /     }  ^\  E J i N< v;  < }[6 I C  B<  6             7`  # m   U   ;   }7 \   e   R   F<        5[    ~    k p   O   G 
+       b      ;`$     U  g=  k   j   k   Q  j  l?  7`    VT  {        Ex   x    m  {   6    wb   x    QX  Wn <[P|     	  k   m8X   [ b  }x   X       /  	 7   kv`     w   /  BI =  {    xa f ] 	      =      o Bi  5  Z   hW l(          "x   B  t  o  e x !          V { 9 1    }(    5 A @   $  J 6 9    *      AW y    e Y       n   q! fT =T    @  I      [ p  l     Il`      $V     6' q   d 2     1 I             1D    2      pl    'mm  t6T  ;  ]0 Gv  2 c  Ly p      mm h    u  ; v ::   P    E     (J  l    vD& ##1   tL M ;om +       
+	))      x     O  e  ^[    t zY 	HNOCB       o O   g/=   }   x       dL  E =hmi      Q   .       $  !:*
+   T56     ('Z*JP & Px     uE    |          ^    b \tT   j'VL Ba 0.#  v a   PSY   >8  tuvy    Z $    4j   y  L JD|    - 4 jFg         Y8    	)X8.	u  ww     k      k   Mk ")    %     	 h s   f" rwR   3  K 	wC5    ;:        k  b\  n } a 	      G     @Ye= L    * 9   s A      ]  U   B~S  F : o C/f @ "  G 9  DXr  L    "       !    h/> u  &  J    y @C       ;Q  G          0ss$  !B   &E9	  K     1      ^  2	ab    
+  mL f2  Gz    20*  0   g   H :U :    O}     $ @D "4  < Mt5   @D Lo PI *j    y       3 c 5"     IH hF [   G  oR  DQ  N ]fB   =     'e      4 =X  s `R  U  H H   8     (   \  )	q         v#5-    p \ N    Z   ,    1     Ww j[ 1fL&  g#1    DL     j 6  u s         de`LN: "m           L O    46 !.)        T  cr19'  /      l s     PE    f`  \D 1+/ WO AQm  NHCZZ"f    C 0uJ.      x{ . p G4fM  4    >\ t l X   G[/      lj =      T  _ e  F.5 Qq	 X    B       L                    g&c  x . B2 e    II     ) h    1    @   	y  P c   Hr Q\Z  j    n `     AR  Y 9 bn*  z    } 
+ )    B z    C7,c{B    D  7q QD`XC 37 <  D 5@ a   2       "  m   >c  2) @ 1? b   Zq      06  ]Z    &    vc    B , &$  LI`   G&     #C          0)0( s  d BJ R A:    9 r 6    Nl $    &     #X e  0 H| I% 9   [O   
+ !        C           G_Dt   	r@   [     1c*. `  g      A    r r `  	    ]BO 2 q  "q    p    9	+  Bvr     .     ?6    J+    I   |/ 7 SfL  Ii  f c  3v D\ x r2  t  ,   Lj   O   1k $, 5  fO y O GlJ   h   h.      A 5   L    p   07 hj . GN .^8 sg          j g  Eg    \         % 1e $\8=   O   X,_4  &ga     p2    ;        q    p $  	   c p L\ h:2 "I        3 `R6&L  K      I9   %   9f`     e  : lZ  K          Kf   y <y .\<  ' b  t$g ` 5p   9Sq   9m"V         es'#   .   )S' ^ `  <\v   7!  .   _  s  \ `:2      `    ;  '       y    DDt, \> |g`  y     s  / ' ]6)    8S*@O(  PoA  7C!DU 5    IDATH4     d  !  B    &   Un  `      Xg I !     ( ! pR N    { lR    gY c g  fp 0 ^ o       ! N[" 1& H    h!]   `G $3    3      < 4  
+'     FF+  ,  2 B  g  iTO v( pl  ) _ s.T@      B        ] 1fC  0      ;~ [ <8#S     # 3R  3
+ ]    #=+  d b    r z    K ,O(!o  @0    +q!  EM   [  [  c   !  {  I   0 LB   l!       	!H0      a, b 2  1'      T e    +K   $3  T/@r  [   #A k   Va  3    ,    A|=l       TL   2jj      aH     b ?    dl4sq>Mg[  0     ;"  } Z[ Q     i  >i
+9< ~   C  _   ~D&/    !|yC k  P } ] ]  
+  J  2  #o B  # 3 | e  

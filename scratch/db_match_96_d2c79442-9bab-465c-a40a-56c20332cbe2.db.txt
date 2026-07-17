@@ -1,0 +1,85 @@
+"use client";
+
+import React from "react";
+
+// Reusable section components
+import HeroSection from "../../sections/hero";
+import CoupleSection from "../../sections/couple";
+import CountdownSection from "../../sections/countdown";
+import StorySection from "../../sections/story";
+import EventsSection from "../../sections/events";
+import GallerySection from "../../sections/gallery";
+import VenueSection from "../../sections/venue";
+import FamiliesSection from "../../sections/families";
+import RSVPSection from "../../sections/rsvp";
+import FAQSection from "../../sections/faq";
+import DressCodeSection from "../../sections/dressCode";
+import FooterSection from "../../sections/footer";
+import CelebrantSection from "../../sections/celebrant";
+import HouseDetailsSection from "../../sections/houseDetails";
+import OwnersSection from "../../sections/owners";
+
+interface SectionPipelineProps {
+  sectionOrder: string[];
+  invitation: any;
+  themeId: string;
+}
+
+export default function SectionPipeline({ sectionOrder, invitation, themeId }: SectionPipelineProps) {
+  const renderSectionComponent = (sectionId: string) => {
+    const sectionConfig = invitation[sectionId];
+    const isEnabled = sectionConfig?.enabled !== false;
+    if (!isEnabled) return null;
+
+    const bindings = sectionConfig || {};
+
+    switch (sectionId) {
+      case "hero":
+        return (
+          <HeroSection
+            key={sectionId}
+            properties={bindings}
+            bindings={bindings}
+            themeId={themeId}
+            layoutId="hero-center"
+            motionId="luxury-motion"
+          />
+        );
+      case "couple":
+        return <CoupleSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "countdown":
+        return <CountdownSection key={sectionId} bindings={bindings} />;
+      case "story":
+        return <StorySection key={sectionId} bindings={bindings} />;
+      case "events":
+        return <EventsSection key={sectionId} bindings={bindings} />;
+      case "gallery":
+        return <GallerySection key={sectionId} bindings={bindings} />;
+      case "venue":
+        return <VenueSection key={sectionId} bindings={bindings} />;
+      case "families":
+        return <FamiliesSection key={sectionId} bindings={bindings} />;
+      case "rsvp":
+        return <RSVPSection key={sectionId} bindings={bindings} />;
+      case "faq":
+        return <FAQSection key={sectionId} bindings={bindings} />;
+      case "dressCode":
+        return <DressCodeSection key={sectionId} bindings={bindings} />;
+      case "footer":
+        return <FooterSection key={sectionId} bindings={bindings} />;
+      case "celebrant":
+        return <CelebrantSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;
+      case "houseDetails":
+        return <HouseDetailsSection key={sectionId} bindings={bindings} />;
+      case "owners":
+        return <OwnersSection key={sectionId} bindings={bindings} />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <d     &  &                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     l =            B   
+               "  
+ knvll6uf write_to_file  
+{"CodeContent":"\"use client\";\n\nimport React from \"react\";\nimport { ArrowLeft } from \"lucide-react\";\n\ninterface TemplateFrameProps {\n  themeBgClass?: string;\n  onBackToHub: () =\u003e void;\n  children: React.ReactNode;\n}\n\nexport default function TemplateFrame({ themeBgClass = \"bg-stone-900\", onBackToHub, children }: TemplateFrameProps) {\n  return (\n    \u003cdiv className={`min-h-screen relative overflow-hidden ${themeBgClass}`}\u003e\n      {/* Back to Hub floating utility */}\n      \u003cbutton\n        onClick={onBackToHub}\n        className=\"fixed bottom-6 left-6 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40

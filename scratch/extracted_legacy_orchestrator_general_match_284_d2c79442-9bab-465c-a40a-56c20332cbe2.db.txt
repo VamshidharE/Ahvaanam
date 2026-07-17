@@ -1,0 +1,142 @@
+84251211532d   YI will view the rest of `components/shared/LegacyOrchestrator.tsx` from lines 100 to 163.   2  
+ b1u2qrwd 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\components\\shared\\LegacyOrchestrator.tsx","StartLine":100,"toolAction":"View LegacyOrchestrator.tsx tail","toolSummary":"Reading the tail of LegacyOrchestrator file content"}:     
+    M2 ( a [    / 8 lgQ  uU  z.P                =D h%  ,  E         F {S t s  n           4        . T `M     $ qb  48   x }y   l\.  >m   0J        S Y ?
+ p   q A      m  a       3  J	view_file            Created At: 2026-07-12T08:50:49Z
+Completed At: 2026-07-12T08:50:49Z
+File Path: `file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx`
+Total Lines: 163
+Total Bytes: 6305
+Showing lines 100 to 163
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+100:       case "families":
+101:         return <FamiliesSection key={sectionId} properties={properties} bindings={bindings} />;
+102:       case "rsvp":
+103:         return <RSVPSection key={sectionId} properties={properties} bindings={bindings} />;
+104:       case "faq":
+105:         return <FAQSection key={sectionId} properties={properties} bindings={bindings} />;
+106:       case "dressCode":
+107:         return <DressCodeSection key={sectionId} properties={properties} bindings={bindings} />;
+108:       case "footer":
+109:         return <FooterSection key={sectionId} properties={properties} bindings={bindings} />;
+110:       default:
+111:         return null;
+112:     }
+113:   };
+114: 
+115:   return (
+116:     <div className={`min-h-screen relative overflow-hidden ${themeBgClass}`}>
+117:       {invitation.music?.enabled && invitation.music?.file && (
+118:         <audio ref={audioRef} loop src={invitation.music.file} />
+119:       )}
+120: 
+121:       {/* Loading overlay */}
+122:       <AnimatePresence>
+123:         {loading && (
+124:           <motion.div
+125:             initial={{ opacity: 1 }}
+126:             exit={{ opacity: 0 }}
+127:             className="fixed inset-0 z-50 bg-[#FFFDF5] flex flex-col items-center justify-center text-center p-6"
+128:           >
+129:             <h2 className="text-[#FF8800] text-xs uppercase tracking-[4px] mb-1 font-bold">{loadingTitle}</h2>
+130:             <p className="text-amber-900/40 text-xs font-semibold">{loadingSubtitle}</p>
+131:           </motion.div>
+132:         )}
+133:       </AnimatePresence>
+134: 
+135:       {/* Particles canvas overlay */}
+136:       {invitation.themeSettings?.showParticles && Particles && <Particles />}
+137: 
+138:       {/* Floating utility buttons */}
+139:       <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-4">
+140:         <button
+141:           onClick={onBackToHub}
+142:           className="flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40 bg-white/90 text-[#FF8800] backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
+143:         >
+144:           <ArrowLeft size={20} />
+145:         </button>
+146:         {invitation.music?.enabled && (
+147:           <button
+148:             onClick={toggleMusic}
+149:             className="flex h-12 w-12 items-center justify-center rounded-full border border-orange-300/40 bg-white/90 text-[#FF8800] backdrop-blur-md shadow-md h    orkspace.   {"$schema":"https://json-schema.org/draft/2020-12/schema","properties":{"DirectoryPath":{"type":"string","description":"Path to list contents of, should be absolute path to a directory"},"toolSummary":{"type":"string","description":"Brief 2-5 word noun phrase describing what this tool call is about. Capitalize like a sentence. Some examples: 'Directory analysis', 'Web search', 'File edit', 'Command execution', 'Semantic search'."},"toolAction":{"type":"string","description":"Brief 2-5 word summary of what this tool is doing. Capitalize like a sentence. Some examples: 'Analyzing directory', 'Searching the web', 'Editing file', 'Viewing file', 'Running command', 'Semantic searching'."}},"additionalProperties":false,"type":"object","required":["DirectoryPath","toolSummary","toolAction"]}: list_dirB  
+ list_permissions  Use this tool to list all current permission grants. This helps you understand what resources you can access without prompting.   {"$schema":"https://json-schema.org/draft/2020-12/schema","properties":{"toolSummary":{"type":"string","description":"Brief 2-5 word noun phrase describing what this tool call is about. Capitalize like a sentence. Some examples: 'Directory analysis', 'Web search', 'File edit', 'Command execution', 'Semantic search'."},"toolAction":{"type":"string","description":"Brief 2-5 word summary of what this tool is doing. Capitalize like a sentence. Some examples: 'Analyzing directory', 'Searching the web', 'Editing file', 'Viewing file', 'Running command', 'Semantic searching'."}},"additionalProperties":false,"type":"object","required":["toolSummary","toolAction"]}: list_permissionsB  
+ manage_subagents   Manage existing subagents.
+	Actions:
+	* 'list': List all active subagents and their conversation IDs.
+	* 'kill': Terminate specific subagents and all their descendants.
+	* 'kill_all': Terminate all subagents and all their descendants.
+
+	When a subagent is killed, its branched workspaces will be deleted, but its logs and artifacts will be preserved.   {"$schema":"https://json-schema.org/draft/2020-12/schema","properties":{"Action":{"type":"string","enum":["list","kill","kill_all"],"description":"The action to perform. Must be 'list' (list all active subagents), 'kill' (terminate specific subagents and all their descendants), or 'kill_all' (terminate all subagents and all their descendants)."},"ConversationIds":{"items":{"type":"string"},"type":"array","description":"The IDs of the subagents to kill. Required for 'kill'."},"toolSummary":{"type":"string","description":"Brief 2-5 word noun phrase describing what this tool call is about. Capitalize like a sentence. Some examples: 'Directory analysis', 'Web search', 'File edit', 'Command execution', 'Semantic search'."},"toolAction":{"type":"string","description":"Brief 2-5 word summary of what this tool is doing. Capitalize like a sentence. Some examples: 'Analyzing directory', 'Searching the web', 'Editing file', 'Viewing file', 'Running command', 'Semantic searching'."}},"additionalProperties":false,"type":"object","required":["Action","toolSummary","toolAction"]}: manage_subagentsB  
+ manage_task   Manage background tasks. Use this tool to list running tasks or interact with tasks that were sent to the background.
+
+Actions:
+- 'list': List all currently running background tasks
+- 'kill': Cancel the task's execution
+- 'status': Check the task's current status and log file location
+- 'send_input': Send input to a running task
+
+When mentioning tasks to the user, avoid using full task IDs and start timestamps; keep them human-readable.  	{"$schema":"https://json-schema.org/draft/2020-12/schema","properties":{"Action":{"type":"string","enum":["list","kill","status","send_input"],"description":"The action to perform: 'list' (list all running tasks), 'kill' (cancel the task), 'status' (check the task status and log URI), 'send_input' (send input to a running task)."},"TaskId":{"type":"string","description":"The task ID to manage. Required when Action is 'kill', 'status', or 'send_input'."},"Input":{"type":"string","description":"The     over:scale-105 active:scale-95 transition-all cursor-pointer"
+150:           >
+151:             {playingMusic ? <Volume2 size={20} /> : <VolumeX size={20} />}
+152:           </button>
+153:         )}
+154:       </div>
+155: 
+156:       {/* Dynamic sections container */}
+157:       <div className="space-y-12">
+158:         {sectionOrder.map((sectionId: string) => renderSectionComponent(sectionId))}
+159:       </div>
+160:     </div>
+161:   );
+162: }
+163: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+  	: b1u2qrwd       
+(bot-d41961f0-2772-4eea-9fb8-64269928425d   nI will list the contents of the `components/sections` directory to see what section layouts have been created.   2  
+ up4h0z6n  list_dir   {"DirectoryPath":"c:\\Users\\Admin\\Ahvaanam\\components\\sections","toolAction":"List sections directory","toolSummary":"Listing files in components/sections directory"}:     
+    M2 j)  r>     "	 &G   g    31 |    u f 6C- :    9  *  > L4(j{    +  3 X^ ]s#   ]   | j  @ !   @N6 C w  /gP<   (=    $ 3~       <      "    &   ~  fo6@      F ]Df B ?       L C    f   ]o$ 6zs bpt s  R T >{ J  y   bRG    l       8)LRT~,$+ A -+P 3*   S    bIC   wj    3  4    2  H      _    d )   >      p   G 1      UQY          r     iOx   wa     @i  9  s      x  0U      !   r      q    A 75 .  n  *K b    $, d 0I 5(m:    zI DG~       [S             z   "   % D  Y:` D )9@L    } R 9\'   G   K AEz n O  l= &    I   I X &g   (     yn %     3      g l P S  &YEYU= 6  H  M*     B ,    k! +s       j:uG"  i;2 :)Bi]HR  p S   c 5     O e {_S   $  !`q  {         %  X        W 7  * y P @ H          C K     ;  Z+  E -    [1w       6    :.       X    
+   zt  : R<7  A  )7     3 @   ^  i I 
+u  - t c   W      m n   2 [ ^5 {i b:2y# T+    (:o ` -  <     w      C       f%          a    _       2w     {B/  yr    -     AK  ;r5 QEb N S  - hV   rA     !  FU `m<    w-   ^  w  Q  `  hm   %  1 :d [   ~ }-   b  5 '{ p=oY  8  " s 1 &   x  % n   v   ? y  F r&{m7M T   @   A  r   Y  %  G`   8c   @,) _^ 	" x`.8  vr	  l~  ?                  -   =         u  $ " M y   } e  _     a      @2 ? 2 +JS z _r }^#  3        &fY  4] < C T   3  (I   a     B   W   & /  +  <z      < Q u,P     S0(   1#        T      ` V    7 S  (   2  3r a{     Y   3 G  %  > 
+  y)kC .   h s    6     ' t   Q/  S~ S  HW(   cY3   !gJ     !s ~\     s\rIp] R 3  yf     ^?    7e    U]     h v      x   d   ^[ x NM   zz  d u/9m  8 0 / e @ ~     Nbv Q   j@o    T 9  tD      q M   |2 z}    W  " c   Q  G + S    F} ~ QR h  p  P   Y qB D   TD }   q t G   _ } z      q4 J list_dir            Created At: 2026-07-12T08:50:52Z
+Completed At: 2026-07-12T08:50:52Z
+{"name":"SectionRenderer.tsx", "sizeBytes":"5342"}
+{"name":"celebrant", "isDir":true}
+{"name":"countdown", "isDir":true}
+{"name":"couple", "isDir":true}
+{"name":"dressCode", "isDir":true}
+{"name":"events", "isDir":true}
+{"name":"families", "isDir":true}
+{"name":"faq", "isDir":true}
+{"name":"footer", "isDir":true}
+{"name":"gallery", "isDir":true}
+{"name":"hero", "isDir":true}
+{"name":"houseDetails", "isDir":true}
+{"name":"owners", "isDir":true}
+{"name":"rsvp", "isDir":true}
+{"name":"story", "isDir":true}
+{"name":"venue", "isDir":true}
+
+Summary: This directory contains 15 subdirectories and 1 files.   : up4h0z6n       
+(bot-c07d14c9-a604-4bc6-ac3b-528da99c1943   _I will inspect `components/sections/couple` to check if it contains the React layout component.   2  
+ s7v7atyx  list_dir   {"DirectoryPath":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\couple","toolAction":"List couple section directory","toolSummary":"Listing files in components/sections/couple directory"}:     
+    M2 7     	   j}F*  ^ 7       1   , C   !       1 z  \ V,   2   r_ = b  >      6           +  ~Ldmf       Ay R  @{ Q          q< Lo    s   9? 2 GR    z  B         rh  !   0@)     r3j`   ,p  
+  #N"  4  4:
+1     b)o  :     l?K'    .]A X   ]    ,O   x }  {  < cIu o  ZV  xix   q6 _ .  n/1Z1XD&* E   D   s      J list_dir            Created At: 2026    -07-12T08:50:55Z
+Completed At: 2026-07-12T08:50:55Z
+{"name":"manifest.json", "sizeBytes":"1323"}
+
+Summary: This directory contains 0 subdirectories and 1 files. @: s7v7atyx      5
+(bot-687fc081-6f6b-42e6-9965-32c0f09e9fb1     I will search the transcript log for any file creation logs under `components/sections/` to see if those layout components were ever written or if they are missing.   2 ,
+ at1cmymw  run_command   {"CommandLine":"Select-String -Path \"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\.system_generated\\logs\\transcript.jsonl\" -Pattern \"components/sections/\" | Select-Object -Property LineNumber, Line -First 10","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":2000,"toolAction":"Search components/sections in transcript","toolSummary":"Grep search for section files in the transcript log"}: )  )
+ )  M2 N  Ib$   ~H         H(a    <R
+ J ` /o(      ' b  4 7V "    '{w~ M  G   \i ' 4   Fd   pp   MP    d z R /   Wr D!!\   3    	        @              S PR] _     @  YB     *   UO[X   zL    M,   \  A   Xy "    4)ui  g  D   _\  k b vC)  Y g[   Eu
+  N     8i}  ;  -    n8  o$KZs+L4; "   $O(@      =PA ( U   c +6  +     _f  ZK>       f> h K} }3   Ue   >?      B      y         0v  w=  y	  " 1  $ BQ  q   # d S7d  |      ^   L ^l #H {     E      0r>p ]+~    |     s [        @N   G 6< l 
+     2  }k   B 
+B  , f|     C=;    ( I2  m < I n       bN :=   n :     M> '  w  )  d|P%     *G   > S m  L   [%    &wCt  I|   Z Rt  Y     4  Gy* 
+     8 h 3 C   ;     fr   ` ,Z%   N    z{  'JH6C!f a  b      ) ^kL     \fxJ        e   l !  1+ 8U  O D ^Z  `9   (        Ca U  !    Vs)(   2O       | \! u      >a4 KL     ]V          x Hh  5L        L  .  B   ]n   g  s4 1  7  7+ @ 1 1 Qx    B   ~
+   >  w  ul  0D^9     L)L     >I F% g       #   p  ff X:   A  )      b  + X6'    f  ,a      G :0I   p6       ^  J  = ^,n!  e ;X   5      e     &H    H) r4  x ,3   
+   e  / t V:    | o g.#w]   OZ w
+  !  ! F    G?  Uo "    lt  a     i   ] DE  i         t  E k PlC U /     p  ,A
+7   2  O * nH  pBByX7w q  +   R   V"    3 / ` f +$\[             %       B  wC   HQZ-F	 7  J    QX Z R hS  R   O   &] L /= &w.,D.       ?5; oZ2  &   ,          &2}3 2+U M    ~u    w  qa w5    q     =(   $    8 > N%|  ' q   ;       ; j ]   /            $ Y   k     V  c" IA(;   4   )   t  d s   x %   / \    [        Y    C  _t > 0      	g$F   *&  hQ9  |   q V   Z  FvC8l     8l,    G6 lB66       M   p   c l   I   2N    X H    Q`  i k  M  Z g o    N  >   i l  x    mCPO      Z   !(<*  N CdS J B #     " W`* 0    ZHF^ z  l C/D  $ -  	 *       Z   y<  P Xs L  fo   f;  '   -C  hc  #49 xx ckF    $ s       H 5X  Xg S  uC  9  {3     i 	>835  < z ~> wj<     7. ) ec  w  ^  }r  iX l : : w         ^ >  C   " j	)T N  8:_  A`     k  :   |   {G     ,       M5    r Nz  r    V .      F 88 P   uw "  2       /  ? ^     <   _q   >  ~ P  < 0 R      C V      L%   @      v?IO   A [E]e   [ [      z $sx  ]   &>     0   BY PhO   N]G Q z Cp6D   #     ?e*    & p        	 E  56  p     x 
+
+   !        G o  .XW A V l  b  V yXU  ^          & =   (   I   4d 5vvW  2\(n   z  [  j:<g   )r  r   ~jp   `t   k | N    ^   $ 2
+   9 MG 4   Q rJ   R    r r    0  s vq $~(R  u      wj C  -*O   B !   [    %<   V`    g9 W    VQ E        L  d 3    7 w 5P I, -zv 

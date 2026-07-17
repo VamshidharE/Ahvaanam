@@ -1,0 +1,102 @@
+use client";
+32: 2: 
+33: 3: import { useEffect, useState } from "react";
+34: 4: import { ToggleLeft, ToggleRight } from "lucide-react";
+35: 5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+36: 6: import { getWeddingComposition } from "@/lib/composition/templates";
+37: 7: import { useInvitationData } from "../../context/InvitationDataContext";
+38: 8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+39: 9: 
+40: 10: // --- TEMPLATE SPECIFIC PARTICLES ---
+41: 11: import React, { useRef }
+42: ------------------------
+43: [35] Found match at index 4395424
+44:   Preview of match [35]:
+45: "use client";
+46: 2: 
+47: 3: import { useEffect, useState } from "react";
+48: 4: import { ToggleLeft, ToggleRight } from "lucide-react";
+49: 5: import CompositionRen                                                                                                                                                                                                                                                                                                                                                                                                                                                                           \ 5                
+               2             :             B             JN       k(  0 B!
+	sessionID  -3750763034362895579H PYZ d51Tar24AvLjjuMPhf7e-AsX  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      Q
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0    U"$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+               2             :             B             JN       k(  0 B!
+	sessionID  -3750763034362895579H PYZ d51Tar24AvLjjuMPhf7e-AsX  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      Q
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0    U"$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+JI will run `git stash list` to see if any work was saved in the git stash.2(bot-e12fc11c-0dad-4e64-9beb-8aef6324cc35:  
+ ld9phl94  run_command   {"CommandLine":"git stash list","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"List git stashes","toolSummary":"Checking if there are any stashed changes in git"}:     
+    M2 X         ^   M   r*   D     3U =[   S x    V >% tTLL  n=   j}             - \,Z /   N :  A     z - ; XV      0g     $F  Y@B<jJ run_commandBJI will run `git stash list` to see if any work was saved in the git stash.`  E 4      b H   d   
+               " $
+ l5m7nypo  run_command   {"CommandLine":"git branch -a","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"List git branches","toolSummary":"Checking for other git branches in the repo"}: "  "
+ "  M2       Nj +j  (  o  8 Y   w 0    i      Ci    mi    W   w +,  H   I[1&  >   .  8     NI8 v  5 QfSa\ n 2     j B Cl/ h     K<    .   #D    (  m   -    b     {  PSy 7    zt   ~%  Z^     \6	      '# 8 E g b    t      R ^ Z(!          ,D      Wf ff   ) 6  D7*  j5   _    jn 5 Q   -q U    ?' vO  }  a(lY V  j '  #          A  n< f jXf +   >   Ez#a  Ja 3Iz j d   5  `  !  H6  q&     8:6Y}o R x ]{  Qg!m       e %h   &V e &    : VT51  l Yo  %  Z [UW   KTrZ  n     ]      *uZ q      v Y   #   sO   31 u U@ RS2 u< o   N1      w   @K _Z         ?  O  t s   BO Y       Txn.!45N 6
+ . W .Q  >  Ei   A8    > mB  O w             |~ t  (y@    )    w  -   B n      3(  e        a# Y: ~       M % -  " 'o  @ I   r &G >     a  @O    x K  mZ5          v y  K    )   p.S yj'    Y c   N=T  < > & c $  X  LV -   ~ i7  U 
+  f  `AL 2     h    u  + 8 t k )M% ;       L  %1 u    [  t  8 F  Fyj  @ h Y       0q  zJ Ma $( i  >m| C)   { K  I          > *Z m #  S  B      (jo ir b    5 SA L j EY f  c Q    4   Y = S      e1  X  Jlf   ET `f D  #i   l A  X      t         ] m  + s  6J       0  W  M   D*   q5 .     Z  i{)  k      [  >      H   ]M  I{    ^.P    i%  8      W2   FZ  E0{ M   u4      V _ mi8  z  += 6+  ^z   D +  e  _r  3@> Z$    yO . P ,:`~*|C  N1   .  M     w'   LW]   .  <  _ *: !i 6    Lr t  <  -  )   $ ~f zq  `    : hhA
+& 6   *     -  KDi  7    a8 N@ M%   A0   h2   m   ^ wK   -n | r-vT  W2      O!   2  
+    9  c oh     t   gt8 }   u  Slk  K?  ;? L  >   }Nl    r   < !   yz  2       6  B   F  !?j    a     l   B2    h}t      6 X  * cA   *  W >   _  Bf  2t      t9  R)F7& 3           wm  q   ?      G   *  <]k& T   D9, t   o   FT  O    Vc    1   
+I D  ;?         bL   0      &  2 B U~|V  2o = (o  :  5.    R,      a1    A   {   l }r z+ O *0  L  B    	  `   !6A %   U6 R     s  ~     Hy    _y  1 ('x'   W  y|  M /sh  r  N= df w   ;      H[        >  M   M  ^   b!!]       @    ?# J > O .p $  E    W#   Q jg  v? I.R     @ K- # ^ZC   0G hB   7 ? 0     3   O     	     I~  h     -m JT   \         #      0lp   Vv   	    %      n  A! ?    v. b   H)     m5 R  m ~ .   ,   Y  Wm    2 %+   GNI  G        lsL+8 (     , e5X[ 7  D   B zy5 ]  i         4    4                                                                                       W^     &              0   8 j      
+ .ipynb  " o  :  *          (  0 @ H P *       As IDE feedback, the following lint errors may be related to your recent edits up to this point. Consider whether they deserve immedi    _     *              0   8 j      
+ .ipynb  " o  :  *          (  0 @ H P *       As IDE feedback, the following lint errors may be related to your recent edits up to this point. Consider whether they deserve immediate attention. If worth addressing, clearly comment on them and/or fix them. Be explicit in acknowledging lints and explaining your fix's approach. AVOID unproductive loops; if you detect yourself repeatedly creating/fixing lints in a short period, offer some thoughts but MOVE ON.0 P h x                "  28 @ *  2    ( By  @   N0 J headJ tailJ mkdirJ cdJ cpJ mvJ catJ findJ grepJ rmJ touchJ lessJ clearJ ls  *
+powershell2
+powershellX ` h p x R 8 @ H @P @X  h p  x      Z   j                         @      ( 0 8           "$       ( 2 
+ 8   B     NJ   Z     ` * 
+ * red8  @ H P  X ` h 0 8 R     X h z                                                    
+  '                   
+( 0           
+       
+/read_file(C:\Users\Admin\invitecraft\AGENTS.md)
+@write_file(C:\Users\Admin\invitecraft\components\data\themes.ts)
+Jwrite_file(C:\Users\Admin\invitecraft\components\context\ThemeContext.tsx)
+Mwrite_file(C:\Users\Admin\invitecraft\components\shared\ThemeSelectorHub.tsx)
+6write_file(C:\Users\Admin\invitecraft\app\globals.css)
+Dwrite_file(C:\Users\Admin\invitecraft\components\data\invitation.ts)
+Swrite_file(C:\Users\Admin\invitecraft\components\templates\royal-temple\Layout.tsx)
+Twrite_file(C:\Users\Admin\invitecraft\components\templates\floral-garden\Layout.tsx)
+Swrite_file(C:\Users\Admin\invitecraft\ k_   T       "$4aa75d03-1271-46f0-b45e-727afbec3c33B     2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   1   1   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   1   2
+     "Q         (   0 B!
+	sessionID  -3750763034362895579H  P  Z y51TaoyULr3jjuMPhMWziAo0  : 
+ autoJa           "             (  2          f1c0d5722          995f821f:       e9c821beB       ~R     Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  e Q         (   0 B!
+	sessionID  -3750763034362895579H  P  Z y51TaoyULr3jjuMPhMWziAo" b6a8c9daad89a342   gemini-default  !
+ used_claude_conservative  false   
+ last_step_index  200  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $c0fa43bf-4399-4335-8fd1-102a9672b39d  5
+trajectory_id $a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0   
+ used_claude  false   Gemini 3.5 Flash (Medium) d [^   4       "$4aa75d03-1271-46f0-b45e-727afbec3c33B     2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   1   1   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   1   2
+     "I        S0 B!
+	sessionID  -3750763034362895579PSZ vp1TaoCnLp3tg8UP6Y_nuAc0  : 
+ autoJa           "           	(  2          995f821f2          b392a16f:       e9c821beB         R     Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  ] I        S0 B!
+	sessionID  -3750763034362895579PSZ vp1TaoCnLp3tg8UP6Y_nuAc" 957d393ab97371ca   gemini-default   
+ last_step_index  198  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $c0fa43bf-4399-4335-8fd1-102a9672b39d  5
+trajectory_id $a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0   
+ used_claude  false  !
+ used_claude_conservative  false   Gemini 3.5 Flash (Medium) T    k         C ? iE8   , n J    6d   qY4    3 \  lF <2(      m k@ F'Nr(4Z ^l   \D        ys    e_{      }           qsA u)D  UY8 H 1       / 5     b  _ b JH  h     )B    mS&e  #5  g> =`G  A    ) b z Uf   l =	N o 6      2 $ '~L [ N_ C      ' GG },U k   RA hG    p        N  ) j1 4)        d   + x G Y    9 YU       a 	    ;e3     W7 I % B ToT f 7	 r   E > 97{     ~   )s    xVI Y [A &T      "  \    Q   a        [  L x      ,.  =      J  4         Y4     W     g < @ E |    qKg  d u  | c    `  2]    ] I m'}   V       0 F\  x*F .b       m7 `SL %  u        V   [   zAe    B d X*k  ]    }   p?0q    =T e v m3  G    u  V t8     y x  O s   cU     M    e {P  
+5`   w           y   Z z. Jw'|fw _] 5 j   Y sGy  $ .  .      V       S 	'  }N G8   	 G ; B*  1r6U  " 	O :3u XF } @ = Yo>e   UV b  +mV 8  N 5C      r ;	    	M ` $o  R63ra @ : RW  yO:XE K 1Sr  q E  u      "   32A    r     3:,-]^3# A  Fs6     o 	9 | *  < >    :  LG 9V#HP S   O             M0 	S     KON      Rs   KE(        lV V        %h2 q @     8b   k    J    Ql:i_  B    w .]9 9   
+  } @Pv(.  y ]   \     ` 
+y      N dB   V0 /   w  g  Uy 6    f   A  ]    5Q   88  A g? h   8  1 s   H  "e  i     T? ]     B  g e           s    b S          J    ~!   p  6 k # N=kI hm o         7    u  a   Q 5.      G  D{ 27Cq   (    63i n q{ 2 =i'      Ln3  Z W    E 0    + &   {     
+  Ut    D       % .  Q(B  1F   7  N2'5 B          y y F $  P     | 	+      b  z3   7 ? =   j        u   ]  C  A  %a  *<  }  G] )       ( ~   _   x     /`  n 1  |  m      cP A  d&C   s     U   t T  N      [    * c WJH=   2   wRfC     _H   OE  xd)~t{       p  Lo k  0          	Tq    :  +j k\  ->< l    2{3   zY     I     iw3  < V B[ H  X   ! (        2     Ee 9 `DRL|    T 4-  P    6y R t E.D          Q R R}  VSnYGS:r  jg L  `   @. K    e  L  G }   	   8 S<.Z I5 c;-    wG     R`  ~+ P Y  7  _4R 4   \ >b  C   > *dQ  }     O 6         e   tSs    $-8DP\Y   b&  " 6r    H    - )V b  q   | $    ]  :           J   W  @[ M WF5     (t   tQ "^          7  RoH W    G1 ^   v  q,  x [   v ?]  i   . ? )    ]  YK.; A  Hp  S v  Q   ~3 vJG         ~42s   YsX \   e . (  Z1  K    W} L %            -  l ( C  9     iu 4         ! n" h   c  ~~  nX  Dn  f:k+ (  H    4 a       U  y      ["  #W #    6 & _X  # G     K   v (D hM    \ F  }  L  C    vw   G%  b   8        g
+o      5        8       h 	5"dy  Q { i|   X     Q    K )o ,d `H  f  &    Y  CJ  38g
+   j     = \:6    ^  =  4    2  _    V         m  r d  D N>S(G W    ?      i   k  &    Q cw   \ jJ     . J  :   .v  T v  ~ F   $           d   O  U - !    oL  P7<   . P        44   U   t  X      + !  o  B
+ o  v         ^ _   +  ALP   )Kq  u)  =  wR   0  V    3F, W(E f &G? g  \o#eU  M .%  o .u   T-  :^ @ q EV J,4' ( k  - &      $m      w o + }    0 T  L9z       l p  bm    H~ ;  Ww BY S  ]0- H  V     EW jh&    f  c @ X [ c   XO   %   $b%  3  tR      r   y ; G 2   f   r  B 9   n	|5   M  i     q*    ] s j%nG &   6 e     b w  W     
+  $   !T f  L qq.  9U H j  Q  v    9& 2  k     ? \ r\I- Vp@ ]l 7  P  r   J W T    H  y d s~2 t;>   V m    YP   [    K % 8  ?  "   t C        ,U83    o  gl   G|.- @    = 5 &   ;Y * "   i   M*   ]~           P2      z    r    *         ]! 1 z-     a^t  'c    ^    6   + 0u   K  r-    *  kb/     f  #"W N H&  m   6@O  J grep_search* CaseInsensitive* IsRegex* MatchPerLine* Query*
+SearchPath*
+toolAction* toolSummary2           (:           (B           oX  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      Q
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0    V"$d2c79442-9bab-465c-a40a-56c20332cbe2                (  ?  3
+               (
+               )
+               o  <Searching for components/home/Hero to find the homepage file   Search for website homepage             )    *  
+               "  
+ etgoibru  grep_search   {"CaseInsensitive":true,"IsRegex":false,"MatchPerLine":false,"Query":"components/home/Hero","SearchPath":"c:\\Users\\Admin\\Ahvaanam","toolAction":"Search for website homepage","toolSummary":"Searching for components/home/Hero to find the homepage file"}:     
+    M2 A d   |       [   w x  o     r   V G J} "x ]  ~ [  K    s @`    .< Zo  ] ^  / ^ 	  v 
+=  u D #P[l           ]  + v{  D  ]    Z |e        >    & "Z Sc m  jh  yg  nk         C ? iE8   , n J    6d   qY4    3 \  lF <2(      m k@ F'Nr(4Z ^l   \D        ys    e_{      }           qsA u)D  UY8 H 1       / 5     b  _ b JH  h     )B    mS&e  #5  g> =`G  A    ) b z Uf   l =	N o 6      2 $ '~L [ N_ C      ' GG },U k   RA hG    p        N  ) j1 4)        d   + x G Y    9 YU       a 	    ;e3     W7 I % B ToT f 7	 r   E > 97{     ~   )s    xVI Y [A &T      "  \    Q   a        [  L x      ,.  =      J  4         Y4     W     g < @ E |    qKg  d u  | c    `  2]    ] I m'}   V       0 F\  x*F .b       m7 `SL %  u        V   [   zAe    B d X*k  ]    }   p?0q    =T e v m3  G    u  V t8     y x  O s   cU     M    e {P  
+5`   w           y   Z z. Jw'|fw _] 5 j   Y sGy  $ .  .      V       S 	'  }N G8   	 G ; B*  1r6U  " 	O :3u XF } @ = Yo>e   UV b  +mV 8  N 5C      r ;	    	M ` $o  R63ra @ : RW  yO:XE K 1Sr  q E  u      "   32A    r     3:,-]^3# A  Fs6     o 	9 | *  < >    :  LG 9V#HP S   O             M0 	S     KON      Rs   KE(        lV V        %h2 q @     8b   k    J    Ql:i_  B    w .]9 9   
+  } @Pv(.  y ]   \     ` 
+y      N dB   V0 /   w  g  Uy 6    f   A  ]    5Q   88  A g? h   8  1 s   H  "e  i     T? ]     B  g e           s    b S          J    ~!   p  6 k # N=kI hm o         7    u  a   Q 5.      G  D{ 27Cq   (    63i n q{ 2 =i'      Ln3  Z W    E 0    + &   {     
+  Ut    D       % .  Q(B  1F   7  N2'5 B          y y F $  P     | 	+      b  z3   7 ? =   j        u   ]  C  A  %a  *<  }  G] )       ( ~   _   x     /`  n 1  |  m      cP A  d&C   s     U   t T  N      [    * c WJH=   2   wRfC     _H   OE  xd)~t{       p  Lo k  0          	Tq    :  +j k\  ->< l    2{3   zY     I     iw3  < V B[ H  X   ! (        2     Ee 9 `DRL|    T 4-  P    6y R t E.D          Q R R}  VSnYGS:r  jg L  `   @. K    e  L  G }   	   8 S<.Z I5 c;-    wG     R`  ~+ P Y  7  _4R 4   \ >b  C   > 

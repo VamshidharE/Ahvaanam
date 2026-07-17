@@ -1,0 +1,54 @@
+"use client";
+
+import React from "react";
+import FileUploader from "@/components/ui/FileUploader";
+
+interface CoupleSettingsProps {
+  invitationData: any;
+  updateInvitationData: (updater: any) => void;
+}
+
+export default function CoupleSettings({ invitationData, updateInvitationData }: CoupleSettingsProps) {
+  return (
+    <div className="space-y-6 text-left animate-fadeIn">
+      {/* Hero Header parameters */}
+      <div className="card-minimal p-4 md:p-5 space-y-4">
+        <h3 className="text
+------------------------
+   node scratch/extract_from_db.js   node scratch/extract_from_db.js         3 Op~1 M]q @   SQLite format 3      @     R          g   	                                                   R .      	       8   B   @
+N
+ 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                //  -tablebattle_mode_infosbattle_mode_infos CREATE TABLE `battle_mode_infos` (`idx` integer,`data` blob,PRIMARY KEY (`idx`))  	  ==  Otabletrajectory_metadata_blobtrajectory_metadata_blob
+CREATE TABLE `trajectory_metadata_blob` (`id` text DEFAULT "main",`data` blob,PRIMARY KEY (`id`))O
+  c=  indexsqlite_autoindex_trajectory_metadata_blob_1trajectory_metadata_blob     //  -tableparent_referencesparent_references	CREATE TABLE `parent_references` (`idx` integer,`data` blob,PRIMARY KEY (`idx`))    //  -tableexecutor_metadataexecutor_metadata CREATE TABLE `executor_metadata` (`idx` integer,`data` blob,PRIMARY KEY (`idx`))     %%  gtablegen_metadatagen_metadata CREATE TABLE `gen_metadata` (`idx` integer,`data` blob,`size` integer NOT NULL DEFAULT 0,PRIMARY KEY (`idx`))_   3    indexidx_steps_step_typesteps CREATE INDEX `idx_steps_step_type` ON `steps`(`step_type`)U   -  uindexidx_steps_statussteps CREATE INDEX `idx_steps_status` ON `steps`(`status`) i       1tablestepssteps CREATE TABLE `steps` (`idx` integer,`step_type` integer NOT NULL DEFAULT 0,`status` integer NOT NULL DEFAULT 0,`has_subtrajectory` numeric NOT NULL DEFAULT false,`metadata` blob,`error_details` blob,`permissions` blob,`task_details` blob,`render_info` blob,`step_payload` blob,`step_format` integer NOT NULL DEFAULT 0,PRIMARY KEY (`idx`)) ;   ++  -tabletrajectory_metatrajectory_meta CREATE TABLE `trajectory_meta` (`trajectory_id` text,`cascade_id` text,`trajectory_type` integer,`source` integer,PRIMARY KEY (`trajectory_id`))=   Q+  indexsqlite_autoindex_trajectory_meta_1trajectory_meta                  3 Op~1     )   
+ O   4  4                                           ~ x r l f ` Z T N H B < 6 0 * $                                                       | v p j d ^ X R L F @ : 4 . ( "       
+                        ztnhb\VPJD>82,&                                           | u n g ` Y R K D =                     { t S L 8 1   	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+b
+[
+:
+3
+ 
+ 
+ 	 	 	 	 	 	 	q	j	I	B	.	'	                      x d ] I B . '                       x d ] I B . '                         q j V O ; 4                         q j V O ; 4                         ~ w c \ H U p             - H c ~           - &   H c ~             ; V q                 ; V q          	 	 	 	;	c	\	U	~	 	 	 	 	 	 	 	 	 
+ 
+,
+T
+M
+F
+|
+u
+n
+ 
+ 
+ 
+ 
+   
+ 
+  * #   E m f _                   6 / ( ; B	  ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ;                                                           H b    H [    H T    H M    H F    H ?    H 8    H 1    H *    H #    H      H                        A      # j          $      "      !     "      %                          &                          '                          (                          )           

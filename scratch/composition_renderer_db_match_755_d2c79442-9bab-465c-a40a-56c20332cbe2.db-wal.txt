@@ -1,0 +1,60 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeMessage: "Weddi
+------------------------
+[82] Found match at index 26050095
+  Preview of match [82]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvid
+------------------------
+[108] Found match at index 29043294
+  Preview of match [108]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[83] Found match at index 26059128
+  Preview of match [83]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvid
+------------------------
+[109] Found match at index 29043680
+  Preview of match [109]:
+"use client";
+
+import React fr        3 Op~1  8  j E                "   #   e   $   )   w      h               )           s   u   v           D   ;       e   p           <           x   [           ~       ,   *       h       6                   w               $   U   N       >   ]       7       .               !           |               Y   f       K           P   v       u                                       O   O                       B   ?   @                   ~   r   q   D   q       '                               R           y   P                   L               l                   _                       M           n   M       T                   H                       a                                      x       r                               (   W   }                       t       ^           {       d   s           y   {                       l                   j   S       g           r                               N   u       z       t       k   L   K   m                   	               {       o   9                           a       z   G                               z           ^                                           b                       o           Z           7   x   %   O       |               y   "   F                           o               ~   {   k   m   l   j   i               ~   V                           g       }   ]                                                           !   N       S   R   Q   v   w                                                   ~   |   }   z   y   w   t   s   ]   [   \                                           {   |           q   Q   U   ;   :   8           F       F   G                                           !   "   '   (   )   8   :   ;   e   l   m   o   q   {   |                                                                                                                                                                                                                                                                                                                   )   *   ,   7   <   >   ?   @   B   D   H   I   J   K   L   M   N   O   P   Q   R   S   U   Y   Z   [   ]   ^   a   f   g   h   i   j   k   l   m   n   o   q   r   s   t   u   v   w   x   y   z   {   |   }   ~                                                                                                                                                                                                                                                       ^   a   b   c   f   g   v                                                                       ;   A   g   h   j   z   {   |                                                                                                                       
+                  	a  	g  	r  
+
+  
+   
+                                                                                                                                                                                	   
+                                                                      !   &   '   (   0   1   2   3   6   A   B   C   D   E       1   ]   a   s   |                                                                       
+               '   S   o   p   q   r   s   t   u   v   w                                                                                                                                                                                                                           '   4   6   7   8   @   G   L   P   Q   R         !   "   #   (   +   -   .   5   9   <   =   >                            _   `   a   j   k   l   x                                         f   ]   _   m   n                                                          6   3   2   1   0   (   '   &   (   '   &   %   $                                           
+                                                                   1   2   3                                 
+   	                                   p  	g  	r  
+
+  
+           -col gap-1 w-full">
+             3 Op~1    5&  fSQLite format 3      @     R          g   	                                                   R .      	       8   B   @
+N
+ 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         

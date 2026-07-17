@@ -1,0 +1,130 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+
+import AudioOrchestrator from "./AudioOrchestrator";
+import BackgroundEffects from "./BackgroundEffects";
+import LoadingExperience from "./LoadingExperience";
+import SectionPipeline from "./SectionPipeline";
+import TemplateFrame from "./TemplateFrame";
+import ScrollController from "./ScrollController";
+import ShareController from "./ShareController";
+
+interface LegacyOrchestratorProps {
+  themeId: string;
+  onBackToHub: () => void;
+  particlesComponent?: React.ComponentType<any>;
+  themeBgClass?: string;
+  loadingTitle?: string;
+  loadingSubtitle?: string;
+}
+
+export default function LegacyOrchestrator({
+  themeId,
+  onBackToHub,
+  particlesComponent,
+  themeBgClass = "bg-stone-900",
+  loadingTitle = "Invitation",
+  loadingSubtitle = "Celebrating Love"
+}: LegacyOrchestratorProps) {
+  const { invitationData } = useInvitationData();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (invitationData) {
+      const timer = setTimeout(() => setLoading(false), 1200);
+      return () => clearTimeout(timer);
+    }
+  }, [invitationData]);
+
+  if (!invitationData) return null;
+
+  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+  const invitation = isWrapped ? (invitationData as any).config : invitationData;
+  const sectionOrder = invitation.sectionOrder || [];
+
+  return (
+    <ScrollController>
+      <TemplateFrame themeBgClass={themeBgClass} onBackToHub={onBackToHub}>
+        {/* Loading overlay screen */}
+        <LoadingExperience loading={loading} title={loadingTitle} subtitle={loadingSubtitle} />
+
+        {/* Particles canvas */}
+        <BackgroundEffects
+          showParticles={invitation.themeSettings?.showParticles}
+          particlesComponent={particlesComponent}
+        />
+
+        {/* Audio background playback */}
+        <AudioOrchestrator
+          musicFile={invitation.music?.file}
+          musicEnabled={invitation.music?.enabled}
+        />
+
+        {/* Share buttons */}
+        <ShareController />
+
+        {/* Sections pipeline render block */}
+        <SectionPipeline
+          sectionOrder={sectionOrder}
+          invitation={invitation}
+          themeId={themeId}
+        />
+      </TemplateFrame>
+    </ScrollController>
+  );
+}
+export { default as AudioOrchestrator } from "./AudioOrchestrator";
+export { default as BackgroundEffects } from "./BackgroundEffects";
+export { default as LoadingExperience } from "./LoadingExperience";
+export { default as SectionPipeline } from "./SectionPipeline";
+export { default as TemplateFrame } from "./TemplateFrame";
+export { default as ScrollController } from "./ScrollController";
+export { default as ShareController } from "./ShareController";
+  j  
+  
+Eimport { useInvitationData } from "../context/InvitationDataContext"; Himport { useInvitationData } from "../../context/InvitationDataContext";0 8 (   /Fix relative import path for useInvitationData.    k k                                                                                                                          3 P      ~     `   
+               2             X  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+               2             X  b$b2e0 ~ O      z H    @   
+           r  "  
+ wvdlrbug  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running Next.js production build verification check"}:     
+    M2  
+]              n       HH` g  *}   B e f z $j&   6#    X o'  7q < #  Q
+  (7   | j F      > < R   P  [ M     F X      b
+`c c  <*J :
+ o ~ r O :   5Aw N `    J  { l  Z  Km    :'m  &  b      
+5  Th s  A   y    |a$ B 6  %  h2 zgy    &	^      iz &lX'r   Z;f ?[    g    t.    !  C |       C +[w   6 J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    0  6
+                 
+  	              
+                   3Running Next.js production build verification check   Test Next.js build                 
+ 
+ command npm run build  
+.d2c79442-9bab-465c-a40a-56c20332cbe2/task-1231 {file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1231.log"npm run build(     *  
+           r  "  
+ wvdlrbug  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running Next.js production build verification check"}:     
+    M2  
+]              n       HH` g  *}   B e f z $j&   6#    X o'  7q < #  Q
+  (7   | j F      > < R   P  [ M     F X      b
+`c c  <*J :
+ o ~ r O :   5Aw N `    J  { l  Z  Km    :'m  &  b      
+5  Th s  A   y    |a$ B 6  %  h2 zgy    &	^      iz &lX'r   Z;f ?[    g    t.    !  C |       C +[w   6 J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    0  6
+                 
+  	              
+                   3Running Next.js production build verification check   Test Next.js build                 <  9
+ 
+ command npm run build  npm run  * Test Next.js build     
+ 
+ command npm run build   	  
+<  9
+ 
+ command npm run build  npm run  * Test Next.js build B
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	     " 
+ command(npm run) 	  
+.d2c79442-9bab-465c-a40a-56c20332cbe2/task-1231 {file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1231.log"npm 

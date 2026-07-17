@@ -1,0 +1,295 @@
+";
+    surnameColor?: string;
+  };
+  themeId?: string;
+  layoutId?: string;
+  motionId?: string;
+}
+
+export default function HeroSection({ properties, bindings, themeId, layoutId, motionId }: HeroSectionProps) {
+  const {
+    showScrollIndicator = true,
+    overlayOpacity = 0.45,
+    contentAlign = "center",
+    minHeight = "85vh",
+  } = properties;
+
+  const {
+    title = "",
+    subtitle = "",
+    welcomeMessage = "",
+    heroImage = "",
+    ctaText = "",
+    surname = "",
+    subText = "",
+    enableHeaderMedia = true,
+    headerMediaType = "god",
+    selectedGod = "ganesha",
+    selectedSymbol = "om",
+    headerMediaSize = 80,
+    headerMediaSpacing = 30,
+    showSurnameHeading = true,
+    surnameFont = "cinzel",
+    surnameColor = "var(--theme-accent)",
+  } = bindings;
+
+  const alignmentClass = 
+    contentAlign === "left" ? "text-left items-start" : 
+    contentAlign === "right" ? "text-right items-end" : 
+    "text-center items-center";
+
+  const designLanguage = themeId ? (() => {
+    const id = themeId.toLowerCase();
+    if (["royal-temple", "palace-luxury", "peacock", "royal-palace", "heritage"].some(x => id.includes(x))) {
+      return "royal-heritage";
+    }
+    if (["south-indian", "lotus-serenity", "marigold", "divine-griha", "warm-terracotta"].some(x => id.includes(x))) {
+      return "temple-grandeur";
+    }
+    if (["glass", "glassmorphic-oasis", "glass-motion"].some(x => id.includes(x))) {
+      return "glass-elegance";
+    }
+    if (["floral-garden", "botanical", "botanical-garden"].some(x => id.includes(x))) {
+      return "botanical-garden";
+    }
+    if (["midnight", "rosegold-manor", "artdeco", "navy", "constellation-navy"].some(x => id.includes(x))) {
+      return "luxury-black-gold";
+    }
+    return "modern-luxury";
+  })() : "modern-luxury";
+
+  const renderGarland = () => (
+    <div className="absolute top-0 left-0 w-full overflow-hidden pointer-events-none opacity-85 z-20">
+      <svg viewBox="0 0 1440 80" className="w-full h-auto fill-none">
+        <path d="M0,0 Q60,50 120,0 Q180,50 240,0 Q300,50 360,0 Q420,50 480,0 Q540,50 600,0 Q660,50 720,0 Q780,50 840,0 Q900,50 960,0 Q1020,50 1080,0 Q1140,50 1200,0 Q1260,50 1320,0 Q1380,50 1440,0" stroke="#F59E0B" strokeWidth="2" />
+        {Array.from({ length: 24 }).map((_, idx) => (
+          <g key={idx} transform={`translate(${idx * 60 + 30}, 20)`}>
+            <circle cx="0" cy="0" r="5" fill="#EF4444" />
+            <polygon points="-4,5 0,20 4,5" fill="#10B981" />
+            <circle cx="0" cy="6" r="3" fill="#F59E0B" />
+          </g>
+        ))}
+      </svg>
+    </div>
+  );
+
+  const renderRoyalArch = () => (
+    <div className="absolute inset-4 border border-[#D4AF37]/35 rounded-t-[120px] pointer-events-none z-20 flex flex-col justify-between p-4">
+      <div className="flex justify-between w-full">
+        <span className="text-[#D4AF37]/40 text-lg">   </span>
+        <span className="text-[#D4AF37]/40 text-lg">   </span>
+      </div>
+      <div className="flex justify-between w-full"    >
+        <span className="text-[#D4AF37]/40 text-lg">   </span>
+        <span className="text-[#D4AF37]/40 text-lg">   </span>
+      </div>
+    </div>
+  );
+
+  const renderArtDecoFrame = () => (
+    <div className="absolute inset-4 border-2 border-double border-[#D4AF37]/45 pointer-events-none z-20 p-2">
+      <div className="w-full h-full border border-[#D4AF37]/20 flex flex-col justify-between">
+        <div className="flex justify-between -mt-2 -mx-2">
+          <span className="text-[#D4AF37] text-xl font-serif">   </span>
+          <span className="text-[#D4AF37] text-xl font-serif">   </span>
+        </div>
+        <div className="flex justify-between -mb-2 -mx-2">
+          <span className="text-[#D4AF37] text-xl font-serif">   </span>
+          <span className="text-[#D4AF37] text-xl font-serif">   </span>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderWatercolorLeaves = () => (
+    <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
+      <div className="absolute top-4 left-4 text-emerald-800/10 text-4xl rotate-45 select-none">    </div>
+      <div className="absolute bottom-4 right-4 text-emerald-800/10 text-4xl -rotate-45 select-none">    </div>
+    </div>
+  );
+
+  return (
+    <section 
+      className="relative flex flex-col justify-center items-center overflow-hidden w-full select-none"
+      style={{ 
+        minHeight: "var(--layout-min-height, 85vh)",
+        background: "var(--theme-gradient-backdrop, var(--theme-bg))"
+      }}
+    >
+      {/* Design Language Overlays */}
+      {designLanguage === "temple-grandeur" && renderGarland()}
+      {designLanguage === "royal-heritage" && renderRoyalArch()}
+      {designLanguage === "luxury-black-gold" && renderArtDecoFrame()}
+      {designLanguage === "botanical-garden" && renderWatercolorLeaves()}
+      {designLanguage === "glass-elegance" && (
+        <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/5 to-purple-500/5 opacity-40 backdrop-blur-[4px] pointer-events-none z-0" />
+      )}
+
+      {/* Background Cover Image */}
+      {heroImage && (
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-102"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        />
+      )}
+
+      {/* Dark overlay */}
+      <div 
+        className="absolute inset-0 bg-black pointer-events-none"
+        style={{ opacity: overlayOpacity }}
+      />
+
+      {/* Hero content */}
+      <MotionWrapper
+        motionId={motionId}
+        defaultMotionId="luxury-motion"
+        type="reveal"
+        className="w-full flex justify-center items-center z-10"
+      >
+        <LayoutWrapper
+          layoutId={layoutId}
+          defaultLayoutId="hero-center"
+          className={`w-full max-w-4xl flex ${alignmentClass}`}
+          style={{ 
+            color: "var(--theme-text)",
+            fontFamily: "var(--theme-font-body)"
+          }}
+        >
+          {/* Left Side: Welcome, Title, Description, CTA */}
+          <div className="flex flex-col space-y-4 flex-1 text-center lg:text-left items-center lg:items-start w-full px-6">
+            {/* Welcome Tagline */}
+            {welcomeMessage && (
+              <p 
+                className="text-xs uppercase tracking-[3px] font-semibold"
+                style={{ color: "var(--theme-accent)" }}
+              >
+                {welcomeMessage}
+              </p>
+            )}
+
+            {/* Main Title Heading */}
+            {title && (
+              <h1 
+                className="text-4xl md:text-6xl font-extrabold tracking-wide leading-tight"
+                style={{ fontFamily: "var(--theme-font-heading)" }}
+              >
+                {title}
+              </h1>
+            )}
+
+            {/* Subtitle / Details description */}
+            {subtitle && (
+              <p 
+                className="text-sm max-w-lg leading-relaxed whitespace-pre-line font-medium"
+                style={{ color: "var(--theme-secondary-text)" }}
+              >
+                {subtitle}
+              </p>
+                )}
+
+            {/* Call to Action Button */}
+            {ctaText && (
+              <div className="pt-2">
+                <MotionWrapper motionId={motionId} defaultMotionId="luxury-motion" type="hover">
+                  <MotionWrapper motionId={motionId} defaultMotionId="luxury-motion" type="tap">
+                    <button 
+                      type="button"
+                      className="px-8 py-3.5 text-xs font-bold uppercase tracking-[2px] transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer"
+                      style={{
+                        backgroundColor: "var(--theme-accent)",
+                        color: "#FFFFFF",
+                        borderRadius: "var(--theme-radius-button)",
+                        boxShadow: "var(--theme-shadow-button)",
+                        fontFamily: "var(--theme-font-heading)"
+                      }}
+                    >
+                      {ctaText}
+                    </button>
+                  </MotionWrapper>
+                </MotionWrapper>
+              </div>
+            )}
+          </div>
+
+          {/* Right Side: Deity Icon & Family Surname banner */}
+          {(enableHeaderMedia || (showSurnameHeading && surname)) && (
+            <div className="flex flex-col items-center justify-center space-y-5 flex-1 w-full pt-6 lg:pt-0">
+              {enableHeaderMedia && (
+                <div 
+                  style={{ 
+                    marginTop: `${headerMediaSpacing}px`,
+                    width: `${headerMediaSize}px`,
+                    height: `${headerMediaSize}px` 
+                  }}
+                  className="flex items-center justify-center shrink-0"
+                >
+                  <DeitySymbol
+                    type={headerMediaType}
+                    selectedGod={selectedGod}
+                    selectedSymbol={selectedSymbol}
+                    size={headerMediaSize}
+                  />
+                </div>
+              )}
+
+              {showSurnameHeading && surname && (
+                <div className="text-center animate-fadeIn">
+                  <h2 
+                    className="text-2xl md:text-3xl font-bold tracking-wider"
+                    style={{ 
+                      fontFamily: surnameFont === "great-vibes" ? "var(--font-great)" : surnameFont === "playfair" ? "var(--font-playfair)" : "var(--font-cinzel)",
+                      color: surnameColor 
+                    }}
+                  >
+                    {surname}
+                  </h2>
+                  {subText && (
+                    <span className="text-[10px] uppercase tracking-[2px] opacity-75 block mt-1" style={{ color: "var(--theme-secondary-text)" }}>
+                      {subText}
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+        </LayoutWrapper>
+      </MotionWrapper>
+
+      {/* Scroll indicator */}
+      {showScrollIndicator && (
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 z-10 animate-bounce opacity-85">
+          <span className="text-[8px] uppercase tracking-[1.5px] text-white/70 font-semibold">Scroll</span>
+          <div className="w-1 h-3 bg-white/60 rounded-full" />
+        </div>
+      )}
+    </section>
+  );
+}
+2             8     
+5file:///c:/Users/Admin/Ahvaanam/lib/registry/index.ts   import React, { lazy } from "react";
+import { SectionManifest } from "./types";
+import heroManifest from "@/components/sections/hero/manifest.json";
+import coupleManifest from "@/components/sections/couple/manifest.json";
+import countdownManifest from "@/components/sections/countdown/manifest.json";
+import storyManifest from "@/components/sections/story/manifest.json";
+import eventsManifest from "@/components/sections/events/manifest.json";
+import galleryManifest from "@/components/sections/gallery/manifest.json";
+import venueManifest from "@/components/sections/venue/manifest.json";
+import familiesManifest from "@/components/sections/families/manifest.json";
+import rsvpManifest fro    m "@/components/sections/rsvp/manifest.json";
+import faqManifest from "@/components/sections/faq/manifest.json";
+import dressCodeManifest from "@/components/sections/dressCode/manifest.json";
+import footerManifest from "@/components/sections/footer/manifest.json";
+import celebrantManifest from "@/components/sections/celebrant/manifest.json";
+import houseDetailsManifest from "@/components/sections/houseDetails/manifest.json";
+import ownersManifest from "@/components/sections/owners/manifest.json";
+
+import { SectionManifestSchema } from "./schema";
+
+const MANIFESTS: Record<string, SectionManifest> = {
+  hero: heroManifest as any,
+  couple: coupleManifest as any,
+  countdown: countdownManifest as any,
+  story: storyManifest as any,
+  events: eventsManifest as any,
+  gallery: galleryMa

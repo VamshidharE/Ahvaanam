@@ -1,0 +1,28 @@
+"use client";       7
+3import React, { useState, useEffect } from "react";   0
+,import { useRouter } from "next/navigation";   <
+8import { motion, AnimatePresence } from "framer-motion";   L
+Himport { ArrowLeft, Sparkles, Loader, AlertCircle } from "lucide-react";   W
+Simport { useInvitationData } from "../../components/context/InvitationDataContext";   B
+>import { CATEGORIES } from "../../data/categories/categories";   =
+9import { getTemplatesByCategory } from "@/lib/templates";   ?
+;import    : \"POST\",\n        headers: { \"Content-Type\": \"application/json\" },\n        body: JSON.stringify({ \n          id: slug, \n          groom: groomPayload, \n          bride: bridePayload,\n          surname: \"\",\n          themeId: selectedTheme \n        }),\n      });\n\n      let data = await res.json();\n\n      // Auto-retry with random suffix if slug exists\n      if (!res.ok \u0026\u0026 data.error?.toLowerCase().includes(\"already exists\")) {\n        slug = `${slug}-${Math.floor(100 + Math.random() * 900)}`;\n        res = await fetch(\"/api/invitation\", {\n          method: \"POST\",\n          headers: { \"Content-Type\": \"application/json\" },\n          body: JSON.stringify({ \n            id: slug, \n            groom: groomPayload, \n            bride: bridePayload,\n            surname: \"\",\n            themeId: selectedTheme \n          }),\n        });\n        data = await res.json();\n      }","TargetFile":"c:\\Users\\Admin\\Ahvaanam\\app\\create\\page.tsx","toolAction":"Update API payload in create/page.tsx","toolSummary":"Refactoring creation page API payload logic to support dynamic categories"}: ?  ?
+ ?  M2  SmB9 > zo> R    1 :r   [ * S2`9U f    }   4   %! f    h *  i a   \ 
+       Qb  w     z>  0    |   ;=     A h)9  _         MC5  I   t m|:~   =$ | $f!c \    (    F 	**[q 9   }^ hW^ G     K V     r{           E u 3   ; ,  p  L 8     4TK          8 )M  u    nS     @V  , h = q OP     < _5 57 ! =   *   2ln  q     x ,     u+|Fp ^       A p F
+  ^ z       X 
+V    0{  F[    0     s U      7 0 ,  Q  dS9   @ 8 ec    1D   :   OZS    M K pL q l          N [    mS       p n(q 9 C%    m 5  oh   /  T   \      <t  F     >  Q wa   ? L      ^G/ Y     ]     b5 "     +    	 4   1       M   z'  e I6 |  ]       ;   | 7Cr X       4p \VR gv l g S@_$m He   GD    I   w9f    X     -        ) 0  \kC[ )*5T 4 p       -4Q $    a J              %/   t    Z )  X DN  u  < C   j     @n   H   Sv  tB<  	t> y     V H  ?  ba Wt[ r A0!P x  J            e  =   X  M    vG  r  QO    U     K     = z! T t? lTV  O    | (x  7	
+q'W  $Ao2 ZN  9   ,_~ 8o / _ 
+ut       u $K ^eZ    b	 /   p    p     r Z  +Yle     juP>  ,
+*{ @ =8   +D T      \q   mY  x=    l?f rF  } o    1WV MR * s 1G         (1xs $  \   f   0  :j        q< e ^    Z~_   u >6   A  o_Zb d  TC3   k  X  =  o  6 ?  * ED   4   s   ' '  m A  Qk   J 2 HD  W-L  sI:    	l zJ z j;  {  Ib !/I/ n  0       Ow h  9w)5      8  ) o   M~ wrv   ~     tJe_   =`8G + H  n  " 9 MY           VW     83      F:-J  C]  x* l  <I 
+c {n       _  X   $       0M    (fs       Z D Xr v j } i;.~  D    qh   h @t\  q            :    -Uvm !  BJ2 R,Db    W-! 4 {   j   De7n  %H  C      T  |,   m 8   u6    ;   f:  @u          83}w k    n ,#p*  S%  2   #v U mN~; p$w  4m
+  XPh      / 4BW    \    -\   g B   = R +  Y!    8 { U\      = @      7    D  y+ &   G     j +   ]   Y          {    :WW+      }  B 7O B9h rc \ `{  ; x      lfP Wt     )     &   O  *  te  V  fW<Y    aDz      &/fK  O,9!M9    >  xQ  K     j?  K  \,  sr, m    "           Yw        Mu  D<>x   <v *   50    
+  } F )\O{  >V ]     % C .xj LH       u1    vT       qRI      gUpp n    =d +8 h    A    U<   e      e0 26    P   q g S!    n FU
+    -  |  O    aen   8 _K8 a  9 V  |       
+ E [  Kx    P   sV w #u     v   f {)O  g 9P; lu) 4  I    'h  B  eu  m	 ;D  `W     DxWZ  \_- Z mDx   ?{% ou $U 	# U      O  L =#A j  bu9          Bk 18  w   nE 8        K w I t    ks          6 L &g
+   *  z 0   Lf8<c   Il,%Mfo2   /  7:        8         _ &E5W 
+  &e@       y7 mm ?    @   
+    n     5B    vO    V   d    U    =8   ;  L 
+  4   .3   `     iA m R  ~   FVf    DA  cY:n  ~ 7=rk~ l6       c- w_ |  o-    /#   ? Iz|d Y w w  O a   C@ k D{  fS I- M? u n,         A4 Bw& 1/TE u   F 5j    9       @     _  p: q<  \CV     o<a! Y * b  
+'9 7~        xE  m 2          7 Z  |9 q M  M      )F   3    "       XL  H   
+      l % = 5    U  tfy>       "d    6   *  <   X"   h PM>    h 
+   L     $G _  #I  x 2gl~ !U     e L G71 <      wbH   V 9        0(Q  n #  ;  8J   _ ^  m lr    

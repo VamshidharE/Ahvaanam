@@ -1,0 +1,116 @@
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+import { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Import reusable section components
+import HeroSection from "../sections/hero";
+import CoupleSection from "../sections/couple";
+import CountdownSection from "../sections/countdown";
+import StorySection from "../sections/story";
+import EventsSection from "../sections/events";
+import GallerySection from "../sections/gallery";
+import VenueSection from "../sections/venue";
+import FamiliesSection from "../sections/families";
+import RSVPSection from "../sections/rsvp";
+import FAQSection from "../sections/faq";
+import DressCodeSection from "../sections/dressCode";
+import FooterSection from "../sections/footer";
+import CelebrantSection from "../sections/celebrant";
+import HouseDetailsSection from "../sections/houseDetails";
+import OwnersSection from "../sections/owners";
+
+interface LegacyOrchestratorProps {
+  themeId: string;
+  onBackToHub: () => void;
+  particlesComponent?: React.ComponentType<any>;
+  themeBgClass?: string;
+  loadingTitle?: string;
+  loadingSubtitle?: string;
+}
+
+export default function LegacyOrchestrator({
+  themeId,
+  onBackToHub,
+  particlesComponent: Particles,
+  themeBgClass = "bg-stone-900",
+  loadingTitle = "Invitation",
+  loadingSubtitle = "Celebrating Love"
+}: LegacyOrchestratorProps) {
+  const { invitationData } = useInvitationData();
+  const [loading, setLoading] = useState(true);
+  const [playingMusic, setPlayingMusic] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    if (invitationData) {
+      const timer = setTimeout(() => setLoading(false), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [invitationData]);
+
+  if (!invitationData) return null;
+
+  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+  const invitation = isWrapped ? (invitationData as any).config : invitationData;
+
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+    if (playingMusic) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(() => {});
+    }
+    setPlayingMusic(!playingMusic);
+  };
+
+  const sectionOrder = invitation.sectionOrder || [];
+
+  const renderSectionComponent = (sectionId: string) => {
+    const sectionConfig = invitation[sectionId];
+    const isEnabled = sectionConfig?.enabled !== false;
+    if (!isEnabled) return null;
+
+    const properties = sectionConfig || {};
+    const bindings = sectionConfig || {};
+
+    switch (sectionId) {
+      case "hero":
+        return (
+          <HeroSection
+            key={sectionId}
+            properties={properties}
+            bindings={bindings}
+            themeId={themeId}
+            layoutId="hero-center"
+            motionId="luxury-motion"
+          />
+        );
+      case "couple":
+        return <CoupleSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "countdown":
+        return <CountdownSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "story":
+        return <StorySection key={sectionId} properties={properties} bindings={bindings} />;
+      case "events":
+        return <EventsSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "gallery":
+        return <GallerySection key={sectionId} properties={properties} bindings={bindings} />;
+      case "venue":
+        return <VenueSection key={sectionId} properties={properties} bindings={bindings} />;
+          case "families":
+        return <FamiliesSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "rsvp":
+        return <RSVPSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "faq":
+        return <FAQSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "dressCode":
+        return <DressCodeSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "footer":
+        return <FooterSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "celebrant":
+        return <CelebrantSection key={sectionId} properties={properties} bindings={bindings} />;
+      case "houseDetails":
+        return <HouseDetailsSection key={sectionId} properties={properties} b

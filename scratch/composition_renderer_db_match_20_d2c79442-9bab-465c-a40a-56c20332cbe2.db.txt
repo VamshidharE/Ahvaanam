@@ -1,0 +1,83 @@
+"use client";
+2: 
+3: import { useEffect, useState } from "react";
+4: import { ToggleLeft, ToggleRight } from "lucide-react";
+5: import CompositionRenderer from "@/components/composition/CompositionRenderer";
+6: import { getWeddingComposition } from "@/lib/composition/templates";
+7: import { useInvitationData } from "../../context/InvitationDataContext";
+8: import LegacyOrchestrator from "../../shared/LegacyOrchestrator";
+9: 
+10: // --- TEMPLATE SPECIFIC PARTICLES ---
+11: import React, { useRef } from "react";
+12: const royaltempleParticles = () => null;
+13: 
+14: 
+15: export default function RoyalTempleLayout({ onBackToHub }: { onBackToHub: () => void }) {
+16:   const { invitationData } = useInvitationData();
+17:   const [useCompositionRenderer, setUseCompositionRenderer] = useState(false);
+18: 
+19:   useEffect(() => {
+20:     if (typeof window !== "undefined") {
+21:       setUseCompositionRenderer(localStorage.getItem("useCompositionRenderer") === "true" ||
+22:         new URLSearchParams(window.location.search).get("useCompositionRenderer") === "true");
+23:     }
+24:   }, []);
+25: 
+26:   const handleToggleRenderer = () => {
+27:     const nextVal = !useCompositionRenderer;
+28:     setUseCompositionRenderer(nextVal);
+29:     if (typeof window !== "undefined") {
+30:       localStorage.setItem("useCompositionRenderer", String(nextVal));
+31:     }
+32:   };
+33: 
+34:   if (!invitationData) return null;
+35: 
+36:   if (useCompositionRenderer) {
+37:     const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+38:     const config = isWrapped ? (invitationData as any).config : invitationData;
+39:     const comp = getWeddingComposition(config);
+40:     return (
+41:       <div className="min-h-screen text-white relative overflow-hidden select-none" style={{ backgroundColor: "var(--theme-bg, #0C0714)" }}>
+42:         <CompositionRenderer composition={comp} invitationData={invitationData} />
+43:         <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 select-none pointer-events-auto">
+44:           <button
+45:             onClick={handleToggleRenderer}
+46:             className="flex items-center gap-2 px-4 py-2.5 bg-black/60 hover:bg-black/80 backdrop-blur-md text-white rounded-full shadow-lg border border-purple-500/20 text-[10px] font-bold uppercase tracking-[1px] transition-all cursor-pointer"
+47:             title="Switch Renderer Engine"
+48:           >
+49:             <ToggleRight size={16} className="text-[#C49B27]" />
+50:             <span>Composer Engine</span>
+51:           </button>
+52:         </div>
+53:       </div>
+54:     );
+55:   }
+56: 
+57:   return (
+58:     <>
+59:       <LegacyOrchestrator
+60:         themeId="royal-temple"
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+   : kz9yqx9h       
+(bot-9f549e06-008d-4158-83d7-a7e6f81ea3b7   XI will view `lib/composition/templates.ts` to see how template compositions are defined.   2  
+ uhvcvjl0 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\composition\\templates.ts","StartLine":1,"toolAction":"View lib/composition/templates.ts","toolSummary":"Reading composition templates library file"}: 	  	
+ 	  M2      o :m      R A  g G4\    _Q    6  %1  -L @"  O  L  }+mR `Z; l_t ~ 	b u  M   3?    np S &&X R  C  r    UE    P   /  d   VG   2  g  8    F/WG#n (k             1o  } $    S1Q   \           5   ? : W AM,       t %CC[1     r    5 y    { A @  xO   ?  "     kDx>    KA  2         vu   -V+  H   XJV        S z  r<p   . ~"          !P=    :4pK6   ?        (                                                                                                                                                                                                                    ? &      8     >   
+               "  
+ 81iabu4c  run_command   {"CommandLine":"git status","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run git status","toolSummary":"Checking git status for modified files in the codebase"}: 	  	
+ 	  M2 o  < a D     c  wA    x ?      9p          V o     <   J  	-    q M    ^ F \ V3!% 5U&       ^ sP         Kr BXL. U     q         xg 3i    c :_n&  G Z  '  h D  ; S X {           Nj  Z 
+       "& i9dp, 'Y    E ~0`"  @  l     uJ  I  mB X  0 3y0q  Z  S8  L   3 G      zKG       9   CL      
+  M V   CC      +    m M@_&;   z=>1 T  N J    g   r.  R ^   k G<  Z    2G ,Pc[   W ,L    a  @B C    Ks~  ^   X      #D  Q}   K S  P   H    -2   0 /   !-  ;     +  y# N   +   )     7b?! kfy)F    C m  ;#C         4 W S~J    S d g	:   M[Q @U CN-      6"} 6 n  #      U HT  NpD      T	 8 !T    "  l2 e 3UUZ   t4TZT `M   ,X h     " s    l6%! 8?N Hvq  Ri m  x P7  B            i  3> b&     Z   PC         9i 4      j5    ,K    k   F   $I/ !C S              3     l   ~  `  3   y c  m   c w w  X g ^  a   O8  \  ;  x ) t <GiSu < -	  9#~$       +  _ ?3     F  md D  n    m eI   D     )  HD     , Z    [G    x   ( '0  3P   D       ' ]   Z  a6h      t              J   )  K(I *  1   
+3     w p  p0 = 9z /=     h z" / Q  S  #    0        p  6 # k q   H s    V 2  8  SJ   i b   - 8 !j   qb`/#  B 
+  o4  a z  	  T %                
+               2             :             B             JP     +   (   0 B!
+	sessionID  -3750763034362895579H  PeZ RJ1TaqXHGNCJjuMP5aOymQgX  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      Q
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0    M"$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+               2             :             B             JP     +   (   0 B!
+	sessionID  -3750763034362895579H  PeZ RJ1TaqXHGNCJjuMP5aOymQgX  b$4aa75d03-1271-46f0-b45e-727afbec3c33j      Q
+$a9b0692c-b2d4-43f3-ae3e-1b9befc6ead0    M"$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+  I will run a `git status` and check if there are any unstaged or modified fil

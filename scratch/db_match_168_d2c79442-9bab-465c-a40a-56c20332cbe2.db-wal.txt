@@ -1,0 +1,110 @@
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemeProvider from "@/components/theme/ThemeProvider";        
+ const mockHeroBindings = {   '
+#  title: "Ravi & Swetha's Sangeet",   7
+3  subtitle: "An Evening of Music, Dance, a
+------------------------
+[46] Found match at index 17637892
+  Preview of match [46]:
+"use client";       ?
+;import React, { useEffect, useState, useRef } from "react";   ;
+7import { ToggleLeft, ToggleRight } from "lucide-react";   S
+Oimport CompositionRenderer from "@/components/composition/CompositionRenderer";   `
+\import { getWeddingComposition, getBirthdayComposition } from "@/l
+------------------------
+[47] Found match at index 18115503
+  Preview of match [47]:
+"use client";
+
+import { useEffect, useState, useRef } from "react";
+import { ToggleLeft, ToggleRight } from "lucide-react";
+import CompositionRenderer from "@/components/composition/CompositionRenderer";
+import { getWeddingComposition, getBirthdayComposition } from "@/lib/composition/templates";
+------------------------
+[48] Found match at index 18370887
+  Preview of match [48]:
+"use client";
+
+import { useEffect, useState, useRef } from "react";
+import { ToggleLeft, ToggleRight } from "lucide-react";
+import CompositionRenderer from "@        YZ uh \ .` S   p    /components/composition/CompositionRenderer";
+import { getWeddingComposition, getBirthdayComposition } from "@/lib/composition/templates";
+------------------------
+[49] Found match at index 18373289
+  Preview of match [49]:
+"use client";
+
+import { useEffect, useState, useRef } from "react";
+import { ToggleLeft, ToggleRight } from "lucide-react";
+import CompositionRenderer from "@/components/composition/CompositionRenderer";
+import { getWeddingComposition, getBirthdayComposition } from "@/lib/composition/templates";
+------------------------
+[50] Found match at index 19533711
+  Preview of match [50]:
+"use client";
+2: 
+3: import React, { createContext, useContext, useEffect, useRef, Suspense } from "react";
+4: import { CompositionSchema } from "@/lib/composition/types";
+5: import { loadComposition } from "@/lib/composition/loader";
+6: import { validateComposition } from "@/lib/composition/validat
+------------------------
+[51] Found match at index 19608996
+  Preview of match [51]:
+"use client";
+2: 
+3: import React, { createContext, useContext, useEffect, useRef, Suspense } from "react";
+4: import { CompositionSchema } from "@/lib/composition/types";
+5: import { loadComposition } from "@/lib/composition/loader";
+6: import { validateComposition } from "@/lib/composition/validat
+------------------------
+[52] Found match at index 19609849
+  Preview of match [52]:
+"use client";
+2: 
+3: import React, { createContext, useContext, useEffect, useRef, Suspense } from "react";
+4: import { CompositionSchema } from "@/lib/composition/types";
+5: import { loadComposition } from "@/lib/composition/loader";
+6: import { validateComposition } from "@/lib/composition/validat
+------------------------
+[53] Found match at index 19622505
+  Preview of match [53]:
+"use client";
+2: 
+3: import React, { createContext, useContext, useEffect, useRef, Suspense } from "react";
+4: import { CompositionSchema } from "@/lib/composition/types";
+5: import { loadComposition } from "@/lib/composition/loader";
+6: import { validateComposition } from "@/lib/composition/validat
+------------------------
+[54] Found match at index 19623121
+  Preview of match [54]:
+"use client";
+2: 
+3: import React, { createContext, useContext, useEffect, useRef, Suspense } from "react";
+4: import { CompositionSchema } from "@/lib/composition/types";
+5: import { loadComposition } from "@/lib/composition/loader";
+6: import { validateComposition } from "@/lib/composition/validat
+------------------------
+[55] Found match at index 19649403
+  Preview of match [55]:
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+import { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Import re
+------------------------
+[56] Found match at index 19686430
+  Preview of match [56]:
+"use client";
+
+import React from "react";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+import MotionWrapper from "@/components/motion/MotionWrapper";
+
+interface HouseDetailsProps {
+  bindings: {
+    title?: 

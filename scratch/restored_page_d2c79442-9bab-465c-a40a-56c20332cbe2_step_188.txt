@@ -1,0 +1,94 @@
+Created At: 2026-07-12T13:58:40Z
+Completed At: 2026-07-12T13:58:40Z
+File Path: `file:///c:/Users/Admin/Ahvaanam/components/home/Hero.tsx`
+Total Lines: 214
+Total Bytes: 9717
+Showing lines 1 to 214
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: "use client";
+2: 
+3: import React, { useState, useEffect } from "react";
+4: import Tilt from "react-parallax-tilt";
+5: import { motion } from "framer-motion";
+6: import { ArrowRight, Sparkles } from "lucide-react";
+7: import { Parallax } from "react-scroll-parallax";
+8: import Link from "next/link";
+9: import { createClient } from "@/utils/supabase/client";
+10: 
+11: export default function Hero() {
+12:     const [user, setUser] = useState<any>(null);
+13:     const supabase = createClient();
+14: 
+15:     useEffect(() => {
+16:         supabase.auth.getUser().then(({ data: { user } }) => {
+17:             setUser(user);
+18:         });
+19:     }, []);
+20: 
+21:     return (
+22:         <section className="relative isolate min-h-screen overflow-hidden">
+23:             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#FFF6DD,transparent_60%)]" />
+24:             <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(255,248,235,.5),white)]" />
+25: 
+26:             {/* Background Glow */}
+27:             <div className="absolute inset-0 overflow-hidden opacity-90">
+28: 
+29:                 <motion.div
+30:                     animate={{
+31:                         x: [0, 60, 0],
+32:                         y: [0, -40, 0],
+33:                     }}
+34:                     transition={{
+35:                         duration: 18,
+36:                         repeat: Infinity,
+37:                     }}
+38:                     className="absolute -left-40 top-20 h-[500px] w-[500px] rounded-full bg-amber-300/20 blur-[
+<truncated 7104 bytes>
+      transition={{
+169:                                         duration: 4,
+170:                                         repeat: Infinity,
+171:                                         repeatDelay: 3,
+172:                                         ease: "easeInOut",
+173:                                     }}
+174:                                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+175:                                     style={{
+176:                                         transform: "skewX(-25deg)",
+177:                                         width: "120px",
+178:                                     }}
+179:                                 />
+180:                             </motion.div>
+181:                         </Tilt>
+182:                     </Parallax>
+183: 
+184:                 </div>
+185: 
+186:             </div>
+187: 
+188:             {/* Scroll Indicator */}
+189: 
+190:             <motion.div
+191:                 animate={{ y: [0, 12, 0] }}
+192:                 transition={{
+193:                     repeat: Infinity,
+194:                     duration: 1.8,
+195:                 }}
+196:                 className="absolute bottom-10 left-1/2 -translate-x-1/2"
+197:             >
+198:                 <div className="flex h-14 w-8 justify-center rounded-full border border-yellow-300">
+199:                     <motion.div
+200:                         animate={{
+201:                             y: [6, 22, 6],
+202:                         }}
+203:                         transition={{
+204:                             duration: 1.8,
+205:                             repeat: Infinity,
+206:                         }}
+207:                         className="mt-2 h-3 w-3 rounded-full bg-yellow-500"
+208:                     />
+209:                 </div>
+210:             </motion.div>
+211: 
+212:         </section>
+213:     );
+214: }
+The above content shows the entire, complete file contents of the requested file.

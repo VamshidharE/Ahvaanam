@@ -1,0 +1,58 @@
+includes('export default function CompositionRenderer');\n    const hasRegistry = content.includes('SECTION_COMPONENTS');\n    const hasResolve = content.includes('resolveBindingValue');\n    \n    if (hasExport \u0026\u0026 hasRegistry \u0026\u0026 hasResolve) {\n      console.log(`Checking candidate: ${file} (size: ${content.length})`);\n      \n      // Let's find \"use client\" as the starting point of the file\n      let startIdx = content.indexOf('\"use client\";');\n      if (startIdx === -1) startIdx = content.indexOf('use client');\n      if (startIdx === -1) continue;\n      \n      let cleanCode = content.substring(startIdx);\n      \n      // Remove trailing SQLite/JSON metadata if any\n      const endMarkers = ['\",\"Description\"', '\",\\n      \"Description\"', '\", \"Description\"', '\",\"description\"'];\n      for (const marker of endMarkers) {\n        const markerIdx = cleanCode.indexOf(marker);\n        if (markerIdx !== -1) {\n          cleanCode = cleanCode.substring(0, markerIdx);\n        }\n      }\n      \n      // Unescape double-escaped JSON string characters\n      let parsed = cleanCode\n        .replace(/\\\\n/g, '\\n')\n        .replace(/\\\\\"/g, '\"')\n        .replace(/\\\\\\\\/g, '\\\   T42-9bab-465c-a40a-56c20332cbe2.db.txt
+[MATCH 10 in d2c79442-9bab-465c-a40a-56c20332cbe2.db] Found at index 27402749
+  Saved to scratch/composition_pure_match_10_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+[MATCH 11 in d2c79442-9bab-465c-a40a-56c20332cbe2.db] Found at index 27403334
+  Saved to scratch/composition_pure_match_11_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+[MATCH 12 in d2c79442-9bab-465c-a40a-56c20332cbe2.db] Found at index 27433006
+  Saved to scratch/composition_pure_match_12_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+[MATCH 13 in d2c79442-9bab-465c-a40a-56c20332cbe2.db] Found at index 27433636
+  Saved to scratch/composition_pure_match_13_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+[MATCH 14 in d2c79442-9bab-465c-a40a-56c20332cbe2.db] Found at index 28683103
+  Saved to scratch/composition_pure_match_14_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+[MATCH 15 in d2c79442-9bab-465c-a40a-56c20332cbe2.db] Found at index 28782916
+  Saved to scratch/composition_pure_match_15_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+[MATCH 16 in d2c79442-9bab-465c-a40a-56c20332cbe2.db] Found at index 28786603
+  Saved to scratch/composition_pure_match_16_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+[MATCH 17 in d2c79442-9bab-465c-a40a-56c20332cbe2.db] Found at index 29278858
+  Saved to scratch/composition_pure_match_17_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+[MATCH 18 in d2c79442-9bab-465c-a40a-56c20332cbe2.db] Found at index 29287178
+  Saved to scratch/composition_pure_match_18_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+[MATCH 19 in d2c79442-9bab-465c-a40a-56c20332cbe2.db] Found at index 29295394
+  Saved to scratch/composition_pure_match_19_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+[MATCH 20 in d2c79442-9bab-465c-a40a-56c20332cbe2.db] Found at index 29301270
+  Saved to scratch/composition_pure_match_20_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+[MATCH 21 in d2c79442-9bab-465c-a40a-56c20332cbe2.db] Found at index 29489227
+  Saved to scratch/composition_pure_match_21_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+[MATCH 22 in d2c79442-9bab-465c-a40a-56c20332cbe2.db] Found at index 29489857
+  Saved to scratch/composition_pure_match_22_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+[MATCH 23 in d2c79442-9bab-465c-a40a-56c20332cbe2.db] Found at index 29502669
+  Saved to scratch/composition_pure_match_23_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+[MATCH 24 in d2c79442-9bab-465c-a40a-56c20332cbe2.db] Found at index 29503300
+  Saved to scratch/composition_pure_match_24_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+[MATCH 25 in d2c79442-9bab-465c-a40a-56c20332cbe2.db] Found at index 30220023
+  Saved to scratch/composition_pure_match_25_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+Scanning C:\Users\Admin\.gemini\antigravity\conversations\d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal...
+[MATCH 1 in d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal] Found at index 263447
+  Saved to scratch/composition_pure_match_1_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+[MATCH 2 in d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal] Found at index 516018
+  Saved to scratch/composition_pure_match_2_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+[MATCH 3 in d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal] Found at index 525428
+  Saved to scratch/composition_pure_match_3_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+[MATCH 4 in d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal] Found at index 526058
+  Saved to scratch/composition_pure_match_4_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+[MATCH 5 in d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal] Found at index 531629
+  Saved to scratch/composition_pure_match_5_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+[MATCH 6 in d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal] Found at index 539903
+  Saved to scratch/composition_pure_match_6_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+[MATCH 7 in d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal] Found at index 654442
+  Saved to scratch/composition_pure_match_7_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt
+[MATCH 8 in d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal] Found at index 2385247
+   U client` statement. It's coming from `extract_exact_renderer.js`. Now, I must understand *why* that script is being rendered, and how to prevent it from happening.
+
+
+            Created At: 2026-07-12T14:17:26Z
+Completed At: 2026-07-12T14:17:26Z
+Created file file:///c:/Users/Admin/Ahvaanam/scratch/extract_all_matches.js with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission. a: vbdutcon       
+(bot-c5f4261a-a785-47f1-aca1-b83e657791c1   eI will execute the script to search for pure matches of `CompositionRenderer` in the SQLite database. y2  
+ tytu9lc0  run_command   {"CommandL

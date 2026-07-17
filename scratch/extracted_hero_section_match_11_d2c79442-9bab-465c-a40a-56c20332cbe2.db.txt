@@ -1,0 +1,202 @@
+use client";
+
+import React from "react";
+import DeitySymbol from "@/components/shared/DeitySymbol";
+
+interface HeroSectionProps {
+  properties: {
+    showScrollIndicator?: boolean;
+    overlayOpacity?: number;
+    contentAlign?: "left" | "center" | "right";
+    minHeight?: string;
+  };
+  bindings: {
+    title?: string;
+    subtitle?: string;
+    welcomeMessage?: string;
+    heroImage?: string;
+    ctaText?: string;
+    surname?: string;
+    subText?: string;
+    enableHeaderMedia?: boolean;
+    headerMediaType?: "god" | "symbol";
+    selectedGod?: "ganesha" | "venkateswara" | "lakshmi" | "shiva" | "krishna";
+    selectedSymbol?: "om" | "swastik" | "shree" | "kalash" | "nandi";
+    headerMediaSize?: number;
+    headerMediaSpacing?: number;
+    showSurnameHeading?: boolean;
+    surnameFont?: "cinzel" | "playfair" | "great-vibes";
+    surnameColor?: string;
+  };
+  themeId?: string;
+}
+
+export default function HeroSection({ properties, bindings, themeId }: HeroSectionProps) {
+  const {
+    showScrollIndicator = true,
+    overlayOpacity = 0.45,
+    contentAlign = "center",
+    minHeight = "85vh",
+  } = properties;
+
+  const {
+    title = "",
+    subtitle = "",
+    welcomeMessage = "",
+    heroI    mage = "",
+    ctaText = "",
+    surname = "",
+    subText = "",
+    enableHeaderMedia = true,
+    headerMediaType = "god",
+    selectedGod = "ganesha",
+    selectedSymbol = "om",
+    headerMediaSize = 80,
+    headerMediaSpacing = 30,
+    showSurnameHeading = true,
+    surnameFont = "cinzel",
+    surnameColor = "#C59B27",
+  } = bindings;
+
+  const alignmentClass = 
+    contentAlign === "left" ? "text-left items-start" : 
+    contentAlign === "right" ? "text-right items-end" : 
+    "text-center items-center";
+
+  return (
+    <section 
+      className="relative flex flex-col justify-center items-center overflow-hidden w-full select-none"
+      style={{ minHeight }}
+    >
+      {/* Background Cover Image */}
+      {heroImage && (
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-105"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        />
+      )}
+
+      {/* Dark overlay */}
+      <div 
+        className="absolute inset-0 bg-black pointer-events-none"
+        style={{ opacity: overlayOpacity }}
+      />
+
+      {/* Hero content */}
+      <div className={`relative z-10 w-full max-w-4xl px-6 py-12 flex flex-col ${alignmentClass} text-white space-y-6`}>
+        {/* Deity Symbol if enabled */}
+        {enableHeaderMedia && (
+          <div 
+            style={{ 
+              marginTop: `${headerMediaSpacing}px`,
+              width: `${headerMediaSize}px`,
+              height: `${headerMediaSize}px` 
+            }}
+            className="flex items-center justify-center shrink-0"
+          >
+            <DeitySymbol
+              type={headerMediaType}
+              selectedGod={selectedGod}
+              selectedSymbol={selectedSymbol}
+              size={headerMediaSize}
+            />
+          </div>
+        )}
+
+        {/* Surname Banner */}
+        {showSurnameHeading && surname && (
+          <div className="animate-fadeIn">
+            <h2 
+              className="text-2xl md:text-3xl font-bold tracking-wider"
+              style={{ 
+                fontFamily: surnameFont === "great-vibes" ? "var(--font-great)" : surnameFont === "playfair" ? "var(--font-playfair)" : "var(--font-cinzel)",
+                color: surnameColor 
+              }}
+            >
+              {surname}
+            </h2>
+            {subText && (
+              <span className="text-[10px] uppercase tracking-[2px] opacity-75 block mt-1">
+                {subText}
+              </span>
+            )}
+          </div>
+        )}
+
+        {/* Welcome Tagline */}
+        {welcomeMessage && (
+          <p className="text-xs uppercase tracking-[3px] text-[#C49B27] font-semibold">
+            {welcomeMessage}
+          </p>
+        )}
+
+        {/* Main Title Heading */}
+        {title && (
+          <h1 className="text-3xl md:text-5xl font-bold tracking-wide leading-tight max-w-2xl font-serif">
+            {title}
+          </h1>
+        )}
+
+        {/* Subtitle / Details description */}
+        {subtitle && (
+          <p className="text-sm max-w-lg leading-relaxed opacity-95 whitespace-pre-line font-sans font-medium">
+            {subtitle}
+          </p>
+        )}
+
+        {/* Call to Action Button */}
+        {ctaText && (
+          <button 
+            type="button"
+            className="px-8 py-3.5 bg-[#C49B27] hover:bg-[#B0871B] text-white text-xs font-bold uppercase tracking-[2px] rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 cursor-pointer mt-4"
+          >
+            {ctaText}
+          </button>
+        )}
+      </div>
+
+      {/* Scroll indicator */}
+      {showScrollIndicator && (
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 z-10 animate-bounce opacity-85">
+          <span className="text-[8px] uppercase tracking-[1.5px] text-white/70 font-semibold">Scroll</span>
+          <div className="w-1 h-3 bg-white/60 rounded-full" />
+        </div>
+      )}
+    </section>
+  );
+}
+    :Update Hero index.tsx to consume CSS variable theme tokens    0fbb39b-6601-464b-9489-155dbf3e1332j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    
+  I will update `components/sections/celebrant/index.tsx` to consume theme tokens for typography fonts, card containers backgrounds, text, and border radiuses.2(bot-65e52495-d327-4d85-a446-7bc3669238b3:  
+ utg2oz38 write_to_file   {"CodeContent":"\"use client\";\n\nimport React from \"react\";\n\ninterface CelebrantSectionProps {\n  bindings: {\n    name?: string;\n    age?: number;\n  };\n}\n\nexport default function CelebrantSection({ bindings }: CelebrantSectionProps) {\n  const { name = \"Celebrant Name\", age = 25 } = bindings;\n\n  return (\n    \u003csection \n      className=\"py-24 px-6 max-w-5xl mx-auto border-b border-white/5 text-center select-none\"\n      style={{ \n        fontFamily: \"var(--theme-font-body)\",\n        color: \"var(--theme-text)\"\n      }}\n    \u003e\n      \u003cdiv className=\"space-y-12\"\u003e\n        \u003cdiv className=\"max-w-2xl mx-auto space-y-3\"\u003e\n          \u003ch2 \n            className=\"text-xs uppercase tracking-[3px] font-bold\"\n            style={{ color: \"var(--theme-accent)\" }}\n          \u003e\n            The Celebrant\n          \u003c/h2\u003e\n          \u003cp \n            className=\"text-3xl md:text-4xl font-extrabold uppercase tracking-[0.5px]\"\n            style={{ fontFamily: \"var(--theme-font-heading)\" }}\n          \u003e\n            Meet the Birthday Star\n          \u003c/p\u003e\n        \u003c/div\u003e\n\n        \u003cdiv \n          className=\"border border-white/5 p-8 md:p-12 max-w-xl mx-auto space-y-6\"\n          style={{ \n            backgroundColor: \"var(--theme-card-bg)\",\n            borderRadius: \"var(--theme-radius-card)\",\n            borderColor: \"var(--theme-border)\",\n            shadow: \"var(--theme-shadow-card)\"\n          }}\n        \u003e\n          \u003cdiv className=\"w-32 h-32 mx-auto rounded-full bg-gradient-to-tr from-amber-400 to-purple-600 p-1\"\u003e\n            \u003cdiv className=\"w-full h-full rounded-full bg-[#130B1E] flex items-center justify-center text-4xl\"\u003e\n                  \n            \u003c/div\u003e\n          \u003c/div\u003e\n          \u003cdiv className=\"space-y-2\"\u003e\n            \u003ch3 className=\"text-2xl font-bold\"\u003e{name}\u003c/h3\u003e\n            \u003cp \n              className=\"text-xs uppercase tracking-[2px] font-bold\"\n              style={{ color: \"var(--theme-accent)\" }}\n            \u003e\n              Turning {age} Years Young\n            \u003c/p\u003e\n          \u003c/div\u003e\n          \u003cp \n            className=\"text-xs max-w-md mx-auto leading-relaxed font-sans font-medium\"\n            style={{ color: \"var(--theme-secondary-text)\" }}\n          \u003e\n            Join us as we raise a toast to another year of accomplishments, laughter, and beautiful memories!\n          \u003c/p\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n    \u003c/section\u003e\n  );\n}\n","Description":"Update celebrant section for theme tokens","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\celebrant\\index.tsx","toolAction":"Update celebrant component","toolSummary":"Configuring Celebrant Section component to consume theme tokens"}:     
+    M2    9  , ,OM   Y 	~Q ] \ .wt  LQ[   N ,       8 [  	 P_     +     B         o}    w0  YL    g+[ v  `   F  Xc   '      _ .  a 3      4 '      v   > H' /W  PI  AuN7p   mx                ` _ N   |`   ni        = F9   [    HArt* 	p[     Ww    7j =; A  E     J
+  6 L@K  -    n oK bN @   q! ' & a     }B  A  U   / B nGP    D&  !.  8+8&*   '	 $V     j    Q   ot    = " qe     - E$   T +Jwrite_to_fileB  I will update `components/sections/celebrant/index.tsx` to consume theme tokens for typography fonts, card containers backgrounds, text, and border radiuses.`                                                                                                                                                                                                                                                                                   2 f             >   
+               2             :             B             JP     P  S(  0 B!
+	sessionID  -3750763034362895579H  P JZ 94xSaolLyauO4w_u65TJBAX  b$580e929c-5682-4471-a91e-4fb4acd22cadj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                    *  
+               2             :             B             JP     P  S(  0 B!
+	sessionID  -3750763034362895579H  P JZ 94xSaolLyauO4w_u65TJBAX  b$580e929c-5682-4471-a91e-4fb4acd22cadj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     $
+                 
+                                     
+  I will completely redesign the invitation editor at `app/admin/[id]/page.tsx` into a high-fidelity, professional web design tool layout (comparable to Figma, Framer, and Webflow). It implements modular left/right sidebars, live smartphone preview stages with grid/safe area overlays, context-aware property editors, and a media library.   **Identifying the Entrypoint**
+
+I've pinpointed `app/admin/[id]/page.tsx` as the core file for the editor page. Now, the user desires a complete overhaul, aiming for a modern, professional editor design similar to Framer, Canva, Figma, and Webflow.
+
+
+**Defining the UI Components**
+
+I'm now outlining the UI components needed for the editor overhaul. The current plan involves a top bar with logo, breadcrumbs, status, and actions. A left sidebar will house a vertical dock with tabs for sections, assets, pages, and history, along with expanded property panels. The center preview stage will be a checkered canvas with a simulated smartphone viewport and frame controls.
+
+
+**Detailing the User Interface**
+
+I'm currently fleshing out the UI, focusing on the finer details for an improved user experience. I've added device switches and grid line toggles to the central preview. The right sidebar will be a context-aware property inspector. The bottom bar will have quick section tools. Finally, a new media library will have an AI enhance option.
+
+
+2(bot-157fb600-5156-4c70-a25d-4c4269e1363c:   
+ b1jvabmk write_to_file    {"CodeContent":"\"use client\";\n\nimport React, { useState, useEffect, useRef, use } from \"react\";\nimport Link from \"next/link\";\nimport { InvitationDataProvider, useInvitationData } from \"../../../components/context/InvitationDataContext\";\nimport { getCategory } from \"@/lib/catego

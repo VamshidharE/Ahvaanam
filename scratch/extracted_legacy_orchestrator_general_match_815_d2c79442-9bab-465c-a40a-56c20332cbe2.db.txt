@@ -1,0 +1,189 @@
+ted.
+components/shared/LegacyOrchestrator.tsx(19,23): error TS1005: ';' expected.
+components/shared/LegacyOrchestrator.tsx(21,7): error TS1128: Declaration or statement expected.
+components/shared/LegacyOrchestrator.tsx(21,20): error TS1005: ';' expected.
+
+   : tzmfceok       
+(bot-c95538fe-1132-4551-b79c-94525bed8710     I will run a `git status` check to see if the modified or truncated section files and `LegacyOrchestrator.tsx` are tracked in git. If they are, we can restore them to their original states.   2  
+ fh0v2z7i  run_command   {"CommandLine":"git status","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Check git status","toolSummary":"Running git status to verify tracked and modified files status"}:     
+    M2 xr k    n>G 3    VJ*  #    n  u e 2 >h$    V }  TJV  *  x  t v    L      ;}v  	    r;   0FU         J  )           r; `7 j O   e G vf U  O _&
+@~ c    &f +F   a   \/   I  =L   X   i?  E O 2     l<   7  ;U   Gk I
+ w  %  A    zwA 0   mt .          -O   F O      xno {     L%h    ^ ]  3   <K l     i/   / J  F= {?  m               :       B    Z  ]     \kJ     pn z  a    k   o     | - e   6  >c 3Z    ` g      g     c   r   5dI  X{   ~ vL   A f p   V    ? K   /KR  A3nD0 q      ( 0  M   	T x|     Z Z   pc i)\   8   *     m    y k w       ~       0\K/    ws  
+ue    t     &Y EF    *o|   ?  !  XTkUd=    {
+ c     8]p vq .~H H I    D     0+   !     % " <  >J       O  H(     a~>Gf      h  A :    c jx!E k     p d   m P     x #l b  x& ;i7    H ! k 3X  d  )5 +-   S 	     a         J     f 7y  ` q 9{q `a      RQj)?    y Q   J9     /y  "        >: y    X     o v v zTX   Q R) i UT2I,           "    4  _ J { O' !cJ    M\    kB  *   j	WgTo  WZ   `3   2   >d  7 8  4 Nc ~]  Bx       3 {    (:1<j 6   H @
+W  Ms   &   (  2 q Y
+n /p2 U 3&  L M      M;     1  ?R     glt  x ]  Ym  9d M]    w  <[ U *d i  ! @C9I  j 7        r  L   l a  d     a,( ]   g [x  +   <   m!;   V 2fi p rA p ,   ]      i Jc   z          A O  ]+ g &`~i  5     nT ~^B 9  -`SK      7D Y  i  _  j &  YR    QP   xKu    2 .7 >  t  	T  	2     ? ]     D    \    	   w0   QJ :  ;Q6  ^ L     Eu}H    $ z o Z  yD5 ~  &   me =       @     :b    +mr0     B     x    Zk   !            d  tw UR   H*    cZot]  ~>_9   1 T    A.  w\i      vI    A$  mm,ZP %     E  [   ; f ,E_u Ey     Ve      Lq J  E  &  o #        @Dm{K }Onu3 ( Z6   ^d[   }  C 9  oVl        % #    #     ^x     r * B<      !  &     C       o p > ?  ` !U |   GN H&U|} [   e}           vw x@        hBuw M  r  T; q p   ]WX M
+ /  I r    x k a |6c   [y    = K #  kY@         L           _ nfb     dO   4   $   N/t !>  |   E    k  ,    h3 s2  J3   f ^#  u  #MOE     2Q       *        4 )A    X `  5&  @ =}9  h       :&  ]  A    (    P g`        }   ;      2    EV     @ u 2    TQ[*W ;P| J   <j   /    |F 
+ A       m q  	  F ;E  cI-    qbxE   ~ kH   s=  } b5  `$ [  -I
+  Q Ufjp  3PP2$        |     g   | (w  3  1&*   xz  8     E p N@q ' 	 >  =       '          |m T  v U CRz     !  N X   )   \ E  a- g ?  I  
+    ? u   m     B~  /g- ~ ?  ^   ^	  `   r1i: . y`   5^  p   ompilation to verify the actual codebase files. |2  
+ tzmfceok  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Verify compilation","toolSummary":"Running type check compiler to verify actual codebase files type safety"}:     
+    M2   8$  s x  I     U =  w    A #w  "(yy   |    	 6  W Yl '*   t  2    S  k   uO       I U y%~ ,  O  `;+t'  , &@     RV  Y gW     1  @&   D$z #   E 4 ^    c h v ->   T    tlg b   	  !" 
+  u   E   yM .  g  L   [      J run_command      &    %Created At: 2026-07-12T14:22:10Z
+Completed At: 2026-07-12T14:23:15Z
+
+				The command failed with exit code: 1
+				Output:
+				components/sections/countdown/index.tsx(1,2049): error TS1002: Unterminated string literal.
+components/sections/countdown/index.tsx(2,12): error TS1005: ';' expected.
+components/sections/countdown/index.tsx(2,17): error TS1005: ';' expected.
+components/sections/countdown/index.tsx(2,23): error TS1109: Expression expected.
+components/sections/couple/index.tsx(3,14): error TS1005: '}' expected.
+components/sections/dressCode/index.tsx(3,14): error TS1005: '}' expected.
+components/sections/events/index.tsx(1,2049): error TS1002: Unterminated string literal.
+components/sections/events/index.tsx(2,12): error TS1005: ';' expected.
+components/sections/events/index.tsx(2,17): error TS1005: ';' expected.
+components/sections/events/index.tsx(2,23): error TS1109: Expression expected.
+components/sections/families/index.tsx(3,14): error TS1005: '}' expected.
+components/sections/faq/index.tsx(1,2049): error TS1002: Unterminated string literal.
+components/sections/faq/index.tsx(2,12): error TS1005: ';' expected.
+components/sections/faq/index.tsx(2,16): error TS1005: ';' expected.
+components/sections/faq/index.tsx(2,22): error TS1109: Expression expected.
+components/sections/footer/index.tsx(1,2045): error TS1002: Unterminated string literal.
+components/sections/footer/index.tsx(2,12): error TS1005: ';' expected.
+components/sections/footer/index.tsx(2,16): error TS1005: ';' expected.
+components/sections/footer/index.tsx(2,22): error TS1109: Expression expected.
+components/sections/gallery/index.tsx(1,2049): error TS1002: Unterminated string literal.
+components/sections/gallery/index.tsx(2,12): error TS1005: ';' expected.
+components/sections/gallery/index.tsx(2,16): error TS1005: ';' expected.
+components/sections/gallery/index.tsx(2,22): error TS1109: Expression expected.
+components/sections/hero/index.tsx(1,2047): error TS1002: Unterminated string literal.
+components/sections/hero/index.tsx(2,12): error TS1005: ';' expected.
+components/sections/hero/index.tsx(2,16): error TS1005: ';' expected.
+components/sections/hero/index.tsx(2,22): error TS1109: Expression expected.
+components/sections/rsvp/index.tsx(1,2047): error TS1002: Unterminated string literal.
+components/sections/rsvp/index.tsx(2,12): error TS1005: ';' expected.
+components/sections/rsvp/index.tsx(2,17): error TS1005: ';' expected.
+components/sections/rsvp/index.tsx(2,23): error TS1109: Expression expected.
+components/sections/story/index.tsx(3,14): error TS1005: '}' expected.
+components/sections/venue/index.tsx(1,2049): error TS1002: Unterminated string literal.
+components/sections/venue/index.tsx(2,12): error TS1005: ';' expected.
+components/sections/venue/index.tsx(2,17): error TS1005: ';' expected.
+components/sections/venue/index.tsx(2,23): error TS1109: Expression expected.
+components/shared/LegacyOrchestrator.tsx(1,7): error TS1128: Declaration or statement expected.
+components/shared/LegacyOrchestrator.tsx(1,20): error TS1005: ';' expected.
+components/shared/LegacyOrchestrator.tsx(3,7): error TS1128: Declaration or statement expected.
+components/shared/LegacyOrchestrator.tsx(3,23): error TS1005: ';' expected.
+components/shared/LegacyOrchestrator.tsx(5,7): error TS1128: Declaration or statement expected.
+components/shared/LegacyOrchestrator.tsx(5,19): error TS1005: ';' expected.
+components/shared/LegacyOrchestrator.tsx(7,7): error TS1128: Declaration or statement exp     v  v                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               %      ( N        
+               "  
+ 9snksykz  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript compile verification check on orchestrator properties"}:     
+    M2  ^[ o f  v D WmaY   }    ) ]v D O           $2:w'! B  - R     F\]    K K~     [  q    cW         @p   |   Xa *     #         a    d}  C   z U    xnm 9         ^   0 S ;* 5  yP u S B    > 9`j  B         j   %2 ~<e 
+      E  z 3 - m y >y.M lP T R  o        
+{     A   6  Z-   " G   3 (o     t|    cIH l     * h  CX   ?z)   r   ] I^S >? "^ Rj? (  @h Z  n         O
+VL )    L 7xp   9  4  !_w       yfC {     K     "  k  G   S =Q9 8  LiL      p
+    S    7  j3 g    +As     7! A=   *?z Y_        a(       j  	 9T      YDu     @   p  ! 9    Y X {c   eY    '  @  G          4 .iSRh    7)c S !  !~    _" D :#         ( M    W :$    J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             B             X  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    6  H
+                 
+  	              
+                 
+                   HRunning TypeScript compile verification check on orchestrator properties   Verify types safety                 
+ 
+ command  npx tsc --noEmit  
+.d2c79442-9bab-465c-a40a-56c20332cbe2/task-1189 {file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1189.log" npx tsc --noEmit(     * 
+
+               "  
+ 9snksykz  run_command   {"CommandLine":"npx tsc --noEmit","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Verify types safety","toolSummary":"Running TypeScript compile verification check on orchestrator properties"}:     
+    M2  ^[ o f  v D WmaY   }    ) ]v D O           $2:w'! B  - R     F\]    K K~     [  q    cW         @p   |   Xa *     #         a    d}  C   z U    xnm 9         ^   0 S ;* 5  yP u S B    > 9`j  B         j   %2 ~<e 
+      E  z 3 - m y >y.M lP T R  o        
+{     A   6  Z-   " G   3 (o     t|    cIH l     * h  CX   ?z)   r   ] I^S >? "^ Rj? (  @h Z  n         O
+VL )    L 7xp   9  4  !_w       yfC {     K     "  k  G   S =Q9 8  LiL      p
+    S    7  j3 g    +As     7! A=   *?z Y_        a(       j  	 9T      YDu     @   p  ! 9    Y X {c   eY    '  @  G          4 .iSRh    7)c S !  !~    _" D :#         ( M    W :$    J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             B             X  b$1b00ed85-9cfa-4138-8093-ec925366d0e7j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    6  H
+                 
+  	              
+                 
+                   HRunning TypeScript compile verification check on orchestrator properties   Verify types safety                 <  9
+ 
+ command  npx tsc --noEmit  npx  * Verify types safety  !  
+ 
+ command  npx tsc --noEmit   	~
+<  9
+ 
+ command  npx tsc --noEmit  npx  * Verify types safety >
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	     " 
+ command(npx) 	  
+.d2c79442-9bab-465c-a40a-56c20332cbe2/task-1189 {file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1189.log" npx tsc --noEmit(   D  c:\Users\Admin\Ahvaanam0 ` '   npx tsc --noEmit   npx tsc --noEmit    on from "../sections/dressCode";   3
+/import FooterSection from "../sections/footer";   9
+5import CelebrantSection from "../sections/celebrant";   ?
+;import HouseDetailsSection from "../sections/houseDetails";   3
+/import OwnersSection from "../sections/owners";       '
+#interface LegacyOrchestratorProps {    
+   themeId: string;    
+   onBackToHub: () => void;   4
+0  particlesComponent?: React.ComponentType<any>;    
+   themeBgClass?: string;    
+   loadingTitle?: string;    
+   loadingSubtitle?: string;    
+ }       0
+,export default function LegacyOrchestrator({    
+
+  themeId,    
+   onBackToHub,   $
+   particlesComponent: Particles,   $
+   themeBgClass = "bg-stone-900",   "
+   loadingTitle = "Invitation",   *
+&  loadingSubtitle = "Celebrating Love"   !
+ }: LegacyOrchestratorProps) {   5
+1  const { invitationData } = useInvitationData();   3
+/  const [loading, setLoading] = useState(true);   >
+:  const [playingMusic, setPlayingMusic] = useState(false);   =
+9  const audioRef = useRef<HTMLAudioElement | null>(null);        
+   useEffect(() => {    
+     if (invitationData) {   B
+>      const timer = setTimeout(() => setLoading(false), 1500);   +
+'      return () => clearTimeout(timer);   	
+     }    
+   }, [invitationData]);       '
+#  if (!invitationData) return null;       e
+a  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;   U
+Q  const invitation = isWrapped ? (invitationData as any).config : invitationData;       !
+   const toggleMusic = () => {   &
+"    if (!audioRef.current) return;    
+     if (playingMusic) {   #
+       audioRef.current.pause();    
+     } else {   2
+.      audioRef.current.play().catch(() => {});   	
+     }   '
+#    setPlayingMusic(!playingMusic);    
+   };       9
+5  const sectionOrder = invitation.sectionOrder || [];       =
+9  const renderSectionComponent = (sectionId: string) => {   4
+0    const sectionConfig = invitation[sectionId];   ;
+7    const isEnabled = sectionConfig?.enabled !== false;   $
+     if (!isEnabled) return null;       /
++    const properties = sectionConfig || {};   -
+)    const bindings = sectionConfig || {};        
+     switch (sectionId) {    
+       case "hero":    
+         return (    
+           <HeroSection    
+             key={sectionId}   '
+#            properties={properties}   #
+             bindings={bindings}   !
+             themeId={themeId}   &
+"            layoutId="hero-center"   (
+$            motionId="luxury-motion"    
+           />    
+
+        );    
+       case "couple":   y
+u        return <CoupleSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;    
+       case "countdown":   |
+x        return <CountdownSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   L
+H        return <CountdownSection key={sectionId} bindings={bindings} />;    
+       case "story":   x
+t        return <StorySection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   H
+D        return <StorySection key={sectionId} bindings={bindings} />;    
+       case "events":   y
+u        return <EventsSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   I
+E        return <EventsSection key={sectionId} bindings={bindings} />;    
+       case "gallery":   z
+v        return <GallerySection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   J
+F        return <GallerySection key={sectionId} bindings={bindings} />;    
+       case "venue":   x
+t        return <VenueSection key={sectionId} bindings={bindings} layoutId="hero-center" motionId="luxury-motion" />;   H
+D        return <VenueSection key={sectionId} 

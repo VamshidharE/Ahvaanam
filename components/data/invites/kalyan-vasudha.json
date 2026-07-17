@@ -1,0 +1,268 @@
+{
+  "themeId": "royal-temple",
+  "sectionOrder": [
+    "hero",
+    "couple",
+    "countdown",
+    "story",
+    "events",
+    "gallery",
+    "venue",
+    "families",
+    "rsvp",
+    "faq",
+    "dressCode",
+    "footer"
+  ],
+  "themeSettings": {
+    "showParticles": true,
+    "particleType": "dust",
+    "borderStyle": "gold",
+    "heroAnimation": "zoom",
+    "buttonStyle": "rounded",
+    "galleryStyle": "carousel",
+    "countdownStyle": "glass"
+  },
+  "music": {
+    "enabled": true,
+    "file": "/music/theme.mp3"
+  },
+  "hero": {
+    "id": "hero",
+    "enabled": true,
+    "title": "Together with our beloved families",
+    "subtitle": "request the pleasure of your gracious presence as we begin our forever together.",
+    "welcomeMessage": "|| Shree Ganeshaay Namah ||",
+    "heroImage": "/images/couple.jpg",
+    "backgroundType": "image",
+    "overlayOpacity": 0.45,
+    "ctaText": "View Invitation",
+    "musicAutoplay": false,
+    "showParticles": true,
+    "surname": "Reddy",
+    "showSurnameHeading": true,
+    "topSymbol": "shankh",
+    "showTopSymbol": true,
+    "subText": "asd",
+    "headerMediaType": "god",
+    "selectedGod": "ganesha",
+    "headerMediaSize": 107
+  },
+  "couple": {
+    "id": "couple",
+    "enabled": true,
+    "title": "The Happy Couple",
+    "groom": {
+      "name": "Kalyan",
+      "parents": "Mr. & Mrs. R. Murthy",
+      "bio": "A modern software architect with a passion for classical music, design, and cultural heritage.",
+      "image": "/images/couple.jpg"
+    },
+    "bride": {
+      "name": "Vasudha",
+      "parents": "Mr. & Mrs. S. Sharma",
+      "bio": "An accomplished classical dancer who blends tradition with a creative modern spirit.",
+      "image": "/images/couple.jpg"
+    }
+  },
+  "countdown": {
+    "id": "countdown",
+    "enabled": true,
+    "title": "Muhurtham Countdown",
+    "targetDate": "2026-06-29T10:32:00",
+    "timezone": "IST",
+    "customLabels": {
+      "days": "Days",
+      "hours": "Hours",
+      "minutes": "Minutes",
+      "seconds": "Seconds"
+    },
+    "hideAfterWedding": true,
+    "postWeddingMessage": "The wedding has concluded! Thank you for your blessings."
+  },
+  "story": {
+    "id": "story",
+    "enabled": false,
+    "title": "Our Love Story",
+    "timeline": [
+      {
+        "title": "First Meeting",
+        "date": "14 Feb 2024",
+        "description": "We crossed paths at a traditional cultural event in Hyderabad. A simple conversation about art and technology sparked a lifelong connection."
+      },
+      {
+        "title": "The Proposal",
+        "date": "01 Jan 2025",
+        "description": "Amidst the beautiful architecture of the Udaipur lakes, we promised to stand by each other forever."
+      },
+      {
+        "title": "Engagement Ceremony",
+        "date": "10 Mar 2025",
+        "description": "Surrounded by close family and friends, we exchanged rings and officially began our path to marriage."
+      }
+    ]
+  },
+  "events": [
+    {
+      "id": "haldi",
+      "enabled": true,
+      "title": "Haldi & Mangalasnanam",
+      "date": "28 June 2026",
+      "time": "09:00 AM",
+      "venue": "Groom's Residence, Hyderabad",
+      "description": "Join us for a joyful ceremony of turmeric and blessings.",
+      "icon": "💛"
+    },
+    {
+      "id": "sangeet",
+      "enabled": true,
+      "title": "Sangeet & Mehendi Night",
+      "date": "28 June 2026",
+      "time": "06:30 PM",
+      "venue": "Imperial Hall, Hyderabad",
+      "description": "An evening of music, dance, henna, and celebration.",
+      "icon": "🎶"
+    },
+    {
+      "id": "wedding",
+      "enabled": true,
+      "title": "Wedding Ceremony (Muhurtham)",
+      "date": "29 June 2026",
+      "time": "10:32 AM",
+      "venue": "Sri Venkateswara Gardens, Hyderabad",
+      "description": "The sacred nuptial knots under the floral canopy.",
+      "icon": "💍"
+    },
+    {
+      "id": "reception",
+      "enabled": true,
+      "title": "Reception Dinner",
+      "date": "30 June 2026",
+      "time": "07:00 PM",
+      "venue": "Sri Venkateswara Gardens, Hyderabad",
+      "description": "A celebration dinner to welcome the newlyweds.",
+      "icon": "🎉"
+    }
+  ],
+  "gallery": {
+    "id": "gallery",
+    "enabled": true,
+    "title": "Our Moments",
+    "images": [
+      "/images/couple.jpg",
+      "/images/couple.jpg",
+      "/images/couple.jpg",
+      "/uploads/chatgpt_image_jun_28__2026__09_27_44_pm_1782664918138.png"
+    ],
+    "layoutType": "carousel",
+    "slideshowMode": true
+  },
+  "families": {
+    "id": "families",
+    "enabled": true,
+    "title": "Warm Greetings",
+    "brideFamily": [
+      {
+        "relation": "Parents",
+        "name": "Mr. & Mrs. S. Sharma"
+      },
+      {
+        "relation": "Sister",
+        "name": "Ananya Sharma"
+      },
+      {
+        "relation": "Grandmother",
+        "name": "Saraswathi Devi"
+      }
+    ],
+    "groomFamily": [
+      {
+        "relation": "Parents",
+        "name": "Mr. & Mrs. R. Murthy"
+      },
+      {
+        "relation": "Brother",
+        "name": "Vikram Murthy"
+      },
+      {
+        "relation": "Uncle",
+        "name": "Dr. K. Prasad"
+      }
+    ]
+  },
+  "venue": {
+    "id": "venue",
+    "enabled": true,
+    "title": "Wedding Venues",
+    "venues": [
+      {
+        "id": "main-venue",
+        "title": "Wedding & Reception Venue",
+        "venueName": "Sri Venkateswara Gardens",
+        "address": "Road No.5, Banjara Hills, Hyderabad, Telangana",
+        "city": "Hyderabad",
+        "mapsUrl": "https://maps.google.com/?q=Sri+Venkateswara+Gardens",
+        "embedUrl": "https://www.google.com/maps?q=Sri+Venkateswara+Gardens&output=embed",
+        "parkingInfo": "Valet parking available inside the garden premises."
+      },
+      {
+        "id": "sangeet-venue",
+        "title": "Sangeet Venue",
+        "venueName": "Imperial Hall",
+        "address": "Lane 3, Jubilee Hills, Hyderabad, Telangana",
+        "city": "Hyderabad",
+        "mapsUrl": "https://maps.google.com/?q=Imperial+Hall+Hyderabad",
+        "embedUrl": "https://www.google.com/maps?q=Imperial+Hall+Hyderabad&output=embed",
+        "parkingInfo": "Self-parking available at the basement level."
+      }
+    ]
+  },
+  "rsvp": {
+    "id": "rsvp",
+    "enabled": true,
+    "title": "Kindly RSVP",
+    "contacts": [
+      {
+        "type": "whatsapp",
+        "label": "WhatsApp (Groom)",
+        "value": "919999999999"
+      },
+      {
+        "type": "whatsapp",
+        "label": "WhatsApp (Bride)",
+        "value": "919999999998"
+      },
+      {
+        "type": "phone",
+        "label": "Call Us",
+        "value": "919999999999"
+      }
+    ]
+  },
+  "faq": {
+    "id": "faq",
+    "enabled": false,
+    "title": "Frequently Asked Questions",
+    "entries": []
+  },
+  "dressCode": {
+    "id": "dressCode",
+    "enabled": true,
+    "title": "Dress Code & Theme",
+    "code": "Traditional Festive",
+    "description": "Dress in vibrant ethnic colors. Saffron, yellow, gold, and red are highly encouraged!",
+    "colors": [
+      "#FF8800",
+      "#FFD700",
+      "#C59B27",
+      "#8B0000"
+    ]
+  },
+  "footer": {
+    "id": "footer",
+    "enabled": true,
+    "title": "Footer Credits",
+    "creditText": "Designed with love by Tirumala Flex Printers. Ahvaanam Hub.",
+    "salutation": "Bound by Matrimony. Kalyan & Vasudha."
+  }
+}

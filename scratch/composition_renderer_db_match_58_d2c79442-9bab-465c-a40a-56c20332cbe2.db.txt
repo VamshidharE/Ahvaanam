@@ -1,0 +1,62 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[170] Found match at index 4005562
+  Preview of match [170]:
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemeProvider from "@/components/theme/ThemeProvider";        
+ const mockHeroBindings = {   $
+   title: "Dev & Neha's Wedding",   7
+3  subtitle: "We Invite You to Celebrate Our U
+------------------------
+[171] Found match at index 4006707
+  Preview of match [171]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+[172] Found match at index 4007093
+  Preview of match [172]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProv   .   Y  _ pC=/;L !      q d 3G  P s   rdlc    -    <; p$b EL  ! mL< 5    JsdM rr e6      l   f    ^^ H CA~         HX  ^ #   1Y E(  \   l B / D{ p |yb+  x [a^  )  c   0 IVV r &"w       d/   m8   N4          V^   jD"Y xO  c:    #  b  e@    x | :}e@ P z  1 B   cb b    )j     [   )  \  a  _ Xv k  -E  #R    S         (    ``     R %D;:p T N5  _D      V4Q *Z[Zp   '   ~ _        ]h{{  [ ;    -)   M u   [ ,     E    wD    v 10F  c  F- m    f         0oSb    5  k j  	 _  2           D      & uw          t !wP),,#      ;    H    @  3 b     e@    hA9T |?_  # q          Wp s  } Q<  38     y  >   6m skwfT@   ~   ]  'S P '    }8x     E ?G   V  v     IDAT<   $  [  =   X  @     ; X 3 7b             &   G     wc   X f# xv v <  D         >   |
+     kz      CX u+ ~~+U 57 q      cO  ] n  /         a     k'  7Y|  1       4      +   x  #RD D  #nb b I    1r     (e@    hA9     s        {    {  _     8: @  2  Z      6 =x  J 0 2  7o  SE  <L 5   ',# =  ~z Cxq z   ;   ^ = <    .           } ?   xz n _    m  o  _  =x     O~ ; _       8 g'   _  ?<   | ?  _      x  c ~{ _  ;  7 u ~      / k?  /l K     /   x     e    ;   } ?zT     }/6  (yW W          Gp  [$> C{        o C/n  w> _  ~   j [        9      <    )           y      n     ~       G_x  w        ' _d  }   o w u'  ~    ^| g   \    q     W      
+?    p 3k '   n{  ? < }f ~  {    @}3 vd Z# w?      ~y       K?        6< f7~         I 7n   ~ e    mo  /mG        v    <)  !       I)X  ?   :   b  ?& u  c,  c AW   d -    
+{        16 ;   ;    2   f    8][j    xF> n    v  r   , F        C        Oo  Q x  Wp  S        d $  ~     t          k3N    K    (     (  ,    \  	a  Y  {     >  ^(   Q(  K    f Ay I4 rp %spt    8e O G c  D   (    9c q f,Z  5 y  w A _     `    3~    u i   xb N\4&    # Z ).  3G W H  X>]> mC |L *( e  !$   1 ? Z8<  {        AG8  & "+' S   5   q  Y  fn    ` XL X 1U  )vx^  /   ;  pC SFdC>]   'P9  'O B  Q  
+a    n=    L ^   kPYU       \   o+ R 1{V~1nx  T WbzQ  4          Q 1}T	v <   G &  J    b  
+<       |5 8   E ;  M      YY   ", U     Z [ K v{ c`L x  1 ! 3 E VL l   1 q t  /e@ P      \ .  0 WX   Y      | 7 G      9     K $E  CG i 	, Y   b  ;    0ib fO     ]  Y  z N  3 ;    7^ Ec    ]X x.      j e nT   i '        0m2     j0}  L kAnQ  ,[   C  ` &  F  k  jl {  Y   c2  3 a  a(+) eW @  J     I & {6  |    r E 0       7~8 +j p d    q      0 
+Y + )       |  T  y 0   +w #     T  Z -+  QU =v,  (    q D;*        
+    F a{   Z: 5Ey    *+ `B5       PQV )    #  W < (..AX  0a pDB       a   x U  &   =   :    "YSA     h>~
+ H <zd%"  L _  S  J T\Y  S "  8    9SP     B   8 ^' CX p    
+G0k xL 7     s    \\6s$      \45 E           11 4   "   M K  4& a b a    5  O  0 x f :    	a   X1s"&M  y   4  3W
+    (.-              '       *i;   U  | T)* p   R, b  h^u LTW a^ 0)T p    5q f   QR U  `    7c<   $  0\ b. L    \,Z8  G  rx   p    =q  g  . ?	3%v  
+   cXe%.\:   n A^$  \8   8   KW    <L 6  d-Y99R    
+c   X2 
+    H    P
+      ^  Sj  y i f  j 55 (  p(  S      Wg  r  1   Y( [    q   eR4r  k    B   +     e% . O 2     2 ["     -  K     #q  ir 0  =  .     ,Y8C   X:} < 17   F  %  H   L _ 	   }      5E    P         %  R  T   W      )Eq(    J          )     q !  (,)     ?! C /c  N 1       i  P  lN V P      7T    _  W     s?  6   s  1X x *       P\   <      _ p
+r  [l&   R)03Av  c`L
+ "         (    d@   y u   2 !       0e@ 8k h             e _0`  ,t   2   W     WF    s t    .eZ :  e@ P    +  2  (  0      .e@ 8     u   ^   2   7    oWD   (    -(     (  @ `@g  (   2       Y
+U   !         le@     WPf:C )   2p^      :	 \ P   ~           e@ 8      e@    -({bH   20  00C  %@ P        ;v  O R   ~    e  <:9e@ 8  hAy    @ P   e` 0  T     hA   5*   2       k  (   2 d@   #  o t|e  2  e? (:%e@  G hA  . NE P  !  % w(    )   t  @' ZPvr =e@ P R2  2 C   2  (   -(-zR  ' : ~   P     P               e  1 {   b T          C  P   e ;     s   O P   !    C  P      y   1  6    (   @`@   p t   2  (   2   c   e?  NM P   e@ P   e  2  e  2:/e@ P  2  e@ P    ZP     Q   e@ P   e` 1  e K fe@ P   e@ P       23    (   2 ?  Y)  @?`@  ~p t
+  2  (   2   d     W \ ] Q   e@ P   e        u)   2  (      2p     |1  *   2  (   20H   r \H]  b@ Q   e@ P     ZP  Q    	   ,	  m                                                                                                  F      N     L   
+               "  
+ jmvx2qfe  run_command   {"CommandLine":"node scratch/search_composition_code.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run search_composition_code.js","toolSummary":"Running composition code search script across all log directories"}:     
+    M2   / 4 S@  }   +` ,I M R v  9   vB }I         W k  >  I r    ]  w 1 P <   I    8   } #       n   A Ug t S   S  C     GW 2n      jG#~ X J run_command* Comman

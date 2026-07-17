@@ -1,0 +1,1 @@
+I will read part of `app/page.tsx` (from line 100 onwards) to see how the home page links components together.

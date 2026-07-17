@@ -1,0 +1,240 @@
+use client";       7
+3import React, { useState, useEffect } from "react";   I
+Eimport { useInvitationData } from "../context/InvitationDataContext";   L
+Himport { useInvitationData } from "../../context/InvitationDataContext";       8
+4import AudioOrchestrator from "./AudioOrchestrator";   8
+4import BackgroundEffects from "./BackgroundEffects";   8
+4import LoadingExperience from "./LoadingExperience";   4
+0import SectionPipeline from "./SectionPipeline";   0
+,import TemplateFrame from "./TemplateFrame";   6
+2import ScrollController from "./ScrollController";   4
+0import ShareController from "./ShareController";       '
+#interface LegacyOrchestratorProps {    
+   themeId: string;    
+   onBackToHub: () => void;   4
+0  particlesComponent?: React.ComponentType<any>;    
+   themeBgClass?: string;    
+   loadingTitle?: string;    
+   loadingSubtitle?: string;    
+ }       0
+,export default function LegacyOrchestrator({    
+
+  themeId,    
+   onBackToHub,    
+   particlesComponent,   $
+   themeBgClass = "bg-stone-900",   "
+   loadingTitle = "Invitation",   *
+&  loadingSubtitle = "Celebrating Love"   !
+ }: LegacyOrchestratorProps) {   5
+1  const { invitationData } = useInvitationData();   3
+/  const [loading, setLoading] = useState(true);        
+   useEffect(() => {    
+     if (invitationData) {   B
+>      const timer = setTimeout(() => setLoading(false), 1200);   +
+'      return () => clearTimeout(timer);   	
+     }    
+   }, [invitationData]);       '
+#  if (!invitationData) return null;       e
+a  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;   U
+Q  const invitation = isWrapped ? (invitationData as any).config : invitationData;   9
+5  const sectionOrder = invitation.sectionOrder || [];        
+
+  return (    
+     <ScrollController>   O
+K      <TemplateFrame themeBgClass={themeBgClass} onBackToHub={onBackToHub}>   *
+&        {/* Loading overlay screen */}   c
+_        <LoadingExperience loading={loading} title={loadingTitle} subtitle={loadingSubtitle} />       $
+         {/* Particles canvas */}    
+         <BackgroundEffects   E
+A          showParticles={invitation.themeSettings?.showParticles}   5
+1          particlesComponent={particlesComponent}    
+
+        />       -
+)        {/* Audio background playback */}    
+         <AudioOrchestrator   0
+,          musicFil    e={invitation.music?.file}   6
+2          musicEnabled={invitation.music?.enabled}    
+
+        />       !
+         {/* Share buttons */}    
+         <ShareController />       2
+.        {/* Sections pipeline render block */}    
+         <SectionPipeline   )
+%          sectionOrder={sectionOrder}   %
+!          invitation={invitation}    
+           themeId={themeId}    
+
+        />    
+       </TemplateFrame>    
+     </ScrollController>    
+   );    
+ }   G
+Cexport { default as AudioOrchestrator } from "./AudioOrchestrator";   G
+Cexport { default as BackgroundEffects } from "./BackgroundEffects";   G
+Cexport { default as LoadingExperience } from "./LoadingExperience";   C
+?export { default as SectionPipeline } from "./SectionPipeline";   ?
+;export { default as TemplateFrame } from "./TemplateFrame";   E
+Aexport { default as ScrollController } from "./ScrollController";   C
+?export { default as ShareController } from "./ShareController";      BHfile:///c:/Users/Admin/Ahvaanam/components/shared/orchestrator/index.tsxR  "use client";
+
+import React, { useState, useEffect } from "react";
+import { useInvitationData } from "../context/InvitationDataContext";
+
+import AudioOrchestrator from "./AudioOrchestrator";
+import BackgroundEffects from "./BackgroundEffects";
+import LoadingExperience from "./LoadingExperience";
+import SectionPipeline from "./SectionPipeline";
+import TemplateFrame from "./TemplateFrame";
+import ScrollController from "./ScrollController";
+import ShareController from "./ShareController";
+
+interface LegacyOrchestratorProps {
+  themeId: string;
+  onBackToHub: () => void;
+  particlesComponent?: React.ComponentType<any>;
+  themeBgClass?: string;
+  loadingTitle?: string;
+  loadingSubtitle?: string;
+}
+
+export default function LegacyOrchestrator({
+  themeId,
+  onBackToHub,
+  particlesComponent,
+  themeBgClass = "bg-stone-900",
+  loadingTitle = "Invitation",
+  loadingSubtitle = "Celebrating Love"
+}: LegacyOrchestratorProps) {
+  const { invitationData } = useInvitationData();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (invitationData) {
+      const timer = setTimeout(() => setLoading(false), 1200);
+      return () => clearTimeout(timer);
+    }
+  }, [invitationData]);
+
+  if (!invitationData) return null;
+
+  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
+  const invitation = isWrapped ? (invitationData as any).config : invitationData;
+  const sectionOrder = invitation.sectionOrder || [];
+
+  return (
+    <ScrollController>
+      <TemplateFrame themeBgClass={themeBgClass} onBackToHub={onBackToHub}>
+        {/* Loading overlay screen */}
+        <LoadingExperience loading={loading} title={loadingTitle} subtitle={loadingSubtitle} />
+
+        {/* Particles canvas */}
+        <BackgroundEffects
+          showParticles={invitation.themeSettings?.showParticles}
+          particlesComponent={particlesComponent}
+        />
+
+        {/* Audio background playback */}
+        <AudioOrchestrator
+          musicFile={invitation.music?.file}
+          musicEnabled={invitation.music?.enabled}
+        />
+
+        {/* Share buttons */}
+        <ShareController />
+
+        {/* Sections pipeline render block */}
+        <SectionPipeline
+          sectionOrder={sectionOrder}
+          invitation={invitation}
+          themeId={themeId}
+        />
+      </TemplateFrame>
+    </ScrollController>
+  );
+}
+export { default as AudioOrchestrator } from "./AudioOrchestrator";
+export { default as BackgroundEffects } from "./BackgroundEffects";
+export { default as LoadingExperience } from "./LoadingExperience";
+export { default as SectionPipeline } from "./SectionPipeline";
+export { default as TemplateFrame } from "./TemplateFrame";
+export { default as ScrollController } from "./ScrollController";
+export { default as ShareController } from "./ShareController";
+  j  
+  
+Eimport { useInvitationData } from "../context/InvitationDataContext"; Himport { useInvitationData } from "../../context/InvitationDataContext";0 8 (   /Fix relative import path for useInvitationData.    k k                                                                                                                          3 P      ~     `   
+               2             X  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+               2             X  b$b2e0 ~ O      z H    @   
+           r  "  
+ wvdlrbug  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running Next.js production build verification check"}:     
+    M2  
+]              n       HH` g  *}   B e f z $j&   6#    X o'  7q < #  Q
+  (7   | j F      > < R   P  [ M     F X      b
+`c c  <*J :
+ o ~ r O :   5Aw N `    J  { l  Z  Km    :'m  &  b      
+5  Th s  A   y    |a$ B 6  %  h2 zgy    &	^      iz &lX'r   Z;f ?[    g    t.    !  C |       C +[w   6 J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    0  6
+                 
+  	              
+                   3Running Next.js production build verification check   Test Next.js build                 
+ 
+ command npm run build  
+.d2c79442-9bab-465c-a40a-56c20332cbe2/task-1231 {file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1231.log"npm run build(     *  
+           r  "  
+ wvdlrbug  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running Next.js production build verification check"}:     
+    M2  
+]              n       HH` g  *}   B e f z $j&   6#    X o'  7q < #  Q
+  (7   | j F      > < R   P  [ M     F X      b
+`c c  <*J :
+ o ~ r O :   5Aw N `    J  { l  Z  Km    :'m  &  b      
+5  Th s  A   y    |a$ B 6  %  h2 zgy    &	^      iz &lX'r   Z;f ?[    g    t.    !  C |       C +[w   6 J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2             :             X  b$b2e00b4a-30d6-4024-a3ad-d7df894606f6j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                    0  6
+                 
+  	              
+                   3Running Next.js production build verification check   Test Next.js build                 <  9
+ 
+ command npm run build  npm run  * Test Next.js build     
+ 
+ command npm run build   	  
+<  9
+ 
+ command npm run build  npm run  * Test Next.js build B
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	     " 
+ command(npm run) 	  
+.d2c79442-9bab-465c-a40a-56c20332cbe2/task-1231 {file:///C:/Users/Admin/.gemini/antigravity/brain/d2c79442-9bab-465c-a40a-56c20332cbe2/.system_generated/tasks/task-1231.log"npm run build(       c:\Users\Admin\Ahvaanam` N    
+  
+> ahvaanam@0.1.0 build
+> node scripts/validate-manifests.js && next build
+
+Auditing registered section manifests against canonical schema...
+    All section manifests are valid and follow the canonical schema!
+    Next.js 16.2.9 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+    Compiled successfully in 13.7s
+  Running TypeScript ...
+  Finished TypeScript in 10.5s ...
+  Collecting page data using 7 worke 	 O      : H        
+           r  "  
+ wvdlrbug  run_command   {"CommandLine":"npm run build","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":10000,"toolAction":"Test Next.js build","toolSummary":"Running Next.js production build verification check"}:     
+    M2  
+]              n       HH` g  *}   B e f z $j&   6#    X o'  7q < #  Q
+  (7   | j F      > < R   P  [ M     F X      b
+`c c  <*J :
+ o ~ r O :   5Aw N `    J  { l  Z  Km    :'m  &  b      
+5  Th s  A   y    |a$ B 6  %  h2 zgy    &	^      iz &lX'r   Z;f ?[    g    t.    !  C |       C +[w   6 J run_command* CommandLine* Cwd* WaitMsBeforeAsync*
+toolAction* toolSummary2                   db", "sizeBytes":"24211456"}
+{"name":"a0f22791-55ca-43b4-8360-a5c4170fc722.db", "sizeBytes":"589824"}
+{"name":"d2c79442-9bab-465c-a40a-56c20332cbe2.db", "sizeBytes":"34369536"}
+{"name":"d2c79442-9bab-465c-a40a-56c20332cbe2.db-shm", "sizeBytes":"32768"}
+{"name":"d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal", "sizeBytes":"5277752"}
+{"name":"fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11.db", "sizeBytes":"19783680"}
+
+Summary: This directory contains 0 subdirectories and 7 files.   : r7a761zr      $
+(bot-b0e717b2-c283-444f-889a-850a21dc5f84     I will modify the SQLite database scanner script to search ALL conversation databases in `C:\Users\Admin\.gemini\antigravity\conversations\` for `SECTION_COMPONENTS`. Since previous sessions had large databases (up to 47MB), they likely contain the original untruncated records of the composition renderer!  
+2 !
+ 48x5kswo write_to_file   {"CodeContent":"const fs = require('fs');\nconst path = require('path');\n\nconst conversationsDir = 'C:\\\\Users\\\\Admin\\\\.gemini\\\\antigravity\\\\conversations';\nconst files = fs.readdirSync(conversationsDir);\n\nfunction scanFile(filePath) {\n  if (!fs.existsSync(filePath)) return;\n  if (!filePath.endsWith('.db') \u0026\u0026 !filePath.endsWith('.db-wal')) return;\n  console.log(`Scanning ${filePath} (${fs.statSync(filePath).size} bytes)...`);\n  const buf = fs.readFileSync(filePath);\n  \n  // Convert buffer to string replacing nulls with spaces\n  let 

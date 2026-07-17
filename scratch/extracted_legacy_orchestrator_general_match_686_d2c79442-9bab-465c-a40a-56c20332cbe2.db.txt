@@ -1,0 +1,256 @@
+ngs: any; }' is not assignable to type 'IntrinsicAttributes & DressCodeSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & DressCodeSectionProps'.
+components/shared/LegacyOrchestrator.tsx(112,47): error TS2322: Type '{ key: "footer"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & FooterSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & FooterSectionProps'.
+components/shared/LegacyOrchestrator.tsx(114,50): error TS2322: Type '{ key: "celebrant"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & CelebrantSectionProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & CelebrantSectionProps'.
+components/shared/LegacyOrchestrator.tsx(116,53): error TS2322: Type '{ key: "houseDetails"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & HouseDetailsProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & HouseDetailsProps'.
+components/shared/LegacyOrchestrator.tsx(118,47): error TS2322: Type '{ key: "owners"; properties: any; bindings: any; }' is not assignable to type 'IntrinsicAttributes & OwnersProps'.
+  Property 'properties' does not exist on type 'IntrinsicAttributes & OwnersProps'.
+   npx tsc --noEmit   npx tsc --noEmit    { $_.FullName })
+Pcommand(Get-ChildItem -Recurse -Path "app\api" | ForEach-Object { $_.FullName })
+  command(Get-ChildItem -Recurse -Filter "*.tsx" -Path "app","components" | Select-String -Pattern "/api/auth/login" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+ocommand(Get-ChildItem -Path "C:\Users\Admin\Ahvaanam" -Filter "middleware.ts" | ForEach-Object { $_.FullName })
+Scommand(Get-ChildItem -Path "C:\Users\Admin\Ahvaanam" | ForEach-Object { $_.Name })
+Lcommand(Get-ChildItem -Path "prisma","lib" | ForEach-Object { $_.FullName })
+Qcommand(Get-ChildItem -Recurse -Path "lib\auth" | ForEach-Object { $_.FullName })
+ncommand(Select-String -Path ".env" -Pattern "ADMIN|SECRET|PASSWORD" | Select-Object -Property LineNumber,Line)
+`command(Get-ChildItem -Recurse -Filter "*route.ts" -Path "app" | ForEach-Object { $_.FullName })
+  command(Get-ChildItem -Recurse -Filter "*.ts*" -Path "app","components","lib","utils" | Select-String -Pattern "AUTH_CONFIG" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+  command(Get-ChildItem -Recurse -Filter "*.ts*" -Path "app","components","lib","utils" | Select-String -Pattern "ADMIN_EMAIL" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+  command(Get-ChildItem -Recurse -Path "app" -Filter "*.ts*" | Select-String -Pattern "PBKDF2|hash|decrypt|verify" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+  command(Get-ChildItem -Recurse -Path "lib\auth" | Select-String -Pattern "PBKDF2|hash|decrypt|verify" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+  command(Get-ChildItem -Recurse -Filter "*.ts*" -Path "app","components","lib","utils" | Select-String -Pattern "verifyPassword" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+Scommand(Get-ChildItem -Recurse -Filter "*route.*" | ForEach-Object { $_.FullName })
+Wcommand(Get-ChildItem -Recurse -Filter "*middleware*" | ForEach-Object { $_.FullName })
+ command(Test-Path)
+ command(Test-Path)
+(command(git status; git log -n 5 --stat)
+fcommand(Get-ChildItem -Path "C:\Users\Admin\Ahvaanam\app\api" -Force | ForEach-Object { $_.FullName })
+ucommand(Get-ChildItem -Recurse -Path "C:\Users\Admin\Ahvaanam\.next\server\app\api" | ForEach-Object { $_.FullName })
+ command(git log)
+  command(Select-String -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript.jsonl" -Pattern "auth/login" | Select-Object -Property LineNumber,Line -First 10)
+  command(Select-String -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript.jsonl" -Pattern "api/auth/login" | Select-Object -Property LineNumber,Line -First 10)
+  command(Select-String -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript.jsonl" -Pattern "ADMIN_EMAIL" | Select-Object -Property LineNumber,Line -First 10)
+dcommand(Get-ChildItem -Path "C:\Users\Admin\.gemini\antigravity\brain" | ForEach-Object { $_.Name })
+  command(node -e "const crypto = require\('crypto'\); const salt = '0ffbe4786c6656d0f86943b71838273e'; const hash = crypto\.pbkdf2Sync\('tirumala@123', salt, 1000, 64, 'sha512'\)\.toString\('hex'\); console\.log\(hash === 'fbeb909db3b7d233b576fb6756c3c9f96fb446136d4a0d7271e925fbaafeea044e809467074baa95c82d4c87799e4e497e8eb73694b9777c838b6276c3e0971f'\)")
+  command(Select-String -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript_full.jsonl" -Pattern "app/api/auth" | Select-Object -Property LineNumber,Line -First 10)
+  command(Get-Content -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript_full.jsonl" | Select-Object -Index 305)
+  command(Get-Content -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript_full.jsonl" | Select-Object -Index 305,    306,307,308,309,310,311,312)
+  command(Select-String -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript_full.jsonl" -Pattern "app/api/auth" | Where-Object { $_.LineNumber -gt 312 } | Select-Object -Property LineNumber,Line -First 10)
+  command(Select-String -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs\transcript_full.jsonl" -Pattern "app/api/auth/login" | Select-Object -Property LineNumber,Line -First 10)
+  command(Get-ChildItem -Path "C:\Users\Admin\.gemini\antigravity\brain\011e974d-4561-41c5-89e8-12ee65991b97\.system_generated\logs" | ForEach-Object { $_.FullName })
+  command(Get-ChildItem -Recurse -Filter "*.ts*" -Path "app","components","lib","utils" | Select-String -Pattern "signSession" | Select-Object -Property Path,LineNumber,Line | Format-Table -AutoSize -Wrap)
+?write_file(C:\Users\Admin\Ahvaanam\app\api\auth\login\route.ts)
+@write_file(C:\Users\Admin\Ahvaanam\app\api\auth\logout\route.ts)
+  command(Get-ChildItem -Recurse -Filter "\*\.tsx" -Path "app","components" \| Select-String -Pattern "logo\.png" \| ForEach-Object \{ "\$\(\$_\.Path\):\$\(\$_\.LineNumber\): \$\(\$_\.Line\.Trim\(\)\)" \})
+ command(Copy-Item)
+ command(Copy-Item)
+ command(git checkout)
+ command(Select-String)
+  command(Select-String -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\\.system_generated\\logs\\\*\.jsonl" -Pattern "app/admin/\\\\\\\[id\\\\\\\]/page\.tsx" \| select -first 10)
+  command(Get-Content -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\\.system_generated\\logs\\transcript_full\.jsonl" \| Select-String -Pattern "app/admin/\\\\\\\[id\\\\\\\]/page\.tsx" \| select -first 5)
+  command(Get-Content -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\\.system_generated\\logs\\transcript_full\.jsonl" \| Select-String -Pattern "page\.tsx" \| select -first 5)
+  command(Get-ChildItem -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\" -Filter "page\.tsx" -Recurse -ErrorAction SilentlyContinue \| select FullName, Length)
+  command(Get-Content -Path "C:\Users\Admin\.gemini\antigravity\brain\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\.system_generated\logs\transcript_full.jsonl" | Select-String -Pattern "value={invitationData.couple.groom.name}")
+ command(git log)
+ command(git ls-files)
+  command(Select-String -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\\*\\\.system_generated\\logs\\\*\.jsonl" -Pattern "app/admin/\\\\\\\[id\\\\\\\]/page\.tsx" -SimpleMatch:\$false \| select -first 5)
+&command(git branch -a; git stash list)
+  command(Select-String -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\\*\\\.system_generated\\logs\\\*\.jsonl" -Pattern "write_to_file" \| Select-String -Pattern "admin" \| select -first 10)
+  command(Select-String -Path "c:\\Users\\Admin\\Ahvaanam\\\.next\\\*\*\\\*\.js" -Pattern "AdminPortalContent" \| select -first 5)
+  command(Get-ChildItem -Path "c:\\Users\\Admin\\Ahvaanam\\\.next" -Recurse -File \| Select-String -Pattern "Groom's Parents" \| select -first 3)
+  command(Select-String -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\conversations\\011e974d-4561-41c5-89e8-12ee65991b97\.db" -Pattern "AdminPortalContent" \| select -first 3)
+  command(python -c "import sqlite3; conn = sqlite3\.connect\('C:/Users/Admin/\.gemini/antigravity/conversations/011e974d-4561-41c5-89e8-12ee65991b97\.db'\); cursor = conn\.cursor\(\); cursor\.execute\(\\"SELECT name FROM sqlite_master WHERE type='table'\\"\); print\(cursor\.fetchall\(\)\)")
+zcommand(python C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\scratch\\extract\.py)
+zcommand(python C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\scratch\\extract\.py)
+zcommand(python C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\scratch\\extract\.py)
+zcommand(python C:\\Users\\Admin\\\.gemini\\antigravity\\br    ain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\scratch\\extract\.py)
+ command(npm run)
+~command(python C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\fb4bc4bb-0cd1-4f75-99ce-dd3d7ca12a11\\scratch\\fix_unicode\.py)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm install)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npx)
+ command(npx)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+ command(npm run)
+  command(python C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\audit_wedding_logic\.py)
+  command(python C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\aggregate_audit\.py)
+  command(python C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\scratch\\generate_migration_report\.py)
+ command(npx)
+ command(npx)
+ command(npx)
+ command(npx)
+ command(npx)
+ command(npx)
+}command(node C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\4d2a2c0e-d2da-4e70-9f33-907b27174fe7\\scratch\\check_braces\.js)
+}command(node C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\4d2a2c0e-d2da-4e70-9f33-907b27174fe7\\scratch\\check_braces\.js)
+}command(node C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\4d2a2c0e-d2da-4e70-9f33-907b27174fe7\\scratch\\check_braces\.js)
+ command(npx)
+ command(npx)
+ command(npx)
+ command(npx)
+ command(Copy-Item)
+ command(npx)
+ command(npx)
+ command(npx)
+ command(npm run)
+ command(npm run)
+ command(npx)
+ command(npx)
+ command(npm run)
+ command(npx)
+ command(npx)
+  command(Select-String -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\\*\\\.system_generated\\logs\\transcript_full\.jsonl" -Pattern "app/admin/\\\[id\\\]/page\.tsx" \| select -first 10)
+  command(Select-String -Path "C:\\Users\\Admin\\\.gemini\\antigravity\\brain\\011e974d-4561-41c5-89e8-12ee65991b97\\\.system_generated\\logs\\transcript_full\.jsonl" -Pattern "replace_file_content" \| Select-String -Pattern "admin" \| select -first 10)
+ command(git log)
+ read_file(*)
+write_file(*) $mcp(chrome_devtools/evaluate_script) ?  read_url(*) 
+command(*) $mcp(chrome_devtools/evaluate_script)"  
+ python
+ python3
+ python2
+ node
+ ruby
+ perl
+ lua
+ php
+ bash
+ sh
+ zsh
+ fish
+ csh
+ tcsh
+ ksh
+ dash
+ ash
+ source
+ eval
+ exec
+ rm
+ rmdir
+ shred
+ sudo
+ su
+ doas
+ curl
+ wget
+ ssh
+ scp
+ rsync
+ nc
+ ncat
+ pip
+ pip3
+ pipx
+ cargo
+ go
+ dd
+ mkfs
+ fdisk
+ mount
+ umount
+ chown
+ chmod
+ chroot
+ kill
+ killall
+ reboot
+ halt  git  hg  g4  jj  svn  blaze  bazel  make  ninja  gradle  mvn  buck  buck2  pants  scons  cmake  meson  just  forge  glaze 	buildozer  npm  yarn  pnpm  bun  brew  apt  apt-get  dnf  pacman  docker  podman  kubectl  gcloud  gsutil  bq  firebase  az  aws  fileutil build_cleaner  stubby  rapid  mendel  guitar  boq  gcl  f1-sql  bluze 	rpcreplay  flex 	systemctl 
+journalctl 	launchctl )
+ kubectl  
+ delete
+ drain
+ cordon
+ taint  
+ docker  
+ run
+ exec
+ rm
+ rmi  
+ podman  
+ run
+ exec
+ rm
+ rmi :
+	systemctl -
+ restart
+ stop
+ start
+ enable
+ disable
+ mask  
+	launchctl  
+ unload
+ remove  
+ git  
+ push
+ clean
+ reset  
+ brew  
+	uninstall
+ remove                   z      
+    *   @    gemini-3.5-flash-low  !
+                    @  )       ?              ( N0 8 @dH                     
+ 
+ jetski-generative-ui    
+ 
+ enable-profiles    
+ 
+ enable-learn-slash-command    
+ 
+ enable-owl-slash-command    
+ 
+ enable-state-accumulator    
+)
+#disable-teamwork-forced-flash-model                        p  X          >  (   0 8  X   h r              @  )       ?x   
+                             *             ( 0
+@ H X ` h x              "+( 2          (  0 8 8 @ H P X ` h   p x    :      d   (  0  @ J   Z   Z     1   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   1   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2    up manually
+      if (!parsedCode) {
+        let codeContent = content.substring(startIdx);
+        // Remove trailing database junk or JSON fields
+        // In the database log, it might be followed by description, targetFile, etc.
+        const endMarkers = ['","Description"', '",\
+      "Description"', '", "Description"'];
+        for (const marker of endMarkers) {
+          const markerIdx = codeContent.indexOf(marker);
+          if (markerIdx !== -1) {
+            codeContent = codeContent.substring(0, markerIdx);
+          }
+        }
+        // Unescape newlines and quotes
+        parsedCode = codeContent
+          .replace(/\\
+/g, '\
+')
+          .replace(/\\"/g, '"')
+          .replace(/\\\\/g, '\\');
+      }
+      
+      // Check if it looks complete (ends with closing bracket of the component)
+      if (parsedCode.includes('export default function CompositionRenderer') \u0026\u0026 parsedCode.includes('return') \u0026\u0026 parsedCode.trim().endsWith('}')) {
+        console.log(`FOUND PERFECT MATCH in ${file} (length: ${parsedCode.length})`);
+        bestMatch = parsedCode;
+        bestMatchFile = file;
+        break;
+      }
+    }
+  }
+}
+
+if (bestMatch) {
+  const destPath = 'components/composition/CompositionRenderer.tsx';
+  fs.mkdirSync(path.dirname(destPath), { recursive: true });
+  fs.writeFileSync(destPath, best

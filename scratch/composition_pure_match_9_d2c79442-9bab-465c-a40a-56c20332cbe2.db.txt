@@ -1,0 +1,134 @@
+use client');\n    }\n    if (startIdx === -1) continue;\n    \n    // Try to find if this contains the full component\n    const hasComponentExport = content.includes('export default function CompositionRenderer');\n    const hasResolveBinding = content.includes('resolveBindingValue');\n    const hasSectionComponents = content.includes('SECTION_COMPONENTS');\n    \n    if (h   ~ionData.  @ J  
+H  properties?: Record<string, any>;
+  motionHooks?: Record<string, any>; ]  properties?: Record<string, any>;
+  motionHooks?: Record<string, any>;
+  layoutId?: string;0 8 "  *Gfile:///c:/Users/Admin/Ahvaanam/components/sections/SectionRenderer.tsx2J
+ file:///c:/Users/Admin/Ahvaanam 'components/sections/SectionRenderer.tsx  [
+ [  0     0  
+"use client";        
+ import React from "react";   1
+-import { AlertTriangle } from "lucide-react";   ^
+Zimport { getSectionManifest, getSectionComponent, SectionManifest } from "@/lib/registry";       "
+ export interface SectionData {    
+  id: string;    
+   type: string;    
+   variant?: string;   (
+$  bindings?: Record<string, string>;   '
+#  properties?: Record<string, any>;   (
+$  motionHooks?: Record<string, any>;    
+   layoutId?: string;    
+ }       $
+ interface SectionRendererProps {    
+   section: SectionData;    
+   invitationData: any;    
+   theme?: string;    
+   motion?: string;    
+ }       :
+6function getValueByPath(obj: any, path: string): any {   !
+   if (!obj) return undefined;   $
+   const parts = path.split(".");    
+   let current = obj;   !
+   for (const part of parts) {   H
+D    if (current && typeof current === "object" && part in current) {   "
+       current = current[part];    
+     } else {    
+       return undefined;   	
+     }    
+   }    
+   return current;    
+ }       C
+?function resolveValue(invitationData: any, path: string): any {   5
+1  let val = getValueByPath(invitationData, path);   (
+$  if (val !== undefined) return val;       4
+0  if (invitationData && invitationData.config) {   :
+6    val = getValueByPath(invitationData.config, path);   *
+&    if (val !== undefined) return val;    
+   }    
+   return undefined;    
+ }       o
+kfunction ErrorFallback({ title, message, details }: { title: string; message: string; details?: string }) {    
+
+  return (     
+~    <div className="p-6 bg-red-50 border border-red-200 rounded-3xl text-red-800 space-y-3 max-w-lg mx-auto my-8 select-none">   E
+A      <div className="flex items-center gap-2 font-bold text-sm">   @
+<        <AlertTriangle className="text-red-650" size={18} />    
+         <span>{title}</span>    
+       </div>   K
+G      <p className="text-xs text-red-700 leading-relaxed">{message}</p>    
+       {details && (     
+|        <pre className="text-[10px] bg-red-100 p-2.5 rounded-xl font-mono text-red-900 overflow-x-auto whitespace-pre-wrap">    
+           {details}    
+         </pre>    
+       )}    
+
+    </div>    
+   );    
+ }       o
+kexport default function SectionRenderer({ section, invitationData, theme, motion }: SectionRendererProps) {   &
+"  if (!section || !section.type) {    
+     return (    
+       <ErrorFallback   "
+         title="Invalid Schema"   h
+d        message="The section node data-tree is malformed or missing the required 'type' identifier."   6
+2        details={JSON.stringify(section, null, 2)}    
+       />   
+
+     );    
+   }        
+   // 1. Load the manifest   8
+4  const manifest = getSectionManifest(section.type);    
+   if (!manifest) {    
+     return (    
+       <ErrorFallback   -
+)        title="Unknown Component Section"   f
+b        message={`The registry could not resolve a manifest for section type: '${section.type}'.`}   H
+D        details={`Section ID: ${section.id}\nType: ${section.type}`}    
+       />   
+
+     );    
+   }       %
+!  // 2. Load the visual component   :
+6  const Component = getSectionComponent(section.type);    
+   if (!Component) {    
+     return (    
+       <ErrorFallback   ,
+(        title="Missing Component Layout"     
+          message={`The React component layout implementation for section type '${section.type}' could not be resolved from components repository.`}   H
+D        details={`Section ID: ${section.id}\nType: ${section.type}`}    
+       />   
+
+     );    
+   }       (
+$  // 3. Resolve bindings dynamically   7
+3  const resolvedBindings: Record<string, any> = {};    
+   if (manifest.bindings) {   P
+L    for (const [propKey, bindingDef] of Object.entries(manifest.bindings)) {   8
+4          // User override path or manifest default path   a
+]      const path = (section.bindings && section.bindings[propKey]) || bindingDef.defaultPath;    
+       if (!path) {   2
+.        resolvedBindings[propKey] = undefined;    
+         continue;    
+       }   
+
+          9
+5      const val = resolveValue(invitationData, path);   V
+R      // Fail gracefully on missing binding (fall back to empty string or default)   C
+?      resolvedBindings[propKey] = val !== undefined ? val : "";   	
+     }    
+   }       *
+&  // 4. Resolve properties dynamically   9
+5  const resolvedProperties: Record<string, any> = {};    
+   if (manifest.properties) {   1
+-    for (const prop of manifest.properties) {   =
+9      const userPropVal = section.properties?.[prop.key];   M
+I      const val = userPropVal !== undefined ? userPropVal : prop.default;   -
+)      resolvedProperties[prop.key] = val;   	
+     }    
+   }       6
+2  // 5. Handle variants and unknown variant checks   J
+F  // Manifest JSONs might expose variants array. If present, validate.   R
+N  const manifestVariants = (manifest as any).variants as string[] | undefined;   :
+6  const currentVariant = section.variant || "classic";   j
+f  if (manifestVariants && manifestVariants.length > 0 && !manifestVariants.includes(currentVariant)) {   t
+p    // Graceful error handling for unknown variant: Log a warning and fallback to the default or classic variant   y
+u    console.warn(`Unknown variant '${currentVariant}' for section type '${section.type}'. Falling back

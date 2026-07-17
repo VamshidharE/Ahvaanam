@@ -1,0 +1,522 @@
+.includes('export default function CompositionRenderer');
+    const hasRegistry = content.includes('SECTION_COMPONENTS');
+    const hasResolve = content.includes('resolveBindingValue');
+    
+    if (hasExport && hasRegistry && hasResolve) {
+      console.log(`Checking candidate: ${file} (size: ${content.length})`);
+      
+      // Let's find "use client" as the starting point of the file
+      let startIdx = content.indexOf('"use client";');
+      if (startIdx === -1) startIdx = content.indexOf('use client');
+      if (startIdx === -1) continue;
+      
+      let cleanCode = content.substring(startIdx);
+      
+      // Remove trailing SQLite/JSON metadata if any
+      const endMarkers = ['","Description"', '",\n      "Description"', '", "Description"', '","description"'];
+      for (const marker of endMarkers) {
+        const markerIdx = cleanCode.indexOf(marker);
+        if (markerIdx !== -1) {
+          cleanCode = cleanCode.substring(0, markerIdx);
+        }
+      }
+      
+      // Unescape double-escaped JSON string characters
+      let parsed = cleanCode
+        .replace(/\\n/g, '\n')
+        .replace(/\\"/g, '"')
+        .replace(/\\\\/g, '\\');
+        
+      // Ensure it ends cleanly at the last closing brace of the component
+      const lastBrace = parsed.lastIndexOf('}');
+      if (lastBrace !== -1) {
+        parsed = parsed.substring(0, lastBrace + 1);
+      }
+      
+      // Check if this parsed code looks complete and has no truncated comments
+      if (parsed.includes('export default function CompositionRenderer') && parsed.trim().endsWith('}') && !parsed.includes('truncated')) {
+        console.log(`  -> FOUND EXCELLENT COMPLETE CODE in ${file} (length: ${parsed.length})`);
+        // Let's verify if there is any binary garbage (like control characters or multiple consecutive spaces representing SQLite pages)
+        const hasBinaryGarbage = parsed.includes('SQLite') || parsed.includes('Page') || parsed.match(/[\x00-\x08\x0B\x0C\x0E-\x1F]/);
+        if (!hasBinaryGarbage) {
+          bestMatch = parsed;
+          bestMatchFile = file;
+          break;
+        } else {
+          console.log(`  -> File ${file} contains binary garbage, skipping.`);
+        }
+      }
+    }
+  }
+}
+
+if (bestMatch) {
+  const destPath = 'components/composition/CompositionRenderer.tsx';
+  fs.mkdirSync(path.dirname(destPath), { recursive: true });
+  fs.writeFileSync(destPath, bestMatch);
+  console.log(`Successfully restored perfect, complete CompositionRenderer.tsx from ${bestMatchFile}!`);
+} else {
+  console.log('No perfect match found. Let\    0-30 most important files that define the system.
+
+For each file explain
+
+purpose
+
+dependencies
+
+importance
+
+# 15. Overall Architecture Score
+
+Rate
+
+Architecture
+
+Scalability
+
+Maintainability
+
+Readability
+
+Performance
+
+Developer Experience
+
+Technical Debt
+
+Commercial Readiness
+
+Then give a brutally honest assessment.
+
+Do not sugarcoat anything.
+
+Finally produce a dependency map showing how the entire application works from homepage to published invitation.
+
+Do not modify code.
+Do not generate code.
+Only analyze.  
+}You are performing a complete architectural audit of the Ahvaanam codebase before becoming the lead engineer for the project.  
+ 
+  
+ 
+ v
+tDo NOT explain or summarize the project. Instead, inspect the codebase and produce a comprehensive technical report.  
+ 
+  
+ 
+ y
+wI need enough information so another senior engineer can understand the entire architecture without reading every file.  
+ 
+  
+ 
+  
+ Cover the following sections:  
+ 
+  
+ 
+  
+ # 1. Tech Stack  
+ 
+  
+ - Frameworks  
+ 
+  
+
+- Versions  
+ 
+ 
+ - Libraries  
+ 
+  
+ - State management  
+ 
+  
+ - Authentication  
+ 
+  
+
+- Database  
+ 
+  
+ - ORM (if any)  
+ 
+  
+	- Styling  
+ 
+  
+ - Deployment  
+ 
+  
+ 
+  
+ # 2. Project Structure  
+ 
+  
+ Provide the folder tree for:  
+ 
+  
+ - app/  
+ 
+  
+- components/  
+ 
+  
+ - lib/  
+ 
+ 
+
+ - hooks/  
+ 
+ 
+
+ - types/  
+ 
+ 
+ - services/  
+ 
+ 
+
+ - utils/  
+ 
+  
+ 
+ +
+)Only include important folders and files.  
+ 
+  
+ 
+  
+ # 3. Editor Architecture  
+ 
+  
+ Explain in detail:  
+ 
+  
+ 
+  
+ - How invitations are created  
+ 
+ 
+ - Data flow  
+ 
+  
+ - State flow  
+ 
+  
+ - Live preview flow  
+ 
+ 
+ - Save flow  
+ 
+  
+ - Publish flow  
+ 
+ 
+ - Load flow  
+ 
+  
+ 
+ "
+ Include diagrams where possible.  
+ 
+  
+ 
+  
+ # 4. Rendering System  
+ 
+  
+ 
+ 
+
+ Explain:  
+ 
+  
+ 
+  
+ - Template Registry  
+ 
+  
+ - Category Registry  
+ 
+  
+ - Section Registry  
+ 
+  
+ - Layout Renderer  
+ 
+  
+ - Section Renderer  
+ 
+  
+ - Manifest system  
+ 
+  
+ - Dynamic component loading  
+ 
+  
+ 
+ "
+ Explain how everything connects.  
+ 
+  
+ 
+  
+ # 5. Editor System  
+ 
+  
+ 
+ 
+
+ Explain:  
+ 
+  
+ 
+  
+	- Sidebar  
+ 
+  
+ - Property Inspector  
+ 
+  
+	- Preview  
+ 
+  
+	- Toolbar  
+ 
+ 
+ - Undo/Redo  
+ 
+ 
+ - Auto Save  
+ 
+  
+ - Validation  
+ 
+  
+ 
+ (
+&Mention which files control each part.  
+ 
+  
+ 
+  
+ # 6. Data Models  
+ 
+  
+ 
+  
+ Show interfaces for  
+ 
+  
+ 
+  
+
+Invitation  
+ 
+  
+ 
+ 
+
+ Template  
+ 
+  
+ 
+ 
+
+ Category  
+ 
+  
+ 
+ 	
+ Section  
+ 
+  
+ 
+ 
+
+ Manifest  
+ 
+  
+ 
+  
+Design Tokens  
+ 
+  
+ 
+  
+ Editor State  
+ 
+  
+ 
+  
+ Theme  
+ 
+  
+ 
+  
+ Explain relationships.  
+ 
+  
+ 
+  
+ # 7. Source of Truth  
+ 
+  
+ 
+ )
+'Explain where data lives while editing.  
+ 
+  
+ 
+ 
+
+ Example:  
+ 
+  
+ 
+  
+ Form  
+ 
+  
+      
+ 
+  
+ 
+ 
+ React State  
+ 
+  
+ 
+  
+      
+ 
+  
+ 
+ 	
+ Context  
+ 
+  
+ 
+  
+      
+ 
+  
+ 
+ 	
+ Preview  
+ 
+  
+ 
+  
+      
+ 
+  
+ 
+  
+ Save  
+ 
+  
+ 
+  
+      
+ 
+  
+ 
+ 
+
+ Database  
+ 
+  
+ 
+  
+ Include every step.  
+ 
+  
+ 
+  
+ # 8. Component Map  
+ 
+  
+ 
+ )
+'List all major components with purpose.  
+ 
+  
+ 
+ 
+
+ Example:  
+ 
+  
+ 
+  
+ InvitationEditor  
+ 
+  
+EditorSidebar  
+ 
+  
+ PropertyInspector  
+ 
+ 
+ LivePreview  
+ 
+  
+ SectionRenderer  
+ 
+ 	
+ Toolbar  
+ 
+  
+ 
+  
+ and explain responsibility.  
+ 
+  
+ 
+  
+ # 9. Routing  
+ 
+  
+ 
+  
+ Explain important routes.  
+ 
+  
+ 
+  
+	Dashboard  
+ 
+  
+ 
+  
+	Templates  
+ 
+  
+ 
+  
+ Editor  
+ 
+  
+ 
+  
+
+Invitation  
+ 
+  
+ 
+ 
+
+ Checkout  
+ 
+  
+ 
+ 	
+ Publish  
+ 
+  
+ 
+  
+ Public Invitation  
+ 
+ 

@@ -1,0 +1,51 @@
+"use client";       7
+3import React, { useEffect, useState } from "react";   L
+Himport { useInvitationData } from "../../context/InvitationDataContext";   S
+Oimport CompositionRenderer from "@/components/composition/CompositionRenderer";   M
+Iimport { getHousewarmingComposition } from "@/lib/composition/templates";       e
+aexport default function HousewarmingPremiumLayout({ onBackToHub }: { onBackToHub: () => void }) {   5
+1  const { invitationData } = useInvitationData();   4
+0  const [mounted, setMounted] = useState(false);        
+   useEffect(() => {    
+     setMounted(true);   
+	  }, []);       3
+/  if (!invitationData || !mounted) return null;       e
+a  const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;   Q
+M  const config = isWrapped ? (invitationData as any).config : invitationData;       =
+9  const composition = getHousewarmingComposition(config);        
+
+  return (     
+      <div className="min-h-screen text-white relative overflow-hidden select-none" style={{ backgroundColor: "var(--theme-bg, #0C0714)" }}>   [
+W      <CompositionRenderer composition={composition} invitationData={invitationData} />    
+
+    </div>    
+   );    
+ }      BTfile:///c:/Users/Admin/Ahvaanam/components/templates/housewarming-premium/Layout.tsxX     4Create housewarming-premium Layout.tsx wrapper proxy     x  i x                                                                                                                                                                                                                                                              \        
+     &   
+           o  "  
+ i02nc6xu 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\app\\invites\\\\[id]\\page.tsx","EndLine":275,"StartLine":220,"toolAction":"View switch case routing","toolSummary":"Reading template routing switch blocks in page.tsx"}:     
+    M2 If s-  x?     0 4/        uvK  ?`    wo   2   C/  I2 h/  I  e    a w   \Vw  U  P T    f   yX  ys    .    /  l  | ]   f 9C  9  E  F  Q   N X X:      m  { -X         ~   VN ~7 H         W      m 9V n L  F  ph|{I)T {   [b! q 4 y   _      
+)    J	view_file* AbsolutePath* EndLine*	StartLine*
+toolAction* toolSummary2             :             X  b$72ad6ba6-ff06-48ad-a856-8fd60f5c Q        z         
+               2           %X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+               %    *  
+               2           %X  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+               %    
+  I will update `app/invites/[id]/page.tsx` using `multi_replace_file_content` to import and route our 10 new premium housewarming templates.2(bot-da6b07e1-64dd-4d1b-b0ac-bdf17f4ec3b5B  I will update `app/invites/[id]/page.tsx` using `multi_replace_file_content` to import and route our 10 new premium housewarming templates.`           J     h   
+           o  "  
+ i02nc6xu 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\app\\invites\\\\[id]\\page.tsx","EndLine":275,"StartLine":220,"toolAction":"View switch case routing","toolSummary":"Reading template routing switch blocks in page.tsx"}:     
+    M2 If s-  x?     0 4/        uvK  ?`    wo   2   C/  I2 h/  I  e    a w   \Vw  U  P T    f   yX  ys    .    /  l  | ]   f 9C  9  E  F  Q   N X X:      m  { -X         ~   VN ~7 H         W      m 9V n L  F    B "              &   
+               2           n:             B             JO         (  0 B!
+	sessionID  -3750763034362895579H1PmZ noVSatK8OcS7juMP08HJoQIX  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+               n
+                                    *  
+               2           n:             B             JO         (  0 B!
+	sessionID  -3750763034362895579H1PmZ noVSatK8OcS7juMP08HJoQIX  b$72ad6ba6-ff06-48ad-a856-8fd60f5cd538j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2     #
+               n
+                                    
+iI will view lines 220 to 275 of `app/invites/[id]/page.tsx` to locate the switch cases routing templates.2(bot-f68e1a91-4462-480d-98e7-ad7ef5be28aa:  
+ i02nc6xu 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\app\\invites\\\\[id]\\page.tsx","EndLine":275,"StartLine":220,"toolAction":"View swit

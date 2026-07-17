@@ -1,0 +1,46 @@
+const fs = require('fs');
+const path = require('path');
+
+const logPath = 'C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\.system_generated\\logs\\transcript_full.jsonl';
+
+try {
+  const content = fs.readFileSync(logPath, 'utf8');
+  const lines = content.split('\n').filter(l => l.trim());
+  console.log(`Read ${lines.length} lines.`);
+
+  let matchCount = 0;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    try {
+      const obj = JSON.parse(line);
+      if (obj.tool_calls) {
+        for (const tc of obj.tool_calls) {
+          const isWrite = tc.name === 'write_to_file' || tc.name === 'replace_file_content';
+          const targetsComposition = tc.args && tc.args.TargetFile && tc.args.TargetFile.toLowerCase().includes('components/composition');
+          
+          if (isWrite && targetsComposition) {
+            matchCount++;
+            console.log(`Match ${matchCount}: step_index=${obj.step_index}, tool=${tc.name}, TargetFile=${tc.args.TargetFile}`);
+            
+            let code = '';
+            if (tc.name === 'write_to_file') {
+              code = tc.args.CodeContent;
+            } else if (tc.name === 'replace_file_content') {
+              code = tc.args.ReplacementContent;
+            }
+            
+            if (code) {
+              const fileBase = path.basename(tc.args.TargetFile);
+              const outPath = `scratch/restored_composition_${fileBase}_step_${obj.step_index}.txt`;
+              fs.writeFileSync(outPath, code);
+              console.log(`  Saved ${fileBase} of size ${code.length} to ${outPath}`);
+            }
+          }
+        }
+      }
+    } catch (e) {}
+  }
+  console.log(`Done. Found ${matchCount} matches.`);
+} catch (err) {
+  console.error('Error:', err);
+}

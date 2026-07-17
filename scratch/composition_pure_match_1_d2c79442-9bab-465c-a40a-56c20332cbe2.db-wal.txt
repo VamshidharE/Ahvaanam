@@ -1,0 +1,80 @@
+use client');   	
+2:      }   &
+3: "    if (startIdx === -1) continue;    
+4:         :
+5: 6    // Try to find if this contains the full component   c
+6: _    const hasComponentExport = content.includes('export default function CompositionRenderer');   J
+7: F    const hasResolveBinding = content.includes('resolveBindingValue');   L
+8: H    const hasSectionComponents = content.includes('SECTION_COMPONENTS');    
+9:         N
+10: J    if 
+11: ------------------------
+12: Scanning C:\Users\Admin\.gemini\antigravity\conversations\d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal (5055272 bytes)
+13:    .st_${theme.id}`,
+14: -    templateId: theme.id,
+15: -    category: "wedding",
+16: -    editor: {
+17: -      sections: WEDDING_SECTIONS,
+18: -      navigation: WEDDING_NAVIGATION,
+19: -      defaultExpanded: ["hero", "couple", "events"],
+20: -      displayOrder: WEDDING_SECTIONS.map((s) => s.id)
+21: -    },
+22: -    features: WEDDING_FEATURES,
+23: -    defaults: createWeddingDefaults(theme.id),
+24: -    version: "1.0.0",
+25: -    description: theme.desc
+26: -  })),
+27:  // Birthday shared sections configuration
+28:  const BIRTHDAY_SECTIONS = [
+29:    {
+30: [diff_block_end]
+31: 
+32: Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have m   t     3 \  'l  f ! 07   mt was found at all!');   } } 
+-----------------------------------------
+[Candidate 16] File: composition_pure_match_17_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 4981
+  Ends with: ully wrote fallback CompositionRenderer.tsx!`);   } else {     console.log('No match containing CompositionRenderer export was found at all!');   } } 
+-----------------------------------------
+[Candidate 17] File: composition_pure_match_18_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 4981
+  Ends with: ully wrote fallback CompositionRenderer.tsx!`);   } else {     console.log('No match containing CompositionRenderer export was found at all!');   } } 
+-----------------------------------------
+[Candidate 18] File: composition_pure_match_5_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 4981
+  Ends with: ully wrote fallback CompositionRenderer.tsx!`);   } else {     console.log('No match containing CompositionRenderer export was found at all!');   } } 
+-----------------------------------------
+[Candidate 19] File: composition_pure_match_12_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt, Length: 3844
+  Ends with:   }         }       } catch (e) {}     }   } }  try {   searchDir(geminiDir); } catch (err) {   console.error('Error:', err); } console.log('Done.'); 
+-----------------------------------------
+[Candidate 20] File: composition_pure_match_18_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt, Length: 3844
+  Ends with:   }         }       } catch (e) {}     }   } }  try {   searchDir(geminiDir); } catch (err) {   console.error('Error:', err); } console.log('Done.'); 
+-----------------------------------------
+[Candidate 21] File: composition_pure_match_21_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 3758
+  Ends with:    required?: boolean; }  export interface BuilderModuleDefinition {   id: string;   title: string;   description: string;   fields: ModuleField[]; } 
+-----------------------------------------
+[Candidate 22] File: composition_pure_match_16_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt, Length: 3486
+  Ends with: c(destPath, bestMatch);   console.log(`Successfully restored perfect CompositionRenderer.tsx!`); } else {   console.log('No perfect match found.'); } 
+-----------------------------------------
+[Candidate 23] File: composition_pure_match_8_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 3462
+  Ends with: c(destPath, bestMatch);   console.log(`Successfully restored perfect CompositionRenderer.tsx!`); } else {   console.log('No perfect match found.'); } 
+-----------------------------------------
+[Candidate 24] File: composition_pure_match_22_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 3173
+  Ends with:    required?: boolean; }  export interface BuilderModuleDefinition {   id: string;   title: string;   description: string;   fields: ModuleField[]; } 
+-----------------------------------------
+[Candidate 25] File: composition_pure_match_14_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 2222
+  Ends with: kspace UI in `app/admin/[id]/page.tsx` - `[x]` Connect header buttons to swap back to Advanced Studio - `[x]` Run TypeScript and build compile checks 
+-----------------------------------------
+[Candidate 26] File: composition_pure_match_2_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt, Length: 2179
+  Ends with:                                    J 	        l                       "    lmt7gzt3  run_command   {"CommandLine":"node scratch/extract_from_db.js","C
+-----------------------------------------
+[Candidate 27] File: composition_pure_match_15_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt, Length: 1547
+  Ends with: c(destPath, bestMatch);   console.log(`Successfully restored perfect CompositionRenderer.tsx!`); } else {   console.log('No perfect match found.'); } 
+-----------------------------------------
+[Candidate 28] File: composition_pure_match_17_d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal.txt, Length: 1547
+  Ends with: c(destPath, bestMatch);   console.log(`Successfully restored perfect CompositionRenderer.tsx!`); } else {   console.log('No perfect match found.'); } 
+--   u     3 \  'lN/bc va    t.
+
+
+            Created At: 2026-07-12T14:19:14Z
+Completed At: 2026-07-12T14:19:14Z
+Created file file:///c:/Users/Admin/Ahvaanam/scratch/find_full_composition.js with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission. b: z42uqj2t       
+(bot-41ac2e24-d1ad-40ec-8456-86692d648e22   )I will run the search and ranking script. p2  
+ 5oh2j6w3  run_command   {"CommandLine":"node scratch/find

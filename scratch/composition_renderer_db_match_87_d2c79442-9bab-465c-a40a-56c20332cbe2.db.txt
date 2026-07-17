@@ -1,0 +1,59 @@
+"use client";       7
+3import React, { useEffect, useState } from "react";   C
+?import LayoutWrapper from "@/components/layouts/LayoutWrapper";   B
+>import MotionWrapper from "@/components/motion/MotionWrapper";       %
+!interface CountdownSectionProps {    
+  bindings: {    
+     title?: string;    
+     targetDate?: string;   $
+     postWeddingMessage?: string;    
+   };    
+   layoutId?: string;    
+   motionId?: string;    
+ }       g
+cexport default function CountdownSection({ bindings, layoutId, motionId }: CountdownSectionProps) {    
+
+  const {    #
+     title = "Party Countdown",    ,
+(    targetDate = "2026-12-14T19:00:00",    :
+6    postWeddingMessage = "The Celebration has begun!"     
+   } = bindings;       ^
+Z  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });   6
+2  const [isPassed, setIsPassed] = useState(false);        
+   useE          .  , \ ! 2s)g0 u a , G  +  ; N b_  5 c$P}   # $   [!   [ aM     == }n        `Y    B  4 w   !  Z u   5    8    nK      Ff        I _      4  h I I      E            H '  XT ,   i Q8    	    4  WGU7+c W	    ~ CVP  7 t%7$    r  ^qpZ  L w  0   iH q   q g  !  y   )L   {8   A b^d Ny   (q.Z5.s   )Z _    A =&H  (     Q,         x  [    p	$    Pj        9W :YH>JH  @    .Er  b  ra      0	    /;  d E [ R     sn3    N |E ED %d  ~j :0     r  :       .  : i- } K Zs  9     	  a ]  n xf   wB  {   }'   	Z     j     K ] s,     Ah Z       O   @Z %          U i jI    8  M,  9  S   e u   fp   o  ) u  : k    `'  5Q  :&  -, A:  \
+ i lN9?  )  3z ^ .m 1    mN   A          o   ]! C@    D+ |d -t\G E  b  y   kt   T       "$e34daa19-53d7-4cb0-bf3a-1321b5baf2f9B     2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   1   1   1   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2
+     "P     &   (   0 B!
+	sessionID  -3750763034362895579H  PYZ DhRSatuqIJLWjuMPiZe80Aw0  : 
+ autoJd q           "             (  2          8519c9b62          a1e3b298:       e9c821beB         R     Z         b     Rzw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  d P     &   (   0 B!
+	sessionID  -3750763034362895579H  PYZ DhRSatuqIJLWjuMPiZe80Aw" e74f6af66c53e075   gemini-default  9
+ last_execution_id $4cee851d-d665-4a35-88f9-437548b34cc6  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  243  #
+
+model_enum  MODEL_PLACEHOLDER_M20   Gemini 3.5 Flash (Medium) d js   R       "$e34daa19-53d7-4cb0-bf3a-1321b5baf2f9B     2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   1   1   1   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2
+     "P     !   (   0 B!
+	sessionID  -3750763034362895579H  PpZ CxRSatOvL_7cg8UPpKn1oQc0  : 
+ autoJc q           "             (  2          a1e3b2982  ~      0d0fb5b9:       e9c821beB         R     Z         b     =zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  d P     !   (   0 B!
+	sessionID  -3750763034362895579H  PpZ CxRSatOvL_7cg8UPpKn1oQc" 65026cef920a216d   gemini-default  !
+ used_claude_conservative  false   
+ last_step_index  241  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $4cee851d-d665-4a35-88f9-437548b34cc6  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false   Gemini 3.5 Flash (Medium) c br   B       "$e34daa19-53d7-4cb0-bf3a-1321b5baf2f9B     2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2   1   1   1   2   2   2   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1   2   2   2
+     "M          0 B!
+	sessionID  -3750763034362895579H  PqZ CBRSap_jHYWqjuMPucfSsA40~: 
+ autoJa q           "             (~2  ~      0d0fb5b92  |      f572b54e:       e9c821beB         R     Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  a M          0 B!
+	sessionID  -3750763034362895579H  PqZ CBRSap_jHYWqjuMPucfSsA4" 1e404c0ea64755ed   gemini-default   
+ last_step_index  239  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $4cee851d-d665-4a35-88f9-437548b34cc6  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false  !
+ used_claude_conservative  false   Gemini 3.5 Flash (Medium) [   K K      U  t  L  |{X     s B8 % |
+ ! bE
+    s  qe@ x7  Z" > r       n   s       89?l i[G   i=       &'w X   	      LP       i / cf9w@r_ 7K      @    0 )          S   Q   x  +#    A P  n     `&3U   u  |   BZ   rCU        b   } &) EY    po  % S3  8  v  r!o(0z    hJ - sI   pK     rz gK1 !    _      V    mPQc       xJ  F>]     	 :  q   8 ]  ug  3wx    w   M*    %M  y     P  (     S\<5          \=h (OA }        9q    $   ? bt Wk   x{     )        }$ 6  Q W  7FS`M   (Y        M  -    p    {} `        A z   _     <_  R\    1  w#  xR   @  Mz }( p      )b      &  /h i  H R%M O r lck       c  "   !      D  ]< f U+T|`\   Y) & 0dE    \      >* ;$ ap D) B   -  '  g   #(      n     ?6     I   Hd    I   F    nz[Q x         T     + n E 4   K7D   O p >  .    M G  YP   M )   9   =T@   H^ V ;  @   [ (  0    b!|  F'   r      F  ]       > vF    %s         Vh! V    A o 84  x  zt <    >X    C }  .> -f   XZ  yy    B           %' U N U q     qx N V  <   }y  "e  p  d W  g  B  -{   oo S  y  `: X w  { ?      B+ 

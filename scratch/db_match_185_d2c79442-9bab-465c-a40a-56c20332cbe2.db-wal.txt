@@ -1,0 +1,109 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Aishwarya & Karthik",
+  subtitle: "We Invite You to Celebrate Our Special Day",
+  welcomeMessage: "Weddi
+------------------------
+[69] Found match at index 22735945
+  Preview of match [69]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[70] Found match at index 22744974
+  Preview of match [70]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider"    ;
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You
+------------------------
+[71] Found match at index 23766024
+  Preview of match [71]:
+"use client";
+2: 
+3: import React, { useEffect, useState, useRef } from "react";
+4: import { useInvitationData } from "../context/InvitationDataContext";
+5: import { ToggleLeft, ToggleRight, ArrowLeft, Volume2, VolumeX } from "lucide-react";
+6: import { motion, AnimatePresence } from "framer-mo
+------------------------
+[72] Found match at index 23877734
+  Preview of match [72]:
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { useInvitationDat
+Restored code to c:\Users\Admin\Ahvaanam\components\shared\LegacyOrchestrator.tsx
+
+   : rod0yvq8      	
+(bot-8740f251-dd73-40af-b1c6-200c5b362dab   qI will view the first 100 lines of the recove
+------------------------
+[73] Found match at index 23927726
+  Preview of match [73]:
+"use client";
+
+import React from "react";
+import { getTheme } from "@/lib/theme/registry";
+
+interface ThemeProviderProps {
+  themeId: string;
+}
+
+export default function ThemeProvider({ themeId }: ThemeProviderProps) {
+  const theme = getTheme(themeId);
+
+  const cssContent = `
+    :root {
+      --the
+------------------------
+[74] Found match at index 23934789
+  Preview of match [74]:
+"use client";
+
+import React from "react";
+import { getTheme } from "@/lib/theme/registry";
+
+interface ThemeProviderProps {
+  themeId: string;
+}
+
+export default function ThemeProvider({ themeId }: ThemeProviderProps) {
+  const theme = getTheme(themeId);
+
+  const cssContent = `
+    :root {
+      --the
+------------------------
+[75] Found match at index 23935642
+  Preview of match [75]:
+"use client";
+
+import React from "react";
+import { getTheme } from "@/lib/theme/registry";
+
+interface ThemeProviderProps {
+  themeId: string;
+}
+
+export default fu        YZ twRJ  v   fUs     nD  |   ef /      O F>W\} y      X        0     D  z M            q  ?  $ a  u 
+ ) |     ?E  [    {       + 43                     Q   l      O;   /           2x<  <  {:RV        O   .;         D   k|   %     Z7 fn   tp     Sg 2  cc B^    G Q - >  FG 7   V !    9HVni ~H-   8 4   k O ?    y -C           "  80 	   z         ^ / ( o      K    2      O)    =   cGs  =w ifK8  df   .   ^h.I    9   _   k;.     l     ,    ^y    q  7 _ y g  nN _|    $    t z          49o < 7o \ /q{     @        "  "    |  < $:v  M      /     & ? XUY   g	n[ l  F ^    ( g              8     b 3A 1DS -       8B  B. =   X r    WA      ]ffd ~ o >  A8   = {  +.  S>   h 2/%    PR\   cP   +L!ML x    ~ QS@} [  s   rX]       7   6       {         5  g   >  m  } E  /ddd   q'     =  r|           } O= 8    p    Oa>O             ?> 0 ; 0\  o  W^  o      = O y    F  B  C       <  $1  h   ) %X     d  &3  `  6  G',C 1    Rg      
+6 y  8 bV P     "A    * y   ?o      b '      +.   :   &N  n   $  TVV
+>   k   8    y3xC M?     F |  )L   v        N o     ? O   ? h q  " d ]   {q o~       o          ^   I  g   >8  S         O < Y   p         F.[   i 0K
+    0 _ ~Q   w  K _v)x  yX     h        })3 W	 ?  v +A   d         7   o   = r"O 3 O7 J   ;  G   x  O >f  ?q  &M,lgL       D   7  /)'J _#     W     SO  ? !   m 3g6    <    :t( '    y<      N  S       o        O~b @      X    E dT          q { / f       P qr     o =+ u |, m?    =  C =z       v     k   s   u I k! x    G ^       8#;    {  ~    w@#   [   f      < [ >  rTPP {       QS]c|X  aL   K               U  $ B   K   	8Y    [  GN  u    c b            iD      jm  D? # % E 4QU \ p  

@@ -1,0 +1,150 @@
+"use client";
+
+import React, { useState, useEffect, useRef, use } from "react";
+import Link from "next/link";
+import { InvitationDataProvider, useInvitationData } from "../../../components/context/InvitationDataContext";
+import { WeddingInvitationConfig, WeddingEvent, StoryTimelineEntry, FAQEntry, RSVPContact } from "../../../components/types/invitation";
+import { motion, AnimatePresence } from "framer-motion";
+import { getCategory, getCategoryFields, getCategoryGroups } from "@/lib/categories/utils";
+import { getTemplatesByCategory } from "@/lib/templates";
+import { getManifest } from "@/lib/template-manifests";
+import { 
+  Palette, Sliders, Heart, Calendar, Clock, MapPin, 
+  Phone, HelpCircle, Shirt, Save, ArrowLeft, Plus, 
+  Trash2, ArrowUp, ArrowDown, Upload, CheckCircle2, AlertCircle, Eye, Smartphone, Monitor, Tablet,
+  ChevronDown
+} from "lucide-react";
+
+// --- CONFETTI CANVAS EFFECT ---
+function ConfettiCanvas({ active }: { active: boolean }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    if (!active) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let width = (canvas.width = canvas.offsetWidth);
+    let height = (canvas.height = canvas.offsetHeight);
+
+    const colors = ["#C49B27", "#8C6A1A", "#E5A93C", "#C88E9B", "#F7E4C2"];
+    const particles = Array.from({ length: 80 }).map(() => ({
+      x: Math.random() * width,
+      y: Math.random() * height - height,
+      r: Math.random() * 4 + 2,
+      d: Math.random() * height,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      tilt: Math.random() * 8 - 4,
+      tiltAngleIncremental: Math.random() * 0.05 + 0.02,
+      tiltAngle: 0,
+    }));
+
+    function resize() {
+      if (canvas) {
+        width = canvas.width = canvas.offsetWidth;
+        height = canvas.height = canvas.offsetHeight;
+      }
+    }
+    window.addEventListener("resize", resize);
+
+    let animationFrameId: number;
+    let frameCount = 0;
+
+    function draw() {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach((p, idx) => {
+        p.tiltAngle += p.tiltAngleIncremental;
+        p.y += (Math.cos(p.d) + 2 + p.r / 2) / 2;
+        p.x += Math.sin(p.tiltAngle);
+        p.tilt = Math.sin(p.tiltAngle - idx / 3) * 10;
+
+        if (p.y > height) {
+          p.y = -20;
+          p.x = Math.random() * width;
+        }
+
+        ctx.beginPath();
+        ctx.lineWidth = p.r;
+        ctx.strokeStyle = p.color;
+        ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
+        ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
+        ctx.stroke();
+      });
+
+      frameCount++;
+      if (frameCount < 200) {
+        animationFrameId = requestAnimationFrame(draw);
+      } else {
+        ctx.clearRect(0, 0, width, height);
+      }
+    }
+
+    draw();
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [active]);
+
+  r    eturn <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-50" />;
+}
+
+// --- FILE UPLOADER BUTTON ---
+interface FileUploaderProps {
+  onUploadSuccess: (url: string) => void;
+  label?: string;
+  className?: string;
+}
+
+function FileUploader({ onUploadSuccess, label = "Upload Image", className = "" }: FileUploaderProps) {
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    setError(null);
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Upload failed");
+      }
+
+      onUploadSuccess(data.url);
+    } catch (err: any) {
+      setError(err.message || "Upload failed. Try again.");
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  return (
+    <div className={`flex flex-col gap-1 w-full sm:w-auto ${className}`}>
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleFileChange}
+        accept="image/*"
+        className="hidden"
+      />
+      <button
+        type="button"
+    

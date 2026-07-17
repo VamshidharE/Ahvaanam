@@ -1,0 +1,107 @@
+.","UserFacing":false},"CodeContent":"# Architecture Cleanup Sprint Tasks\n\n- `[x]` Audit every template Layout.tsx component\n- `[x]` Build shared LegacyOrchestrator component at `components/shared/LegacyOrchestrator.tsx`\n- `[x]` Centralize countdown calculations, date parsing, lightboxes, and music controls\n- `[x]` Refactor all 12 template layouts into thin composition orchestration shells\n- `[x]` Write template business logic audit report at `template_business_logic_audit.md`\n- `[x]` Run TypeScript and build compile checks\n","Description":"Update task checklist to complete for Architecture Cleanup Sprint","Overwrite":true,"TargetFile":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\task.md","toolAction":"Update task.md in artifact folder","toolSummary":"Checking off tasks in task.md within artifact directory"}:     
+    M2    F] f   B  A  @  K~  Q1d-   t   WA    < v, U     9  $" a  E D  ]  w  ` ,  ,z18  U.  0       %?Q      ce n  } x   : ;         0	  7  p i e5 I   - i \A w
+ 1)    u o9r@ $h]    &   MO 8R   @      >2N       )   Du gy  %8o V| o   j     ;8Z  Yz I    O  +W  %B Jwrite_to_fileBqI will update `task.md` inside the correct artifact directory to check off the Architecture Cleanup Sprint tasks.`                     
+               " 
+
+ docol18d write_to_file   {"ArtifactMetadata":{"RequestFeedback":false,"Summary":"Completed task checklist for Architecture Cleanup Sprint.","UserFacing":false},"CodeContent":"# Architecture Cleanup Sprint Tasks\n\n- `[x]` Audit every template Layout.tsx component\n- `[x]` Build shared LegacyOrchestrator component at `components/shared/LegacyOrchestrator.tsx`\n- `[x]` Centralize countdown calculations, date parsing, lightboxes, and music controls\n   )     f  f    factor all 12 template layouts into thin composition orchestration shells\n- `[x]` Write template business logic audit report at `template_business_logic_audit.md`\n- `[x]` Run TypeScript and build compile checks\n","Description":"Update task checklist to complete for Architecture Cleanup Sprint","Overwrite":true,"TargetFile":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\task.md","toolAction":"Update task.md in artifact folder","toolSummary":"Checking off tasks in task.md within artifact directory"}:     
+    M2    F] f   B  A  @  K~  Q1d-   t   WA    < v, U     9  $" a  E D  ]  w  ` ,  ,z18  U.  0       %?Q      ce n  } x   : ;         0	  7  p i e5 I   - i \A w
+ 1)    u o9r@ $h]    &   MO 8R   @   O 1   	        ~  
+               "  
+ wlyfrr99 write_to_file   {"ArtifactMetadata":{"RequestFeedback":false,"Summary":"Walkthrough summary of Architecture Cleanup Sprint, detailing LegacyOrchestrator, template layout refactoring, and build compile checks.","UserFacing":true},"CodeContent":"# Walkthrough: Architecture Cleanup Sprint\n\nWe have successfully completed the **Architecture Cleanup Sprint**, completely removing duplicate date calculations, lightbox controls, music triggers, m   4   {      |     j   
+              2             X  b$0ef539b2-c137-4bfb-9f0e-1c27ca854c12j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     *  
+              2             X  b$0ef539b2-c137-4bfb-9f0e-1c27ca854c12j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2      
+                     
+^I will create the final `walkthrough.md` artifact summarizing the Architecture Cleanup Sprint.2(bot-1ee98f68-0bbe-4d51-84d4-0d19ba2d2f04B^I will create the final `walkthrough.md` artifact summarizing the Architecture Cleanup Sprint.`    /      V     >   
+               " 
+
+ docol18d write_to_file   {"ArtifactMetadata":{"RequestFeedback":false,"Summary":"Completed task checklist for Architecture Cleanup Sprint.","UserFacing":false},"CodeContent":"# Architecture Cleanup Sprint Tasks\n\n- `[x]` Audit every template Layout.tsx component\n- `[x]` Build shared LegacyOrchestrator component at `components/shared/LegacyOrchestrator.tsx`\n- `[x]` Centralize countdown calculations, date parsing, lightboxes, and music controls\n- `[x]` Refactor all 12 template layouts into thin composition orchestration shells\n- `[x]` Write template business logic audit report at `template_business_logic_audit.md`\n- `[x]` Run TypeScript and build compile checks\n","Description":"Update task checklist to complete for Architecture Cleanup Sprint","Overwrite":true,"TargetFile":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\task.md","toolAction":"Update task.md in artifact folder","toolSummary":"Checking off tasks in task.md within artifact directory"}:     
+    M2    F] f   B  A  @  K~  Q1d-   t   WA    < v, U     9  $" a  E D  ]  w  ` ,  ,z18  U.  0       %?Q      ce n  } x   : ;         0	  7  p i e5 I   - i \A w
+ 1)    u o9r@ $h]    &   MO 8R   @      >2N       )   Du gy  %8o V| o   j     ;8Z  Yz I    O  +W  %B Jwrite_to_file* ArtifactMetadata* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$0ef539b2-c137-4bfb-9f0e-1c27ca854c12j      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd  	   "$d2c79442-9bab-465c-a40a-56c20332cbe2                        6
+                 
+                 
+                   7Checking off tasks in task.md within artifact directory  !Update task.md in artifact folder                   * 
+               " 
+
+ docol18d write_to_file   {"ArtifactMetadata":{"RequestFeedback":false,"Summary":"Completed task checklist for Architecture Cleanup Sprint.","UserFacing":false},"CodeContent":"# Architecture Cleanup Sprint Tasks\n\n- `[x]` Audit every template Layout.tsx component\n- `[x]` Build shared LegacyOrchestrator component at `components/shared/LegacyOrchestrator.tsx`\n- `[x]` Centralize cou   3   (2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+115:   [MATCH 56] Found at index 27433006
+116:     Saved to scratch/composition_pure_match_56_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+117:   [MATCH 57] Found at index 27433636
+118:     Saved to scratch/composition_pure_match_57_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+119:   [MATCH 58] Found at index 28627339
+120:     Saved to scratch/composition_pure_match_58_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+121:   [MATCH 59] Found at index 28683103
+122:     Saved to scratch/composition_pure_match_59_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+123:   [MATCH 60] Found at index 28782916
+124:     Saved to scratch/composition_pure_match_60_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+125:   [MATCH 61] Found at index 28786603
+126:     Saved to scratch/composition_pure_match_61_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+127:   [MATCH 62] Found at index 28953831
+128:     Saved to scratch/composition_pure_match_62_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+129:   [MATCH 63] Found at index 29278858
+130:     Saved to scratch/composition_pure_match_63_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+131:   [MATCH 64] Found at index 29287178
+132:     Saved to scratch/composition_pure_match_64_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+133:   [MATCH 65] Found at index 29295394
+134:     Saved to scratch/composition_pure_match_65_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+135:   [MATCH 66] Found at index 29301270
+136:     Saved to scratch/composition_pure_match_66_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+137:   [MATCH 67] Found at index 29362490
+138:     Saved to scratch/composition_pure_match_67_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+139:   [MATCH 68] Found at index 29395057
+140:     Saved to scratch/composition_pure_match_68_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+141:   [MATCH 69] Found at index 29489227
+142:     Saved to scratch/composition_pure_match_69_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+143:   [MATCH 70] Found at index 29489857
+144:     Saved to scratch/composition_pure_match_70_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+145:   [MATCH 71] Found at index 29502669
+146:     Saved to scratch/composition_pure_match_71_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+147:   [MATCH 72] Found at index 29503300
+148:     Saved to scratch/composition_pure_match_72_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+149:   [MATCH 73] Found at index 30067795
+150:     Saved to scratch/composition_pure_match_73_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+151:   [MATCH 74] Found at index 30096433
+152:     Saved to scratch/composition_pure_match_74_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+153:   [MATCH 75] Found at index 30163427
+154:     Saved to scratch/composition_pure_match_75_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+155:   [MATCH 76] Found at index 30164012
+156:     Saved to scratch/composition_pure_match_76_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+157:   [MATCH 77] Found at index 30227672
+158:     Saved to scratch/composition_pure_match_77_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+159:   [MATCH 78] Found at index 30228374
+160:     Saved to scratch/composition_pure_match_78_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+161:   [MATCH 79] Found at index 30311162
+162:     Saved to scratch/composition_pure_match_79_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+163:   [MATCH 80] Found at index 31450632
+164:     Saved to scratch/composition_pure_match_80_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+165:   [MATCH 81] Found at index 31455405
+166:     Saved to scratch/composition_pure_match_81_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+167:   [MATCH 82] Found at index 31457108
+168:     Saved to scratch/composition_pure_match_82_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+169:   [MATCH 83] Found at index 31515174
+170:     Saved to scratch/composition_pure_match_83_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+171: Scanning C:\Users\Admin\.gemini\antigravity\conversations\d2c79442-9bab-465c-a40a-56c20332cbe2.db-wal (5277752 bytes)...
+172:   [MATCH 1] Found at index 378072
+173:     Saved to sc    tored into thin orchestration shells. All business logic, countdown calculations, date parsing, gallery lightboxes, and music control codes were completely removed from individual layouts and centralized inside the shared [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx).\n\n| Template Layout | Remaining Business Logic | Remaining Duplicated Logic | Remaining Legacy Code | Status |\n| :--- | :--- | :--- | :--- | :--- |\n| **`marigold`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`peacock`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`heritage`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`moonlight`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`grand-mandap`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`modern-birthday`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`birthday-premium`**| None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`royal-temple`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`floral-garden`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`south-indian`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`palace-luxury`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`lotus-serenity`** | None (centralized) | None (centralized) | None (centralized) | **100% Thin Orchestrator Shell** |\n| **`housewarming-premium`**| None | None | None | **100% Pure Composition Wrapper** |\n\n---\n\n## 2. Centralized Business Logic Summary\n* **Countdown Timer Calculations**: Moved entirely inside the reusable [CountdownSection](file:///c:/Users/Admin/Ahvaanam/components/sections/countdown/index.tsx).\n* **Date Parsing**: Moved entirely inside [CountdownSection](file:///c:/Users/Admin/Ahvaanam/components/sections/countdown/index.tsx).\n* **Gallery \u0026 Lightbox States**: Managed inside [GallerySection](file:///c:/Users/Admin/Ahvaanam/components/sections/gallery/index.tsx).\n* **Music Audio Elements \u0026 Toggles**: Managed inside [LegacyOrchestrator.tsx](file:///c:/Users/Admin/Ahvaanam/components/shared/LegacyOrchestrator.tsx).\n* **RSVP Contacts**: Managed inside [RSVPSection](file:///c:/Users/Admin/Ahvaanam/components/sections/rsvp/index.tsx).\n* **Map Embed URL Resolution**: Managed inside [VenueSection](file:///c:/Users/Admin/Ahvaanam/components/sections/venue/index.tsx).\n","Description":"Create template_business_logic_audit.md business logic removal audit report.","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\template_business_logic_audit.md","toolAction":"Create template_business_logic_audit.md","toolSummary":"Creating business logic audit and refactoring status report in artifact directory"}:     
+    M2     oYgF S  >\e   N        Tw] /      j    :2 U         o* Y  fUI      f  ; ]      1 ] 6 \q" &v    ?  %:     9 !(:BHU         9  'p p  B  m 2   }m      J a  fZ    0Q vx]Cm  "   3 >k7  $  `)J'       + z     % H  f qa .	   bT
+ p  EX           4{  [  )G         l  
+f  ^  D TD  \ z O| 4   8  i >          4     a  	  . M %        <%  S    ]    iw ~D      4H   nE9 3F     E   ,     = %  C   Sgk  x    RW `011    ~x=rt_ 1 j         "} 5        [  }f *   r{  [ V i  c(u   9  $  c      S    _ ,p 1EW     % u\   .  ee8  L    Y"  Oh *   E /   2Q   |a  *  ~ zJwrite_to_fileB  I will create the template business logic audit report at `template_business_logic_audit.md` in the artifact directory, documenting the removal of business logic from template layouts.`    +9442-9bab-465c-a40a-56c20332cbe2.db.txt
+55:   [MATCH 26] Found at index 20365422
+56:     Saved to scratch/composition_pure_match_26_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+57:   [MATCH 27] Found at index 20372865
+58:     Saved to scratch/composition_pure_match_27_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+59:   [MATCH 28] Found at index 20474138
+60:     Saved to scratch/composition_pure_match_28_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+61:   [MATCH 29] Found at index 20474840
+62:     Saved to scratch/composition_pure_match_29_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+63:   [MATCH 30] Found at index 24211783
+64:     Saved to scratch/composition_pure_match_30_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+65:   [MATCH 31] Found at index 24406712
+66:     Saved to scratch/composition_pure_match_31_d2c79442-9bab-465c-a40a-56c20332cbe2.db.txt
+67:   [MATCH 32] Found at index 24437059
+68:     Saved to scratch/composition_pure_ma

@@ -1,0 +1,66 @@
+    7 l   |`     4   `  8I            i  W   :P  V  "I:     #.i70          8    L%Z {C  Za  I |~ 1  8     Ci ,z :ucP J  F  %      w  m  j N         )<    4 b K   y     M d    *t kQ8' _>l zd Z K  Q  `f Vv g    C|         (\ %        Ag Cm      s L   . P   a  (#!    B      MXW J	view_fileBfI will view lines 10 to 40 of `app/api/invitation/route.ts` to locate the exact GET and POST handlers.Z     #`     / /                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              k        l      `   
+              " %
+ o4ral1zj  multi_replace_file_content   {"Description":"Refactor Template 2 imports and layout logic to utilize useInvitationData context.","Instruction":"Swapping static invitation import for useInvitationData context hook.","ReplacementChunks":[{"AllowMultiple":false,"EndLine":6,"ReplacementContent":"import { useInvitationData } from \"../../context/InvitationDataContext\";","StartLine":3,"TargetContent":"import { invitation } from \"../../data/invitation\";"},{"AllowMultiple":false,"EndLine":95,"ReplacementContent":"export default function FloralGardenLayout({ onBackToHub }: { onBackToHub: () =\u003e void }) {\n  const { invitationData } = useInvitationData();\n  const [loading, setLoading] = useState(true);\n  const [mounted, setMounted] = useState(false);\n  const [playingMusic, setPlayingMusic] = useState(false);\n  const [lightboxOpen, setLightboxOpen] = useState(false);\n  const [lightboxIndex, setLightboxIndex] = useState(0);\n  const audioRef = useRef\u003cHTMLAudioElement\u003e(null);\n\n  // Countdown timer state\n  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });\n  const [isWeddingPassed, setIsWeddingPassed] = useState(false);\n\n  useEffect(() =\u003e {\n    if (!invitationData) return;\n    setMounted(true);\n    const timer = setTimeout(() =\u003e setLoading(false), 2200);\n\n    const weddingDate = new Date(invitationData.countdown.targetDate).getTime();\n    const updateCountdown = () =\u003e {\n      const now = new Date().getTime();\n      const difference = weddingDate - now;\n      if (difference \u003c= 0) {\n        setIsWeddingPassed(true);\n      } else {\n        setTimeLeft({\n          days: Math.floor(difference / (1000 * 60 * 60 * 24)),\n            ( ^                  
+               2             :             B             JQ     /  
+(   0 B!
+	sessionID  -3750763034362895579H  P 	Z i0xBaoGOErLEjuMPh7i2iQ4X  b$5c7fbfa2-bbe9-4539-ab5c-afd23ba8e9bcj      R
+$7d85ea43-75e8-4b3f-8f97-54265a45ed1e      "$011e974d-4561-41c5-89e8-12ee65991b97     $
+                 
+                                    *  
+               2             :             B             JQ     /  
+(   0 B!
+	sessionID  -3750763034362895579H  P 	Z i0xBaoGOErLEjuMPh7i2iQ4X  b$5c7fbfa2-bbe9-4539-ab5c-afd23ba8e9bcj      R
+$7d85ea43-75e8-4b3f-8f97-54265a45ed1e      "$011e974d-4561-41c5-89e8-12ee65991b97     $
+                 
+                                   (
+  I will edit Template 2: **Floral Garden** (`components/templates/floral-garden/Layout.tsx`) to pull configuration values from the data context.2(bot-91ecd936-0abe-4dc6-bf46-455924441d79: %
+ o4ral1zj  multi_replace_file_content   {"Description":"Refactor Template 2 imports and layout logic to utilize useInvitationData context.","Instruction":"Swapping stat M        B     P   
+               2             :             B             JQ     /  
+(   0 B!
+	sessionID  -3750763034362895579H  P 	Z i0xBaoGOErLEjuMPh7i2iQ4X  b$5c7fbfa2-bbe9-4539-ab5c-afd23ba8e9bcj      R
+$7d85ea43-75e8-4b3f-8f97-54265a45ed1e      "$011e974d-4561-41c5-89e8-12ee65991b97     6
+                 
+                 
+                                    *  
+               2             :             B             JQ     /  
+(   0 B!
+	sessionID  -3750763034362895579H  P 	Z i0xBaoGOErLEjuMPh7i2iQ4X  b$5c7fbfa2-bbe9-4539-ab5c-afd23ba8e9bcj      R
+$7d85ea43-75e8-4b3f-8f97-54265a45ed1e      "$011e974d-4561-41c5-89e8-12ee65991b97     6
+                 
+                 
+                                     @    @ }RJ$i ?   %1 B 1W 5
+   j-     u   ) :-^   T 4  }    Q6 iX       G 0 W ZG] <)       d` )  ~ Q  O ? m.X   d     N  9         ~s 4#o     d    mB   T       f q |8Og     W o G * ,M 5     e    L  ~  L" u        \      +W   T    o       &~& kG +q lHv   >|  l}       #   L6  =&/ +N f     "  '   _[ s X  %D     s  	      N[j [\ \3~    &"?   ux       5  !  oY Y D!    ?  3 : ,    2D   n  MM*f 209   /    s6| (   [ Hm  o    d   )   2&  +    " Q ^  
+ y      $-  g  U1K    h  ;  u  h    kWq J   *<Y ;     @BY   ly       (     j? F      ~L   d 2   B     D    ( #    ?d ?      W    ;.  - A     <3j   Vb  y/    V  J  & L  ]  W    9u  t  O       2 g  F9@   t    *   * \ /      \     T   
+               " 
+ bwexquy5  replace_file_content   {"AllowMultiple":false,"Description":"Protect POST upload endpoint in api/upload/route.ts    0             X   
+           <  2             :             B             JQ        1(   0 B!
+	sessionID  -3750763034362895579H  P ,Z hQZCaouhMPGF4-EPldyC4A0X  b$2882937f-2da6-4bac-94f2-2cdad9837a77j      R
+$7d85ea43-75e8-4b3f-8f97-54265a45ed1e      "$011e974d-4561-41c5-89e8-12ee65991b97     $
+                 
+                                    *  
+           <  2             :             B             JQ        1(   0 B!
+	sessionID  -3750763034362895579H  P ,Z hQZCaouhMPGF4-EPldyC4A0X  b$2882937f-2da6-4bac-94f2-2cdad9837a77j      R
+$7d85ea43-75e8-4b3f-8f97-54265a45ed1e      "$011e974d-4561-41c5-89e8-12ee65991b97     $
+                 
+                                     
+  I will create the protected Admin Dashboard route at `app/dashboard/page.tsx` by relocating the Agency Control Center logic here and adding a **Logout** action to the dashboard header.   **Relocating the Dashboard**
+
+I've successfully secured the APIs. My current focus involves relocating the Creator Agency Dashboard. The initial step will involve moving the Agency Control Center code from the root `/` to `/dashboard`. I'm going to create a new `app/dashboard/page.tsx` file for this purpose.
+
+
+2(bot-266d14fd-94e5-44f8-b230-20be32f2a5a6:   
+ dldc4xnw write_to_file    {"CodeContent":"\"use client\";\n\nimport React, { useState, useEffect } from \"react\";\nimport { \n  Palette, Heart, Calendar, Plus, Trash2, Edit3, \n  ExternalLink, Sparkles, CheckCircle, AlertCircle, Share2, Download, Copy, LogOut\n} from \"lucide-react\";\n\ninterface ClientProfile {\n  id: string;\n  groom: string;\n  bride: string;\n  date: string;\n  theme: string;\n  enabled: boolean;\n}\n\nexport default function AgencyDashboard() {\n  const [profiles, setProfiles] = useState\u003cClientProfile[]\u003e([]);\n  const [loading, setLoading] = useState(true);\n  const [showModal, setShowModal] = useState(false);\n  const [shareProfile, setShareProfile] = useState\u003cClientProfile | null\u003e(null);\n  const [creating, setCreating] = useState(false);\n\n  // Modal for K 0      @     N   
+           <  2             :             B             JQ        1(   0 B!
+	sessionID  -3750763034362895579H  P ,Z hQZCaouhMPGF4-EPldyC4A0X  b$2882937f-2da6-4bac-94f2-2cdad9837a77j      R
+$7d85ea43-75e8-4b3f-8f97-54265a45ed1e      "$011e974d-4561-41c5-89e8-12ee65991b97     6
+                 
+                 
+                                    *  
+           <  2             :             B             JQ        1(   0 B!
+	sessionID  -3750763034362895579H  P ,Z hQZCaouhMPGF4-EPldyC4A0X  b$2882937f-2da6-4bac-94f2-2cdad9837a77j      R
+$7d85ea43-75e8-4b3f-8f97-54265a45ed1e      "$011e974d-4561-41c5-89e8-12ee65991b97     6
+                 
+                 
+                                 G /      <     J   
+               " 
+ bwexquy5  replace_file_content   {"AllowMultiple":false,"Description":"Protect POST upload endpoint in api/upload/route.ts.","EndLine":6,"Instruction":"Adding checkAdminAuth imports and verification block at start of POST handler.","ReplacementContent":"import { NextResponse } from \"next/server\";\nimport fs from \"fs/promises\";\nimport path from \"path\";\nimport { checkAdminAuth } from \"../../../lib/auth/session\";\n\nexport async function POS   T    tline accents, deep luxury background styles, speaker bios, and formal downloadable event schedules.\",\r\n    price: \"From    5,999\"\r\n  },\r\n  {\r\n    icon: Award,\r\n    title: \"Traditional Invitations\",\r\n    desc: \"Cultural heritage designs mimicking silk scrolls, temple gates, sandstoneHaveli arches, and sacred scripts.\",\r\n    price: \"From    3,999\"\r\n  },\r\n  {\r\n    icon: Map,\r\n    title: \"Premium Custom Invitations\",\r\n    desc: \"Bespoke design consulting from scratch. Our creative team develops custom graphics, vector layout assets, and soundtracks.\",\r\n    price: \"Custom Quote\"\r\n  }\r\n];"},{"AllowMultiple":false,"EndLine":120,"ReplacementContent":"                \u003cdiv className=\"border-t border-zinc-100 pt-4 mt-8 flex items-center justify-end\"\u003e\r\n                  \u003cLink \r\n                    href=\"/contact\"\r\n                   

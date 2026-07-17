@@ -1,0 +1,200 @@
+use client";
+
+import React, { useEffect, useState } from "react";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+
+interface CountdownSectionProps {
+  bindings: {
+    title?: string;
+    targetDate?: string;
+    postWeddingMessage?: string;
+  };
+  layoutId?: string;
+}
+
+export default function CountdownSection({ bindings, layoutId }: CountdownSectionProps) {
+  const { 
+    title = "Party Countdown", 
+    targetDate = "2026-12-14T19:00:00", 
+    postWeddingMessage = "The Celebration has begun!" 
+  } = bindings;
+
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isPassed, setIsPassed] = useState(false);
+
+  useEffect(() => {
+    if (!targetDate) return;
+    const targetTime = new Date(targetDate).getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const difference = targetTime - now;
+      if (difference <= 0) {
+        setIsPassed(true);
+      } else {
+        setIsPassed(false);
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        });
+      }
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, [targetDate]);
+
+  return (
+    <LayoutWrapper
+      layoutId={layoutId}
+      defaultLayoutId="story-stack"
+      className="py-20 px-6 border-b border-white/5 text-center select-none"
+      style={{ 
+        fontFamily: "var(--theme-font-body)",
+        color: "var(--theme-text)",
+        background: "rgba(139, 92, 246, 0.03)"
+      }}
+    >
+      <div className="max-w-4xl mx-auto space-y-10 w-full">
+        <div className="space-y-2">
+          <h3 
+            className="text-xs uppercase tracking-[3px] font-bold"
+            style={{ 
+              color: "var(--theme-accent)",
+              fontFamily: "var(--theme-font-heading)" 
+            }}
+          >
+            {title}
+          </h3>
+        </div>
+        {isPassed ? (
+          <p 
+            className="text-lg uppercase tracking-[1.5px] font-bold animate-pulse"
+            style={{ color: "var(--theme-accent)" }}
+          >
+            {postWeddingMessage}
+          </p>
+        ) : (
+          <div className="grid grid-cols-4 gap-4 max-w-md mx-auto w-full">
+            {Object.entries(timeLeft).map(([label, value]) => (
+              <div 
+                key={label} 
+                className="border border-white/5 py-4 flex flex-col justify-center shadow-xs"
+                style={{ 
+                  backgroundColor: "var(--theme-card-bg)",
+                  borderColor: "var(--theme-border)",
+                  borderRadius: "var(--theme-radius-card)",
+                  boxShadow: "var(--theme-shadow-card)"
+                }}
+              >
+                <span 
+                  className="text-2xl md:text-3xl font-extrabold"
+                  style={{ color: "var(--theme-accent)" }}
+                >
+                  {value}
+                </span>
+                <span 
+                  className="text-[9px] uppercase tracking-[1px] font-bold mt-1"
+                  style={{ color: "var(--theme-secondary-text)" }}
+                >
+                  {label}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </LayoutWrapper>
+  );
+}
+    8Update countdown layout section to support MotionWrapper   f ; :    R{ Q  *1~    b MQ  f n.       U   6 K j    L |^W   Ss       o         D   + :`V /y  e  9 u P  Q] y [     J" RX    l    $*!i0
+ BJ  p     : p  6 D I_1  Z	f | [G F  JMr     :# B{ G/'   r j\)   1  )   QkL{     7 si  y  K   >W45 ` M  OjyJE=  #   x  $  ? e  Al  9K     ?-          r X IS  $   6  E    "]    u  /z   r    {     Q xt  H    cS.^~I^ \  ;$  c Lh F   ,: T       J  qt      "  <; y   t   e]u 3 {  1q KE    |    ^  :L  L   L t #H  { I@`      Q   X    E     '	a      Db" 3(  j - 0  4 L                Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2            :            B           	X  b$6c9a896a-1c4e-4405-b450-2c5928aa879aj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                       3
+                
+                
+               	  )Creating scratch motion verification page   Create test-motions.tsx              R 8
+     
+  "use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're Invited",
+  heroImage: "/images/themes/royal-temple.jpg",
+  ctaText: "RSVP Now",
+  surname: "Ravi Family",
+  subText: "Ceremonies",
+  enableHeaderMedia: true,
+  headerMediaType: "god" as const,
+  selectedGod: "ganesha" as const,
+  headerMediaSize: 75,
+  headerMediaSpacing: 25
+};
+
+const mockHeroProperties = {
+  showScrollIndicator: true,
+  overlayOpacity: 0.5,
+  contentAlign: "center" as const,
+  minHeight: "450px"
+};
+
+export default function TestMotionsPage() {
+  return (
+    <div className="p-8 bg-zinc-100 min-h-screen space-y-12 select-none">
+      <h1 className="text-xl font-bold uppercase tracking-wider text-slate-800 text-center">
+        Motion Engine Transition Verification Canvas
+      </h1>
+
+      <div className="space-y-10 max-w-5xl mx-auto">
+        {/* Pack 1: Luxury Motion (Slow Cubic Bezier reveal) */}
+        <div className="flex flex-col space-y-3 bg-white p-6 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative">
+          <span className="text-[10px] uppercase font-bold text-amber-500 tracking-[1.5px]">
+            1. Motion Pack: Luxury Motion (Slow Elegant Cubic Bezier)
+          </span>
+          <div className="rounded-2xl overflow-hidden border border-zinc-100 relative">
+            <ThemeProvider themeId="luxury-gold" />
+            <HeroSection
+              properties={mockHeroProperties}
+              bindings={mockHeroBindings}
+              motionId="luxury-motion"
+            />
+          </div>
+        </div>
+
+        {/* Pack 2: Celebration Motion (Bouncy Spring reveal) */}
+        <div className="flex flex-col space-y-3 bg-white p-6 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative">
+          <span className="text-[10px] uppercase font-bold text-purple-500 tracking-[1.5px]">
+            2. Motion Pack: Celebration Motion (Bouncy Spring & Tap)
+          </span>
+          <div className="rounded-2xl overflow-hidden border border-zinc-100 relative">
+            <ThemeProvider themeId="luxury-gold" />
+            <HeroSection
+              properties={mockHeroProperties}
+              bindings={mockHeroBindings}
+              motionId="celebration-motion"
+            />
+          </div>
+        </div>
+
+        {/* Pack 3: Minimal Motion (Subtle Fading reveal) */}
+        <div className="flex flex-col space-y-3 bg-white p-6 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative">
+          <span className="text-[10px] uppercase font-bold text-cyan-500 tracking-[1.5px]">
+            3. Motion Pack: Minimal Motion (Subtle Linear Fade)
+          </span>
+          <div className="rounded-2xl overflow-hidden border border-zinc-100 relative">
+            <ThemeProvider themeId="luxury-gold" />
+            <HeroSection
+              properties={mockHeroProperties}
+              bindings={mockHeroBindings}
+    onst,\n  minHeight: \"450px\"\n};\n\nexport default function TestMotionsPage() {\n  return (\n    \u003cdiv className=\"p-8 bg-zinc-100 min-h-screen space-y-12 select-none\"\u003e\n      \u003ch1 className=\"text-xl font-bold uppercase tracking-wider text-slate-800 text-center\"\u003e\n        Motion Engine Transition Verification Canvas\n      \u003c/h1\u003e\n\n      \u003cdiv className=\"space-y-10 max-w-5xl mx-auto\"\u003e\n        {/* Pack 1: Luxury Motion (Slow Cubic Bezier reveal) */}\n        \u003cdiv className=\"flex flex-col space-y-3 bg-white p-6 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative\"\u003e\n          \u003cspan className=\"text-[10px] uppercase font-bold text-amber-500 tracking-[1.5px]\"\u003e\n            1. Motion Pack: Luxury Motion (Slow Elegant Cubic Bezier)\n          \u003c/span\u003e\n          \u003cdiv className=\"rounded-2xl overflow-hidden border border-zinc-100 relative\"\u003e\n            \u003cThemeProvider themeId=\"luxury-gold\" /\u003e\n            \u003cHeroSection\n              properties={mockHeroProperties}\n              bindings={mockHeroBindings}\n              motionId=\"luxury-motion\"\n            /\u003e\n          \u003c/div\u003e\n        \u003c/div\u003e\n\n        {/* Pack 2: Celebration Motion (Bouncy Spring reveal) */}\n        \u003cdiv className=\"flex flex-col space-y-3 bg-white p-6 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative\"\u003e\n          \u003cspan className=\"text-[10px] uppercase font-bold text-purple-500 tracking-[1.5px]\"\u003e\n            2. Motion Pack: Celebration Motion (Bouncy Spring \u0026 Tap)\n          \u003c/span\u003e\n          \u003cdiv className=\"rounded-2xl overflow-hidden border border-zinc-100 relative\"\u003e\n            \u003cThemeProvider themeId=\"luxury-gold\" /\u003e\n            \u003cHeroSection\n              properties={mockHeroProperties}\n              bindings={mockHeroBindings}\n              motionId=\"celebration-motion\"\n            /\u003e\n          \u003c/div\u003e\n        \u003c/div\u003e\n\n        {/* Pack 3: Minimal Motion (Subtle Fading reveal) */}\n        \u003cdiv className=\"flex flex-col space-y-3 bg-white p-6 rounded-[32px] border border-zinc-200/50 shadow-md overflow-hidden relative\"\u003e\n          \u003cspan className=\"text-[10px] uppercase font-bold text-cyan-500 tracking-[1.5px]\"\u003e\n            3. Motion Pack: Minimal Motion (Subtle Linear Fade)\n          \u003c/span\u003e\n          \u003cdiv className=\"rounded-2xl overflow-hidden border border-zinc-100 relative\"\u003e\n            \u003cThemeProvider themeId=\"luxury-gold\" /\u003e\n            \u003cHeroSection\n              properties={mockHeroProperties}\n              bindings={mockHeroBindings}\n              motionId=\"minimal-motion\"\n            /\u003e\n          \u003c/div\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n    \u003c/div\u003e\n  );\n}\n","Description":"Create visual motions test-motions.tsx file","Overwrite":true,"TargetFile":"C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\scratch\\test-motions.tsx","toolAction":"Create test-motions.tsx","toolSummary":"Creating scratch motion verification page"}:     
+    M2  Fj  p         U~ ;l    5  ; :    R{ Q  *1~    b MQ  f n.       U   6 K j    L |^W   Ss       o         D   + :`V /y  e  9 u P  Q] y [     J" RX    l    $*!i0
+ BJ  p     : p  6 D I_1  Z	f | [G F  JMr     :# B{ G/'   r j\)   1  )   QkL{     7 si  y  K   >W45 ` M  OjyJE=  #   x  $  ? e  Al  9K     ?-          r X IS  $   6  E    "]    u  /z   r    {     Q xt  H    cS.^~I^ \  ;$  c Lh F   ,: T       J  qt      "  <; y   t   e]u 3 {  1q KE    |    ^  :L  L   L t #H  { I@`      Q   X    E     '	a      Db" 3(  j - 0  4 L                Jwrite_to_fileB  I will create a visual motion verification test page at `<appDataDir>\brain\<conversation-id>/scratch/test-motions.tsx` to verify dynamic motion swaps. This renders the Hero component under Luxury, Celebration, and Minimal motion options.`    e=\"text-xl font-bold uppercase tracking-wider text-slate-800 text-center\"\u003e\n        Motion Engine Transition Verification Canvas\n      \u003c/h1\u003e\n\n      \u003c

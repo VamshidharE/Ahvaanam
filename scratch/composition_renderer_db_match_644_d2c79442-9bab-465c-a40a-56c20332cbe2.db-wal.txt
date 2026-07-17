@@ -1,0 +1,135 @@
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[76] Found match at index 5992120
+  Preview of match [76]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[184] Found match at index 4118908
+  Preview    ratch/extract_from_db.js","Cwd":"c:\\Users\\Admin\\Ahvaanam","WaitMsBeforeAsync":5000,"toolAction":"Run extract_from_db.js","t
+------------------------
+[77] Found match at index 5994890
+  Preview of match [77]:
+"use client";
+
+import React from "react";
+impor   I     3 Op~1  QX z X     t HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Dev & Neha's Wedding",
+  subtitle: "We Invite You to Celebrate Our Union",
+  welcomeMessage: "Save the D
+------------------------
+[170] Found match at index 4005562
+  Preview of match [170]:
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+
+------------------------
+[78] Found match at index 5995290
+  Preview of match [78]:
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemeProvider from "@/components/theme/ThemeProvider";        
+ const mockHeroBindings = {   $
+   title: "Dev & Neha's Wedding",   7
+3  subtitle: "We Invite You to Celebrate Our U
+------------------------
+[171] Found match at index 4006707
+  Preview of match [171]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[79] Found match at index 5995664
+  Preview of match [79]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+[172] Found match at index 4007093
+  Preview of match [172]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvi
+------------------------
+[80] Found match at index 5996051
+  Preview of match [80]:
+"use client";
+
+import React from "react";
+import HeroSection from "@/components/sections/hero";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+
+const mockHeroBindings = {
+  title: "Ravi & Swetha's Sangeet",
+  subtitle: "An Evening of Music, Dance, and Love",
+  welcomeMessage: "You're 
+------------------------
+[173] Found match at index 4007492
+  Preview of match [173]:
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+
+------------------------
+[81] Found match at index 5996451
+  Preview of match [81]:
+"use client";        
+ import React from "react";   9
+5import HeroSection from "@/components/sections/hero";   A
+=import ThemeProvider from "@/compo    s   =U   
+ v     * u > S? 3 Z g    c- 
+    ? 2 n q  u     Bx   J db  Eo   N  	 ?       ;x>! u d	'J  l  Z          C$U CC     
+  d    *o j  !D ' q #7 ~    Y6`      5 9        p    I     *B  r P6! )  oK     ]  (      O+  X m   ; '     S!j  5m0  J [DZ    Y   3^    O    c.|     }   |"NJ},@  8l  3   y Q 5   ] k0    /C   F \|>O S+p ,  5O         -  
+------------------------
+[82] Found match at index 9173412
+  Preview of match [82]:
+"use client";
+
+import React, { useState, useEffect, useRef, use } from "react";
+import Link from "next/link";
+import { InvitationDataProvider, useInvitationData } from "../../../components/context/InvitationDataContext";
+import { WeddingInvitationConfig, WeddingEvent, StoryTimelineEntry, FAQEntry, RSVPContact } from "../../../components/types/invitation";
+import { motion, AnimatePresence } from "framer-motion";
+import { getCategory, getCategoryFields, getCategoryGroups } from "@/lib/categories/u
+------------------------
+[83] Found match at index 9174269
+  Preview of match [83]:
+"use client";
+
+import React, { useState, useEffect, useRef, use } from "react";
+import Link from "next/link";
+import { InvitationDataProvider, useInvitationData } from "../../../components/context/InvitationDataContext";
+import { WeddingInvitationConfig, WeddingEvent, StoryTimelineEntry, FAQEntry, RSVPContact } from "../../../components/types/invitation";
+import { motion, AnimatePresence } from "framer-motion";
+import { getCategory, getCategoryFields, getCategoryGroups } from "@/lib/categories/u
+------------------------
+[84] Found match at index 12042330
+   node scratch/extract_from_db.js   node scratch/extract_from_db.js        3 Op~1   (. 	                 "   #   e   $   )   w      h               )           s   u   v           D   ;       e   p           <           x   [           ~       ,   *       h       6                   w               $   U   N       >   ]       7       .               !           |               Y   f       K           P   v       u               J                       O   O                       B   ?   @                   ~   r   q   D   q       '                               R           y   P                   L               l                   _                       M           n   M       T                                           a                                      x       r                               (   W   }                       t       ^           {       d   s           y   {                       l                   j   S       g           r                               N   u       z       t       k   L   K   m                   	               {       o   9                           a      

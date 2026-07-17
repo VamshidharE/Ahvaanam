@@ -1,0 +1,199 @@
+use client\";\n\nimport React, { useEffect, useState } from \"react\";\nimport LayoutWrapper from \"@/components/layouts/LayoutWrapper\";\nimport MotionWrapper from \"@/components/motion/MotionWrapper\";\n\ninterface CountdownSectionProps {\n  bindings: {\n    title?: string;\n    targetDate?: string;\n    postWeddingMessage?: string;\n  };\n  layoutId?: string;\n  motionId?: string;\n}\n\nexport default function CountdownSection({ bindings, layoutId, motionId }: CountdownSectionProps) {\n  const { \n    title = \"Party Countdown\", \n    targetDate = \"2026-12-14T19:00:00\", \n    postWeddingMessage = \"The Celebration has begun!\" \n  } = bindings;\n\n  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });\n  const [isPassed, setIsPassed] = useState(false);\n\n  useEffect(() =\u003e {\n    if (!targetDate) return;\n    const targetTime = new Date(targetDate).getTime();\n\n    const updateCountdown = () =\u003e {\n      const now = new Date().getTime();\n      const difference = targetTime - now;\n      if (difference \u003c= 0) {\n        setIsPassed(true);\n      } else {\n        setIsPassed(false);\n        setTimeLeft({\n          days: Math.floor(difference / (1000 * 60 * 60 * 24)),\n          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),\n          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),\n          seconds: Math.floor((difference % (1000 * 60)) / 1000),\n        });\n      }\n    };\n\n    updateCountdown();\n    const interval = setInterval(updateCountdown, 1000);\n    return () =\u003e clearInterval(interval);\n  }, [targetDate]);\n\n  return (\n    \u003cMotionWrapper\n      motionId={motionId}\n      defaultMotionId=\"luxury-motion\"\n      type=\"reveal\"\n      className=\"w-full\"\n    \u003e\n      \u003cLayoutWrapper\n        layoutId={layoutId}\n        defaultLayoutId=\"story-stack\"\n        className=\"py-20 px-6 border-b border-white/5 text-center select-none\"\n        style={{ \n          fontFamily: \"var(--theme-font-body)\",\n          color: \"var(--theme-text)\",\n          background: \"rgba(139, 92, 246, 0.03)\"\n        }}\n      \u003e\n        \u003cdiv className=\"max-w-4xl mx-auto space-y-10 w-full\"\u003e\n          \u003cdiv className=\"space-y-2\"\u003e\n            \u003ch3 \n              className=\"text-xs uppercase tracking-[3px] font-bold\"\n              style={{ \n                color: \"var(--theme-accent)\",\n                fontFamily: \"var(--theme-font-heading)\" \n              }}\n            \u003e\n              {title}\n            \u003c/h3\u003e\n          \u003c/div\u003e\n          {isPassed ? (\n            \u003cp \n              className=\"text-lg uppercase tracking-[1.5px] font-bold animate-pulse\"\n              style={{ color: \"var(--theme-accent)\" }}\n            \u003e\n              {postWeddingMessage}\n            \u003c/p\u003e\n          ) : (\n            \u003cdiv className=\"grid grid-cols-4 gap-4 max-w-md mx-auto w-full\"\u003e\n              {Object.entries(timeLeft).map(([label, value]) =\u003e (\n                \u003cdiv \n                  key={label} \n                  className=\"border border-white/5 py-4 flex flex-col justify-center shadow-xs\"\n                  style={{ \n                    backgroundColor: \"var(--theme-card-bg)\",\n                    borderColor: \"var(--theme-border)\",\n                    borderRadius: \"var(--theme-radius-card)\",\n                    boxShadow: \"var(--theme-shadow-card)\"\n                  }}\n                \u003e\n                  \u003cspan \n                    className=\"text-2xl md:text-3xl font-extrabold\"\n                    style={{ color: \"var(--theme-accent)\" }}\n                    _ \u003e\n                    {value}\n                  \u003c/span\u003e\n                  \u003cspan \n                    className=\"text-[9px] uppercase tracking-[1px] font-bold mt-1\"\n                    style={{ color: \"var(--theme-secondary-text)\" }}\n                  \u003e\n                    {label}\n                  \u003c/span\u003e\n                \u003c/div\u003e\n              ))}\n            \u003c/div\u003e\n          )}\n        \u003c/div\u003e\n      \u003c/LayoutWrapper\u003e\n    \u003c/MotionWrapper\u003e\n  );\n}\n","Description":"Update countdown layout section to support MotionWrapper","Overwrite":true,"TargetFile":"c:\\Users\\Admin\\Ahvaanam\\components\\sections\\countdown\\index.tsx","toolAction":"Update countdown component","toolSummary":"Integrating MotionWrapper in Countdown Section component"}:     
+    M2 s G     h S       k      C      \ M  o^E   Wm    i p 2Cj k  = . /    %      ]   QH N 4  P 4=   p  t   \  P   # p      x  ~ ]6 7h&  l   c          P Y~   ~ . e    ?  p  M 1  s     "Z  2       G  4   Ef   k`Fg   3      I   : W2 p2e  o 
+	   1  /  (8   <     W    2Jwrite_to_file* CodeContent* Description*	Overwrite*
+TargetFile*
+toolAction* toolSummary2             :             B             X  b$6c9a896a-1c4e-4405-b450-2c5928aa879aj      R
+$e814890c-6b84-44e9-9783-edb10a1bb4dd      "$d2c79442-9bab-465c-a40a-56c20332cbe2                     	  6
+                 
+                 
+                   8Integrating MotionWrapper in Countdown Section component   Update countdown component               R s
+     
+  "use client";
+
+import React, { useEffect, useState } from "react";
+import LayoutWrapper from "@/components/layouts/LayoutWrapper";
+import MotionWrapper from "@/components/motion/MotionWrapper";
+
+interface CountdownSectionProps {
+  bindings: {
+    title?: string;
+    targetDate?: string;
+    postWeddingMessage?: string;
+  };
+  layoutId?: string;
+  motionId?: string;
+}
+
+export default function CountdownSection({ bindings, layoutId, motionId }: CountdownSectionProps) {
+  const { 
+    title = "Party Countdown", 
+    targetDate = "2026-12-14T19:00:00", 
+    postWeddingMessage = "The Celebration has begun!" 
+  } = bindings;
+
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isPassed, setIsPassed] = useState(false);
+
+  useEffect(() => {
+    if (!targetDate) return;
+    const targetTime = new Date(targetDate).getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const difference = targetTime - now;
+      if (difference <= 0) {
+        setIsPassed(true);
+      } else {
+        setIsPassed(false);
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        });
+      }
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, [targetDate]);
+
+  return (
+    <MotionWrapper
+      motionId={motionId}
+      defaultMotionId="luxury-motion"
+      type="reveal"
+      className="w-full"
+    >
+      <LayoutWrapper
+        layoutId={layoutId}
+        defaultLayoutId="story-stack"
+        className="py-20 px-6 border-b border-white/5 text-center select-none"
+        style={{ 
+          fontFamily: "var(--theme-font-body)",
+          color: "var(--theme-text)",
+          background: "rgba(139, 92, 246, 0.03)"
+        }}
+      >
+        <div className="max-w-4xl mx-auto space-y-10 w-full">
+          <div className="space-y-2">
+            <h3 
+              className="text-xs uppercase tracking-[3px] font-bold"
+              style={{ 
+                color: "var(--theme-accent)",
+                fontFamily: "var(--theme-font-heading)" 
+              }}
+            >
+              {title}
+            </h3>
+          </div>
+          {isPassed ? (
+            <p 
+            `     className="text-lg uppercase tracking-[1.5px] font-bold animate-pulse"
+              style={{ color: "var(--theme-accent)" }}
+            >
+              {postWeddingMessage}
+            </p>
+          ) : (
+            <div className="grid grid-cols-4 gap-4 max-w-md mx-auto w-full">
+              {Object.entries(timeLeft).map(([label, value]) => (
+                <div 
+                  key={label} 
+                  className="border border-white/5 py-4 flex flex-col justify-center shadow-xs"
+                  style={{ 
+                    backgroundColor: "var(--theme-card-bg)",
+                    borderColor: "var(--theme-border)",
+                    borderRadius: "var(--theme-radius-card)",
+                    boxShadow: "var(--theme-shadow-card)"
+                  }}
+                >
+                  <span 
+                    className="text-2xl md:text-3xl font-extrabold"
+                    style={{ color: "var(--theme-accent)" }}
+                  >
+                    {value}
+                  </span>
+                  <span 
+                    className="text-[9px] uppercase tracking-[1px] font-bold mt-1"
+                    style={{ color: "var(--theme-secondary-text)" }}
+                  >
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </LayoutWrapper>
+    </MotionWrapper>
+  );
+}
+   *Gfile:///c:/Users/Admin/Ahvaanam/components/sections/countdown/index.tsx2J
+ file:///c:/Users/Admin/Ahvaanam 'components/sections/countdown/index.tsx    S
+ S  6 p  6  
+"use client";       7
+3import React, { useEffect, useState } from "react";   C
+?import LayoutWrapper from "@/components/layouts/LayoutWrapper";   B
+>import MotionWrapper from "@/components/motion/MotionWrapper";       %
+!interface CountdownSectionProps {    
+  bindings: {    
+     title?: string;    
+     targetDate?: string;   $
+     postWeddingMessage?: string;    
+   };    
+   layoutId?: string;    
+ }       ]
+Yexport default function CountdownSection({ bindings, layoutId }: CountdownSectionProps) {    
+   motionId?: string;    
+ }       g
+cexport default function CountdownSection({ bindings, layoutId, motionId }: CountdownSectionProps) {    
+
+  const {    #
+     title = "Party Countdown",    ,
+(    targetDate = "2026-12-14T19:00:00",    :
+6    postWeddingMessage = "The Celebration has begun!"     
+   } = bindings;       ^
+Z  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });   6
+2  const [isPassed, setIsPassed] = useState(false);        
+   useEffect(() => {    
+     if (!targetDate) return;   :
+6    const targetTime = new Date(targetDate).getTime();       '
+#    const updateCountdown = () => {   +
+'      const now = new Date().getTime();   .
+*      const difference = targetTime - now;    
+       if (difference <= 0) {    
+         setIsPassed(true);    
+       } else {    
+         setIsPassed(false);    
+         setTimeLeft({   C
+?          days: Math.floor(difference / (1000 * 60 * 60 * 24)),   Y
+U          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),   Q
+M          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),   E
+A          seconds: Math.floor((difference % (1000 * 60)) / 1000),    
+         });    
+       }   
+
+     };        
+     updateCountdown();   <
+8    const interval = setInterval(updateCountdown, 1000);   -
+)    return () => clearInterval(interval);    
+   }, [targetDate]);        
+
+  return (    
+     <LayoutWrapper    
+       layoutId={layoutId}   '
+#      defaultLayoutId="story-stack"   P
+L      className="py-20 px-6 border-b border-white/5 text-center select-none"    
+       style={{    1
+-        fontFamily: "var(--theme-font-body)",   '
+#        color: "var(--theme-text)",   2
+.        background: "rgba(139, 92, 246, 0.03)"    
+       }}    
+     <MotionWrapper    
+       motionId={motionId}   )
+%      defaultMotionId="luxury-motion"    
+       type="reveal"    
+       className="w-full"   	
+     >   ?
+;      <div className="max-w-4xl   a mx-auto s

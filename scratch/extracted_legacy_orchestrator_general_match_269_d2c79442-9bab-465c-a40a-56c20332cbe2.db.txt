@@ -1,0 +1,86 @@
+    
+                                    
+  I will view lines 1 to 60 of `lib/registry/index.ts` using `view_file` to get the list of all registered sections in the codebase. This ensures the shared `LegacyOrchestrator` covers all of them.2(bot-e86c1ca4-b871-45dc-a60a-8289325b6a8c:  
+ k6vi73xy 	view_file   {"AbsolutePath":"c:\\Users\\Admin\\Ahvaanam\\lib\\registry\\index.ts","EndLine":60,"StartLine":1,"toolAction":"View registry index.ts sections list","toolSummary":"Reading all lazy loaded components in registry/index.ts"}:     
+    M2   ; 0   %  f
+% W,    H    <   fL = s   8 I~* I 8 VF" s\ % ?<  Cf  l>K   /  j4a /     <       q  xV  Q    r }8_ Q         } "[  o  NHQJ T xl V    @   r  8]T  ;p        Vw~        .  3 6 S4      E'   FaI y%<4o ]B  fC 6 u 6~  n srd    tz _      pW f  B28 B  #  ]YX<  P 0 Hf t 5 s s* )z- O       (8a   ! a    \        d#  /9         w  QX}CZ[             ~  6   bV+HLx  @  K     h   Z   R  b{ US MHs   !  1        H  7 * a ] !KX      u    xA@G#)    ^  <  x P    % VbK  .9      <      2.7H 6     J   U=  :v     .          Sah   k d   yA"  b aN -   0    8n   o     Np         ` 
+\KXE 5 iG              >	,|A/eL  O   [   $ =    H      $         mn 'A        msp h   kq?e   KN
+  ,e L M    ,; zv   M { s a<M*\z> K  i ` sA  B    4C	  YP    J	view_fileB  I will view lines 1 to 60 of `lib/registry/index.ts` using `view_file` to get the list of all registered sections in the codebase. This ensures the shared `LegacyOrchestrator` covers all of them.`           J     N   
+           !  "  
+ drnxt4n1  grep_search   {"CaseInsensitive":false,"IsRegex":false,"MatchPerLine":true,"Query":"celebrant","SearchPath":"c:\\Users\\Admin\\Ahvaanam\\lib\\registry\\index.ts","toolAction":"Search for celebrant section in registry","toolSummary":"Searching component registry for celebrant type mapping"}: 	  	
+ 	  M2 C^m-   @  GK) DxT       N          4  S	 `  @2  ,  X x       F   b  6        
+           cnI    k' 8  /! 6 tS    1( 3 t > b;  k9 ~    (  	7  C i b [        g 	   g 9 4  ^} TH/       I ~o&&'  4   z            &;  ,RH Mb |  a S    qo
+  b,  !    f 
+  `  "~     m;C _t' 5Q     3<yGWm  0 %=    '        + i;^O      w )   /N 9    b  d #  d            p |a    "     !) O ^ -  /   
+?    0  1 |. s*z ~    tix, c       4     v      	   "  \    (U    I          !  g-[0.5px] text-slate-500 font-extrabold block\"\u003e\n          Preview Summary\n        \u003c/span\u003e\n        \n        \u003cdiv className=\"grid grid-cols-1 gap-2 bg-[#0A0A0B] p-3.5 rounded-xl border border-white/5 text-[10px] leading-relaxed\"\u003e\n          {definition.fields.map((field) =\u003e {\n            const rawVal = getValueByPath(field.defaultPath);\n            let displayVal = \"Not Added\";\n            let isMissing = true;\n\n            if (rawVal !== undefined \u0026\u0026 rawVal !== null \u0026\u0026 rawVal !== \"\") {\n              if (Array.isArray(rawVal) \u0026\u0026 rawVal.length \u003e 0) {\n                displayVal = `${rawV n 2   Z       "$70fbb39b-6601-464b-9489-155dbf3e1332B     2   2   2   2   2   0   1   2   1   1   2   2   1   2   2   2   2   2   2   2   2   1   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2
+     "Q     1   (   0 B!
+	sessionID  -3750763034362895579H  P  Z bTFSaoTHDZW8juMPjdSxwAg0  : 
+ autoJe              "             (  2          89ee93482          5057293b:       e9c821beB         R     Z       ;b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  e Q     1   (   0 B!
+	sessionID  -3750763034362895579H  P  Z bTFSaoTHDZW8juMPjdSxwAg" 23d43033070b7d0b   gemini-default  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  639  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $bcc0f081-0f37-4c06-9bf8-6f3d0bf6c151   Gemini 3.5 Flash (Medium) g l 1   V       "$70fbb39b-6601-464b-9489-155dbf3e1332B     2   2   2   2   2   0   1   2   1   1   2   2   1   2   2   2   2   2   2   2   2   1   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2
+     "P     ,   (   0 B!
+	sessionID  -3750763034362895579H  P_Z aTFSat_fJ9KbjuMP3oSu6AY0  : 
+ autoJe              "             (  2          5057293b2          ac819408:       e9c821beB         R     Z         b     Bzw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  d P     ,   (   0 B!
+	sessionID  -3750763034362895579H  P_Z aTFSat_fJ9KbjuMP3oSu6AY" 6c6a4c17210c379b   gemini-default  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  637  #
+
+model_enum  MODEL_PLACEHOLDER_M20  9
+ last_execution_id $bcc0f081-0f37-4c06-9bf8-6f3d0bf6c151   Gemini 3.5 Flash (Medium) e k 0   T       "$70fbb39b-6601-464b-9489-155dbf3e1332B     2   2   2   2   2   0   1   2   1   1   2   2   1   2   2   2   2   2   2   2   2   1   2   2   2   2   2   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   0   2   2   2   2   2   2   2   2   2   2
+     "O     A   (   0 B!
+	sessionID  -3750763034362895579HKPxZ ZjFSaqbiDfLjjuMPhf7e-As0  : 
+ autoJe              "             (  2          ac8194082          4ffcde1d:       e9c821beB         R     Z         b       zw         )       ?1       ?82A       ?J <|user|>J <|bot|>J <|context_request|>J<|endoftext|>J <|end_of_turn|>Y       ?  c O     A   (   0 B!
+	sessionID  -3750763034362895579HKPxZ ZjFSaqbiDfLjjuMPhf7e-As" f194c9518bc662e2   gemini-default  9
+ last_execution_id $bcc0f081-0f37-4c06-9bf8-6f3d0bf6c151  5
+trajectory_id $e814890c-6b84-44e9-9783-edb10a1bb4dd   
+ used_claude  false  !
+ used_claude_conservative  false   
+ last_step_index  635  #
+
+model_enum  MODEL_PLACEHOLDER_M20   Gemini 3.5 Flash (Medium) d   5i\\antigravity\\brain\\d2c79442-9bab-465c-a40a-56c20332cbe2\\implementation_plan.md","toolAction":"Create implementation_plan.md","toolSummary":"Creating implementation plan for codebase registry migration"}: l  l
+ l  M2    8OGu[K   >)E    / /   k    t`     *c GK 8 #  e
+ < m;   z. 	  b 9 $cF       q d     S o F m   qn  }  e "( 5 .7 C  {   U   -f`      n  V  w|   {0@ 3p`Yf t'  ]Z   >X  s O  B       	  TN   a     N W #    <0F G&  c    s  8 AA 
+   e      ;} < 01D    q   T        P
+\        l  #$ x\    *      "         og1       T   'F  H   5       3 f6s J a    u     <   /  P )'    Z{ l{   $     #   +D  9  {V + 8    ` Q [^   *<    I S JD Z UC  BBg  <c        U   4     k  ?u  *    A   iS4mJ S 1tL  z    WqO  
+J  V 0  1 3D  q    N (  $     
+  t,         u O  @   p    = / 6l p hdJ Ep      MG : $ N    0\  ? :    M  t p   W{   ~J GFNQ .O  0~    If  3       U " WQ  v R  ? s  ~  ,  :a  J ' 0  \~ Vn ,    )SR{    K"q       )   8  }  9I    " G4   f j\  1u{| " h        m g P:     p *G#            
+|d46  'r L L  E        UA  v"   [<>(     ~ d    y  : H I    X&%       |v >    5  p I U cR q     o     nW  h   $BU  o :v   |:        W  ~ n    7&9R iG  er      9  (    D {F  ) l             %A'tU  kL     lo|  S   &/ { X%    p / 3  WUjI  1  
+     =o2!  Hv;v
+ 7 	T  k  i  k     r iyi4    m21    4 w       ^V`X  dl    
+    
+ J  	y  "<     U  bpY 2$Hf x $  -K   5   pV     i $      p  =?  ^ k    ?-x     Yt3           W  @    `   `a    7 z  `     [fUF  L<{ nJ g  "8 x"  L.       L*J  fE8   7r 'C  XOP pZ N     "   M s      n S = P |5pBq3o  h  q  vj  |&   z o    ;   Lw< 0^c     & g         / )  me  P   K6P  h  ej ! :I [ / L      `  7  O )  t   )=7 tL RZ" bU   O x   W 	 C     \^ e =   /  t   p {If {i  m DAx   V(%    r ,X  1Z Z x Q;d^ %4    HF         r ! P     u d  b a        C  >  F     "    feb  `\  O    } d   J  `   {5 u r  | a{      X %  I   ]?r E[ q "  'A&)Rv/  ,\[     ] / GJ   N {  G  ~>         B  Di   _+   { xx  6Yk1       g$ I     [       3         r  y DP4     ; :    )5     o     D        ^%   o    J   -    1  G _  x8 O.   {   / ]- 2  I K ;     -= , -?]+.R 0  3            h/   ' 4  $8    |q^  pH @   + R 3n a    E-      4z     6S2   z\     r  MHIv   G@    n Q]  Nx B    +t :{  r 8 l' 9  U Q  un     1m ':ly 7 W' "QH Zb        n   0C8/  b*(YTb  I, I   [* = ~  _     ! `#E-  YlIg    {  !  6[+  \ =	Eh  rt       x I2/ : (<  Y    +3Q       I1 c  8 <  8\E        T }      \ c       h s       5    L    FKEi  < B  \   | iX      Yt  S             pP     7(E6  5 7  7  )      
+  E  Vy       ;  H+  W#    bMs  m  Y 'o uDk  )T V >[   ;   zo Kh )        n                 uGB tp    I% ;  ^ R*5E>    l       w'B_ 6         : )X    + n     *  @L~ p Xf !       	 /-=  gY  f4  7b9 M   2 |    3	j    r1 #    Iu   s EX |   \  8  r   ?  z  W J   *<  T,l2    K | o    .%    0 0  1oT    rhbK      2$  y   [  V ,       =    >  ?(    F   At r2q 6~          e {      tU    Z    eA  | tQ:    r   \c+J;/   v      MP ^ $n   3  0{56  9=* V  L` P           V            $  :P  /o~     <          @  |      :qB  $   V 7q A    :  aN6    x        ?"H       r  OQ? y     [  iv} * ]   N   Ks /n | H :   &[
+fn    Y 2    <d * 8O"B  8   o       !'DH  {0 5c     =h{V n  ]  , Z     \ U  i  INL "   N  	  &( rh   6Y    D  =   Q       q      Ij  6 >N H    5   	 "      Fh ,[ ;5 d  W M;    -	 QU      -  =         ]>W  KG 6 4 f   3C  7 \  r  \    I       p2N  +  
+   d: n      $   v   (       < c @  1=  O;J Y7U i8   a  U&G      -qo G    ;} (  9    {  l t i  !m  ;lAF vv 9  W     '     p e .N#%      y  # R p+9l[ 6 >!p    m `3  )          B    t g 7 ==  R_X{     Y   +M  | :   6<
+-[  ? - s  Q  d?U I   
+ ] I+&} z >  g e  BnAv,  O * Uy0       O   C w} 5 `    >  x  1s Ne   "  b   U&u  g   v Jz   ` Cm m    v<8  d3%&u  $     Q  1o  ? l  / w J    Bz   <    i<6         V~!  9     wm    l  EGe B p      J   h Z          [  X   1	P    /    [  r R 9    h q m,   H-   p o  *    < Q;  A-M b   ? q  J   4   oXb     -1"V8 y          WT    $V  p    t| 4  ,) } A` 
+  N9 K8 s   m   Q    MT  & i  jH     B1    B / L)   _  +\ BR T    G   u     6 &     *   P  >   >  (L)!D   ?  
+ YY  ;  w L d   fvvC   	> `F 5 k A<2  [& Qsw    6 : OR  q  !w  N 6    M] 1   -   Q   !- w b a  l    A   m        ^  q [p &<          +i6 0       C     '  m{<         G   JC  =3 0w b       =   q X  o  . !      e      f    o 7  _ f  * #       e*  9     T   .   \    p #{ BD  V  p b UKuh     B   -Gb  W $ )C      .h :^ z[  Y  s H b )T      {J ;       2  '  5WsP p     N^gg #   UJic    4    y  l   D  i 7  o X Y  \t      6~CQ <    -o  I   s,    2  x x  KRe:r ; MR  (      /  :  "W ! ,      b 3 i  F d 3   )H]  Y      (         9Y~ D    ||  X   ` H  R     A  3  Ai  ] i" (  og   g2   r2,o       /  m/)Zf/ ? 
+|'m   H " Ga   ! Xf  	F      MN$ uc  qi4*   u      ==)  0  L 
+ 1  7  |Z  z mw ) Y V  ~  3  0   J    v      wv S   j    !C    ~ 7~z  <  y  0qB     ~ ~ @%/m l     l    B        5  d /  e-      Sst  o      ~  [       f rf  m ;  ' W O  ? 6   K  B   "   +       \ Lw _8 l 6 da !  1jlB  , b ;   Xl  ?x      H       _ /t7    OSh   OMo   |    X,d  v
+ W P    s  y    xV4 ?~  . /6/  \ M  _bT 6      ;        % B }U  u      B   < c[Y  g}}}   ~  # {Y\     0     "   [ o   i&N  -   g   U  KW J F~     b!F q  V     7  3  U DK   Vu]Oo    m %C4 S   = c \6 R   	+1     ~   : >  w YOv]  i{j   h  y    0(grUz>    |    :   i lN= N  I  7W    ~'   H Q   u    <8l5 #B x    5 #*3  qT     >   "j      y    S&%  2    r]>   +  0 k   v  d  k     ]l Nd 	
+Q8w}G  5 p  '  28      *g4     jtb y H     %	 G  z>eO!  R1P      i  g 
+ W           &   X 8!R,2   j 0L  Z      3@{ W    A)]    cg }   ~ s  7  bq*) D%   ? q9S (  4     #m d pp3  "    k             Y8    | q    2 )  Nr ?P  .     7  -eP    M   g   r  >m{  "%   V@7   M4  *T        W . l    ?2    j U V J jAV |          F' 6 7  #  P      | q  "6       3 JiiB} *
+  T  jW     h  I  fa ,w w wjHc  k2F\    VjS     o     r!  Y C   ^ Pfg 6Jr   2  h  D A  PBM	             { `#e   >} Z F   6  <     J      > M Sq5  n         {F    dx@	 c   (    `   sM y   +j  Y^w ==39q"   Rc  Oy   NOK?eurS X@Rw)  e  =  @  u   ?   =;     Aizm     )     QV          $d0  t  K   y m       f  /   ` k   '&KTT  \ a.   hD  @  ^D    O      ' a x< N   v  ? s'1(Q 7 GH  ^ p<  { `   | B  tc   {Q  n  V]         >  q*   #"J q  C 0    So  ^:  , 1M    8        "t( r -3  }   } >  <(   9  Z g8      +    nW8l#)    D   !l9  w   : 3	t :    2    ]          4  v  ;     mP   X      #N  f {   yH G!K     4D   ]     y 9z0 
+    ^i  V l3 Ed    R %  G     8 G  4}   D  i w   'H   #H W{  `| V=Y  " 4 E      @C I|   ~7O    g [        c  _    G=  _  DR& "K (d    C   @  MZ,  z   F     5
+   Z2  h  w  D    @   ^  hO  &   #           J  //  9   ^  9puKu   ?kKk  '   W
+%  m    F4   .   h   =  } 6a#k;AF  ]     h]  Y  y     J    ksu   3 5v/   :   m } r ,_I  W    y #  i  ~g      *Y y | c J<   =  J _  fo   e [   9;   rB t  4  y  u    A  p     h 0 Dh  4yx     Sq   m
+w9 %   ba  '    N H k uA [}!  	    I       . aQ IP 	 /    @	'j     2 + SM  =%sDxm     ~6     h  1V  _  [
+   }e      c4 <  ] \       @0 P     3 Ps  ]`   V  
+*  u  	9  &K;    zY  &   8 b   d 	GfW  $    =  $t q "' E    | I/ +$  t<vi- G wb      &@      ~{ xZ F        G ! 0  M	 1D U+ag   BZ'm  Y #    z  / /  *  @      0j  c  P c    )c  i      V  *  x=@     s d  |f       .   {  Uh    8L    6    Wh ?3  0  85>  6 /  -   !Nf }   * I    wr  vWx ` s J )   )  l     8  r  r    {%d  fU|x 0[ 3         7 {G2  }    jja V  6}  ?  &   C k            1p# b<                9   C           9  ;    0      8 ~     ;eu y |    C   r h j   L   O  ,
+       1z  V-U 4"  
+    1 d O   G  ^ b      7 " U  b  vr  <%         0X A    o   E TG   ` ho     =D     enC /     ` +Oj 6 n t>    T   hfK  Qeo    dx a ~!  8 4n	   A5 #L  ]    HAb 
+  d   ZM4    :   [    E  j  )  {     h  [   c`*      ~ 5         >o    BW   X*     
+        HP   b ;         l#  i e  X  - {      #   v  X;] UP  R#    P Y|m 03   t@N    x g10 U    I (   ~ I *ElM(  H    D n     Uz4d         "e  7lb   :} - P   c             O   3  B   /Q `0    z   Rx <      ^m   >_Sb]    /  A Y    z t  p>          y  e       &   _$Mx.  1 $ J  v          K   D        l "       B"DJ kS  VG   o v hr rD 
+2m     -4       P u{       q  zw   ^]   ]+       VG  ` 4       ! t{ U     n :/   ,1       O  z (m   Y    f       @ Y  }  z q   h   Y:  vRz] m i 2N            <|o 
+  -     /Hcgp  4T   8N\e        	   [    c     /    H  .   AX
+A6m  = b R  8]i         Y  a  Z         m Q 9#]IHs | ^  \j   u  '"a    ,     0   e     a    =   e)  V   l$/ L      Z   .  d  <
+U:_m   !G Do r   a   \   <  6 >b! k         re|  s Xq   8!   %!&    n!&  y   e    U  .  F  ,7     JB                ~        L ;   G/V /	  +I W      l    !   k_D    o  $v{  GR !     8 z Y| Y[T  X    '     o\      SP zL  N    :  N    

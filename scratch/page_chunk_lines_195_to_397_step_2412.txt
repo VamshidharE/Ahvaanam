@@ -1,0 +1,211 @@
+Created At: 2026-07-05T13:24:32Z
+Completed At: 2026-07-05T13:24:33Z
+File Path: `file:///C:/Users/Admin/Ahvaanam/app/page.tsx`
+Total Lines: 397
+Total Bytes: 17514
+Showing lines 195 to 397
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+195:     { name: "Countdown", label: "Target Ceremony Timer", details: "Animate days, hours, and minutes remaining", visual: "30 Days : 12 Hours : 45 Mins" },
+196:     { name: "Venue", label: "GPS Coordinates Map", details: "One-click navigation routes for guests", visual: "The Grand Palace, Hyderabad (GPS)" },
+197:     { name: "QR", label: "Scan & Direct Share Link", details: "Let guests scan print outs to open URL", visual: "[ Mock QR Code Canvas ]" },
+198:     { name: "RSVP", label: "Helpline Contact Form", details: "Guest RSVP table updates dynamically", visual: "Attend Status: Going (Verified)" }
+199:   ];
+200: 
+201:   const testimonials = [
+202:     { id: 0, name: "Ananya & Karthik", text: "Ahvaanam made our wedding invitation so special and beautiful. Our family and friends loved it!", role: "Wedding Clients" },
+203:     { id: 1, name: "Sneha & Rohit", text: "Super easy to use and the templates are stunning. We found the perfect layout for our ring ceremony!", role: "Engagement Clients" },
+204:     { id: 2, name: "Priyanka", text: "The music, gallery, and countdown features made our digital card look premium. Highly recommended!", role: "Anniversary Client" }
+205:   ];
+206: 
+207:   // Auto-play the personalization showcase loop every 4.5 seconds
+208:   useEffect(() => {
+209:     const interval = setInterval(() => {
+210:       setActiveFeatureIndex((prev) => (prev + 1) % personalizationFeatures.length);
+211:     }, 4500);
+212:     return () => clearInterval(interval);
+213:   }, []);
+214: 
+215:   const handleCategoryHover = (catName: string) => {
+216:     setSelectedCategory(catName);
+217:     if (catName === "Birthday") {
+218:       setCoupleName("AARAV'S BIRTHDAY");
+219:     } else if (catName === "Engagement") {
+220:       setCoupleName("ROHIT & SNEHA");
+221:     } else {
+222:       setCoupleName("RAHUL & PRIYA");
+223:     }
+224:   };
+225: 
+226:   return (
+227:     <div className="bg-[#FAF9F6] text-[#241E1C] font-sans relative overflow-x-hidden min-h-screen">
+228:       <SmoothScroll />
+229:       <BackgroundBlobs />
+230:       <FloatingElements />
+231:       <Navbar />
+232: 
+233:       {/* =========================================================
+234:           SECTION 1: HERO
+235:           ========================================================= */}
+236:       <SectionReveal>
+237:         <Hero />
+238:       </SectionReveal>
+239: 
+240:       {/* =========================================================
+241:           SECTION 2: EVENT CATEGORIES (IMPROVED: Premium glass cards, Hover updates invitation preview)
+242:           ========================================================= */}
+243:       <SectionReveal>
+244:         <EventCategories />
+245:       </SectionReveal>
+246: 
+247:       {/* =========================================================
+248:           SECTION 3: TEMPLATE GALLERY
+249:           ========================================================= */}
+250:       <SectionReveal>
+251:         <TemplateGallery />
+252:       </SectionReveal>
+253: 
+254:       {/* =========================================================
+255:           SECTION 4: INVITATION BUILDER
+256:           ========================================================= */}
+257:       <SectionReveal>
+258:         <BuilderShowcase />
+259:       </SectionReveal>
+260: 
+261:       {/* =========================================================
+262:           SECTIONS 6 & 7: DEVICE PREVIEW & SHARING SIDE BY SIDE
+263:           ========================================================= */}
+264:       <section className="relative overflow-hidden bg-gradient-to-b from-white to-[#FFF9F2] py-24">
+265:         <div className="max-w-7xl mx-auto w-full px-8 md:px-16 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+266:           
+267:           {/* Left Column: Preview on Any Device */}
+268:           <div className="space-y-12 flex flex-col items-center lg:items-start text-center lg:text-left">
+269:             <div className="space-y-3 w-full">
+270:               <h2 className="text-[10px] uppercase font-bold text-[#C49B27] tracking-[3px]">Multi-Device Preview</h2>
+271:               <h3 className="text-3xl md:text-5xl font-normal uppercase tracking-[0.5px] font-cinzel text-slate-800">Preview on Any Device</h3>
+272:               <p className="text-xs text-[#241E1C]/50 font-semibold">See how your invitation looks on every screen.</p>
+273:             </div>
+274: 
+275:             {/* Morphing single screen canvas frame */}
+276:             <div className="flex flex-col items-center justify-center gap-8 relative select-none w-full">
+277:               <div className="w-full flex items-center justify-center min-h-[440px] relative">
+278:                 <motion.div
+279:                   layout
+280:                   animate={{
+281:                     width: activeDevice === "desktop" ? "380px" : activeDevice === "tablet" ? "280px" : "210px",
+282:                     height: activeDevice === "desktop" ? "245px" : activeDevice === "tablet" ? "330px" : "400px",
+283:                   }}
+284:                   transition={{ duration: 0.5, ease: "easeInOut" }}
+285:                   className="bg-zinc-800 rounded-3xl border-[6px] border-zinc-700 shadow-2xl flex flex-col overflow-hidden relative"
+286:                 >
+287:                   {/* Camera Notch for mobile/tablet screen mockups */}
+288:                   {(activeDevice === "mobile" || activeDevice === "tablet") && (
+289:                     <div className="w-16 h-3 bg-zinc-700 rounded-full mx-auto mt-2 absolute top-0 left-1/2 -translate-x-1/2 z-30" />
+290:                   )}
+291: 
+292:                   <div className="flex-1 w-full bg-[#0A251B] p-6 flex flex-col justify-between items-center text-center text-white relative">
+293:                     <span className="text-[10px] text-[#D4AF37] font-bold mt-2 z-10">ॐ</span>
+294: 
+295:                     <div className="space-y-2 z-10">
+296:                       <h4 className="text-base font-bold font-cinzel uppercase tracking-[0.5px]">{coupleName}</h4>
+297:                       <p className="text-[6.5px] text-zinc-400 font-mono tracking-[1.5px] uppercase">Wedding Rituals</p>
+298:                     </div>
+299: 
+300:                     <span className="text-[6.5px] text-[#D4AF37] font-mono tracking-[0.5px] mb-2 uppercase z-10">Live Preview Sandbox</span>
+301:                   </div>
+302: 
+303:                   {activeDevice === "desktop" && (
+304:                     <div className="h-4 bg-zinc-800 w-full flex justify-center items-center"><div className="w-12 h-1.5 bg-zinc-600 rounded-full" /></div>
+305:                   )}
+306:                 </motion.div>
+307:               </div>
+308: 
+309:               {/* Toggle buttons */}
+310:               <div className="flex items-center gap-1.5 bg-white p-1.5 border border-zinc-200 rounded-xl shadow-sm z-30">
+311:                 {[
+312:                   { id: "desktop", label: "Desktop", icon: Monitor },
+313:                   { id: "mobile", label: "Mobile", icon: Smartphone },
+314:                   { id: "tablet", icon: Tablet, label: "Tablet" }
+315:                 ].map((dev) => (
+316:                   <button
+317:                     key={dev.id}
+318:                     onClick={() => setActiveDevice(dev.id as any)}
+319:                     className={`flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-[9.5px] font-bold uppercase tracking-[1px] transition-all ${activeDevice === dev.id
+320:                         ? "bg-[#C49B27] text-white shadow-sm"
+321:                         : "text-[#241E1C]/65 hover:bg-zinc-100"
+322:                       }`}
+323:                   >
+324:                     <dev.icon size={11} />
+325:                     {dev.label}
+326:                   </button>
+327:                 ))}
+328:               </div>
+329:             </div>
+330:           </div>
+331: 
+332:           {/* Right Column: Send Your Invitation In Seconds */}
+333:           <div className="space-y-12 text-center lg:text-left">
+334:             <div className="space-y-3 w-full">
+335:               <p className="uppercase tracking-[0.35em] text-[10px] font-bold text-amber-500">
+336:                 Share Anywhere
+337:               </p>
+338:               <h2 className="text-3xl md:text-5xl font-normal uppercase tracking-[0.5px] font-cinzel text-slate-800 leading-tight">
+339:                 Send Your Invitation
+340:                 <br />
+341:                 In Seconds
+342:               </h2>
+343:             </div>
+344:             
+345:             {/* Sharing Cards list */}
+346:             <div className="space-y-5">
+347:               {shareItems.map((item, index) => {
+348:                 const Icon = item.icon;
+349:                 const cardContent = (
+350:                   <motion.div
+351:                     whileHover={{
+352:                       x: 8,
+353:                       scale: 1.02,
+354:                     }}
+355:                     transition={{ duration: 0.2 }}
+356:                     className="flex items-center gap-5 rounded-3xl border border-white/70 bg-white/80 p-6 shadow-xl backdrop-blur-xl cursor-pointer w-full text-left"
+357:                   >
+358:                     <div className="rounded-2xl bg-gradient-to-br from-amber-400 to-yellow-500 p-4 text-white">
+359:                       <Icon size={24} />
+360:                     </div>
+361: 
+362:                     <div>
+363:                       <h3 className="text-xl font-bold text-slate-800">
+364:                         {item.title}
+365:                       </h3>
+366:                       <p className="text-slate-500 text-sm font-semibold mt-0.5">
+367:                         {item.desc}
+368:                       </p>
+369:                     </div>
+370:                   </motion.div>
+371:                 );
+372: 
+373:                 return item.isExternal ? (
+374:                   <a key={item.title} href={item.href} target="_blank" rel="noopener noreferrer" download={item.download} className="block w-full">
+375:                     {cardContent}
+376:                   </a>
+377:                 ) : (
+378:                   <Link key={item.title} href={item.href} className="block w-full">
+379:                     {cardContent}
+380:                   </Link>
+381:                 );
+382:               })}
+383:             </div>
+384:           </div>
+385: 
+386:         </div>
+387:       </section>
+388: 
+389:       {/* =========================================================
+390:           SECTION 9: FOOTER
+391:           ========================================================= */}
+392:       <SectionReveal>
+393:         <Footer />
+394:       </SectionReveal>
+395:     </div>
+396:   );
+397: }
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
