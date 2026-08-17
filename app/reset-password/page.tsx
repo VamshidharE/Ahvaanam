@@ -13,19 +13,58 @@ export default function ResetPasswordPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
+  const [verifyingSession, setVerifyingSession] = useState(true);
   const router = useRouter();
-
   const supabase = createClient();
 
   useEffect(() => {
-    // Basic verification: check if there's a session or recovery flow active
-    const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        setError("Invalid or expired session. Please request a new password reset link.");
+    let mounted = true;
+
+    const initRecovery = async () => {
+      try {
+        // 1. Check if there is a 'code' in the search params
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get("code");
+
+        if (code) {
+          const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
+          if (exchangeError) {
+            console.error("Code exchange error:", exchangeError);
+          }
+        }
+
+        // 2. Check if a session exists
+        const { data: { session } } = await supabase.auth.getSession();
+
+        if (mounted) {
+          if (!session && !code) {
+            setError("No active recovery session found. If your link expired, please request a new one.");
+          }
+          setVerifyingSession(false);
+        }
+      } catch (err) {
+        if (mounted) {
+          setVerifyingSession(false);
+        }
       }
     };
-    checkSession();
+
+    // 3. Listen to auth state changes (e.g. PASSWORD_RECOVERY event)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (mounted) {
+        if (event === "PASSWORD_RECOVERY" || session) {
+          setError(null);
+          setVerifyingSession(false);
+        }
+      }
+    });
+
+    initRecovery();
+
+    return () => {
+      mounted = false;
+      subscription.unsubscribe();
+    };
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -84,7 +123,12 @@ export default function ResetPasswordPage() {
           </p>
         </div>
 
-        {success ? (
+        {verifyingSession ? (
+          <div className="py-8 text-center space-y-3">
+            <div className="w-6 h-6 border-2 border-[#C49B27] border-t-transparent rounded-full animate-spin mx-auto" />
+            <p className="text-xs text-[#241E1C]/60 font-medium">Verifying secure reset session...</p>
+          </div>
+        ) : success ? (
           <div className="space-y-4 text-center">
             <div className="bg-emerald-500/5 border border-emerald-500/20 text-emerald-700 text-xs px-4 py-4 rounded-2xl flex flex-col items-center gap-2">
               <span className="font-bold text-sm">Password Updated!</span>
