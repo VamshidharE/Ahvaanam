@@ -216,19 +216,34 @@ export async function POST(request: Request) {
       }
 
       // Clone starter default JSON config to seed the profile
-      const config = JSON.parse(JSON.stringify(defaultTemplate));
+      const effectiveTheme = themeId || "royal-temple";
+      let config: any;
+
+      if (effectiveTheme === "rose-mandap") {
+        config = createDefaultConfig("wedding", "rose-mandap").config;
+      } else {
+        config = JSON.parse(JSON.stringify(defaultTemplate));
+      }
 
       // Seed config with user inputs
-      config.themeId = themeId || "royal-temple";
+      config.themeId = effectiveTheme;
+      const isPlaceholderGroom = !groom || groom.toLowerCase() === "host" || groom.toLowerCase() === "groom name";
+      const isPlaceholderBride = !bride || bride.toLowerCase() === "guest" || bride.toLowerCase() === "bride name";
+
       if (config.couple) {
-        config.couple.groom.name = groom;
-        config.couple.bride.name = bride;
+        if (!isPlaceholderGroom) config.couple.groom.name = groom;
+        if (!isPlaceholderBride) config.couple.bride.name = bride;
       }
+      if (config.groom && !isPlaceholderGroom) config.groom.name = groom;
+      if (config.bride && !isPlaceholderBride) config.bride.name = bride;
+
       if (config.hero) {
-        config.hero.surname = surname || "";
-        config.hero.showSurnameHeading = !!surname;
+        if (surname) {
+          config.hero.surname = surname;
+          config.hero.showSurnameHeading = true;
+        }
       }
-      if (config.footer) {
+      if (config.footer && !isPlaceholderGroom && !isPlaceholderBride) {
         config.footer.salutation = `Bound by Matrimony. ${groom} & ${bride}.`;
       }
 
@@ -259,13 +274,15 @@ export async function POST(request: Request) {
       }
 
       // Retrieve default category template structures and merge values
-      const wrapper = createDefaultConfig(normalized.category);
+      const wrapper = createDefaultConfig(normalized.category, normalized.themeId);
       wrapper.themeId = normalized.themeId;
       if (wrapper.config) {
         wrapper.config.themeId = normalized.themeId;
         // Dynamically populate fields
         for (const [key, value] of Object.entries(normalized.metadata)) {
-          setNestedProperty(wrapper.config, key, value);
+          if (value && typeof value === "string" && !/^(host|guest|groom name|bride name)$/i.test(value.trim())) {
+            setNestedProperty(wrapper.config, key, value);
+          }
         }
       }
 

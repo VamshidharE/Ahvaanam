@@ -1,0 +1,9 @@
+export { default as Hero } from "./Hero";
+export { default as EventCategories } from "./EventCategories";
+export { default as TemplateGallery } from "./TemplateGallery";
+export { default as BuilderShowcase } from "./BuilderShowcase";
+export { default as Personalization } from "./Personalization";
+export { default as DevicePreview } from "./DevicePreview";
+export { default as Sharing } from "./Sharing";
+export { default as Footer } from "./Footer";
+export { default as BackgroundEffects } from "./BackgroundEffects";

@@ -1,25 +1,33 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Play, Pause, MapPin, Calendar, Clock, Phone, Sparkles } from "lucide-react";
+import { Play, Pause, Calendar, MapPin } from "lucide-react";
 import Link from "next/link";
+import PremiumHinduWeddingHero from "@/components/hero/PremiumHinduWeddingHero";
 
 export default function DemoInvitationPage() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
-  const [rsvpStatus, setRsvpStatus] = useState<"idle" | "yes" | "no">("idle");
+  const [timeLeft, setTimeLeft] = useState({ days: 120, hours: 14, minutes: 30, seconds: 45 });
+
   const [rsvpName, setRsvpName] = useState("");
   const [rsvpGuests, setRsvpGuests] = useState("1");
   const [submitted, setSubmitted] = useState(false);
 
-  // Countdown timer
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const handleRsvpSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => {
+      setSubmitted(false);
+      setRsvpName("");
+      setRsvpGuests("1");
+    }, 3000);
+  };
 
   useEffect(() => {
-    // Set wedding date to 6 months from now
+    // Set wedding date countdown
     const targetDate = new Date();
-    targetDate.setMonth(targetDate.getMonth() + 6);
+    targetDate.setMonth(targetDate.getMonth() + 4);
 
     const timer = setInterval(() => {
       const difference = targetDate.getTime() - new Date().getTime();
@@ -55,26 +63,11 @@ export default function DemoInvitationPage() {
     setIsPlaying(!isPlaying);
   };
 
-  const handleRsvpSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setRsvpStatus("idle");
-      setRsvpName("");
-      setRsvpGuests("1");
-    }, 3000);
-  };
-
   return (
-    <div className="min-h-screen bg-[#FAF6F0] text-[#2D2621] font-sans flex flex-col items-center justify-between p-4 md:p-8 relative select-none overflow-x-hidden">
+    <div className="min-h-screen bg-[#FAF6F0] text-[#2D2621] font-sans relative select-none overflow-x-hidden">
       
-      {/* Border ornament */}
-      <div className="absolute inset-4 border-2 border-[#D4AF37]/35 rounded-[36px] pointer-events-none z-0" />
-      <div className="absolute inset-6 border border-[#D4AF37]/15 rounded-[30px] pointer-events-none z-0" />
-
       {/* Floating control bar */}
-      <div className="fixed top-8 right-8 z-50 flex items-center gap-3">
+      <div className="fixed top-6 right-6 z-50 flex items-center gap-3">
         <button 
           onClick={toggleMusic}
           className="w-10 h-10 rounded-full bg-white/90 border border-[#D4AF37]/45 text-[#C49B27] flex items-center justify-center shadow-lg backdrop-blur-xl hover:scale-105 active:scale-95 transition-transform"
@@ -89,16 +82,9 @@ export default function DemoInvitationPage() {
         </Link>
       </div>
 
-      {/* Decorative Ornaments */}
-      <div className="w-full max-w-lg text-center mt-12 z-10 flex flex-col items-center space-y-6">
-        <span className="text-3xl text-[#C49B27]">ॐ</span>
-        
-        <p className="uppercase tracking-[0.35em] text-[10px] text-[#C49B27] font-semibold">
-          Shri Ganeshaya Namah
-        </p>
+      {/* Flagship Premium Hindu Wedding Hero Component */}
+      <PremiumHinduWeddingHero />
 
-        <div className="w-16 h-[1.5px] bg-[#D4AF37]/40" />
-      </div>
 
       {/* Main card box */}
       <main className="w-full max-w-xl bg-white/60 border border-[#D4AF37]/25 rounded-[30px] p-8 md:p-14 text-center shadow-[0_20px_50px_rgba(0,0,0,0.04)] backdrop-blur-xl z-10 my-10 space-y-10 relative overflow-hidden">

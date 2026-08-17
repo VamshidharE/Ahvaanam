@@ -77,4 +77,18 @@ export const themes: ThemeMetadata[] = [
     description: "Royal mandap stage with thick flower canopies, brass ornaments, sacred fire, and smoke rises.",
     colorHex: "#8B0000",
   },
+  {
+    id: "azure-serenity",
+    name: "Azure Serenity",
+    tagline: "Ice White & Sky Blue",
+    description: "Dreamy skies, soft white and blue clouds, peaceful lake reflection, and delicate blue flower frames.",
+    colorHex: "#EBF3FB",
+  },
+  {
+    id: "rose-mandap",
+    name: "Rose Mandap",
+    tagline: "Rose Petals & Royal Mandap",
+    description: "Royal mandap architecture, hanging brass bells, couple artwork, falling petals, and live wedding procession animation.",
+    colorHex: "#b8872f",
+  },
 ];

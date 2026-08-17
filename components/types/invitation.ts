@@ -144,6 +144,9 @@ export interface TravelAccommodationSection extends BaseSection {
 export interface FooterSection extends BaseSection {
   creditText: string;
   salutation: string;
+  designer?: string;
+  location?: string;
+  contact?: string;
 }
 
 export interface ThemeSettings {

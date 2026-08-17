@@ -19,8 +19,6 @@ const weddingConfig: InvitationConfig = {
       "venue",
       "families",
       "rsvp",
-      "faq",
-      "dressCode",
       "footer"
     ],
     themeSettings: {

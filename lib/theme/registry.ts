@@ -363,6 +363,72 @@ const THEMES: Record<string, ThemeTokens> = {
       blur: "15px",
     },
   },
+  "azure-serenity": {
+    id: "azure-serenity",
+    name: "Azure Serenity",
+    backgroundImage: "/images/themes/azure-serenity.jpg",
+    openingEffect: "fade-reveal",
+    colors: {
+      background: "#EBF3FB",
+      text: "#0F4C81",
+      accent: "#3A8ED9",
+      border: "rgba(58, 142, 217, 0.25)",
+      secondaryText: "rgba(15, 63, 122, 0.75)",
+      cardBg: "rgba(255, 255, 255, 0.72)",
+    },
+    typography: {
+      fontHeading: "var(--font-cinzel), Cinzel, serif",
+      fontBody: "var(--font-inter), Inter, sans-serif",
+    },
+    radius: {
+      card: "24px",
+      button: "12px",
+    },
+    shadows: {
+      card: "0 10px 30px rgba(15, 63, 122, 0.08)",
+      button: "0 4px 14px rgba(58, 142, 217, 0.3)",
+    },
+    gradients: {
+      backdrop: "linear-gradient(to bottom, rgba(217, 232, 245, 0.15) 0%, rgba(255, 255, 255, 0.5) 100%)",
+    },
+    glass: {
+      background: "rgba(255, 255, 255, 0.65)",
+      blur: "12px",
+    },
+  },
+  "rose-mandap": {
+    id: "rose-mandap",
+    name: "Rose Mandap",
+    backgroundImage: "/images/themes/rose-mandap.jpg",
+    openingEffect: "envelope-unfold",
+    colors: {
+      background: "#fbf5e9",
+      text: "#63451f",
+      accent: "#b8872f",
+      border: "rgba(184, 135, 47, 0.35)",
+      secondaryText: "#8f641f",
+      cardBg: "rgba(255, 250, 241, 0.85)",
+    },
+    typography: {
+      fontHeading: "'Cormorant Garamond', Georgia, serif",
+      fontBody: "'Cormorant Garamond', Georgia, serif",
+    },
+    radius: {
+      card: "28px",
+      button: "14px",
+    },
+    shadows: {
+      card: "0 10px 30px rgba(99, 69, 31, 0.08)",
+      button: "0 4px 14px rgba(184, 135, 47, 0.3)",
+    },
+    gradients: {
+      backdrop: "radial-gradient(ellipse at 50% 8%, rgba(255, 244, 214, 0.34) 0%, rgba(255, 244, 214, 0) 38%)",
+    },
+    glass: {
+      background: "rgba(255, 250, 241, 0.8)",
+      blur: "10px",
+    },
+  },
 };
 
 export function getTheme(id: string): ThemeTokens {

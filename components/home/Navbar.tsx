@@ -3,12 +3,14 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { Sparkles, Menu, X } from "lucide-react";
 import { createClient } from "@/utils/supabase/client";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
   const [user, setUser] = useState<any>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const supabase = createClient();
 
   useEffect(() => {
@@ -16,91 +18,114 @@ export default function Navbar() {
       setUser(user);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
-
-    return () => {
-      subscription.unsubscribe();
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
     };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleLogout = async () => {
-    try {
-      await supabase.auth.signOut();
-      await fetch("/api/auth/logout", { method: "POST" });
-      window.location.href = "/";
-    } catch (err) {
-      console.error("Logout failed", err);
-    }
-  };
-
   const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "Templates", path: "/templates" },
-    { name: "Services", path: "/services" },
-    { name: "How It Works", path: "/how-it-works" },
-    { name: "Contact", path: "/contact" }
+    { name: "HOME", href: "/" },
+    { name: "TEMPLATES", href: "/templates" },
+    { name: "SERVICES", href: "/services" },
+    { name: "HOW IT WORKS", href: "/how-it-works" },
+    { name: "CONTACT", href: "/contact" },
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#FAF9F6]/85 border-b border-[#E5A93C]/10 backdrop-blur-md px-8 md:px-16 h-16 flex items-center justify-between select-none">
-      <Link href="/" className="flex items-center hover:opacity-85 transition-opacity relative z-10">
-        <img src="/images/logo.png" alt="Ahvaanam" className="h-26 w-auto object-contain translate-y-0 drop-shadow-sm" />
-      </Link>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled 
+        ? "bg-[#FAF9F6]/90 backdrop-blur-md shadow-md py-3 border-b border-[#E5A93C]/15" 
+        : "bg-[#FAF9F6]/85 backdrop-blur-sm py-4 border-b border-[#E5A93C]/10"
+    }`}>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+        
+        {/* Logo */}
+        <Link href="/" className="flex items-center group">
+          <img 
+            src="/images/logo.png" 
+            alt="Ahvaanam" 
+            className="h-10 md:h-12 w-auto object-contain" 
+          />
+        </Link>
 
-      <nav className="hidden lg:flex items-center gap-10 text-[11px] font-bold uppercase tracking-[2px]">
-        {navLinks.map((link) => {
-          const isActive = pathname === link.path;
-          return (
-            <Link key={link.name} href={link.path} className="relative py-1.5 text-[#241E1C]/65 hover:text-[#C49B27] transition-colors">
-              {link.name}
-              {isActive && (
-                <motion.div
-                  layoutId="activeNavLine"
-                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#C49B27]"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              )}
-            </Link>
-          );
-        })}
-      </nav>
+        {/* Desktop Nav Links */}
+        <nav className="hidden lg:flex items-center gap-9">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`text-[10px] font-bold uppercase tracking-[2px] transition-colors relative py-1 ${
+                  isActive ? "text-[#C49B27]" : "text-[#241E1C]/70 hover:text-[#C49B27]"
+                }`}
+              >
+                {link.name}
+                {isActive && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#C49B27] rounded-full" />
+                )}
+              </Link>
+            );
+          })}
+        </nav>
 
-      {/* Auth Actions block */}
-      <div className="flex items-center gap-5">
-        {user ? (
-          <>
-            <Link 
-              href="/dashboard"
-              className="text-[10px] text-[#241E1C]/75 hover:text-[#C49B27] uppercase tracking-[1.5px] font-bold transition-colors"
-            >
-              Dashboard
-            </Link>
-            <button
-              onClick={handleLogout}
-              className="text-[10px] text-red-600 hover:text-red-700 uppercase tracking-[1.5px] font-bold transition-colors cursor-pointer"
-            >
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link 
-              href="/login"
-              className="text-[10px] text-[#241E1C]/75 hover:text-[#C49B27] uppercase tracking-[1.5px] font-bold transition-colors"
-            >
-              Login
-            </Link>
-            <Link 
-              href="/signup"
-              className="bg-[#C49B27] hover:bg-[#B0871B] text-white px-4 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-[1.5px] transition-all shadow-sm hover:scale-105 active:scale-95"
-            >
-              Sign Up
-            </Link>
-          </>
-        )}
+        {/* Actions (Dashboard & Logout / Login) */}
+        <div className="hidden lg:flex items-center gap-5 text-[10px] font-bold uppercase tracking-[1.5px]">
+          {user ? (
+            <>
+              <Link href="/dashboard" className="text-[#241E1C]/70 hover:text-[#C49B27] transition-colors">
+                Dashboard
+              </Link>
+              <Link href="/logout" className="text-red-500 hover:text-red-600 transition-colors">
+                Logout
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href="/dashboard" className="text-[#241E1C]/70 hover:text-[#C49B27] transition-colors">
+                Dashboard
+              </Link>
+              <Link href="/login" className="px-5 py-2 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#C49B27] text-white shadow-sm hover:scale-105 transition-all">
+                Login
+              </Link>
+            </>
+          )}
+        </div>
+
+        {/* Mobile menu button */}
+        <button 
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="lg:hidden text-[#241E1C] p-2"
+        >
+          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </div>
+
+      {/* Mobile dropdown */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden bg-[#FAF9F6] border-b border-[#E5A93C]/15 px-6 py-6 space-y-4 text-center">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-xs font-bold uppercase tracking-[2px] text-[#241E1C] hover:text-[#C49B27]"
+            >
+              {link.name}
+            </Link>
+          ))}
+          <div className="pt-4 border-t border-zinc-200 flex justify-center gap-6 text-xs font-bold uppercase">
+            <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)} className="text-[#C49B27]">Dashboard</Link>
+            {user ? (
+              <Link href="/logout" onClick={() => setMobileMenuOpen(false)} className="text-red-500">Logout</Link>
+            ) : (
+              <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="text-[#241E1C]">Login</Link>
+            )}
+          </div>
+        </div>
+      )}
     </header>
   );
 }

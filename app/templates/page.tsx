@@ -3,94 +3,20 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Eye, ArrowRight, X, Sparkles } from "lucide-react";
+import { Search, Eye, ArrowRight, X, Sparkles, FolderOpen } from "lucide-react";
 import Link from "next/link";
 import Navbar from "../../components/home/Navbar";
 import Footer from "../../components/home/Footer";
 import { createClient } from "@/utils/supabase/client";
 
-const templatesList = [
-  {
-    slug: "royal-temple",
-    title: "Royal Temple Layout",
-    category: "wedding",
-    type: "Traditional",
-    desc: "Ornate golden pillars, traditional arches, and gold leaf detailing.",
-    image: "/images/themes/royal-temple.jpg",
-  },
-  {
-    slug: "floral-garden",
-    title: "Floral Garden Layout",
-    category: "wedding",
-    type: "Elegant",
-    desc: "Rose gold accents, blooming borders, and pastel overlays.",
-    image: "/images/themes/floral-garden.jpg",
-  },
-  {
-    slug: "south-indian",
-    title: "South Indian Traditional",
-    category: "wedding",
-    type: "Traditional",
-    desc: "Muted copper tones, banana leaf frames, and sacred marigolds.",
-    image: "/images/themes/south-indian.jpg",
-  },
-  {
-    slug: "palace-luxury",
-    title: "Palace Luxury Layout",
-    category: "wedding",
-    type: "Royal",
-    desc: "Grand palace gates, royal red velvet overlays, and gold borders.",
-    image: "/images/themes/palace-luxury.jpg",
-  },
-  {
-    slug: "lotus-serenity",
-    title: "Lotus Serenity Layout",
-    category: "wedding",
-    type: "Spiritual",
-    desc: "Sacred pink lotus blossoms and glowing golden spiritual overlays.",
-    image: "/images/themes/lotus-serenity.jpg",
-  },
-  {
-    slug: "marigold",
-    title: "Marigold Celebration",
-    category: "wedding",
-    type: "Festive",
-    desc: "Vibrant orange and yellow marigold garlands with festive backgrounds.",
-    image: "/images/themes/marigold.jpg",
-  },
-  {
-    slug: "peacock",
-    title: "Peacock Royal Layout",
-    category: "wedding",
-    type: "Royal",
-    desc: "Majestic peacock feather overlays and deep royal blue gradients.",
-    image: "/images/themes/peacock.jpg",
-  },
-  {
-    slug: "heritage",
-    title: "Heritage Haveli Layout",
-    category: "wedding",
-    type: "Heritage",
-    desc: "Terracotta textures, vintage stone arches, and heritage designs.",
-    image: "/images/themes/heritage.jpg",
-  },
-  {
-    slug: "moonlight",
-    title: "Moonlight Wedding Layout",
-    category: "wedding",
-    type: "Modern",
-    desc: "Midnight skies, glowing lanterns, and starry overlays.",
-    image: "/images/themes/moonlight.jpg",
-  },
-  {
-    slug: "grand-mandap",
-    title: "Grand Mandap Layout",
-    category: "wedding",
-    type: "Traditional",
-    desc: "Luxurious floral mandap stages with traditional hanging lights.",
-    image: "/images/themes/grand-mandap.jpg",
-  }
-];
+const templatesList: Array<{
+  slug: string;
+  title: string;
+  category: string;
+  type: string;
+  desc: string;
+  image: string;
+}> = [];
 
 function TemplatesContent() {
   const searchParams = useSearchParams();
@@ -98,7 +24,6 @@ function TemplatesContent() {
 
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [previewTemplate, setPreviewTemplate] = useState<typeof templatesList[0] | null>(null);
   const [user, setUser] = useState<any>(null);
 
   const supabase = createClient();
@@ -109,7 +34,6 @@ function TemplatesContent() {
     });
   }, []);
 
-  // Sync with search parameter on load
   useEffect(() => {
     if (initialCategory) {
       setActiveCategory(initialCategory);
@@ -117,8 +41,7 @@ function TemplatesContent() {
   }, [initialCategory]);
 
   const categories = [
-    { id: "all", name: "All Designs" },
-    { id: "wedding", name: "Wedding Only" }
+    { id: "all", name: "All Designs" }
   ];
 
   const filteredTemplates = templatesList.filter((tpl) => {
@@ -178,132 +101,46 @@ function TemplatesContent() {
 
         </div>
 
-        {/* Grid List */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 animate-fadeIn">
-          <AnimatePresence mode="popLayout">
+        {/* Grid List or Empty State */}
+        {filteredTemplates.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 animate-fadeIn">
             {filteredTemplates.map((tpl) => (
-                <motion.div
-                  key={tpl.slug}
-                  layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3 }}
-                  className="group relative overflow-hidden rounded-[30px] border border-zinc-200/60 bg-white p-4 shadow-sm hover:shadow-[0_20px_50px_rgba(196,155,39,0.12)] hover:-translate-y-2 hover:border-[#C49B27]/40 transition-all duration-300 flex flex-col justify-between select-none"
-                >
-                  {/* Gold Premium Shine Overlay */}
-                  <div className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[600px] transition-transform duration-1000 ease-out pointer-events-none z-10" />
-
-                  <div>
-                    {/* Landscape 16:9 Thumbnail preview container */}
-                    <div className="relative w-full aspect-[16/10] bg-stone-50 border border-zinc-100 rounded-2xl overflow-hidden shrink-0 shadow-xs">
-                      <img
-                        src={tpl.image}
-                        alt={tpl.title}
-                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-
-                  <div className="mt-5 space-y-2.5">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[9px] uppercase font-bold text-[#C49B27] tracking-[2px]">{tpl.type} Style</span>
-                      <span className="text-[8px] uppercase font-bold bg-amber-50 border border-amber-200/50 text-[#C49B27] px-2.5 py-0.5 rounded-full">{tpl.category}</span>
-                    </div>
-                    <h3 className="text-xl font-bold uppercase font-cinzel text-slate-800 tracking-[0.5px] group-hover:text-[#C49B27] transition-colors">{tpl.title}</h3>
-                    <p className="text-xs text-[#241E1C]/55 leading-relaxed line-clamp-1 font-semibold">{tpl.desc}</p>
-                  </div>
-                </div>
-
-                <div className="border-t border-zinc-100 pt-4 mt-6">
-                  <Link 
-                    href={user ? `/create?theme=${tpl.slug}` : `/login?redirect=${encodeURIComponent(`/create?theme=${tpl.slug}`)}`}
-                    className="w-full py-3 bg-[#C49B27] hover:bg-[#B0871B] text-white rounded-xl text-[10px] font-bold uppercase tracking-[1.5px] transition-all flex items-center justify-center gap-1.5 shadow-sm group-hover:shadow-md"
-                  >
-                    Request This Design
-                    <ArrowRight size={12} className="transform group-hover:translate-x-0.5 transition-transform" />
-                  </Link>
-                </div>
-              </motion.div>
+              <div key={tpl.slug} className="rounded-[30px] border border-zinc-200 bg-white p-6 shadow-sm">
+                <h3 className="text-xl font-bold uppercase font-cinzel">{tpl.title}</h3>
+                <p className="text-xs text-zinc-500 mt-2">{tpl.desc}</p>
+              </div>
             ))}
-        </AnimatePresence>
-      </div>
-
-        {/* Empty State */}
-        {filteredTemplates.length === 0 && (
-          <div className="text-center py-16 space-y-3">
-            <p className="text-base font-semibold text-slate-500">No template designs found matching your filters.</p>
-            <button 
-              onClick={() => { setActiveCategory("all"); setSearchQuery(""); }}
-              className="text-xs text-[#C49B27] font-bold uppercase tracking-[1px] hover:underline"
+          </div>
+        ) : (
+          <div className="max-w-xl mx-auto rounded-3xl border border-white bg-white/80 p-12 text-center shadow-xl backdrop-blur-md space-y-6">
+            <div className="w-16 h-16 rounded-full bg-amber-100/50 flex items-center justify-center text-[#C49B27] mx-auto">
+              <FolderOpen size={28} />
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-2xl font-bold uppercase font-cinzel text-[#241E1C]">No Active Templates</h3>
+              <p className="text-xs text-zinc-500 font-semibold leading-relaxed">
+                All previous templates have been removed. Collaborate with our studio to request a bespoke custom design built for your celebration.
+              </p>
+            </div>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[#D4AF37] to-[#C49B27] text-white rounded-xl text-[10px] font-bold uppercase tracking-[2px] shadow-md hover:scale-105 transition-all"
             >
-              Reset All Filters
-            </button>
+              Contact Studio <ArrowRight size={14} />
+            </Link>
           </div>
         )}
 
       </main>
-
-      {/* Preview Modal */}
-      <AnimatePresence>
-        {previewTemplate && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="relative w-full max-w-lg bg-white rounded-[32px] overflow-hidden p-6 md:p-8 shadow-2xl border border-amber-200/30 flex flex-col gap-6"
-            >
-              <button
-                onClick={() => setPreviewTemplate(null)}
-                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-stone-100 text-slate-500 flex items-center justify-center hover:scale-105 active:scale-95 transition-transform"
-              >
-                <X size={16} />
-              </button>
-
-              <div className="rounded-2xl overflow-hidden bg-stone-50 border border-zinc-100 flex items-center justify-center">
-                <img
-                  src={previewTemplate.image}
-                  alt={previewTemplate.title}
-                  className="w-full h-auto object-cover max-h-[320px]"
-                />
-              </div>
-
-              <div className="space-y-3">
-                <span className="text-[9px] uppercase font-bold text-[#C49B27] tracking-[2px]">{previewTemplate.type} Layout</span>
-                <h3 className="text-2xl font-bold font-cinzel text-[#241E1C]">{previewTemplate.title}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed font-medium">{previewTemplate.desc}</p>
-              </div>
-
-              <div className="flex gap-4 border-t border-zinc-100 pt-6">
-                <Link
-                  href={`/templates/${previewTemplate.slug}`}
-                  onClick={() => setPreviewTemplate(null)}
-                  className="flex-1 text-center border border-zinc-200 hover:border-amber-400 py-3.5 rounded-xl text-xs font-bold uppercase tracking-[1px] text-slate-700 hover:text-amber-600 transition-all"
-                >
-                  View Details
-                </Link>
-                 <Link
-                  href={user ? `/create?theme=${previewTemplate.slug}` : `/login?redirect=${encodeURIComponent(`/create?theme=${previewTemplate.slug}`)}`}
-                  onClick={() => setPreviewTemplate(null)}
-                  className="flex-1 text-center bg-gradient-to-r from-amber-500 to-yellow-500 text-white py-3.5 rounded-xl text-xs font-bold uppercase tracking-[1px] shadow-md hover:shadow-lg transition-shadow active:scale-[0.98]"
-                >
-                  Request Style
-                </Link>
-              </div>
-
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
       <Footer />
     </div>
   );
 }
 
-export default function PremiumTemplatesPage() {
+export default function TemplatesPage() {
   return (
-    <React.Suspense fallback={<div className="min-h-screen bg-[#FAF9F6] text-[#241E1C] flex items-center justify-center font-cinzel text-xs uppercase tracking-[2px]">Loading Collection...</div>}>
+    <React.Suspense fallback={<div className="min-h-screen bg-[#FAF9F6] pt-28 text-center text-xs font-bold uppercase tracking-[2px] text-[#C49B27]">Loading Templates...</div>}>
       <TemplatesContent />
     </React.Suspense>
   );

@@ -100,5 +100,25 @@ export const THEMES: Theme[] = [
     coverImage: "/images/themes/grand-mandap.jpg",
     enabled: true,
     displayOrder: 10
+  },
+  {
+    id: "azure-serenity",
+    categoryId: "wedding",
+    slug: "azure-serenity",
+    name: "Azure Serenity Layout",
+    description: "Dreamy skies, soft white and blue clouds, peaceful lake reflection, and delicate blue flower frames.",
+    coverImage: "/images/themes/azure-serenity.jpg",
+    enabled: true,
+    displayOrder: 11
+  },
+  {
+    id: "rose-mandap",
+    categoryId: "wedding",
+    slug: "rose-mandap",
+    name: "Rose Mandap",
+    description: "Royal mandap architecture, hanging brass bells, couple artwork, falling petals, and live wedding procession animation.",
+    coverImage: "/images/themes/rose-mandap.jpg",
+    enabled: true,
+    displayOrder: 12
   }
 ];

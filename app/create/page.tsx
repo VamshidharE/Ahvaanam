@@ -115,8 +115,9 @@ export default function CategorySelectionPage() {
     if (!slug) slug = "invitation-" + Math.floor(1000 + Math.random() * 9000);
 
     // Backwards-compatible payload values ensuring API Zod schema passes
-    const groomPayload = groomVal.trim().length >= 2 ? groomVal.trim() : "Host";
-    const bridePayload = brideVal.trim().length >= 2 ? brideVal.trim() : "Guest";
+    const isRoseMandap = selectedTheme === "rose-mandap";
+    const groomPayload = groomVal.trim().length >= 2 ? groomVal.trim() : (isRoseMandap ? "Aarav" : "Host");
+    const bridePayload = brideVal.trim().length >= 2 ? brideVal.trim() : (isRoseMandap ? "Ananya" : "Guest");
 
     // Step 5: Collect and preserve dynamic metadata in local storage
     const tempCollectedData = {

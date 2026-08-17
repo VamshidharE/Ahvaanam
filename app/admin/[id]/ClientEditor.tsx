@@ -98,9 +98,15 @@ interface FileUploaderProps {
   onUploadSuccess: (url: string) => void;
   label?: string;
   className?: string;
+  accept?: string;
 }
 
-function FileUploader({ onUploadSuccess, label = "Upload Image", className = "" }: FileUploaderProps) {
+function FileUploader({
+  onUploadSuccess,
+  label = "Upload Image",
+  className = "",
+  accept = "image/*"
+}: FileUploaderProps) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -126,9 +132,10 @@ function FileUploader({ onUploadSuccess, label = "Upload Image", className = "" 
       const data = await res.json();
       onUploadSuccess(data.url);
     } catch (err: any) {
-      setError("Failed to upload image. Please try again.");
+      setError("Failed to upload file. Please try again.");
     } finally {
       setUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
     }
   };
 
@@ -138,14 +145,14 @@ function FileUploader({ onUploadSuccess, label = "Upload Image", className = "" 
         type="file"
         ref={fileInputRef}
         onChange={handleFileChange}
-        accept="image/*"
+        accept={accept}
         className="hidden"
       />
       <button
         type="button"
         onClick={() => fileInputRef.current?.click()}
         disabled={uploading}
-        className="flex items-center gap-2 bg-white/5 border border-white/10 hover:bg-white/10 text-white rounded-lg px-4 py-2 text-xs font-semibold transition-all disabled:opacity-50"
+        className="flex items-center gap-2 bg-white/5 border border-white/10 hover:bg-white/10 text-white rounded-lg px-4 py-2 text-xs font-semibold transition-all disabled:opacity-50 cursor-pointer"
       >
         <Upload size={14} className={uploading ? "animate-spin" : ""} />
         {uploading ? "Uploading..." : label}
@@ -898,153 +905,730 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
     </div>
   );
 
-  const renderVenuesSettings = () => (
-    <div className="space-y-8 animate-fadeIn">
-      {/* Map Settings */}
-      {invitationData.venue && (
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-base font-bold tracking-[0.5px]">Wedding Venue & Map</h3>
+  const renderCountdownSettings = () => {
+    const countdown = invitationData.countdown || { title: "", targetDate: "2026-09-20T10:15:00" };
+    const currentDate = countdown.targetDate ? countdown.targetDate.split("T")[0] : "2026-09-20";
+    const currentTime = countdown.targetDate && countdown.targetDate.split("T")[1]
+      ? countdown.targetDate.split("T")[1].substring(0, 5)
+      : "10:15";
+
+    return (
+      <div className="space-y-8 animate-fadeIn">
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
+          <div className="flex justify-between items-center border-b border-white/10 pb-3">
+            <h3 className="text-base font-bold tracking-[0.5px]">Muhurtham Countdown Timer</h3>
+            <div className="flex items-center gap-2">
+              <label htmlFor="client-countdown-enabled" className="text-xs text-white/70 font-semibold cursor-pointer">Enabled</label>
+              <input
+                type="checkbox"
+                id="client-countdown-enabled"
+                checked={countdown.enabled !== false}
+                onChange={(e) => updateInvitationData((prev: any) => ({
+                  ...prev,
+                  countdown: { ...prev.countdown, enabled: e.target.checked }
+                }))}
+                className="w-4 h-4 rounded text-yellow-500 accent-yellow-500"
+              />
+            </div>
           </div>
-          <div className="space-y-4">
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Section Title</label>
+            <input
+              type="text"
+              placeholder="Counting The Moments"
+              value={countdown.title || ""}
+              onChange={(e) => updateInvitationData((prev: any) => ({
+                ...prev,
+                countdown: { ...prev.countdown, title: e.target.value }
+              }))}
+              className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Google Maps Address Search Path</label>
+              <span className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Target Date</span>
               <input
-                type="text"
-                value={invitationData.venue.venues?.[0]?.mapsUrl || ""}
-                onChange={(e) => updateInvitationData((prev) => {
-                  const list = [...(prev.venue.venues || [])];
-                  if (list[0]) {
-                    list[0] = { ...list[0], mapsUrl: e.target.value };
-                  }
-                  return { ...prev, venue: { ...prev.venue, venues: list } };
-                })}
+                type="date"
+                value={currentDate}
+                onChange={(e) => {
+                  const datePart = e.target.value || "2026-09-20";
+                  updateInvitationData((prev: any) => ({
+                    ...prev,
+                    countdown: { ...prev.countdown, targetDate: `${datePart}T${currentTime}:00` }
+                  }));
+                }}
                 className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
               />
             </div>
             <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Google Maps iframe src Embed URL</label>
+              <span className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Target Time</span>
               <input
-                type="text"
-                value={invitationData.venue.venues?.[0]?.embedUrl || ""}
-                onChange={(e) => updateInvitationData((prev) => {
-                  const list = [...(prev.venue.venues || [])];
-                  if (list[0]) {
-                    list[0] = { ...list[0], embedUrl: e.target.value };
-                  }
-                  return { ...prev, venue: { ...prev.venue, venues: list } };
-                })}
+                type="time"
+                value={currentTime}
+                onChange={(e) => {
+                  const timePart = e.target.value || "10:15";
+                  updateInvitationData((prev: any) => ({
+                    ...prev,
+                    countdown: { ...prev.countdown, targetDate: `${currentDate}T${timePart}:00` }
+                  }));
+                }}
                 className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
               />
             </div>
+          </div>
+          <span className="text-[10px] text-white/40 font-mono">Current Target: {countdown.targetDate}</span>
+        </div>
+      </div>
+    );
+  };
+
+  const renderGallerySettings = () => {
+    const gallery = invitationData.gallery || { title: "", images: [] };
+    const galleryImages = gallery.images || [];
+
+    return (
+      <div className="space-y-8 animate-fadeIn">
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
+          <div className="flex justify-between items-center border-b border-white/10 pb-3">
+            <h3 className="text-base font-bold tracking-[0.5px]">Photo Gallery</h3>
+            <div className="flex items-center gap-2">
+              <label htmlFor="client-gallery-enabled" className="text-xs text-white/70 font-semibold cursor-pointer">Enabled</label>
+              <input
+                type="checkbox"
+                id="client-gallery-enabled"
+                checked={gallery.enabled !== false}
+                onChange={(e) => updateInvitationData((prev: any) => ({
+                  ...prev,
+                  gallery: { ...prev.gallery, enabled: e.target.checked }
+                }))}
+                className="w-4 h-4 rounded text-yellow-500 accent-yellow-500"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Gallery Section Title</label>
+            <input
+              type="text"
+              placeholder="Our Memories"
+              value={gallery.title || ""}
+              onChange={(e) => updateInvitationData((prev: any) => ({
+                ...prev,
+                gallery: { ...prev.gallery, title: e.target.value }
+              }))}
+              className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+            />
+          </div>
+
+          <div className="space-y-3">
+            <div className="flex justify-between items-center">
+              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Uploaded Photos</label>
+              <FileUploader
+                onUploadSuccess={(url) => {
+                  updateInvitationData((prev: any) => ({
+                    ...prev,
+                    gallery: {
+                      ...prev.gallery,
+                      images: [...(prev.gallery?.images || []), url]
+                    }
+                  }));
+                }}
+                label="Add Photo"
+              />
+            </div>
+
+            {galleryImages.length > 0 ? (
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 border border-white/10 rounded-xl p-4 bg-black/20">
+                {galleryImages.map((img: string, idx: number) => (
+                  <div key={idx} className="relative aspect-square rounded-lg overflow-hidden border border-white/10 group bg-black/40">
+                    <img src={img} alt="Gallery" className="w-full h-full object-cover" />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        updateInvitationData((prev: any) => {
+                          const nextList = (prev.gallery?.images || []).filter((_: any, i: number) => i !== idx);
+                          return {
+                            ...prev,
+                            gallery: { ...prev.gallery, images: nextList }
+                          };
+                        });
+                      }}
+                      className="absolute top-1.5 right-1.5 p-1.5 bg-red-600 text-white rounded hover:bg-red-700 transition-colors cursor-pointer"
+                      title="Remove image"
+                    >
+                      <Trash2 size={12} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-xs text-white/40 italic text-center py-6 bg-black/20 border border-white/10 rounded-xl">No gallery images uploaded yet.</p>
+            )}
           </div>
         </div>
-      )}
+      </div>
+    );
+  };
 
-      {/* RSVP contacts list */}
-      {invitationData.rsvp && (
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-base font-bold tracking-[0.5px]">Confirmation RSVP Contacts</h3>
+  const renderFamiliesSettings = () => {
+    const families = invitationData.families || { title: "", groomFamily: [], brideFamily: [] };
+    const groomFamily = families.groomFamily || [];
+    const brideFamily = families.brideFamily || [];
+
+    return (
+      <div className="space-y-8 animate-fadeIn">
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
+          <div className="flex justify-between items-center border-b border-white/10 pb-3">
+            <h3 className="text-base font-bold tracking-[0.5px]">Our Families</h3>
+            <div className="flex items-center gap-2">
+              <label htmlFor="client-families-enabled" className="text-xs text-white/70 font-semibold cursor-pointer">Enabled</label>
+              <input
+                type="checkbox"
+                id="client-families-enabled"
+                checked={families.enabled !== false}
+                onChange={(e) => updateInvitationData((prev: any) => ({
+                  ...prev,
+                  families: { ...prev.families, enabled: e.target.checked }
+                }))}
+                className="w-4 h-4 rounded text-yellow-500 accent-yellow-500"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Section Title</label>
+            <input
+              type="text"
+              placeholder="Our Families"
+              value={families.title || ""}
+              onChange={(e) => updateInvitationData((prev: any) => ({
+                ...prev,
+                families: { ...prev.families, title: e.target.value }
+              }))}
+              className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+            />
+          </div>
+        </div>
+
+        {/* Groom Family */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
+          <div className="flex justify-between items-center border-b border-white/10 pb-3">
+            <h3 className="text-base font-bold tracking-[0.5px]">Groom&apos;s Family</h3>
             <button
               type="button"
-              onClick={() => updateInvitationData((prev) => {
-                const newContact: RSVPContact = {
-                  type: "whatsapp",
-                  label: "WhatsApp RSVP",
-                  value: "919999999999"
-                };
-                return {
+              onClick={() => {
+                updateInvitationData((prev: any) => ({
                   ...prev,
-                  rsvp: {
-                    ...prev.rsvp,
-                    contacts: [...prev.rsvp.contacts, newContact]
+                  families: {
+                    ...prev.families,
+                    groomFamily: [...(prev.families?.groomFamily || []), { relation: "Parents", name: "Mr. & Mrs. Groom Family" }]
                   }
-                };
-              })}
-              className="flex items-center gap-1.5 bg-yellow-500/10 border border-yellow-500/30 text-yellow-500 px-4 py-2 rounded-xl text-xs font-bold hover:bg-yellow-500 hover:text-black transition-all"
+                }));
+              }}
+              className="flex items-center gap-1.5 bg-yellow-500/10 border border-yellow-500/30 text-yellow-500 px-3 py-1.5 rounded-xl text-xs font-bold hover:bg-yellow-500 hover:text-black transition-all cursor-pointer"
             >
-              <Plus size={14} /> Add Contact
+              <Plus size={12} /> Add Member
             </button>
           </div>
 
-          <div className="space-y-6">
-            {invitationData.rsvp.contacts.map((contact, idx) => (
-              <div key={idx} className="p-6 bg-black/20 border border-white/5 rounded-2xl relative space-y-4">
-                <button
-                  type="button"
-                  onClick={() => updateInvitationData((prev) => ({
-                    ...prev,
-                    rsvp: {
-                      ...prev.rsvp,
-                      contacts: prev.rsvp.contacts.filter((_, i) => i !== idx)
-                    }
-                  }))}
-                  className="absolute top-4 right-4 text-red-400/60 hover:text-red-400 p-1.5 hover:bg-red-500/10 rounded-lg transition-colors"
-                >
-                  <Trash2 size={16} />
-                </button>
+          {groomFamily.map((member: any, idx: number) => (
+            <div key={idx} className="flex items-center gap-3 bg-black/20 p-3 rounded-xl border border-white/5">
+              <input
+                type="text"
+                placeholder="Relation"
+                value={member.relation || ""}
+                onChange={(e) => {
+                  updateInvitationData((prev: any) => {
+                    const list = [...(prev.families?.groomFamily || [])];
+                    list[idx] = { ...list[idx], relation: e.target.value };
+                    return { ...prev, families: { ...prev.families, groomFamily: list } };
+                  });
+                }}
+                className="bg-black/30 border border-white/10 rounded-lg px-3 py-2 text-xs text-white outline-none w-1/3"
+              />
+              <input
+                type="text"
+                placeholder="Names"
+                value={member.name || ""}
+                onChange={(e) => {
+                  updateInvitationData((prev: any) => {
+                    const list = [...(prev.families?.groomFamily || [])];
+                    list[idx] = { ...list[idx], name: e.target.value };
+                    return { ...prev, families: { ...prev.families, groomFamily: list } };
+                  });
+                }}
+                className="bg-black/30 border border-white/10 rounded-lg px-3 py-2 text-xs text-white outline-none flex-1"
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  updateInvitationData((prev: any) => {
+                    const list = (prev.families?.groomFamily || []).filter((_: any, i: number) => i !== idx);
+                    return { ...prev, families: { ...prev.families, groomFamily: list } };
+                  });
+                }}
+                className="text-red-400 hover:text-red-300 p-1.5 cursor-pointer"
+              >
+                <Trash2 size={14} />
+              </button>
+            </div>
+          ))}
+        </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">RSVP Type</label>
-                    <select
-                      value={contact.type}
-                      onChange={(e) => updateInvitationData((prev) => {
-                        const list = [...prev.rsvp.contacts];
-                        list[idx] = { ...list[idx], type: e.target.value as any };
-                        return {
-                          ...prev,
-                          rsvp: { ...prev.rsvp, contacts: list }
-                        };
-                      })}
-                      className="bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-xs text-white focus:border-yellow-500 outline-none font-bold h-9"
-                    >
-                      <option value="whatsapp">WhatsApp Message</option>
-                      <option value="phone">Phone Call</option>
-                    </select>
-                  </div>
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Label Name</label>
-                    <input
-                      type="text"
-                      value={contact.label}
-                      onChange={(e) => updateInvitationData((prev) => {
-                        const list = [...prev.rsvp.contacts];
-                        list[idx].label = e.target.value;
-                        return {
-                          ...prev,
-                          rsvp: { ...prev.rsvp, contacts: list }
-                        };
-                      })}
-                      className="bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-xs text-white focus:border-yellow-500 outline-none"
-                    />
-                  </div>
+        {/* Bride Family */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
+          <div className="flex justify-between items-center border-b border-white/10 pb-3">
+            <h3 className="text-base font-bold tracking-[0.5px]">Bride&apos;s Family</h3>
+            <button
+              type="button"
+              onClick={() => {
+                updateInvitationData((prev: any) => ({
+                  ...prev,
+                  families: {
+                    ...prev.families,
+                    brideFamily: [...(prev.families?.brideFamily || []), { relation: "Parents", name: "Mr. & Mrs. Bride Family" }]
+                  }
+                }));
+              }}
+              className="flex items-center gap-1.5 bg-yellow-500/10 border border-yellow-500/30 text-yellow-500 px-3 py-1.5 rounded-xl text-xs font-bold hover:bg-yellow-500 hover:text-black transition-all cursor-pointer"
+            >
+              <Plus size={12} /> Add Member
+            </button>
+          </div>
+
+          {brideFamily.map((member: any, idx: number) => (
+            <div key={idx} className="flex items-center gap-3 bg-black/20 p-3 rounded-xl border border-white/5">
+              <input
+                type="text"
+                placeholder="Relation"
+                value={member.relation || ""}
+                onChange={(e) => {
+                  updateInvitationData((prev: any) => {
+                    const list = [...(prev.families?.brideFamily || [])];
+                    list[idx] = { ...list[idx], relation: e.target.value };
+                    return { ...prev, families: { ...prev.families, brideFamily: list } };
+                  });
+                }}
+                className="bg-black/30 border border-white/10 rounded-lg px-3 py-2 text-xs text-white outline-none w-1/3"
+              />
+              <input
+                type="text"
+                placeholder="Names"
+                value={member.name || ""}
+                onChange={(e) => {
+                  updateInvitationData((prev: any) => {
+                    const list = [...(prev.families?.brideFamily || [])];
+                    list[idx] = { ...list[idx], name: e.target.value };
+                    return { ...prev, families: { ...prev.families, brideFamily: list } };
+                  });
+                }}
+                className="bg-black/30 border border-white/10 rounded-lg px-3 py-2 text-xs text-white outline-none flex-1"
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  updateInvitationData((prev: any) => {
+                    const list = (prev.families?.brideFamily || []).filter((_: any, i: number) => i !== idx);
+                    return { ...prev, families: { ...prev.families, brideFamily: list } };
+                  });
+                }}
+                className="text-red-400 hover:text-red-300 p-1.5 cursor-pointer"
+              >
+                <Trash2 size={14} />
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  const renderVenuesSettings = () => {
+    const venues = invitationData.venue?.venues || [];
+    const mainVenue = venues[0] || {
+      venueName: typeof invitationData.venue === "string" ? invitationData.venue : "",
+      city: "",
+      address: "",
+      mapsUrl: "",
+      embedUrl: ""
+    };
+
+    const updateMainVenue = (field: string, val: string) => {
+      updateInvitationData((prev: any) => {
+        const list = [...(prev.venue?.venues || [])];
+        if (list.length === 0) {
+          list.push({
+            id: "venue-1",
+            title: "Wedding Venue",
+            venueName: "",
+            city: "",
+            address: "",
+            mapsUrl: "",
+            embedUrl: ""
+          });
+        }
+        list[0] = { ...list[0], [field]: val };
+        return {
+          ...prev,
+          venue: {
+            ...prev.venue,
+            enabled: prev.venue?.enabled ?? true,
+            venues: list
+          }
+        };
+      });
+    };
+
+    return (
+      <div className="space-y-8 animate-fadeIn">
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
+          <div className="flex justify-between items-center border-b border-white/10 pb-3">
+            <h3 className="text-base font-bold tracking-[0.5px]">Wedding Venue Location</h3>
+            <div className="flex items-center gap-2">
+              <label htmlFor="client-venue-enabled" className="text-xs text-white/70 font-semibold cursor-pointer">Enabled</label>
+              <input
+                type="checkbox"
+                id="client-venue-enabled"
+                checked={invitationData.venue?.enabled !== false}
+                onChange={(e) => updateInvitationData((prev: any) => ({
+                  ...prev,
+                  venue: { ...prev.venue, enabled: e.target.checked }
+                }))}
+                className="w-4 h-4 rounded text-yellow-500 accent-yellow-500"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Venue Name</label>
+            <input
+              type="text"
+              placeholder="e.g. The Leela Palace"
+              value={mainVenue.venueName || ""}
+              onChange={(e) => updateMainVenue("venueName", e.target.value)}
+              className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">City</label>
+              <input
+                type="text"
+                placeholder="e.g. Hyderabad"
+                value={mainVenue.city || ""}
+                onChange={(e) => updateMainVenue("city", e.target.value)}
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Address</label>
+              <input
+                type="text"
+                placeholder="e.g. Old Airport Road, Kodihalli"
+                value={mainVenue.address || ""}
+                onChange={(e) => updateMainVenue("address", e.target.value)}
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Google Maps Directions Link</label>
+            <input
+              type="text"
+              placeholder="https://maps.google.com/?q=..."
+              value={mainVenue.mapsUrl || ""}
+              onChange={(e) => updateMainVenue("mapsUrl", e.target.value)}
+              className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none font-mono text-[11px]"
+            />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Google Maps Embed Iframe URL (Optional)</label>
+            <input
+              type="text"
+              placeholder="https://www.google.com/maps/embed?pb=..."
+              value={mainVenue.embedUrl || ""}
+              onChange={(e) => updateMainVenue("embedUrl", e.target.value)}
+              className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none font-mono text-[11px]"
+            />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderRsvpSettings = () => {
+    const rsvp = invitationData.rsvp || { title: "", subtitle: "", contacts: [] };
+    const contacts = rsvp.contacts || [];
+
+    return (
+      <div className="space-y-8 animate-fadeIn">
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
+          <div className="flex justify-between items-center border-b border-white/10 pb-3">
+            <h3 className="text-base font-bold tracking-[0.5px]">RSVP Configuration</h3>
+            <div className="flex items-center gap-2">
+              <label htmlFor="client-rsvp-enabled" className="text-xs text-white/70 font-semibold cursor-pointer">Enabled</label>
+              <input
+                type="checkbox"
+                id="client-rsvp-enabled"
+                checked={rsvp.enabled !== false}
+                onChange={(e) => updateInvitationData((prev: any) => ({
+                  ...prev,
+                  rsvp: { ...prev.rsvp, enabled: e.target.checked }
+                }))}
+                className="w-4 h-4 rounded text-yellow-500 accent-yellow-500"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">RSVP Section Title</label>
+            <input
+              type="text"
+              placeholder="We Would Love To Celebrate With You"
+              value={rsvp.title || ""}
+              onChange={(e) => updateInvitationData((prev: any) => ({
+                ...prev,
+                rsvp: { ...prev.rsvp, title: e.target.value }
+              }))}
+              className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+            />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">RSVP Subtitle / Message</label>
+            <textarea
+              rows={2}
+              placeholder="Your presence and blessings will make our celebration even more special."
+              value={rsvp.subtitle || ""}
+              onChange={(e) => updateInvitationData((prev: any) => ({
+                ...prev,
+                rsvp: { ...prev.rsvp, subtitle: e.target.value }
+              }))}
+              className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none resize-none"
+            />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Submit Button Label</label>
+            <input
+              type="text"
+              placeholder="RSVP"
+              value={invitationData.hero?.ctaText || ""}
+              onChange={(e) => updateInvitationData((prev: any) => ({
+                ...prev,
+                hero: { ...prev.hero, ctaText: e.target.value }
+              }))}
+              className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+            />
+          </div>
+        </div>
+
+        {/* RSVP Contacts List */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
+          <div className="flex justify-between items-center border-b border-white/10 pb-3">
+            <h3 className="text-base font-bold tracking-[0.5px]">RSVP Contacts</h3>
+            <button
+              type="button"
+              onClick={() => {
+                const newContact: RSVPContact = { type: "phone", label: "Coordinator", value: "+91 9866767100" };
+                updateInvitationData((prev: any) => ({
+                  ...prev,
+                  rsvp: {
+                    ...prev.rsvp,
+                    contacts: [...(prev.rsvp?.contacts || []), newContact]
+                  }
+                }));
+              }}
+              className="flex items-center gap-1.5 bg-yellow-500/10 border border-yellow-500/30 text-yellow-500 px-3 py-1.5 rounded-xl text-xs font-bold hover:bg-yellow-500 hover:text-black transition-all cursor-pointer"
+            >
+              <Plus size={12} /> Add Contact
+            </button>
+          </div>
+
+          {contacts.map((contact: any, index: number) => (
+            <div key={index} className="bg-black/20 border border-white/5 p-4 rounded-xl relative space-y-3">
+              <button
+                type="button"
+                onClick={() => {
+                  updateInvitationData((prev: any) => {
+                    const list = [...(prev.rsvp?.contacts || [])];
+                    list.splice(index, 1);
+                    return { ...prev, rsvp: { ...prev.rsvp, contacts: list } };
+                  });
+                }}
+                className="absolute top-3.5 right-3.5 text-red-400 hover:text-red-300 p-1 cursor-pointer"
+                title="Remove Contact"
+              >
+                <Trash2 size={14} />
+              </button>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pr-6">
+                <div className="flex flex-col gap-1">
+                  <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Contact Type</label>
+                  <select
+                    value={contact.type}
+                    onChange={(e) => {
+                      updateInvitationData((prev: any) => {
+                        const list = [...(prev.rsvp?.contacts || [])];
+                        list[index] = { ...list[index], type: e.target.value as any };
+                        return { ...prev, rsvp: { ...prev.rsvp, contacts: list } };
+                      });
+                    }}
+                    className="bg-black/30 border border-white/10 rounded-xl px-3 py-2 text-xs text-white outline-none h-[36px]"
+                  >
+                    <option value="phone">Phone Call</option>
+                    <option value="whatsapp">WhatsApp Message</option>
+                    <option value="email">Email Address</option>
+                    <option value="form">RSVP Form</option>
+                  </select>
                 </div>
-
-                <div className="flex flex-col gap-1.5 w-full">
-                  <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Phone/Contact Value</label>
+                <div className="flex flex-col gap-1">
+                  <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Label / Name</label>
                   <input
                     type="text"
-                    value={contact.value}
-                    onChange={(e) => updateInvitationData((prev) => {
-                      const list = [...prev.rsvp.contacts];
-                      list[idx].value = e.target.value;
-                      return {
-                        ...prev,
-                        rsvp: { ...prev.rsvp, contacts: list }
-                      };
-                    })}
-                    className="bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-xs text-white focus:border-yellow-500 outline-none font-medium"
+                    value={contact.label || ""}
+                    onChange={(e) => {
+                      updateInvitationData((prev: any) => {
+                        const list = [...(prev.rsvp?.contacts || [])];
+                        list[index] = { ...list[index], label: e.target.value };
+                        return { ...prev, rsvp: { ...prev.rsvp, contacts: list } };
+                      });
+                    }}
+                    className="bg-black/30 border border-white/10 rounded-xl px-3 py-2 text-xs text-white outline-none"
                   />
                 </div>
               </div>
-            ))}
+
+              <div className="flex flex-col gap-1">
+                <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Phone / Number / Link</label>
+                <input
+                  type="text"
+                  value={contact.value || ""}
+                  onChange={(e) => {
+                    updateInvitationData((prev: any) => {
+                      const list = [...(prev.rsvp?.contacts || [])];
+                      list[index] = { ...list[index], value: e.target.value };
+                      return { ...prev, rsvp: { ...prev.rsvp, contacts: list } };
+                    });
+                  }}
+                  className="bg-black/30 border border-white/10 rounded-xl px-3 py-2 text-xs text-white outline-none font-mono"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  const renderFooterSettings = () => {
+    const footer = invitationData.footer || {
+      salutation: "",
+      designer: "",
+      creditText: "",
+      location: "",
+      contact: ""
+    };
+
+    return (
+      <div className="space-y-8 animate-fadeIn">
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
+          <div className="flex justify-between items-center border-b border-white/10 pb-3">
+            <h3 className="text-base font-bold tracking-[0.5px]">Footer & Credits</h3>
+            <div className="flex items-center gap-2">
+              <label htmlFor="client-footer-enabled" className="text-xs text-white/70 font-semibold cursor-pointer">Enabled</label>
+              <input
+                type="checkbox"
+                id="client-footer-enabled"
+                checked={footer.enabled !== false}
+                onChange={(e) => updateInvitationData((prev: any) => ({
+                  ...prev,
+                  footer: { ...prev.footer, enabled: e.target.checked }
+                }))}
+                className="w-4 h-4 rounded text-yellow-500 accent-yellow-500"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Closing Quote / Salutation</label>
+            <textarea
+              rows={2}
+              placeholder="A beautiful beginning starts with a beautiful invitation."
+              value={footer.salutation || ""}
+              onChange={(e) => updateInvitationData((prev: any) => ({
+                ...prev,
+                footer: { ...prev.footer, salutation: e.target.value }
+              }))}
+              className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none resize-none"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Designer Brand Name</label>
+              <input
+                type="text"
+                placeholder="Ahvaanam"
+                value={footer.designer || footer.title || ""}
+                onChange={(e) => updateInvitationData((prev: any) => ({
+                  ...prev,
+                  footer: { ...prev.footer, designer: e.target.value, title: e.target.value }
+                }))}
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Service Subtitle</label>
+              <input
+                type="text"
+                placeholder="Digital Wedding Invitations & Card Services"
+                value={footer.creditText || ""}
+                onChange={(e) => updateInvitationData((prev: any) => ({
+                  ...prev,
+                  footer: { ...prev.footer, creditText: e.target.value }
+                }))}
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Location / Address</label>
+            <input
+              type="text"
+              placeholder="Tirumala Printers, Metpally, Dist. Jagtial, Telangana"
+              value={footer.location || ""}
+              onChange={(e) => updateInvitationData((prev: any) => ({
+                ...prev,
+                footer: { ...prev.footer, location: e.target.value }
+              }))}
+              className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+            />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Contact Phone / WhatsApp</label>
+            <input
+              type="text"
+              placeholder="+91 9866767100"
+              value={footer.contact || ""}
+              onChange={(e) => updateInvitationData((prev: any) => ({
+                ...prev,
+                footer: { ...prev.footer, contact: e.target.value }
+              }))}
+              className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none font-mono text-[11px]"
+            />
           </div>
         </div>
-      )}
-    </div>
-  );
+      </div>
+    );
+  };
 
   const renderDetailsSettings = () => (
     <div className="space-y-8 animate-fadeIn">
@@ -1168,13 +1752,15 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
     if (isLegacyWedding) {
       if (sectionId === "couple") return renderCoupleSettings();
       if (sectionId === "events") return renderEventsSettings();
+      if (sectionId === "countdown") return renderCountdownSettings();
       if (sectionId === "story") return renderStorySettings();
+      if (sectionId === "gallery") return renderGallerySettings();
+      if (sectionId === "families") return renderFamiliesSettings();
       if (sectionId === "venue") return renderVenuesSettings();
-      if (sectionId === "rsvp") return null;
-      if (sectionId === "faq") return renderDetailsSettings();
-      if (sectionId === "dressCode") return null;
+      if (sectionId === "rsvp") return renderRsvpSettings();
+      if (sectionId === "footer") return renderFooterSettings();
+      if (sectionId === "faq" || sectionId === "dressCode") return null;
       if (sectionId === "hero") return null;
-      if (sectionId === "footer") return null;
     }
 
     // For birthday and other categories, dynamically build sections from manifest fields!
@@ -1644,7 +2230,8 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
             const themeIdVal = invitationData.themeId || data.themeId || "royal-temple";
             const musicFile = data.music?.file || "";
             const musicEnabled = data.music?.enabled ?? false;
-            const sectionOrder = data.sectionOrder || [];
+            const rawSectionOrder = data.sectionOrder || [];
+            const sectionOrder = rawSectionOrder.filter((sId: string) => sId !== "faq" && sId !== "faqs" && sId !== "dressCode");
 
             return (
               <div className="space-y-8 animate-fadeIn">
@@ -1675,24 +2262,51 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
                       </select>
                     </div>
 
-                    <div className="flex flex-col gap-2">
-                      <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Background Music File Path</label>
-                      <input
-                        type="text"
-                        value={musicFile}
-                        onChange={(e) => {
-                          const val = e.target.value;
-                          updateInvitationData((prev: any) => {
-                            const next = { ...prev };
-                            const target = next.config || next;
-                            if (target.music) {
-                              target.music = { ...target.music, file: val };
-                            }
-                            return next;
-                          });
-                        }}
-                        className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
-                      />
+                    <div className="flex flex-col gap-2 bg-black/20 p-3.5 border border-white/10 rounded-xl">
+                      <div className="flex items-center justify-between">
+                        <label className="text-[10px] uppercase font-semibold text-white/60 tracking-[1px]">Background Music</label>
+                        <span className="text-[9px] text-yellow-500 font-semibold">MP3, WAV, M4A, OGG</span>
+                      </div>
+
+                      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                        <FileUploader
+                          accept="audio/*,.mp3,.wav,.m4a,.ogg,.aac"
+                          label="Upload Audio Track"
+                          onUploadSuccess={(url) => {
+                            updateInvitationData((prev: any) => {
+                              const next = { ...prev };
+                              const target = next.config || next;
+                              if (!target.music) target.music = { enabled: true, file: url };
+                              else target.music = { ...target.music, file: url, enabled: true };
+                              return next;
+                            });
+                          }}
+                          className="w-full sm:w-auto shrink-0"
+                        />
+                        <input
+                          type="text"
+                          placeholder="Or paste audio URL..."
+                          value={musicFile}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            updateInvitationData((prev: any) => {
+                              const next = { ...prev };
+                              const target = next.config || next;
+                              if (target.music) {
+                                target.music = { ...target.music, file: val };
+                              }
+                              return next;
+                            });
+                          }}
+                          className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none w-full"
+                        />
+                      </div>
+
+                      {musicFile && (
+                        <div className="mt-1">
+                          <audio controls src={musicFile} className="w-full h-8" preload="none" />
+                        </div>
+                      )}
                     </div>
                     <div className="flex items-center gap-3 mt-6">
                       <input
@@ -1804,8 +2418,6 @@ const sectionLabels: Record<string, string> = {
   venue: "Location Venues Map",
   families: "Warm Greetings parents",
   rsvp: "Confirmation RSVP Info",
-  faq: "Frequently Asked Questions",
-  dressCode: "Dress Code & Theme Colors",
   footer: "Page Credits footer",
   celebrant: "Celebrant Details",
   hosts: "Hosts Details"

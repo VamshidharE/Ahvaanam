@@ -72,10 +72,26 @@ export const configUpdateSchema = z.object({
 }).passthrough();
 
 export const uploadMetadataSchema = z.object({
-  size: z.number().max(10 * 1024 * 1024, "Payload Too Large. Maximum allowed size is 10 MB."),
-  type: z.enum(["image/jpeg", "image/png", "image/webp"], {
-    message: "Unsupported Media Type. Only JPEG, PNG, and WEBP images are allowed.",
-  }),
+  size: z.number().max(25 * 1024 * 1024, "Payload Too Large. Maximum allowed size is 25 MB."),
+  type: z.string().refine(
+    (type) => [
+      "image/jpeg",
+      "image/png",
+      "image/webp",
+      "audio/mpeg",
+      "audio/mp3",
+      "audio/wav",
+      "audio/x-wav",
+      "audio/m4a",
+      "audio/x-m4a",
+      "audio/aac",
+      "audio/ogg",
+      "audio/mp4"
+    ].includes(type.toLowerCase()),
+    {
+      message: "Unsupported Media Type. Only JPEG, PNG, WEBP images and MP3, WAV, M4A, OGG audio files are allowed."
+    }
+  ),
   name: z.string().min(1, "File name is required"),
 });
 

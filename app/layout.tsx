@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Great_Vibes, Cinzel } from "next/font/google";
+import ParallaxProviderWrapper from "@/components/shared/ParallaxProviderWrapper";
 
 const greatVibes = Great_Vibes({
   subsets:["latin"],
@@ -17,21 +18,13 @@ export default function RootLayout({
 }:{
   children:React.ReactNode
 }){
-
   return(
-
-<html lang="en">
-
-<body
-className={`${greatVibes.variable} ${cinzel.variable}`}
->
-
-{children}
-
-</body>
-
-</html>
-
+    <html lang="en">
+      <body className={`${greatVibes.variable} ${cinzel.variable}`}>
+        <ParallaxProviderWrapper>
+          {children}
+        </ParallaxProviderWrapper>
+      </body>
+    </html>
   );
-
-}
+}

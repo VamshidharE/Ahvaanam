@@ -48,10 +48,20 @@ export async function POST(request: Request) {
       "image/jpeg": [".jpg", ".jpeg"],
       "image/png": [".png"],
       "image/webp": [".webp"],
+      "audio/mpeg": [".mp3"],
+      "audio/mp3": [".mp3"],
+      "audio/wav": [".wav"],
+      "audio/x-wav": [".wav"],
+      "audio/m4a": [".m4a"],
+      "audio/x-m4a": [".m4a"],
+      "audio/aac": [".aac"],
+      "audio/ogg": [".ogg", ".oga"],
+      "audio/mp4": [".m4a", ".mp4"]
     };
 
     // 2. Extension Match Verification
-    if (!allowedMimeToExt[mimeType].includes(ext)) {
+    const validExts = allowedMimeToExt[mimeType];
+    if (!validExts || !validExts.includes(ext)) {
       return NextResponse.json({ error: "MIME type and file extension mismatch." }, { status: 415 });
     }
 

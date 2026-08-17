@@ -20,7 +20,7 @@ export const CATEGORIES: Category[] = [
     icon: "Cake",
     coverImage: "/images/categories/birthday.jpg",
     gradient: "from-amber-400 to-orange-500",
-    enabled: true,
+    enabled: false,
     displayOrder: 2
   },
   {

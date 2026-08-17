@@ -169,6 +169,38 @@ const templatesList = [
       "Google Maps location pins check",
       "WhatsApp & Phone direct RSVPs list"
     ]
+  },
+  {
+    slug: "azure-serenity",
+    title: "Azure Serenity Layout",
+    category: "Wedding",
+    type: "Premium",
+    desc: "A handcrafted luxury template featuring wave layout dividers, stardust butterfly animations, glassmorphism card panels, and sky-blue styling.",
+    image: "/images/themes/azure-serenity.jpg",
+    features: [
+      "Cinematic fade-reveal entrance",
+      "Interactive sky-blue glassmorphic cards",
+      "Slow-drifting butterflies and cloud physics",
+      "Curved wave layout dividing sections",
+      "Circular story timeline connected with SVGs",
+      "Elegant glass countdown Muhurtham timer"
+    ]
+  },
+  {
+    slug: "rose-mandap",
+    title: "Rose Mandap Layout",
+    category: "Wedding",
+    type: "Premium",
+    desc: "A magnificent mandap experience with hanging brass bells, floral garlands, falling petals, royal couple artwork, and live procession animation.",
+    image: "/images/themes/rose-mandap.jpg",
+    features: [
+      "Automatic envelope opening transition",
+      "Live wedding procession animation",
+      "Falling rose petals animation",
+      "Swaying brass bells & marigold garlands",
+      "Full ceremonies schedule & venue map",
+      "Interactive RSVP & guestbook"
+    ]
   }
 ];
 
