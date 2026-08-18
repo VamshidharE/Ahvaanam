@@ -102,10 +102,10 @@ export const loginSchema = z.object({
 
 export const rsvpSubmissionSchema = z.object({
   guest_name: z.string().trim().min(2, "Name must be at least 2 characters long").max(100, "Name cannot exceed 100 characters"),
-  phone: z.string().regex(/^\+?[1-9]\d{1,14}$/, "Invalid phone number format. Use international format (e.g. +919999999999)"),
+  phone: z.string().trim().min(5, "Please enter a valid phone number").max(25).optional().nullable(),
   email: z.string().email("Invalid email address").or(z.string().length(0)).optional().nullable(),
   attending: z.boolean(),
-  guest_count: z.number().int().min(1, "Number of guests must be at least 1").max(20, "Number of guests cannot exceed 20"),
+  guest_count: z.number().int().min(1, "Number of guests must be at least 1").max(20, "Number of guests cannot exceed 20").default(1),
   message: z.string().max(1000, "Message cannot exceed 1000 characters").optional().nullable(),
 });
 

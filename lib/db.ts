@@ -12,6 +12,13 @@ if (!isSupabaseConfigured) {
   console.error("Supabase env credentials missing. The database cannot be initialized.");
 }
 
+export function getAdminDb(): SupabaseClient {
+  if (supabase) return supabase;
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+  return createClient(url, key);
+}
+
 // 1. GET ALL INVITATION PROFILES
 export async function getInvitations(supabaseClient?: SupabaseClient | null) {
   const client = supabaseClient || supabase;

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
-import { getInvitations, createInvitation, getInvitationById } from "@/lib/db";
+import { getInvitations, createInvitation, getInvitationById, getAdminDb } from "@/lib/db";
 import defaultTemplate from "@/lib/default-template.json";
 import { creationSchema } from "@/lib/validation";
 import { categoryExists, getCategoryFields } from "@/lib/categories/utils";
@@ -123,8 +123,9 @@ export async function GET() {
     });
 
     if (inviteIds.length > 0) {
+      const adminDb = getAdminDb();
       // 1. Fetch RSVPs
-      const { data: rsvps } = await supabase
+      const { data: rsvps } = await adminDb
         .from("rsvps")
         .select("invitation_id, attending, guest_count")
         .in("invitation_id", inviteIds);
@@ -142,7 +143,7 @@ export async function GET() {
       });
 
       // 2. Fetch Views
-      const { data: views } = await supabase
+      const { data: views } = await adminDb
         .from("invitation_views")
         .select("invitation_id")
         .in("invitation_id", inviteIds);

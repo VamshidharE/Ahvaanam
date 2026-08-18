@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
-import { getInvitationById } from "@/lib/db";
+import { getInvitationById, getAdminDb } from "@/lib/db";
 import { slugSchema } from "@/lib/validation";
 
 export async function GET(
@@ -32,12 +32,14 @@ export async function GET(
       return NextResponse.json({ error: "Invitation not found" }, { status: 404 });
     }
 
-    if (invitation.user_id !== user.id) {
+    if (invitation.user_id && invitation.user_id !== user.id) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
+    const adminDb = getAdminDb();
+
     // 3. Query views database data
-    const { data: viewsData, error: viewsError } = await supabase
+    const { data: viewsData, error: viewsError } = await adminDb
       .from("invitation_views")
       .select("visitor_token, viewed_at")
       .eq("invitation_id", id);
@@ -48,7 +50,7 @@ export async function GET(
     }
 
     // 4. Query RSVPs database data
-    const { data: rsvpsData, error: rsvpsError } = await supabase
+    const { data: rsvpsData, error: rsvpsError } = await adminDb
       .from("rsvps")
       .select("attending, guest_count, created_at")
       .eq("invitation_id", id);
