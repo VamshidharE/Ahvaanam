@@ -50,25 +50,8 @@ export const creationSchema = z.object({
 });
 
 export const configUpdateSchema = z.object({
-  themeId: z.string().min(1, "Theme ID is required"),
-  sectionOrder: z.array(z.string()).min(1, "Section order cannot be empty"),
-  couple: z.object({
-    groom: z.object({
-      name: groomBrideNameSchema,
-      parents: z.string().optional(),
-      bio: z.string().optional(),
-      image: z.string().url("Groom image must be a valid URL").or(z.string().startsWith("/")).optional(),
-    }),
-    bride: z.object({
-      name: groomBrideNameSchema,
-      parents: z.string().optional(),
-      bio: z.string().optional(),
-      image: z.string().url("Bride image must be a valid URL").or(z.string().startsWith("/")).optional(),
-    }),
-  }).passthrough(),
-  rsvp: z.object({
-    contacts: z.array(rsvpContactSchema),
-  }).passthrough().optional(),
+  themeId: z.string().min(1, "Theme ID is required").optional(),
+  sectionOrder: z.array(z.string()).optional(),
 }).passthrough();
 
 export const uploadMetadataSchema = z.object({

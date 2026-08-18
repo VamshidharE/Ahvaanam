@@ -33,8 +33,17 @@ export function InvitationDataProvider({ children, clientId, isEditor = false }:
 
     setLoading(true);
     setError(null);
-    const fetchUrl = isEditor ? `/api/invitation/${clientId}/edit` : `/api/invitation/${clientId}`;
-    fetch(fetchUrl)
+    const fetchUrl = isEditor 
+      ? `/api/invitation/${clientId}/edit?t=${Date.now()}` 
+      : `/api/invitation/${clientId}?t=${Date.now()}`;
+
+    fetch(fetchUrl, {
+      cache: "no-store",
+      headers: {
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache"
+      }
+    })
       .then(async (res) => {
         if (!res.ok) {
           const errData = await res.json().catch(() => ({}));
@@ -50,7 +59,7 @@ export function InvitationDataProvider({ children, clientId, isEditor = false }:
         setError(err.message || "Failed to load invitation.");
         setLoading(false);
       });
-  }, [clientId]);
+  }, [clientId, isEditor]);
 
   // Listen for live editor preview updates from parents
   useEffect(() => {

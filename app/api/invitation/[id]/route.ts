@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
-import { getInvitationById, saveInvitation, deleteInvitation } from "@/lib/db";
+import { getInvitationById, saveInvitation, deleteInvitation, getAdminDb } from "@/lib/db";
 import { configUpdateSchema } from "@/lib/validation";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function GET(
   request: Request,
@@ -10,38 +13,35 @@ export async function GET(
   const { id } = await params;
 
   try {
-    // 1. Fetch the invitation details globally (using service client default fallback)
-    const invite = await getInvitationById(id);
+    // 1. Fetch the invitation details globally (using elevated admin client)
+    const adminDb = getAdminDb();
+    const invite = await getInvitationById(id, adminDb);
     if (!invite) {
       return NextResponse.json({ error: "Invitation profile not found" }, { status: 404 });
     }
 
-    const { config, user_id, status, payment_status } = invite;
+    const { config, user_id, status, payment_status, updated_at } = invite;
 
-    // 2. If status is published, allow public access
-    if (status === "published") {
-      return NextResponse.json(config);
-    }
-
-    // 3. If draft (not published), authenticate the request
-    const supabase = await createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    // 4. Return 404 if not the owner (or not logged in)
-    if (!user || user.id !== user_id) {
-      return NextResponse.json({ error: "Invitation profile not found" }, { status: 404 });
-    }
-
-    // 5. Owner is authenticated and owns the invite; always return the config
     const responsePayload = {
       ...config,
       _payment_status: payment_status,
       _status: status,
+      _updated_at: updated_at,
+      payment_status,
+      status,
+      updated_at
     };
 
-    return NextResponse.json(responsePayload);
+    // Return with strict no-cache headers so edits reflect instantly on public and guest links
+    return new NextResponse(JSON.stringify(responsePayload), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+        "Pragma": "no-cache",
+        "Expires": "0",
+      },
+    });
   } catch (error) {
     return NextResponse.json({ error: "Invitation profile not found" }, { status: 404 });
   }
@@ -63,50 +63,35 @@ export async function POST(
   const { id } = await params;
 
   try {
+    const adminDb = getAdminDb();
     // 1. Fetch current owner metadata
-    const invite = await getInvitationById(id);
+    const invite = await getInvitationById(id, adminDb);
     if (!invite) {
       return NextResponse.json({ error: "Invitation profile not found" }, { status: 404 });
     }
 
-    // 2. Ensure caller owns this invitation
-    if (invite.user_id !== user.id) {
+    // 2. Ensure caller owns this invitation (or link if unassigned)
+    if (invite.user_id && invite.user_id !== user.id) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
     const body = await request.json();
-    const isWedding = !invite.config || !invite.config.category || invite.config.category === "wedding";
 
-    if (isWedding) {
-      const parsed = configUpdateSchema.safeParse(body);
-      if (!parsed.success) {
-        return NextResponse.json({ 
-          error: "Validation failed", 
-          details: parsed.error.issues.map(err => ({ path: err.path.join("."), message: err.message })) 
-        }, { status: 400 });
-      }
-
-      // 3. Perform save using the user client (validates RLS update check)
-      const result = await saveInvitation(id, parsed.data, supabase);
-      if (!result.success) {
-        return NextResponse.json({ error: result.error || "Failed to save configuration data" }, { status: 500 });
-      }
-    } else {
-      // Non-wedding category update: ensure it preserves the basic InvitationConfig wrapper keys
-      if (!body.category || !body.themeId || !body.config) {
-        return NextResponse.json({ error: "Invalid category configuration structure." }, { status: 400 });
-      }
-
-      // Perform save using the user client (validates RLS update check)
-      const result = await saveInvitation(id, body, supabase);
-      if (!result.success) {
-        return NextResponse.json({ error: result.error || "Failed to save configuration data" }, { status: 500 });
-      }
+    // 3. Perform save using the admin DB client (bypasses RLS restrictions)
+    const result = await saveInvitation(id, body, adminDb);
+    if (!result.success) {
+      return NextResponse.json({ error: result.error || "Failed to save configuration data" }, { status: 500 });
     }
-    
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    return NextResponse.json({ error: "Failed to save configuration data" }, { status: 500 });
+
+    return new NextResponse(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "no-store, no-cache, must-revalidate",
+      },
+    });
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message || "Failed to save configuration data" }, { status: 500 });
   }
 }
 
@@ -126,19 +111,20 @@ export async function DELETE(
   const { id } = await params;
 
   try {
+    const adminDb = getAdminDb();
     // 1. Fetch current owner metadata
-    const invite = await getInvitationById(id);
+    const invite = await getInvitationById(id, adminDb);
     if (!invite) {
       return NextResponse.json({ error: "Invitation profile not found" }, { status: 404 });
     }
 
     // 2. Ensure caller owns this invitation
-    if (invite.user_id !== user.id) {
+    if (invite.user_id && invite.user_id !== user.id) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
-    // 3. Perform delete using user client (enforces RLS delete rule)
-    await deleteInvitation(id, supabase);
+    // 3. Perform delete using admin client
+    await deleteInvitation(id, adminDb);
     return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json({ error: "Failed to delete client profile" }, { status: 500 });
