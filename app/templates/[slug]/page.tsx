@@ -295,7 +295,7 @@ export default function TemplateDetailPage({ params }: { params: Promise<{ slug:
               </Link>
               
               <Link
-                href={user ? `/create?theme=${template.slug}` : `/login?redirect=${encodeURIComponent(`/create?theme=${template.slug}`)}`}
+                href={`/contact?theme=${template.slug}`}
                 className="flex-1 text-center bg-gradient-to-r from-amber-500 to-yellow-500 text-white py-4 rounded-xl text-xs font-bold uppercase tracking-[1px] shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2"
               >
                 Request Customization

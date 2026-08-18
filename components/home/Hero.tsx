@@ -114,10 +114,10 @@ export default function Hero() {
               transition={{ duration: 0.2 }}
             >
               <Link 
-                href={user ? "/create" : "/login?redirect=/create"} 
+                href="/templates" 
                 className="px-8 py-3.5 bg-gradient-to-r from-[#D4AF37] to-[#C49B27] text-white rounded-xl text-[10px] font-bold uppercase tracking-[2px] shadow-lg shadow-[#C49B27]/20 block text-center"
               >
-                Create Invitation
+                Explore Designs
               </Link>
             </motion.div>
 

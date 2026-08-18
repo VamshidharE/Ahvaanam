@@ -20,13 +20,19 @@ export function getAdminDb(): SupabaseClient {
 }
 
 // 1. GET ALL INVITATION PROFILES
-export async function getInvitations(supabaseClient?: SupabaseClient | null) {
+export async function getInvitations(supabaseClient?: SupabaseClient | null, userId?: string | null, isAdmin: boolean = false) {
   const client = supabaseClient || supabase;
   if (!client) throw new Error("Database client not initialized");
 
-  const { data, error } = await client
+  let query = client
     .from("invitations")
-    .select("id, config, status, payment_status, updated_at");
+    .select("id, config, status, payment_status, updated_at, user_id");
+  
+  if (!isAdmin && userId) {
+    query = query.eq("user_id", userId);
+  }
+
+  const { data, error } = await query;
   
   if (error) {
     console.error("Supabase Error fetching list:", error);

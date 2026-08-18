@@ -13,8 +13,12 @@ import { getCategoryFields } from "@/lib/categories/utils";
 import CategoryCard from "../../components/shared/category-card";
 import ThemeCard from "../../components/shared/theme-card";
 
+import { createClient } from "@/utils/supabase/client";
+import { isAdminUser } from "@/lib/auth/isAdmin";
+
 export default function CategorySelectionPage() {
   const router = useRouter();
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const { 
     selectedCategory, 
     setSelectedCategory, 
@@ -24,6 +28,20 @@ export default function CategorySelectionPage() {
     updateInvitationData,
     saveConfig
   } = useInvitationData();
+
+  // Admin access guard
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (!user) {
+        router.replace("/login?redirect=/create");
+      } else if (!isAdminUser(user.email)) {
+        router.replace("/dashboard");
+      } else {
+        setIsAdmin(true);
+      }
+    });
+  }, [router]);
 
   // Local state for dynamic form inputs and creation loader
   const [formData, setFormData] = useState<Record<string, string>>({});

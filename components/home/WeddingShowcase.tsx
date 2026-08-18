@@ -190,7 +190,7 @@ export default function WeddingShowcase() {
                 className="inline-block"
               >
                 <Link
-                  href="/create?category=wedding"
+                  href="/templates?category=wedding"
                   className="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#D4AF37] to-[#C49B27] text-white rounded-xl text-[10px] font-bold uppercase tracking-[2px] shadow-lg shadow-[#C49B27]/25 group transition-all"
                 >
                   EXPLORE WEDDING DESIGNS

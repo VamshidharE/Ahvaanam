@@ -235,7 +235,7 @@ export default function BuilderShowcase() {
                 >
 
                     <div className="flex flex-col items-center gap-3">
-                        <Link href={user ? "/create" : "/login?redirect=/create"} className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 px-10 py-5 text-lg font-semibold text-white shadow-[0_20px_50px_rgba(234,179,8,.35)] transition-all duration-300 hover:-translate-y-1 text-center">
+                        <Link href="/contact" className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 px-10 py-5 text-lg font-semibold text-white shadow-[0_20px_50px_rgba(234,179,8,.35)] transition-all duration-300 hover:-translate-y-1 text-center">
                             Request Custom Invitation
                             <Sparkles
                                 size={18}

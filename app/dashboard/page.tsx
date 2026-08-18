@@ -6,6 +6,7 @@ import {
   ExternalLink, Sparkles, CheckCircle, AlertCircle, Share2, Download, Copy, LogOut, Users, BarChart2, MessageCircle, Image as ImageIcon
 } from "lucide-react";
 import { createClient } from "@/utils/supabase/client";
+import { isAdminUser } from "@/lib/auth/isAdmin";
 
 interface ClientProfile {
   id: string;
@@ -29,6 +30,7 @@ export default function ClientDashboard() {
   const [loading, setLoading] = useState(true);
   const [shareProfile, setShareProfile] = useState<ClientProfile | null>(null);
   const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [publishingId, setPublishingId] = useState<string | null>(null);
 
   // RSVP states
@@ -282,6 +284,7 @@ export default function ClientDashboard() {
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (user) {
         setUserEmail(user.email || null);
+        setIsAdmin(isAdminUser(user.email));
       }
     });
 
@@ -402,12 +405,14 @@ export default function ClientDashboard() {
             Public Site
           </a>
 
-          <a
-            href="/create"
-            className="flex items-center gap-2 bg-[#C49B27] hover:bg-[#B0871B] text-white px-5 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-[1.5px] transition-all shadow-sm hover:scale-105 active:scale-95 text-center"
-          >
-            <Plus size={14} /> Create Wedding Invitation
-          </a>
+          {isAdmin && (
+            <a
+              href="/create"
+              className="flex items-center gap-2 bg-[#C49B27] hover:bg-[#B0871B] text-white px-5 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-[1.5px] transition-all shadow-sm hover:scale-105 active:scale-95 text-center"
+            >
+              <Plus size={14} /> Create Wedding Invitation
+            </a>
+          )}
           
           <button
             onClick={handleLogout}
@@ -429,7 +434,9 @@ export default function ClientDashboard() {
               Welcome back {userEmail ? `, ${userEmail}` : ""} <Sparkles className="text-[#C49B27] animate-pulse" size={18} />
             </h2>
             <p className="text-xs text-[#241E1C]/60 leading-relaxed max-w-xl">
-              Design, customize, and publish your premium wedding invitation. Complete your drafts, preview their layouts, and unlock public hosting using the Pay & Publish triggers.
+              {isAdmin 
+                ? "Design, customize, and publish client wedding invitations. Complete drafts, manage RSVP data, and configure live portals."
+                : "Manage and monitor your digital wedding invitation, view live guest RSVPs, track page views, and download your QR share materials."}
             </p>
           </div>
         </div>
@@ -437,7 +444,9 @@ export default function ClientDashboard() {
         {/* Analytics Summary */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 animate-fadeIn">
           <div className="bg-white border border-amber-500/10 p-5 rounded-3xl shadow-sm text-center">
-            <span className="text-[9px] uppercase tracking-[1.5px] font-bold text-slate-400 block mb-1">Sent Invites</span>
+            <span className="text-[9px] uppercase tracking-[1.5px] font-bold text-slate-400 block mb-1">
+              {isAdmin ? "Total Invites" : "Your Invites"}
+            </span>
             <span className="text-xl font-bold text-[#241E1C] font-mono">{profiles.length}</span>
           </div>
           <div className="bg-white border border-amber-500/10 p-5 rounded-3xl shadow-sm text-center">
@@ -459,16 +468,18 @@ export default function ClientDashboard() {
             </span>
           </div>
           <div className="bg-white border border-amber-500/10 p-5 rounded-3xl shadow-sm text-center col-span-2 md:col-span-1">
-            <span className="text-[9px] uppercase tracking-[1.5px] font-bold text-slate-400 block mb-1">Guests Count</span>
+            <span className="text-[9px] uppercase tracking-[1.5px] font-bold text-slate-400 block mb-1">Total Views</span>
             <span className="text-xl font-bold text-[#C49B27] font-mono">
-              {profiles.reduce((acc, p) => acc + (p.guestCount || 0), 0)}
+              {profiles.reduce((acc, p) => acc + (p.viewsCount || 0), 0)}
             </span>
           </div>
         </div>
 
         {/* Active Projects Grid */}
         <div className="space-y-4 text-left w-full animate-fadeIn">
-          <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/50">My Invitations ({profiles.length})</h3>
+          <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/50">
+            {isAdmin ? `All Client Invitations (${profiles.length})` : `Your Invitations (${profiles.length})`}
+          </h3>
           
           {loading ? (
             <div className="flex flex-col items-center py-16 bg-white border border-zinc-200/60 rounded-3xl shadow-sm">
@@ -479,16 +490,22 @@ export default function ClientDashboard() {
             <div className="border border-dashed border-[#C49B27]/20 bg-white rounded-3xl py-20 text-center flex flex-col items-center justify-center shadow-sm relative overflow-hidden">
               <div className="absolute inset-0 bg-[#FAF9F6]/10 blur-[100px] pointer-events-none" />
               <Heart className="text-[#C49B27]/30 mb-4 animate-pulse" size={48} />
-              <h4 className="text-lg font-bold text-[#241E1C] [font-family:var(--cinzel),serif] tracking-[0.5px]">No Wedding Invitations Yet</h4>
-              <p className="text-xs text-[#241E1C]/60 max-w-xs mt-2 leading-relaxed px-4">
-                Begin your wedding journey! Create a gorgeous, interactive digital invitation page that matches your dream theme.
+              <h4 className="text-lg font-bold text-[#241E1C] [font-family:var(--cinzel),serif] tracking-[0.5px]">
+                {isAdmin ? "No Client Invitations Created" : "No Invitations Assigned"}
+              </h4>
+              <p className="text-xs text-[#241E1C]/60 max-w-sm mt-2 leading-relaxed px-4">
+                {isAdmin 
+                  ? "Create and launch your first digital wedding invitation for a client."
+                  : "Your customized wedding invitation will appear here once configured by the Ahvaanam team."}
               </p>
-              <a
-                href="/create"
-                className="mt-6 flex items-center gap-2 bg-[#C49B27] hover:bg-[#B0871B] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-[1.5px] transition-all shadow-md hover:scale-105 active:scale-95"
-              >
-                <Plus size={14} /> Create Your First Invite
-              </a>
+              {isAdmin && (
+                <a
+                  href="/create"
+                  className="mt-6 flex items-center gap-2 bg-[#C49B27] hover:bg-[#B0871B] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-[1.5px] transition-all shadow-md hover:scale-105 active:scale-95"
+                >
+                  <Plus size={14} /> Create New Invite
+                </a>
+              )}
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

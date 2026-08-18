@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { createClient } from "@/utils/supabase/server";
+import { isAdminUser } from "@/lib/auth/isAdmin";
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -10,6 +11,7 @@ export async function proxy(request: NextRequest) {
   const isProtected = protectedRoutes.some(
     (route) => pathname === route || pathname.startsWith(`${route}/`)
   );
+  const isCreateRoute = pathname === "/create" || pathname.startsWith("/create/");
   const isAuthRoute = pathname === "/login" || pathname === "/signup";
 
   // 2. Initialize response with incoming request headers
@@ -27,13 +29,22 @@ export async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // 5. Handle protected paths redirection
+  // 5. Handle protected paths redirection (not logged in)
   if (isProtected && !user) {
     const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set("redirect", pathname);
     
-    // Create redirect and preserve any refreshed auth session cookies
     const redirectResponse = NextResponse.redirect(loginUrl);
+    response.cookies.getAll().forEach((cookie) => {
+      redirectResponse.cookies.set(cookie.name, cookie.value);
+    });
+    return redirectResponse;
+  }
+
+  // 6. Handle /create paths for non-admin users (clients can only view dashboard/invites)
+  if (isCreateRoute && user && !isAdminUser(user.email)) {
+    const dashboardUrl = new URL("/dashboard", request.url);
+    const redirectResponse = NextResponse.redirect(dashboardUrl);
     response.cookies.getAll().forEach((cookie) => {
       redirectResponse.cookies.set(cookie.name, cookie.value);
     });

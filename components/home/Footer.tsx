@@ -98,7 +98,7 @@ export default function Footer() {
                         <div className="mt-6 flex flex-col gap-4 text-slate-500">
 
                             <Link href="/templates" className="hover:text-amber-500 transition-colors">Templates</Link>
-                            <Link href={user ? "/create" : "/login?redirect=/create"} className="hover:text-amber-500 transition-colors">Create Invitation</Link>
+                            <Link href="/dashboard" className="hover:text-amber-500 transition-colors">My Dashboard</Link>
                             <Link href="/demo" className="hover:text-amber-500 transition-colors">Preview Demo</Link>
                             <Link href="/services" className="hover:text-amber-500 transition-colors">Services</Link>
 

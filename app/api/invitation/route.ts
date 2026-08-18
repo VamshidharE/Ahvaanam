@@ -5,6 +5,7 @@ import defaultTemplate from "@/lib/default-template.json";
 import { creationSchema } from "@/lib/validation";
 import { categoryExists, getCategoryFields } from "@/lib/categories/utils";
 import { createDefaultConfig } from "@/lib/config/createDefaultConfig";
+import { isAdminUser } from "@/lib/auth/isAdmin";
 
 interface NormalizedPayload {
   id: string;
@@ -111,8 +112,11 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const isAdmin = isAdminUser(user.email);
+
   try {
-    const invites = await getInvitations(supabase);
+    const adminDb = getAdminDb();
+    const invites = await getInvitations(adminDb, user.id, isAdmin);
     const inviteIds = invites.map(i => i.id);
     const rsvpStatsMap: Record<string, { accepted: number; declined: number; guestCount: number }> = {};
     const viewsCountMap: Record<string, number> = {};
@@ -123,7 +127,6 @@ export async function GET() {
     });
 
     if (inviteIds.length > 0) {
-      const adminDb = getAdminDb();
       // 1. Fetch RSVPs
       const { data: rsvps } = await adminDb
         .from("rsvps")
@@ -179,6 +182,13 @@ export async function POST(request: Request) {
 
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  // Only admin is permitted to create new invitations
+  if (!isAdminUser(user.email)) {
+    return NextResponse.json({ 
+      error: "Access denied. Only administrators are authorized to create new invitations." 
+    }, { status: 403 });
   }
 
   try {
