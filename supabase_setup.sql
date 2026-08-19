@@ -186,3 +186,29 @@ GRANT SELECT, INSERT ON TABLE public.invitation_feedbacks TO anon;
 GRANT SELECT, INSERT, DELETE ON TABLE public.invitation_feedbacks TO authenticated;
 ALTER TABLE public.invitation_feedbacks ENABLE ROW LEVEL SECURITY;
 
+-- ==========================================
+-- 14. Supabase Storage Bucket for Uploads (Photos & Audio)
+-- ==========================================
+-- Insert the 'uploads' bucket if it doesn't already exist
+INSERT INTO storage.buckets (id, name, public)
+VALUES ('uploads', 'uploads', true)
+ON CONFLICT (id) DO UPDATE SET public = true;
+
+-- Allow public read access to all files in the 'uploads' bucket
+CREATE POLICY "Public Read Access on uploads bucket"
+ON storage.objects FOR SELECT
+USING (bucket_id = 'uploads');
+
+-- Allow authenticated users and service role to upload files
+CREATE POLICY "Allow Uploads on uploads bucket"
+ON storage.objects FOR INSERT
+TO authenticated, anon, service_role
+WITH CHECK (bucket_id = 'uploads');
+
+-- Allow delete and update
+CREATE POLICY "Allow Manage uploads bucket"
+ON storage.objects FOR ALL
+TO authenticated, service_role
+USING (bucket_id = 'uploads');
+
+

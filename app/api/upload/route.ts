@@ -67,19 +67,59 @@ export async function POST(request: Request) {
 
     // 4. Safe Filename Generation (Using UUID)
     const filename = `${crypto.randomUUID()}${ext}`;
-    const uploadDir = path.join(process.cwd(), "public", "uploads");
-
-    // Ensure directory exists
-    await fs.mkdir(uploadDir, { recursive: true });
-
-    // 5. Path Traversal Protection (basename ensures only filename is written)
-    const filePath = path.join(uploadDir, path.basename(filename));
     const buffer = Buffer.from(await file.arrayBuffer());
-    await fs.writeFile(filePath, buffer);
 
-    const fileUrl = `/uploads/${filename}`;
-    return NextResponse.json({ success: true, url: fileUrl });
-  } catch (error) {
-    return NextResponse.json({ error: "Failed to upload file due to internal error." }, { status: 500 });
+    // 5. Try Supabase Cloud Storage first (works seamlessly on Vercel and production)
+    try {
+      const { getAdminDb } = await import("@/lib/db");
+      const adminDb = getAdminDb();
+      const bucketName = "uploads";
+
+      let { data: uploadData, error: uploadError } = await adminDb.storage
+        .from(bucketName)
+        .upload(filename, buffer, {
+          contentType: mimeType,
+          upsert: true
+        });
+
+      if (uploadError && uploadError.message?.toLowerCase().includes("not found")) {
+        // Try creating public bucket automatically
+        await adminDb.storage.createBucket(bucketName, { public: true }).catch(() => null);
+        const retry = await adminDb.storage.from(bucketName).upload(filename, buffer, {
+          contentType: mimeType,
+          upsert: true
+        });
+        uploadData = retry.data;
+        uploadError = retry.error;
+      }
+
+      if (!uploadError && uploadData) {
+        const { data: publicUrlData } = adminDb.storage.from(bucketName).getPublicUrl(filename);
+        if (publicUrlData?.publicUrl) {
+          return NextResponse.json({ success: true, url: publicUrlData.publicUrl });
+        }
+      }
+    } catch (storageErr) {
+      console.warn("Supabase storage upload error, falling back to filesystem:", storageErr);
+    }
+
+    // 6. Local Filesystem Fallback (for local development)
+    try {
+      const uploadDir = path.join(process.cwd(), "public", "uploads");
+      await fs.mkdir(uploadDir, { recursive: true });
+      const filePath = path.join(uploadDir, path.basename(filename));
+      await fs.writeFile(filePath, buffer);
+
+      const fileUrl = `/uploads/${filename}`;
+      return NextResponse.json({ success: true, url: fileUrl });
+    } catch (fsErr: any) {
+      console.error("Local filesystem upload error:", fsErr);
+      return NextResponse.json({ 
+        error: fsErr.message || "Failed to upload file due to read-only serverless environment. Please ensure Supabase storage bucket 'uploads' is enabled." 
+      }, { status: 500 });
+    }
+  } catch (error: any) {
+    console.error("Upload route uncaught exception:", error);
+    return NextResponse.json({ error: error.message || "Failed to upload file due to internal error." }, { status: 500 });
   }
 }
