@@ -47,6 +47,8 @@ export interface RoseMandapData {
     groomFamily: Array<{ relation?: string; name: string }>;
     groomPortrait?: string;
     bridePortrait?: string;
+    groomFamilyTitle?: string;
+    brideFamilyTitle?: string;
   };
   events: Array<{
     title: string;
@@ -189,6 +191,13 @@ export function mapInvitationConfigToRoseMandap(rawConfig: any): RoseMandapData 
   } else {
     brideParents = "Daughter of Mr. & Mrs. Bride Family";
   }
+
+  // Dynamic Family Titles based on real couple names or custom text
+  const rawGroomFamilyTitle = config.couple?.groom?.familyTitle || config.families?.groomFamilyTitle || "";
+  const groomFamilyTitle = rawGroomFamilyTitle.trim() || (groomName ? `${groomName}'s Family` : "Groom's Family");
+
+  const rawBrideFamilyTitle = config.couple?.bride?.familyTitle || config.families?.brideFamilyTitle || "";
+  const brideFamilyTitle = rawBrideFamilyTitle.trim() || (brideName ? `${brideName}'s Family` : "Bride's Family");
 
   // Events list
   let eventsList = [
@@ -375,7 +384,9 @@ export function mapInvitationConfigToRoseMandap(rawConfig: any): RoseMandapData 
       brideFamily,
       groomFamily,
       groomPortrait: groomImage,
-      bridePortrait: brideImage
+      bridePortrait: brideImage,
+      groomFamilyTitle,
+      brideFamilyTitle
     },
     events: eventsList,
     story: {

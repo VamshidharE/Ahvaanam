@@ -1916,7 +1916,8 @@
 .story-couple-photo {
     width: 88.5%; /* Constant percentage width ensures lock-step scaling with container */
     height: auto;
-    z-index: 2;
+    position: relative;
+    z-index: 1;
     transform: none;
     filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.12));
 }
@@ -1924,7 +1925,8 @@
 .story-pedestal-base {
     width: 100%; /* Spans the full width of the parent container */
     height: auto;
-    z-index: 1;
+    position: relative;
+    z-index: 2;
     margin-top: -24.5%; /* Constant percentage margin-top relative to container width */
     filter: drop-shadow(0 12px 24px rgba(92, 68, 37, 0.18));
 }

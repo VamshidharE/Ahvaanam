@@ -553,6 +553,38 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
               />
             </div>
 
+            {/* Groom's Family Card Title */}
+            <div className="flex flex-col gap-1.5 col-span-2 border-t border-white/5 pt-3">
+              <div className="flex items-center justify-between">
+                <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1.5px]">Family Card Heading</label>
+                <span className="text-[10px] text-yellow-500 font-semibold">Custom Title</span>
+              </div>
+              <input
+                type="text"
+                value={groomData.familyTitle || invitationData.families?.groomFamilyTitle || ""}
+                onChange={(e) => updateInvitationData((prev: any) => {
+                  const next = {
+                    ...prev,
+                    couple: {
+                      ...prev.couple,
+                      groom: { ...prev.couple?.groom, familyTitle: e.target.value }
+                    },
+                    families: {
+                      ...prev.families,
+                      groomFamilyTitle: e.target.value
+                    }
+                  };
+                  if (next.config) {
+                    next.config.couple = { ...(next.config.couple || {}), groom: { ...(next.config.couple?.groom || {}), familyTitle: e.target.value } };
+                    next.config.families = { ...(next.config.families || {}), groomFamilyTitle: e.target.value };
+                  }
+                  return next;
+                })}
+                placeholder={`e.g. ${groomData.name || "Aarav"}'s Family`}
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-xs text-white focus:border-yellow-500 outline-none font-bold"
+              />
+            </div>
+
             {/* Groom Portrait Image */}
             <div className="flex flex-col gap-1.5 col-span-2 border-t border-white/5 pt-3">
               <div className="flex items-center justify-between">
@@ -758,6 +790,38 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
                   return next;
                 })}
                 placeholder="e.g. Ananya"
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-xs text-white focus:border-yellow-500 outline-none font-bold"
+              />
+            </div>
+
+            {/* Bride's Family Card Title */}
+            <div className="flex flex-col gap-1.5 col-span-2 border-t border-white/5 pt-3">
+              <div className="flex items-center justify-between">
+                <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1.5px]">Family Card Heading</label>
+                <span className="text-[10px] text-yellow-500 font-semibold">Custom Title</span>
+              </div>
+              <input
+                type="text"
+                value={brideData.familyTitle || invitationData.families?.brideFamilyTitle || ""}
+                onChange={(e) => updateInvitationData((prev: any) => {
+                  const next = {
+                    ...prev,
+                    couple: {
+                      ...prev.couple,
+                      bride: { ...prev.couple?.bride, familyTitle: e.target.value }
+                    },
+                    families: {
+                      ...prev.families,
+                      brideFamilyTitle: e.target.value
+                    }
+                  };
+                  if (next.config) {
+                    next.config.couple = { ...(next.config.couple || {}), bride: { ...(next.config.couple?.bride || {}), familyTitle: e.target.value } };
+                    next.config.families = { ...(next.config.families || {}), brideFamilyTitle: e.target.value };
+                  }
+                  return next;
+                })}
+                placeholder={`e.g. ${brideData.name || "Ananya"}'s Family`}
                 className="bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-xs text-white focus:border-yellow-500 outline-none font-bold"
               />
             </div>

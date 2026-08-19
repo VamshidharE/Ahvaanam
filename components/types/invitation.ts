@@ -38,6 +38,7 @@ export interface CoupleSection extends BaseSection {
     parents: string;
     bio: string;
     image: string;
+    familyTitle?: string;
     family?: Array<{ relation?: string; name: string }>;
   };
   bride: {
@@ -45,6 +46,7 @@ export interface CoupleSection extends BaseSection {
     parents: string;
     bio: string;
     image: string;
+    familyTitle?: string;
     family?: Array<{ relation?: string; name: string }>;
   };
 }
@@ -95,6 +97,10 @@ export interface FamilyMember {
 export interface FamiliesSection extends BaseSection {
   brideFamily: FamilyMember[];
   groomFamily: FamilyMember[];
+  groomFamilyTitle?: string;
+  brideFamilyTitle?: string;
+  groomPortrait?: string;
+  bridePortrait?: string;
 }
 
 export interface VenueDetail {

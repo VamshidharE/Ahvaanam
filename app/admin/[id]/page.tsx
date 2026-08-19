@@ -1229,6 +1229,38 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
             />
           </div>
 
+          {/* Groom's Family Card Title */}
+          <div className="flex flex-col gap-1 w-full">
+            <div className="flex items-center justify-between">
+              <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Family Card Heading</label>
+              <span className="text-[9px] text-[#C49B27] font-semibold">Custom Title</span>
+            </div>
+            <input
+              type="text"
+              value={groomData.familyTitle || invitationData.families?.groomFamilyTitle || ""}
+              onChange={(e) => updateInvitationData((prev: any) => {
+                const next = {
+                  ...prev,
+                  couple: {
+                    ...prev.couple,
+                    groom: { ...prev.couple?.groom, familyTitle: e.target.value }
+                  },
+                  families: {
+                    ...prev.families,
+                    groomFamilyTitle: e.target.value
+                  }
+                };
+                if (next.config) {
+                  next.config.couple = { ...(next.config.couple || {}), groom: { ...(next.config.couple?.groom || {}), familyTitle: e.target.value } };
+                  next.config.families = { ...(next.config.families || {}), groomFamilyTitle: e.target.value };
+                }
+                return next;
+              })}
+              placeholder={`e.g. ${groomData.name || "Aarav"}'s Family`}
+              className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-semibold"
+            />
+          </div>
+
           {/* Groom Portrait Image */}
           <div className="flex flex-col gap-1.5 border-t border-zinc-100 pt-3 w-full">
             <div className="flex items-center justify-between">
@@ -1433,6 +1465,38 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
                 return next;
               })}
               placeholder="e.g. Ananya"
+              className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-semibold"
+            />
+          </div>
+
+          {/* Bride's Family Card Title */}
+          <div className="flex flex-col gap-1 w-full">
+            <div className="flex items-center justify-between">
+              <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Family Card Heading</label>
+              <span className="text-[9px] text-[#C49B27] font-semibold">Custom Title</span>
+            </div>
+            <input
+              type="text"
+              value={brideData.familyTitle || invitationData.families?.brideFamilyTitle || ""}
+              onChange={(e) => updateInvitationData((prev: any) => {
+                const next = {
+                  ...prev,
+                  couple: {
+                    ...prev.couple,
+                    bride: { ...prev.couple?.bride, familyTitle: e.target.value }
+                  },
+                  families: {
+                    ...prev.families,
+                    brideFamilyTitle: e.target.value
+                  }
+                };
+                if (next.config) {
+                  next.config.couple = { ...(next.config.couple || {}), bride: { ...(next.config.couple?.bride || {}), familyTitle: e.target.value } };
+                  next.config.families = { ...(next.config.families || {}), brideFamilyTitle: e.target.value };
+                }
+                return next;
+              })}
+              placeholder={`e.g. ${brideData.name || "Ananya"}'s Family`}
               className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-semibold"
             />
           </div>

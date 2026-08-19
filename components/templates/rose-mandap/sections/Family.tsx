@@ -5,7 +5,10 @@ import { useRoseMandap } from "../context";
 
 export default function Family() {
     const invitation = useRoseMandap();
-    const { title, groomFamily, brideFamily, groomParents, brideParents } = invitation.family;
+    const { title, groomFamily, brideFamily, groomParents, brideParents, groomFamilyTitle, brideFamilyTitle } = invitation.family;
+
+    const displayGroomTitle = groomFamilyTitle || (invitation.couple.groom ? `${invitation.couple.groom}'s Family` : "Groom's Family");
+    const displayBrideTitle = brideFamilyTitle || (invitation.couple.bride ? `${invitation.couple.bride}'s Family` : "Bride's Family");
 
     return (
         <section className="invitation-section family-section">
@@ -24,11 +27,11 @@ export default function Family() {
                                     <div className="family-portrait-wrap">
                                         <img 
                                             src={invitation.family.bridePortrait || "/wedding/family/bride.png"} 
-                                            alt="Bride's Family" 
+                                            alt={displayBrideTitle} 
                                             className="family-portrait-img" 
                                         />
                                     </div>
-                                    <h3>Bride&apos;s Family</h3>
+                                    <h3>{displayBrideTitle}</h3>
                                     {brideFamily && brideFamily.length > 0 ? (
                                         <div className="family-members-list" style={{ display: "flex", flexDirection: "column", gap: "5px", marginTop: "4px" }}>
                                             {brideFamily.map((member, idx) => (
@@ -52,11 +55,11 @@ export default function Family() {
                                     <div className="family-portrait-wrap">
                                         <img 
                                             src={invitation.family.groomPortrait || "/wedding/family/groom.png"} 
-                                            alt="Groom's Family" 
+                                            alt={displayGroomTitle} 
                                             className="family-portrait-img" 
                                         />
                                     </div>
-                                    <h3>Groom&apos;s Family</h3>
+                                    <h3>{displayGroomTitle}</h3>
                                     {groomFamily && groomFamily.length > 0 ? (
                                         <div className="family-members-list" style={{ display: "flex", flexDirection: "column", gap: "5px", marginTop: "4px" }}>
                                             {groomFamily.map((member, idx) => (
@@ -82,11 +85,11 @@ export default function Family() {
                                     <div className="family-portrait-wrap">
                                         <img 
                                             src={invitation.family.groomPortrait || "/wedding/family/groom.png"} 
-                                            alt="Groom's Family" 
+                                            alt={displayGroomTitle} 
                                             className="family-portrait-img" 
                                         />
                                     </div>
-                                    <h3>Groom&apos;s Family</h3>
+                                    <h3>{displayGroomTitle}</h3>
                                     {groomFamily && groomFamily.length > 0 ? (
                                         <div className="family-members-list" style={{ display: "flex", flexDirection: "column", gap: "5px", marginTop: "4px" }}>
                                             {groomFamily.map((member, idx) => (
@@ -110,11 +113,11 @@ export default function Family() {
                                     <div className="family-portrait-wrap">
                                         <img 
                                             src={invitation.family.bridePortrait || "/wedding/family/bride.png"} 
-                                            alt="Bride's Family" 
+                                            alt={displayBrideTitle} 
                                             className="family-portrait-img" 
                                         />
                                     </div>
-                                    <h3>Bride&apos;s Family</h3>
+                                    <h3>{displayBrideTitle}</h3>
                                     {brideFamily && brideFamily.length > 0 ? (
                                         <div className="family-members-list" style={{ display: "flex", flexDirection: "column", gap: "5px", marginTop: "4px" }}>
                                             {brideFamily.map((member, idx) => (
