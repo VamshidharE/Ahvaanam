@@ -109,8 +109,11 @@ export interface VenueDetail {
   venueName: string;
   address: string;
   city: string;
+  date?: string;
+  time?: string;
   mapsUrl: string;
   embedUrl: string;
+  enabled?: boolean;
   coordinates?: { lat: number; lng: number };
   parkingInfo?: string;
 }

@@ -1575,13 +1575,26 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
       embedUrl: ""
     };
 
-    const updateMainVenue = (field: string, val: string) => {
+    const receptionVenue = venues[1] || {
+      id: "venue-2",
+      title: "Reception Venue",
+      venueName: "",
+      city: "",
+      address: "",
+      date: "",
+      time: "",
+      mapsUrl: "",
+      embedUrl: "",
+      enabled: false
+    };
+
+    const updateMainVenue = (field: string, val: any) => {
       updateInvitationData((prev: any) => {
         const list = [...(prev.venue?.venues || [])];
         if (list.length === 0) {
           list.push({
             id: "venue-1",
-            title: "Wedding Venue",
+            title: "The Wedding Venue",
             venueName: "",
             city: "",
             address: "",
@@ -1601,11 +1614,52 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
       });
     };
 
+    const updateReceptionVenue = (field: string, val: any) => {
+      updateInvitationData((prev: any) => {
+        const list = [...(prev.venue?.venues || [])];
+        if (list.length === 0) {
+          list.push({
+            id: "venue-1",
+            title: "The Wedding Venue",
+            venueName: "",
+            city: "",
+            address: "",
+            mapsUrl: "",
+            embedUrl: ""
+          });
+        }
+        if (list.length === 1) {
+          list.push({
+            id: "venue-2",
+            title: "Reception Venue",
+            venueName: "",
+            city: "",
+            address: "",
+            date: "",
+            time: "",
+            mapsUrl: "",
+            embedUrl: "",
+            enabled: true
+          });
+        }
+        list[1] = { ...list[1], [field]: val };
+        return {
+          ...prev,
+          venue: {
+            ...prev.venue,
+            enabled: prev.venue?.enabled ?? true,
+            venues: list
+          }
+        };
+      });
+    };
+
     return (
       <div className="space-y-8 animate-fadeIn">
+        {/* --- 1. WEDDING VENUE --- */}
         <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
           <div className="flex justify-between items-center border-b border-white/10 pb-3">
-            <h3 className="text-base font-bold tracking-[0.5px]">Wedding Venue Location</h3>
+            <h3 className="text-base font-bold tracking-[0.5px]">The Wedding Venue Location</h3>
             <div className="flex items-center gap-2">
               <label htmlFor="client-venue-enabled" className="text-xs text-white/70 font-semibold cursor-pointer">Enabled</label>
               <input
@@ -1673,6 +1727,122 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
               placeholder="https://www.google.com/maps/embed?pb=..."
               value={mainVenue.embedUrl || ""}
               onChange={(e) => updateMainVenue("embedUrl", e.target.value)}
+              className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none font-mono text-[11px]"
+            />
+          </div>
+        </div>
+
+        {/* --- 2. RECEPTION VENUE --- */}
+        <div className="bg-white/5 border border-yellow-500/20 rounded-2xl p-6 space-y-4">
+          <div className="flex justify-between items-center border-b border-white/10 pb-3">
+            <div className="flex items-center gap-2">
+              <h3 className="text-base font-bold tracking-[0.5px] text-yellow-500">Reception Venue Location</h3>
+              <span className="text-[10px] text-white/40 font-medium">(Appears below wedding venue)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <label htmlFor="client-reception-venue-enabled" className="text-xs text-white/70 font-semibold cursor-pointer">Enable Reception</label>
+              <input
+                type="checkbox"
+                id="client-reception-venue-enabled"
+                checked={receptionVenue.enabled !== false && Boolean(receptionVenue.venueName || receptionVenue.enabled === true)}
+                onChange={(e) => updateReceptionVenue("enabled", e.target.checked)}
+                className="w-4 h-4 rounded text-yellow-500 accent-yellow-500"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Section Title</label>
+              <input
+                type="text"
+                placeholder="Reception Venue"
+                value={receptionVenue.title || "Reception Venue"}
+                onChange={(e) => updateReceptionVenue("title", e.target.value)}
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none font-semibold"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Reception Venue Name</label>
+              <input
+                type="text"
+                placeholder="e.g. Grand Ballroom, The Leela Palace"
+                value={receptionVenue.venueName || ""}
+                onChange={(e) => {
+                  updateReceptionVenue("venueName", e.target.value);
+                  if (receptionVenue.enabled === undefined) {
+                    updateReceptionVenue("enabled", true);
+                  }
+                }}
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none font-bold"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">City</label>
+              <input
+                type="text"
+                placeholder="e.g. Hyderabad"
+                value={receptionVenue.city || ""}
+                onChange={(e) => updateReceptionVenue("city", e.target.value)}
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Address</label>
+              <input
+                type="text"
+                placeholder="e.g. Old Airport Road, Kodihalli"
+                value={receptionVenue.address || ""}
+                onChange={(e) => updateReceptionVenue("address", e.target.value)}
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Reception Date (Optional)</label>
+              <input
+                type="text"
+                placeholder="e.g. 20 September 2026"
+                value={receptionVenue.date || ""}
+                onChange={(e) => updateReceptionVenue("date", e.target.value)}
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Reception Time (Optional)</label>
+              <input
+                type="text"
+                placeholder="e.g. 7:00 PM Onwards"
+                value={receptionVenue.time || ""}
+                onChange={(e) => updateReceptionVenue("time", e.target.value)}
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Google Maps Directions Link</label>
+            <input
+              type="text"
+              placeholder="https://maps.google.com/?q=..."
+              value={receptionVenue.mapsUrl || ""}
+              onChange={(e) => updateReceptionVenue("mapsUrl", e.target.value)}
+              className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none font-mono text-[11px]"
+            />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Google Maps Embed Iframe URL (Optional)</label>
+            <input
+              type="text"
+              placeholder="https://www.google.com/maps/embed?pb=..."
+              value={receptionVenue.embedUrl || ""}
+              onChange={(e) => updateReceptionVenue("embedUrl", e.target.value)}
               className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none font-mono text-[11px]"
             />
           </div>

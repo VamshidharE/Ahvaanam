@@ -7,13 +7,21 @@ import RoseMandapTemplate from "../../../components/templates/rose-mandap/RoseMa
 
 function InviteContent({ clientId }: { clientId: string }) {
   const { invitationData, loading } = useInvitationData();
+  const hasRecordedRef = React.useRef(false);
 
   React.useEffect(() => {
-    if (loading || !invitationData) return;
+    if (loading || !invitationData || hasRecordedRef.current) return;
 
-    // Asynchronous view recording
+    // Asynchronous view recording (triggered once per browser session)
     const recordView = async () => {
       try {
+        const sessionKey = `ahvaanam_viewed_${clientId}`;
+        if (typeof window !== "undefined" && sessionStorage.getItem(sessionKey)) {
+          hasRecordedRef.current = true;
+          return;
+        }
+
+        hasRecordedRef.current = true;
         let visitorToken = localStorage.getItem("ahvaanam_visitor_token");
         if (!visitorToken) {
           if (typeof crypto !== "undefined" && crypto.randomUUID) {
@@ -26,6 +34,10 @@ function InviteContent({ clientId }: { clientId: string }) {
             });
           }
           localStorage.setItem("ahvaanam_visitor_token", visitorToken);
+        }
+
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem(sessionKey, "1");
         }
 
         await fetch(`/api/invitation/${clientId}/view`, {

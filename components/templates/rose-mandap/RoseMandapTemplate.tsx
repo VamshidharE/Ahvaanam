@@ -296,14 +296,8 @@ export default function RoseMandapTemplate({
             {data.sections.showProcession && <Procession />}
             {data.sections.showFamily && <Family />}
             {data.sections.showGallery && <Gallery />}
-
-            {(data.sections.showVenue || data.sections.showCountdown) && (
-              <div className="invitation-detail-row">
-                {data.sections.showVenue && <Venue />}
-                {data.sections.showCountdown && <Countdown />}
-              </div>
-            )}
-
+            {data.sections.showVenue && <Venue />}
+            {data.sections.showCountdown && <Countdown />}
             {data.sections.showRSVP && <RSVP clientId={clientId} />}
           </main>
 

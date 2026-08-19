@@ -39,6 +39,17 @@ export interface RoseMandapData {
     mapsLink: string;
     mapsEmbedUrl: string;
   };
+  reception?: {
+    enabled: boolean;
+    title: string;
+    venue: string;
+    city: string;
+    address?: string;
+    date: string;
+    time: string;
+    mapsLink: string;
+    mapsEmbedUrl: string;
+  };
   family: {
     title: string;
     brideParents: string;
@@ -148,6 +159,41 @@ export function mapInvitationConfigToRoseMandap(rawConfig: any): RoseMandapData 
   const venueCity = config.venue?.venues?.[0]?.city || "Hyderabad";
   const mapsLink = config.venue?.venues?.[0]?.mapsUrl || "https://www.google.com/maps/search/?api=1&query=The+Leela+Palace+Hyderabad";
   const mapsEmbedUrl = config.venue?.venues?.[0]?.embedUrl || "";
+
+  // Reception Event Extraction
+  const receptionEvent = Array.isArray(config.events)
+    ? config.events.find((e: any) => e && typeof e.title === "string" && e.title.toLowerCase().includes("reception"))
+    : null;
+
+  // Reception Venue Extraction (venues[1] or config.venue.receptionVenue or receptionEvent)
+  const rawReceptionVenueObj = config.venue?.venues?.[1] || config.venue?.receptionVenue || null;
+  const rawReceptionVenueName = rawReceptionVenueObj?.venueName || rawReceptionVenueObj?.venue || receptionEvent?.venue || "";
+  const receptionVenueName = rawReceptionVenueName || venueName;
+  const receptionCity = rawReceptionVenueObj?.city || venueCity;
+  const receptionDate = rawReceptionVenueObj?.date || receptionEvent?.date || weddingDate;
+  const receptionTime = rawReceptionVenueObj?.time || receptionEvent?.time || "7:00 PM Onwards";
+  const receptionTitle = rawReceptionVenueObj?.title || "Reception Venue";
+  const receptionMapsLink = rawReceptionVenueObj?.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${receptionVenueName}, ${receptionCity}`)}`;
+  const receptionMapsEmbedUrl = rawReceptionVenueObj?.embedUrl || "";
+
+  const isReceptionEnabled = rawReceptionVenueObj?.enabled !== false && Boolean(
+    rawReceptionVenueObj?.venueName || 
+    rawReceptionVenueObj?.enabled === true || 
+    (receptionEvent && receptionEvent.enabled !== false) ||
+    config.venue?.venues?.length > 1
+  );
+
+  const receptionVenueData = {
+    enabled: isReceptionEnabled,
+    title: receptionTitle,
+    venue: receptionVenueName,
+    city: receptionCity,
+    address: rawReceptionVenueObj?.address || "",
+    date: receptionDate,
+    time: receptionTime,
+    mapsLink: receptionMapsLink,
+    mapsEmbedUrl: receptionMapsEmbedUrl
+  };
 
   // Family Extraction (supports both families object and couple.groom.family / couple.bride.family)
   const familySectionTitle = config.families?.title || "Our Families";
@@ -377,6 +423,7 @@ export function mapInvitationConfigToRoseMandap(rawConfig: any): RoseMandapData 
       mapsLink,
       mapsEmbedUrl
     },
+    reception: receptionVenueData,
     family: {
       title: familySectionTitle,
       brideParents,
