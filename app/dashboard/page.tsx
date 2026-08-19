@@ -548,6 +548,12 @@ export default function ClientDashboard() {
                         </p>
                       )}
 
+                      {isAdmin && (profile as any).clientEmail && (
+                        <p className="text-[9px] text-amber-700 bg-amber-500/10 px-2 py-0.5 rounded-md inline-block mt-1 font-mono">
+                          👤 Client: {(profile as any).clientEmail}
+                        </p>
+                      )}
+
                       {/* RSVP & Views Stats on Card */}
                       <div className="flex flex-wrap gap-x-3 gap-y-1.5 mt-3 bg-zinc-50 border border-zinc-200/50 p-2.5 rounded-xl text-[9px] text-[#241E1C]/70 font-semibold font-sans">
                         <div>
@@ -568,13 +574,15 @@ export default function ClientDashboard() {
 
                   <div className="flex items-center justify-between border-t border-zinc-100 pt-4 mt-4">
                     <div className="flex gap-1.5">
-                      <button
-                        onClick={() => handleDelete(profile.id)}
-                        className="p-2 bg-red-500/5 border border-red-500/10 text-red-600 hover:bg-red-500 hover:text-white rounded-lg transition-all cursor-pointer"
-                        title="Delete Invitation"
-                      >
-                        <Trash2 size={12} />
-                      </button>
+                      {isAdmin && (
+                        <button
+                          onClick={() => handleDelete(profile.id)}
+                          className="p-2 bg-red-500/5 border border-red-500/10 text-red-600 hover:bg-red-500 hover:text-white rounded-lg transition-all cursor-pointer"
+                          title="Delete Invitation"
+                        >
+                          <Trash2 size={12} />
+                        </button>
+                      )}
                       <button
                         onClick={() => handleOpenRsvps(profile)}
                         className="p-2 bg-zinc-50 border border-zinc-200 text-zinc-600 hover:bg-zinc-100 rounded-lg transition-all cursor-pointer"
@@ -609,12 +617,14 @@ export default function ClientDashboard() {
                       >
                         <ExternalLink size={12} />
                       </a>
-                      <a
-                        href={`/admin/${profile.id}`}
-                        className="px-2.5 py-1.5 bg-amber-500/5 border border-amber-500/10 text-[#C49B27] hover:bg-[#C49B27] hover:text-white rounded-lg text-[9px] font-bold uppercase tracking-[0.5px] transition-all flex items-center gap-1 cursor-pointer"
-                      >
-                        <Edit3 size={10} /> Edit
-                      </a>
+                      {isAdmin && (
+                        <a
+                          href={`/admin/${profile.id}`}
+                          className="px-2.5 py-1.5 bg-amber-500/5 border border-amber-500/10 text-[#C49B27] hover:bg-[#C49B27] hover:text-white rounded-lg text-[9px] font-bold uppercase tracking-[0.5px] transition-all flex items-center gap-1 cursor-pointer"
+                        >
+                          <Edit3 size={10} /> Edit
+                        </a>
+                      )}
                       {profile.payment_status === 'pending' ? (
                         <a
                           href={`/checkout/${profile.id}`}

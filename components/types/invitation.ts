@@ -32,17 +32,20 @@ export interface HeroSection extends BaseSection {
 }
 
 export interface CoupleSection extends BaseSection {
+  primarySide?: "groom" | "bride";
   groom: {
     name: string;
     parents: string;
     bio: string;
     image: string;
+    family?: Array<{ relation?: string; name: string }>;
   };
   bride: {
     name: string;
     parents: string;
     bio: string;
     image: string;
+    family?: Array<{ relation?: string; name: string }>;
   };
 }
 
@@ -165,6 +168,7 @@ export interface MusicSettings {
 }
 
 export interface WeddingInvitationConfig {
+  clientEmail?: string;
   themeId: string; // e.g. "royal-temple" or "moonlight"
   sectionOrder: string[]; // e.g. ["hero", "couple", "countdown", "story", "events", "gallery", "venue", "families", "rsvp", "faq", "dressCode", "footer"]
   themeSettings: ThemeSettings;
@@ -189,6 +193,7 @@ export interface WeddingInvitationConfig {
  * Unifies all category-specific configuration objects under a structured wrapper.
  */
 export interface InvitationConfig {
+  clientEmail?: string;
   category: string;
   themeId: string;
   config: Record<string, unknown>;

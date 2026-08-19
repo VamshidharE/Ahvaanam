@@ -94,6 +94,8 @@ export async function POST(
   }
 }
 
+import { isAdminUser } from "@/lib/auth/isAdmin";
+
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
@@ -119,18 +121,23 @@ export async function GET(
   }
 
   try {
+    const adminDb = getAdminDb();
     // 2. Load invitation and verify ownership
-    const invite = await getInvitationById(id);
+    const invite = await getInvitationById(id, adminDb);
     if (!invite) {
       return NextResponse.json({ error: "Invitation profile not found" }, { status: 404 });
     }
 
-    if (invite.user_id && invite.user_id !== user.id) {
+    const isAdmin = isAdminUser(user.email);
+    const assignedClientEmail = (invite.config?.clientEmail || (invite.config as any)?.config?.clientEmail || "").toLowerCase().trim();
+    const currentEmail = (user.email || "").toLowerCase().trim();
+    const isOwner = invite.user_id === user.id || (assignedClientEmail && assignedClientEmail === currentEmail);
+
+    if (!isAdmin && !isOwner) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
     // 3. Fetch all RSVPs using the elevated admin DB client
-    const adminDb = getAdminDb();
     const { data: rsvps, error } = await adminDb
       .from("rsvps")
       .select("guest_name, phone, email, attending, guest_count, message, created_at")

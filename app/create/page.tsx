@@ -44,6 +44,7 @@ export default function CategorySelectionPage() {
   }, [router]);
 
   // Local state for dynamic form inputs and creation loader
+  const [clientEmail, setClientEmail] = useState("");
   const [formData, setFormData] = useState<Record<string, string>>({});
   const [creating, setCreating] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);
@@ -151,13 +152,18 @@ export default function CategorySelectionPage() {
           groom: groomPayload, 
           bride: bridePayload,
           surname: "",
-          themeId: selectedTheme 
+          themeId: selectedTheme,
+          clientEmail: clientEmail.trim()
         }
       : {
           id: slug,
           category: selectedCategory,
           themeId: selectedTheme,
-          metadata: formData
+          clientEmail: clientEmail.trim(),
+          metadata: {
+            ...formData,
+            clientEmail: clientEmail.trim()
+          }
         };
 
     const minWaitTime = new Promise((resolve) => setTimeout(resolve, 1800));
@@ -365,6 +371,27 @@ export default function CategorySelectionPage() {
                         </div>
 
                         <form onSubmit={handleCreateInvitation} className="space-y-5">
+                          {/* Client Account Assignment */}
+                          <div className="bg-amber-500/5 p-4 border border-amber-500/20 rounded-2xl flex flex-col gap-1.5">
+                            <div className="flex items-center justify-between">
+                              <label className="text-[10px] uppercase font-bold text-[#241E1C]/80 tracking-[1.5px]">
+                                Client Account Email
+                              </label>
+                              <span className="text-[9px] text-[#C49B27] font-semibold">Links to Client's Dashboard</span>
+                            </div>
+                            <input
+                              type="email"
+                              placeholder="e.g. client@example.com"
+                              value={clientEmail}
+                              onChange={(e) => setClientEmail(e.target.value)}
+                              className="bg-white border border-zinc-200 focus:border-[#C49B27] outline-none rounded-xl px-4 py-2.5 text-xs text-[#241E1C] w-full transition-colors font-medium"
+                              disabled={creating}
+                            />
+                            <p className="text-[9px] text-zinc-500 mt-0.5">
+                              Enter the client's email so this invitation appears in their personal dashboard to view analytics and RSVPs.
+                            </p>
+                          </div>
+
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {fields.map((field) => {
                               const isTextarea = field.type === "textarea";

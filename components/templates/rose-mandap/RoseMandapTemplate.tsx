@@ -94,7 +94,7 @@ export default function RoseMandapTemplate({
         document.body.style.overflow = "";
       }, 800);
 
-      if (musicEnabled && audioRef.current && audioRef.current.paused) {
+      if (musicEnabled && audioRef.current && audioRef.current.paused && !document.hidden) {
         audioRef.current
           .play()
           .then(() => setIsMusicPlaying(true))
@@ -104,6 +104,48 @@ export default function RoseMandapTemplate({
       return () => clearTimeout(unlockTimer);
     }
   }, [isOpen, musicEnabled]);
+
+  // Pause audio when tab is minimized or switched to another app, and resume when returning
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      const audio = audioRef.current;
+      if (!audio) return;
+
+      if (document.hidden) {
+        if (!audio.paused) {
+          audio.pause();
+          setIsMusicPlaying(false);
+        }
+      } else {
+        if (musicEnabled) {
+          audio
+            .play()
+            .then(() => setIsMusicPlaying(true))
+            .catch(() => {});
+        }
+      }
+    };
+
+    const handlePageHide = () => {
+      const audio = audioRef.current;
+      if (audio && !audio.paused) {
+        audio.pause();
+        setIsMusicPlaying(false);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("pagehide", handlePageHide);
+    window.addEventListener("blur", handleVisibilityChange);
+    window.addEventListener("focus", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("pagehide", handlePageHide);
+      window.removeEventListener("blur", handleVisibilityChange);
+      window.removeEventListener("focus", handleVisibilityChange);
+    };
+  }, [musicEnabled]);
 
   const toggleMusic = () => {
     const audio = audioRef.current;

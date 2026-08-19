@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Music, Pause } from "lucide-react";
 import { motion } from "framer-motion";
 import { invitation } from "../data/invitation";
@@ -16,12 +16,46 @@ export default function MusicButton() {
 
     if (playing) {
       audioRef.current.pause();
+      setPlaying(false);
     } else {
-      audioRef.current.play();
+      audioRef.current.play().then(() => setPlaying(true)).catch(() => {});
     }
-
-    setPlaying(!playing);
   };
+
+  // Pause audio when tab is minimized or switched to another app, and resume when returning
+  React.useEffect(() => {
+    const handleVisibilityChange = () => {
+      const audio = audioRef.current;
+      if (!audio) return;
+
+      if (document.hidden) {
+        if (!audio.paused) {
+          audio.pause();
+        }
+      } else {
+        if (playing) {
+          audio.play().catch(() => {});
+        }
+      }
+    };
+
+    const handlePageHide = () => {
+      const audio = audioRef.current;
+      if (audio && !audio.paused) audio.pause();
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("pagehide", handlePageHide);
+    window.addEventListener("blur", handleVisibilityChange);
+    window.addEventListener("focus", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("pagehide", handlePageHide);
+      window.removeEventListener("blur", handleVisibilityChange);
+      window.removeEventListener("focus", handleVisibilityChange);
+    };
+  }, [playing]);
 
   return (
     <>

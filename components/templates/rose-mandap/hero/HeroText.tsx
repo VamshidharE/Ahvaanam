@@ -15,10 +15,20 @@ export default function HeroText() {
                 y: 0,
             };
 
+    const isBrideFirst = invitation.couple.primarySide === "bride";
+    const firstName = isBrideFirst ? invitation.couple.bride : invitation.couple.groom;
+    const secondName = isBrideFirst ? invitation.couple.groom : invitation.couple.bride;
+
     return (
         <div className="hero-text">
             <motion.p
                 className="hero-eyebrow"
+                style={{
+                    fontSize: "clamp(10px, 1.05vw, 12px)",
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    opacity: 0.85
+                }}
                 initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 12 }}
                 animate={reveal(0.35)}
                 transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
@@ -28,7 +38,13 @@ export default function HeroText() {
 
             <motion.p
                 className="hero-eyebrow"
-                style={{ marginTop: "4px", fontSize: "0.9em" }}
+                style={{ 
+                    marginTop: "3px", 
+                    fontSize: "clamp(10.5px, 1.15vw, 13px)",
+                    lineHeight: 1.4,
+                    letterSpacing: "0.04em",
+                    opacity: 0.9
+                }}
                 initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 12 }}
                 animate={reveal(0.45)}
                 transition={{ duration: 0.9, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
@@ -40,11 +56,11 @@ export default function HeroText() {
                 className="hero-family-title"
                 style={{
                     fontWeight: 700,
-                    margin: "6px 0 0",
+                    margin: "7px 0 0",
                     color: "var(--gold-dark)",
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                    fontSize: "clamp(13px, 1.8vw, 19px)",
+                    fontSize: "clamp(14px, 2vw, 20px)",
                     fontFamily: '"Cormorant Garamond", Georgia, serif'
                 }}
                 initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 12 }}
@@ -72,11 +88,11 @@ export default function HeroText() {
                     ease: [0.22, 1, 0.36, 1],
                 }}
             >
-                <span className="hero-name">{invitation.couple.groom}</span>
+                <span className="hero-name">{firstName}</span>
 
                 <span className="hero-ampersand">&amp;</span>
 
-                <span className="hero-name">{invitation.couple.bride}</span>
+                <span className="hero-name">{secondName}</span>
             </motion.div>
         </div>
     );

@@ -22,10 +22,21 @@ export default function ResetPasswordPage() {
 
     const initRecovery = async () => {
       try {
-        // 1. Check if there is a 'code' in the search params
         const params = new URLSearchParams(window.location.search);
         const code = params.get("code");
+        const token_hash = params.get("token_hash");
+        const type = params.get("type");
+        const urlError = params.get("error_description") || params.get("error");
 
+        if (urlError) {
+          if (mounted) {
+            setError(urlError);
+            setVerifyingSession(false);
+          }
+          return;
+        }
+
+        // 1. Exchange PKCE code if present in URL
         if (code) {
           const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
           if (exchangeError) {
@@ -33,23 +44,41 @@ export default function ResetPasswordPage() {
           }
         }
 
-        // 2. Check if a session exists
+        // 2. Verify token_hash if present in URL
+        if (token_hash) {
+          const { error: verifyError } = await supabase.auth.verifyOtp({
+            token_hash,
+            type: (type as any) || "recovery",
+          });
+          if (verifyError) {
+            console.error("Token verification error:", verifyError);
+          }
+        }
+
+        // 3. Check active session
         const { data: { session } } = await supabase.auth.getSession();
 
         if (mounted) {
-          if (!session && !code) {
-            setError("No active recovery session found. If your link expired, please request a new one.");
+          if (session) {
+            setError(null);
+          } else if (!code && !token_hash) {
+            // Check hash fragment (implicit flow)
+            const hash = window.location.hash;
+            if (!hash || !hash.includes("access_token")) {
+              setError("No active password reset session found. If your link expired, please request a new reset link.");
+            }
           }
           setVerifyingSession(false);
         }
-      } catch (err) {
+      } catch (err: any) {
         if (mounted) {
+          setError(err.message || "Failed to initialize secure reset session.");
           setVerifyingSession(false);
         }
       }
     };
 
-    // 3. Listen to auth state changes (e.g. PASSWORD_RECOVERY event)
+    // 4. Listen to auth state changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (mounted) {
         if (event === "PASSWORD_RECOVERY" || session) {

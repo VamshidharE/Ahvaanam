@@ -226,12 +226,54 @@ export default function LegacyOrchestrator({
 
   const handleOpenInvitation = () => {
     setIsOpen(true);
-    if (invitation.music?.enabled && audioRef.current) {
+    if (invitation.music?.enabled && audioRef.current && !document.hidden) {
       audioRef.current.play().then(() => {
         setPlayingMusic(true);
       }).catch(() => {});
     }
   };
+
+  // Pause audio when tab is minimized or switched to another app, and resume when returning
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      const audio = audioRef.current;
+      if (!audio) return;
+
+      if (document.hidden) {
+        if (!audio.paused) {
+          audio.pause();
+          setPlayingMusic(false);
+        }
+      } else {
+        if (isOpen && invitation.music?.enabled) {
+          audio
+            .play()
+            .then(() => setPlayingMusic(true))
+            .catch(() => {});
+        }
+      }
+    };
+
+    const handlePageHide = () => {
+      const audio = audioRef.current;
+      if (audio && !audio.paused) {
+        audio.pause();
+        setPlayingMusic(false);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("pagehide", handlePageHide);
+    window.addEventListener("blur", handleVisibilityChange);
+    window.addEventListener("focus", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("pagehide", handlePageHide);
+      window.removeEventListener("blur", handleVisibilityChange);
+      window.removeEventListener("focus", handleVisibilityChange);
+    };
+  }, [isOpen, invitation?.music?.enabled]);
 
   const handleNavigation = (sectionId: string) => {
     setActiveSection(sectionId);

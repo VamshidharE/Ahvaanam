@@ -20,26 +20,47 @@ export function getAdminDb(): SupabaseClient {
 }
 
 // 1. GET ALL INVITATION PROFILES
-export async function getInvitations(supabaseClient?: SupabaseClient | null, userId?: string | null, isAdmin: boolean = false) {
+export async function getInvitations(
+  supabaseClient?: SupabaseClient | null, 
+  userId?: string | null, 
+  userEmail?: string | null,
+  isAdmin: boolean = false
+) {
   const client = supabaseClient || supabase;
   if (!client) throw new Error("Database client not initialized");
 
-  let query = client
+  const { data, error } = await client
     .from("invitations")
     .select("id, config, status, payment_status, updated_at, user_id");
-  
-  if (!isAdmin && userId) {
-    query = query.eq("user_id", userId);
-  }
-
-  const { data, error } = await query;
   
   if (error) {
     console.error("Supabase Error fetching list:", error);
     throw error;
   }
 
-  return (data || []).map((row: any) => {
+  const normalizedUserEmail = (userEmail || "").toLowerCase().trim();
+
+  // If not admin, filter to only invitations owned by userId or matching clientEmail
+  const filteredData = (data || []).filter((row: any) => {
+    if (isAdmin) return true;
+    if (userId && row.user_id === userId) return true;
+
+    const json = row.config || {};
+    const inner = (json.config || json) as any;
+    const assignedEmail = (json.clientEmail || inner.clientEmail || "").toLowerCase().trim();
+
+    if (normalizedUserEmail && assignedEmail === normalizedUserEmail) {
+      // Auto-link user_id if not currently set
+      if (userId && row.user_id !== userId) {
+        client.from("invitations").update({ user_id: userId }).eq("id", row.id).then(() => {}, () => {});
+      }
+      return true;
+    }
+
+    return false;
+  });
+
+  return filteredData.map((row: any) => {
     const json = row.config;
     const isWrapped = json && typeof json === "object" && "category" in json && "config" in json;
     const innerConfig = isWrapped ? (json.config || {}) : (json || {});
@@ -68,6 +89,8 @@ export async function getInvitations(supabaseClient?: SupabaseClient | null, use
       status: row.status || "draft",
       payment_status: row.payment_status || "pending",
       updatedAt: row.updated_at || "",
+      clientEmail: innerConfig.clientEmail || json.clientEmail || "",
+      user_id: row.user_id || "",
     };
   });
 }

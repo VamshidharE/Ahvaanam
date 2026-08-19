@@ -17,6 +17,11 @@ export interface RoseMandapData {
   couple: {
     bride: string;
     groom: string;
+    primarySide: "groom" | "bride";
+    groomImage?: string;
+    brideImage?: string;
+    groomBio?: string;
+    brideBio?: string;
   };
   introduction: {
     mantra: string;
@@ -40,6 +45,8 @@ export interface RoseMandapData {
     groomParents: string;
     brideFamily: Array<{ relation?: string; name: string }>;
     groomFamily: Array<{ relation?: string; name: string }>;
+    groomPortrait?: string;
+    bridePortrait?: string;
   };
   events: Array<{
     title: string;
@@ -85,12 +92,20 @@ export function mapInvitationConfigToRoseMandap(rawConfig: any): RoseMandapData 
   const isWrapped = rawConfig && "category" in rawConfig && "config" in rawConfig;
   const config = isWrapped ? rawConfig.config : (rawConfig || {});
 
+  // Primary Side: "groom" (Groom first) vs "bride" (Bride first)
+  const primarySide = (config.couple?.primarySide || config.primarySide || "groom") === "bride" ? "bride" : "groom";
+
   // Groom & Bride Names - check for Ahvaanam generic placeholders
   const rawGroom = config.couple?.groom?.name || config.groom?.name || config.groom || "";
   const rawBride = config.couple?.bride?.name || config.bride?.name || config.bride || "";
 
   const groomName = isGenericPlaceholder(rawGroom, ["groom name", "host", "groom", ""]) ? "Aarav" : rawGroom;
   const brideName = isGenericPlaceholder(rawBride, ["bride name", "guest", "bride", ""]) ? "Ananya" : rawBride;
+
+  const groomImage = config.couple?.groom?.image || config.groom?.image || config.families?.groomPortrait || "";
+  const brideImage = config.couple?.bride?.image || config.bride?.image || config.families?.bridePortrait || "";
+  const groomBio = config.couple?.groom?.bio || "";
+  const brideBio = config.couple?.bride?.bio || "";
 
   // Introduction
   const rawMantra = config.hero?.welcomeMessage || "";
@@ -132,16 +147,20 @@ export function mapInvitationConfigToRoseMandap(rawConfig: any): RoseMandapData 
   const mapsLink = config.venue?.venues?.[0]?.mapsUrl || "https://www.google.com/maps/search/?api=1&query=The+Leela+Palace+Hyderabad";
   const mapsEmbedUrl = config.venue?.venues?.[0]?.embedUrl || "";
 
-  // Family Extraction
+  // Family Extraction (supports both families object and couple.groom.family / couple.bride.family)
   const familySectionTitle = config.families?.title || "Our Families";
 
   const rawGroomFamilyList: Array<any> = Array.isArray(config.families?.groomFamily)
     ? config.families.groomFamily.filter((m: any) => m && (m.name || m.relation))
-    : [];
+    : Array.isArray(config.couple?.groom?.family)
+      ? config.couple.groom.family.filter((m: any) => m && (m.name || m.relation))
+      : [];
 
   const rawBrideFamilyList: Array<any> = Array.isArray(config.families?.brideFamily)
     ? config.families.brideFamily.filter((m: any) => m && (m.name || m.relation))
-    : [];
+    : Array.isArray(config.couple?.bride?.family)
+      ? config.couple.bride.family.filter((m: any) => m && (m.name || m.relation))
+      : [];
 
   const groomFamily = rawGroomFamilyList.map((m: any) => ({
     relation: m.relation || "",
@@ -326,7 +345,12 @@ export function mapInvitationConfigToRoseMandap(rawConfig: any): RoseMandapData 
     },
     couple: {
       bride: brideName,
-      groom: groomName
+      groom: groomName,
+      primarySide,
+      groomImage,
+      brideImage,
+      groomBio,
+      brideBio
     },
     introduction: {
       mantra,
@@ -349,7 +373,9 @@ export function mapInvitationConfigToRoseMandap(rawConfig: any): RoseMandapData 
       brideParents,
       groomParents,
       brideFamily,
-      groomFamily
+      groomFamily,
+      groomPortrait: groomImage,
+      bridePortrait: brideImage
     },
     events: eventsList,
     story: {

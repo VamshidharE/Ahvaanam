@@ -3,6 +3,8 @@ import { createClient } from "@/utils/supabase/server";
 import { getInvitationById, saveInvitation, deleteInvitation, getAdminDb } from "@/lib/db";
 import { configUpdateSchema } from "@/lib/validation";
 
+import { isAdminUser } from "@/lib/auth/isAdmin";
+
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -60,6 +62,11 @@ export async function POST(
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  // Only admin is authorized to edit/save invitation configurations
+  if (!isAdminUser(user.email)) {
+    return NextResponse.json({ error: "Forbidden. Only administrators are authorized to edit configurations." }, { status: 403 });
+  }
+
   const { id } = await params;
 
   try {
@@ -70,17 +77,26 @@ export async function POST(
       return NextResponse.json({ error: "Invitation profile not found" }, { status: 404 });
     }
 
-    // 2. Ensure caller owns this invitation (or link if unassigned)
-    if (invite.user_id && invite.user_id !== user.id) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-    }
-
     const body = await request.json();
 
-    // 3. Perform save using the admin DB client (bypasses RLS restrictions)
+    // 2. Perform save using the admin DB client (bypasses RLS restrictions)
     const result = await saveInvitation(id, body, adminDb);
     if (!result.success) {
       return NextResponse.json({ error: result.error || "Failed to save configuration data" }, { status: 500 });
+    }
+
+    // 3. If clientEmail was updated, auto-sync target user ID in Supabase
+    const assignedClientEmail = (body.clientEmail || body.config?.clientEmail || "").toLowerCase().trim();
+    if (assignedClientEmail) {
+      try {
+        const { data: usersData } = await adminDb.auth.admin.listUsers();
+        const matchedUser = (usersData?.users || []).find(
+          (u) => u.email?.toLowerCase().trim() === assignedClientEmail
+        );
+        if (matchedUser) {
+          await adminDb.from("invitations").update({ user_id: matchedUser.id }).eq("id", id);
+        }
+      } catch {}
     }
 
     return new NextResponse(JSON.stringify({ success: true }), {
@@ -108,6 +124,11 @@ export async function DELETE(
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  // Only admin is authorized to delete invitation profiles
+  if (!isAdminUser(user.email)) {
+    return NextResponse.json({ error: "Forbidden. Only administrators are authorized to delete invitations." }, { status: 403 });
+  }
+
   const { id } = await params;
 
   try {
@@ -118,12 +139,7 @@ export async function DELETE(
       return NextResponse.json({ error: "Invitation profile not found" }, { status: 404 });
     }
 
-    // 2. Ensure caller owns this invitation
-    if (invite.user_id && invite.user_id !== user.id) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-    }
-
-    // 3. Perform delete using admin client
+    // 2. Perform delete using admin client
     await deleteInvitation(id, adminDb);
     return NextResponse.json({ success: true });
   } catch (error) {

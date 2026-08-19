@@ -3,6 +3,8 @@ import { createClient } from "@/utils/supabase/server";
 import { getInvitationById, getAdminDb } from "@/lib/db";
 import { slugSchema } from "@/lib/validation";
 
+import { isAdminUser } from "@/lib/auth/isAdmin";
+
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
@@ -27,16 +29,20 @@ export async function GET(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const invitation = await getInvitationById(id);
+    const adminDb = getAdminDb();
+    const invitation = await getInvitationById(id, adminDb);
     if (!invitation) {
       return NextResponse.json({ error: "Invitation not found" }, { status: 404 });
     }
 
-    if (invitation.user_id && invitation.user_id !== user.id) {
+    const isAdmin = isAdminUser(user.email);
+    const assignedClientEmail = (invitation.config?.clientEmail || (invitation.config as any)?.config?.clientEmail || "").toLowerCase().trim();
+    const currentEmail = (user.email || "").toLowerCase().trim();
+    const isOwner = invitation.user_id === user.id || (assignedClientEmail && assignedClientEmail === currentEmail);
+
+    if (!isAdmin && !isOwner) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
-
-    const adminDb = getAdminDb();
 
     // 3. Query views database data
     const { data: viewsData, error: viewsError } = await adminDb
@@ -81,13 +87,53 @@ export async function GET(
     })).sort((a, b) => a.date.localeCompare(b.date));
 
     // 6. Compute RSVP Metrics
-    const totalRsvps = rsvpsData.length;
-    const acceptedRsvps = rsvpsData.filter(r => r.attending).length;
-    const declinedRsvps = rsvpsData.filter(r => !r.attending).length;
-    const totalGuestsAttending = rsvpsData.reduce((acc, r) => acc + (r.attending ? (r.guest_count || 1) : 0), 0);
-    const lastRsvp = rsvpsData.length > 0
-      ? new Date(Math.max(...rsvpsData.map(r => new Date(r.created_at).getTime()))).toISOString()
+    let rsvpsList: any[] = rsvpsData || [];
+    if (rsvpsList.length === 0 && Array.isArray(invitation.config?._rsvps)) {
+      rsvpsList = invitation.config._rsvps.map((r: any) => ({
+        attending: r.attending,
+        guest_count: r.guestCount || r.guest_count || 1,
+        created_at: r.created_at
+      }));
+    }
+
+    const totalRsvps = rsvpsList.length;
+    const acceptedRsvps = rsvpsList.filter(r => r.attending === true).length;
+    const declinedRsvps = rsvpsList.filter(r => r.attending === false).length;
+    const totalGuestsAttending = rsvpsList
+      .filter(r => r.attending === true)
+      .reduce((sum, r) => sum + (Number(r.guest_count) || 1), 0);
+    const lastRsvp = rsvpsList.length > 0 
+      ? new Date(Math.max(...rsvpsList.map(r => new Date(r.created_at).getTime()))).toISOString() 
       : null;
+
+    // 7. Compute Feedback & Rating Metrics
+    let feedbacksList: any[] = [];
+    try {
+      const { data: tableData } = await adminDb
+        .from("invitation_feedbacks")
+        .select("*")
+        .eq("invitation_id", id)
+        .order("created_at", { ascending: false });
+
+      if (tableData && tableData.length > 0) {
+        feedbacksList = tableData.map(f => ({
+          id: f.id,
+          rating: f.rating,
+          feedback: f.feedback,
+          guestName: f.guest_name || f.guestName || "Guest",
+          created_at: f.created_at
+        }));
+      }
+    } catch {}
+
+    if (feedbacksList.length === 0 && Array.isArray(invitation.config?._feedbacks)) {
+      feedbacksList = invitation.config._feedbacks;
+    }
+
+    const totalRatings = feedbacksList.length;
+    const averageRating = totalRatings > 0
+      ? Number((feedbacksList.reduce((acc, f) => acc + (Number(f.rating) || 0), 0) / totalRatings).toFixed(1))
+      : 5.0;
 
     return NextResponse.json({
       success: true,
@@ -99,9 +145,12 @@ export async function GET(
         declinedRsvps,
         totalGuestsAttending,
         lastViewed,
-        lastRsvp
+        lastRsvp,
+        totalRatings,
+        averageRating
       },
-      viewsOverTime
+      viewsOverTime,
+      feedbacks: feedbacksList
     });
 
   } catch (error: any) {

@@ -34,13 +34,23 @@ export default function Couple() {
                         <OrnamentalDivider symbol="✦" />
 
                         <div className="mt-12 grid grid-cols-1 items-center gap-8 md:grid-cols-[1fr_auto_1fr]">
-                            <div className="text-center">
+                            {/* Card 1 (Groom if groom-first, Bride if bride-first) */}
+                            <div className="text-center flex flex-col items-center">
+                                {((invitation.couple.primarySide === "bride" ? invitation.couple.brideImage : invitation.couple.groomImage)) && (
+                                    <div className="mb-4 w-24 h-24 rounded-full overflow-hidden border-2 border-[#b8892d]/40 shadow-md">
+                                        <img 
+                                            src={invitation.couple.primarySide === "bride" ? invitation.couple.brideImage : invitation.couple.groomImage} 
+                                            alt={invitation.couple.primarySide === "bride" ? "Bride Portrait" : "Groom Portrait"} 
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                )}
                                 <p className="mb-2 font-serif text-sm uppercase tracking-[0.25em] text-[#8b6a32]">
-                                    The Groom
+                                    {invitation.couple.primarySide === "bride" ? "The Bride" : "The Groom"}
                                 </p>
 
                                 <h3 className="wedding-serif text-5xl font-medium text-[#76521b] md:text-6xl">
-                                    {invitation.couple.groom}
+                                    {invitation.couple.primarySide === "bride" ? invitation.couple.bride : invitation.couple.groom}
                                 </h3>
 
                                 <div className="mx-auto mt-5 h-px w-16 bg-[#b8892d]/50" />
@@ -54,13 +64,23 @@ export default function Couple() {
                                 </div>
                             </div>
 
-                            <div className="text-center">
+                            {/* Card 2 (Bride if groom-first, Groom if bride-first) */}
+                            <div className="text-center flex flex-col items-center">
+                                {((invitation.couple.primarySide === "bride" ? invitation.couple.groomImage : invitation.couple.brideImage)) && (
+                                    <div className="mb-4 w-24 h-24 rounded-full overflow-hidden border-2 border-[#b8892d]/40 shadow-md">
+                                        <img 
+                                            src={invitation.couple.primarySide === "bride" ? invitation.couple.groomImage : invitation.couple.brideImage} 
+                                            alt={invitation.couple.primarySide === "bride" ? "Groom Portrait" : "Bride Portrait"} 
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                )}
                                 <p className="mb-2 font-serif text-sm uppercase tracking-[0.25em] text-[#8b6a32]">
-                                    The Bride
+                                    {invitation.couple.primarySide === "bride" ? "The Groom" : "The Bride"}
                                 </p>
 
                                 <h3 className="wedding-serif text-5xl font-medium text-[#76521b] md:text-6xl">
-                                    {invitation.couple.bride}
+                                    {invitation.couple.primarySide === "bride" ? invitation.couple.groom : invitation.couple.bride}
                                 </h3>
 
                                 <div className="mx-auto mt-5 h-px w-16 bg-[#b8892d]/50" />

@@ -116,7 +116,7 @@ export async function GET() {
 
   try {
     const adminDb = getAdminDb();
-    const invites = await getInvitations(adminDb, user.id, isAdmin);
+    const invites = await getInvitations(adminDb, user.id, user.email, isAdmin);
     const inviteIds = invites.map(i => i.id);
     const rsvpStatsMap: Record<string, { accepted: number; declined: number; guestCount: number }> = {};
     const viewsCountMap: Record<string, number> = {};
@@ -300,8 +300,33 @@ export async function POST(request: Request) {
       finalConfig = wrapper;
     }
 
+    const clientEmail = (body.clientEmail || body.metadata?.clientEmail || "").toLowerCase().trim();
+    if (clientEmail) {
+      if (finalConfig.config) {
+        finalConfig.config.clientEmail = clientEmail;
+      }
+      finalConfig.clientEmail = clientEmail;
+    }
+
+    const adminDb = getAdminDb();
+    let targetUserId: string | null = null;
+
+    if (clientEmail) {
+      try {
+        const { data: usersData } = await adminDb.auth.admin.listUsers();
+        const matchedUser = (usersData?.users || []).find(
+          (u) => u.email?.toLowerCase().trim() === clientEmail
+        );
+        if (matchedUser) {
+          targetUserId = matchedUser.id;
+        }
+      } catch {
+        // Fallback: will link dynamically on user's first login
+      }
+    }
+
     // Save newly created invitation config via db helper with owner metadata
-    await createInvitation(slug, finalConfig, user.id, supabase);
+    await createInvitation(slug, finalConfig, targetUserId, adminDb);
     return NextResponse.json({ success: true, id: slug });
   } catch (error) {
     return NextResponse.json({ error: "Failed to create client invitation profile" }, { status: 500 });

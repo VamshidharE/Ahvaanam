@@ -33,7 +33,11 @@ export default function WeddingAnnouncement() {
                     <p className="story-copy">{invitation.story.text}</p>
                     <div className="story-signature">
                         <span>✦</span>
-                        <p>{invitation.couple.groom} &amp; {invitation.couple.bride}</p>
+                        <p>
+                            {invitation.couple.primarySide === "bride" 
+                                ? `${invitation.couple.bride} & ${invitation.couple.groom}` 
+                                : `${invitation.couple.groom} & ${invitation.couple.bride}`}
+                        </p>
                     </div>
                 </SectionReveal>
             </div>

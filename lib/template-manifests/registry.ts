@@ -21,22 +21,20 @@ const WEDDING_SECTIONS: TemplateSection[] = [
   },
   {
     id: "couple",
-    title: "Bride & Groom Details",
+    title: "Bride & Groom Details & Family",
     icon: "Heart",
     order: 2,
     enabled: true,
     editableFields: [
-      "couple.title",
+      "couple.primarySide",
       "couple.groom.name",
-      "couple.groom.parents",
-      "couple.groom.bio",
       "couple.groom.image",
+      "couple.groom.family",
       "couple.bride.name",
-      "couple.bride.parents",
-      "couple.bride.bio",
-      "couple.bride.image"
+      "couple.bride.image",
+      "couple.bride.family"
     ],
-    description: "Configures names, parents, and biography details of the couple."
+    description: "Configures side order, names, portraits, and family members of the Bride and Groom."
   },
   {
     id: "countdown",
@@ -54,12 +52,12 @@ const WEDDING_SECTIONS: TemplateSection[] = [
   },
   {
     id: "story",
-    title: "Love Story Timeline",
+    title: "Our Story",
     icon: "Palette",
     order: 4,
     enabled: true,
     editableFields: ["story.title", "story.timeline"],
-    description: "A chronological list of milestone events in the relationship."
+    description: "Configures our story heading, description, and milestones."
   },
   {
     id: "events",
@@ -89,19 +87,10 @@ const WEDDING_SECTIONS: TemplateSection[] = [
     description: "Traditional address text alongside embedded interactive maps."
   },
   {
-    id: "families",
-    title: "Warm Greetings / Families",
-    icon: "Heart",
-    order: 8,
-    enabled: true,
-    editableFields: ["families.title", "families.brideFamily", "families.groomFamily"],
-    description: "A dedicated greeting card showing members of both families."
-  },
-  {
     id: "rsvp",
     title: "Confirmation RSVP Info",
-    icon: "MapPin",
-    order: 9,
+    icon: "Phone",
+    order: 8,
     enabled: true,
     editableFields: ["rsvp.title", "rsvp.contacts"],
     description: "Interactive RSVP buttons and contact coordinates."
@@ -110,7 +99,7 @@ const WEDDING_SECTIONS: TemplateSection[] = [
     id: "footer",
     title: "Page Credits & Footer",
     icon: "Sliders",
-    order: 10,
+    order: 9,
     enabled: true,
     editableFields: ["footer.title", "footer.salutation", "footer.designer", "footer.creditText", "footer.location", "footer.contact"],
     description: "Closing family quote, designer credits, location, and contact information."
@@ -121,7 +110,7 @@ const WEDDING_SECTIONS: TemplateSection[] = [
 const WEDDING_NAVIGATION: TemplateNavigationItem[] = [
   {
     id: "general",
-    label: "General & Reorder",
+    label: "General Config",
     icon: "Sliders",
     sections: ["hero"]
   },
@@ -139,7 +128,7 @@ const WEDDING_NAVIGATION: TemplateNavigationItem[] = [
   },
   {
     id: "story",
-    label: "Love Story",
+    label: "Our Story",
     icon: "Palette",
     sections: ["story"]
   },
@@ -150,12 +139,6 @@ const WEDDING_NAVIGATION: TemplateNavigationItem[] = [
     sections: ["gallery"]
   },
   {
-    id: "families",
-    label: "Families",
-    icon: "Heart",
-    sections: ["families"]
-  },
-  {
     id: "venues",
     label: "Venues",
     icon: "MapPin",
@@ -163,13 +146,13 @@ const WEDDING_NAVIGATION: TemplateNavigationItem[] = [
   },
   {
     id: "rsvp",
-    label: "RSVP & Guestbook",
-    icon: "Sliders",
+    label: "RSVP & Contacts",
+    icon: "Phone",
     sections: ["rsvp"]
   },
   {
     id: "footer",
-    label: "Footer & Credits",
+    label: "Footer & Quote",
     icon: "Sliders",
     sections: ["footer"]
   }

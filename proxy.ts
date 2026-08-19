@@ -41,8 +41,9 @@ export async function proxy(request: NextRequest) {
     return redirectResponse;
   }
 
-  // 6. Handle /create paths for non-admin users (clients can only view dashboard/invites)
-  if (isCreateRoute && user && !isAdminUser(user.email)) {
+  // 6. Handle /create and /admin paths for non-admin users (clients can only view dashboard/invites)
+  const isAdminRoute = pathname === "/admin" || pathname.startsWith("/admin/");
+  if ((isCreateRoute || isAdminRoute) && user && !isAdminUser(user.email)) {
     const dashboardUrl = new URL("/dashboard", request.url);
     const redirectResponse = NextResponse.redirect(dashboardUrl);
     response.cookies.getAll().forEach((cookie) => {

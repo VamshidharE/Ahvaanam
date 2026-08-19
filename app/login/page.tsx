@@ -15,20 +15,31 @@ export default function LoginPage() {
 
   const supabase = createClient();
 
-  // Read the redirect query parameter from the URL if present
+  // Read the redirect query parameter and any auth callback errors from the URL if present
   useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
       const redirect = params.get("redirect");
+      const urlError = params.get("error_description") || params.get("error");
+      const message = params.get("message");
+
       if (redirect) {
         setRedirectPath(redirect);
+      }
+      if (urlError) {
+        setError(decodeURIComponent(urlError));
+      } else if (message) {
+        setError(decodeURIComponent(message));
       }
     }
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !password) {
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanPassword = password.trim();
+
+    if (!cleanEmail || !cleanPassword) {
       setError("Please fill in all fields.");
       return;
     }
@@ -38,8 +49,8 @@ export default function LoginPage() {
 
     try {
       const { error: signInError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+        email: cleanEmail,
+        password: cleanPassword,
       });
 
       if (signInError) {
@@ -49,7 +60,7 @@ export default function LoginPage() {
       // Successful login, redirect to the dashboard or original destination
       window.location.href = redirectPath;
     } catch (err: any) {
-      setError(err.message || "Invalid credentials. Try again.");
+      setError(err.message || "Invalid credentials. Please check your email and password.");
     } finally {
       setLoading(false);
     }

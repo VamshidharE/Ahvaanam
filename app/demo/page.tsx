@@ -57,11 +57,44 @@ export default function DemoInvitationPage() {
     if (!audio) return;
     if (isPlaying) {
       audio.pause();
+      setIsPlaying(false);
     } else {
-      audio.play().catch(() => {});
+      audio.play().then(() => setIsPlaying(true)).catch(() => {});
     }
-    setIsPlaying(!isPlaying);
   };
+
+  // Pause audio when tab is minimized or switched to another app, and resume when returning
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!audio) return;
+
+      if (document.hidden) {
+        if (!audio.paused) {
+          audio.pause();
+        }
+      } else {
+        if (isPlaying) {
+          audio.play().catch(() => {});
+        }
+      }
+    };
+
+    const handlePageHide = () => {
+      if (audio && !audio.paused) audio.pause();
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("pagehide", handlePageHide);
+    window.addEventListener("blur", handleVisibilityChange);
+    window.addEventListener("focus", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("pagehide", handlePageHide);
+      window.removeEventListener("blur", handleVisibilityChange);
+      window.removeEventListener("focus", handleVisibilityChange);
+    };
+  }, [audio, isPlaying]);
 
   return (
     <div className="min-h-screen bg-[#FAF6F0] text-[#2D2621] font-sans relative select-none overflow-x-hidden">
