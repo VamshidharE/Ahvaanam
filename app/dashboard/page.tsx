@@ -542,13 +542,6 @@ export default function ClientDashboard() {
                         }`}>
                           {profile.status === 'published' ? 'Published' : 'Draft'}
                         </span>
-                        <span className={`text-[8px] font-bold uppercase tracking-[0.5px] px-2 py-0.5 rounded-full border ${
-                          profile.payment_status === 'paid' 
-                            ? "bg-emerald-500/5 border-emerald-500/10 text-emerald-600" 
-                            : "bg-red-500/5 border-red-500/10 text-red-600"
-                        }`}>
-                          {profile.payment_status === 'paid' ? 'Paid' : 'Pending'}
-                        </span>
                       </div>
                       <span className="text-[9px] text-[#241E1C]/40 font-mono">/{profile.id}</span>
                     </div>
@@ -629,7 +622,7 @@ export default function ClientDashboard() {
                       >
                         <BarChart2 size={12} />
                       </button>
-                      {profile.status === "published" && profile.payment_status === "paid" && (
+                      {profile.status === "published" && (
                         <button
                           onClick={() => setShareProfile(profile)}
                           className="p-2 bg-amber-500/5 border border-amber-500/10 text-[#C49B27] hover:bg-[#C49B27] hover:text-white rounded-lg transition-all cursor-pointer"
@@ -657,18 +650,11 @@ export default function ClientDashboard() {
                           <Edit3 size={10} /> Edit
                         </a>
                       )}
-                      {profile.payment_status === 'pending' ? (
-                        <a
-                          href={`/checkout/${profile.id}`}
-                          className="px-2.5 py-1.5 bg-[#C49B27] hover:bg-[#B0871B] text-white rounded-lg text-[9px] font-bold uppercase tracking-[0.5px] transition-all flex items-center gap-1 shadow-sm cursor-pointer"
-                        >
-                          Pay Now
-                        </a>
-                      ) : profile.status !== 'published' ? (
+                      {profile.status !== 'published' ? (
                         <button
                           onClick={() => handlePublish(profile.id)}
                           disabled={publishingId === profile.id}
-                          className="px-2.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-[9px] font-bold uppercase tracking-[0.5px] transition-all flex items-center gap-1 shadow-sm cursor-pointer disabled:opacity-50"
+                          className="px-2.5 py-1.5 bg-[#C49B27] hover:bg-[#B0871B] text-white rounded-lg text-[9px] font-bold uppercase tracking-[0.5px] transition-all flex items-center gap-1 shadow-sm cursor-pointer disabled:opacity-50"
                         >
                           {publishingId === profile.id ? "Publishing..." : "Publish"}
                         </button>

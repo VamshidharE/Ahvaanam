@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
-import { getInvitationById, publishInvitation } from "@/lib/db";
+import { getInvitationById, getAdminDb } from "@/lib/db";
 import { slugSchema } from "@/lib/validation";
+import { isAdminUser } from "@/lib/auth/isAdmin";
 
 export async function POST(
   request: Request,
@@ -26,25 +27,34 @@ export async function POST(
   }
 
   try {
+    const adminDb = getAdminDb();
     // 1. Verify invitation existence and ownership
-    const invite = await getInvitationById(id);
+    const invite = await getInvitationById(id, adminDb);
     if (!invite) {
       return NextResponse.json({ error: "Invitation profile not found" }, { status: 404 });
     }
 
-    if (invite.user_id !== user.id) {
+    const isAdmin = isAdminUser(user.email);
+    const assignedClientEmail = (invite.config?.clientEmail || (invite.config as any)?.config?.clientEmail || "").toLowerCase().trim();
+    const currentEmail = (user.email || "").toLowerCase().trim();
+    const isOwner = invite.user_id === user.id || (assignedClientEmail && assignedClientEmail === currentEmail);
+
+    if (!isAdmin && !isOwner) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
-    // 2. Enforce payment checks before publishing
-    if (invite.payment_status !== "paid") {
-      return NextResponse.json({ error: "Payment Required" }, { status: 402 });
+    // 2. Mark as published directly using elevated DB client
+    const { error } = await adminDb
+      .from("invitations")
+      .update({ status: "published", payment_status: "paid" })
+      .eq("id", id);
+
+    if (error) {
+      return NextResponse.json({ error: error.message || "Failed to publish invitation" }, { status: 500 });
     }
 
-    // 3. Mark as published
-    await publishInvitation(id, supabase);
     return NextResponse.json({ success: true });
-  } catch (error) {
-    return NextResponse.json({ error: "Failed to publish invitation" }, { status: 500 });
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message || "Failed to publish invitation" }, { status: 500 });
   }
 }
