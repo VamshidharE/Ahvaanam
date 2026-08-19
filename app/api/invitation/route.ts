@@ -120,10 +120,12 @@ export async function GET() {
     const inviteIds = invites.map(i => i.id);
     const rsvpStatsMap: Record<string, { accepted: number; declined: number; guestCount: number }> = {};
     const viewsCountMap: Record<string, number> = {};
+    const feedbacksStatsMap: Record<string, { totalRatings: number; avgRating: number; feedbacks: any[] }> = {};
     
     inviteIds.forEach(id => {
       rsvpStatsMap[id] = { accepted: 0, declined: 0, guestCount: 0 };
       viewsCountMap[id] = 0;
+      feedbacksStatsMap[id] = { totalRatings: 0, avgRating: 0, feedbacks: [] };
     });
 
     if (inviteIds.length > 0) {
@@ -157,6 +159,47 @@ export async function GET() {
           viewsCountMap[id] += 1;
         }
       });
+
+      // 3. Fetch Feedbacks & Ratings from dedicated table (Admin Only)
+      if (isAdmin) {
+        try {
+          const { data: fbData } = await adminDb
+            .from("invitation_feedbacks")
+            .select("invitation_id, rating, feedback, guest_name, created_at")
+            .in("invitation_id", inviteIds)
+            .order("created_at", { ascending: false });
+
+          (fbData || []).forEach(f => {
+            const id = f.invitation_id;
+            if (feedbacksStatsMap[id]) {
+              feedbacksStatsMap[id].feedbacks.push({
+                rating: f.rating,
+                feedback: f.feedback,
+                guestName: f.guest_name,
+                created_at: f.created_at
+              });
+            }
+          });
+        } catch {
+          // Table fallback handled below
+        }
+      }
+    }
+
+    if (isAdmin) {
+      // Merge with JSON config fallback if table was empty
+      invites.forEach((inv: any) => {
+        if (feedbacksStatsMap[inv.id]?.feedbacks.length === 0 && Array.isArray(inv.config?._feedbacks)) {
+          feedbacksStatsMap[inv.id].feedbacks = inv.config._feedbacks;
+        }
+        const list = feedbacksStatsMap[inv.id]?.feedbacks || [];
+        const total = list.length;
+        const avg = total > 0
+          ? Number((list.reduce((acc, x) => acc + (Number(x.rating) || 0), 0) / total).toFixed(1))
+          : 0;
+        feedbacksStatsMap[inv.id].totalRatings = total;
+        feedbacksStatsMap[inv.id].avgRating = avg;
+      });
     }
 
     const payload = invites.map(i => ({
@@ -165,7 +208,12 @@ export async function GET() {
       declinedCount: rsvpStatsMap[i.id]?.declined || 0,
       pendingCount: 0,
       guestCount: rsvpStatsMap[i.id]?.guestCount || 0,
-      viewsCount: viewsCountMap[i.id] || 0
+      viewsCount: viewsCountMap[i.id] || 0,
+      ...(isAdmin ? {
+        ratingCount: feedbacksStatsMap[i.id]?.totalRatings || 0,
+        avgRating: feedbacksStatsMap[i.id]?.avgRating || 0,
+        feedbacks: feedbacksStatsMap[i.id]?.feedbacks || []
+      } : {})
     }));
 
     return NextResponse.json(payload);

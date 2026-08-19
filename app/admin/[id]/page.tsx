@@ -359,6 +359,11 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
             <p className="text-slate-500 text-xs leading-relaxed max-w-xs mx-auto">
               You do not have permission to manage this invitation, or the requested URL does not exist.
             </p>
+            {error && (
+              <p className="text-red-500/80 text-[10px] font-mono bg-red-50/50 border border-red-500/10 p-2 rounded-lg max-w-xs mx-auto break-all">
+                {error}
+              </p>
+            )}
           </div>
 
           <Link

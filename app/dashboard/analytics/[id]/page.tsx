@@ -6,6 +6,7 @@ import {
   ArrowLeft, AlertCircle, TrendingUp, Sparkles, Loader2, Star, MessageSquare
 } from "lucide-react";
 import { createClient } from "@/utils/supabase/client";
+import { isAdminUser } from "@/lib/auth/isAdmin";
 
 interface FeedbackItem {
   id: string;
@@ -42,6 +43,7 @@ export default function AnalyticsDashboard({ params }: { params: Promise<{ id: s
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const supabase = createClient();
 
@@ -49,6 +51,7 @@ export default function AnalyticsDashboard({ params }: { params: Promise<{ id: s
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (user) {
         setUserEmail(user.email || null);
+        setIsAdmin(isAdminUser(user.email));
       }
     });
 
@@ -69,6 +72,9 @@ export default function AnalyticsDashboard({ params }: { params: Promise<{ id: s
       setStats(data.statistics);
       setChartData(data.viewsOverTime || []);
       setFeedbacks(data.feedbacks || []);
+      if (typeof data.isAdmin === "boolean") {
+        setIsAdmin(data.isAdmin);
+      }
     } catch (err: any) {
       setError(err.message || "An unexpected error occurred while fetching analytics.");
     } finally {
@@ -287,78 +293,80 @@ export default function AnalyticsDashboard({ params }: { params: Promise<{ id: s
               </div>
             </div>
 
-            {/* --- GUEST RATINGS & FEEDBACK SECTION --- */}
-            <div className="bg-white border border-amber-500/10 p-6 rounded-3xl shadow-sm space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-100 pb-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-3 bg-amber-500/10 text-[#C49B27] rounded-2xl border border-amber-500/20">
-                    <Star size={20} fill="#C49B27" />
+            {/* --- GUEST RATINGS & FEEDBACK SECTION (ADMIN ONLY) --- */}
+            {isAdmin && (
+              <div className="bg-white border border-amber-500/10 p-6 rounded-3xl shadow-sm space-y-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-100 pb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 bg-amber-500/10 text-[#C49B27] rounded-2xl border border-amber-500/20">
+                      <Star size={20} fill="#C49B27" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold uppercase tracking-[1.5px] text-[#241E1C]">Guest Ratings &amp; Feedback</h3>
+                      <p className="text-[10px] text-slate-400 font-medium">Ratings and wishes submitted by guests via the invitation footer</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-sm font-bold uppercase tracking-[1.5px] text-[#241E1C]">Guest Ratings &amp; Feedback</h3>
-                    <p className="text-[10px] text-slate-400 font-medium">Ratings and wishes submitted by guests via the invitation footer</p>
+
+                  <div className="flex items-center gap-4 bg-amber-500/5 px-4 py-2.5 rounded-2xl border border-amber-500/15">
+                    <div className="text-right">
+                      <span className="text-[9px] uppercase font-bold text-slate-400 block">Average Rating</span>
+                      <span className="text-lg font-bold text-[#C49B27] font-mono">{stats.averageRating || 5.0} / 5.0</span>
+                    </div>
+                    <div className="flex text-[#C49B27]">
+                      {[1, 2, 3, 4, 5].map((s) => (
+                        <Star
+                          key={s}
+                          size={16}
+                          fill={s <= Math.round(stats.averageRating || 5) ? "#C49B27" : "transparent"}
+                          color="#C49B27"
+                        />
+                      ))}
+                    </div>
+                    <span className="text-[10px] text-slate-500 font-semibold font-mono">({stats.totalRatings || feedbacks.length} total)</span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 bg-amber-500/5 px-4 py-2.5 rounded-2xl border border-amber-500/15">
-                  <div className="text-right">
-                    <span className="text-[9px] uppercase font-bold text-slate-400 block">Average Rating</span>
-                    <span className="text-lg font-bold text-[#C49B27] font-mono">{stats.averageRating || 5.0} / 5.0</span>
+                {feedbacks.length === 0 ? (
+                  <div className="py-12 flex flex-col items-center justify-center border border-dashed border-zinc-200 rounded-2xl bg-zinc-50/50 text-center p-6">
+                    <MessageSquare size={28} className="text-zinc-300 mb-2 animate-pulse" />
+                    <h4 className="text-xs font-bold text-[#241E1C]/60 uppercase tracking-[0.5px]">No Feedback Submitted Yet</h4>
+                    <p className="text-[10px] text-slate-450 mt-1 max-w-[260px]">
+                      When guests view your invitation and submit star ratings or written messages in the footer, they will appear here in real-time.
+                    </p>
                   </div>
-                  <div className="flex text-[#C49B27]">
-                    {[1, 2, 3, 4, 5].map((s) => (
-                      <Star
-                        key={s}
-                        size={16}
-                        fill={s <= Math.round(stats.averageRating || 5) ? "#C49B27" : "transparent"}
-                        color="#C49B27"
-                      />
+                ) : (
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {feedbacks.map((fb) => (
+                      <div key={fb.id} className="bg-[#FAF9F6] border border-zinc-200/70 p-4 rounded-2xl space-y-2.5 flex flex-col justify-between">
+                        <div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-bold text-[#241E1C]">{fb.guestName || "Guest"}</span>
+                            <div className="flex text-[#C49B27]">
+                              {[1, 2, 3, 4, 5].map((s) => (
+                                <Star
+                                  key={s}
+                                  size={12}
+                                  fill={s <= fb.rating ? "#C49B27" : "transparent"}
+                                  color="#C49B27"
+                                />
+                              ))}
+                            </div>
+                          </div>
+                          {fb.feedback && (
+                            <p className="text-xs text-[#241E1C]/80 mt-2 font-serif italic bg-white p-2.5 rounded-xl border border-zinc-200/50">
+                              &ldquo;{fb.feedback}&rdquo;
+                            </p>
+                          )}
+                        </div>
+                        <span className="text-[9px] text-slate-400 font-mono self-end">
+                          {new Date(fb.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit" })}
+                        </span>
+                      </div>
                     ))}
                   </div>
-                  <span className="text-[10px] text-slate-500 font-semibold font-mono">({stats.totalRatings || feedbacks.length} total)</span>
-                </div>
+                )}
               </div>
-
-              {feedbacks.length === 0 ? (
-                <div className="py-12 flex flex-col items-center justify-center border border-dashed border-zinc-200 rounded-2xl bg-zinc-50/50 text-center p-6">
-                  <MessageSquare size={28} className="text-zinc-300 mb-2 animate-pulse" />
-                  <h4 className="text-xs font-bold text-[#241E1C]/60 uppercase tracking-[0.5px]">No Feedback Submitted Yet</h4>
-                  <p className="text-[10px] text-slate-450 mt-1 max-w-[260px]">
-                    When guests view your invitation and submit star ratings or written messages in the footer, they will appear here in real-time.
-                  </p>
-                </div>
-              ) : (
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {feedbacks.map((fb) => (
-                    <div key={fb.id} className="bg-[#FAF9F6] border border-zinc-200/70 p-4 rounded-2xl space-y-2.5 flex flex-col justify-between">
-                      <div>
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs font-bold text-[#241E1C]">{fb.guestName || "Guest"}</span>
-                          <div className="flex text-[#C49B27]">
-                            {[1, 2, 3, 4, 5].map((s) => (
-                              <Star
-                                key={s}
-                                size={12}
-                                fill={s <= fb.rating ? "#C49B27" : "transparent"}
-                                color="#C49B27"
-                              />
-                            ))}
-                          </div>
-                        </div>
-                        {fb.feedback && (
-                          <p className="text-xs text-[#241E1C]/80 mt-2 font-serif italic bg-white p-2.5 rounded-xl border border-zinc-200/50">
-                            &ldquo;{fb.feedback}&rdquo;
-                          </p>
-                        )}
-                      </div>
-                      <span className="text-[9px] text-slate-400 font-mono self-end">
-                        {new Date(fb.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit" })}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+            )}
           </div>
         ) : null}
 

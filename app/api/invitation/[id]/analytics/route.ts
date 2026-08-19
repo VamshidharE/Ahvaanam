@@ -106,37 +106,43 @@ export async function GET(
       ? new Date(Math.max(...rsvpsList.map(r => new Date(r.created_at).getTime()))).toISOString() 
       : null;
 
-    // 7. Compute Feedback & Rating Metrics
+    // 7. Compute Feedback & Rating Metrics (Admin Only)
     let feedbacksList: any[] = [];
-    try {
-      const { data: tableData } = await adminDb
-        .from("invitation_feedbacks")
-        .select("*")
-        .eq("invitation_id", id)
-        .order("created_at", { ascending: false });
+    let totalRatings = 0;
+    let averageRating = 0;
 
-      if (tableData && tableData.length > 0) {
-        feedbacksList = tableData.map(f => ({
-          id: f.id,
-          rating: f.rating,
-          feedback: f.feedback,
-          guestName: f.guest_name || f.guestName || "Guest",
-          created_at: f.created_at
-        }));
+    if (isAdmin) {
+      try {
+        const { data: tableData } = await adminDb
+          .from("invitation_feedbacks")
+          .select("*")
+          .eq("invitation_id", id)
+          .order("created_at", { ascending: false });
+
+        if (tableData && tableData.length > 0) {
+          feedbacksList = tableData.map(f => ({
+            id: f.id,
+            rating: f.rating,
+            feedback: f.feedback,
+            guestName: f.guest_name || f.guestName || "Guest",
+            created_at: f.created_at
+          }));
+        }
+      } catch {}
+
+      if (feedbacksList.length === 0 && Array.isArray(invitation.config?._feedbacks)) {
+        feedbacksList = invitation.config._feedbacks;
       }
-    } catch {}
 
-    if (feedbacksList.length === 0 && Array.isArray(invitation.config?._feedbacks)) {
-      feedbacksList = invitation.config._feedbacks;
+      totalRatings = feedbacksList.length;
+      averageRating = totalRatings > 0
+        ? Number((feedbacksList.reduce((acc, f) => acc + (Number(f.rating) || 0), 0) / totalRatings).toFixed(1))
+        : 5.0;
     }
-
-    const totalRatings = feedbacksList.length;
-    const averageRating = totalRatings > 0
-      ? Number((feedbacksList.reduce((acc, f) => acc + (Number(f.rating) || 0), 0) / totalRatings).toFixed(1))
-      : 5.0;
 
     return NextResponse.json({
       success: true,
+      isAdmin,
       statistics: {
         totalViews,
         uniqueVisitors,
@@ -146,11 +152,10 @@ export async function GET(
         totalGuestsAttending,
         lastViewed,
         lastRsvp,
-        totalRatings,
-        averageRating
+        ...(isAdmin ? { totalRatings, averageRating } : {})
       },
       viewsOverTime,
-      feedbacks: feedbacksList
+      feedbacks: isAdmin ? feedbacksList : []
     });
 
   } catch (error: any) {

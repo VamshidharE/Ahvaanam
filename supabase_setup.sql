@@ -130,3 +130,59 @@ GRANT ALL ON TABLE public.invitation_views TO service_role;
 GRANT SELECT, INSERT ON TABLE public.invitation_views TO anon;
 GRANT SELECT, INSERT ON TABLE public.invitation_views TO authenticated;
 ALTER TABLE public.invitation_views ENABLE ROW LEVEL SECURITY;
+
+-- ==========================================
+-- 13. Create the invitation_feedbacks table for Guest Ratings & Reviews
+-- ==========================================
+create table if not exists invitation_feedbacks (
+  id uuid primary key default gen_random_uuid(),
+  invitation_id text not null references invitations(id) on delete cascade,
+  rating integer not null default 5 check (rating >= 1 and rating <= 5),
+  feedback text,
+  guest_name text default 'Guest',
+  created_at timestamptz not null default now()
+);
+
+create index if not exists idx_feedbacks_invitation_id
+on invitation_feedbacks(invitation_id);
+
+create index if not exists idx_feedbacks_created_at
+on invitation_feedbacks(invitation_id, created_at desc);
+
+-- Enable RLS
+alter table invitation_feedbacks enable row level security;
+
+-- Policies
+create policy "Allow anyone to insert ratings and feedback" on invitation_feedbacks
+  for insert with check (true);
+
+create policy "Allow owners and admins to read ratings" on invitation_feedbacks
+  for select to authenticated
+  using (
+    exists (
+      select 1 from invitations
+      where invitations.id = invitation_feedbacks.invitation_id
+      and (invitations.user_id = auth.uid() or auth.jwt()->>'email' = 'vamshidhar073@gmail.com')
+    )
+  );
+
+create policy "No feedback updates" on invitation_feedbacks
+  for update using (false);
+
+create policy "No feedback deletes except owner" on invitation_feedbacks
+  for delete to authenticated
+  using (
+    exists (
+      select 1 from invitations
+      where invitations.id = invitation_feedbacks.invitation_id
+      and (invitations.user_id = auth.uid() or auth.jwt()->>'email' = 'vamshidhar073@gmail.com')
+    )
+  );
+
+-- Grants
+GRANT ALL ON TABLE public.invitation_feedbacks TO postgres;
+GRANT ALL ON TABLE public.invitation_feedbacks TO service_role;
+GRANT SELECT, INSERT ON TABLE public.invitation_feedbacks TO anon;
+GRANT SELECT, INSERT, DELETE ON TABLE public.invitation_feedbacks TO authenticated;
+ALTER TABLE public.invitation_feedbacks ENABLE ROW LEVEL SECURITY;
+

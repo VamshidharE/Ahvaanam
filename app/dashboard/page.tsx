@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { 
   Palette, Heart, Calendar, Plus, Trash2, Edit3, 
-  ExternalLink, Sparkles, CheckCircle, AlertCircle, Share2, Download, Copy, LogOut, Users, BarChart2, MessageCircle, Image as ImageIcon
+  ExternalLink, Sparkles, CheckCircle, AlertCircle, Share2, Download, Copy, LogOut, Users, BarChart2, MessageCircle, Image as ImageIcon, Star
 } from "lucide-react";
 import { createClient } from "@/utils/supabase/client";
 import { isAdminUser } from "@/lib/auth/isAdmin";
@@ -23,12 +23,16 @@ interface ClientProfile {
   pendingCount?: number;
   guestCount?: number;
   viewsCount?: number;
+  ratingCount?: number;
+  avgRating?: number;
+  feedbacks?: any[];
 }
 
 export default function ClientDashboard() {
   const [profiles, setProfiles] = useState<ClientProfile[]>([]);
   const [loading, setLoading] = useState(true);
   const [shareProfile, setShareProfile] = useState<ClientProfile | null>(null);
+  const [ratingsProfile, setRatingsProfile] = useState<ClientProfile | null>(null);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [publishingId, setPublishingId] = useState<string | null>(null);
@@ -442,7 +446,7 @@ export default function ClientDashboard() {
         </div>
 
         {/* Analytics Summary */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 animate-fadeIn">
+        <div className={`grid grid-cols-2 ${isAdmin ? "md:grid-cols-6" : "md:grid-cols-5"} gap-4 animate-fadeIn`}>
           <div className="bg-white border border-amber-500/10 p-5 rounded-3xl shadow-sm text-center">
             <span className="text-[9px] uppercase tracking-[1.5px] font-bold text-slate-400 block mb-1">
               {isAdmin ? "Total Invites" : "Your Invites"}
@@ -473,6 +477,20 @@ export default function ClientDashboard() {
               {profiles.reduce((acc, p) => acc + (p.viewsCount || 0), 0)}
             </span>
           </div>
+          {isAdmin && (
+            <div className="bg-white border border-amber-500/10 p-5 rounded-3xl shadow-sm text-center col-span-2 md:col-span-1">
+              <span className="text-[9px] uppercase tracking-[1.5px] font-bold text-slate-400 block mb-1">Avg Rating</span>
+              <span className="text-xl font-bold text-amber-600 font-mono flex items-center justify-center gap-1">
+                <Star size={15} fill="#C49B27" className="text-[#C49B27]" />
+                {(() => {
+                  const rated = profiles.filter(p => (p.ratingCount || 0) > 0);
+                  if (rated.length === 0) return "0.0";
+                  const sum = rated.reduce((acc, p) => acc + (p.avgRating || 0), 0);
+                  return (sum / rated.length).toFixed(1);
+                })()}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Active Projects Grid */}
@@ -554,7 +572,7 @@ export default function ClientDashboard() {
                         </p>
                       )}
 
-                      {/* RSVP & Views Stats on Card */}
+                      {/* RSVP, Views & Rating Stats on Card */}
                       <div className="flex flex-wrap gap-x-3 gap-y-1.5 mt-3 bg-zinc-50 border border-zinc-200/50 p-2.5 rounded-xl text-[9px] text-[#241E1C]/70 font-semibold font-sans">
                         <div>
                           <span className="text-[#C49B27] font-bold uppercase tracking-[0.5px]">👁 Views:</span> {profile.viewsCount || 0}
@@ -568,6 +586,11 @@ export default function ClientDashboard() {
                         <div>
                           <span className="text-red-500 font-bold uppercase tracking-[0.5px]">Declined:</span> {profile.declinedCount || 0}
                         </div>
+                        {isAdmin && (
+                          <div>
+                            <span className="text-amber-600 font-bold uppercase tracking-[0.5px]">⭐ Rating:</span> {profile.avgRating ? `${profile.avgRating}★ (${profile.ratingCount || 0})` : "0★ (0)"}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -590,6 +613,15 @@ export default function ClientDashboard() {
                       >
                         <Users size={12} />
                       </button>
+                      {isAdmin && (
+                        <button
+                          onClick={() => setRatingsProfile(profile)}
+                          className="p-2 bg-amber-500/5 border border-amber-500/20 text-[#C49B27] hover:bg-[#C49B27] hover:text-white rounded-lg transition-all cursor-pointer"
+                          title="View Ratings & Reviews"
+                        >
+                          <Star size={12} fill="#C49B27" />
+                        </button>
+                      )}
                       <button
                         onClick={() => window.location.href = `/dashboard/analytics/${profile.id}`}
                         className="p-2 bg-zinc-50 border border-zinc-200 text-[#C49B27] hover:bg-[#C49B27] hover:text-white rounded-lg transition-all cursor-pointer"
@@ -921,6 +953,106 @@ export default function ClientDashboard() {
                         ))}
                       </tbody>
                     </table>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* --- RATINGS & REVIEWS MODAL (ADMIN ONLY) --- */}
+      {isAdmin && ratingsProfile && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white border border-zinc-200 w-full max-w-3xl rounded-3xl overflow-hidden shadow-xl relative text-left flex flex-col max-h-[85vh] animate-fadeIn">
+            <div className="p-6 border-b border-zinc-100 flex items-center justify-between shrink-0">
+              <div>
+                <h3 className="text-sm font-bold flex items-center gap-2 text-[#241E1C] uppercase tracking-[0.5px]">
+                  <Star className="text-[#C49B27]" size={16} fill="#C49B27" /> Guest Ratings &amp; Reviews
+                </h3>
+                <p className="text-[9px] text-[#241E1C]/45 uppercase tracking-[1.5px] font-bold mt-1 font-mono">
+                  Feedback for {ratingsProfile.groom} &amp; {ratingsProfile.bride} (/{ratingsProfile.id})
+                </p>
+              </div>
+              <div className="flex items-center gap-3">
+                <a
+                  href={`/dashboard/analytics/${ratingsProfile.id}`}
+                  className="flex items-center gap-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-[#C49B27] px-3.5 py-1.5 rounded-xl text-[10px] font-bold uppercase tracking-[1px] transition-all cursor-pointer"
+                >
+                  <BarChart2 size={12} /> Full Analytics
+                </a>
+                <button
+                  onClick={() => setRatingsProfile(null)}
+                  className="text-[#241E1C]/40 hover:text-[#241E1C] text-sm cursor-pointer p-1 font-bold"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+
+            <div className="p-6 overflow-y-auto flex-1 space-y-6">
+              {/* Top Metric Header */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="bg-[#FAF9F6] border border-amber-500/15 p-4 rounded-2xl text-center">
+                  <span className="text-[8px] uppercase tracking-[1px] font-bold text-slate-400 block mb-0.5">Average Rating</span>
+                  <div className="flex items-center justify-center gap-1 text-xl font-bold text-[#C49B27] font-mono">
+                    <Star size={18} fill="#C49B27" />
+                    <span>{ratingsProfile.avgRating || "0.0"}</span>
+                    <span className="text-xs text-slate-400 font-sans">/ 5.0</span>
+                  </div>
+                </div>
+                <div className="bg-[#FAF9F6] border border-zinc-200/50 p-4 rounded-2xl text-center">
+                  <span className="text-[8px] uppercase tracking-[1px] font-bold text-slate-400 block mb-0.5">Total Ratings</span>
+                  <span className="text-xl font-bold text-[#241E1C] font-mono">{ratingsProfile.ratingCount || ratingsProfile.feedbacks?.length || 0}</span>
+                </div>
+                <div className="bg-[#FAF9F6] border border-zinc-200/50 p-4 rounded-2xl text-center col-span-2 md:col-span-1">
+                  <span className="text-[8px] uppercase tracking-[1px] font-bold text-slate-400 block mb-0.5">Reviews with Message</span>
+                  <span className="text-xl font-bold text-emerald-600 font-mono">
+                    {(ratingsProfile.feedbacks || []).filter((f: any) => f.feedback && f.feedback.trim()).length}
+                  </span>
+                </div>
+              </div>
+
+              {/* Feedback List */}
+              {!ratingsProfile.feedbacks || ratingsProfile.feedbacks.length === 0 ? (
+                <div className="text-center py-16 flex flex-col items-center justify-center border border-dashed border-zinc-200 rounded-3xl bg-zinc-50/50">
+                  <Star className="text-zinc-300 mb-3" size={36} />
+                  <h4 className="text-sm font-bold text-[#241E1C] uppercase tracking-[0.5px]">No Ratings Submitted Yet</h4>
+                  <p className="text-xs text-[#241E1C]/45 max-w-xs mt-1 leading-relaxed">
+                    When guests rate your invitation and leave wishes, their feedback and ratings will appear here in real-time.
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  <h4 className="text-[10px] font-bold uppercase tracking-[1.5px] text-[#241E1C]/60">
+                    All Feedback &amp; Guest Reviews ({ratingsProfile.feedbacks.length})
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {ratingsProfile.feedbacks.map((fb: any, idx: number) => (
+                      <div key={idx} className="p-4 bg-white border border-amber-500/10 hover:border-amber-500/30 rounded-2xl shadow-xs space-y-2.5 transition-all">
+                        <div className="flex items-center justify-between border-b border-zinc-100 pb-2">
+                          <span className="text-xs font-bold text-[#241E1C] truncate">{fb.guestName || "Guest"}</span>
+                          <div className="flex items-center gap-0.5">
+                            {[1, 2, 3, 4, 5].map((s) => (
+                              <Star
+                                key={s}
+                                size={12}
+                                fill={(fb.rating || 5) >= s ? "#C49B27" : "transparent"}
+                                className={(fb.rating || 5) >= s ? "text-[#C49B27]" : "text-zinc-200"}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                        <p className="text-xs text-[#241E1C]/80 italic leading-relaxed">
+                          {fb.feedback ? `“${fb.feedback}”` : <span className="text-zinc-300 not-italic text-[11px]">★ Rated {fb.rating || 5} stars without written comment.</span>}
+                        </p>
+                        {fb.created_at && (
+                          <p className="text-[9px] text-[#241E1C]/40 font-mono text-right">
+                            {new Date(fb.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit" })}
+                          </p>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}

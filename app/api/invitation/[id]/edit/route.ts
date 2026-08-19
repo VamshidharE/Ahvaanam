@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
 import { getInvitationById, getAdminDb } from "@/lib/db";
+import { isAdminUser } from "@/lib/auth/isAdmin";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -21,14 +22,20 @@ export async function GET(
   const { id } = await params;
 
   try {
-    const invite = await getInvitationById(id);
+    const adminDb = getAdminDb();
+    const invite = await getInvitationById(id, adminDb);
     if (!invite) {
       return NextResponse.json({ error: "Invitation profile not found" }, { status: 404 });
     }
 
     const { config, user_id, status, payment_status, updated_at } = invite;
 
-    if (user_id !== user.id) {
+    const isAdmin = isAdminUser(user.email);
+    const assignedClientEmail = (config?.clientEmail || (config as any)?.config?.clientEmail || "").toLowerCase().trim();
+    const currentEmail = (user.email || "").toLowerCase().trim();
+    const isOwner = user_id === user.id || (assignedClientEmail && assignedClientEmail === currentEmail);
+
+    if (!isAdmin && !isOwner) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
@@ -42,7 +49,13 @@ export async function GET(
       updated_at
     };
 
-    return NextResponse.json(responsePayload);
+    return new NextResponse(JSON.stringify(responsePayload), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "no-store, no-cache, must-revalidate",
+      },
+    });
   } catch (error: any) {
     if (error.message && error.message.includes("not found")) {
       return NextResponse.json({ error: "Invitation profile not found" }, { status: 404 });

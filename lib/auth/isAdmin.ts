@@ -10,5 +10,8 @@ export function isAdminUser(email?: string | null): boolean {
 
   // Allow primary configured admin email, or any admin defined via comma-separated list
   const allowedAdmins = adminEmail.split(",").map(e => e.trim());
-  return allowedAdmins.includes(currentEmail) || currentEmail === "vamshidhar.eligeti@gmail.com" || currentEmail === "admin@ahvaanam.com";
+  return allowedAdmins.includes(currentEmail) || 
+    currentEmail === "vamshidhar.eligeti@gmail.com" || 
+    currentEmail === "vamshidhar073@gmail.com" || 
+    currentEmail === "admin@ahvaanam.com";
 }
