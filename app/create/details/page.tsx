@@ -17,6 +17,7 @@ export default function DetailsInputPage() {
 
   // Dynamic form state
   const [formData, setFormData] = useState<Record<string, string>>({});
+  const [primarySide, setPrimarySide] = useState<"groom" | "bride">("groom");
   const [slug, setSlug] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
@@ -71,9 +72,11 @@ export default function DetailsInputPage() {
   useEffect(() => {
     let slugBase = "";
     if (groomVal && brideVal) {
-      slugBase = `${groomVal.trim()}-${brideVal.trim()}`;
+      slugBase = primarySide === "bride" ? `${brideVal.trim()}-${groomVal.trim()}` : `${groomVal.trim()}-${brideVal.trim()}`;
     } else if (groomVal) {
       slugBase = groomVal.trim();
+    } else if (brideVal) {
+      slugBase = brideVal.trim();
     }
 
     if (slugBase) {
@@ -85,7 +88,7 @@ export default function DetailsInputPage() {
     } else {
       setSlug("");
     }
-  }, [groomVal, brideVal]);
+  }, [groomVal, brideVal, primarySide]);
 
   const handleBuild = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -105,6 +108,7 @@ export default function DetailsInputPage() {
     const tempCollectedData = {
       category: selectedCategory,
       themeId: selectedTheme,
+      primarySide,
       formData: formData,
     };
     localStorage.setItem("pending_invitation_metadata", JSON.stringify(tempCollectedData));
@@ -118,6 +122,7 @@ export default function DetailsInputPage() {
           groom: groomPayload, 
           bride: bridePayload,
           surname: "",
+          primarySide,
           themeId: selectedTheme 
         }),
       });
@@ -216,6 +221,47 @@ export default function DetailsInputPage() {
         >
           <form onSubmit={handleBuild} className="space-y-6 text-left">
             
+            {/* Invitation Side & Name Order Selection */}
+            {(!selectedCategory || selectedCategory === "wedding") && (
+              <div className="bg-[#FAF9F6] p-4 border border-zinc-200 rounded-2xl flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <label className="text-[10px] uppercase font-bold text-[#241E1C]/80 tracking-[1.5px]">
+                    Whose Invitation Side is this?
+                  </label>
+                  <span className="text-[9px] text-[#C49B27] font-semibold">Name &amp; Family Order</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setPrimarySide("groom")}
+                    className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                      primarySide === "groom"
+                        ? "bg-[#C49B27] text-white shadow-sm font-extrabold"
+                        : "bg-white text-[#241E1C]/60 hover:bg-amber-50/50 border border-zinc-200"
+                    }`}
+                  >
+                    🤵 Groom's Side
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPrimarySide("bride")}
+                    className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                      primarySide === "bride"
+                        ? "bg-[#C49B27] text-white shadow-sm font-extrabold"
+                        : "bg-white text-[#241E1C]/60 hover:bg-amber-50/50 border border-zinc-200"
+                    }`}
+                  >
+                    👰 Bride's Side
+                  </button>
+                </div>
+                <p className="text-[9px] text-zinc-500">
+                  {primarySide === "groom"
+                    ? "Groom's name and family will appear first across the opening card, hero header, and invitation card."
+                    : "Bride's name and family will appear first across the opening card, hero header, and invitation card."}
+                </p>
+              </div>
+            )}
+
             {/* Dynamic Fields */}
             {fields.map((field) => {
               const isTextarea = field.type === "textarea";

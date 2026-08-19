@@ -9,6 +9,7 @@ export interface BaseSection {
 
 export interface HeroSection extends BaseSection {
   welcomeMessage: string;
+  mantra?: string;
   heroImage: string;
   heroVideo?: string;
   backgroundType: "gradient" | "image" | "video";
@@ -35,6 +36,7 @@ export interface CoupleSection extends BaseSection {
   primarySide?: "groom" | "bride";
   groom: {
     name: string;
+    surname?: string;
     parents: string;
     bio: string;
     image: string;
@@ -43,6 +45,7 @@ export interface CoupleSection extends BaseSection {
   };
   bride: {
     name: string;
+    surname?: string;
     parents: string;
     bio: string;
     image: string;
@@ -182,6 +185,8 @@ export interface WeddingInvitationConfig {
   sectionOrder: string[]; // e.g. ["hero", "couple", "countdown", "story", "events", "gallery", "venue", "families", "rsvp", "faq", "dressCode", "footer"]
   themeSettings: ThemeSettings;
   music: MusicSettings;
+  mantra?: string;
+  primarySide?: "groom" | "bride";
   hero: HeroSection;
   couple: CoupleSection;
   story: StorySection;

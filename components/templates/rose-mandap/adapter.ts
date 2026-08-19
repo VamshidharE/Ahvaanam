@@ -17,6 +17,8 @@ export interface RoseMandapData {
   couple: {
     bride: string;
     groom: string;
+    brideSurname?: string;
+    groomSurname?: string;
     primarySide: "groom" | "bride";
     groomImage?: string;
     brideImage?: string;
@@ -67,6 +69,8 @@ export interface RoseMandapData {
     time: string;
     venue: string;
     description: string;
+    image?: string;
+    icon?: string;
     enabled: boolean;
   }>;
   story: {
@@ -115,13 +119,16 @@ export function mapInvitationConfigToRoseMandap(rawConfig: any): RoseMandapData 
   const groomName = isGenericPlaceholder(rawGroom, ["groom name", "host", "groom", ""]) ? "Aarav" : rawGroom;
   const brideName = isGenericPlaceholder(rawBride, ["bride name", "guest", "bride", ""]) ? "Ananya" : rawBride;
 
+  const rawGroomSurname = config.couple?.groom?.surname || config.groom?.surname || "";
+  const rawBrideSurname = config.couple?.bride?.surname || config.bride?.surname || "";
+
   const groomImage = config.couple?.groom?.image || config.groom?.image || config.families?.groomPortrait || "";
   const brideImage = config.couple?.bride?.image || config.bride?.image || config.families?.bridePortrait || "";
   const groomBio = config.couple?.groom?.bio || "";
   const brideBio = config.couple?.bride?.bio || "";
 
   // Introduction
-  const rawMantra = config.hero?.welcomeMessage || "";
+  const rawMantra = config.hero?.welcomeMessage || config.hero?.mantra || config.mantra || "";
   const mantra = isGenericPlaceholder(rawMantra, ["|| shree ganeshaay namah ||", ""]) ? "ॐ श्री गणेशाय नमः ||" : rawMantra;
 
   const rawEyebrow = config.hero?.title || "";
@@ -132,10 +139,14 @@ export function mapInvitationConfigToRoseMandap(rawConfig: any): RoseMandapData 
     ? "invite you to celebrate the beginning of their beautiful journey together"
     : rawMessage;
 
-  const rawSurname = config.hero?.surname;
+  const rawSurname = (primarySide === "bride" ? (rawBrideSurname || config.hero?.surname) : (rawGroomSurname || config.hero?.surname)) || config.hero?.surname;
   const introFamilyTitle = rawSurname && rawSurname.toLowerCase() !== "reddy" && rawSurname.trim() !== ""
     ? `${rawSurname}'s Wedding Invitation`
-    : (config.hero?.subText && config.hero.subText !== "WEDDING INVITATION" ? config.hero.subText : "Ryagalla's Wedding Invitation");
+    : (config.hero?.subText && config.hero.subText !== "WEDDING INVITATION" 
+        ? config.hero.subText 
+        : (primarySide === "bride" 
+            ? (rawBrideSurname ? `${rawBrideSurname}'s Wedding Invitation` : `${brideName}'s Wedding Invitation`) 
+            : (rawGroomSurname ? `${rawGroomSurname}'s Wedding Invitation` : `${groomName}'s Wedding Invitation`)));
 
   // Wedding & Date
   const rawEvents = Array.isArray(config.events) ? config.events : [];
@@ -288,6 +299,8 @@ export function mapInvitationConfigToRoseMandap(rawConfig: any): RoseMandapData 
       time: e.time || weddingTime,
       venue: e.venue || venueName,
       description: e.description || "",
+      image: e.image || e.icon || "",
+      icon: e.icon || "",
       enabled: e.enabled !== false
     }));
   }
@@ -401,6 +414,8 @@ export function mapInvitationConfigToRoseMandap(rawConfig: any): RoseMandapData 
     couple: {
       bride: brideName,
       groom: groomName,
+      brideSurname: rawBrideSurname,
+      groomSurname: rawGroomSurname,
       primarySide,
       groomImage,
       brideImage,

@@ -1148,6 +1148,42 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
 
     return (
       <div className="space-y-6 text-left animate-fadeIn">
+        {/* --- AUSPICIOUS MANTRA & BLESSING CONFIG --- */}
+        <div className="card-minimal p-4 md:p-5 space-y-3">
+          <div className="flex items-center justify-between border-b border-zinc-100 pb-2">
+            <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/60">Auspicious Mantra / Header Text</h3>
+            <span className="text-[10px] text-[#C49B27] font-semibold">Top Blessing</span>
+          </div>
+          <div className="flex flex-col gap-1 w-full">
+            <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Opening Mantra / Devotional Text</label>
+            <input
+              type="text"
+              value={invitationData.hero?.welcomeMessage || invitationData.hero?.mantra || invitationData.mantra || ""}
+              onChange={(e) => updateInvitationData((prev: any) => {
+                const next = {
+                  ...prev,
+                  hero: {
+                    ...prev.hero,
+                    welcomeMessage: e.target.value,
+                    mantra: e.target.value
+                  },
+                  mantra: e.target.value
+                };
+                if (next.config) {
+                  next.config.hero = { ...(next.config.hero || {}), welcomeMessage: e.target.value, mantra: e.target.value };
+                  next.config.mantra = e.target.value;
+                }
+                return next;
+              })}
+              placeholder="e.g. ॐ श्री गणेशाय नमः ||"
+              className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-semibold"
+            />
+            <p className="text-[9px] text-zinc-500 mt-0.5">
+              Displays on the opening envelope card and header (e.g. ॐ श्री गणेशाय नमः ||, || श्री विघ्नेश्वराय नमः ||, Subhamasthu, etc.).
+            </p>
+          </div>
+        </div>
+
         {/* --- INVITATION SIDE & PRIMARY ORDER SWITCHER --- */}
         <div className="card-minimal p-4 md:p-5 space-y-3 bg-amber-500/5 border-amber-500/20">
           <div className="flex items-center justify-between">
@@ -1206,27 +1242,61 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
             <span className="text-[10px] text-[#C49B27] font-semibold">The Groom</span>
           </div>
 
-          <div className="flex flex-col gap-1 w-full">
-            <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Groom's Name</label>
-            <input
-              type="text"
-              value={groomData.name || ""}
-              onChange={(e) => updateInvitationData((prev: any) => {
-                const next = {
-                  ...prev,
-                  couple: {
-                    ...prev.couple,
-                    groom: { ...prev.couple?.groom, name: e.target.value }
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+            <div className="flex flex-col gap-1 w-full">
+              <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Groom's Name</label>
+              <input
+                type="text"
+                value={groomData.name || ""}
+                onChange={(e) => updateInvitationData((prev: any) => {
+                  const next = {
+                    ...prev,
+                    couple: {
+                      ...prev.couple,
+                      groom: { ...prev.couple?.groom, name: e.target.value }
+                    }
+                  };
+                  if (next.config) {
+                    next.config.couple = { ...(next.config.couple || {}), groom: { ...(next.config.couple?.groom || {}), name: e.target.value } };
                   }
-                };
-                if (next.config) {
-                  next.config.couple = { ...(next.config.couple || {}), groom: { ...(next.config.couple?.groom || {}), name: e.target.value } };
-                }
-                return next;
-              })}
-              placeholder="e.g. Aarav"
-              className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-semibold"
-            />
+                  return next;
+                })}
+                placeholder="e.g. Aarav"
+                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-semibold"
+              />
+            </div>
+
+            {/* Groom's Family Name / Surname */}
+            <div className="flex flex-col gap-1 w-full">
+              <div className="flex items-center justify-between">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Groom's Family Name / Surname</label>
+                <span className="text-[9px] text-[#C49B27] font-semibold">Surname</span>
+              </div>
+              <input
+                type="text"
+                value={groomData.surname || invitationData.hero?.surname || ""}
+                onChange={(e) => updateInvitationData((prev: any) => {
+                  const next = {
+                    ...prev,
+                    couple: {
+                      ...prev.couple,
+                      groom: { ...prev.couple?.groom, surname: e.target.value }
+                    },
+                    hero: {
+                      ...prev.hero,
+                      surname: e.target.value
+                    }
+                  };
+                  if (next.config) {
+                    next.config.couple = { ...(next.config.couple || {}), groom: { ...(next.config.couple?.groom || {}), surname: e.target.value } };
+                    next.config.hero = { ...(next.config.hero || {}), surname: e.target.value };
+                  }
+                  return next;
+                })}
+                placeholder="e.g. Ryagalla / Sharma"
+                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-semibold"
+              />
+            </div>
           </div>
 
           {/* Groom's Family Card Title */}
@@ -1294,8 +1364,8 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
                   }
                   return next;
                 })}
-                placeholder="Image URL or upload below"
-                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] flex-1 w-full font-mono text-[10px]"
+                placeholder="Image URL or upload below..."
+                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] flex-1 font-mono"
               />
               <FileUploader
                 onUploadSuccess={(url) => updateInvitationData((prev: any) => {
@@ -1321,121 +1391,134 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
             </div>
           </div>
 
-          {/* Groom's Family Details & Extra Members List */}
-          <div className="border-t border-zinc-100 pt-3 space-y-3">
-            <div className="flex justify-between items-center w-full">
-              <div>
-                <label className="text-[10px] uppercase font-bold text-[#241E1C]/60 tracking-[1px]">Groom's Family Members</label>
-                <p className="text-[9px] text-zinc-400">Add parents, siblings, grandparents, and relatives</p>
-              </div>
+          {/* Groom's Family Members list */}
+          <div className="flex flex-col gap-2 w-full border-t border-zinc-100 pt-3">
+            <div className="flex items-center justify-between">
+              <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Family Members / Greetings</label>
               <button
                 type="button"
                 onClick={() => {
-                  const newMember = { relation: "Parents", name: "" };
+                  const currentList = Array.isArray(groomData.family) ? [...groomData.family] : [];
+                  currentList.push({ relation: "", name: "" });
                   updateInvitationData((prev: any) => {
-                    const currentList = Array.isArray(prev.families?.groomFamily)
-                      ? [...prev.families.groomFamily]
-                      : Array.isArray(prev.couple?.groom?.family)
-                        ? [...prev.couple.groom.family]
-                        : [];
-                    const updated = [...currentList, newMember];
                     const next = {
                       ...prev,
-                      families: { ...prev.families, groomFamily: updated },
-                      couple: { ...prev.couple, groom: { ...prev.couple?.groom, family: updated } }
+                      couple: {
+                        ...prev.couple,
+                        groom: { ...prev.couple?.groom, family: currentList }
+                      },
+                      families: {
+                        ...prev.families,
+                        groomFamily: currentList
+                      }
                     };
                     if (next.config) {
-                      next.config.families = { ...(next.config.families || {}), groomFamily: updated };
-                      next.config.couple = { ...(next.config.couple || {}), groom: { ...(next.config.couple?.groom || {}), family: updated } };
+                      next.config.couple = { ...(next.config.couple || {}), groom: { ...(next.config.couple?.groom || {}), family: currentList } };
+                      next.config.families = { ...(next.config.families || {}), groomFamily: currentList };
                     }
                     return next;
                   });
                 }}
-                className="flex items-center gap-1 px-3 py-1.5 bg-[#C49B27] hover:bg-[#B0871B] text-white rounded-xl text-[10px] font-bold uppercase tracking-[0.5px] transition-colors cursor-pointer shadow-xs"
+                className="text-[9px] font-bold text-[#C49B27] uppercase tracking-[1px] hover:underline flex items-center gap-1 cursor-pointer"
               >
-                <Plus size={12} /> Add Member
+                <Plus size={10} /> Add Member
               </button>
             </div>
-
-            <div className="space-y-2">
-              {groomFamily.map((member: any, idx: number) => (
-                <div key={idx} className="flex items-center gap-2 bg-[#FAF9F6] p-2.5 rounded-xl border border-zinc-200/70">
-                  <input
-                    type="text"
-                    placeholder="Relation (e.g. Grandfather, Brother)"
-                    value={member.relation || ""}
-                    onChange={(e) => {
-                      updateInvitationData((prev: any) => {
-                        const currentList = [...(prev.families?.groomFamily || prev.couple?.groom?.family || [])];
+            
+            {Array.isArray(groomData.family) && groomData.family.length > 0 ? (
+              <div className="space-y-2">
+                {groomData.family.map((member: any, idx: number) => (
+                  <div key={idx} className="flex items-center gap-2 bg-[#FAF9F6] p-2 rounded-xl border border-zinc-200/70">
+                    <input
+                      type="text"
+                      placeholder="Relation (e.g. Father, Mother)"
+                      value={member.relation || ""}
+                      onChange={(e) => {
+                        const currentList = Array.isArray(groomData.family) ? [...groomData.family] : [];
                         currentList[idx] = { ...currentList[idx], relation: e.target.value };
-                        const next = {
-                          ...prev,
-                          families: { ...prev.families, groomFamily: currentList },
-                          couple: { ...prev.couple, groom: { ...prev.couple?.groom, family: currentList } }
-                        };
-                        if (next.config) {
-                          next.config.families = { ...(next.config.families || {}), groomFamily: currentList };
-                          next.config.couple = { ...(next.config.couple || {}), groom: { ...(next.config.couple?.groom || {}), family: currentList } };
-                        }
-                        return next;
-                      });
-                    }}
-                    className="bg-white border border-zinc-200 rounded-lg px-2.5 py-1.5 text-xs text-[#241E1C] outline-none w-1/3 font-medium focus:border-[#C49B27]"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Full Name"
-                    value={member.name || ""}
-                    onChange={(e) => {
-                      updateInvitationData((prev: any) => {
-                        const currentList = [...(prev.families?.groomFamily || prev.couple?.groom?.family || [])];
+                        updateInvitationData((prev: any) => {
+                          const next = {
+                            ...prev,
+                            couple: {
+                              ...prev.couple,
+                              groom: { ...prev.couple?.groom, family: currentList }
+                            },
+                            families: {
+                              ...prev.families,
+                              groomFamily: currentList
+                            }
+                          };
+                          if (next.config) {
+                            next.config.couple = { ...(next.config.couple || {}), groom: { ...(next.config.couple?.groom || {}), family: currentList } };
+                            next.config.families = { ...(next.config.families || {}), groomFamily: currentList };
+                          }
+                          return next;
+                        });
+                      }}
+                      className="bg-white border border-zinc-200 rounded-lg px-2.5 py-1 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-1/3"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Name (e.g. Sri Rajesh Sharma)"
+                      value={member.name || ""}
+                      onChange={(e) => {
+                        const currentList = Array.isArray(groomData.family) ? [...groomData.family] : [];
                         currentList[idx] = { ...currentList[idx], name: e.target.value };
-                        const next = {
-                          ...prev,
-                          families: { ...prev.families, groomFamily: currentList },
-                          couple: { ...prev.couple, groom: { ...prev.couple?.groom, family: currentList } }
-                        };
-                        if (next.config) {
-                          next.config.families = { ...(next.config.families || {}), groomFamily: currentList };
-                          next.config.couple = { ...(next.config.couple || {}), groom: { ...(next.config.couple?.groom || {}), family: currentList } };
-                        }
-                        return next;
-                      });
-                    }}
-                    className="bg-white border border-zinc-200 rounded-lg px-2.5 py-1.5 text-xs text-[#241E1C] outline-none flex-1 font-semibold focus:border-[#C49B27]"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => {
-                      updateInvitationData((prev: any) => {
-                        const currentList = [...(prev.families?.groomFamily || prev.couple?.groom?.family || [])];
-                        currentList.splice(idx, 1);
-                        const next = {
-                          ...prev,
-                          families: { ...prev.families, groomFamily: currentList },
-                          couple: { ...prev.couple, groom: { ...prev.couple?.groom, family: currentList } }
-                        };
-                        if (next.config) {
-                          next.config.families = { ...(next.config.families || {}), groomFamily: currentList };
-                          next.config.couple = { ...(next.config.couple || {}), groom: { ...(next.config.couple?.groom || {}), family: currentList } };
-                        }
-                        return next;
-                      });
-                    }}
-                    className="p-1.5 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
-                    title="Remove Member"
-                  >
-                    <Trash2 size={14} />
-                  </button>
-                </div>
-              ))}
-
-              {groomFamily.length === 0 && (
-                <p className="text-[10px] text-zinc-400 italic text-center py-2 bg-[#FAF9F6] rounded-xl border border-dashed border-zinc-200">
-                  No extra family members added yet. Click &quot;+ Add Member&quot; to add family members.
-                </p>
-              )}
-            </div>
+                        updateInvitationData((prev: any) => {
+                          const next = {
+                            ...prev,
+                            couple: {
+                              ...prev.couple,
+                              groom: { ...prev.couple?.groom, family: currentList }
+                            },
+                            families: {
+                              ...prev.families,
+                              groomFamily: currentList
+                            }
+                          };
+                          if (next.config) {
+                            next.config.couple = { ...(next.config.couple || {}), groom: { ...(next.config.couple?.groom || {}), family: currentList } };
+                            next.config.families = { ...(next.config.families || {}), groomFamily: currentList };
+                          }
+                          return next;
+                        });
+                      }}
+                      className="bg-white border border-zinc-200 rounded-lg px-2.5 py-1 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] flex-1 font-semibold"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const list = Array.isArray(groomData.family) ? groomData.family : [];
+                        const currentList = list.filter((_: any, i: number) => i !== idx);
+                        updateInvitationData((prev: any) => {
+                          const next = {
+                            ...prev,
+                            couple: {
+                              ...prev.couple,
+                              groom: { ...prev.couple?.groom, family: currentList }
+                            },
+                            families: {
+                              ...prev.families,
+                              groomFamily: currentList
+                            }
+                          };
+                          if (next.config) {
+                            next.config.couple = { ...(next.config.couple || {}), groom: { ...(next.config.couple?.groom || {}), family: currentList } };
+                            next.config.families = { ...(next.config.families || {}), groomFamily: currentList };
+                          }
+                          return next;
+                        });
+                      }}
+                      className="p-1 text-red-500 hover:text-red-700 transition-colors"
+                    >
+                      <Trash2 size={13} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-[9px] text-[#241E1C]/40 italic">No individual family members added. Parents line will be used.</p>
+            )}
           </div>
         </div>
 
@@ -1446,27 +1529,56 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
             <span className="text-[10px] text-[#C49B27] font-semibold">The Bride</span>
           </div>
 
-          <div className="flex flex-col gap-1 w-full">
-            <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Bride's Name</label>
-            <input
-              type="text"
-              value={brideData.name || ""}
-              onChange={(e) => updateInvitationData((prev: any) => {
-                const next = {
-                  ...prev,
-                  couple: {
-                    ...prev.couple,
-                    bride: { ...prev.couple?.bride, name: e.target.value }
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+            <div className="flex flex-col gap-1 w-full">
+              <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Bride's Name</label>
+              <input
+                type="text"
+                value={brideData.name || ""}
+                onChange={(e) => updateInvitationData((prev: any) => {
+                  const next = {
+                    ...prev,
+                    couple: {
+                      ...prev.couple,
+                      bride: { ...prev.couple?.bride, name: e.target.value }
+                    }
+                  };
+                  if (next.config) {
+                    next.config.couple = { ...(next.config.couple || {}), bride: { ...(next.config.couple?.bride || {}), name: e.target.value } };
                   }
-                };
-                if (next.config) {
-                  next.config.couple = { ...(next.config.couple || {}), bride: { ...(next.config.couple?.bride || {}), name: e.target.value } };
-                }
-                return next;
-              })}
-              placeholder="e.g. Ananya"
-              className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-semibold"
-            />
+                  return next;
+                })}
+                placeholder="e.g. Ananya"
+                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-semibold"
+              />
+            </div>
+
+            {/* Bride's Family Name / Surname */}
+            <div className="flex flex-col gap-1 w-full">
+              <div className="flex items-center justify-between">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Bride's Family Name / Surname</label>
+                <span className="text-[9px] text-[#C49B27] font-semibold">Surname</span>
+              </div>
+              <input
+                type="text"
+                value={brideData.surname || ""}
+                onChange={(e) => updateInvitationData((prev: any) => {
+                  const next = {
+                    ...prev,
+                    couple: {
+                      ...prev.couple,
+                      bride: { ...prev.couple?.bride, surname: e.target.value }
+                    }
+                  };
+                  if (next.config) {
+                    next.config.couple = { ...(next.config.couple || {}), bride: { ...(next.config.couple?.bride || {}), surname: e.target.value } };
+                  }
+                  return next;
+                })}
+                placeholder="e.g. Patel / Kothari"
+                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-semibold"
+              />
+            </div>
           </div>
 
           {/* Bride's Family Card Title */}
@@ -1534,8 +1646,8 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
                   }
                   return next;
                 })}
-                placeholder="Image URL or upload below"
-                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] flex-1 w-full font-mono text-[10px]"
+                placeholder="Image URL or upload below..."
+                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] flex-1 font-mono"
               />
               <FileUploader
                 onUploadSuccess={(url) => updateInvitationData((prev: any) => {
@@ -1725,20 +1837,58 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
             <Trash2 size={12} />
           </button>
 
-          <div className="flex flex-col gap-1 pr-6 w-full">
-            <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Event Title</label>
-            <input
-              type="text"
-              value={evt.title}
-              onChange={(e) => {
-                updateInvitationData((prev) => {
-                  const list = [...prev.events];
-                  list[index] = { ...list[index], title: e.target.value };
-                  return { ...prev, events: list };
-                });
-              }}
-              className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] font-bold w-full"
-            />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+            <div className="flex flex-col gap-1 w-full">
+              <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Event Title</label>
+              <input
+                type="text"
+                value={evt.title}
+                onChange={(e) => {
+                  updateInvitationData((prev) => {
+                    const list = [...prev.events];
+                    list[index] = { ...list[index], title: e.target.value };
+                    return { ...prev, events: list };
+                  });
+                }}
+                placeholder="e.g. Akshintalu / Haldi / Wedding"
+                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] font-bold w-full"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1 w-full">
+              <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Ceremony Icon / Theme</label>
+              <select
+                value={
+                  evt.image?.includes("akshintalu") ? "/wedding/events/akshintalu.png" :
+                  evt.image?.includes("haldi") ? "/wedding/events/haldi.png" :
+                  evt.image?.includes("mehendi") ? "/wedding/events/mehendi.png" :
+                  evt.image?.includes("sangeeth") ? "/wedding/events/sangeeth.png" :
+                  evt.image?.includes("reception") ? "/wedding/events/reception.png" :
+                  evt.image?.includes("wedding") ? "/wedding/events/wedding.png" :
+                  evt.image ? "custom" : "auto"
+                }
+                onChange={(e) => {
+                  const val = e.target.value;
+                  updateInvitationData((prev) => {
+                    const list = [...prev.events];
+                    list[index] = {
+                      ...list[index],
+                      image: val === "auto" ? "" : val === "custom" ? list[index].image || "" : val
+                    };
+                    return { ...prev, events: list };
+                  });
+                }}
+                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] font-medium w-full"
+              >
+                <option value="auto">✨ Auto Detect from Title</option>
+                <option value="/wedding/events/akshintalu.png">🌾 Akshintalu / Talambralu</option>
+                <option value="/wedding/events/haldi.png">💛 Haldi Ceremony</option>
+                <option value="/wedding/events/mehendi.png">🌿 Mehendi Celebration</option>
+                <option value="/wedding/events/sangeeth.png">🎶 Sangeeth Night</option>
+                <option value="/wedding/events/wedding.png">💍 Wedding / Muhurtham</option>
+                <option value="/wedding/events/reception.png">🥂 Reception</option>
+              </select>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-3 w-full">
@@ -1810,121 +1960,114 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
     </div>
   );
 
-  const renderStorySettings = () => (
-    <div className="space-y-6 text-left animate-fadeIn">
-      <div className="flex justify-between items-center border-b border-zinc-200/50 pb-2 w-full">
-        <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/60">OUR STORY</h3>
-        <button
-          onClick={() => {
-            updateInvitationData((prev) => {
-              const newTimeline: StoryTimelineEntry = {
-                date: "",
-                title: "Our First Meeting",
-                description: "How we crossed paths...",
-                image: ""
-              };
-              return {
-                ...prev,
-                story: {
-                  ...prev.story,
-                  timeline: [...prev.story.timeline, newTimeline]
-                }
-              };
-            });
-          }}
-          className="flex items-center gap-1 px-3 py-1.5 border border-zinc-200 hover:border-[#C49B27]/40 rounded-xl text-[9px] font-bold uppercase tracking-[1px] bg-white transition-colors shadow-xs cursor-pointer"
-        >
-          <Plus size={11} /> Add Entry
-        </button>
-      </div>
+  const renderStorySettings = () => {
+    const storyDesc = invitationData.story?.timeline?.[0]?.description || invitationData.story?.subtitle || "";
+    const storyImg = invitationData.story?.timeline?.[0]?.image || (invitationData.story as any)?.couplePhoto || "";
 
-      <div className="flex flex-col gap-1 w-full">
-        <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Section Main Heading</label>
-        <input
-          type="text"
-          value={invitationData.story.title}
-          onChange={(e) => updateInvitationData((prev) => ({
-            ...prev,
-            story: { ...prev.story, title: e.target.value }
-          }))}
-          className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
-        />
-      </div>
+    return (
+      <div className="space-y-6 text-left animate-fadeIn">
+        <div className="flex justify-between items-center border-b border-zinc-200/50 pb-2 w-full">
+          <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/60">OUR STORY</h3>
+        </div>
 
-      {invitationData.story.timeline.map((entry, index) => (
-        <div key={index} className="card-minimal p-4 md:p-5 space-y-3 relative group w-full">
-          <button
-            type="button"
-            onClick={() => {
-              updateInvitationData((prev) => {
-                const list = [...prev.story.timeline];
-                list.splice(index, 1);
-                return {
-                  ...prev,
-                  story: { ...prev.story, timeline: list }
-                };
-              });
-            }}
-            className="absolute top-4 right-4 p-1.5 bg-red-500/5 border border-red-500/10 text-red-600 hover:bg-red-500 hover:text-white rounded-lg transition-colors cursor-pointer"
-            title="Remove Entry"
-          >
-            <Trash2 size={12} />
-          </button>
-
-          <div className="flex flex-col gap-1 pr-6 w-full">
-            <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Title</label>
+        <div className="card-minimal p-4 md:p-5 space-y-4 w-full">
+          <div className="flex flex-col gap-1 w-full">
+            <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Section Heading</label>
             <input
               type="text"
-              value={entry.title}
-              onChange={(e) => {
-                updateInvitationData((prev) => {
-                  const list = [...prev.story.timeline];
-                  list[index] = { ...list[index], title: e.target.value };
-                  return { ...prev, story: { ...prev.story, timeline: list } };
-                });
-              }}
-              className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
+              value={invitationData.story.title || ""}
+              onChange={(e) => updateInvitationData((prev) => ({
+                ...prev,
+                story: { ...prev.story, title: e.target.value }
+              }))}
+              placeholder="e.g. Our Story"
+              className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] font-semibold w-full"
             />
           </div>
 
           <div className="flex flex-col gap-1 w-full">
-            <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Description</label>
+            <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Story Description / Narrative</label>
             <textarea
-              value={entry.description}
+              value={storyDesc}
               onChange={(e) => {
+                const val = e.target.value;
                 updateInvitationData((prev) => {
-                  const list = [...prev.story.timeline];
-                  list[index] = { ...list[index], description: e.target.value };
-                  return { ...prev, story: { ...prev.story, timeline: list } };
+                  const currentTimeline = [...(prev.story?.timeline || [])];
+                  if (currentTimeline.length === 0) {
+                    currentTimeline.push({ date: "", title: "", description: val, image: storyImg });
+                  } else {
+                    currentTimeline[0] = { ...currentTimeline[0], description: val };
+                  }
+                  return {
+                    ...prev,
+                    story: {
+                      ...prev.story,
+                      subtitle: val,
+                      timeline: currentTimeline
+                    }
+                  };
                 });
               }}
-              rows={2}
+              rows={4}
+              placeholder="Two hearts, two families and one beautiful journey..."
               className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] resize-none w-full"
             />
           </div>
 
-          {/* Image uploader */}
-          <div className="flex flex-col gap-1.5 w-full">
-            <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Portrait Image URL</label>
-            <div className="flex flex-col sm:flex-row gap-2 w-full">
+          {/* Couple Story Image */}
+          <div className="flex flex-col gap-1.5 w-full border-t border-zinc-100 pt-3">
+            <div className="flex items-center justify-between">
+              <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Couple Story Photo</label>
+              <span className="text-[9px] text-[#C49B27] font-semibold">Upload Photo</span>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center gap-3 w-full">
+              {storyImg && (
+                <div className="w-12 h-12 rounded-full overflow-hidden border border-amber-500/30 shrink-0 bg-zinc-100 shadow-xs">
+                  <img src={storyImg} alt="Story Preview" className="w-full h-full object-cover" />
+                </div>
+              )}
               <input
                 type="text"
-                value={entry.image || ""}
+                value={storyImg}
                 onChange={(e) => {
+                  const val = e.target.value;
                   updateInvitationData((prev) => {
-                    const list = [...prev.story.timeline];
-                    list[index] = { ...list[index], image: e.target.value };
-                    return { ...prev, story: { ...prev.story, timeline: list } };
+                    const currentTimeline = [...(prev.story?.timeline || [])];
+                    if (currentTimeline.length === 0) {
+                      currentTimeline.push({ date: "", title: "", description: storyDesc, image: val });
+                    } else {
+                      currentTimeline[0] = { ...currentTimeline[0], image: val };
+                    }
+                    return {
+                      ...prev,
+                      story: {
+                        ...prev.story,
+                        couplePhoto: val,
+                        timeline: currentTimeline
+                      } as any
+                    };
                   });
                 }}
-                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] flex-1 w-full"
+                placeholder="Image URL or upload below..."
+                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] flex-1 font-mono"
               />
               <FileUploader
                 onUploadSuccess={(url) => {
                   updateInvitationData((prev) => {
-                    const list = [...prev.story.timeline];
-                    list[index] = { ...list[index], image: url };
-                    return { ...prev, story: { ...prev.story, timeline: list } };
+                    const currentTimeline = [...(prev.story?.timeline || [])];
+                    if (currentTimeline.length === 0) {
+                      currentTimeline.push({ date: "", title: "", description: storyDesc, image: url });
+                    } else {
+                      currentTimeline[0] = { ...currentTimeline[0], image: url };
+                    }
+                    return {
+                      ...prev,
+                      story: {
+                        ...prev.story,
+                        couplePhoto: url,
+                        timeline: currentTimeline
+                      } as any
+                    };
                   });
                 }}
                 className="w-full sm:w-auto"
@@ -1932,9 +2075,9 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
             </div>
           </div>
         </div>
-      ))}
-    </div>
-  );
+      </div>
+    );
+  };
 
   const renderCountdownSettings = () => {
     const countdown = invitationData.countdown || { title: "", targetDate: "2026-09-20T10:15:00" };

@@ -471,13 +471,49 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
 
     return (
       <div className="space-y-6 text-left animate-fadeIn">
+        {/* --- AUSPICIOUS MANTRA & BLESSING CONFIG --- */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
+          <div className="flex items-center justify-between border-b border-white/10 pb-3">
+            <h3 className="text-base font-bold tracking-[0.5px]">Auspicious Mantra / Header Text</h3>
+            <span className="text-xs text-yellow-500 font-bold">Top Blessing</span>
+          </div>
+          <div className="flex flex-col gap-1.5 w-full">
+            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1.5px]">Opening Mantra / Devotional Text</label>
+            <input
+              type="text"
+              value={invitationData.hero?.welcomeMessage || invitationData.hero?.mantra || invitationData.mantra || ""}
+              onChange={(e) => updateInvitationData((prev: any) => {
+                const next = {
+                  ...prev,
+                  hero: {
+                    ...prev.hero,
+                    welcomeMessage: e.target.value,
+                    mantra: e.target.value
+                  },
+                  mantra: e.target.value
+                };
+                if (next.config) {
+                  next.config.hero = { ...(next.config.hero || {}), welcomeMessage: e.target.value, mantra: e.target.value };
+                  next.config.mantra = e.target.value;
+                }
+                return next;
+              })}
+              placeholder="e.g. ॐ श्री गणेशाय नमः ||"
+              className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none font-semibold"
+            />
+            <p className="text-[10px] text-white/40">
+              Displays on the opening envelope card and header (e.g. ॐ श्री गणेशाय नमः ||, || श्री विघ्नेश्वराय नमः ||, Subhamasthu, etc.).
+            </p>
+          </div>
+        </div>
+
         {/* --- INVITATION SIDE & PRIMARY ORDER SWITCHER --- */}
-        <div className="bg-white/5 border border-yellow-500/20 rounded-2xl p-6 space-y-3">
+        <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-2xl p-6 space-y-4">
           <div className="flex items-center justify-between">
-            <label className="text-[10px] uppercase font-bold text-yellow-500 tracking-[1.5px]">
+            <label className="text-xs uppercase font-bold text-white tracking-[1.5px]">
               Invitation Side &amp; Primary Order
             </label>
-            <span className="text-[10px] text-white/50 font-semibold">Whose Name &amp; Family Appears First</span>
+            <span className="text-[10px] text-yellow-500 font-semibold">Whose Name &amp; Family Appears First</span>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <button
@@ -529,7 +565,7 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
             <span className="text-xs text-yellow-500 font-bold">The Groom</span>
           </div>
           
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="flex flex-col gap-1.5">
               <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1.5px]">Groom's Name</label>
               <input
@@ -553,8 +589,40 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
               />
             </div>
 
+            {/* Groom's Family Name / Surname */}
+            <div className="flex flex-col gap-1.5">
+              <div className="flex items-center justify-between">
+                <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1.5px]">Groom's Family Name / Surname</label>
+                <span className="text-[10px] text-yellow-500 font-semibold">Surname</span>
+              </div>
+              <input
+                type="text"
+                value={groomData.surname || invitationData.hero?.surname || ""}
+                onChange={(e) => updateInvitationData((prev: any) => {
+                  const next = {
+                    ...prev,
+                    couple: {
+                      ...prev.couple,
+                      groom: { ...prev.couple?.groom, surname: e.target.value }
+                    },
+                    hero: {
+                      ...prev.hero,
+                      surname: e.target.value
+                    }
+                  };
+                  if (next.config) {
+                    next.config.couple = { ...(next.config.couple || {}), groom: { ...(next.config.couple?.groom || {}), surname: e.target.value } };
+                    next.config.hero = { ...(next.config.hero || {}), surname: e.target.value };
+                  }
+                  return next;
+                })}
+                placeholder="e.g. Ryagalla / Sharma"
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-xs text-white focus:border-yellow-500 outline-none font-bold"
+              />
+            </div>
+
             {/* Groom's Family Card Title */}
-            <div className="flex flex-col gap-1.5 col-span-2 border-t border-white/5 pt-3">
+            <div className="flex flex-col gap-1.5 col-span-1 sm:col-span-2 border-t border-white/5 pt-3">
               <div className="flex items-center justify-between">
                 <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1.5px]">Family Card Heading</label>
                 <span className="text-[10px] text-yellow-500 font-semibold">Custom Title</span>
@@ -586,7 +654,7 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
             </div>
 
             {/* Groom Portrait Image */}
-            <div className="flex flex-col gap-1.5 col-span-2 border-t border-white/5 pt-3">
+            <div className="flex flex-col gap-1.5 col-span-1 sm:col-span-2 border-t border-white/5 pt-3">
               <div className="flex items-center justify-between">
                 <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1.5px]">Groom's Portrait Image</label>
                 <span className="text-[10px] text-yellow-500 font-semibold">Upload Photo</span>
@@ -770,7 +838,7 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
             <span className="text-xs text-yellow-500 font-bold">The Bride</span>
           </div>
           
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="flex flex-col gap-1.5">
               <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1.5px]">Bride's Name</label>
               <input
@@ -794,8 +862,35 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
               />
             </div>
 
+            {/* Bride's Family Name / Surname */}
+            <div className="flex flex-col gap-1.5">
+              <div className="flex items-center justify-between">
+                <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1.5px]">Bride's Family Name / Surname</label>
+                <span className="text-[10px] text-yellow-500 font-semibold">Surname</span>
+              </div>
+              <input
+                type="text"
+                value={brideData.surname || ""}
+                onChange={(e) => updateInvitationData((prev: any) => {
+                  const next = {
+                    ...prev,
+                    couple: {
+                      ...prev.couple,
+                      bride: { ...prev.couple?.bride, surname: e.target.value }
+                    }
+                  };
+                  if (next.config) {
+                    next.config.couple = { ...(next.config.couple || {}), bride: { ...(next.config.couple?.bride || {}), surname: e.target.value } };
+                  }
+                  return next;
+                })}
+                placeholder="e.g. Patel / Kothari"
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-xs text-white focus:border-yellow-500 outline-none font-bold"
+              />
+            </div>
+
             {/* Bride's Family Card Title */}
-            <div className="flex flex-col gap-1.5 col-span-2 border-t border-white/5 pt-3">
+            <div className="flex flex-col gap-1.5 col-span-1 sm:col-span-2 border-t border-white/5 pt-3">
               <div className="flex items-center justify-between">
                 <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1.5px]">Family Card Heading</label>
                 <span className="text-[10px] text-yellow-500 font-semibold">Custom Title</span>
@@ -1051,8 +1146,8 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
                 <Trash2 size={15} />
               </button>
 
-              <div className="grid grid-cols-6 gap-4">
-                <div className="flex flex-col gap-1.5 col-span-2">
+              <div className="grid grid-cols-1 sm:grid-cols-6 gap-4">
+                <div className="flex flex-col gap-1.5 col-span-1 sm:col-span-2">
                   <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Event Title</label>
                   <input
                     type="text"
@@ -1062,23 +1157,45 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
                       list[idx].title = e.target.value;
                       return { ...prev, events: list };
                     })}
+                    placeholder="e.g. Akshintalu / Haldi"
                     className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none font-bold"
                   />
                 </div>
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Emoji Icon</label>
-                  <input
-                    type="text"
-                    value={event.icon}
-                    onChange={(e) => updateInvitationData((prev) => {
-                      const list = [...prev.events];
-                      list[idx].icon = e.target.value;
-                      return { ...prev, events: list };
-                    })}
-                    className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-center text-white focus:border-yellow-500 outline-none font-bold"
-                  />
+                <div className="flex flex-col gap-1.5 col-span-1 sm:col-span-2">
+                  <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Ceremony Icon</label>
+                  <select
+                    value={
+                      event.image?.includes("akshintalu") ? "/wedding/events/akshintalu.png" :
+                      event.image?.includes("haldi") ? "/wedding/events/haldi.png" :
+                      event.image?.includes("mehendi") ? "/wedding/events/mehendi.png" :
+                      event.image?.includes("sangeeth") ? "/wedding/events/sangeeth.png" :
+                      event.image?.includes("reception") ? "/wedding/events/reception.png" :
+                      event.image?.includes("wedding") ? "/wedding/events/wedding.png" :
+                      event.image ? "custom" : "auto"
+                    }
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      updateInvitationData((prev) => {
+                        const list = [...prev.events];
+                        list[idx] = {
+                          ...list[idx],
+                          image: val === "auto" ? "" : val === "custom" ? list[idx].image || "" : val
+                        };
+                        return { ...prev, events: list };
+                      });
+                    }}
+                    className="bg-black/30 border border-white/10 rounded-xl px-3 py-2.5 text-xs text-white focus:border-yellow-500 outline-none font-medium"
+                  >
+                    <option value="auto">✨ Auto Detect</option>
+                    <option value="/wedding/events/akshintalu.png">🌾 Akshintalu / Talambralu</option>
+                    <option value="/wedding/events/haldi.png">💛 Haldi</option>
+                    <option value="/wedding/events/mehendi.png">🌿 Mehendi</option>
+                    <option value="/wedding/events/sangeeth.png">🎶 Sangeeth</option>
+                    <option value="/wedding/events/wedding.png">💍 Wedding</option>
+                    <option value="/wedding/events/reception.png">🥂 Reception</option>
+                  </select>
                 </div>
-                <div className="flex flex-col gap-1.5 col-span-2">
+                <div className="flex flex-col gap-1.5 col-span-1 sm:col-span-2">
                   <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Date</label>
                   <input
                     type="text"
@@ -1140,90 +1257,123 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
     </div>
   );
 
-  const renderStorySettings = () => (
-    <div className="space-y-8 animate-fadeIn">
-      <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-        <div className="flex justify-between items-center mb-6">
-          <div>
+  const renderStorySettings = () => {
+    const storyDesc = invitationData.story?.timeline?.[0]?.description || invitationData.story?.subtitle || "";
+    const storyImg = invitationData.story?.timeline?.[0]?.image || (invitationData.story as any)?.couplePhoto || "";
+
+    return (
+      <div className="space-y-8 animate-fadeIn">
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-5">
+          <div className="flex justify-between items-center border-b border-white/10 pb-3">
             <h3 className="text-base font-bold tracking-[0.5px]">OUR STORY</h3>
           </div>
-          <button
-            type="button"
-            onClick={() => updateInvitationData((prev) => {
-              const newMilestone: StoryTimelineEntry = {
-                title: "New Story Node",
-                date: "",
-                description: "Tell the guests about this romantic milestone."
-              };
-              return {
+
+          <div className="flex flex-col gap-1.5 w-full">
+            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Section Heading</label>
+            <input
+              type="text"
+              value={invitationData.story.title || ""}
+              onChange={(e) => updateInvitationData((prev) => ({
                 ...prev,
-                story: {
-                  ...prev.story,
-                  timeline: [...prev.story.timeline, newMilestone]
-                }
-              };
-            })}
-            className="flex items-center gap-1.5 bg-yellow-500/10 border border-yellow-500/30 text-yellow-500 px-4 py-2 rounded-xl text-xs font-bold hover:bg-yellow-500 hover:text-black transition-all cursor-pointer"
-          >
-            <Plus size={14} /> Add Milestone
-          </button>
-        </div>
+                story: { ...prev.story, title: e.target.value }
+              }))}
+              placeholder="e.g. Our Story"
+              className="bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-xs text-white focus:border-yellow-500 outline-none font-bold w-full"
+            />
+          </div>
 
-        <div className="space-y-6">
-          {invitationData.story.timeline.map((milestone, idx) => (
-            <div key={idx} className="p-6 bg-black/20 border border-white/5 rounded-2xl relative space-y-4">
-              <button
-                type="button"
-                onClick={() => updateInvitationData((prev) => ({
-                  ...prev,
-                  story: {
-                    ...prev.story,
-                    timeline: prev.story.timeline.filter((_, i) => i !== idx)
+          <div className="flex flex-col gap-1.5 w-full">
+            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Story Description / Narrative</label>
+            <textarea
+              value={storyDesc}
+              onChange={(e) => {
+                const val = e.target.value;
+                updateInvitationData((prev) => {
+                  const currentTimeline = [...(prev.story?.timeline || [])];
+                  if (currentTimeline.length === 0) {
+                    currentTimeline.push({ date: "", title: "", description: val, image: storyImg });
+                  } else {
+                    currentTimeline[0] = { ...currentTimeline[0], description: val };
                   }
-                }))}
-                className="absolute top-4 right-4 text-red-400/60 hover:text-red-400 p-1.5 hover:bg-red-500/10 rounded-lg transition-colors cursor-pointer"
-                title="Delete Milestone"
-              >
-                <Trash2 size={15} />
-              </button>
+                  return {
+                    ...prev,
+                    story: {
+                      ...prev.story,
+                      subtitle: val,
+                      timeline: currentTimeline
+                    }
+                  };
+                });
+              }}
+              rows={4}
+              placeholder="Two hearts, two families and one beautiful journey..."
+              className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none resize-none font-medium w-full"
+            />
+          </div>
 
-              <div className="flex flex-col gap-1.5 pr-8">
-                <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Milestone Title</label>
-                <input
-                  type="text"
-                  value={milestone.title}
-                  onChange={(e) => updateInvitationData((prev) => {
-                    const list = [...prev.story.timeline];
-                    list[idx].title = e.target.value;
+          {/* Couple Story Image */}
+          <div className="flex flex-col gap-1.5 w-full border-t border-white/10 pt-3">
+            <div className="flex items-center justify-between">
+              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Couple Story Photo</label>
+              <span className="text-[10px] text-yellow-500 font-semibold">Upload Photo</span>
+            </div>
+            <div className="flex items-center gap-3">
+              {storyImg && (
+                <div className="w-12 h-12 rounded-full overflow-hidden border border-yellow-500/40 shrink-0 bg-black/40 shadow-sm">
+                  <img src={storyImg} alt="Story Preview" className="w-full h-full object-cover" />
+                </div>
+              )}
+              <input
+                type="text"
+                value={storyImg}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  updateInvitationData((prev) => {
+                    const currentTimeline = [...(prev.story?.timeline || [])];
+                    if (currentTimeline.length === 0) {
+                      currentTimeline.push({ date: "", title: "", description: storyDesc, image: val });
+                    } else {
+                      currentTimeline[0] = { ...currentTimeline[0], image: val };
+                    }
                     return {
                       ...prev,
-                      story: { ...prev.story, timeline: list }
+                      story: {
+                        ...prev.story,
+                        couplePhoto: val,
+                        timeline: currentTimeline
+                      } as any
                     };
-                  })}
-                  className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none font-bold w-full"
-                />
-              </div>
-                <div className="flex flex-col gap-1.5 col-span-3">
-                  <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Description Text</label>
-                  <textarea
-                    value={milestone.description}
-                    onChange={(e) => updateInvitationData((prev) => {
-                      const list = [...prev.story.timeline];
-                      list[idx].description = e.target.value;
-                      return {
-                        ...prev,
-                        story: { ...prev.story, timeline: list }
-                      };
-                    })}
-                    className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none h-20 resize-none font-medium"
-                  />
-                </div>
+                  });
+                }}
+                placeholder="Image URL or upload below..."
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-xs text-white focus:border-yellow-500 outline-none flex-1 font-mono text-[10px]"
+              />
+              <FileUploader
+                onUploadSuccess={(url) => {
+                  updateInvitationData((prev) => {
+                    const currentTimeline = [...(prev.story?.timeline || [])];
+                    if (currentTimeline.length === 0) {
+                      currentTimeline.push({ date: "", title: "", description: storyDesc, image: url });
+                    } else {
+                      currentTimeline[0] = { ...currentTimeline[0], image: url };
+                    }
+                    return {
+                      ...prev,
+                      story: {
+                        ...prev.story,
+                        couplePhoto: url,
+                        timeline: currentTimeline
+                      } as any
+                    };
+                  });
+                }}
+              />
             </div>
-          ))}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   const renderCountdownSettings = () => {
     const countdown = invitationData.countdown || { title: "", targetDate: "2026-09-20T10:15:00" };

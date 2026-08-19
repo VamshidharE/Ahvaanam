@@ -256,7 +256,7 @@ export async function POST(request: Request) {
         }, { status: 400 });
       }
 
-      const { id, groom, bride, surname, themeId } = parsed.data;
+      const { id, groom, bride, surname, primarySide, themeId } = parsed.data;
       slug = id;
 
       // Check globally if client profile already exists (slug must be unique)
@@ -292,7 +292,9 @@ export async function POST(request: Request) {
       if (config.couple) {
         if (!isPlaceholderGroom) config.couple.groom.name = groom;
         if (!isPlaceholderBride) config.couple.bride.name = bride;
+        if (primarySide) config.couple.primarySide = primarySide;
       }
+      if (primarySide) config.primarySide = primarySide;
       if (config.groom && !isPlaceholderGroom) config.groom.name = groom;
       if (config.bride && !isPlaceholderBride) config.bride.name = bride;
 
@@ -303,7 +305,9 @@ export async function POST(request: Request) {
         }
       }
       if (config.footer && !isPlaceholderGroom && !isPlaceholderBride) {
-        config.footer.salutation = `Bound by Matrimony. ${groom} & ${bride}.`;
+        config.footer.salutation = primarySide === "bride"
+          ? `Bound by Matrimony. ${bride} & ${groom}.`
+          : `Bound by Matrimony. ${groom} & ${bride}.`;
       }
 
       finalConfig = config;

@@ -239,7 +239,11 @@ export default function RoseMandapTemplate({
                   animate={{ opacity: 1, scale: 1, filter: "blur(0px)", y: 0 }}
                   transition={{ duration: 0.8, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  {data.couple.groom} &amp; {data.couple.bride}
+                  {data.couple.primarySide === "bride" ? (
+                    <>{data.couple.bride} &amp; {data.couple.groom}</>
+                  ) : (
+                    <>{data.couple.groom} &amp; {data.couple.bride}</>
+                  )}
                 </motion.h1>
 
                 {/* 5. Date & Gold Rule */}

@@ -45,6 +45,7 @@ export default function CategorySelectionPage() {
 
   // Local state for dynamic form inputs and creation loader
   const [clientEmail, setClientEmail] = useState("");
+  const [primarySide, setPrimarySide] = useState<"groom" | "bride">("groom");
   const [formData, setFormData] = useState<Record<string, string>>({});
   const [creating, setCreating] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);
@@ -120,9 +121,11 @@ export default function CategorySelectionPage() {
 
     let slugBase = "";
     if (groomVal && brideVal) {
-      slugBase = `${groomVal.trim()}-${brideVal.trim()}`;
+      slugBase = primarySide === "bride" ? `${brideVal.trim()}-${groomVal.trim()}` : `${groomVal.trim()}-${brideVal.trim()}`;
     } else if (groomVal) {
       slugBase = groomVal.trim();
+    } else if (brideVal) {
+      slugBase = brideVal.trim();
     } else {
       slugBase = "invitation";
     }
@@ -142,6 +145,7 @@ export default function CategorySelectionPage() {
     const tempCollectedData = {
       category: selectedCategory,
       themeId: selectedTheme,
+      primarySide,
       formData: formData,
     };
     localStorage.setItem("pending_invitation_metadata", JSON.stringify(tempCollectedData));
@@ -152,6 +156,7 @@ export default function CategorySelectionPage() {
           groom: groomPayload, 
           bride: bridePayload,
           surname: "",
+          primarySide,
           themeId: selectedTheme,
           clientEmail: clientEmail.trim()
         }
@@ -162,6 +167,7 @@ export default function CategorySelectionPage() {
           clientEmail: clientEmail.trim(),
           metadata: {
             ...formData,
+            primarySide,
             clientEmail: clientEmail.trim()
           }
         };
@@ -391,6 +397,47 @@ export default function CategorySelectionPage() {
                               Enter the client's email so this invitation appears in their personal dashboard to view analytics and RSVPs.
                             </p>
                           </div>
+
+                          {/* Invitation Side & Name Order Selection */}
+                          {(!selectedCategory || selectedCategory === "wedding") && (
+                            <div className="bg-[#FAF9F6] p-4 border border-zinc-200 rounded-2xl flex flex-col gap-2">
+                              <div className="flex items-center justify-between">
+                                <label className="text-[10px] uppercase font-bold text-[#241E1C]/80 tracking-[1.5px]">
+                                  Whose Invitation Side is this?
+                                </label>
+                                <span className="text-[9px] text-[#C49B27] font-semibold">Name &amp; Family Order</span>
+                              </div>
+                              <div className="grid grid-cols-2 gap-2">
+                                <button
+                                  type="button"
+                                  onClick={() => setPrimarySide("groom")}
+                                  className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                                    primarySide === "groom"
+                                      ? "bg-[#C49B27] text-white shadow-sm font-extrabold"
+                                      : "bg-white text-[#241E1C]/60 hover:bg-amber-50/50 border border-zinc-200"
+                                  }`}
+                                >
+                                  🤵 Groom's Side
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => setPrimarySide("bride")}
+                                  className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                                    primarySide === "bride"
+                                      ? "bg-[#C49B27] text-white shadow-sm font-extrabold"
+                                      : "bg-white text-[#241E1C]/60 hover:bg-amber-50/50 border border-zinc-200"
+                                  }`}
+                                >
+                                  👰 Bride's Side
+                                </button>
+                              </div>
+                              <p className="text-[9px] text-zinc-500">
+                                {primarySide === "groom"
+                                  ? "Groom's name and family will appear first across the opening card, hero header, and invitation card."
+                                  : "Bride's name and family will appear first across the opening card, hero header, and invitation card."}
+                              </p>
+                            </div>
+                          )}
 
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {fields.map((field) => {

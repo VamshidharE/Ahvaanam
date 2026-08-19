@@ -46,6 +46,7 @@ export const creationSchema = z.object({
   groom: groomBrideNameSchema,
   bride: groomBrideNameSchema,
   surname: z.string().optional(),
+  primarySide: z.enum(["groom", "bride"]).optional(),
   themeId: z.string().min(1, "Theme ID is required"),
 });
 
