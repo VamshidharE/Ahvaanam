@@ -3083,7 +3083,7 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
       {/* --- HEADER --- */}
       <header className="bg-white border-b border-zinc-200/50 backdrop-blur-md px-4 md:px-6 h-16 flex items-center justify-between shrink-0 shadow-sm relative z-40">
         <div className="flex items-center gap-3">
-          <img src="/images/logo.png" alt="Ahvaanam" className="h-26 w-auto object-contain translate-y-0 drop-shadow-sm" />
+          <img src="/images/logo.png" alt="Ahvaanam" className="h-8 md:h-9 w-auto object-contain translate-y-0 drop-shadow-sm" />
         </div>
 
         <div className="flex items-center gap-2 md:gap-3">

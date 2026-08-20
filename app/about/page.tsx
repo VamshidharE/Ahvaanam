@@ -49,7 +49,7 @@ export default function AboutPage() {
 
             <div className="flex gap-4 pt-2">
               <Link 
-                href="/templates" 
+                href="/portfolio" 
                 className="text-xs font-bold uppercase tracking-[1px] text-[#C49B27] hover:underline flex items-center gap-1"
               >
                 View Portfolio <ArrowRight size={13} />

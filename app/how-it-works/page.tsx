@@ -35,9 +35,9 @@ const steps = [
   },
   {
     icon: RotateCw,
-    title: "4. Unlimited Revisions",
-    subtitle: "Iterative Refinements",
-    desc: "Review the live sandbox draft. We offer unlimited review loops to adjust color tones, margins, scripts, or images until it feels absolutely perfect."
+    title: "4. Review & Refinements",
+    subtitle: "Collaborative Feedback",
+    desc: "Review the live preview draft. We work closely with you through structured revision rounds to fine-tune layout, typography, music, and details for a polished final outcome."
   },
   {
     icon: CheckCircle,
@@ -106,21 +106,6 @@ export default function HowItWorksPage() {
             })}
           </div>
 
-        </div>
-
-        {/* Bottom Callout */}
-        <div className="text-center py-12">
-          <div className="inline-flex flex-col items-center gap-4 bg-white/70 border border-white p-8 rounded-[36px] shadow-xl backdrop-blur-md max-w-lg mx-auto">
-            <h3 className="text-xl font-bold uppercase tracking-[1px] font-cinzel">Ready To Start Your Project?</h3>
-            <p className="text-xs text-slate-500 max-w-xs font-semibold leading-relaxed">Work directly with our design consultants to create a digital invitation that reflects your unique vision.</p>
-            <Link 
-              href="/contact"
-              className="mt-3 group inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-yellow-500 text-white font-bold px-8 py-3.5 rounded-xl text-xs uppercase tracking-[1px] hover:-translate-y-0.5 transition-all shadow-md"
-            >
-              Get Your Custom Invitation
-              <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
-            </Link>
-          </div>
         </div>
 
       </main>

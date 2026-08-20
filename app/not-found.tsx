@@ -32,10 +32,10 @@ export default function NotFoundPage() {
             <ArrowLeft size={14} /> Return Home
           </Link>
           <Link
-            href="/templates"
+            href="/contact"
             className="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-yellow-500 text-white py-3.5 rounded-xl text-xs font-bold uppercase tracking-[1px] shadow-md hover:shadow-lg transition-shadow active:scale-[0.98]"
           >
-            Browse Templates
+            Contact Studio
           </Link>
         </div>
 

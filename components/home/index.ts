@@ -1,6 +1,5 @@
 export { default as Hero } from "./Hero";
 export { default as EventCategories } from "./EventCategories";
-export { default as TemplateGallery } from "./TemplateGallery";
 export { default as BuilderShowcase } from "./BuilderShowcase";
 export { default as Personalization } from "./Personalization";
 export { default as DevicePreview } from "./DevicePreview";

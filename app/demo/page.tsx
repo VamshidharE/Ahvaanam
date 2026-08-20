@@ -108,10 +108,10 @@ export default function DemoInvitationPage() {
           {isPlaying ? <Pause size={16} /> : <Play size={16} className="ml-0.5" />}
         </button>
         <Link 
-          href="/templates"
+          href="/"
           className="px-4 py-2 text-[10px] font-bold uppercase tracking-[1.5px] rounded-full bg-white/95 border border-[#D4AF37]/45 text-[#2D2621] shadow-lg backdrop-blur-xl hover:text-[#C49B27] transition-all"
         >
-          Back To Gallery
+          Back To Home
         </Link>
       </div>
 

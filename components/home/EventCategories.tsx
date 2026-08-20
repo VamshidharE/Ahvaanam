@@ -126,7 +126,7 @@ export default function EventCategories() {
                         const active = selected.id === item.id;
 
                         return (
-                            <Link href="/templates?category=wedding" key={item.id} passHref legacyBehavior>
+                            <Link href="/contact" key={item.id} passHref legacyBehavior>
                                 <motion.a
                                     onMouseEnter={() => setSelected(item)}
                                     whileHover={{ y: -3 }}
@@ -190,7 +190,7 @@ export default function EventCategories() {
                                 {selected.description}
                             </p>
 
-                            <Link href="/templates?category=wedding" className="group mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-600 hover:text-amber-500 transition-colors">
+                            <Link href="/contact" className="group mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-600 hover:text-amber-500 transition-colors">
                                 View Collection
                                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                             </Link>

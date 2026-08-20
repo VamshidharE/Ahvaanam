@@ -398,7 +398,7 @@ export default function ClientDashboard() {
       {/* --- HEADER --- */}
       <header className="bg-white border-b border-zinc-200/50 backdrop-blur-md sticky top-0 z-40 px-8 h-16 flex items-center justify-between shadow-sm">
         <div className="flex items-center cursor-pointer select-none relative z-10" onClick={() => window.location.href = "/"}>
-          <img src="/images/logo.png" alt="Ahvaanam" className="h-26 w-auto object-contain translate-y-0 drop-shadow-sm" />
+          <img src="/images/logo.png" alt="Ahvaanam" className="h-8 md:h-9 w-auto object-contain translate-y-0 drop-shadow-sm" />
         </div>
 
         <div className="flex items-center gap-4">

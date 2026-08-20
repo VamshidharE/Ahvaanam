@@ -146,7 +146,7 @@ export default function ResetPasswordPage() {
       {/* --- RESET PASSWORD CARD --- */}
       <div className="w-full max-w-md bg-white border border-amber-500/10 backdrop-blur-xl p-8 rounded-3xl shadow-sm relative z-10 space-y-6">
         <div className="text-center flex flex-col items-center gap-2">
-          <img src="/images/logo.png" alt="Ahvaanam" className="h-26 w-auto object-contain mb-1.5" />
+          <img src="/images/logo.png" alt="Ahvaanam" className="h-8 md:h-9 w-auto object-contain mb-2" />
           <p className="text-[9px] text-[#241E1C]/45 uppercase tracking-[2.5px] font-bold">
             Choose New Password
           </p>

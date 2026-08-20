@@ -20,7 +20,7 @@ export default function PublicPortfolioPage() {
 
       <main className="max-w-5xl mx-auto w-full flex-1 flex flex-col items-center justify-center gap-12 z-10">
         <div className="text-center space-y-3">
-          <img src="/images/logo.png" alt="Ahvaanam" className="h-26 w-auto object-contain mx-auto" />
+          <img src="/images/logo.png" alt="Ahvaanam" className="h-8 md:h-9 w-auto object-contain mx-auto" />
           <h1 className="text-3xl md:text-5xl font-bold uppercase tracking-[1px] [font-family:var(--cinzel),serif]">Our Portfolio</h1>
           <p className="text-xs text-white/50 max-w-sm mx-auto uppercase tracking-[2px] font-bold">Showcase of premium wedding invites</p>
         </div>

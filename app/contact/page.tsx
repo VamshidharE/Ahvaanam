@@ -25,7 +25,7 @@ const FAQs = [
   },
   {
     question: "Can I request changes after the invitation is live?",
-    answer: "Absolutely. We offer unlimited revisions during the design phase, and up to 3 complimentary revisions after the invitation is launched to update dates, timings, or details if plans change."
+    answer: "Yes. We offer structured revision rounds during the design phase, and complimentary updates after the invitation is launched for any date, timing, or venue changes."
   },
   {
     question: "Do you support custom background music?",
@@ -48,6 +48,18 @@ export default function PremiumContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+
+    const formattedMessage = encodeURIComponent(
+      `*New Ahvaanam Custom Invitation Enquiry*\n\n` +
+      `👤 *Name:* ${name}\n` +
+      `📧 *Email:* ${email}\n` +
+      `📱 *Phone:* ${phone}\n\n` +
+      `📝 *Event Requirements & Details:*\n${message}`
+    );
+
+    const whatsappUrl = `https://wa.me/918688178323?text=${formattedMessage}`;
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
     setTimeout(() => {
       setName("");
       setEmail("");
@@ -90,7 +102,7 @@ export default function PremiumContactPage() {
                   </div>
                   <div>
                     <p className="text-[10px] uppercase font-bold text-[#241E1C]/40">Email Studio</p>
-                    <p className="font-semibold">hello@ahvaanam.com</p>
+                    <a href="mailto:topmtpl@gmail.com" className="font-semibold hover:text-[#C49B27] transition-colors">topmtpl@gmail.com</a>
                   </div>
                 </div>
 
@@ -99,8 +111,8 @@ export default function PremiumContactPage() {
                     <Phone size={18} />
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase font-bold text-[#241E1C]/40">Call Hotline</p>
-                    <p className="font-semibold">+91 98765 43210</p>
+                    <p className="text-[10px] uppercase font-bold text-[#241E1C]/40">Contact</p>
+                    <a href="tel:+918688178323" className="font-semibold hover:text-[#C49B27] transition-colors">+91 8688178323</a>
                   </div>
                 </div>
 
@@ -114,22 +126,12 @@ export default function PremiumContactPage() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-[#C49B27] shrink-0 mt-0.5">
-                    <MapPin size={18} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] uppercase font-bold text-[#241E1C]/40">Location</p>
-                    <p className="font-semibold">Banjara Hills, Hyderabad, Telangana</p>
-                  </div>
-                </div>
-
               </div>
 
               <div className="w-full h-[1px] bg-amber-100" />
 
               <a 
-                href="https://wa.me/919876543210" 
+                href="https://wa.me/918688178323" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl bg-[#25D366] text-white font-bold text-xs uppercase tracking-[1px] shadow-[0_12px_24px_rgba(37,211,102,0.25)] hover:-translate-y-0.5 transition-transform"
@@ -238,17 +240,6 @@ export default function PremiumContactPage() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* Map placeholder */}
-        <div className="space-y-4 text-center">
-          <div className="w-full h-80 rounded-[30px] border border-amber-200/50 bg-[#F4EFEB] overflow-hidden relative shadow-lg">
-            <div className="absolute inset-0 bg-stone-200/35 backdrop-blur-xs flex flex-col items-center justify-center text-center p-6 space-y-2">
-              <MapPin className="text-[#C49B27]" size={36} />
-              <h4 className="text-sm font-bold uppercase tracking-[1px] text-[#241E1C]">Banjara Hills, Hyderabad Studio</h4>
-              <p className="text-[10px] text-slate-500 max-w-xs font-semibold">Visit by appointment only. Coordinates: 17.4156 N, 78.4346 E</p>
-            </div>
           </div>
         </div>
 

@@ -19,8 +19,8 @@ export const CATEGORIES = [
     image: "/images/categories/wedding.jpg",
     icon: Heart,
     featureBadges: ["🎵 MUSIC", "☑ RSVP", "📅 EVENTS", "📍 MAPS"],
-    ctaText: "EXPLORE WEDDING DESIGNS",
-    link: "/templates?category=wedding"
+    ctaText: "GET CUSTOM WEDDING INVITE",
+    link: "/contact"
   },
   {
     id: "engagement",
@@ -32,8 +32,8 @@ export const CATEGORIES = [
     image: "/images/categories/engagement.jpg",
     icon: Sparkles,
     featureBadges: ["🎵 MUSIC", "📷 GALLERY", "☑ RSVP", "📍 VENUE"],
-    ctaText: "EXPLORE ENGAGEMENT DESIGNS",
-    link: "/templates?category=engagement"
+    ctaText: "GET CUSTOM ENGAGEMENT INVITE",
+    link: "/contact"
   },
   {
     id: "birthday",
@@ -45,8 +45,8 @@ export const CATEGORIES = [
     image: "/images/categories/birthday.jpg",
     icon: Cake,
     featureBadges: ["⏱ COUNTDOWN", "📷 PHOTO GRID", "☑ RSVP", "🎵 MUSIC"],
-    ctaText: "EXPLORE BIRTHDAY DESIGNS",
-    link: "/templates?category=birthday"
+    ctaText: "GET CUSTOM BIRTHDAY INVITE",
+    link: "/contact"
   },
   {
     id: "housewarming",
@@ -58,8 +58,8 @@ export const CATEGORIES = [
     image: "/images/categories/housewarming.jpg",
     icon: HomeIcon,
     featureBadges: ["🌿 MARIGOLDS", "📍 MAP ROUTE", "☑ RSVP", "🎵 MANTRAS"],
-    ctaText: "EXPLORE HOUSEWARMING DESIGNS",
-    link: "/templates?category=housewarming"
+    ctaText: "GET CUSTOM HOUSEWARMING INVITE",
+    link: "/contact"
   },
   {
     id: "baby",
@@ -71,8 +71,8 @@ export const CATEGORIES = [
     image: "/images/categories/baby.jpg",
     icon: Baby,
     featureBadges: ["☁ PASTELS", "🎁 GIFT REGISTRY", "☑ RSVP", "🎵 LULLABY"],
-    ctaText: "EXPLORE BABY SHOWER DESIGNS",
-    link: "/templates?category=baby"
+    ctaText: "GET CUSTOM BABY SHOWER INVITE",
+    link: "/contact"
   },
   {
     id: "halfsaree",
@@ -84,8 +84,8 @@ export const CATEGORIES = [
     image: "/images/categories/halfsaree.jpg",
     icon: Shirt,
     featureBadges: ["🌺 TRADITIONAL", "📷 GALLERY", "☑ RSVP", "📍 VENUE"],
-    ctaText: "EXPLORE HALF SAREE DESIGNS",
-    link: "/templates?category=halfsaree"
+    ctaText: "GET CUSTOM HALF SAREE INVITE",
+    link: "/contact"
   },
   {
     id: "retirement",
@@ -97,8 +97,8 @@ export const CATEGORIES = [
     image: "/images/categories/retirement.jpg",
     icon: Award,
     featureBadges: ["🏆 HIGHLIGHTS", "📷 PHOTOS", "☑ RSVP", "📍 VENUE"],
-    ctaText: "EXPLORE RETIREMENT DESIGNS",
-    link: "/templates?category=retirement"
+    ctaText: "GET CUSTOM RETIREMENT INVITE",
+    link: "/contact"
   },
   {
     id: "corporate",
@@ -110,8 +110,8 @@ export const CATEGORIES = [
     image: "/images/categories/corporate.jpg",
     icon: Briefcase,
     featureBadges: ["💼 SPEAKER BIOS", "📄 AGENDA PDF", "☑ RSVP", "📍 MAP"],
-    ctaText: "EXPLORE CORPORATE DESIGNS",
-    link: "/templates?category=corporate"
+    ctaText: "GET CUSTOM CORPORATE INVITE",
+    link: "/contact"
   }
 ];
 

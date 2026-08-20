@@ -137,7 +137,7 @@ export default function WeddingShowcase() {
               className="text-3xl sm:text-4xl font-normal font-cinzel text-[#241E1C] uppercase leading-tight"
             >
               Designs that tell <br />
-              <span className="text-[#C49B27]">your love story</span>
+              <span className="text-[#C49B27]">your story</span>
             </motion.h3>
 
             {/* Description */}
@@ -175,29 +175,6 @@ export default function WeddingShowcase() {
                 );
               })}
             </div>
-
-            {/* CTA Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.85 }}
-              className="pt-2"
-            >
-              <motion.div
-                whileHover={shouldReduceMotion ? {} : { y: -2, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="inline-block"
-              >
-                <Link
-                  href="/templates?category=wedding"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#D4AF37] to-[#C49B27] text-white rounded-xl text-[10px] font-bold uppercase tracking-[2px] shadow-lg shadow-[#C49B27]/25 group transition-all"
-                >
-                  EXPLORE WEDDING DESIGNS
-                  <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-                </Link>
-              </motion.div>
-            </motion.div>
 
           </div>
 

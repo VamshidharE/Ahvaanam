@@ -230,7 +230,7 @@ export default function CategorySelectionPage() {
       {/* --- HEADER --- */}
       <header className="sticky top-0 z-40 bg-[#FAF9F6]/80 border-b border-zinc-200/50 backdrop-blur-md px-8 h-16 flex items-center justify-between">
         <div className="flex items-center relative z-10">
-          <img src="/images/logo.png" alt="Ahvaanam" className="h-26 w-auto object-contain translate-y-0 drop-shadow-sm" />
+          <img src="/images/logo.png" alt="Ahvaanam" className="h-8 md:h-9 w-auto object-contain translate-y-0 drop-shadow-sm" />
         </div>
 
         <button

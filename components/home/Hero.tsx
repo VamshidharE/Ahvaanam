@@ -114,10 +114,10 @@ export default function Hero() {
               transition={{ duration: 0.2 }}
             >
               <Link 
-                href="/templates" 
+                href="/contact" 
                 className="px-8 py-3.5 bg-gradient-to-r from-[#D4AF37] to-[#C49B27] text-white rounded-xl text-[10px] font-bold uppercase tracking-[2px] shadow-lg shadow-[#C49B27]/20 block text-center"
               >
-                Explore Designs
+                Get Custom Invitation
               </Link>
             </motion.div>
 
@@ -137,69 +137,65 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Right Column - Premium Invitation Mockup */}
+        {/* Right Column - Premium Invitation Mockup with Hero Image */}
         <div className="lg:col-span-6 flex items-center justify-center relative">
           
-          {/* Subtle Background Glow behind Mockup */}
-          <div className="absolute w-[450px] h-[350px] bg-[radial-gradient(circle,#FFF3D1_0%,transparent_70%)] opacity-70 blur-2xl pointer-events-none" />
+          {/* Ambient Warm Golden Glow behind Mockup */}
+          <motion.div 
+            animate={shouldReduceMotion ? {} : { scale: [1, 1.08, 1], opacity: [0.6, 0.85, 0.6] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute w-[480px] h-[480px] bg-[radial-gradient(circle,#FFE8A3_0%,#FFF8E7_40%,transparent_70%)] opacity-70 blur-3xl pointer-events-none" 
+          />
 
           <motion.div
             style={shouldReduceMotion ? {} : { y: cardYScroll }}
-            initial={{ opacity: 0, x: 60, scale: 0.94 }}
+            initial={{ opacity: 0, x: 50, scale: 0.92 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.45, ease: "easeOut" }}
+            transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="relative w-full max-w-lg"
           >
-            {/* Subtle Floating Animation Wrapper */}
+            {/* Multi-layered Levitation Motion Animation */}
             <motion.div
-              animate={shouldReduceMotion ? {} : { y: [0, -6, 0] }}
+              animate={shouldReduceMotion ? {} : { 
+                y: [0, -14, 0],
+                rotate: [0, 0.6, 0, -0.6, 0]
+              }}
               transition={{
                 duration: 6,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              whileHover={shouldReduceMotion ? {} : { scale: 1.015 }}
-              className="relative rounded-3xl border border-white/90 bg-white/70 p-4 backdrop-blur-xl shadow-[0_30px_70px_rgba(0,0,0,0.07)]"
+              whileHover={shouldReduceMotion ? {} : { scale: 1.025, y: -8 }}
+              className="relative group cursor-pointer"
             >
-              {/* Premium Template Badge */}
+              {/* Premium Template Floating Badge */}
               <motion.div 
-                initial={{ opacity: 0, y: -8 }}
+                initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.85 }}
-                className="absolute -top-3 right-6 z-30 rounded-full border border-[#D4AF37]/35 bg-white px-3.5 py-1 text-[8px] font-bold uppercase tracking-[1.5px] text-[#C49B27] shadow-md"
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="absolute -top-3.5 right-6 z-30 inline-flex items-center gap-1.5 rounded-full border border-[#D4AF37]/50 bg-white/95 px-4 py-1.5 text-[9px] font-bold uppercase tracking-[1.5px] text-[#C49B27] shadow-[0_8px_20px_rgba(196,155,39,0.2)] backdrop-blur-md"
               >
-                ✨ Premium Template
+                <Sparkles size={11} className="text-[#C49B27] animate-spin" style={{ animationDuration: "8s" }} />
+                <span>Featured Live Experience</span>
               </motion.div>
 
-              {/* Invitation Visual Card */}
-              <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-amber-200/60 bg-gradient-to-b from-[#FFFDF8] via-[#FAF5E6] to-[#F5ECE0] flex flex-col items-center justify-center p-6 text-center shadow-inner relative group">
-                
-                {/* Double Border Frame Overlay */}
-                <div className="absolute inset-3 rounded-xl border border-dashed border-[#D4AF37]/40 pointer-events-none" />
-                <div className="absolute inset-4 rounded-lg border border-[#D4AF37]/20 pointer-events-none" />
+              {/* Glowing Frame Wrapper */}
+              <div className="relative rounded-3xl border border-amber-200/60 bg-gradient-to-b from-white/90 via-white/70 to-amber-50/50 p-3 sm:p-4 backdrop-blur-xl shadow-[0_25px_60px_rgba(196,155,39,0.12),0_10px_25px_rgba(0,0,0,0.06)] transition-all duration-500 group-hover:shadow-[0_35px_80px_rgba(196,155,39,0.2),0_15px_35px_rgba(0,0,0,0.08)] group-hover:border-amber-400/80">
+                <Link href="/demo" className="block relative rounded-2xl overflow-hidden shadow-inner">
+                  {/* Hero Invitation Image */}
+                  <img
+                    src="/images/hero-invitation.png"
+                    alt="Ahvaanam Luxury Digital Invitation"
+                    className="w-full h-auto object-contain rounded-2xl transform transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
 
-                {/* Corner Floral Ornaments */}
-                <span className="absolute top-5 left-5 text-[#C49B27]/40 text-xs select-none">❀</span>
-                <span className="absolute top-5 right-5 text-[#C49B27]/40 text-xs select-none">❀</span>
-                <span className="absolute bottom-5 left-5 text-[#C49B27]/40 text-xs select-none">❀</span>
-                <span className="absolute bottom-5 right-5 text-[#C49B27]/40 text-xs select-none">❀</span>
-
-                {/* Cultural Symbol */}
-                <span className="text-2xl text-[#C49B27] font-bold mb-1">ॐ</span>
-                
-                <span className="text-[8px] uppercase tracking-[3px] font-bold text-[#C49B27]">Wedding Invitation</span>
-                
-                <h3 className="text-2xl sm:text-3xl font-normal font-cinzel text-[#241E1C] uppercase tracking-[1px] my-2">
-                  Ananya &amp; Rohit
-                </h3>
-                
-                <p className="text-[9px] uppercase tracking-[2px] text-[#241E1C]/60 font-bold">
-                  24th December 2027
-                </p>
-
-                <div className="mt-4 px-4 py-1.5 rounded-full bg-[#C49B27]/10 border border-[#C49B27]/25 text-[8px] font-bold uppercase tracking-[1.5px] text-[#C49B27]">
-                  View Full Invitation
-                </div>
+                  {/* Gentle Gradient Shimmer on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#241E1C]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+                    <span className="px-5 py-2 rounded-full bg-white/95 text-[#241E1C] font-bold text-[10px] uppercase tracking-[2px] shadow-lg flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                      <Play size={10} className="fill-current text-[#C49B27]" /> View Live Invitation
+                    </span>
+                  </div>
+                </Link>
               </div>
             </motion.div>
           </motion.div>

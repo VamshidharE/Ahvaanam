@@ -103,7 +103,7 @@ export default function AnalyticsDashboard({ params }: { params: Promise<{ id: s
           className="flex items-center cursor-pointer select-none" 
           onClick={() => window.location.href = "/"}
         >
-          <img src="/images/logo.png" alt="Ahvaanam" className="h-26 w-auto object-contain" />
+          <img src="/images/logo.png" alt="Ahvaanam" className="h-8 md:h-9 w-auto object-contain" />
         </div>
 
         <div className="flex items-center gap-4">

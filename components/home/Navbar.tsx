@@ -27,7 +27,6 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "HOME", href: "/" },
-    { name: "TEMPLATES", href: "/templates" },
     { name: "SERVICES", href: "/services" },
     { name: "HOW IT WORKS", href: "/how-it-works" },
     { name: "CONTACT", href: "/contact" },
@@ -36,17 +35,17 @@ export default function Navbar() {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       scrolled 
-        ? "bg-[#FAF9F6]/90 backdrop-blur-md shadow-md py-3 border-b border-[#E5A93C]/15" 
-        : "bg-[#FAF9F6]/85 backdrop-blur-sm py-4 border-b border-[#E5A93C]/10"
+        ? "bg-[#FAF9F6]/95 backdrop-blur-md shadow-md py-1.5 md:py-2 border-b border-[#E5A93C]/15" 
+        : "bg-[#FAF9F6]/90 backdrop-blur-sm py-2.5 md:py-3.5 border-b border-[#E5A93C]/10"
     }`}>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 flex items-center justify-between">
         
         {/* Logo */}
-        <Link href="/" className="flex items-center group">
+        <Link href="/" className="flex items-center -ml-3 sm:-ml-4 lg:-ml-5 group">
           <img 
             src="/images/logo.png" 
             alt="Ahvaanam" 
-            className="h-10 md:h-12 w-auto object-contain" 
+            className="h-8 md:h-9 w-auto object-contain transition-transform group-hover:scale-105" 
           />
         </Link>
 
