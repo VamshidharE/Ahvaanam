@@ -314,7 +314,7 @@ export function mapInvitationConfigToRoseMandap(rawConfig: any): RoseMandapData 
     ? "Two hearts, two families and one beautiful journey. This is the beginning of a new chapter that we would love to celebrate with you."
     : rawStoryText;
 
-  const rawPhoto = config.story?.timeline?.[0]?.image || config.couple?.groom?.image || config.hero?.heroImage || "";
+  const rawPhoto = config.story?.image || config.story?.couplePhoto || config.story?.timeline?.[0]?.image || config.hero?.heroImage || "/wedding/couple/couple.png";
   const couplePhoto = isGenericPlaceholder(rawPhoto, ["/images/couple.jpg", ""]) ? "/wedding/couple/couple.png" : rawPhoto;
 
   // Gallery

@@ -1,0 +1,250 @@
+{
+  "faq": {
+    "id": "faq",
+    "title": "Frequently Asked Questions",
+    "enabled": true,
+    "entries": [
+      {
+        "answer": "Traditional Indian attire is preferred.",
+        "question": "Is there a dress code?"
+      }
+    ]
+  },
+  "date": "2026-09-20",
+  "hero": {
+    "id": "hero",
+    "title": "Together with their families",
+    "ctaText": "Submit",
+    "enabled": true,
+    "subText": "Ryagalla's Wedding Invitation",
+    "surname": "Sharma",
+    "subtitle": "invite you to celebrate the beginning of their beautiful journey together",
+    "heroImage": "/wedding/couple/couple.png",
+    "selectedGod": "ganesha",
+    "surnameFont": "cinzel",
+    "surnameColor": "#C59B27",
+    "musicAutoplay": false,
+    "showParticles": true,
+    "backgroundType": "image",
+    "overlayOpacity": 0.45,
+    "selectedSymbol": "om",
+    "welcomeMessage": "ॐ श्री गणेशाय नमः ||",
+    "headerMediaSize": 80,
+    "headerMediaType": "god",
+    "headerMediaColor": "#C59B27",
+    "enableHeaderMedia": true,
+    "headerMediaSpacing": 30,
+    "showSurnameHeading": true,
+    "headerMediaPosition": "top-middle"
+  },
+  "rsvp": {
+    "id": "rsvp",
+    "title": "We Would Love To Celebrate With You",
+    "enabled": true,
+    "contacts": [
+      {
+        "type": "whatsapp",
+        "label": "Contact",
+        "value": "+91 9866767100"
+      }
+    ],
+    "subtitle": "Your presence and blessings will make our celebration even more special."
+  },
+  "time": "10:15 AM",
+  "bride": {
+    "name": "rani"
+  },
+  "groom": {
+    "name": "ajay"
+  },
+  "music": {
+    "file": "/wedding/rose-mandap/theme-music.MP3",
+    "enabled": true
+  },
+  "story": {
+    "id": "story",
+    "title": "Our Story",
+    "enabled": true,
+    "image": "/wedding/couple/couple.png",
+    "timeline": [
+      {
+        "date": "",
+        "title": "Our Story",
+        "image": "/wedding/couple/couple.png",
+        "description": "Two hearts, two families and one beautiful journey. This is the beginning of a new chapter that we would love to celebrate with you."
+      }
+    ]
+  },
+  "venue": {
+    "venues": [
+      {
+        "id": "venue-1",
+        "city": "Hyderabad",
+        "title": "Wedding Venue",
+        "address": "The Leela Palace, Hyderabad",
+        "mapsUrl": "https://maps.app.goo.gl/qdS9bD7Mk3owTJJa7",
+        "embedUrl": "",
+        "venueName": "The Leela Palace"
+      }
+    ],
+    "enabled": true
+  },
+  "couple": {
+    "id": "couple",
+    "bride": {
+      "bio": "",
+      "name": "Ananya",
+      "image": "https://xntguirbaobquvneummn.supabase.co/storage/v1/object/public/uploads/5be7b49c-f2da-4347-bfec-f3f3321dca40.png",
+      "family": [
+        {
+          "name": "",
+          "relation": ""
+        }
+      ],
+      "parents": "Daughter of Mr. & Mrs. Bride Family"
+    },
+    "groom": {
+      "bio": "",
+      "name": "Rohit",
+      "image": "https://xntguirbaobquvneummn.supabase.co/storage/v1/object/public/uploads/ec32bd7e-86a2-46d6-8d1b-bd3eb0fabd9f.png",
+      "family": [
+        {
+          "name": "",
+          "relation": ""
+        }
+      ],
+      "parents": "Son of Mr. & Mrs. Groom Family",
+      "surname": "Sharma"
+    },
+    "title": "The Happy Couple",
+    "enabled": true,
+    "primarySide": "bride"
+  },
+  "events": [
+    {
+      "id": "haldi",
+      "date": "06 October 2026",
+      "icon": "✨",
+      "time": "10:00 AM",
+      "title": "Haldi",
+      "venue": "Family Residence",
+      "enabled": true,
+      "description": "An intimate celebration filled with turmeric, laughter and blessings."
+    },
+    {
+      "id": "wedding",
+      "date": "08 October 2026",
+      "icon": "💍",
+      "time": "12:15 PM",
+      "title": "Wedding",
+      "venue": "The Leela Palace",
+      "enabled": true,
+      "description": "Join us as we celebrate the sacred wedding ceremony."
+    },
+    {
+      "id": "reception",
+      "date": "10 October 2026",
+      "icon": "🥂",
+      "time": "7:00 PM",
+      "title": "Reception",
+      "venue": "The Leela Palace",
+      "enabled": true,
+      "description": "An evening of joy, dinner and celebration with family and friends."
+    }
+  ],
+  "footer": {
+    "id": "footer",
+    "title": "Footer Credits",
+    "contact": "+91 9866767100",
+    "enabled": false,
+    "designer": "Ahvaanam",
+    "location": "Tirumala Printers, Metpally, Dist. Jagtial, Telangana",
+    "creditText": "Digital Wedding Invitations & Card Services",
+    "salutation": ""
+  },
+  "status": "published",
+  "_status": "published",
+  "gallery": {
+    "id": "gallery",
+    "title": "Our Moments",
+    "images": [
+      "/wedding/gallery/pic1.png",
+      "/wedding/gallery/pic2.jpg",
+      "/wedding/gallery/pic3.jpg",
+      "/wedding/gallery/pic4.jpg"
+    ],
+    "enabled": true,
+    "layoutType": "carousel",
+    "slideshowMode": true
+  },
+  "themeId": "rose-mandap",
+  "families": {
+    "id": "families",
+    "title": "Warm Greetings",
+    "enabled": true,
+    "brideFamily": [
+      {
+        "name": "",
+        "relation": ""
+      }
+    ],
+    "groomFamily": [
+      {
+        "name": "",
+        "relation": ""
+      }
+    ],
+    "bridePortrait": "https://xntguirbaobquvneummn.supabase.co/storage/v1/object/public/uploads/5be7b49c-f2da-4347-bfec-f3f3321dca40.png",
+    "groomPortrait": "https://xntguirbaobquvneummn.supabase.co/storage/v1/object/public/uploads/ec32bd7e-86a2-46d6-8d1b-bd3eb0fabd9f.png"
+  },
+  "countdown": {
+    "id": "countdown",
+    "title": "Muhurtham Countdown",
+    "enabled": true,
+    "timezone": "IST",
+    "targetDate": "2026-10-08T12:15:00",
+    "customLabels": {
+      "days": "Days",
+      "hours": "Hours",
+      "minutes": "Minutes",
+      "seconds": "Seconds"
+    },
+    "hideAfterWedding": true,
+    "postWeddingMessage": "The wedding has concluded! Thank you for your blessings."
+  },
+  "dressCode": {
+    "id": "dressCode",
+    "code": "Traditional Festive",
+    "title": "Dress Code & Theme",
+    "colors": [
+      "#FF8800",
+      "#FFD700",
+      "#C59B27",
+      "#8B0000"
+    ],
+    "enabled": true,
+    "description": "Vibrant ethnic colors are highly encouraged!"
+  },
+  "sectionOrder": [
+    "hero",
+    "couple",
+    "countdown",
+    "story",
+    "events",
+    "gallery",
+    "venue",
+    "families",
+    "rsvp"
+  ],
+  "themeSettings": {
+    "borderStyle": "gold",
+    "buttonStyle": "rounded",
+    "galleryStyle": "carousel",
+    "particleType": "dust",
+    "heroAnimation": "zoom",
+    "showParticles": true,
+    "countdownStyle": "glass"
+  },
+  "payment_status": "paid",
+  "_payment_status": "paid"
+}

@@ -11,7 +11,8 @@ import { getManifest } from "@/lib/template-manifests";
 import { 
   Palette, Sliders, Heart, Calendar, Clock, MapPin, 
   Phone, HelpCircle, Shirt, Save, ArrowLeft, Plus, 
-  Trash2, ArrowUp, ArrowDown, Upload, CheckCircle2, AlertCircle
+  Trash2, ArrowUp, ArrowDown, Upload, CheckCircle2, AlertCircle,
+  ChevronLeft, ChevronRight, GripVertical
 } from "lucide-react";
 import { createClient } from "@/utils/supabase/client";
 import { isAdminUser } from "@/lib/auth/isAdmin";
@@ -199,6 +200,8 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
   const [triggerConfetti, setTriggerConfetti] = useState(false);
+  const [draggedGalleryIdx, setDraggedGalleryIdx] = useState<number | null>(null);
+  const [dragOverGalleryIdx, setDragOverGalleryIdx] = useState<number | null>(null);
 
   // Wrapper resolution logic
   const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
@@ -1494,7 +1497,10 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
 
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Uploaded Photos</label>
+              <div className="flex flex-col gap-0.5">
+                <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1.5px]">Uploaded Photos</label>
+                <span className="text-[9px] text-white/40 font-medium italic">Hold &amp; drag to rearrange</span>
+              </div>
               <FileUploader
                 onUploadSuccess={(url) => {
                   updateInvitationData((prev: any) => ({
@@ -1510,13 +1516,58 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
             </div>
 
             {galleryImages.length > 0 ? (
-              <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 border border-white/10 rounded-xl p-4 bg-black/20">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 border border-white/10 rounded-xl p-4 bg-black/20">
                 {galleryImages.map((img: string, idx: number) => (
-                  <div key={idx} className="relative aspect-square rounded-lg overflow-hidden border border-white/10 group bg-black/40">
-                    <img src={img} alt="Gallery" className="w-full h-full object-cover" />
+                  <div
+                    key={idx}
+                    draggable={true}
+                    onDragStart={(e) => {
+                      setDraggedGalleryIdx(idx);
+                      e.dataTransfer.effectAllowed = "move";
+                      e.dataTransfer.setData("text/plain", idx.toString());
+                    }}
+                    onDragOver={(e) => {
+                      e.preventDefault();
+                      e.dataTransfer.dropEffect = "move";
+                      if (dragOverGalleryIdx !== idx) {
+                        setDragOverGalleryIdx(idx);
+                      }
+                    }}
+                    onDragEnd={() => {
+                      setDraggedGalleryIdx(null);
+                      setDragOverGalleryIdx(null);
+                    }}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      if (draggedGalleryIdx !== null && draggedGalleryIdx !== idx) {
+                        updateInvitationData((prev: any) => {
+                          const newImgs = [...(prev.gallery?.images || [])];
+                          const [moved] = newImgs.splice(draggedGalleryIdx, 1);
+                          newImgs.splice(idx, 0, moved);
+                          return {
+                            ...prev,
+                            gallery: { ...prev.gallery, images: newImgs }
+                          };
+                        });
+                      }
+                      setDraggedGalleryIdx(null);
+                      setDragOverGalleryIdx(null);
+                    }}
+                    className={`relative aspect-square rounded-xl overflow-hidden border transition-all duration-200 cursor-grab active:cursor-grabbing group bg-black/40 shadow-xs select-none ${
+                      draggedGalleryIdx === idx
+                        ? "opacity-35 scale-95 border-dashed border-yellow-500"
+                        : dragOverGalleryIdx === idx
+                        ? "scale-105 border-yellow-500 ring-2 ring-yellow-500/80 shadow-md z-20"
+                        : "border-white/10 hover:border-yellow-500/60"
+                    }`}
+                  >
+                    <img src={img} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover pointer-events-none" />
+
+                    {/* Delete button */}
                     <button
                       type="button"
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.stopPropagation();
                         updateInvitationData((prev: any) => {
                           const nextList = (prev.gallery?.images || []).filter((_: any, i: number) => i !== idx);
                           return {
@@ -1525,10 +1576,10 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
                           };
                         });
                       }}
-                      className="absolute top-1.5 right-1.5 p-1.5 bg-red-600 text-white rounded hover:bg-red-700 transition-colors cursor-pointer"
+                      className="absolute top-1.5 right-1.5 p-1.5 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors cursor-pointer z-10"
                       title="Remove image"
                     >
-                      <Trash2 size={12} />
+                      <Trash2 size={11} />
                     </button>
                   </div>
                 ))}
@@ -2533,7 +2584,10 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
               return (
                 <div key={fieldKey} className="space-y-2.5 animate-fadeIn">
                   <div className="flex justify-between items-center">
-                    <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1.5px]">Gallery Photo List</label>
+                    <div className="flex flex-col gap-0.5">
+                      <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1.5px]">Gallery Photo List</label>
+                      <span className="text-[9px] text-white/40 font-medium italic">Hold &amp; drag to rearrange</span>
+                    </div>
                     <FileUploader
                       onUploadSuccess={(url) => {
                         updateConfigMetadataValue("gallery.images", [...galleryImages, url]);
@@ -2542,19 +2596,60 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
                     />
                   </div>
                   {galleryImages.length > 0 ? (
-                    <div className="grid grid-cols-4 gap-2 border border-white/10 rounded-xl p-3 bg-black/20">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 border border-white/10 rounded-xl p-3 bg-black/20">
                       {galleryImages.map((img: string, idx: number) => (
-                        <div key={idx} className="relative aspect-square rounded-lg overflow-hidden border border-white/10 group">
-                          <img src={img} alt="Gallery" className="w-full h-full object-cover" />
+                        <div
+                          key={idx}
+                          draggable={true}
+                          onDragStart={(e) => {
+                            setDraggedGalleryIdx(idx);
+                            e.dataTransfer.effectAllowed = "move";
+                            e.dataTransfer.setData("text/plain", idx.toString());
+                          }}
+                          onDragOver={(e) => {
+                            e.preventDefault();
+                            e.dataTransfer.dropEffect = "move";
+                            if (dragOverGalleryIdx !== idx) {
+                              setDragOverGalleryIdx(idx);
+                            }
+                          }}
+                          onDragEnd={() => {
+                            setDraggedGalleryIdx(null);
+                            setDragOverGalleryIdx(null);
+                          }}
+                          onDrop={(e) => {
+                            e.preventDefault();
+                            if (draggedGalleryIdx !== null && draggedGalleryIdx !== idx) {
+                              const newImgs = [...galleryImages];
+                              const [moved] = newImgs.splice(draggedGalleryIdx, 1);
+                              newImgs.splice(idx, 0, moved);
+                              updateConfigMetadataValue("gallery.images", newImgs);
+                            }
+                            setDraggedGalleryIdx(null);
+                            setDragOverGalleryIdx(null);
+                          }}
+                          className={`relative aspect-square rounded-xl overflow-hidden border transition-all duration-200 cursor-grab active:cursor-grabbing group bg-black/40 shadow-xs select-none ${
+                            draggedGalleryIdx === idx
+                              ? "opacity-35 scale-95 border-dashed border-yellow-500"
+                              : dragOverGalleryIdx === idx
+                              ? "scale-105 border-yellow-500 ring-2 ring-yellow-500/80 shadow-md z-20"
+                              : "border-white/10 hover:border-yellow-500/60"
+                          }`}
+                        >
+                          <img src={img} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover pointer-events-none" />
+
+                          {/* Delete button */}
                           <button
                             type="button"
-                            onClick={() => {
+                            onClick={(e) => {
+                              e.stopPropagation();
                               const nextList = galleryImages.filter((_: any, i: number) => i !== idx);
                               updateConfigMetadataValue("gallery.images", nextList);
                             }}
-                            className="absolute top-1 right-1 p-1 bg-red-600/90 text-white rounded hover:bg-red-700 transition-colors"
+                            className="absolute top-1.5 right-1.5 p-1 bg-red-600/90 text-white rounded-md hover:bg-red-700 transition-colors cursor-pointer z-10"
+                            title="Remove photo"
                           >
-                            <Trash2 size={10} />
+                            <Trash2 size={11} />
                           </button>
                         </div>
                       ))}

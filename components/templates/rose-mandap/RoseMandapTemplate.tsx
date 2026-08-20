@@ -29,13 +29,26 @@ export default function RoseMandapTemplate({
 }: RoseMandapTemplateProps) {
   const data: RoseMandapData = mapInvitationConfigToRoseMandap(invitationData);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const isEmbedded = typeof window !== "undefined" && (
+    window.self !== window.top ||
+    window.location.search.includes("embed=1") ||
+    window.location.search.includes("preview=1")
+  );
+
+  const hideProcession = typeof window !== "undefined" && (
+    window.location.search.includes("noProcession=1") ||
+    (isEmbedded && window.location.search.includes("embed=1"))
+  );
+
+  const [isOpen, setIsOpen] = useState(isEmbedded);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
-  const [musicEnabled, setMusicEnabled] = useState(true);
+  const [musicEnabled, setMusicEnabled] = useState(!isEmbedded);
 
   // Automatic invitation opening timer
   useEffect(() => {
+    if (isEmbedded) return;
+
     // Lock body scroll while opening overlay is active
     document.body.style.overflow = "hidden";
 
@@ -47,10 +60,12 @@ export default function RoseMandapTemplate({
       clearTimeout(timer);
       document.body.style.overflow = "";
     };
-  }, []);
+  }, [isEmbedded]);
 
   // Auto-play theme music on page mount, during opening, and on any early user gesture
   useEffect(() => {
+    if (isEmbedded || !musicEnabled) return;
+
     const audio = audioRef.current;
     if (!audio) return;
 
@@ -297,7 +312,7 @@ export default function RoseMandapTemplate({
 
             {data.sections.showAnnouncement && <WeddingAnnouncement />}
             {data.sections.showEvents && <Events />}
-            {data.sections.showProcession && <Procession />}
+            {data.sections.showProcession && !hideProcession && <Procession />}
             {data.sections.showFamily && <Family />}
             {data.sections.showGallery && <Gallery />}
             {data.sections.showVenue && <Venue />}
