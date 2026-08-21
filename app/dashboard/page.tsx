@@ -261,16 +261,22 @@ export default function ClientDashboard() {
 
   const handleExportCSV = (profileId: string, rsvps: any[]) => {
     if (!rsvps || rsvps.length === 0) return;
-    const headers = ["Guest Name", "Phone", "Email", "Attending", "Guest Count", "Message", "Submitted Time"];
-    const rows = rsvps.map(r => [
-      `"${r.guest_name.replace(/"/g, '""')}"`,
-      `"${r.phone}"`,
-      `"${(r.email || '').replace(/"/g, '""')}"`,
-      r.attending ? "Yes" : "No",
-      r.guest_count || 0,
-      `"${(r.message || '').replace(/"/g, '""')}"`,
-      new Date(r.created_at).toLocaleString()
-    ]);
+    const headers = ["Guest Name", "Phone", "Status", "Attending Guests", "Message", "Submitted Time"];
+    const rows = rsvps.map(r => {
+      const isVisitorToken = typeof r.phone === "string" && r.phone.startsWith("vt_");
+      const phoneVal = isVisitorToken ? "1-Tap Attendance" : (r.phone || "");
+      const guestNameVal = r.guest_name || "Guest";
+      const guestCountVal = Number(r.guest_count) || 1;
+
+      return [
+        `"${guestNameVal.replace(/"/g, '""')}"`,
+        `"${phoneVal.replace(/"/g, '""')}"`,
+        "Confirmed",
+        guestCountVal,
+        `"${(r.message || '').replace(/"/g, '""')}"`,
+        new Date(r.created_at).toLocaleString()
+      ];
+    });
     const csvContent = "\uFEFF" + [headers.join(","), ...rows.map(e => e.join(","))].join("\n");
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
     const blobUrl = URL.createObjectURL(blob);
@@ -565,13 +571,10 @@ export default function ClientDashboard() {
                           <span className="text-[#C49B27] font-bold uppercase tracking-[0.5px]">👁 Views:</span> {profile.viewsCount || 0}
                         </div>
                         <div>
-                          <span className="text-slate-550 font-bold uppercase tracking-[0.5px]">📝 RSVPs:</span> {(profile.acceptedCount || 0) + (profile.declinedCount || 0)}
+                          <span className="text-slate-550 font-bold uppercase tracking-[0.5px]">📝 RSVPs:</span> {profile.acceptedCount || 0}
                         </div>
                         <div>
-                          <span className="text-emerald-600 font-bold uppercase tracking-[0.5px]">Attending:</span> {profile.acceptedCount || 0}
-                        </div>
-                        <div>
-                          <span className="text-red-500 font-bold uppercase tracking-[0.5px]">Declined:</span> {profile.declinedCount || 0}
+                          <span className="text-emerald-600 font-bold uppercase tracking-[0.5px]">Attending:</span> {profile.guestCount || profile.acceptedCount || 0}
                         </div>
                         {isAdmin && (
                           <div>
@@ -868,69 +871,73 @@ export default function ClientDashboard() {
               ) : (
                 <div className="space-y-6">
                   {/* Local analytics */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div className="bg-[#FAF9F6] border border-zinc-200/50 p-4 rounded-2xl text-center">
                       <span className="text-[8px] uppercase tracking-[1px] font-bold text-slate-400 block mb-0.5">Total Responses</span>
                       <span className="text-base font-bold text-[#241E1C] font-mono">{rsvpsList.length}</span>
                     </div>
                     <div className="bg-[#FAF9F6] border border-zinc-200/50 p-4 rounded-2xl text-center">
-                      <span className="text-[8px] uppercase tracking-[1px] font-bold text-slate-400 block mb-0.5">Attending</span>
+                      <span className="text-[8px] uppercase tracking-[1px] font-bold text-slate-400 block mb-0.5">Confirmed Responses</span>
                       <span className="text-base font-bold text-emerald-600 font-mono">
-                        {rsvpsList.filter(r => r.attending).length}
+                        {rsvpsList.filter(r => r.attending !== false).length}
                       </span>
                     </div>
                     <div className="bg-[#FAF9F6] border border-zinc-200/50 p-4 rounded-2xl text-center">
-                      <span className="text-[8px] uppercase tracking-[1px] font-bold text-slate-400 block mb-0.5">Declined</span>
-                      <span className="text-base font-bold text-red-500 font-mono">
-                        {rsvpsList.filter(r => !r.attending).length}
-                      </span>
-                    </div>
-                    <div className="bg-[#FAF9F6] border border-zinc-200/50 p-4 rounded-2xl text-center">
-                      <span className="text-[8px] uppercase tracking-[1px] font-bold text-slate-400 block mb-0.5">Guests Attending</span>
+                      <span className="text-[8px] uppercase tracking-[1px] font-bold text-slate-400 block mb-0.5">Attending Guests</span>
                       <span className="text-base font-bold text-[#C49B27] font-mono">
-                        {rsvpsList.reduce((acc, r) => acc + (r.attending ? (r.guest_count || 1) : 0), 0)}
+                        {rsvpsList.reduce((acc, r) => acc + (r.attending !== false ? (Number(r.guest_count) || 1) : 0), 0)}
                       </span>
                     </div>
                   </div>
 
                   {/* Desktop Table View */}
                   <div className="border border-zinc-200/80 rounded-2xl overflow-hidden bg-white shadow-sm overflow-x-auto">
-                    <table className="w-full text-left border-collapse min-w-[700px]">
+                    <table className="w-full text-left border-collapse min-w-[640px]">
                       <thead>
                         <tr className="bg-[#FAF9F6] border-b border-zinc-200/80 text-[9px] uppercase tracking-[1px] font-bold text-[#241E1C]/65">
                           <th className="px-5 py-3.5">Guest Name</th>
                           <th className="px-5 py-3.5">Phone</th>
-                          <th className="px-5 py-3.5">Email</th>
-                          <th className="px-5 py-3.5 text-center">Attending</th>
-                          <th className="px-5 py-3.5 text-center">Guest Count</th>
+                          <th className="px-5 py-3.5 text-center">Status</th>
+                          <th className="px-5 py-3.5 text-center">Guests</th>
                           <th className="px-5 py-3.5">Message</th>
                           <th className="px-5 py-3.5">Submitted Time</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-zinc-100 text-xs">
-                        {rsvpsList.map((rsvp, idx) => (
-                          <tr key={idx} className="hover:bg-zinc-50/50 transition-colors">
-                            <td className="px-5 py-3.5 font-semibold text-[#241E1C]">{rsvp.guest_name}</td>
-                            <td className="px-5 py-3.5 text-slate-500 font-mono">{rsvp.phone}</td>
-                            <td className="px-5 py-3.5 text-slate-450">{rsvp.email || "-"}</td>
-                            <td className="px-5 py-3.5 text-center">
-                              <span className={`text-[8px] font-bold uppercase tracking-[0.5px] px-2 py-0.5 rounded-full border inline-block ${
-                                rsvp.attending 
-                                  ? "bg-emerald-500/5 border-emerald-500/10 text-emerald-600" 
-                                  : "bg-red-500/5 border-red-500/10 text-red-600"
-                              }`}>
-                                {rsvp.attending ? "Yes" : "No"}
-                              </span>
-                            </td>
-                            <td className="px-5 py-3.5 text-center font-bold text-slate-600">{rsvp.attending ? rsvp.guest_count : 0}</td>
-                            <td className="px-5 py-3.5 max-w-[200px] truncate text-slate-500" title={rsvp.message || undefined}>
-                              {rsvp.message || <span className="text-slate-300 italic">No message</span>}
-                            </td>
-                            <td className="px-5 py-3.5 text-slate-450 font-mono text-[10px]">
-                              {new Date(rsvp.created_at).toLocaleString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" })}
-                            </td>
-                          </tr>
-                        ))}
+                        {rsvpsList.map((rsvp, idx) => {
+                          const isVisitorToken = typeof rsvp.phone === "string" && rsvp.phone.startsWith("vt_");
+                          const displayPhone = isVisitorToken ? "1-Tap (Anonymous)" : (rsvp.phone || "—");
+                          const guestCount = Number(rsvp.guest_count) || 1;
+
+                          return (
+                            <tr key={idx} className="hover:bg-zinc-50/50 transition-colors">
+                              <td className="px-5 py-3.5 font-semibold text-[#241E1C]">
+                                {rsvp.guest_name || "Guest"}
+                              </td>
+                              <td className="px-5 py-3.5 text-slate-500 font-mono text-[11px]">
+                                {isVisitorToken ? (
+                                  <span className="px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-500 text-[10px]">1-Tap Attendance</span>
+                                ) : (
+                                  displayPhone
+                                )}
+                              </td>
+                              <td className="px-5 py-3.5 text-center">
+                                <span className="text-[8.5px] font-bold uppercase tracking-[0.5px] px-2.5 py-0.5 rounded-full border inline-block bg-emerald-500/10 border-emerald-500/20 text-emerald-700">
+                                  Confirmed
+                                </span>
+                              </td>
+                              <td className="px-5 py-3.5 text-center font-bold text-[#C49B27] font-mono">
+                                {guestCount >= 4 ? "4+" : guestCount}
+                              </td>
+                              <td className="px-5 py-3.5 max-w-[200px] truncate text-slate-500" title={rsvp.message || undefined}>
+                                {rsvp.message || <span className="text-slate-300 italic">No message</span>}
+                              </td>
+                              <td className="px-5 py-3.5 text-slate-450 font-mono text-[10px]">
+                                {new Date(rsvp.created_at).toLocaleString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" })}
+                              </td>
+                            </tr>
+                          );
+                        })}
                       </tbody>
                     </table>
                   </div>

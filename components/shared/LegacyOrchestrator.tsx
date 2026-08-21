@@ -583,7 +583,7 @@ export default function LegacyOrchestrator({
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#050209] flex justify-center items-start overflow-y-auto">
+    <div className="min-h-screen w-full bg-[#050209] flex justify-center items-start">
       <ThemeProvider themeId={themeId} />
       
       {/* Swaying bells keyframe animations */}
@@ -618,7 +618,7 @@ export default function LegacyOrchestrator({
         {/* Custom theme ornaments (curtains, banana leaves, elephants, peacocks, bells) */}
         {renderThemeOrnaments()}
 
-        <div className="relative z-10 w-full flex-1 flex flex-col overflow-y-auto scrollbar-none pb-20">
+        <div className="relative z-10 w-full flex-1 flex flex-col pb-20">
           {invitation.music?.enabled && invitation.music?.file && (
             <audio ref={audioRef} loop src={invitation.music.file} />
           )}
