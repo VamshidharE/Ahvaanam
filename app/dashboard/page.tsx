@@ -446,7 +446,7 @@ export default function ClientDashboard() {
         </div>
 
         {/* Analytics Summary */}
-        <div className={`grid grid-cols-2 ${isAdmin ? "md:grid-cols-6" : "md:grid-cols-5"} gap-4 animate-fadeIn`}>
+        <div className={`grid grid-cols-2 ${isAdmin ? "md:grid-cols-5" : "md:grid-cols-4"} gap-4 animate-fadeIn`}>
           <div className="bg-white border border-amber-500/10 p-5 rounded-3xl shadow-sm text-center">
             <span className="text-[9px] uppercase tracking-[1.5px] font-bold text-slate-400 block mb-1">
               {isAdmin ? "Total Invites" : "Your Invites"}
@@ -454,21 +454,15 @@ export default function ClientDashboard() {
             <span className="text-xl font-bold text-[#241E1C] font-mono">{profiles.length}</span>
           </div>
           <div className="bg-white border border-amber-500/10 p-5 rounded-3xl shadow-sm text-center">
-            <span className="text-[9px] uppercase tracking-[1.5px] font-bold text-slate-400 block mb-1">Total RSVPs</span>
+            <span className="text-[9px] uppercase tracking-[1.5px] font-bold text-slate-400 block mb-1">Confirmed RSVPs</span>
             <span className="text-xl font-bold text-[#241E1C] font-mono">
-              {profiles.reduce((acc, p) => acc + (p.acceptedCount || 0) + (p.declinedCount || 0), 0)}
-            </span>
-          </div>
-          <div className="bg-white border border-amber-500/10 p-5 rounded-3xl shadow-sm text-center">
-            <span className="text-[9px] uppercase tracking-[1.5px] font-bold text-slate-400 block mb-1">Attending</span>
-            <span className="text-xl font-bold text-emerald-600 font-mono">
               {profiles.reduce((acc, p) => acc + (p.acceptedCount || 0), 0)}
             </span>
           </div>
           <div className="bg-white border border-amber-500/10 p-5 rounded-3xl shadow-sm text-center">
-            <span className="text-[9px] uppercase tracking-[1.5px] font-bold text-slate-400 block mb-1">Declined</span>
-            <span className="text-xl font-bold text-red-500 font-mono">
-              {profiles.reduce((acc, p) => acc + (p.declinedCount || 0), 0)}
+            <span className="text-[9px] uppercase tracking-[1.5px] font-bold text-slate-400 block mb-1">Attending Guests</span>
+            <span className="text-xl font-bold text-emerald-600 font-mono">
+              {profiles.reduce((acc, p) => acc + (p.guestCount || p.acceptedCount || 0), 0)}
             </span>
           </div>
           <div className="bg-white border border-amber-500/10 p-5 rounded-3xl shadow-sm text-center col-span-2 md:col-span-1">

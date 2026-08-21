@@ -44,6 +44,45 @@ export default function RoseMandapTemplate({
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [musicEnabled, setMusicEnabled] = useState(!isEmbedded);
+  const [showFloatingRsvp, setShowFloatingRsvp] = useState(false);
+
+  // Floating RSVP visibility calculation based on scroll progress and RSVP section visibility
+  useEffect(() => {
+    if (isEmbedded) return;
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollFraction = totalHeight > 0 ? scrollY / totalHeight : 0;
+
+      // Check if RSVP section is in viewport
+      const rsvpEl = document.getElementById("rsvp");
+      let isRsvpVisible = false;
+      if (rsvpEl) {
+        const rect = rsvpEl.getBoundingClientRect();
+        isRsvpVisible = rect.top <= window.innerHeight * 0.85 && rect.bottom >= 0;
+      }
+
+      // Show floating RSVP when scrolled >= 25% and RSVP section is not yet visible
+      if (scrollFraction >= 0.25 && !isRsvpVisible) {
+        setShowFloatingRsvp(true);
+      } else {
+        setShowFloatingRsvp(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isEmbedded]);
+
+  const scrollToRsvp = () => {
+    const rsvpEl = document.getElementById("rsvp");
+    if (rsvpEl) {
+      rsvpEl.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   // Automatic invitation opening timer
   useEffect(() => {
@@ -330,6 +369,27 @@ export default function RoseMandapTemplate({
           loop
           preload="auto"
         />
+
+        {/* Floating Join Us Quick Access Button (Appears after 25% scroll, hides at RSVP section) */}
+        <AnimatePresence>
+          {data.sections.showRSVP && showFloatingRsvp && (
+            <motion.button
+              className="floating-rsvp-btn"
+              onClick={scrollToRsvp}
+              initial={{ opacity: 0, scale: 0.8, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 15 }}
+              transition={{ duration: 0.3 }}
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.95 }}
+              aria-label="Are you joining us?"
+              title="Are you joining us?"
+            >
+              <span className="floating-rsvp-icon">💌</span>
+              <span className="floating-rsvp-text">JOIN US</span>
+            </motion.button>
+          )}
+        </AnimatePresence>
 
         {/* Floating Music Enable/Disable Button */}
         <motion.button

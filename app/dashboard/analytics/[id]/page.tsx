@@ -13,6 +13,7 @@ interface FeedbackItem {
   rating: number;
   feedback: string;
   guestName: string;
+  phone?: string;
   created_at: string;
 }
 
@@ -82,6 +83,42 @@ export default function AnalyticsDashboard({ params }: { params: Promise<{ id: s
     }
   };
 
+  const [timeRange, setTimeRange] = useState<"7d" | "14d" | "30d" | "all">("14d");
+  const [hoveredData, setHoveredData] = useState<{ date: string; views: number; index: number } | null>(null);
+
+  const parseDateLabel = (dateStr: string) => {
+    try {
+      const [y, m, d] = dateStr.split("-").map(Number);
+      const dt = new Date(y, m - 1, d);
+      return dt.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+    } catch {
+      return dateStr;
+    }
+  };
+
+  const parseFullDateLabel = (dateStr: string) => {
+    try {
+      const [y, m, d] = dateStr.split("-").map(Number);
+      const dt = new Date(y, m - 1, d);
+      return dt.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+    } catch {
+      return dateStr;
+    }
+  };
+
+  const getFilteredChartData = () => {
+    if (!chartData || chartData.length === 0) return [];
+    if (timeRange === "7d") return chartData.slice(-7);
+    if (timeRange === "14d") return chartData.slice(-14);
+    if (timeRange === "30d") return chartData.slice(-30);
+    return chartData;
+  };
+
+  const currentChartData = getFilteredChartData();
+  const totalPeriodViews = currentChartData.reduce((acc, d) => acc + (d.views || 0), 0);
+  const peakDay = currentChartData.reduce((max, d) => (d.views > max.views ? d : max), { date: "", views: 0 });
+  const maxViewsValue = Math.max(...currentChartData.map(d => d.views), 4);
+
   const formatDate = (dateStr: string | null) => {
     if (!dateStr) return "N/A";
     return new Date(dateStr).toLocaleString("en-US", {
@@ -91,8 +128,6 @@ export default function AnalyticsDashboard({ params }: { params: Promise<{ id: s
       minute: "2-digit"
     });
   };
-
-  const maxViews = Math.max(...chartData.map(d => d.views), 1);
 
   return (
     <div className="min-h-screen bg-[#FAF9F6] text-[#241E1C] flex flex-col font-sans relative overflow-hidden">
@@ -218,16 +253,16 @@ export default function AnalyticsDashboard({ params }: { params: Promise<{ id: s
                 <div className="space-y-4">
                   <div className="flex justify-between items-center pb-2 border-b border-zinc-100">
                     <span className="text-xs text-slate-500 flex items-center gap-1.5 font-medium">
-                      <CheckCircle size={14} className="text-emerald-500" /> Accepted RSVPs
+                      <CheckCircle size={14} className="text-emerald-500" /> Attending Guests
                     </span>
-                    <span className="text-sm font-bold text-emerald-600 font-mono">{stats.acceptedRsvps}</span>
+                    <span className="text-sm font-bold text-emerald-600 font-mono">{stats.totalGuestsAttending || stats.acceptedRsvps}</span>
                   </div>
 
                   <div className="flex justify-between items-center pb-2 border-b border-zinc-100">
                     <span className="text-xs text-slate-500 flex items-center gap-1.5 font-medium">
-                      <XCircle size={14} className="text-red-500" /> Declined RSVPs
+                      <Users size={14} className="text-sky-500" /> Confirmed Responses
                     </span>
-                    <span className="text-sm font-bold text-red-500 font-mono">{stats.declinedRsvps}</span>
+                    <span className="text-sm font-bold text-sky-600 font-mono">{stats.acceptedRsvps || stats.totalRsvps}</span>
                   </div>
 
                   <div className="flex justify-between items-center pb-2 border-b border-zinc-100">
@@ -251,42 +286,226 @@ export default function AnalyticsDashboard({ params }: { params: Promise<{ id: s
               </div>
 
               {/* Custom SVG line/bar chart for Views Over Time */}
-              <div className="lg:col-span-2 bg-white border border-amber-500/10 p-6 rounded-3xl shadow-sm flex flex-col justify-between">
+              <div className="lg:col-span-2 bg-white border border-amber-500/10 p-6 rounded-3xl shadow-sm flex flex-col justify-between space-y-6">
                 <div>
-                  <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/60 border-b border-zinc-100 pb-3 mb-6">
-                    Page Views Over Time
-                  </h3>
-                  
-                  {chartData.length === 0 ? (
+                  {/* Chart Header with Title and Range Selectors */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-100 pb-4 mb-5">
+                    <div>
+                      <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C] flex items-center gap-2">
+                        <TrendingUp size={15} className="text-[#C49B27]" />
+                        Page Views Activity
+                      </h3>
+                      <p className="text-[10px] text-slate-400 font-medium mt-0.5">
+                        Daily visitor traffic progression over time
+                      </p>
+                    </div>
+
+                    {/* Time Range Filter Pills */}
+                    <div className="flex items-center gap-1 bg-[#FAF9F6] p-1 rounded-xl border border-zinc-200/60 self-start sm:self-auto">
+                      {(["7d", "14d", "30d", "all"] as const).map((r) => (
+                        <button
+                          key={r}
+                          onClick={() => setTimeRange(r)}
+                          className={`px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.5px] rounded-lg transition-all cursor-pointer ${
+                            timeRange === r
+                              ? "bg-[#C49B27] text-white shadow-xs"
+                              : "text-slate-500 hover:text-[#241E1C] hover:bg-zinc-100"
+                          }`}
+                        >
+                          {r === "7d" ? "7 Days" : r === "14d" ? "14 Days" : r === "30d" ? "30 Days" : "All Time"}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Summary Metric Badges */}
+                  <div className="grid grid-cols-3 gap-3 mb-6 bg-[#FAF9F6] p-3 rounded-2xl border border-zinc-200/50">
+                    <div className="text-center sm:text-left">
+                      <span className="text-[8.5px] uppercase font-bold text-slate-400 block tracking-[0.5px]">Period Views</span>
+                      <span className="text-sm sm:text-base font-bold text-[#241E1C] font-mono">
+                        {currentChartData.reduce((acc, d) => acc + (d.views || 0), 0)}
+                      </span>
+                    </div>
+                    <div className="text-center sm:text-left border-x border-zinc-200/60 px-2">
+                      <span className="text-[8.5px] uppercase font-bold text-slate-400 block tracking-[0.5px]">Daily Average</span>
+                      <span className="text-sm sm:text-base font-bold text-[#C49B27] font-mono">
+                        {currentChartData.length > 0 
+                          ? (currentChartData.reduce((acc, d) => acc + (d.views || 0), 0) / currentChartData.length).toFixed(1)
+                          : "0.0"}
+                        <span className="text-[9px] font-normal text-slate-400 font-sans ml-1">/day</span>
+                      </span>
+                    </div>
+                    <div className="text-center sm:text-left">
+                      <span className="text-[8.5px] uppercase font-bold text-slate-400 block tracking-[0.5px]">Peak Day</span>
+                      <span className="text-sm sm:text-base font-bold text-[#241E1C] font-mono">
+                        {peakDay.views > 0 ? (
+                          <>
+                            {peakDay.views} <span className="text-[9px] font-normal text-slate-400 font-sans">({parseDateLabel(peakDay.date)})</span>
+                          </>
+                        ) : (
+                          "0"
+                        )}
+                      </span>
+                    </div>
+                  </div>
+
+                  {currentChartData.length === 0 ? (
                     <div className="h-64 flex flex-col items-center justify-center border border-dashed border-zinc-200 rounded-2xl bg-zinc-50/50 text-center p-4">
                       <Eye size={28} className="text-zinc-300 mb-2 animate-pulse" />
                       <h4 className="text-xs font-bold text-[#241E1C]/60 uppercase tracking-[0.5px]">No Views Logged</h4>
-                      <p className="text-[10px] text-slate-450 mt-1 max-w-[200px]">
+                      <p className="text-[10px] text-slate-400 mt-1 max-w-[200px]">
                         Views over time aggregates daily traffic. Share your public link to trigger activity graphs!
                       </p>
                     </div>
                   ) : (
-                    <div className="h-64 flex items-end gap-1.5 pt-6 border-b border-l border-zinc-200/80 pb-2 px-2 overflow-x-auto min-h-[220px]">
-                      {chartData.map((d, idx) => {
-                        const heightPct = (d.views / maxViews) * 100;
-                        return (
-                          <div key={idx} className="flex-1 flex flex-col items-center min-w-[40px] group relative cursor-default">
-                            {/* Hover tooltip */}
-                            <div className="absolute bottom-full mb-2 bg-[#241E1C] text-white text-[9px] font-bold py-1 px-2.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-md z-10">
-                              {d.views} views • {new Date(d.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
-                            </div>
-                            {/* Bar segment */}
-                            <div 
-                              className="w-full bg-[#C49B27] hover:bg-[#B0871B] rounded-t-md transition-all duration-300 shadow-sm"
-                              style={{ height: `${heightPct}%`, minHeight: '4px' }}
-                            />
-                            {/* Date label */}
-                            <span className="text-[8px] font-semibold text-slate-400 mt-2 rotate-45 origin-left translate-x-1 whitespace-nowrap pb-4">
-                              {new Date(d.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
-                            </span>
+                    <div className="relative pt-2">
+                      {/* Plotting Box with Y-Axis */}
+                      <div className="flex gap-2.5">
+                        
+                        {/* Y-Axis scale marks */}
+                        <div className="flex flex-col justify-between h-56 text-[8.5px] font-mono text-slate-400 text-right w-6 py-0.5 select-none shrink-0">
+                          <span>{maxViewsValue}</span>
+                          <span>{Math.round(maxViewsValue * 0.75)}</span>
+                          <span>{Math.round(maxViewsValue * 0.5)}</span>
+                          <span>{Math.round(maxViewsValue * 0.25)}</span>
+                          <span>0</span>
+                        </div>
+
+                        {/* Chart Canvas Area */}
+                        <div className="relative flex-1 h-56 border-b border-l border-zinc-200/80">
+                          
+                          {/* Horizontal Gridlines */}
+                          <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
+                            <div className="w-full border-b border-dashed border-zinc-200/60" />
+                            <div className="w-full border-b border-dashed border-zinc-200/60" />
+                            <div className="w-full border-b border-dashed border-zinc-200/60" />
+                            <div className="w-full border-b border-dashed border-zinc-200/60" />
+                            <div className="w-full border-b border-zinc-200/80" />
                           </div>
-                        );
-                      })}
+
+                          {/* SVG Area & Trend Line Layer */}
+                          {currentChartData.length > 1 && (
+                            <svg
+                              className="absolute inset-0 w-full h-full pointer-events-none overflow-visible"
+                              viewBox="0 0 100 100"
+                              preserveAspectRatio="none"
+                            >
+                              <defs>
+                                <linearGradient id="goldAreaGrad" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="0%" stopColor="#C49B27" stopOpacity="0.28" />
+                                  <stop offset="100%" stopColor="#C49B27" stopOpacity="0.0" />
+                                </linearGradient>
+                              </defs>
+
+                              {/* Filled Gradient Area */}
+                              <polygon
+                                points={`0,100 ${currentChartData.map((d, i) => {
+                                  const x = (i / (currentChartData.length - 1)) * 100;
+                                  const y = 100 - (d.views / maxViewsValue) * 92 - 4;
+                                  return `${x},${y}`;
+                                }).join(" ")} 100,100`}
+                                fill="url(#goldAreaGrad)"
+                              />
+
+                              {/* Smooth Trend Line */}
+                              <polyline
+                                points={currentChartData.map((d, i) => {
+                                  const x = (i / (currentChartData.length - 1)) * 100;
+                                  const y = 100 - (d.views / maxViewsValue) * 92 - 4;
+                                  return `${x},${y}`;
+                                }).join(" ")}
+                                fill="none"
+                                stroke="#C49B27"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="opacity-75"
+                              />
+                            </svg>
+                          )}
+
+                          {/* Interactive Vertical Dynamic Bars */}
+                          <div className="absolute inset-0 flex items-end justify-between px-1 gap-1 sm:gap-1.5 z-10">
+                            {currentChartData.map((d, idx) => {
+                              const heightPct = Math.max((d.views / maxViewsValue) * 100, d.views > 0 ? 8 : 2);
+                              const isHovered = hoveredData?.index === idx;
+
+                              return (
+                                <div
+                                  key={idx}
+                                  onMouseEnter={() => setHoveredData({ date: d.date, views: d.views, index: idx })}
+                                  onMouseLeave={() => setHoveredData(null)}
+                                  className="h-full flex-1 flex flex-col justify-end items-center relative group cursor-pointer"
+                                >
+                                  {/* Hover Column Glow Backdrop */}
+                                  <div className={`absolute inset-y-0 inset-x-[-2px] rounded-lg transition-colors pointer-events-none ${
+                                    isHovered ? "bg-[#C49B27]/10" : "group-hover:bg-[#C49B27]/5"
+                                  }`} />
+
+                                  {/* Floating Rich Tooltip */}
+                                  <div className={`absolute bottom-full mb-3 z-30 pointer-events-none transition-all duration-200 bg-[#241E1C] text-white p-2.5 rounded-xl shadow-xl border border-white/10 min-w-[120px] text-center ${
+                                    isHovered ? "opacity-100 scale-100" : "opacity-0 scale-95"
+                                  }`}>
+                                    <span className="text-[12px] font-bold text-[#F3CF65] font-mono flex items-center justify-center gap-1">
+                                      <Eye size={12} className="text-[#C49B27]" /> {d.views} {d.views === 1 ? "view" : "views"}
+                                    </span>
+                                    <span className="text-[9px] text-slate-300 block mt-0.5">
+                                      {parseFullDateLabel(d.date)}
+                                    </span>
+                                    {totalPeriodViews > 0 && (
+                                      <span className="text-[8px] text-[#C49B27] font-semibold block mt-0.5 border-t border-white/10 pt-1">
+                                        {((d.views / totalPeriodViews) * 100).toFixed(0)}% of traffic
+                                      </span>
+                                    )}
+                                  </div>
+
+                                  {/* Visual Bar Segment */}
+                                  <div
+                                    className={`w-full max-w-[28px] rounded-t-md transition-all duration-300 shadow-xs relative ${
+                                      d.views > 0
+                                        ? isHovered
+                                          ? "bg-gradient-to-t from-[#B0871B] via-[#C49B27] to-[#FFD700] ring-2 ring-[#C49B27]/60 shadow-[0_0_12px_rgba(196,155,39,0.5)]"
+                                          : "bg-gradient-to-t from-[#C49B27] via-[#D4AF37] to-[#F3CF65] hover:brightness-110"
+                                        : "bg-zinc-200/80 group-hover:bg-zinc-300"
+                                    }`}
+                                    style={{
+                                      height: `${heightPct}%`,
+                                      minHeight: d.views > 0 ? "10px" : "3px",
+                                    }}
+                                  >
+                                    {/* Glowing top cap on active bars */}
+                                    {d.views > 0 && (
+                                      <div className="absolute top-0 inset-x-0 h-1 bg-white/40 rounded-t-md" />
+                                    )}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+
+                        </div>
+                      </div>
+
+                      {/* X-Axis Date Labels */}
+                      <div className="flex justify-between pl-8.5 pr-1 mt-3 overflow-hidden select-none">
+                        {currentChartData.map((d, idx) => {
+                          // Show label at reasonable intervals based on length
+                          const step = currentChartData.length > 20 ? 4 : currentChartData.length > 10 ? 2 : 1;
+                          const showLabel = idx % step === 0 || idx === currentChartData.length - 1;
+
+                          return (
+                            <div key={idx} className="flex-1 text-center min-w-0">
+                              {showLabel ? (
+                                <span className="text-[8.5px] font-semibold text-slate-400 block truncate">
+                                  {parseDateLabel(d.date)}
+                                </span>
+                              ) : (
+                                <span className="text-[8px] text-zinc-300 block">·</span>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -340,7 +559,12 @@ export default function AnalyticsDashboard({ params }: { params: Promise<{ id: s
                       <div key={fb.id} className="bg-[#FAF9F6] border border-zinc-200/70 p-4 rounded-2xl space-y-2.5 flex flex-col justify-between">
                         <div>
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-bold text-[#241E1C]">{fb.guestName || "Guest"}</span>
+                            <div>
+                              <span className="text-xs font-bold text-[#241E1C] block">{fb.guestName || "Anonymous Guest"}</span>
+                              {fb.phone && (
+                                <span className="text-[10px] text-slate-400 font-mono block">{fb.phone}</span>
+                              )}
+                            </div>
                             <div className="flex text-[#C49B27]">
                               {[1, 2, 3, 4, 5].map((s) => (
                                 <Star

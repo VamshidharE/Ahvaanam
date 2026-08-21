@@ -80,11 +80,34 @@ export async function GET(
       dailyViewsMap[dateStr] = (dailyViewsMap[dateStr] || 0) + 1;
     });
 
-    // Populate daily views for charting (order ascending by date)
-    const viewsOverTime = Object.keys(dailyViewsMap).map(date => ({
-      date,
-      views: dailyViewsMap[date]
-    })).sort((a, b) => a.date.localeCompare(b.date));
+    // Populate continuous date timeline (at least past 14 days up to today)
+    const today = new Date();
+    const recordedDates = Object.keys(dailyViewsMap).sort();
+    let startDate = new Date();
+    startDate.setDate(today.getDate() - 13); // Default 14 days window
+
+    if (recordedDates.length > 0) {
+      const earliestRecorded = new Date(recordedDates[0]);
+      if (earliestRecorded < startDate) {
+        startDate = new Date(earliestRecorded);
+      }
+    }
+
+    const viewsOverTime: { date: string; views: number }[] = [];
+    const cur = new Date(startDate);
+    // Normalize cur to start of day UTC
+    cur.setUTCHours(0, 0, 0, 0);
+    const end = new Date(today);
+    end.setUTCHours(23, 59, 59, 999);
+
+    while (cur <= end) {
+      const dateKey = cur.toISOString().split("T")[0];
+      viewsOverTime.push({
+        date: dateKey,
+        views: dailyViewsMap[dateKey] || 0
+      });
+      cur.setUTCDate(cur.getUTCDate() + 1);
+    }
 
     // 6. Compute RSVP Metrics
     let rsvpsList: any[] = rsvpsData || [];

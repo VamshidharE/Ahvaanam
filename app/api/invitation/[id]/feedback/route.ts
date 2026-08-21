@@ -25,13 +25,15 @@ export async function POST(
     const body = await request.json();
     const rating = Math.max(1, Math.min(5, Number(body.rating) || 5));
     const feedbackText = typeof body.feedback === "string" ? body.feedback.trim() : "";
-    const guestName = typeof body.guestName === "string" && body.guestName.trim() ? body.guestName.trim() : "Guest";
+    const guestName = typeof body.guestName === "string" && body.guestName.trim() ? body.guestName.trim() : "Anonymous Guest";
+    const guestPhone = typeof body.phone === "string" && body.phone.trim() ? body.phone.trim() : null;
 
     const feedbackEntry = {
       id: `fb_${Date.now()}_${Math.floor(Math.random() * 10000)}`,
       rating,
       feedback: feedbackText,
       guestName,
+      phone: guestPhone,
       created_at: new Date().toISOString()
     };
 
@@ -42,10 +44,11 @@ export async function POST(
         rating,
         feedback: feedbackText,
         guest_name: guestName,
+        phone: guestPhone,
         created_at: feedbackEntry.created_at
       }]);
     } catch {
-      // ignore if table does not exist
+      // ignore if table does not exist or column missing
     }
 
     // 2. Persist in invitation config as durable JSON array fallback

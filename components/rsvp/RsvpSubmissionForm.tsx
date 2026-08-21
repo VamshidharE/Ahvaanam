@@ -1,274 +1,409 @@
 "use client";
 
-import React, { useState } from "react";
-import { rsvpSubmissionSchema } from "../../lib/validation";
-import { Check, AlertCircle, Users, Phone, Mail, MessageSquare, User } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Heart, Sparkles, Send, Check, MessageSquareHeart, Users } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function RsvpSubmissionForm({ clientId }: { clientId: string }) {
-  const [guestName, setGuestName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [attending, setAttending] = useState<boolean | null>(null);
-  const [guestCount, setGuestCount] = useState(1);
-  const [message, setMessage] = useState("");
+  const [rsvpStep, setRsvpStep] = useState<"initial" | "select_count" | "confirmed">("initial");
+  const [guestCount, setGuestCount] = useState<number>(1);
+  const [rsvpLoading, setRsvpLoading] = useState(false);
+  const [rsvpError, setRsvpError] = useState<string | null>(null);
+  const [showCelebration, setShowCelebration] = useState(false);
 
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [success, setSuccess] = useState(false);
-  const [generalError, setGeneralError] = useState<string | null>(null);
+  const [wishName, setWishName] = useState("");
+  const [wishPhone, setWishPhone] = useState("");
+  const [wishMessage, setWishMessage] = useState("");
+  const [wishLoading, setWishLoading] = useState(false);
+  const [wishSent, setWishSent] = useState(false);
+  const [wishError, setWishError] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setErrors({});
-    setGeneralError(null);
-
-    if (attending === null) {
-      setErrors({ attending: "Please let us know if you will attend." });
-      return;
+  useEffect(() => {
+    if (typeof window !== "undefined" && clientId) {
+      const savedStatus = localStorage.getItem(`ahvaanam_rsvp_${clientId}`);
+      const savedCount = localStorage.getItem(`ahvaanam_rsvp_count_${clientId}`);
+      if (savedStatus === "true") {
+        setRsvpStep("confirmed");
+        if (savedCount) {
+          setGuestCount(parseInt(savedCount, 10) || 1);
+        }
+      }
+      const savedWish = localStorage.getItem(`ahvaanam_wish_${clientId}`);
+      if (savedWish === "true") {
+        setWishSent(true);
+      }
     }
+  }, [clientId]);
 
-    const payload = {
-      guest_name: guestName,
-      phone,
-      email: email || undefined,
-      attending,
-      guest_count: attending ? Number(guestCount) : 1,
-      message: message || undefined,
-    };
-
-    // Client-side Zod validation
-    const parsed = rsvpSubmissionSchema.safeParse(payload);
-    if (!parsed.success) {
-      const fieldErrors: Record<string, string> = {};
-      parsed.error.issues.forEach((issue) => {
-        const path = issue.path.join(".");
-        fieldErrors[path] = issue.message;
-      });
-      setErrors(fieldErrors);
-      return;
+  const getVisitorToken = () => {
+    if (typeof window === "undefined") return "guest";
+    let token = localStorage.getItem("ahvaanam_visitor_token");
+    if (!token) {
+      if (typeof crypto !== "undefined" && crypto.randomUUID) {
+        token = crypto.randomUUID();
+      } else {
+        token = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+          const r = (Math.random() * 16) | 0,
+            v = c === "x" ? r : (r & 0x3) | 0x8;
+          return v.toString(16);
+        });
+      }
+      localStorage.setItem("ahvaanam_visitor_token", token);
     }
+    return token;
+  };
 
-    setLoading(true);
+  const handleInitialYes = async () => {
+    setRsvpError(null);
+    setRsvpLoading(true);
+
+    const token = getVisitorToken();
 
     try {
       const res = await fetch(`/api/invitation/${clientId}/rsvp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          attending: true,
+          guest_name: "Guest",
+          guest_count: 1,
+          visitor_token: token,
+        }),
       });
 
       const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || "Failed to submit RSVP.");
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Failed to record attendance.");
       }
 
-      setSuccess(true);
+      if (typeof window !== "undefined") {
+        localStorage.setItem(`ahvaanam_rsvp_${clientId}`, "true");
+        localStorage.setItem(`ahvaanam_rsvp_count_${clientId}`, "1");
+      }
+
+      setGuestCount(1);
+      setRsvpStep("select_count");
     } catch (err: any) {
-      setGeneralError(err.message || "An unexpected error occurred. Please try again.");
+      setRsvpError(err.message || "Failed to confirm attendance.");
     } finally {
-      setLoading(false);
+      setRsvpLoading(false);
     }
   };
 
-  if (success) {
-    return (
-      <div className="w-full max-w-2xl mx-auto py-16 px-6">
-        <div className="bg-white border-2 border-[#C49B27]/30 p-10 md:p-14 rounded-[36px] shadow-xl text-center relative overflow-hidden flex flex-col items-center">
-          {/* Confetti-like orbs */}
-          <div className="absolute -top-12 -left-12 w-24 h-24 rounded-full bg-amber-500/5 blur-xl" />
-          <div className="absolute -bottom-12 -right-12 w-24 h-24 rounded-full bg-yellow-600/5 blur-xl" />
+  const handleConfirmGuestCount = async (count: number) => {
+    setRsvpError(null);
+    setRsvpLoading(true);
 
-          {/* Success Check Animation Container */}
-          <div className="w-20 h-20 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 rounded-full flex items-center justify-center mb-6 animate-bounce">
-            <Check size={36} strokeWidth={3} />
-          </div>
+    const token = getVisitorToken();
 
-          <h3 className="text-2xl text-[#241E1C] font-bold uppercase tracking-[2px] font-sans mb-3">
-            Response Submitted
-          </h3>
-          <p className="text-slate-500 text-sm max-w-md mx-auto leading-relaxed mb-6 font-sans">
-            Thank you for responding! Your RSVP response has been successfully recorded. We look forward to celebrating together.
-          </p>
-        </div>
-      </div>
-    );
-  }
+    try {
+      const res = await fetch(`/api/invitation/${clientId}/rsvp`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          attending: true,
+          guest_name: "Guest",
+          guest_count: count,
+          visitor_token: token,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Failed to update guest count.");
+      }
+
+      if (typeof window !== "undefined") {
+        localStorage.setItem(`ahvaanam_rsvp_${clientId}`, "true");
+        localStorage.setItem(`ahvaanam_rsvp_count_${clientId}`, count.toString());
+      }
+
+      setGuestCount(count);
+      setShowCelebration(true);
+      setTimeout(() => setShowCelebration(false), 2000);
+      setRsvpStep("confirmed");
+    } catch (err: any) {
+      setRsvpError(err.message || "Failed to update guest count.");
+    } finally {
+      setRsvpLoading(false);
+    }
+  };
+
+  const handleSendWishes = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!wishMessage.trim()) return;
+
+    setWishError(null);
+    setWishLoading(true);
+
+    const token = getVisitorToken();
+    const finalName = wishName.trim() || "Anonymous Guest";
+    const finalPhone = wishPhone.trim() || undefined;
+
+    try {
+      const res = await fetch(`/api/invitation/${clientId}/feedback`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          feedback: wishMessage.trim(),
+          guestName: finalName,
+          phone: finalPhone,
+          rating: 5,
+          visitor_token: token,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Could not send wishes.");
+      }
+
+      if (typeof window !== "undefined") {
+        localStorage.setItem(`ahvaanam_wish_${clientId}`, "true");
+      }
+
+      setWishSent(true);
+      setWishMessage("");
+    } catch (err: any) {
+      setWishError(err.message || "Failed to send wishes.");
+    } finally {
+      setWishLoading(false);
+    }
+  };
 
   return (
-    <div className="w-full max-w-2xl mx-auto py-16 px-6" id="rsvp-submit-form">
-      <div className="bg-[#FAF9F6] border border-[#C49B27]/20 p-8 md:p-12 rounded-[36px] shadow-sm relative overflow-hidden">
-        <div className="text-center mb-8">
-          <span className="text-[10px] uppercase tracking-[3px] text-[#C49B27] font-bold block mb-1">
-            R.S.V.P
-          </span>
-          <h2 className="text-3xl text-[#241E1C] font-sans uppercase font-bold tracking-[1.5px]">
-            Are You Attending?
+    <div className="w-full max-w-4xl mx-auto py-6 px-4" id="rsvp">
+      <div 
+        className="rounded-[24px] sm:rounded-[32px] border border-[#d6a456]/40 p-5 sm:p-7 md:p-8 shadow-[0_6px_28px_rgba(92,68,37,0.07)] bg-white/95"
+      >
+        {/* MAIN UNIFIED TITLE */}
+        <div className="text-center mb-4 sm:mb-5 pb-3 sm:pb-4 border-b border-[#d6a456]/20">
+          <h2 className="text-base sm:text-lg md:text-xl font-serif text-[#9a5b14] uppercase tracking-[1.5px] font-medium leading-snug max-w-xl mx-auto">
+            We would love to celebrate this beautiful occasion with you.
           </h2>
-          <div className="h-0.5 w-24 bg-gradient-to-r from-transparent via-[#C49B27] to-transparent mx-auto mt-3" />
         </div>
 
-        {generalError && (
-          <div className="mb-6 p-4 bg-red-500/5 border border-red-500/10 rounded-2xl flex items-start gap-3 text-red-600 text-xs">
-            <AlertCircle size={16} className="shrink-0 mt-0.5" />
-            <p>{generalError}</p>
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Guest Name */}
-            <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-[1.5px] font-bold text-slate-500 flex items-center gap-1.5 font-sans">
-                <User size={12} className="text-[#C49B27]" /> Guest Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                required
-                value={guestName}
-                onChange={(e) => setGuestName(e.target.value)}
-                placeholder="Your full name"
-                className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:outline-none focus:border-[#C49B27] text-sm text-[#241E1C] bg-white transition-all shadow-sm font-sans"
-              />
-              {errors.guest_name && (
-                <p className="text-red-500 text-[10px] font-bold font-sans">{errors.guest_name}</p>
-              )}
-            </div>
-
-            {/* Phone */}
-            <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-[1.5px] font-bold text-slate-500 flex items-center gap-1.5 font-sans">
-                <Phone size={12} className="text-[#C49B27]" /> Phone Number <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                required
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="e.g. +919999999999"
-                className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:outline-none focus:border-[#C49B27] text-sm text-[#241E1C] bg-white transition-all shadow-sm font-sans"
-              />
-              {errors.phone && (
-                <p className="text-red-500 text-[10px] font-bold font-sans">{errors.phone}</p>
-              )}
-            </div>
-          </div>
-
-          {/* Email */}
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[1.5px] font-bold text-slate-500 flex items-center gap-1.5 font-sans">
-              <Mail size={12} className="text-[#C49B27]" /> Email Address <span className="text-slate-400 font-normal">(Optional)</span>
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Your email address"
-              className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:outline-none focus:border-[#C49B27] text-sm text-[#241E1C] bg-white transition-all shadow-sm font-sans"
-            />
-            {errors.email && (
-              <p className="text-red-500 text-[10px] font-bold font-sans">{errors.email}</p>
-            )}
-          </div>
-
-          {/* Attendance Selection */}
-          <div className="space-y-3">
-            <label className="text-[10px] uppercase tracking-[1.5px] font-bold text-slate-500 font-sans">
-              Will you attend? <span className="text-red-500">*</span>
-            </label>
-            <div className="grid grid-cols-2 gap-4">
-              <button
-                type="button"
-                onClick={() => setAttending(true)}
-                className={`py-3.5 rounded-xl border font-bold text-xs uppercase tracking-[1.5px] transition-all flex items-center justify-center gap-2 font-sans ${
-                  attending === true
-                    ? "border-[#C49B27] bg-[#C49B27]/10 text-[#C49B27]"
-                    : "border-zinc-200 bg-white text-slate-500 hover:border-zinc-300"
-                }`}
-              >
-                Yes, Attending
-              </button>
-              <button
-                type="button"
-                onClick={() => setAttending(false)}
-                className={`py-3.5 rounded-xl border font-bold text-xs uppercase tracking-[1.5px] transition-all flex items-center justify-center gap-2 font-sans ${
-                  attending === false
-                    ? "border-red-500 bg-red-500/10 text-red-600"
-                    : "border-zinc-200 bg-white text-slate-500 hover:border-zinc-300"
-                }`}
-              >
-                No, Decline
-              </button>
-            </div>
-            {errors.attending && (
-              <p className="text-red-500 text-[10px] font-bold font-sans">{errors.attending}</p>
-            )}
-          </div>
-
-          {/* Number of Guests (Only visible if attending = true) */}
-          {attending === true && (
-            <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-[1.5px] font-bold text-slate-500 flex items-center gap-1.5 font-sans">
-                <Users size={12} className="text-[#C49B27]" /> Number of Guests
-              </label>
-              <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => setGuestCount(prev => Math.max(1, prev - 1))}
-                  className="w-10 h-10 border border-zinc-200 bg-white text-[#241E1C] rounded-full flex items-center justify-center hover:border-[#C49B27] transition-all shadow-sm font-sans"
-                >
-                  -
-                </button>
-                <input
-                  type="number"
-                  min={1}
-                  max={20}
-                  value={guestCount}
-                  onChange={(e) => setGuestCount(Math.min(20, Math.max(1, Number(e.target.value))))}
-                  className="w-20 text-center py-2.5 rounded-xl border border-zinc-200 text-sm font-bold text-[#241E1C] font-sans"
-                />
-                <button
-                  type="button"
-                  onClick={() => setGuestCount(prev => Math.min(20, prev + 1))}
-                  className="w-10 h-10 border border-zinc-200 bg-white text-[#241E1C] rounded-full flex items-center justify-center hover:border-[#C49B27] transition-all shadow-sm font-sans"
-                >
-                  +
-                </button>
+        {/* TWO SIDES IN ONE COMPOSITION */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7 items-center relative">
+          
+          {/* LEFT: ATTENDANCE */}
+          <div className="flex flex-col justify-center h-full space-y-2.5 md:pr-3">
+            {rsvpError && (
+              <div className="p-2 bg-rose-50 border border-rose-200 text-rose-800 text-[11px] rounded-xl text-center">
+                {rsvpError}
               </div>
-              {errors.guest_count && (
-                <p className="text-red-500 text-[10px] font-bold font-sans">{errors.guest_count}</p>
-              )}
-            </div>
-          )}
-
-          {/* Message */}
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[1.5px] font-bold text-slate-500 flex items-center gap-1.5 font-sans">
-              <MessageSquare size={12} className="text-[#C49B27]" /> Personal Message
-            </label>
-            <textarea
-              rows={4}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder="Leave a warm message for the couple"
-              className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:outline-none focus:border-[#C49B27] text-sm text-[#241E1C] bg-white transition-all shadow-sm resize-none font-sans"
-            />
-            {errors.message && (
-              <p className="text-red-500 text-[10px] font-bold font-sans">{errors.message}</p>
             )}
+
+            <AnimatePresence mode="wait">
+              {rsvpStep === "initial" && (
+                <motion.div
+                  key="step-initial"
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  className="flex flex-col items-center md:items-start"
+                >
+                  <button
+                    type="button"
+                    onClick={handleInitialYes}
+                    disabled={rsvpLoading}
+                    className="w-full max-w-xs py-3 px-6 rounded-full text-white text-xs sm:text-sm font-bold uppercase tracking-[2px] cursor-pointer shadow-md flex items-center justify-center gap-2"
+                    style={{
+                      background: "linear-gradient(135deg, #bd7418 0%, #d49b27 50%, #b86e14 100%)",
+                    }}
+                  >
+                    <Heart size={15} className="fill-white text-white" />
+                    <span className="font-serif tracking-[2px]">
+                      {rsvpLoading ? "Recording..." : "YES, I'LL BE THERE"}
+                    </span>
+                    <Sparkles size={13} className="text-[#FFE8A3]" />
+                  </button>
+                </motion.div>
+              )}
+
+              {rsvpStep === "select_count" && (
+                <motion.div
+                  key="step-count"
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -5 }}
+                  className="space-y-2 text-center md:text-left"
+                >
+                  <div className="text-xs font-serif font-bold text-[#4a2e12] uppercase tracking-[1px]">
+                    HOW MANY ARE JOINING?
+                  </div>
+
+                  <div className="grid grid-cols-4 gap-2 max-w-xs mx-auto md:mx-0">
+                    {[1, 2, 3, 4].map((num) => {
+                      const isSelected = guestCount === num;
+                      const label = num === 4 ? "4+" : num.toString();
+                      return (
+                        <button
+                          key={num}
+                          type="button"
+                          onClick={() => setGuestCount(num)}
+                          className={`py-1.5 rounded-xl text-xs font-bold font-serif transition-all cursor-pointer border ${
+                            isSelected
+                              ? "bg-[#bd7418] text-white border-[#bd7418] shadow-xs"
+                              : "bg-white text-[#4a2e12] border-[#d6a456]/40 hover:border-[#bd7418]"
+                          }`}
+                        >
+                          {label}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <div className="pt-0.5">
+                    <button
+                      type="button"
+                      onClick={() => handleConfirmGuestCount(guestCount)}
+                      disabled={rsvpLoading}
+                      className="w-full max-w-xs py-2 px-5 rounded-full text-[11px] font-bold uppercase tracking-[1.5px] text-white shadow-xs cursor-pointer flex items-center justify-center gap-1.5"
+                      style={{
+                        background: "linear-gradient(135deg, #bd7418 0%, #c49b27 100%)",
+                      }}
+                    >
+                      <Check size={12} strokeWidth={2.5} />
+                      <span>{rsvpLoading ? "Updating..." : "CONFIRM ATTENDANCE"}</span>
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+
+              {rsvpStep === "confirmed" && (
+                <motion.div
+                  key="step-confirmed"
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="space-y-1.5 text-center md:text-left"
+                >
+                  <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-semibold border border-emerald-200">
+                    <Check size={11} strokeWidth={2.5} />
+                    <span>Attendance Confirmed</span>
+                  </div>
+
+                  <h3 className="text-sm font-serif font-bold text-[#4a2e12] uppercase tracking-[1px]">
+                    WE&apos;LL SEE YOU THERE ❤️
+                  </h3>
+                  <p className="text-[11px] text-[#6d5133] font-serif italic">
+                    Thank you for celebrating this special day with us.
+                  </p>
+
+                  <div className="inline-flex items-center gap-1 text-[10.5px] font-semibold text-[#a06f2d]">
+                    <Users size={11} />
+                    <span>{guestCount === 4 ? "4+ guests" : `${guestCount} ${guestCount === 1 ? "guest" : "guests"}`}</span>
+                    <span className="mx-1 opacity-40">•</span>
+                    <button
+                      type="button"
+                      onClick={() => setRsvpStep("select_count")}
+                      className="underline hover:text-[#bd7418] cursor-pointer"
+                    >
+                      Change
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-[#C49B27] hover:bg-[#B0871B] text-white font-bold py-4 rounded-xl text-xs uppercase tracking-[2px] transition-all shadow-sm flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed font-sans"
-          >
-            {loading ? (
-              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-            ) : null}
-            {loading ? "Submitting..." : "Submit RSVP Response"}
-          </button>
-        </form>
+          {/* DIVIDER */}
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-[#d6a456]/30 to-transparent -translate-x-1/2" />
+          <div className="block md:hidden h-[1px] w-full bg-gradient-to-r from-transparent via-[#d6a456]/30 to-transparent my-1" />
+
+          {/* RIGHT: WISHES */}
+          <div className="flex flex-col justify-center h-full space-y-2 md:pl-3">
+            <div className="text-center md:text-left">
+              <span className="text-[10px] uppercase tracking-[1.5px] font-bold text-[#a06f2d] block">
+                A Little Love For The Couple ✨
+              </span>
+            </div>
+
+            <AnimatePresence mode="wait">
+              {!wishSent ? (
+                <form
+                  onSubmit={handleSendWishes}
+                  className="space-y-2"
+                >
+                  {wishError && (
+                    <div className="p-1 bg-rose-50 border border-rose-200 text-rose-800 text-[10px] rounded-lg text-center">
+                      {wishError}
+                    </div>
+                  )}
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                    <input
+                      type="text"
+                      placeholder="Your name (optional)"
+                      value={wishName}
+                      onChange={(e) => setWishName(e.target.value)}
+                      maxLength={60}
+                      className="w-full px-3 py-1.5 bg-[#FAF9F6] border border-[#d6a456]/35 rounded-xl text-xs text-[#4a2e12] outline-none font-serif"
+                    />
+                    <input
+                      type="tel"
+                      placeholder="Phone number (optional)"
+                      value={wishPhone}
+                      onChange={(e) => setWishPhone(e.target.value)}
+                      maxLength={25}
+                      className="w-full px-3 py-1.5 bg-[#FAF9F6] border border-[#d6a456]/35 rounded-xl text-xs text-[#4a2e12] outline-none font-serif"
+                    />
+                  </div>
+
+                  {/* INLINE TEXTAREA AND SEND BUTTON */}
+                  <div className="flex items-center gap-2">
+                    <textarea
+                      rows={2}
+                      required
+                      placeholder="Write your wishes for the happy couple..."
+                      value={wishMessage}
+                      onChange={(e) => setWishMessage(e.target.value)}
+                      maxLength={500}
+                      style={{ height: "48px" }}
+                      className="flex-1 px-3 py-1.5 bg-[#FAF9F6] border border-[#d6a456]/35 rounded-xl text-xs text-[#4a2e12] outline-none font-serif resize-none"
+                    />
+                    <button
+                      type="submit"
+                      disabled={wishLoading || !wishMessage.trim()}
+                      aria-label="Send Wishes"
+                      title="Send Wishes"
+                      className="h-[48px] w-[48px] shrink-0 rounded-xl text-white shadow-xs cursor-pointer flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+                      style={{
+                        background: "linear-gradient(135deg, #bd7418 0%, #c49b27 100%)",
+                      }}
+                    >
+                      <Send size={16} className="text-[#FFE8A3] -translate-x-[1px] translate-y-[1px]" />
+                    </button>
+                  </div>
+                </form>
+              ) : (
+                <div
+                  className="py-2 text-center md:text-left space-y-1"
+                >
+                  <div className="inline-flex items-center gap-1 text-[#c49b27]">
+                    <MessageSquareHeart size={14} />
+                    <span className="text-xs font-serif font-bold uppercase tracking-[1px] text-[#4a2e12]">
+                      YOUR WISHES HAVE BEEN SENT ✨
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-[#6d5133] font-serif italic">
+                    Thank you for your warm blessings and heartfelt love.
+                  </p>
+                  <div>
+                    <button
+                      type="button"
+                      onClick={() => setWishSent(false)}
+                      className="text-[10px] text-[#a06f2d] hover:underline font-serif cursor-pointer"
+                    >
+                      Send another wish
+                    </button>
+                  </div>
+                </div>
+              )}
+            </AnimatePresence>
+          </div>
+
+        </div>
       </div>
     </div>
   );

@@ -35,16 +35,18 @@ export async function POST(
       }, { status: 400 });
     }
 
-    const { guest_name, phone, email, attending, guest_count, message } = parsed.data;
+    const { guest_name, phone, email, attending, guest_count, message, visitor_token } = parsed.data;
 
-    // Normalize phone number or generate unique identifier if empty
+    // Normalize phone number or use unique visitor token to prevent duplicate counts
     const effectivePhone = phone && phone.trim() !== "" 
       ? phone.trim() 
-      : `guest_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
+      : (visitor_token && visitor_token.trim() !== ""
+          ? `vt_${visitor_token.trim()}`
+          : `guest_${Date.now()}_${Math.floor(Math.random() * 10000)}`);
 
     const adminDb = getAdminDb();
 
-    // 4. Check if an RSVP for this phone already exists, if so update it, otherwise insert
+    // 4. Check if an RSVP for this visitor already exists, if so update it, otherwise insert
     const { data: existingRsvp } = await adminDb
       .from("rsvps")
       .select("id")
@@ -56,7 +58,7 @@ export async function POST(
       const { error: updateError } = await adminDb
         .from("rsvps")
         .update({
-          guest_name,
+          guest_name: guest_name || "Guest",
           email: email || null,
           attending,
           guest_count: attending ? (guest_count || 1) : 1,
@@ -74,7 +76,7 @@ export async function POST(
         .from("rsvps")
         .insert([{
           invitation_id: id,
-          guest_name,
+          guest_name: guest_name || "Guest",
           phone: effectivePhone,
           email: email || null,
           attending,
@@ -88,7 +90,33 @@ export async function POST(
       }
     }
 
-    return NextResponse.json({ success: true });
+    // 5. Persist in invitation config as durable fallback
+    try {
+      const currentConfig = invite.config || {};
+      const existingRsvps: any[] = Array.isArray(currentConfig._rsvps) ? currentConfig._rsvps : [];
+      const updatedEntry = {
+        id: existingRsvp?.id || `rsvp_${Date.now()}`,
+        guest_name: guest_name || "Guest",
+        phone: effectivePhone,
+        email: email || null,
+        attending,
+        guest_count: attending ? (guest_count || 1) : 1,
+        message: message || null,
+        created_at: new Date().toISOString()
+      };
+
+      const filteredRsvps = existingRsvps.filter((r: any) => r.phone !== effectivePhone);
+      const newRsvpsList = [updatedEntry, ...filteredRsvps.slice(0, 499)];
+
+      await adminDb.from("invitations").update({
+        config: {
+          ...currentConfig,
+          _rsvps: newRsvpsList
+        }
+      }).eq("id", id);
+    } catch {}
+
+    return NextResponse.json({ success: true, updated: !!existingRsvp });
   } catch (error: any) {
     return NextResponse.json({ error: error.message || "Failed to process RSVP submission." }, { status: 500 });
   }
