@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Heart, Sparkles, Send, Check, MessageSquareHeart, Users } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { emitAnalyticsInteraction } from "@/lib/analytics/useInvitationTracker";
 
 export default function RsvpSubmissionForm({ clientId }: { clientId: string }) {
   const [rsvpStep, setRsvpStep] = useState<"initial" | "select_count" | "confirmed">("initial");
@@ -56,29 +57,32 @@ export default function RsvpSubmissionForm({ clientId }: { clientId: string }) {
   const handleInitialYes = async () => {
     setRsvpError(null);
     setRsvpLoading(true);
+    emitAnalyticsInteraction("rsvp_open", "rsvp");
 
     const token = getVisitorToken();
 
     try {
-      const res = await fetch(`/api/invitation/${clientId}/rsvp`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          attending: true,
-          guest_name: "Guest",
-          guest_count: 1,
-          visitor_token: token,
-        }),
-      });
+      if (clientId) {
+        const res = await fetch(`/api/invitation/${clientId}/rsvp`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            attending: true,
+            guest_name: "Guest",
+            guest_count: 1,
+            visitor_token: token,
+          }),
+        });
 
-      const data = await res.json();
-      if (!res.ok || !data.success) {
-        throw new Error(data.error || "Failed to record attendance.");
-      }
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          throw new Error(data.error || "Failed to record attendance.");
+        }
 
-      if (typeof window !== "undefined") {
-        localStorage.setItem(`ahvaanam_rsvp_${clientId}`, "true");
-        localStorage.setItem(`ahvaanam_rsvp_count_${clientId}`, "1");
+        if (typeof window !== "undefined") {
+          localStorage.setItem(`ahvaanam_rsvp_${clientId}`, "true");
+          localStorage.setItem(`ahvaanam_rsvp_count_${clientId}`, "1");
+        }
       }
 
       setGuestCount(1);
@@ -93,6 +97,7 @@ export default function RsvpSubmissionForm({ clientId }: { clientId: string }) {
   const handleConfirmGuestCount = async (count: number) => {
     setRsvpError(null);
     setRsvpLoading(true);
+    emitAnalyticsInteraction("rsvp_submit", "rsvp", { guest_count: count });
 
     const token = getVisitorToken();
 

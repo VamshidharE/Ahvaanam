@@ -1,0 +1,906 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Rozha+One&family=Marcellus&display=swap');
+
+/* =========================================================
+   EMERALD PALACE ROYALE — LUXURY DESIGN SYSTEM
+   ========================================================= */
+
+.emerald-palace-template,
+.emerald-opening-overlay {
+  --ep-bg-dark: #071912;
+  --ep-emerald-deep: #0C2B22;
+  --ep-emerald-mid: #133D31;
+  --ep-emerald-light: #1E5444;
+  --ep-gold-bright: #FFE8A3;
+  --ep-gold-main: #DFB759;
+  --ep-gold-dark: #9C7723;
+  --ep-gold-antique: #755513;
+  --ep-parchment: #FAF5EB;
+  --ep-parchment-soft: #F4ECE0;
+  --ep-parchment-card: #ECE2D0;
+  --ep-text-main: #241D17;
+  --ep-text-muted: #6B5C50;
+  --ep-ruby: #8B1E2F;
+  --ep-ruby-glow: rgba(139, 30, 47, 0.4);
+  --ep-gold-glow: rgba(223, 183, 89, 0.35);
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-royal: 'Cinzel', 'Marcellus', Georgia, serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-mantra: 'Rozha One', 'Cormorant Garamond', serif;
+
+  font-family: var(--font-serif);
+  color: var(--ep-text-main);
+  box-sizing: border-box;
+}
+
+.emerald-palace-template *,
+.emerald-opening-overlay * {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   KEYFRAME ANIMATIONS
+   ========================================================= */
+
+@keyframes epFlameFlicker {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.95; }
+  25% { transform: scale(1.06, 0.95) rotate(-1deg); opacity: 1; }
+  50% { transform: scale(0.96, 1.05) rotate(1.5deg); opacity: 0.9; }
+  75% { transform: scale(1.04, 0.98) rotate(-0.5deg); opacity: 1; }
+}
+
+@keyframes epGoldShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes epGentleFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1.5deg); }
+}
+
+@keyframes epPulseGlow {
+  0%, 100% { opacity: 0.4; filter: drop-shadow(0 0 6px var(--ep-gold-glow)); }
+  50% { opacity: 0.85; filter: drop-shadow(0 0 16px rgba(223, 183, 89, 0.6)); }
+}
+
+@keyframes epBellSway {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(4deg); }
+  75% { transform: rotate(-4deg); }
+}
+
+@keyframes epPetalFall {
+  0% {
+    transform: translate3d(0, -10%, 0) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  85% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate3d(80px, 110vh, 0) rotate(360deg) scale(1.1);
+    opacity: 0;
+  }
+}
+
+.animate-flame-flicker {
+  animation: epFlameFlicker 2.5s ease-in-out infinite;
+}
+
+/* =========================================================
+   OPENING ENVELOPE / ROYAL PALACE GATE OVERLAY
+   ========================================================= */
+
+.emerald-opening-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 40%, #123C30 0%, #081C15 70%, #030C09 100%);
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+.emerald-opening-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(223, 183, 89, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.emerald-envelope-box {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: linear-gradient(145deg, #0E3328 0%, #092019 100%);
+  border: 2px solid var(--ep-gold-main);
+  border-radius: 20px;
+  padding: 2.5rem 1.75rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85),
+              0 0 35px rgba(223, 183, 89, 0.25),
+              inset 0 0 25px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+.emerald-envelope-inner-border {
+  position: absolute;
+  inset: 8px;
+  border: 1px dashed rgba(223, 183, 89, 0.45);
+  border-radius: 14px;
+  pointer-events: none;
+}
+
+/* Gold shimmer text utility */
+.ep-gold-text {
+  background: linear-gradient(135deg, #FFF8DC 0%, #FCE38A 30%, #DFB759 65%, #FFF0BD 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #FCE38A;
+  display: inline-block;
+}
+
+.ep-gold-shimmer {
+  background: linear-gradient(90deg, #DFB759 0%, #FFF8DC 35%, #FCE38A 60%, #DFB759 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #FCE38A;
+  animation: epGoldShimmer 3.5s linear infinite;
+}
+
+/* =========================================================
+   PAGE CONTAINER & BACKGROUND
+   ========================================================= */
+
+.emerald-palace-template {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--ep-parchment);
+  overflow-x: hidden;
+}
+
+/* Luxury Continuous Page Wallpaper Background */
+.ep-page-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ep-page-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba(12, 43, 34, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(12, 43, 34, 0.12) 0%, transparent 65%),
+    linear-gradient(to bottom, #FAF5EB 0%, #F5ECE0 50%, #FAF5EB 100%);
+}
+
+.ep-page-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(180, 135, 44, 0.07) 1.2px, transparent 1.2px);
+  background-size: 28px 28px;
+  opacity: 0.7;
+}
+
+/* Floating Jasmine Petals Container */
+.ep-jasmine-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ep-jasmine-petal {
+  position: absolute;
+  top: -40px;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.12));
+}
+
+/* =========================================================
+   HERO SECTION — ROYAL PALACE COURTYARD
+   ========================================================= */
+
+.ep-hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.25rem 4rem;
+  background: radial-gradient(ellipse at 50% 30%, #154235 0%, #0C2B22 55%, #061811 100%);
+  color: var(--ep-parchment);
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.ep-hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(223, 183, 89, 0.12) 1.5px, transparent 1.5px);
+  background-size: 32px 32px;
+  opacity: 0.7;
+}
+
+/* Hanging temple bells & lamps */
+.ep-hanging-lights {
+  position: absolute;
+  top: 0;
+  inset-x: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.ep-hanging-light-item {
+  transform-origin: top center;
+  animation: epBellSway 5s ease-in-out infinite;
+}
+
+.ep-hanging-light-item:nth-child(even) {
+  animation-delay: -2.5s;
+  animation-duration: 6s;
+}
+
+.ep-hero-jharokha-frame {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 2.25rem 1.5rem;
+  border: 1px solid rgba(223, 183, 89, 0.4);
+  border-radius: 28px;
+  background: rgba(12, 43, 34, 0.55);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6),
+              0 0 30px rgba(223, 183, 89, 0.15),
+              inset 0 0 20px rgba(223, 183, 89, 0.1);
+}
+
+.ep-hero-jharokha-frame::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed rgba(223, 183, 89, 0.25);
+  border-radius: 22px;
+  pointer-events: none;
+}
+
+.ep-hero-mantra {
+  font-family: var(--font-mantra);
+  font-size: clamp(0.95rem, 3.5vw, 1.25rem);
+  letter-spacing: 0.12em;
+  color: var(--ep-gold-bright);
+  text-shadow: 0 0 12px rgba(223, 183, 89, 0.5);
+  margin-bottom: 0.75rem;
+}
+
+.ep-hero-eyebrow {
+  font-family: var(--font-royal);
+  font-size: clamp(0.7rem, 2.4vw, 0.85rem);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(250, 245, 235, 0.75);
+  margin-bottom: 1.25rem;
+}
+
+.ep-hero-couple-names {
+  font-family: var(--font-script);
+  font-size: clamp(2.8rem, 9.5vw, 4.8rem);
+  line-height: 1.15;
+  margin: 0.5rem 0;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 30px rgba(223, 183, 89, 0.4);
+}
+
+.ep-hero-ampersand {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.6rem, 5vw, 2.5rem);
+  color: var(--ep-gold-main);
+  margin: 0 0.5rem;
+}
+
+.ep-hero-date-box {
+  margin-top: 1.5rem;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ep-hero-date-text {
+  font-family: var(--font-royal);
+  font-size: clamp(0.85rem, 2.8vw, 1.05rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ep-gold-bright);
+}
+
+.ep-hero-venue-text {
+  font-family: var(--font-serif);
+  font-size: clamp(0.9rem, 2.8vw, 1.1rem);
+  font-style: italic;
+  color: rgba(250, 245, 235, 0.85);
+  margin-top: 0.35rem;
+}
+
+/* Scroll down indicator */
+.ep-scroll-down {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--ep-gold-main);
+  font-family: var(--font-royal);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  z-index: 10;
+}
+
+.ep-scroll-line {
+  width: 1px;
+  height: 24px;
+  background: linear-gradient(to bottom, var(--ep-gold-main), transparent);
+  animation: epGentleFloat 2s ease-in-out infinite;
+}
+
+/* =========================================================
+   BODY CONTENT & SECTIONS
+   ========================================================= */
+
+.ep-body-container {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3.5rem 1.25rem 6rem;
+}
+
+.ep-section {
+  position: relative;
+  margin-bottom: 4.5rem;
+}
+
+/* Royal Farman Card / Parchment Frame */
+.ep-royal-card {
+  position: relative;
+  background: linear-gradient(175deg, #FAF6EE 0%, #F5ECE0 100%);
+  border: 1px solid rgba(223, 183, 89, 0.45);
+  border-radius: 24px;
+  padding: 2.75rem 1.75rem;
+  box-shadow: 0 15px 35px -8px rgba(12, 43, 34, 0.12),
+              0 0 20px rgba(223, 183, 89, 0.1),
+              inset 0 0 30px rgba(255, 255, 255, 0.8);
+}
+
+.ep-royal-card-dark {
+  position: relative;
+  background: radial-gradient(ellipse at 50% 20%, #154235 0%, #0C2B22 70%, #071912 100%);
+  border: 1.5px solid var(--ep-gold-main);
+  border-radius: 24px;
+  padding: 2.75rem 1.75rem;
+  color: var(--ep-parchment);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.5),
+              0 0 25px rgba(223, 183, 89, 0.2),
+              inset 0 0 25px rgba(0, 0, 0, 0.4);
+}
+
+.ep-card-inner-border {
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(223, 183, 89, 0.3);
+  border-radius: 18px;
+  pointer-events: none;
+}
+
+/* Section Header Typography */
+.ep-section-tag {
+  font-family: var(--font-royal);
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ep-gold-dark);
+  margin-bottom: 0.5rem;
+}
+
+.ep-section-title {
+  font-family: var(--font-royal);
+  font-size: clamp(1.5rem, 4.5vw, 2.3rem);
+  letter-spacing: 0.08em;
+  color: var(--ep-text-main);
+  margin-bottom: 0.75rem;
+}
+
+.ep-section-title-dark {
+  font-family: var(--font-royal);
+  font-size: clamp(1.5rem, 4.5vw, 2.3rem);
+  letter-spacing: 0.08em;
+  color: var(--ep-gold-bright);
+  margin-bottom: 0.75rem;
+}
+
+.ep-section-subtitle {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 2.8vw, 1.2rem);
+  font-style: italic;
+  color: var(--ep-text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ep-section-subtitle-dark {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 2.8vw, 1.2rem);
+  font-style: italic;
+  color: rgba(250, 245, 235, 0.8);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   COUPLE PORTRAITS SECTION
+   ========================================================= */
+
+.ep-couple-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .ep-couple-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+.ep-portrait-frame {
+  position: relative;
+  width: 220px;
+  height: 280px;
+  margin: 0 auto 1.5rem;
+  border-radius: 120px 120px 18px 18px;
+  padding: 6px;
+  background: linear-gradient(135deg, #DFB759 0%, #FFF0BD 45%, #9C7723 100%);
+  box-shadow: 0 12px 30px rgba(12, 43, 34, 0.2);
+}
+
+.ep-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 114px 114px 14px 14px;
+}
+
+.ep-couple-name {
+  font-family: var(--font-script);
+  font-size: clamp(2.2rem, 6vw, 3rem);
+  color: var(--ep-emerald-deep);
+  margin-bottom: 0.25rem;
+}
+
+.ep-couple-role {
+  font-family: var(--font-royal);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ep-gold-dark);
+  margin-bottom: 0.75rem;
+}
+
+.ep-couple-bio {
+  font-family: var(--font-serif);
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--ep-text-muted);
+}
+
+/* =========================================================
+   EVENTS ITINERARY (ROYAL TIMELINE)
+   ========================================================= */
+
+.ep-events-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .ep-events-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+.ep-event-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(223, 183, 89, 0.4);
+  border-radius: 20px;
+  padding: 1.75rem 1.5rem;
+  text-align: left;
+  transition: all 0.35s ease;
+  box-shadow: 0 8px 24px rgba(12, 43, 34, 0.06);
+}
+
+.ep-event-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--ep-gold-main);
+  box-shadow: 0 16px 36px rgba(12, 43, 34, 0.12), 0 0 20px rgba(223, 183, 89, 0.2);
+}
+
+.ep-event-icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0C2B22, #184F40);
+  border: 1.5px solid var(--ep-gold-main);
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.ep-event-title {
+  font-family: var(--font-royal);
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  color: var(--ep-emerald-deep);
+  margin-bottom: 0.25rem;
+}
+
+.ep-event-subtitle {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--ep-gold-dark);
+  margin-bottom: 0.75rem;
+}
+
+.ep-event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--ep-text-main);
+  padding: 0.75rem 0;
+  border-top: 1px dashed rgba(223, 183, 89, 0.35);
+  border-bottom: 1px dashed rgba(223, 183, 89, 0.35);
+  margin-bottom: 0.75rem;
+}
+
+.ep-event-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ep-event-desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ep-text-muted);
+}
+
+.ep-event-dresscode {
+  margin-top: 0.75rem;
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  background: rgba(223, 183, 89, 0.15);
+  border-radius: 12px;
+  font-family: var(--font-royal);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--ep-gold-dark);
+  font-weight: 600;
+}
+
+/* =========================================================
+   COUNTDOWN TIMEPIECE
+   ========================================================= */
+
+.ep-countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  max-width: 540px;
+  margin: 2rem auto 0;
+}
+
+.ep-countdown-box {
+  position: relative;
+  background: linear-gradient(145deg, rgba(12, 43, 34, 0.8) 0%, rgba(7, 25, 18, 0.9) 100%);
+  border: 1px solid var(--ep-gold-main);
+  border-radius: 16px;
+  padding: 1.25rem 0.5rem;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(223, 183, 89, 0.1);
+}
+
+.ep-countdown-num {
+  font-family: var(--font-royal);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--ep-gold-bright);
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(223, 183, 89, 0.4);
+}
+
+.ep-countdown-label {
+  font-family: var(--font-royal);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(250, 245, 235, 0.7);
+  margin-top: 0.5rem;
+}
+
+/* =========================================================
+   ROYAL GALLERY
+   ========================================================= */
+
+.ep-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .ep-gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+.ep-gallery-item {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid rgba(223, 183, 89, 0.4);
+  aspect-ratio: 4 / 5;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ep-gallery-item:hover {
+  transform: scale(1.03);
+  border-color: var(--ep-gold-main);
+  box-shadow: 0 15px 30px rgba(12, 43, 34, 0.25), 0 0 20px rgba(223, 183, 89, 0.3);
+}
+
+.ep-gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.ep-gallery-item:hover .ep-gallery-img {
+  transform: scale(1.08);
+}
+
+/* Lightbox Modal */
+.ep-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(3, 12, 9, 0.92);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.ep-lightbox-content {
+  position: relative;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1.5px solid var(--ep-gold-main);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(223, 183, 89, 0.3);
+}
+
+/* =========================================================
+   RSVP & INTERACTIVE CONTROLS
+   ========================================================= */
+
+.ep-btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #DFB759 0%, #F5E096 50%, #C59D3F 100%);
+  color: #1A1408;
+  font-family: var(--font-royal);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1px solid #FFF3CE;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(156, 119, 35, 0.35);
+  transition: all 0.3s ease;
+}
+
+.ep-btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(156, 119, 35, 0.5), 0 0 15px rgba(255, 240, 189, 0.6);
+}
+
+.ep-btn-emerald {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #0C2B22 0%, #154235 100%);
+  color: var(--ep-gold-bright);
+  font-family: var(--font-royal);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1.5px solid var(--ep-gold-main);
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease;
+}
+
+.ep-btn-emerald:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(223, 183, 89, 0.4);
+}
+
+/* Floating Music and RSVP buttons */
+.ep-floating-music-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #0C2B22;
+  border: 2px solid var(--ep-gold-main);
+  color: var(--ep-gold-bright);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 15px rgba(223, 183, 89, 0.3);
+  transition: all 0.3s ease;
+}
+
+.ep-floating-music-btn:hover {
+  transform: scale(1.1);
+}
+
+.ep-floating-rsvp-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 100;
+  padding: 0.65rem 1.25rem;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #0C2B22, #184F40);
+  border: 1.5px solid var(--ep-gold-main);
+  color: var(--ep-gold-bright);
+  font-family: var(--font-royal);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 15px rgba(223, 183, 89, 0.25);
+  transition: all 0.3s ease;
+}
+
+.ep-floating-rsvp-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Form Input Elements */
+.ep-input {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(223, 183, 89, 0.5);
+  border-radius: 12px;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--ep-text-main);
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+
+.ep-input:focus {
+  border-color: var(--ep-gold-dark);
+  box-shadow: 0 0 0 3px rgba(223, 183, 89, 0.25);
+}
+
+/* =========================================================
+   MEDIA QUERY RESPONSIVENESS
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .emerald-envelope-box {
+    padding: 2rem 1.25rem;
+  }
+
+  .ep-hero-section {
+    padding: 2.5rem 1rem 3.5rem;
+  }
+
+  .ep-hero-jharokha-frame {
+    padding: 1.75rem 1rem;
+    border-radius: 20px;
+  }
+
+  .ep-royal-card,
+  .ep-royal-card-dark {
+    padding: 2rem 1.25rem;
+    border-radius: 18px;
+  }
+
+  .ep-countdown-grid {
+    gap: 0.5rem;
+  }
+
+  .ep-countdown-box {
+    padding: 0.85rem 0.25rem;
+    border-radius: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-flame-flicker,
+  .ep-hanging-light-item,
+  .ep-gold-shimmer,
+  .ep-jasmine-petal {
+    animation: none !important;
+    transition: none !important;
+  }
+}

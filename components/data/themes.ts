@@ -91,4 +91,11 @@ export const themes: ThemeMetadata[] = [
     description: "Royal mandap architecture, hanging brass bells, couple artwork, falling petals, and live wedding procession animation.",
     colorHex: "#b8872f",
   },
+  {
+    id: "emerald-palace",
+    name: "Emerald Palace Royale",
+    tagline: "Regal Velvet & Imperial Gold",
+    description: "Royal Rajputana heritage court, multi-foil Jharokha archway, glowing wax seal envelope opening, antique brass lanterns, falling jasmine petals, and imperial banquet typography.",
+    colorHex: "#0C2B22",
+  },
 ];

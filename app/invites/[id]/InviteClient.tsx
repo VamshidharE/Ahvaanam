@@ -2,12 +2,41 @@
 
 import React from "react";
 import { InvitationDataProvider, useInvitationData } from "../../../components/context/InvitationDataContext";
-import RsvpSubmissionForm from "../../../components/rsvp/RsvpSubmissionForm";
-import RoseMandapTemplate from "../../../components/templates/rose-mandap/RoseMandapTemplate";
+import { useInvitationTracker } from "@/lib/analytics/useInvitationTracker";
+import { getTemplate, normalizeInvitationData } from "@/lib/template-engine";
+
+function TemplateNotFoundFallback({ themeId }: { themeId: string }) {
+  if (process.env.NODE_ENV === "development") {
+    console.error(`[TemplateEngine] No template registered for themeId: "${themeId}". Safe fallback rendered.`);
+  }
+
+  return (
+    <div className="min-h-screen bg-[#FAF9F6] flex items-center justify-center p-6 text-center select-none font-serif">
+      <div className="max-w-md w-full bg-white border border-[#C49B27]/30 rounded-3xl p-8 shadow-xl relative overflow-hidden">
+        {/* Subtle decorative top bar */}
+        <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#C49B27] to-transparent" />
+        
+        <div className="text-3xl mb-4 text-[#C49B27]">✦</div>
+        <h2 className="text-xl font-bold uppercase tracking-wider text-[#241E1C] mb-2 font-cinzel">
+          Template in Development
+        </h2>
+        <p className="text-xs text-[#241E1C]/60 leading-relaxed mb-6 font-sans">
+          The requested template <span className="font-semibold text-[#C49B27]">"{themeId || "unknown"}"</span> is currently being prepared for the new template engine architecture.
+        </p>
+        <div className="text-[10px] uppercase tracking-[2px] text-[#C49B27] font-bold">
+          Ahvaanam Digital Invitations
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function InviteContent({ clientId }: { clientId: string }) {
   const { invitationData, loading } = useInvitationData();
   const hasRecordedRef = React.useRef(false);
+
+  // Initialize advanced engagement analytics tracker
+  useInvitationTracker(clientId);
 
   React.useEffect(() => {
     if (loading || !invitationData || hasRecordedRef.current) return;
@@ -66,40 +95,27 @@ function InviteContent({ clientId }: { clientId: string }) {
 
   const isWrapped = invitationData && "category" in invitationData && "config" in invitationData;
   const config = isWrapped ? (invitationData as any).config : invitationData;
-  const activeTheme = invitationData.themeId || config?.themeId || "royal-temple";
+  const activeTheme = invitationData.themeId || config?.themeId || "";
 
-  if (activeTheme === "rose-mandap") {
-    return <RoseMandapTemplate invitationData={invitationData} clientId={clientId} />;
+  // 1. Resolve template from the new Template Engine Registry
+  const templateDefinition = getTemplate(activeTheme);
+
+  // 2. Safe Fallback if template is not yet registered or invalid (Never silently fall back to Rose Mandap)
+  if (!templateDefinition) {
+    return <TemplateNotFoundFallback themeId={activeTheme} />;
   }
 
+  // 3. Normalize raw invitation data into typed InvitationData contract
+  const normalizedData = normalizeInvitationData(invitationData, clientId);
+
+  // 4. Render the autonomous template component
+  const TemplateComponent = templateDefinition.Component;
   return (
-    <div className="client-invitation-view min-h-screen bg-[#FAF9F6] text-[#241E1C] font-sans py-16 px-6">
-      <div className="max-w-3xl mx-auto rounded-3xl border border-[#D4AF37]/30 bg-white p-12 shadow-2xl text-center space-y-6">
-        <span className="text-2xl text-[#C49B27] font-bold block">ॐ</span>
-        <span className="text-[10px] font-bold uppercase tracking-[3px] text-[#C49B27]">
-          {activeTheme.toUpperCase()} TEMPLATE
-        </span>
-        <h1 className="text-4xl md:text-5xl font-normal uppercase font-cinzel text-[#241E1C]">
-          {invitationData.hero?.title || "Rahul & Priya"}
-        </h1>
-        <p className="text-xs uppercase tracking-[2px] font-bold text-zinc-500">
-          {invitationData.hero?.subtitle || "Wedding Celebration"}
-        </p>
-
-        <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto my-6" />
-
-        <div className="text-xs font-semibold text-zinc-600 leading-relaxed max-w-lg mx-auto">
-          We invite you to celebrate with us. Further template details and custom layout sections will render here.
-        </div>
-      </div>
-
-      {/* RSVP Submission Form Component */}
-      {invitationData.rsvp?.enabled && (
-        <div className="max-w-3xl mx-auto mt-8">
-          <RsvpSubmissionForm clientId={clientId} />
-        </div>
-      )}
-    </div>
+    <TemplateComponent
+      data={normalizedData}
+      clientId={clientId}
+      invitationData={invitationData}
+    />
   );
 }
 

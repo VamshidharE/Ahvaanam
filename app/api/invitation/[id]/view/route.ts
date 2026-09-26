@@ -77,6 +77,26 @@ export async function POST(
       return NextResponse.json({ error: insertError.message || "Failed to log page view" }, { status: 500 });
     }
 
+    // 6. Ensure matching session exists in invitation_analytics_sessions
+    try {
+      const nowIso = new Date().toISOString();
+      await adminDb.from("invitation_analytics_sessions").upsert(
+        {
+          invitation_id: id,
+          session_id: visitor_token,
+          device_type: "desktop",
+          last_active_at: nowIso,
+          duration_seconds: 0,
+          max_scroll_depth: 0,
+          completed: false,
+          is_engaged: false,
+        },
+        { onConflict: "invitation_id, session_id" }
+      );
+    } catch (sessionUpsertErr) {
+      console.warn("Could not upsert analytics session on view:", sessionUpsertErr);
+    }
+
     return NextResponse.json({ success: true });
   } catch (error: any) {
     return NextResponse.json({ error: error.message || "Failed to log page view." }, { status: 500 });

@@ -3,6 +3,7 @@ export { default as EventCategories } from "./EventCategories";
 export { default as BuilderShowcase } from "./BuilderShowcase";
 export { default as Personalization } from "./Personalization";
 export { default as DevicePreview } from "./DevicePreview";
+export { default as InvitationPlans } from "./InvitationPlans";
 export { default as Sharing } from "./Sharing";
 export { default as Footer } from "./Footer";
 export { default as BackgroundEffects } from "./BackgroundEffects";

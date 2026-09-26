@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Heart, Sparkles, Send, Check, MessageSquareHeart, Users } from "lucide-react";
 import SectionReveal from "../shared/SectionReveal";
 import { useRoseMandap } from "../context";
+import { emitAnalyticsInteraction } from "@/lib/analytics/useInvitationTracker";
 
 export default function RSVP({ clientId }: { clientId?: string }) {
   const invitation = useRoseMandap();
@@ -65,6 +66,7 @@ export default function RSVP({ clientId }: { clientId?: string }) {
   const handleInitialYes = async () => {
     setRsvpError(null);
     setRsvpLoading(true);
+    emitAnalyticsInteraction("rsvp_open", "rsvp");
 
     const token = getVisitorToken();
 
@@ -106,6 +108,7 @@ export default function RSVP({ clientId }: { clientId?: string }) {
   const handleConfirmGuestCount = async (count: number) => {
     setRsvpError(null);
     setRsvpLoading(true);
+    emitAnalyticsInteraction("rsvp_submit", "rsvp", { guest_count: count });
 
     const token = getVisitorToken();
 
@@ -488,6 +491,7 @@ export default function RSVP({ clientId }: { clientId?: string }) {
                   rel="noopener noreferrer"
                   aria-label="Chat on WhatsApp"
                   title="Chat on WhatsApp"
+                  onClick={() => emitAnalyticsInteraction("whatsapp_click", "rsvp")}
                   className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#25D366] text-white shadow-xs hover:scale-110 active:scale-95 transition-transform"
                 >
                   <svg

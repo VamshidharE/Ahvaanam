@@ -6,6 +6,7 @@ import { useRoseMandap } from "../context";
 import { Star, Send, Check } from "lucide-react";
 import { useParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { emitAnalyticsInteraction } from "@/lib/analytics/useInvitationTracker";
 
 export default function Footer() {
     const invitation = useRoseMandap();
@@ -149,6 +150,7 @@ export default function Footer() {
                             <span style={{ opacity: 0.4 }}>•</span>
                             <a 
                                 href={`tel:${invitation.footer.contact}`} 
+                                onClick={() => emitAnalyticsInteraction("contact_click", "footer", { contact: invitation.footer.contact })}
                                 style={{ 
                                     letterSpacing: "0.02em", 
                                     color: "#99621b", 

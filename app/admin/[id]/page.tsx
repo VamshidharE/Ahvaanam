@@ -12,7 +12,7 @@ import {
   Palette, Sliders, Heart, Calendar, Clock, MapPin, 
   Phone, HelpCircle, Shirt, Save, ArrowLeft, Plus, 
   Trash2, ArrowUp, ArrowDown, Upload, CheckCircle2, AlertCircle, Eye, Smartphone, Monitor, Tablet,
-  ChevronDown, ChevronLeft, ChevronRight, GripVertical
+  ChevronDown, ChevronLeft, ChevronRight, GripVertical, BarChart2
 } from "lucide-react";
 import { createClient } from "@/utils/supabase/client";
 import { isAdminUser } from "@/lib/auth/isAdmin";
@@ -3186,6 +3186,12 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
             className="flex items-center gap-1 px-3 py-1.5 md:px-4 md:py-2 border border-zinc-200 rounded-xl text-[9px] md:text-[10px] font-bold uppercase tracking-[1px] hover:bg-zinc-50 transition-all text-[#241E1C]/80 shadow-xs"
           >
             <ArrowLeft size={11} /> <span className="hidden md:inline">Dashboard</span>
+          </a>
+          <a
+            href={`/dashboard/analytics/${clientId}`}
+            className="flex items-center gap-1 px-3 py-1.5 md:px-4 md:py-2 border border-zinc-200 hover:border-[#C49B27]/40 rounded-xl text-[9px] md:text-[10px] font-bold uppercase tracking-[1px] hover:bg-zinc-50 transition-all text-[#241E1C]/80 shadow-xs"
+          >
+            <BarChart2 size={11} className="text-[#C49B27]" /> <span className="hidden md:inline">Analytics</span>
           </a>
           <a
             href={`/invites/${clientId}`}

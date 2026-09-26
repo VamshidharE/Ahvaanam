@@ -120,5 +120,15 @@ export const THEMES: Theme[] = [
     coverImage: "/images/themes/rose-mandap.jpg",
     enabled: true,
     displayOrder: 12
+  },
+  {
+    id: "emerald-palace",
+    categoryId: "wedding",
+    slug: "emerald-palace",
+    name: "Emerald Palace Royale",
+    description: "Royal Rajputana heritage court, multi-foil Jharokha archway, glowing wax seal envelope opening, antique brass lanterns, falling jasmine petals, and imperial banquet typography.",
+    coverImage: "/images/categories/wedding.jpg",
+    enabled: true,
+    displayOrder: 13
   }
 ];

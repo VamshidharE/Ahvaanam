@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRoseMandap } from "../context";
+import { emitAnalyticsInteraction } from "@/lib/analytics/useInvitationTracker";
 
 export default function Gallery() {
     const invitation = useRoseMandap();
@@ -67,7 +68,11 @@ export default function Gallery() {
                                 <figure 
                                     className="gallery-slider-card" 
                                     key={`${image.src}-${index}`}
-                                    onClick={() => setPreviewImage(image.src)}
+                                    onClick={() => {
+                                        setPreviewImage(image.src);
+                                        emitAnalyticsInteraction("gallery_open", "gallery");
+                                        emitAnalyticsInteraction("gallery_image_view", "gallery", { src: image.src, index });
+                                    }}
                                 >
                                     <div className="gallery-img-wrapper">
                                         <img

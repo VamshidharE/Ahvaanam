@@ -211,4 +211,98 @@ ON storage.objects FOR ALL
 TO authenticated, service_role
 USING (bucket_id = 'uploads');
 
+-- ==========================================
+-- 15. Advanced Analytics Sessions (Admin Only Access)
+-- ==========================================
+create table if not exists invitation_analytics_sessions (
+  id uuid primary key default gen_random_uuid(),
+  invitation_id text not null references invitations(id) on delete cascade,
+  session_id text not null,
+  device_type text default 'desktop',
+  started_at timestamptz not null default now(),
+  last_active_at timestamptz not null default now(),
+  duration_seconds integer not null default 0,
+  max_scroll_depth integer not null default 0,
+  completed boolean not null default false,
+  is_engaged boolean not null default false,
+  created_at timestamptz not null default now(),
+  constraint unique_invitation_session unique (invitation_id, session_id)
+);
+
+create index if not exists idx_analytics_sessions_invitation_id
+on invitation_analytics_sessions(invitation_id);
+
+create index if not exists idx_analytics_sessions_session_id
+on invitation_analytics_sessions(session_id);
+
+create index if not exists idx_analytics_sessions_created_at
+on invitation_analytics_sessions(invitation_id, created_at desc);
+
+-- Enable RLS
+alter table invitation_analytics_sessions enable row level security;
+
+-- Policies
+create policy "Allow anyone to insert analytics sessions" on invitation_analytics_sessions
+  for insert with check (true);
+
+create policy "Allow anyone to update analytics sessions" on invitation_analytics_sessions
+  for update using (true) with check (true);
+
+create policy "Allow anyone to select analytics sessions" on invitation_analytics_sessions
+  for select using (true);
+
+-- Grants
+GRANT ALL ON TABLE public.invitation_analytics_sessions TO postgres;
+GRANT ALL ON TABLE public.invitation_analytics_sessions TO service_role;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.invitation_analytics_sessions TO anon;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.invitation_analytics_sessions TO authenticated;
+
+-- ==========================================
+-- 16. Advanced Analytics Events (Admin Only Access)
+-- ==========================================
+create table if not exists invitation_analytics_events (
+  id uuid primary key default gen_random_uuid(),
+  invitation_id text not null references invitations(id) on delete cascade,
+  session_id text not null,
+  event_type text not null,
+  section_id text,
+  event_data jsonb default '{}'::jsonb,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists idx_analytics_events_invitation_id
+on invitation_analytics_events(invitation_id);
+
+create index if not exists idx_analytics_events_session_id
+on invitation_analytics_events(session_id);
+
+create index if not exists idx_analytics_events_event_type
+on invitation_analytics_events(invitation_id, event_type);
+
+create index if not exists idx_analytics_events_created_at
+on invitation_analytics_events(invitation_id, created_at desc);
+
+-- Enable RLS
+alter table invitation_analytics_events enable row level security;
+
+-- Policies
+create policy "Allow anyone to insert analytics events" on invitation_analytics_events
+  for insert with check (true);
+
+create policy "Allow anyone to select analytics events" on invitation_analytics_events
+  for select using (true);
+
+create policy "No analytics event updates" on invitation_analytics_events
+  for update using (false);
+
+create policy "No analytics event deletes" on invitation_analytics_events
+  for delete using (false);
+
+-- Grants
+GRANT ALL ON TABLE public.invitation_analytics_events TO postgres;
+GRANT ALL ON TABLE public.invitation_analytics_events TO service_role;
+GRANT SELECT, INSERT ON TABLE public.invitation_analytics_events TO anon;
+GRANT SELECT, INSERT ON TABLE public.invitation_analytics_events TO authenticated;
+
+
 

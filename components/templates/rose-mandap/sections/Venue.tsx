@@ -2,6 +2,7 @@
 
 import SectionReveal from "../shared/SectionReveal";
 import { useRoseMandap } from "../context";
+import { emitAnalyticsInteraction } from "@/lib/analytics/useInvitationTracker";
 
 export default function Venue() {
     const invitation = useRoseMandap();
@@ -35,6 +36,7 @@ export default function Venue() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="venue-button"
+                                        onClick={() => emitAnalyticsInteraction("map_click", "venue", { venue: invitation.wedding.venue })}
                                     >
                                         View Location
                                     </a>
@@ -73,6 +75,7 @@ export default function Venue() {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="venue-button"
+                                            onClick={() => emitAnalyticsInteraction("map_click", "venue", { venue: reception.venue })}
                                         >
                                             View Location
                                         </a>

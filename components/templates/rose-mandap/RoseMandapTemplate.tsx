@@ -17,6 +17,7 @@ import Venue from "./sections/Venue";
 import Countdown from "./sections/Countdown";
 import RSVP from "./sections/RSVP";
 import Footer from "./sections/Footer";
+import { emitAnalyticsInteraction } from "@/lib/analytics/useInvitationTracker";
 
 export interface RoseMandapTemplateProps {
   invitationData: any;
@@ -78,6 +79,7 @@ export default function RoseMandapTemplate({
   }, [isEmbedded]);
 
   const scrollToRsvp = () => {
+    emitAnalyticsInteraction("rsvp_open", "rsvp");
     const rsvpEl = document.getElementById("rsvp");
     if (rsvpEl) {
       rsvpEl.scrollIntoView({ behavior: "smooth" });
@@ -216,6 +218,7 @@ export default function RoseMandapTemplate({
         .then(() => {
           setIsMusicPlaying(true);
           setMusicEnabled(true);
+          emitAnalyticsInteraction("music_play", "music");
         })
         .catch(() => {});
     }
@@ -331,7 +334,9 @@ export default function RoseMandapTemplate({
         </div>
 
         <div className="wedding-page-content">
-          <WeddingHero />
+          <div data-section-id="hero">
+            <WeddingHero />
+          </div>
 
           <main className="invitation-body">
             {/* Scroll Indicator at the transition boundary */}
@@ -349,17 +354,53 @@ export default function RoseMandapTemplate({
               </div>
             )}
 
-            {data.sections.showAnnouncement && <WeddingAnnouncement />}
-            {data.sections.showEvents && <Events />}
-            {data.sections.showProcession && !hideProcession && <Procession />}
-            {data.sections.showFamily && <Family />}
-            {data.sections.showGallery && <Gallery />}
-            {data.sections.showVenue && <Venue />}
-            {data.sections.showCountdown && <Countdown />}
-            {data.sections.showRSVP && <RSVP clientId={clientId} />}
+            {data.sections.showAnnouncement && (
+              <div data-section-id="announcement">
+                <WeddingAnnouncement />
+              </div>
+            )}
+            {data.sections.showEvents && (
+              <div data-section-id="events">
+                <Events />
+              </div>
+            )}
+            {data.sections.showProcession && !hideProcession && (
+              <div data-section-id="procession">
+                <Procession />
+              </div>
+            )}
+            {data.sections.showFamily && (
+              <div data-section-id="family">
+                <Family />
+              </div>
+            )}
+            {data.sections.showGallery && (
+              <div data-section-id="gallery">
+                <Gallery />
+              </div>
+            )}
+            {data.sections.showVenue && (
+              <div data-section-id="venue">
+                <Venue />
+              </div>
+            )}
+            {data.sections.showCountdown && (
+              <div data-section-id="countdown">
+                <Countdown />
+              </div>
+            )}
+            {data.sections.showRSVP && (
+              <div data-section-id="rsvp">
+                <RSVP clientId={clientId} />
+              </div>
+            )}
           </main>
 
-          {data.sections.showFooter && <Footer />}
+          {data.sections.showFooter && (
+            <div data-section-id="footer">
+              <Footer />
+            </div>
+          )}
         </div>
 
         {/* Background Theme Music Audio */}

@@ -1,0 +1,241 @@
+/* =========================================================================
+   ROYAL TEMPLE TEMPLATE STYLES
+   Scoped CSS under .rt-page and .rt-* classes
+   ========================================================================= */
+
+:root {
+  --rt-gold: #c59b27;
+  --rt-gold-light: #f5d77f;
+  --rt-gold-dark: #8c6b12;
+  --rt-maroon: #68121a;
+  --rt-maroon-dark: #3f070c;
+  --rt-cream: #fcf8f0;
+  --rt-parchment: #f9f3e5;
+  --rt-sandstone: #f0e6d2;
+  --rt-border-gold: rgba(197, 155, 39, 0.4);
+  --rt-border-maroon: rgba(104, 18, 26, 0.25);
+  --rt-text-main: #2b1d14;
+  --rt-text-muted: #6e5c4f;
+  --rt-font-heading: 'Cinzel', var(--font-cinzel), Georgia, serif;
+  --rt-font-calligraphy: 'Great Vibes', var(--font-great-vibes), cursive;
+  --rt-font-body: 'Inter', var(--font-inter), sans-serif;
+  --rt-font-serif: 'Cormorant Garamond', Georgia, serif;
+}
+
+/* Base Page Wrapper */
+.rt-page {
+  background-color: var(--rt-cream);
+  color: var(--rt-text-main);
+  font-family: var(--rt-font-body);
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Temple Keyframe Animations */
+@keyframes rt-flame-flicker {
+  0%, 100% {
+    transform: scale(1) rotate(-1deg);
+    opacity: 0.95;
+    filter: drop-shadow(0 0 10px rgba(255, 170, 0, 0.8));
+  }
+  25% {
+    transform: scale(1.08) rotate(1.5deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 16px rgba(255, 200, 50, 0.95));
+  }
+  50% {
+    transform: scale(0.96) rotate(-0.5deg);
+    opacity: 0.88;
+    filter: drop-shadow(0 0 8px rgba(255, 150, 0, 0.7));
+  }
+  75% {
+    transform: scale(1.04) rotate(1deg);
+    opacity: 0.98;
+    filter: drop-shadow(0 0 14px rgba(255, 190, 40, 0.9));
+  }
+}
+
+@keyframes rt-bell-sway {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(3deg);
+  }
+  75% {
+    transform: rotate(-3deg);
+  }
+}
+
+@keyframes rt-float-gentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes rt-glow-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes rt-door-left {
+  0% { transform: perspective(1000px) rotateY(0deg); }
+  100% { transform: perspective(1000px) rotateY(-95deg); opacity: 0; }
+}
+
+@keyframes rt-door-right {
+  0% { transform: perspective(1000px) rotateY(0deg); }
+  100% { transform: perspective(1000px) rotateY(95deg); opacity: 0; }
+}
+
+.rt-bell-animate {
+  animation: rt-bell-sway 4s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+.rt-flame-animate {
+  animation: rt-flame-flicker 1.8s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.rt-float-animate {
+  animation: rt-float-gentle 5s ease-in-out infinite;
+}
+
+.rt-glow-animate {
+  animation: rt-glow-pulse 4s ease-in-out infinite;
+}
+
+/* Temple Card Container */
+.rt-card {
+  background: var(--rt-parchment);
+  border: 1.5px solid var(--rt-border-gold);
+  border-radius: 20px;
+  box-shadow: 0 12px 36px rgba(104, 18, 26, 0.08), 0 2px 8px rgba(197, 155, 39, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.rt-card::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px dashed rgba(197, 155, 39, 0.35);
+  pointer-events: none;
+}
+
+/* Ornamental Dividers */
+.rt-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 1rem auto;
+}
+
+.rt-divider-line {
+  height: 1px;
+  width: 60px;
+  background: linear-gradient(90deg, transparent, var(--rt-gold), transparent);
+}
+
+.rt-divider-icon {
+  color: var(--rt-gold);
+  font-size: 14px;
+}
+
+/* Typography Helpers */
+.rt-heading {
+  font-family: var(--rt-font-heading);
+  color: var(--rt-text-main);
+  letter-spacing: 1px;
+}
+
+.rt-names {
+  font-family: var(--rt-font-serif);
+  color: var(--rt-maroon);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.rt-mantra {
+  font-family: var(--rt-font-serif);
+  color: var(--rt-gold-dark);
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.rt-date-box {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--rt-border-gold);
+  border-radius: 12px;
+  padding: 8px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Touch Friendly Buttons */
+.rt-btn {
+  background: linear-gradient(135deg, var(--rt-gold) 0%, var(--rt-gold-dark) 100%);
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 12px;
+  padding: 12px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 16px rgba(197, 155, 39, 0.35);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.rt-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(197, 155, 39, 0.45);
+}
+
+.rt-btn:active {
+  transform: scale(0.98);
+}
+
+/* Event List Card */
+.rt-event-card {
+  background: #ffffff;
+  border: 1px solid var(--rt-border-gold);
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rt-event-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(104, 18, 26, 0.08);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 640px) {
+  .rt-names {
+    font-size: clamp(2.2rem, 8vw, 3.2rem);
+  }
+  
+  .rt-card {
+    padding: 1.5rem 1.25rem;
+  }
+}

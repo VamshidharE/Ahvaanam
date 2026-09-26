@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { createClient } from "@/utils/supabase/client";
 import { isAdminUser } from "@/lib/auth/isAdmin";
+import AdvancedAnalyticsDashboard from "@/components/admin/AdvancedAnalyticsDashboard";
 
 interface FeedbackItem {
   id: string;
@@ -195,7 +196,12 @@ export default function AnalyticsDashboard({ params }: { params: Promise<{ id: s
           </div>
         ) : stats ? (
           <div className="space-y-8 animate-fadeIn">
-            {/* Stats Dashboard Grid */}
+            {/* Admin-Only Advanced Engagement Analytics (Funnel, Drop-offs, Sections, Interactions) */}
+            {isAdmin && (
+              <AdvancedAnalyticsDashboard invitationId={id} />
+            )}
+
+            {/* Stats Dashboard Grid (Client-Facing & Basic Analytics) */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
               
               {/* Total Views */}
