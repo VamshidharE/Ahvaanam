@@ -139,6 +139,7 @@ export interface RSVPContact {
 export interface RSVPSection extends BaseSection {
   contacts: RSVPContact[];
   qrCodeUrl?: string;
+  whatsappNumber?: string;
 }
 
 export interface FAQEntry {

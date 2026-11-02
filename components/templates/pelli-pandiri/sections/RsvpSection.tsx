@@ -336,7 +336,9 @@ export const RsvpSection: React.FC<{ data: PelliPandiriData; clientId?: string }
                         const whatsAppContact = rsvp.contacts?.find((c) => c.type === "whatsapp") || rsvp.contacts?.[0];
                         const rawPhone = rsvp.whatsappNumber || whatsAppContact?.value || "+918688178323";
                         const cleanNum = rawPhone.replace(/[^0-9]/g, "");
-                        const waUrl = `https://wa.me/${cleanNum}?text=${encodeURIComponent(`Hello, I would like to RSVP for the wedding celebration of ${details.groomName} & ${details.brideName}!`)}`;
+                        const groom = data.couple?.groomName || "Groom";
+                        const bride = data.couple?.brideName || "Bride";
+                        const waUrl = `https://wa.me/${cleanNum}?text=${encodeURIComponent(`Hello, I would like to RSVP for the wedding celebration of ${groom} & ${bride}!`)}`;
 
                         return (
                           <div className="flex items-center justify-center gap-2.5 mt-4 pt-3 border-t border-[#d9ba9b]/40 w-full select-none">

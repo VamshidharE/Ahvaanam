@@ -3058,7 +3058,7 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
   };
 
   const renderRsvpSettings = () => {
-    const rsvp = invitationData.rsvp || { title: "", subtitle: "", contacts: [] };
+    const rsvp: any = invitationData.rsvp || { title: "", subtitle: "", contacts: [] };
     const contacts = rsvp.contacts || [];
 
     return (
