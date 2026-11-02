@@ -2,6 +2,7 @@ import { TemplateDefinition } from "./types";
 import { roseMandapDefinition } from "@/components/templates/rose-mandap";
 import { royalTempleDefinition } from "@/components/templates/royal-temple";
 import { emeraldPalaceDefinition } from "@/components/templates/emerald-palace";
+import { pelliPandiriDefinition } from "@/components/templates/pelli-pandiri";
 
 /**
  * Internal static registry mapping templateId -> TemplateDefinition.
@@ -12,6 +13,7 @@ const TEMPLATE_REGISTRY: Map<string, TemplateDefinition> = new Map();
 TEMPLATE_REGISTRY.set(roseMandapDefinition.id, roseMandapDefinition);
 TEMPLATE_REGISTRY.set(royalTempleDefinition.id, royalTempleDefinition);
 TEMPLATE_REGISTRY.set(emeraldPalaceDefinition.id, emeraldPalaceDefinition);
+TEMPLATE_REGISTRY.set(pelliPandiriDefinition.id, pelliPandiriDefinition);
 
 /**
  * Registers a new template definition in the engine.

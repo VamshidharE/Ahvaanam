@@ -12,7 +12,7 @@ import {
   Palette, Sliders, Heart, Calendar, Clock, MapPin, 
   Phone, HelpCircle, Shirt, Save, ArrowLeft, Plus, 
   Trash2, ArrowUp, ArrowDown, Upload, CheckCircle2, AlertCircle, Eye, Smartphone, Monitor, Tablet,
-  ChevronDown, ChevronLeft, ChevronRight, GripVertical, BarChart2
+  ChevronDown, ChevronLeft, ChevronRight, GripVertical, BarChart2, Video, Users
 } from "lucide-react";
 import { createClient } from "@/utils/supabase/client";
 import { isAdminUser } from "@/lib/auth/isAdmin";
@@ -181,7 +181,9 @@ const IconLookup: Record<string, React.ComponentType<any>> = {
   Plus: Plus,
   Trash2: Trash2,
   ArrowUp: ArrowUp,
-  ArrowDown: ArrowDown
+  ArrowDown: ArrowDown,
+  Video: Video,
+  Users: Users
 };
 
 function AdminPortalContent({ clientId }: { clientId: string }) {
@@ -243,14 +245,27 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
         .filter(nav => nav.sections.length > 0)
     : [];
 
-  const tabsList = [
-    { id: "general", label: "General Config", icon: "Sliders" },
-    ...visibleNavigationItems.filter(nav => nav.id !== "general").map(nav => ({
-      id: nav.id,
-      label: nav.label,
-      icon: nav.icon
-    }))
-  ];
+  const isPelliPandiri = (invitationData?.themeId || (invitationData as any)?.config?.themeId) === "pelli-pandiri";
+
+  const tabsList = isPelliPandiri
+    ? [
+        { id: "general", label: "General Config", icon: "Sliders" },
+        { id: "couple", label: "Bride & Groom", icon: "Heart" },
+        { id: "events", label: "Celebrations", icon: "Calendar" },
+        { id: "story", label: "Pre-Wedding Film", icon: "Video" },
+        { id: "gallery", label: "Photo Gallery", icon: "Palette" },
+        { id: "families", label: "Our Families", icon: "Users" },
+        { id: "rsvp", label: "RSVP & Timer", icon: "Phone" },
+        { id: "footer", label: "Credits & Rating", icon: "Sliders" }
+      ]
+    : [
+        { id: "general", label: "General Config", icon: "Sliders" },
+        ...visibleNavigationItems.filter(nav => nav.id !== "general").map(nav => ({
+          id: nav.id,
+          label: nav.label,
+          icon: nav.icon
+        }))
+      ];
 
   const getConfigMetadataValue = (key: string): any => {
     if (!invitationData) return "";
@@ -471,7 +486,19 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
     });
   };
 
-  const sectionLabels: Record<string, string> = {
+  const sectionLabels: Record<string, string> = isPelliPandiri ? {
+    hero: "Welcome Banner & Mandap",
+    couple: "Grand Couple Showcase",
+    events: "Wedding Celebrations",
+    story: "Pre-Wedding Film",
+    gallery: "Photo Gallery",
+    families: "Our Families",
+    rsvp: "RSVP & Muhurtham Timer",
+    footer: "Page Credits & Rating",
+    countdown: "Muhurtham Countdown",
+    venues: "Event Venues",
+    venue: "Event Venues"
+  } : {
     hero: "Hero Panel",
     couple: "Basics Details",
     story: "Our Story",
@@ -481,7 +508,10 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
     footer: "Footer Copyrights",
     celebrant: "Celebrant Details",
     hosts: "Hosts Details",
-    venue: "Event Venues"
+    venue: "Event Venues",
+    gallery: "Photo Gallery",
+    families: "Our Families",
+    countdown: "Wedding Countdown"
   };
 
   const renderManifestSection = (sectionId: string) => {
@@ -2001,12 +2031,239 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
               className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
             />
           </div>
+
+          {/* Google Maps Embed Link & Show Map Toggle */}
+          <div className="flex flex-col gap-1.5 w-full bg-[#FAF9F6] p-3 border border-zinc-200/60 rounded-xl mt-1">
+            <div className="flex items-center justify-between">
+              <label className="text-[9px] uppercase font-bold text-[#241E1C]/60 tracking-[1px]">Google Maps Embed Link</label>
+              <div className="flex items-center gap-1.5">
+                <label htmlFor={`map-toggle-${evt.id || index}`} className="text-[8px] uppercase font-bold text-[#241E1C]/60 cursor-pointer">
+                  Show Map
+                </label>
+                <input
+                  type="checkbox"
+                  id={`map-toggle-${evt.id || index}`}
+                  checked={evt.showMap !== false}
+                  onChange={(e) => {
+                    updateInvitationData((prev) => {
+                      const list = [...prev.events];
+                      list[index] = { ...list[index], showMap: e.target.checked };
+                      return { ...prev, events: list };
+                    });
+                  }}
+                  className="w-3.5 h-3.5 rounded text-[#C49B27] accent-[#C49B27] cursor-pointer"
+                />
+              </div>
+            </div>
+            <input
+              type="text"
+              value={evt.mapsEmbedUrl || ""}
+              placeholder="Paste Google Maps embed URL or iframe code..."
+              onChange={(e) => {
+                let val = e.target.value.trim();
+                const srcMatch = val.match(/src=["']([^"']+)["']/);
+                if (srcMatch) val = srcMatch[1];
+                updateInvitationData((prev) => {
+                  const list = [...prev.events];
+                  list[index] = { ...list[index], mapsEmbedUrl: val };
+                  return { ...prev, events: list };
+                });
+              }}
+              className="bg-white border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] font-mono text-[11px] w-full"
+            />
+          </div>
+
+          {/* Directions Link & Show Directions Toggle */}
+          <div className="flex flex-col gap-1.5 w-full bg-[#FAF9F6] p-3 border border-zinc-200/60 rounded-xl">
+            <div className="flex items-center justify-between">
+              <label className="text-[9px] uppercase font-bold text-[#241E1C]/60 tracking-[1px]">Directions Link (Optional)</label>
+              <div className="flex items-center gap-1.5">
+                <label htmlFor={`dir-toggle-${evt.id || index}`} className="text-[8px] uppercase font-bold text-[#241E1C]/60 cursor-pointer">
+                  Show Directions Button
+                </label>
+                <input
+                  type="checkbox"
+                  id={`dir-toggle-${evt.id || index}`}
+                  checked={evt.showDirections !== false}
+                  onChange={(e) => {
+                    updateInvitationData((prev) => {
+                      const list = [...prev.events];
+                      list[index] = { ...list[index], showDirections: e.target.checked };
+                      return { ...prev, events: list };
+                    });
+                  }}
+                  className="w-3.5 h-3.5 rounded text-[#C49B27] accent-[#C49B27] cursor-pointer"
+                />
+              </div>
+            </div>
+            <input
+              type="text"
+              value={evt.mapsLink || evt.directionsUrl || ""}
+              placeholder="Custom directions link (defaults to searching venue)"
+              onChange={(e) => {
+                const val = e.target.value;
+                updateInvitationData((prev) => {
+                  const list = [...prev.events];
+                  list[index] = { ...list[index], mapsLink: val, directionsUrl: val };
+                  return { ...prev, events: list };
+                });
+              }}
+              className="bg-white border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] text-[11px] w-full"
+            />
+          </div>
         </div>
       ))}
     </div>
   );
 
   const renderStorySettings = () => {
+    const isPelliPandiri = (invitationData.themeId || (invitationData as any).config?.themeId) === "pelli-pandiri";
+
+    if (isPelliPandiri) {
+      const videoConfig = (invitationData as any).video || (invitationData as any).config?.video || {};
+      const videoHeading = videoConfig.heading || invitationData.story?.title || "A GLIMPSE OF US";
+      const videoSubheading = videoConfig.subheading || invitationData.story?.subtitle || "Our story, captured in beautiful moments.";
+      const videoSrc = videoConfig.videoSrc || (invitationData.story as any)?.videoSrc || "/templates/pelli-pandiri/video/pre-wedding.mp4";
+      const posterSrc = videoConfig.posterSrc || (invitationData.story as any)?.posterSrc || "/templates/pelli-pandiri/video/pre-wedding-poster.jpg";
+
+      return (
+        <div className="space-y-6 text-left animate-fadeIn">
+          <div className="flex justify-between items-center border-b border-zinc-200/50 pb-2 w-full">
+            <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/60">PRE-WEDDING FILM (A GLIMPSE OF US)</h3>
+            <div className="flex items-center gap-2">
+              <label htmlFor="video-enabled" className="text-[9px] uppercase font-bold text-[#241E1C]/60 cursor-pointer">Enabled</label>
+              <input
+                type="checkbox"
+                id="video-enabled"
+                checked={invitationData.story?.enabled !== false && videoConfig.enabled !== false}
+                onChange={(e) => updateInvitationData((prev: any) => ({
+                  ...prev,
+                  story: { ...prev.story, enabled: e.target.checked },
+                  video: { ...(prev.video || {}), enabled: e.target.checked },
+                }))}
+                className="w-3.5 h-3.5 rounded text-[#C49B27] accent-[#C49B27]"
+              />
+            </div>
+          </div>
+
+          <div className="card-minimal p-4 md:p-5 space-y-4 w-full">
+            <div className="flex flex-col gap-1 w-full">
+              <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Section Heading</label>
+              <input
+                type="text"
+                value={videoHeading}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  updateInvitationData((prev: any) => ({
+                    ...prev,
+                    story: { ...(prev.story || {}), title: val },
+                    video: { ...(prev.video || {}), heading: val }
+                  }));
+                }}
+                placeholder="A GLIMPSE OF US"
+                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] font-semibold w-full"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1 w-full">
+              <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Subtitle / Film Tagline</label>
+              <input
+                type="text"
+                value={videoSubheading}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  updateInvitationData((prev: any) => ({
+                    ...prev,
+                    story: { ...(prev.story || {}), subtitle: val },
+                    video: { ...(prev.video || {}), subheading: val }
+                  }));
+                }}
+                placeholder="Our story, captured in beautiful moments."
+                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
+              />
+            </div>
+
+            {/* Video File / URL */}
+            <div className="flex flex-col gap-1.5 w-full border-t border-zinc-100 pt-3">
+              <div className="flex items-center justify-between">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Pre-Wedding Video Track</label>
+                <span className="text-[9px] text-[#C49B27] font-semibold">MP4, WEBM</span>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center gap-3 w-full">
+                <input
+                  type="text"
+                  value={videoSrc}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    updateInvitationData((prev: any) => ({
+                      ...prev,
+                      story: { ...(prev.story || {}), videoSrc: val },
+                      video: { ...(prev.video || {}), videoSrc: val }
+                    }));
+                  }}
+                  placeholder="Video URL or upload below..."
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] flex-1 font-mono"
+                />
+                <FileUploader
+                  accept="video/*,.mp4,.webm,.mov"
+                  label="Upload Video"
+                  onUploadSuccess={(url) => {
+                    updateInvitationData((prev: any) => ({
+                      ...prev,
+                      story: { ...(prev.story || {}), videoSrc: url },
+                      video: { ...(prev.video || {}), videoSrc: url }
+                    }));
+                  }}
+                  className="w-full sm:w-auto"
+                />
+              </div>
+            </div>
+
+            {/* Video Poster Image */}
+            <div className="flex flex-col gap-1.5 w-full border-t border-zinc-100 pt-3">
+              <div className="flex items-center justify-between">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Video Poster / Cover Photo</label>
+                <span className="text-[9px] text-[#C49B27] font-semibold">Upload Image</span>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center gap-3 w-full">
+                {posterSrc && (
+                  <div className="w-12 h-12 rounded-lg overflow-hidden border border-amber-500/30 shrink-0 bg-zinc-100 shadow-xs">
+                    <img src={posterSrc} alt="Poster Preview" className="w-full h-full object-cover" />
+                  </div>
+                )}
+                <input
+                  type="text"
+                  value={posterSrc}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    updateInvitationData((prev: any) => ({
+                      ...prev,
+                      story: { ...(prev.story || {}), posterSrc: val, couplePhoto: val },
+                      video: { ...(prev.video || {}), posterSrc: val }
+                    }));
+                  }}
+                  placeholder="Poster Image URL or upload below..."
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] flex-1 font-mono"
+                />
+                <FileUploader
+                  accept="image/*"
+                  label="Upload Poster"
+                  onUploadSuccess={(url) => {
+                    updateInvitationData((prev: any) => ({
+                      ...prev,
+                      story: { ...(prev.story || {}), posterSrc: url, couplePhoto: url },
+                      video: { ...(prev.video || {}), posterSrc: url }
+                    }));
+                  }}
+                  className="w-full sm:w-auto"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     const storyDesc = invitationData.story?.timeline?.[0]?.description || invitationData.story?.subtitle || "";
     const storyImg = invitationData.story?.timeline?.[0]?.image || (invitationData.story as any)?.couplePhoto || "";
 
@@ -2865,6 +3122,45 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
               className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
             />
           </div>
+
+          {/* WhatsApp RSVP Direct Connect */}
+          <div className="flex flex-col gap-1.5 w-full bg-[#FAF9F6] p-3 border border-zinc-200/60 rounded-xl">
+            <div className="flex items-center justify-between">
+              <label className="text-[9px] uppercase font-bold text-[#241E1C]/60 tracking-[1px]">WhatsApp RSVP Number</label>
+              <span className="text-[9px] text-[#25D366] font-bold flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-[#25D366] inline-block" /> Or connect directly via message
+              </span>
+            </div>
+            <input
+              type="text"
+              placeholder="e.g. +91 9876543210"
+              value={rsvp.whatsappNumber || contacts.find((c: any) => c.type === "whatsapp")?.value || ""}
+              onChange={(e) => {
+                const val = e.target.value;
+                updateInvitationData((prev: any) => {
+                  const nextContacts = [...(prev.rsvp?.contacts || [])];
+                  const waIdx = nextContacts.findIndex((c: any) => c.type === "whatsapp");
+                  if (waIdx >= 0) {
+                    nextContacts[waIdx] = { ...nextContacts[waIdx], value: val };
+                  } else if (val) {
+                    nextContacts.unshift({ type: "whatsapp", label: "WhatsApp RSVP", value: val });
+                  }
+                  return {
+                    ...prev,
+                    rsvp: {
+                      ...prev.rsvp,
+                      whatsappNumber: val,
+                      contacts: nextContacts
+                    }
+                  };
+                });
+              }}
+              className="bg-white border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-mono text-[11px]"
+            />
+            <p className="text-[9px] text-zinc-400">
+              Synced with RSVP contacts — powers the green WhatsApp icon button in the invitation.
+            </p>
+          </div>
         </div>
 
         {/* RSVP Contacts List */}
@@ -3371,6 +3667,21 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
                       ${isExpanded ? "max-h-[4000px] border-t border-zinc-100 p-4 md:p-5 space-y-5" : "max-h-0"}
                     `}>
                       {sect.id === "general" ? renderGeneralSettings() : (() => {
+                        if (isPelliPandiri) {
+                          if (sect.id === "couple") return renderCoupleSettings();
+                          if (sect.id === "events") return renderEventsSettings();
+                          if (sect.id === "story") return renderStorySettings();
+                          if (sect.id === "gallery") return renderGallerySettings();
+                          if (sect.id === "families") return renderFamiliesSettings();
+                          if (sect.id === "rsvp") return (
+                            <div className="space-y-6">
+                              {renderRsvpSettings()}
+                              {renderCountdownSettings()}
+                            </div>
+                          );
+                          if (sect.id === "footer") return renderFooterSettings();
+                          return null;
+                        }
                         const currentNav = visibleNavigationItems.find(n => n.id === sect.id);
                         if (!currentNav) return null;
                         return (

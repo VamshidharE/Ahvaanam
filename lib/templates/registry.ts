@@ -156,5 +156,17 @@ export const TEMPLATE_REGISTRY: TemplateMetadata[] = [
     tags: ["mandap", "rose", "procession", "animated", "traditional", "royal"],
     supportedLanguages: ["en", "te", "hi"],
     enabled: true
+  },
+  {
+    id: "pelli-pandiri",
+    name: "Pelli Pandiri",
+    category: "wedding",
+    thumbnail: "/images/themes/pelli-pandiri.jpg",
+    premium: true,
+    previewImage: "/images/themes/pelli-pandiri.jpg",
+    description: "A grand traditional Telugu wedding invitation with temple entrance arch, sunset sky, 3D butterfly companion, auspicious toranam, and parchment scroll sections.",
+    tags: ["traditional", "telugu", "temple", "pelli-pandiri", "butterfly", "royal", "gold"],
+    supportedLanguages: ["en", "te", "hi"],
+    enabled: true
   }
 ];

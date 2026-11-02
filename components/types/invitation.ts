@@ -83,6 +83,11 @@ export interface WeddingEvent {
   description: string;
   icon: string;
   image?: string;
+  mapsEmbedUrl?: string;
+  mapsLink?: string;
+  directionsUrl?: string;
+  showMap?: boolean;
+  showDirections?: boolean;
 }
 
 export interface GallerySection extends BaseSection {

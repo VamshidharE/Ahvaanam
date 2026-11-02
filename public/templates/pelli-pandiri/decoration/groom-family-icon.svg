@@ -1,0 +1,99 @@
+<svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Royal Gold Gradient -->
+    <linearGradient id="groomGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE082" />
+      <stop offset="35%" stop-color="#D4AF37" />
+      <stop offset="70%" stop-color="#AA7C11" />
+      <stop offset="100%" stop-color="#7D5705" />
+    </linearGradient>
+
+    <!-- Royal Maroon / Wine Silk -->
+    <linearGradient id="groomMaroon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8E1C24" />
+      <stop offset="50%" stop-color="#660E15" />
+      <stop offset="100%" stop-color="#4A080D" />
+    </linearGradient>
+
+    <!-- Emerald Gem Accent -->
+    <radialGradient id="emeraldGem" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#66BB6A" />
+      <stop offset="60%" stop-color="#2E7D32" />
+      <stop offset="100%" stop-color="#1B5E20" />
+    </radialGradient>
+
+    <!-- Golden Halo -->
+    <radialGradient id="groomGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFE082" stop-opacity="0.5" />
+      <stop offset="70%" stop-color="#D4AF37" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Radiant Royal Halo -->
+  <circle cx="80" cy="80" r="74" fill="url(#groomGlow)" />
+  <circle cx="80" cy="80" r="68" stroke="url(#groomGold)" stroke-width="1.2" stroke-dasharray="3 4" opacity="0.8" />
+  <circle cx="80" cy="80" r="62" stroke="#E0C068" stroke-width="0.8" opacity="0.6" />
+
+  <!-- 12 Auspicious Rays / Sun Crest Points -->
+  <g stroke="url(#groomGold)" stroke-width="1" stroke-linecap="round" opacity="0.75">
+    <line x1="80" y1="14" x2="80" y2="22" />
+    <line x1="80" y1="14" x2="80" y2="22" transform="rotate(30 80 80)" />
+    <line x1="80" y1="14" x2="80" y2="22" transform="rotate(60 80 80)" />
+    <line x1="80" y1="14" x2="80" y2="22" transform="rotate(90 80 80)" />
+    <line x1="80" y1="14" x2="80" y2="22" transform="rotate(120 80 80)" />
+    <line x1="80" y1="14" x2="80" y2="22" transform="rotate(150 80 80)" />
+    <line x1="80" y1="14" x2="80" y2="22" transform="rotate(180 80 80)" />
+    <line x1="80" y1="14" x2="80" y2="22" transform="rotate(210 80 80)" />
+    <line x1="80" y1="14" x2="80" y2="22" transform="rotate(240 80 80)" />
+    <line x1="80" y1="14" x2="80" y2="22" transform="rotate(270 80 80)" />
+    <line x1="80" y1="14" x2="80" y2="22" transform="rotate(300 80 80)" />
+    <line x1="80" y1="14" x2="80" y2="22" transform="rotate(330 80 80)" />
+  </g>
+
+  <!-- Inner Medallion Ground -->
+  <circle cx="80" cy="80" r="52" fill="#FAF0DE" stroke="url(#groomGold)" stroke-width="1.8" />
+  <circle cx="80" cy="80" r="49" stroke="#E6BE72" stroke-width="0.8" stroke-dasharray="2 3" fill="none" />
+
+  <!-- Royal Peacock Feather / Kalgi Plume on top -->
+  <g>
+    <!-- Feather Stem -->
+    <path d="M72 48 C70 32 64 20 54 14" stroke="url(#groomGold)" stroke-width="1.8" stroke-linecap="round" />
+    <!-- Feather Eye (Mayura Chandrika) -->
+    <ellipse cx="56" cy="18" rx="8" ry="11" transform="rotate(-30 56 18)" fill="#00695C" stroke="url(#groomGold)" stroke-width="1" />
+    <ellipse cx="56" cy="18" rx="5" ry="7" transform="rotate(-30 56 18)" fill="#0277BD" />
+    <circle cx="56" cy="18" r="2.8" fill="#FFD54F" />
+    <circle cx="56" cy="18" r="1.4" fill="#1A237E" />
+  </g>
+
+  <!-- ROYAL PAGDI / TURBAN EMBLEM -->
+  <g>
+    <!-- Turban Back Dome Curve (Top Fold) -->
+    <path d="M52 82 C50 64 64 54 84 54 C104 54 116 66 114 84 Z" fill="url(#groomMaroon)" stroke="#4A080D" stroke-width="1" />
+
+    <!-- Gold Brocade Swirl 1 -->
+    <path d="M54 78 C64 64 88 62 108 72 C113 75 114 80 110 82 C98 76 74 72 58 84 Z" fill="url(#groomGold)" opacity="0.9" />
+
+    <!-- Turban Main Wrap Folds -->
+    <path d="M46 96 C46 82 56 70 82 68 C106 67 118 78 120 92 C120 102 110 110 82 110 C54 110 46 104 46 96 Z" fill="url(#groomMaroon)" stroke="#3E0006" stroke-width="1.2" />
+
+    <!-- Zari Gold Cross Folds -->
+    <path d="M48 94 C58 86 86 82 116 88" stroke="url(#groomGold)" stroke-width="2.4" stroke-linecap="round" />
+    <path d="M48 100 C60 92 88 88 118 96" stroke="url(#groomGold)" stroke-width="2.4" stroke-linecap="round" />
+    <path d="M54 106 C66 98 88 94 112 102" stroke="url(#groomGold)" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Left Hanging Silk Tail (Shamla / Turra) -->
+    <path d="M48 92 C42 98 40 112 42 126 C44 128 48 128 50 125 C48 114 48 102 54 94 Z" fill="url(#groomMaroon)" stroke="#3E0006" stroke-width="0.8" />
+    <path d="M42 124 L50 124" stroke="url(#groomGold)" stroke-width="2" />
+
+    <!-- Front Royal Kalgi Brooch (Jeweled Sarpech) -->
+    <g transform="translate(72, 60)">
+      <!-- Gold Brooch Frame -->
+      <path d="M8 0 L15 12 L8 24 L1 12 Z" fill="url(#groomGold)" stroke="#664600" stroke-width="1" />
+      <!-- Center Emerald Gem -->
+      <ellipse cx="8" cy="12" rx="4.5" ry="6.5" fill="url(#emeraldGem)" stroke="#FFE082" stroke-width="0.8" />
+      <!-- Dangling Pearl Drop -->
+      <circle cx="8" cy="27" r="2.5" fill="#FFFDE7" stroke="url(#groomGold)" stroke-width="0.8" />
+    </g>
+  </g>
+</svg>

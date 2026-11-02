@@ -194,5 +194,212 @@ export function createDefaultConfig(categoryId: string, themeId?: string): Invit
     }
   }
 
+
+  if (categoryId.toLowerCase() === "wedding" && themeId === "pelli-pandiri" && cloned.config) {
+    cloned.themeId = "pelli-pandiri";
+    const config = cloned.config as any;
+    config.themeId = "pelli-pandiri";
+    config.sectionOrder = [
+      "hero",
+      "couple",
+      "events",
+      "story",
+      "gallery",
+      "families",
+      "countdown",
+      "rsvp",
+      "venue",
+      "footer"
+    ];
+    config.music = {
+      enabled: true,
+      file: "/templates/pelli-pandiri/audio/ambient.mp3"
+    };
+    if (config.hero) {
+      config.hero.title = "TOGETHER WITH THEIR FAMILIES";
+      config.hero.subtitle = "invite you to celebrate the beginning of their beautiful journey together";
+      config.hero.welcomeMessage = "|| श्री गणेशाय नमः ||";
+      config.hero.heroImage = "/templates/pelli-pandiri/Couple.png";
+      config.hero.surname = "BIRUDURAJU'S FAMILY";
+      config.hero.subText = "BIRUDURAJU'S WEDDING INVITATION";
+      config.hero.ctaText = "RSVP";
+    }
+    if (config.couple) {
+      config.couple.primarySide = "groom";
+      config.couple.groom = {
+        name: "Arjun",
+        parents: "Son of Smt. Padmaja & Sri Suresh Babu",
+        bio: "",
+        image: "/templates/pelli-pandiri/family/groom-family.jpg"
+      };
+      config.couple.bride = {
+        name: "Meera",
+        parents: "Daughter of Smt. Lakshmi Devi & Sri Ramesh Kumar",
+        bio: "",
+        image: "/templates/pelli-pandiri/family/bride-family.jpg"
+      };
+    }
+    if (config.groom) {
+      config.groom.name = "Arjun";
+      config.groom.image = "/templates/pelli-pandiri/family/groom-family.jpg";
+    }
+    if (config.bride) {
+      config.bride.name = "Meera";
+      config.bride.image = "/templates/pelli-pandiri/family/bride-family.jpg";
+    }
+    config.venue = "Ananda Kalyana Mandapam, Thanjavur, Tamil Nadu";
+    config.date = "2026-11-29";
+    config.time = "09:15 AM";
+    if (config.countdown) {
+      config.countdown.title = "Muhurtham Countdown";
+      config.countdown.targetDate = "2026-11-29T09:15:00";
+    }
+    config.story = {
+      id: "story",
+      enabled: true,
+      title: "A GLIMPSE OF US",
+      subtitle: "Our story, captured in beautiful moments.",
+      videoSrc: "/templates/pelli-pandiri/video/pre-wedding.mp4",
+      posterSrc: "/templates/pelli-pandiri/video/pre-wedding-poster.jpg",
+      timeline: [
+        {
+          title: "A GLIMPSE OF US",
+          date: "",
+          description: "Our story, captured in beautiful moments.",
+          image: "/templates/pelli-pandiri/video/pre-wedding-poster.jpg"
+        }
+      ]
+    };
+    config.video = {
+      enabled: true,
+      heading: "A GLIMPSE OF US",
+      subheading: "Our story, captured in beautiful moments.",
+      videoSrc: "/templates/pelli-pandiri/video/pre-wedding.mp4",
+      posterSrc: "/templates/pelli-pandiri/video/pre-wedding-poster.jpg"
+    };
+    config.events = [
+      {
+        id: "engagement",
+        enabled: true,
+        title: "Engagement",
+        name: "Engagement",
+        navLabel: "Engagement",
+        shortDate: "Fri, Nov 27",
+        date: "Friday, November 27, 2026",
+        dayOfWeek: "Friday Evening",
+        time: "06:00 PM",
+        startTime: "06:00 PM",
+        endTime: "09:30 PM",
+        venue: "Sri Vijayalakshmi Kalyana Mandapam",
+        address: "Grand Ballroom, Rajappa Nagar, Thanjavur",
+        description: "Traditional Engagement Ceremony",
+        illustration: "/templates/pelli-pandiri/events/event-engagement.png",
+        accentColor: "#8e3622"
+      },
+      {
+        id: "haldi",
+        enabled: true,
+        title: "Haldi",
+        name: "Haldi",
+        navLabel: "Haldi",
+        shortDate: "Sat, Nov 28",
+        date: "Saturday, November 28, 2026",
+        dayOfWeek: "Saturday Morning",
+        time: "08:30 AM",
+        startTime: "08:30 AM",
+        endTime: "11:30 AM",
+        venue: "Royal Courtyard & Heritage Pavilion",
+        address: "Chola Heritage Palace, Court Road, Thanjavur",
+        description: "Auspicious Turmeric Cleansing Ritual",
+        illustration: "/templates/pelli-pandiri/events/event-haldi.png",
+        accentColor: "#d97724"
+      },
+      {
+        id: "sangeet",
+        enabled: true,
+        title: "Sangeet",
+        name: "Sangeet",
+        navLabel: "Sangeet",
+        shortDate: "Sat, Nov 28",
+        date: "Saturday, November 28, 2026",
+        dayOfWeek: "Saturday Evening",
+        time: "07:00 PM",
+        startTime: "07:00 PM",
+        endTime: "11:00 PM",
+        venue: "The Grand Lotus Lawns",
+        address: "Palace Gardens, Tanjore Expressway, Thanjavur",
+        description: "Musical Evening & Celebratory Banquet",
+        illustration: "/templates/pelli-pandiri/events/event-sangeet.png",
+        accentColor: "#9c3f20"
+      },
+      {
+        id: "wedding",
+        enabled: true,
+        title: "Wedding",
+        name: "Wedding",
+        navLabel: "Wedding",
+        shortDate: "Sun, Nov 29",
+        date: "Sunday, November 29, 2026",
+        dayOfWeek: "Sunday Morning",
+        time: "08:15 AM",
+        startTime: "08:15 AM",
+        endTime: "12:30 PM",
+        muhurthamTime: "Sumuhurtham: 09:15 AM - 09:45 AM (Dhanur Lagna)",
+        venue: "Ananda Kalyana Mandapam",
+        address: "Temple Sanctum Auditorium, South Rampart, Thanjavur",
+        description: "The Holy Vedic Wedding Ceremony",
+        illustration: "/templates/pelli-pandiri/events/event-muhurtham.png",
+        accentColor: "#a3281d"
+      }
+    ];
+    config.gallery = {
+      id: "gallery",
+      enabled: true,
+      title: "MOMENTS WE TREASURE",
+      subheading: "Every picture tells a part of our story.",
+      images: [
+        "/templates/pelli-pandiri/gallery/photo-1.jpg",
+        "/templates/pelli-pandiri/gallery/photo-2.jpg",
+        "/templates/pelli-pandiri/gallery/photo-3.jpg",
+        "/templates/pelli-pandiri/gallery/photo-4.jpg",
+        "/templates/pelli-pandiri/gallery/photo-5.jpg"
+      ]
+    };
+    config.families = {
+      id: "families",
+      enabled: true,
+      title: "Our Families",
+      subheading: "Two families united in tradition, blessings, and boundless love",
+      brideFamily: [
+        { relation: "Mother", name: "Smt. Lakshmi Devi" },
+        { relation: "Father", name: "Sri Ramesh Kumar" }
+      ],
+      groomFamily: [
+        { relation: "Mother", name: "Smt. Padmaja" },
+        { relation: "Father", name: "Sri Suresh Babu" }
+      ],
+      groomLocation: "Kumbakonam, Tamil Nadu",
+      brideLocation: "Thanjavur, Tamil Nadu"
+    };
+    config.rsvp = {
+      id: "rsvp",
+      enabled: true,
+      title: "We would be delighted by your presence",
+      subtitle: "Your presence and heartfelt blessings are our greatest treasure as we begin this sacred union",
+      contacts: [
+        { type: "phone", label: "Coordinator", value: "+91 8688178323" }
+      ]
+    };
+    config.footer = {
+      id: "footer",
+      enabled: true,
+      salutation: "A beautiful beginning starts with a beautiful invitation.",
+      designer: "DESIGNED BY AHVAANAM",
+      creditText: "Digital Wedding Invitations & Card Services",
+      location: "Tirumala Printers, Metpally, Dist. Jagtial, Telangana",
+      contact: "+91 8688178323"
+    };
+  }
+
   return cloned;
 }
