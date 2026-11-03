@@ -88,11 +88,11 @@ export const GrandCoupleShowcase: React.FC<{ data: PelliPandiriData }> = ({ data
         >
           <div className="flex items-center justify-center gap-2 mb-1 select-none">
             <span className="w-8 sm:w-16 h-px bg-gradient-to-r from-transparent to-[#b88636]" />
-            <span className="text-[#b88636] text-xs sm:text-sm">❦</span>
+            <span className="text-[#b88636] text-xs sm:text-sm">✦</span>
             <span className="font-cinzel text-[10px] sm:text-xs font-bold tracking-[0.26em] text-[#8c5021] uppercase px-1">
               THE BRIDE &amp; GROOM
             </span>
-            <span className="text-[#b88636] text-xs sm:text-sm">❦</span>
+            <span className="text-[#b88636] text-xs sm:text-sm">✦</span>
             <span className="w-8 sm:w-16 h-px bg-gradient-to-l from-transparent to-[#b88636]" />
           </div>
 

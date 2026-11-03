@@ -34,6 +34,8 @@ export interface HeroSection extends BaseSection {
 
 export interface CoupleSection extends BaseSection {
   primarySide?: "groom" | "bride";
+  coupleCutout?: string;
+  heroImage?: string;
   groom: {
     name: string;
     surname?: string;
@@ -41,6 +43,7 @@ export interface CoupleSection extends BaseSection {
     bio: string;
     image: string;
     familyTitle?: string;
+    location?: string;
     family?: Array<{ relation?: string; name: string }>;
   };
   bride: {
@@ -50,6 +53,7 @@ export interface CoupleSection extends BaseSection {
     bio: string;
     image: string;
     familyTitle?: string;
+    location?: string;
     family?: Array<{ relation?: string; name: string }>;
   };
 }
@@ -109,6 +113,12 @@ export interface FamiliesSection extends BaseSection {
   brideFamilyTitle?: string;
   groomPortrait?: string;
   bridePortrait?: string;
+  groomRelationLabel?: string;
+  brideRelationLabel?: string;
+  groomLocation?: string;
+  brideLocation?: string;
+  subheading?: string;
+  subtitle?: string;
 }
 
 export interface VenueDetail {
@@ -165,9 +175,13 @@ export interface TravelAccommodationSection extends BaseSection {
 export interface FooterSection extends BaseSection {
   creditText: string;
   salutation: string;
+  quote?: string;
   designer?: string;
   location?: string;
   contact?: string;
+  services?: string;
+  address?: string;
+  phone?: string;
 }
 
 export interface ThemeSettings {

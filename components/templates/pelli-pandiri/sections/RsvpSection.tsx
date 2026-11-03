@@ -265,9 +265,7 @@ export const RsvpSection: React.FC<{ data: PelliPandiriData; clientId?: string }
 
                 <div className="lg:hidden flex items-center justify-center gap-2 my-1 w-full max-w-[220px] mx-auto select-none opacity-80">
                   <span className="flex-1 h-px bg-gradient-to-r from-transparent to-[#b88636]/70" />
-                  <span className="text-[#b88636] text-xs">❦</span>
                   <span className="text-[#b88636] text-xs">✦</span>
-                  <span className="text-[#b88636] text-xs">❦</span>
                   <span className="flex-1 h-px bg-gradient-to-l from-transparent to-[#b88636]/70" />
                 </div>
               </>
@@ -293,11 +291,11 @@ export const RsvpSection: React.FC<{ data: PelliPandiriData; clientId?: string }
                       className="flex flex-col items-center justify-center py-1 sm:py-3 px-2 sm:px-4 w-full max-w-md mx-auto"
                     >
                       <div className="flex items-center justify-center gap-2 mb-1.5 sm:mb-2 select-none">
-                        <span className="text-[#b88636] text-xs">❦</span>
+                        <span className="text-[#b88636] text-xs">✦</span>
                         <span className="font-cinzel text-[10px] sm:text-[11px] font-bold tracking-[0.22em] text-[#805527] uppercase">
                           CELEBRATE WITH US
                         </span>
-                        <span className="text-[#b88636] text-xs">❦</span>
+                        <span className="text-[#b88636] text-xs">✦</span>
                       </div>
 
                       <p className="font-cormorant text-lg sm:text-2xl md:text-3xl italic font-semibold text-[#42100b] leading-snug tracking-wide max-w-sm mx-auto">
@@ -326,7 +324,7 @@ export const RsvpSection: React.FC<{ data: PelliPandiriData; clientId?: string }
                         className="group relative inline-flex items-center justify-center gap-2 sm:gap-2.5 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-[#63140d] via-[#7e1d13] to-[#63140d] text-[#fffcf5] border border-[#d4af37]/80 font-cinzel text-[10px] sm:text-xs md:text-[13px] font-extrabold tracking-[0.14em] sm:tracking-[0.18em] uppercase shadow-[0_6px_20px_rgba(99,20,13,0.3)] cursor-pointer transition-all duration-300 overflow-hidden mt-3.5 sm:mt-5 max-w-[290px] sm:max-w-none"
                       >
                         <span className="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-[-25deg] -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000" />
-                        <Heart size={13} className="text-[#ffd700] fill-[#ffd700] shrink-0" />
+                        <Sparkles size={13} className="text-[#ffd700] shrink-0" />
                         <span className="truncate">{rsvp.submitLabel || "Confirm Your Presence"}</span>
                         <Sparkles size={13} className="text-[#ffd700] shrink-0" />
                       </motion.button>

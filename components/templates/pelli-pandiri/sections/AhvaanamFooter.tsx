@@ -77,7 +77,7 @@ export const AhvaanamFooter: React.FC<{ data: PelliPandiriData; clientId?: strin
             </div>
 
             <p className="font-cormorant italic text-xs sm:text-sm md:text-[15px] text-[#541c0f] font-bold tracking-wide [text-shadow:_0_1px_8px_rgba(255,248,225,0.95)]">
-              &ldquo;Beautiful beginnings, cherished forever.&rdquo;
+              &ldquo;{footer.quote || "Beautiful beginnings, cherished forever."}&rdquo;
             </p>
 
             <p className="font-cormorant text-[11px] sm:text-xs text-[#6e3518] font-semibold tracking-wider mt-0.5 [text-shadow:_0_1px_6px_rgba(255,248,225,0.8)]">

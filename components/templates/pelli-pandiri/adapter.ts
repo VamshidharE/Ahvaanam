@@ -191,9 +191,9 @@ export function mapInvitationConfigToPelliPandiri(rawPayload: any, clientId: str
   const secondPersonSurname = primarySide === "bride" ? groomSurname : brideSurname;
 
   // Portraits
-  const groomPortrait = config.couple?.groom?.image || config.families?.groomPortrait || "/templates/pelli-pandiri/family/groom-family.jpg";
-  const bridePortrait = config.couple?.bride?.image || config.families?.bridePortrait || "/templates/pelli-pandiri/family/bride-family.jpg";
-  const coupleCutout = config.hero?.heroImage || config.couple?.heroImage || "/templates/pelli-pandiri/Couple.png";
+  const groomPortrait = config.families?.groomPortrait || config.couple?.groom?.image || "/templates/pelli-pandiri/family/groom-family.jpg";
+  const bridePortrait = config.families?.bridePortrait || config.couple?.bride?.image || "/templates/pelli-pandiri/family/bride-family.jpg";
+  const coupleCutout = config.couple?.coupleCutout || config.couple?.heroImage || config.hero?.heroImage || "/templates/pelli-pandiri/Couple.png";
 
   // Invocations & Titles
   const rawMantra = config.hero?.welcomeMessage || config.hero?.mantra || config.mantra || "";
@@ -353,19 +353,19 @@ export function mapInvitationConfigToPelliPandiri(rawPayload: any, clientId: str
       ];
 
   const groomFamilySide: PelliPandiriFamilySide = {
-    title: config.couple?.groom?.familyTitle || config.families?.groomFamilyTitle || "GROOM'S FAMILY",
+    title: config.families?.groomFamilyTitle || config.couple?.groom?.familyTitle || "GROOM'S FAMILY",
     portrait: groomPortrait,
     relationLabel: config.families?.groomRelationLabel || "Son of",
     members: groomMembers,
-    location: config.families?.groomLocation || "Kumbakonam, Tamil Nadu",
+    location: config.families?.groomLocation || config.couple?.groom?.location || "Kumbakonam, Tamil Nadu",
   };
 
   const brideFamilySide: PelliPandiriFamilySide = {
-    title: config.couple?.bride?.familyTitle || config.families?.brideFamilyTitle || "BRIDE'S FAMILY",
+    title: config.families?.brideFamilyTitle || config.couple?.bride?.familyTitle || "BRIDE'S FAMILY",
     portrait: bridePortrait,
     relationLabel: config.families?.brideRelationLabel || "Daughter of",
     members: brideMembers,
-    location: config.families?.brideLocation || "Thanjavur, Tamil Nadu",
+    location: config.families?.brideLocation || config.couple?.bride?.location || "Thanjavur, Tamil Nadu",
   };
 
   // Story & Video
@@ -502,7 +502,7 @@ export function mapInvitationConfigToPelliPandiri(rawPayload: any, clientId: str
     },
     footer: {
       enabled: config.footer?.enabled !== false,
-      quote: config.footer?.salutation || config.footer?.quote || "“A beautiful beginning starts with a beautiful invitation.”",
+      quote: config.footer?.quote || config.footer?.salutation || "Beautiful beginnings, cherished forever.",
       designedBy: config.footer?.designer || "AHVAANAM",
       services: config.footer?.creditText || config.footer?.services || "Digital Wedding Invitations & Card Services",
       address: config.footer?.location || config.footer?.address || "Tirumala Printers, Metpally, Dist. Jagtial, Telangana",

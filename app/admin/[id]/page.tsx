@@ -1222,6 +1222,269 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
         ? brideData.family
         : [];
 
+    if (isPelliPandiri) {
+      const coupleCutoutImage = invitationData.couple?.coupleCutout || invitationData.hero?.heroImage || "/templates/pelli-pandiri/Couple.png";
+
+      return (
+        <div className="space-y-6 text-left animate-fadeIn">
+          {/* --- AUSPICIOUS MANTRA & BLESSING CONFIG --- */}
+          <div className="card-minimal p-4 md:p-5 space-y-3">
+            <div className="flex items-center justify-between border-b border-zinc-100 pb-2">
+              <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/60">Auspicious Mantra / Header Text</h3>
+              <span className="text-[10px] text-[#C49B27] font-semibold">Top Blessing</span>
+            </div>
+            <div className="flex flex-col gap-1 w-full">
+              <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Opening Mantra / Devotional Text</label>
+              <input
+                type="text"
+                value={invitationData.hero?.welcomeMessage || invitationData.hero?.mantra || invitationData.mantra || ""}
+                onChange={(e) => updateInvitationData((prev: any) => {
+                  const next = {
+                    ...prev,
+                    hero: {
+                      ...prev.hero,
+                      welcomeMessage: e.target.value,
+                      mantra: e.target.value
+                    },
+                    mantra: e.target.value
+                  };
+                  if (next.config) {
+                    next.config.hero = { ...(next.config.hero || {}), welcomeMessage: e.target.value, mantra: e.target.value };
+                    next.config.mantra = e.target.value;
+                  }
+                  return next;
+                })}
+                placeholder="e.g. ॐ श्री गणेशाय नमः ||"
+                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-semibold"
+              />
+              <p className="text-[9px] text-zinc-500 mt-0.5">
+                Displays on the opening header and blessings (e.g. ॐ श्री गणेशाय नमः ||, Subhamasthu, etc.).
+              </p>
+            </div>
+          </div>
+
+          {/* --- INVITATION SIDE & PRIMARY ORDER SWITCHER --- */}
+          <div className="card-minimal p-4 md:p-5 space-y-3 bg-amber-500/5 border-amber-500/20">
+            <div className="flex items-center justify-between">
+              <label className="text-[10px] uppercase font-bold text-[#241E1C]/80 tracking-[1.5px]">
+                Invitation Side &amp; Primary Order
+              </label>
+              <span className="text-[9px] text-[#C49B27] font-semibold">Whose Name &amp; Family Appears First</span>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  updateInvitationData((prev: any) => ({
+                    ...prev,
+                    couple: { ...prev.couple, primarySide: "groom" },
+                    config: prev.config ? { ...prev.config, couple: { ...prev.config?.couple, primarySide: "groom" } } : undefined
+                  }));
+                }}
+                className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                  !isBride
+                    ? "bg-[#C49B27] text-white shadow-sm font-extrabold"
+                    : "bg-white text-[#241E1C]/60 hover:bg-amber-50/50 border border-zinc-200"
+                }`}
+              >
+                🤵 Groom First (Groom's Side)
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  updateInvitationData((prev: any) => ({
+                    ...prev,
+                    couple: { ...prev.couple, primarySide: "bride" },
+                    config: prev.config ? { ...prev.config, couple: { ...prev.config?.couple, primarySide: "bride" } } : undefined
+                  }));
+                }}
+                className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                  isBride
+                    ? "bg-[#C49B27] text-white shadow-sm font-extrabold"
+                    : "bg-white text-[#241E1C]/60 hover:bg-amber-50/50 border border-zinc-200"
+                }`}
+              >
+                👰 Bride First (Bride's Side)
+              </button>
+            </div>
+            <p className="text-[9px] text-zinc-500">
+              {!isBride 
+                ? "Groom's name and family will appear first across the invitation."
+                : "Bride's name and family will appear first across the invitation."}
+            </p>
+          </div>
+
+          {/* --- COUPLE CUTOUT PHOTO UPLOAD --- */}
+          <div className="card-minimal p-4 md:p-5 space-y-3">
+            <div className="flex items-center justify-between border-b border-zinc-100 pb-2">
+              <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/60">Couple Cutout Photo</h3>
+              <span className="text-[10px] text-[#C49B27] font-semibold">Hero &amp; Couple Showcase</span>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center gap-3 w-full">
+              {coupleCutoutImage && (
+                <div className="w-16 h-20 rounded-xl overflow-hidden border border-amber-500/30 shrink-0 bg-zinc-900/10 shadow-xs flex items-center justify-center">
+                  <img src={coupleCutoutImage} alt="Couple Cutout" className="w-full h-full object-contain" />
+                </div>
+              )}
+              <div className="flex-1 flex flex-col gap-1.5 w-full">
+                <input
+                  type="text"
+                  value={coupleCutoutImage}
+                  onChange={(e) => updateInvitationData((prev: any) => ({
+                    ...prev,
+                    couple: { ...prev.couple, coupleCutout: e.target.value },
+                    hero: { ...prev.hero, heroImage: e.target.value },
+                    config: prev.config ? {
+                      ...prev.config,
+                      couple: { ...(prev.config.couple || {}), coupleCutout: e.target.value },
+                      hero: { ...(prev.config.hero || {}), heroImage: e.target.value }
+                    } : undefined
+                  }))}
+                  placeholder="/templates/pelli-pandiri/Couple.png or upload below..."
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-mono text-[11px]"
+                />
+                <FileUploader
+                  onUploadSuccess={(url) => updateInvitationData((prev: any) => ({
+                    ...prev,
+                    couple: { ...prev.couple, coupleCutout: url },
+                    hero: { ...prev.hero, heroImage: url },
+                    config: prev.config ? {
+                      ...prev.config,
+                      couple: { ...(prev.config.couple || {}), coupleCutout: url },
+                      hero: { ...(prev.config.hero || {}), heroImage: url }
+                    } : undefined
+                  }))}
+                  className="w-full"
+                />
+              </div>
+            </div>
+            <p className="text-[9px] text-zinc-500">
+              Links directly to the Bride &amp; Groom transparent cutout shown in the Hero section and Couple Showcase.
+            </p>
+          </div>
+
+          {/* --- GROOM DETAILS --- */}
+          <div className="card-minimal p-4 md:p-5 space-y-4">
+            <div className="flex items-center justify-between border-b border-zinc-100 pb-2">
+              <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/60">Groom Information</h3>
+              <span className="text-[10px] text-[#C49B27] font-semibold">The Groom</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+              <div className="flex flex-col gap-1 w-full">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Groom's Name</label>
+                <input
+                  type="text"
+                  value={groomData.name || ""}
+                  onChange={(e) => updateInvitationData((prev: any) => {
+                    const next = {
+                      ...prev,
+                      couple: {
+                        ...prev.couple,
+                        groom: { ...prev.couple?.groom, name: e.target.value }
+                      }
+                    };
+                    if (next.config) {
+                      next.config.couple = { ...(next.config.couple || {}), groom: { ...(next.config.couple?.groom || {}), name: e.target.value } };
+                    }
+                    return next;
+                  })}
+                  placeholder="e.g. Aarav"
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-semibold"
+                />
+              </div>
+              <div className="flex flex-col gap-1 w-full">
+                <div className="flex items-center justify-between">
+                  <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Groom's Family Name / Surname</label>
+                  <span className="text-[9px] text-[#C49B27] font-semibold">Surname</span>
+                </div>
+                <input
+                  type="text"
+                  value={groomData.surname || invitationData.hero?.surname || ""}
+                  onChange={(e) => updateInvitationData((prev: any) => {
+                    const next = {
+                      ...prev,
+                      couple: {
+                        ...prev.couple,
+                        groom: { ...prev.couple?.groom, surname: e.target.value }
+                      },
+                      hero: {
+                        ...prev.hero,
+                        surname: e.target.value
+                      }
+                    };
+                    if (next.config) {
+                      next.config.couple = { ...(next.config.couple || {}), groom: { ...(next.config.couple?.groom || {}), surname: e.target.value } };
+                      next.config.hero = { ...(next.config.hero || {}), surname: e.target.value };
+                    }
+                    return next;
+                  })}
+                  placeholder="e.g. Ryagalla / Sharma"
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-semibold"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* --- BRIDE DETAILS --- */}
+          <div className="card-minimal p-4 md:p-5 space-y-4">
+            <div className="flex items-center justify-between border-b border-zinc-100 pb-2">
+              <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/60">Bride Information</h3>
+              <span className="text-[10px] text-[#C49B27] font-semibold">The Bride</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+              <div className="flex flex-col gap-1 w-full">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Bride's Name</label>
+                <input
+                  type="text"
+                  value={brideData.name || ""}
+                  onChange={(e) => updateInvitationData((prev: any) => {
+                    const next = {
+                      ...prev,
+                      couple: {
+                        ...prev.couple,
+                        bride: { ...prev.couple?.bride, name: e.target.value }
+                      }
+                    };
+                    if (next.config) {
+                      next.config.couple = { ...(next.config.couple || {}), bride: { ...(next.config.couple?.bride || {}), name: e.target.value } };
+                    }
+                    return next;
+                  })}
+                  placeholder="e.g. Ananya"
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-semibold"
+                />
+              </div>
+              <div className="flex flex-col gap-1 w-full">
+                <div className="flex items-center justify-between">
+                  <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Bride's Family Name / Surname</label>
+                  <span className="text-[9px] text-[#C49B27] font-semibold">Surname</span>
+                </div>
+                <input
+                  type="text"
+                  value={brideData.surname || ""}
+                  onChange={(e) => updateInvitationData((prev: any) => {
+                    const next = {
+                      ...prev,
+                      couple: {
+                        ...prev.couple,
+                        bride: { ...prev.couple?.bride, surname: e.target.value }
+                      }
+                    };
+                    if (next.config) {
+                      next.config.couple = { ...(next.config.couple || {}), bride: { ...(next.config.couple?.bride || {}), surname: e.target.value } };
+                    }
+                    return next;
+                  })}
+                  placeholder="e.g. Patel / Kothari"
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-semibold"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="space-y-6 text-left animate-fadeIn">
         {/* --- AUSPICIOUS MANTRA & BLESSING CONFIG --- */}
@@ -2032,84 +2295,68 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
             />
           </div>
 
-          {/* Google Maps Embed Link & Show Map Toggle */}
-          <div className="flex flex-col gap-1.5 w-full bg-[#FAF9F6] p-3 border border-zinc-200/60 rounded-xl mt-1">
+          {/* Google Maps & Navigation */}
+          <div className="flex flex-col gap-2 w-full bg-[#FAF9F6] p-3 border border-zinc-200/60 rounded-xl mt-1">
             <div className="flex items-center justify-between">
-              <label className="text-[9px] uppercase font-bold text-[#241E1C]/60 tracking-[1px]">Google Maps Embed Link</label>
-              <div className="flex items-center gap-1.5">
-                <label htmlFor={`map-toggle-${evt.id || index}`} className="text-[8px] uppercase font-bold text-[#241E1C]/60 cursor-pointer">
-                  Show Map
-                </label>
-                <input
-                  type="checkbox"
-                  id={`map-toggle-${evt.id || index}`}
-                  checked={evt.showMap !== false}
-                  onChange={(e) => {
-                    updateInvitationData((prev) => {
-                      const list = [...prev.events];
-                      list[index] = { ...list[index], showMap: e.target.checked };
-                      return { ...prev, events: list };
-                    });
-                  }}
-                  className="w-3.5 h-3.5 rounded text-[#C49B27] accent-[#C49B27] cursor-pointer"
-                />
+              <label className="text-[9px] uppercase font-bold text-[#241E1C]/60 tracking-[1px]">Google Maps Embed Link / Place URL</label>
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1.5">
+                  <label htmlFor={`map-toggle-${evt.id || index}`} className="text-[8px] uppercase font-bold text-[#241E1C]/60 cursor-pointer">
+                    Show Map
+                  </label>
+                  <input
+                    type="checkbox"
+                    id={`map-toggle-${evt.id || index}`}
+                    checked={evt.showMap !== false}
+                    onChange={(e) => {
+                      updateInvitationData((prev) => {
+                        const list = [...prev.events];
+                        list[index] = { ...list[index], showMap: e.target.checked };
+                        return { ...prev, events: list };
+                      });
+                    }}
+                    className="w-3.5 h-3.5 rounded text-[#C49B27] accent-[#C49B27] cursor-pointer"
+                  />
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <label htmlFor={`dir-toggle-${evt.id || index}`} className="text-[8px] uppercase font-bold text-[#241E1C]/60 cursor-pointer">
+                    Show Directions Button
+                  </label>
+                  <input
+                    type="checkbox"
+                    id={`dir-toggle-${evt.id || index}`}
+                    checked={evt.showDirections !== false}
+                    onChange={(e) => {
+                      updateInvitationData((prev) => {
+                        const list = [...prev.events];
+                        list[index] = { ...list[index], showDirections: e.target.checked };
+                        return { ...prev, events: list };
+                      });
+                    }}
+                    className="w-3.5 h-3.5 rounded text-[#C49B27] accent-[#C49B27] cursor-pointer"
+                  />
+                </div>
               </div>
             </div>
             <input
               type="text"
               value={evt.mapsEmbedUrl || ""}
-              placeholder="Paste Google Maps embed URL or iframe code..."
+              placeholder="Paste Google Maps embed URL, place link, or share link..."
               onChange={(e) => {
                 let val = e.target.value.trim();
                 const srcMatch = val.match(/src=["']([^"']+)["']/);
                 if (srcMatch) val = srcMatch[1];
                 updateInvitationData((prev) => {
                   const list = [...prev.events];
-                  list[index] = { ...list[index], mapsEmbedUrl: val };
+                  list[index] = { ...list[index], mapsEmbedUrl: val, mapsLink: val, directionsUrl: val };
                   return { ...prev, events: list };
                 });
               }}
               className="bg-white border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] font-mono text-[11px] w-full"
             />
-          </div>
-
-          {/* Directions Link & Show Directions Toggle */}
-          <div className="flex flex-col gap-1.5 w-full bg-[#FAF9F6] p-3 border border-zinc-200/60 rounded-xl">
-            <div className="flex items-center justify-between">
-              <label className="text-[9px] uppercase font-bold text-[#241E1C]/60 tracking-[1px]">Directions Link (Optional)</label>
-              <div className="flex items-center gap-1.5">
-                <label htmlFor={`dir-toggle-${evt.id || index}`} className="text-[8px] uppercase font-bold text-[#241E1C]/60 cursor-pointer">
-                  Show Directions Button
-                </label>
-                <input
-                  type="checkbox"
-                  id={`dir-toggle-${evt.id || index}`}
-                  checked={evt.showDirections !== false}
-                  onChange={(e) => {
-                    updateInvitationData((prev) => {
-                      const list = [...prev.events];
-                      list[index] = { ...list[index], showDirections: e.target.checked };
-                      return { ...prev, events: list };
-                    });
-                  }}
-                  className="w-3.5 h-3.5 rounded text-[#C49B27] accent-[#C49B27] cursor-pointer"
-                />
-              </div>
-            </div>
-            <input
-              type="text"
-              value={evt.mapsLink || evt.directionsUrl || ""}
-              placeholder="Custom directions link (defaults to searching venue)"
-              onChange={(e) => {
-                const val = e.target.value;
-                updateInvitationData((prev) => {
-                  const list = [...prev.events];
-                  list[index] = { ...list[index], mapsLink: val, directionsUrl: val };
-                  return { ...prev, events: list };
-                });
-              }}
-              className="bg-white border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] text-[11px] w-full"
-            />
+            <p className="text-[9px] text-zinc-400">
+              Paste your Google Maps embed code, place URL, or share link. The map and Get Directions button will automatically sync.
+            </p>
           </div>
         </div>
       ))}
@@ -2602,6 +2849,374 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
     const families = invitationData.families || { title: "", groomFamily: [], brideFamily: [] };
     const groomFamily = families.groomFamily || [];
     const brideFamily = families.brideFamily || [];
+
+    if (isPelliPandiri) {
+      const groomPortrait = families.groomPortrait || invitationData.couple?.groom?.image || "/templates/pelli-pandiri/family/groom-family.jpg";
+      const bridePortrait = families.bridePortrait || invitationData.couple?.bride?.image || "/templates/pelli-pandiri/family/bride-family.jpg";
+
+      return (
+        <div className="space-y-6 text-left animate-fadeIn">
+          {/* Section Heading & Subheading */}
+          <div className="card-minimal p-4 md:p-5 space-y-4">
+            <div className="flex justify-between items-center border-b border-zinc-100 pb-2 w-full">
+              <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/50">Our Families</h3>
+              <div className="flex items-center gap-2">
+                <label htmlFor="families-enabled" className="text-[9px] uppercase font-bold text-[#241E1C]/60 cursor-pointer">Enabled</label>
+                <input
+                  type="checkbox"
+                  id="families-enabled"
+                  checked={families.enabled !== false}
+                  onChange={(e) => updateInvitationData((prev: any) => ({
+                    ...prev,
+                    families: { ...prev.families, enabled: e.target.checked }
+                  }))}
+                  className="w-3.5 h-3.5 rounded text-[#C49B27] accent-[#C49B27]"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+              <div className="flex flex-col gap-1 w-full">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Section Title</label>
+                <input
+                  type="text"
+                  placeholder="Our Families"
+                  value={families.title || ""}
+                  onChange={(e) => updateInvitationData((prev: any) => ({
+                    ...prev,
+                    families: { ...prev.families, title: e.target.value }
+                  }))}
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
+                />
+              </div>
+              <div className="flex flex-col gap-1 w-full">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Section Subtitle</label>
+                <input
+                  type="text"
+                  placeholder="Two families united in tradition, blessings, and boundless love"
+                  value={families.subheading || families.subtitle || ""}
+                  onChange={(e) => updateInvitationData((prev: any) => ({
+                    ...prev,
+                    families: { ...prev.families, subheading: e.target.value, subtitle: e.target.value }
+                  }))}
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Groom Family Card */}
+          <div className="card-minimal p-4 md:p-5 space-y-4">
+            <div className="flex justify-between items-center border-b border-zinc-100 pb-2 w-full">
+              <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/50">Groom&apos;s Family</h3>
+              <span className="text-[10px] text-[#C49B27] font-semibold">Groom Side</span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+              <div className="flex flex-col gap-1 w-full">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Family Card Heading</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Groom's Family"
+                  value={families.groomFamilyTitle || invitationData.couple?.groom?.familyTitle || ""}
+                  onChange={(e) => updateInvitationData((prev: any) => ({
+                    ...prev,
+                    families: { ...prev.families, groomFamilyTitle: e.target.value },
+                    couple: { ...prev.couple, groom: { ...(prev.couple?.groom || {}), familyTitle: e.target.value } }
+                  }))}
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
+                />
+              </div>
+              <div className="flex flex-col gap-1 w-full">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Kinship / Title Line</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Son of"
+                  value={families.groomRelationLabel || ""}
+                  onChange={(e) => updateInvitationData((prev: any) => ({
+                    ...prev,
+                    families: { ...prev.families, groomRelationLabel: e.target.value }
+                  }))}
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
+                />
+              </div>
+            </div>
+
+            {/* Groom Family Portrait Image */}
+            <div className="flex flex-col gap-1.5 border-t border-zinc-100 pt-3 w-full">
+              <div className="flex items-center justify-between">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Groom Family Portrait Image</label>
+                <span className="text-[9px] text-[#C49B27] font-semibold">Upload Photo</span>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center gap-3 w-full">
+                {groomPortrait && (
+                  <div className="w-12 h-12 rounded-full overflow-hidden border border-amber-500/30 shrink-0 bg-zinc-100 shadow-xs">
+                    <img src={groomPortrait} alt="Groom Family Portrait" className="w-full h-full object-cover" />
+                  </div>
+                )}
+                <input
+                  type="text"
+                  value={families.groomPortrait || invitationData.couple?.groom?.image || ""}
+                  onChange={(e) => updateInvitationData((prev: any) => ({
+                    ...prev,
+                    families: { ...prev.families, groomPortrait: e.target.value },
+                    couple: { ...prev.couple, groom: { ...(prev.couple?.groom || {}), image: e.target.value } }
+                  }))}
+                  placeholder="/templates/pelli-pandiri/family/groom-family.jpg or upload below..."
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] flex-1 font-mono text-[11px]"
+                />
+                <FileUploader
+                  onUploadSuccess={(url) => updateInvitationData((prev: any) => ({
+                    ...prev,
+                    families: { ...prev.families, groomPortrait: url },
+                    couple: { ...prev.couple, groom: { ...(prev.couple?.groom || {}), image: url } }
+                  }))}
+                  className="w-full sm:w-auto"
+                />
+              </div>
+            </div>
+
+            {/* Family Members list */}
+            <div className="flex flex-col gap-2 w-full border-t border-zinc-100 pt-3">
+              <div className="flex items-center justify-between">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Family Members / Greetings</label>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const list = [...groomFamily];
+                    list.push({ relation: "Parents", name: "" });
+                    updateInvitationData((prev: any) => ({
+                      ...prev,
+                      families: { ...prev.families, groomFamily: list }
+                    }));
+                  }}
+                  className="text-[9px] font-bold text-[#C49B27] uppercase tracking-[1px] hover:underline flex items-center gap-1 cursor-pointer"
+                >
+                  <Plus size={10} /> Add Member
+                </button>
+              </div>
+
+              {groomFamily.map((member: any, idx: number) => (
+                <div key={idx} className="flex items-center gap-2 bg-[#FAF9F6] p-2 rounded-xl border border-zinc-200/70">
+                  <input
+                    type="text"
+                    placeholder="Relation (e.g. Parents, Father)"
+                    value={member.relation || ""}
+                    onChange={(e) => {
+                      const list = [...groomFamily];
+                      list[idx] = { ...list[idx], relation: e.target.value };
+                      updateInvitationData((prev: any) => ({
+                        ...prev,
+                        families: { ...prev.families, groomFamily: list }
+                      }));
+                    }}
+                    className="bg-white border border-zinc-200 rounded-lg px-2.5 py-1 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-1/3"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Names (e.g. Sri Suresh Babu & Smt. Padmaja)"
+                    value={member.name || ""}
+                    onChange={(e) => {
+                      const list = [...groomFamily];
+                      list[idx] = { ...list[idx], name: e.target.value };
+                      updateInvitationData((prev: any) => ({
+                        ...prev,
+                        families: { ...prev.families, groomFamily: list }
+                      }));
+                    }}
+                    className="bg-white border border-zinc-200 rounded-lg px-2.5 py-1 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] flex-1 font-semibold"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const list = groomFamily.filter((_: any, i: number) => i !== idx);
+                      updateInvitationData((prev: any) => ({
+                        ...prev,
+                        families: { ...prev.families, groomFamily: list }
+                      }));
+                    }}
+                    className="p-1 text-red-500 hover:text-red-700 transition-colors cursor-pointer"
+                  >
+                    <Trash2 size={13} />
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {/* Groom Family Location / Address */}
+            <div className="flex flex-col gap-1 w-full border-t border-zinc-100 pt-3">
+              <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Groom Family Location / Address</label>
+              <input
+                type="text"
+                placeholder="e.g. Kumbakonam, Tamil Nadu"
+                value={families.groomLocation || invitationData.couple?.groom?.location || ""}
+                onChange={(e) => updateInvitationData((prev: any) => ({
+                  ...prev,
+                  families: { ...prev.families, groomLocation: e.target.value },
+                  couple: { ...prev.couple, groom: { ...(prev.couple?.groom || {}), location: e.target.value } }
+                }))}
+                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
+              />
+            </div>
+          </div>
+
+          {/* Bride Family Card */}
+          <div className="card-minimal p-4 md:p-5 space-y-4">
+            <div className="flex justify-between items-center border-b border-zinc-100 pb-2 w-full">
+              <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/50">Bride&apos;s Family</h3>
+              <span className="text-[10px] text-[#C49B27] font-semibold">Bride Side</span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+              <div className="flex flex-col gap-1 w-full">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Family Card Heading</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Bride's Family"
+                  value={families.brideFamilyTitle || invitationData.couple?.bride?.familyTitle || ""}
+                  onChange={(e) => updateInvitationData((prev: any) => ({
+                    ...prev,
+                    families: { ...prev.families, brideFamilyTitle: e.target.value },
+                    couple: { ...prev.couple, bride: { ...(prev.couple?.bride || {}), familyTitle: e.target.value } }
+                  }))}
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
+                />
+              </div>
+              <div className="flex flex-col gap-1 w-full">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Kinship / Title Line</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Daughter of"
+                  value={families.brideRelationLabel || ""}
+                  onChange={(e) => updateInvitationData((prev: any) => ({
+                    ...prev,
+                    families: { ...prev.families, brideRelationLabel: e.target.value }
+                  }))}
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
+                />
+              </div>
+            </div>
+
+            {/* Bride Family Portrait Image */}
+            <div className="flex flex-col gap-1.5 border-t border-zinc-100 pt-3 w-full">
+              <div className="flex items-center justify-between">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Bride Family Portrait Image</label>
+                <span className="text-[9px] text-[#C49B27] font-semibold">Upload Photo</span>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center gap-3 w-full">
+                {bridePortrait && (
+                  <div className="w-12 h-12 rounded-full overflow-hidden border border-amber-500/30 shrink-0 bg-zinc-100 shadow-xs">
+                    <img src={bridePortrait} alt="Bride Family Portrait" className="w-full h-full object-cover" />
+                  </div>
+                )}
+                <input
+                  type="text"
+                  value={families.bridePortrait || invitationData.couple?.bride?.image || ""}
+                  onChange={(e) => updateInvitationData((prev: any) => ({
+                    ...prev,
+                    families: { ...prev.families, bridePortrait: e.target.value },
+                    couple: { ...prev.couple, bride: { ...(prev.couple?.bride || {}), image: e.target.value } }
+                  }))}
+                  placeholder="/templates/pelli-pandiri/family/bride-family.jpg or upload below..."
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] flex-1 font-mono text-[11px]"
+                />
+                <FileUploader
+                  onUploadSuccess={(url) => updateInvitationData((prev: any) => ({
+                    ...prev,
+                    families: { ...prev.families, bridePortrait: url },
+                    couple: { ...prev.couple, bride: { ...(prev.couple?.bride || {}), image: url } }
+                  }))}
+                  className="w-full sm:w-auto"
+                />
+              </div>
+            </div>
+
+            {/* Family Members list */}
+            <div className="flex flex-col gap-2 w-full border-t border-zinc-100 pt-3">
+              <div className="flex items-center justify-between">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Family Members / Greetings</label>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const list = [...brideFamily];
+                    list.push({ relation: "Parents", name: "" });
+                    updateInvitationData((prev: any) => ({
+                      ...prev,
+                      families: { ...prev.families, brideFamily: list }
+                    }));
+                  }}
+                  className="text-[9px] font-bold text-[#C49B27] uppercase tracking-[1px] hover:underline flex items-center gap-1 cursor-pointer"
+                >
+                  <Plus size={10} /> Add Member
+                </button>
+              </div>
+
+              {brideFamily.map((member: any, idx: number) => (
+                <div key={idx} className="flex items-center gap-2 bg-[#FAF9F6] p-2 rounded-xl border border-zinc-200/70">
+                  <input
+                    type="text"
+                    placeholder="Relation (e.g. Parents, Mother)"
+                    value={member.relation || ""}
+                    onChange={(e) => {
+                      const list = [...brideFamily];
+                      list[idx] = { ...list[idx], relation: e.target.value };
+                      updateInvitationData((prev: any) => ({
+                        ...prev,
+                        families: { ...prev.families, brideFamily: list }
+                      }));
+                    }}
+                    className="bg-white border border-zinc-200 rounded-lg px-2.5 py-1 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-1/3"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Names (e.g. Sri Ramesh Kumar & Smt. Lakshmi Devi)"
+                    value={member.name || ""}
+                    onChange={(e) => {
+                      const list = [...brideFamily];
+                      list[idx] = { ...list[idx], name: e.target.value };
+                      updateInvitationData((prev: any) => ({
+                        ...prev,
+                        families: { ...prev.families, brideFamily: list }
+                      }));
+                    }}
+                    className="bg-white border border-zinc-200 rounded-lg px-2.5 py-1 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] flex-1 font-semibold"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const list = brideFamily.filter((_: any, i: number) => i !== idx);
+                      updateInvitationData((prev: any) => ({
+                        ...prev,
+                        families: { ...prev.families, brideFamily: list }
+                      }));
+                    }}
+                    className="p-1 text-red-500 hover:text-red-700 transition-colors cursor-pointer"
+                  >
+                    <Trash2 size={13} />
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {/* Bride Family Location / Address */}
+            <div className="flex flex-col gap-1 w-full border-t border-zinc-100 pt-3">
+              <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Bride Family Location / Address</label>
+              <input
+                type="text"
+                placeholder="e.g. Thanjavur, Tamil Nadu"
+                value={families.brideLocation || invitationData.couple?.bride?.location || ""}
+                onChange={(e) => updateInvitationData((prev: any) => ({
+                  ...prev,
+                  families: { ...prev.families, brideLocation: e.target.value },
+                  couple: { ...prev.couple, bride: { ...(prev.couple?.bride || {}), location: e.target.value } }
+                }))}
+                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
+              />
+            </div>
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div className="space-y-6 text-left animate-fadeIn">
@@ -3163,100 +3778,102 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
           </div>
         </div>
 
-        {/* RSVP Contacts List */}
-        <div className="card-minimal p-4 md:p-5 space-y-4">
-          <div className="flex justify-between items-center border-b border-zinc-100 pb-2 w-full">
-            <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/50">RSVP Contacts</h3>
-            <button
-              type="button"
-              onClick={() => {
-                const newContact: RSVPContact = { type: "phone", label: "Coordinator", value: "+91 9866767100" };
-                updateInvitationData((prev: any) => ({
-                  ...prev,
-                  rsvp: {
-                    ...prev.rsvp,
-                    contacts: [...(prev.rsvp?.contacts || []), newContact]
-                  }
-                }));
-              }}
-              className="flex items-center gap-1 px-3 py-1.5 border border-zinc-200 hover:border-[#C49B27]/40 rounded-xl text-[8px] font-bold uppercase tracking-[1px] bg-white transition-colors shadow-xs cursor-pointer"
-            >
-              <Plus size={10} /> Add Contact
-            </button>
-          </div>
-
-          {contacts.map((contact: any, index: number) => (
-            <div key={index} className="bg-[#FAF9F6] border border-zinc-200/60 p-3.5 rounded-xl relative space-y-2 group w-full">
+        {/* RSVP Contacts List - Only for other templates */}
+        {!isPelliPandiri && (
+          <div className="card-minimal p-4 md:p-5 space-y-4">
+            <div className="flex justify-between items-center border-b border-zinc-100 pb-2 w-full">
+              <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/50">RSVP Contacts</h3>
               <button
                 type="button"
                 onClick={() => {
-                  updateInvitationData((prev: any) => {
-                    const list = [...(prev.rsvp?.contacts || [])];
-                    list.splice(index, 1);
-                    return { ...prev, rsvp: { ...prev.rsvp, contacts: list } };
-                  });
+                  const newContact: RSVPContact = { type: "phone", label: "Coordinator", value: "+91 9866767100" };
+                  updateInvitationData((prev: any) => ({
+                    ...prev,
+                    rsvp: {
+                      ...prev.rsvp,
+                      contacts: [...(prev.rsvp?.contacts || []), newContact]
+                    }
+                  }));
                 }}
-                className="absolute top-3 right-3 p-1.5 bg-red-500/5 text-red-600 rounded-lg hover:bg-red-500 hover:text-white transition-colors cursor-pointer"
-                title="Remove Contact"
+                className="flex items-center gap-1 px-3 py-1.5 border border-zinc-200 hover:border-[#C49B27]/40 rounded-xl text-[8px] font-bold uppercase tracking-[1px] bg-white transition-colors shadow-xs cursor-pointer"
               >
-                <Trash2 size={10} />
+                <Plus size={10} /> Add Contact
               </button>
+            </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pr-6 w-full">
-                <div className="flex flex-col gap-1 w-full">
-                  <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Contact Type</label>
-                  <select
-                    value={contact.type}
-                    onChange={(e) => {
-                      updateInvitationData((prev: any) => {
-                        const list = [...(prev.rsvp?.contacts || [])];
-                        list[index] = { ...list[index], type: e.target.value as any };
-                        return { ...prev, rsvp: { ...prev.rsvp, contacts: list } };
-                      });
-                    }}
-                    className="bg-white border border-zinc-200 rounded-xl px-2.5 py-1.5 text-xs text-[#241E1C] outline-none h-[34px] w-full"
-                  >
-                    <option value="phone">Phone Call</option>
-                    <option value="whatsapp">WhatsApp Message</option>
-                    <option value="email">Email Address</option>
-                    <option value="form">RSVP Form</option>
-                  </select>
-                </div>
-                <div className="flex flex-col gap-1 w-full">
-                  <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Label / Name</label>
-                  <input
-                    type="text"
-                    value={contact.label || ""}
-                    onChange={(e) => {
-                      updateInvitationData((prev: any) => {
-                        const list = [...(prev.rsvp?.contacts || [])];
-                        list[index] = { ...list[index], label: e.target.value };
-                        return { ...prev, rsvp: { ...prev.rsvp, contacts: list } };
-                      });
-                    }}
-                    className="bg-white border border-zinc-200 rounded-xl px-3 py-1.5 text-xs text-[#241E1C] outline-none w-full"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-1 w-full">
-                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Phone / Number / Link</label>
-                <input
-                  type="text"
-                  value={contact.value || ""}
-                  onChange={(e) => {
+            {contacts.map((contact: any, index: number) => (
+              <div key={index} className="bg-[#FAF9F6] border border-zinc-200/60 p-3.5 rounded-xl relative space-y-2 group w-full">
+                <button
+                  type="button"
+                  onClick={() => {
                     updateInvitationData((prev: any) => {
                       const list = [...(prev.rsvp?.contacts || [])];
-                      list[index] = { ...list[index], value: e.target.value };
+                      list.splice(index, 1);
                       return { ...prev, rsvp: { ...prev.rsvp, contacts: list } };
                     });
                   }}
-                  className="bg-white border border-zinc-200 rounded-xl px-3 py-1.5 text-xs text-[#241E1C] outline-none font-mono w-full"
-                />
+                  className="absolute top-3 right-3 p-1.5 bg-red-500/5 text-red-600 rounded-lg hover:bg-red-500 hover:text-white transition-colors cursor-pointer"
+                  title="Remove Contact"
+                >
+                  <Trash2 size={10} />
+                </button>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pr-6 w-full">
+                  <div className="flex flex-col gap-1 w-full">
+                    <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Contact Type</label>
+                    <select
+                      value={contact.type}
+                      onChange={(e) => {
+                        updateInvitationData((prev: any) => {
+                          const list = [...(prev.rsvp?.contacts || [])];
+                          list[index] = { ...list[index], type: e.target.value as any };
+                          return { ...prev, rsvp: { ...prev.rsvp, contacts: list } };
+                        });
+                      }}
+                      className="bg-white border border-zinc-200 rounded-xl px-2.5 py-1.5 text-xs text-[#241E1C] outline-none h-[34px] w-full"
+                    >
+                      <option value="phone">Phone Call</option>
+                      <option value="whatsapp">WhatsApp Message</option>
+                      <option value="email">Email Address</option>
+                      <option value="form">RSVP Form</option>
+                    </select>
+                  </div>
+                  <div className="flex flex-col gap-1 w-full">
+                    <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Label / Name</label>
+                    <input
+                      type="text"
+                      value={contact.label || ""}
+                      onChange={(e) => {
+                        updateInvitationData((prev: any) => {
+                          const list = [...(prev.rsvp?.contacts || [])];
+                          list[index] = { ...list[index], label: e.target.value };
+                          return { ...prev, rsvp: { ...prev.rsvp, contacts: list } };
+                        });
+                      }}
+                      className="bg-white border border-zinc-200 rounded-xl px-3 py-1.5 text-xs text-[#241E1C] outline-none w-full"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-1 w-full">
+                  <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Phone / Number / Link</label>
+                  <input
+                    type="text"
+                    value={contact.value || ""}
+                    onChange={(e) => {
+                      updateInvitationData((prev: any) => {
+                        const list = [...(prev.rsvp?.contacts || [])];
+                        list[index] = { ...list[index], value: e.target.value };
+                        return { ...prev, rsvp: { ...prev.rsvp, contacts: list } };
+                      });
+                    }}
+                    className="bg-white border border-zinc-200 rounded-xl px-3 py-1.5 text-xs text-[#241E1C] outline-none font-mono w-full"
+                  />
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     );
   };
@@ -3294,14 +3911,17 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
             <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Closing Quote / Salutation</label>
             <textarea
               rows={2}
-              placeholder="A beautiful beginning starts with a beautiful invitation."
-              value={footer.salutation || ""}
+              placeholder="Beautiful beginnings, cherished forever."
+              value={footer.quote || footer.salutation || ""}
               onChange={(e) => updateInvitationData((prev: any) => ({
                 ...prev,
-                footer: { ...prev.footer, salutation: e.target.value }
+                footer: { ...prev.footer, salutation: e.target.value, quote: e.target.value }
               }))}
               className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full resize-none"
             />
+            <p className="text-[9px] text-zinc-400">
+              Displays directly below the brand name (e.g. &ldquo;Beautiful beginnings, cherished forever.&rdquo;).
+            </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">

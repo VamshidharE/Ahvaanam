@@ -191,11 +191,11 @@ export const FamilyDetails: React.FC<{ data: PelliPandiriData }> = ({ data }) =>
         >
           <div className="flex items-center justify-center gap-2.5 sm:gap-4 mb-2.5 select-none">
             <span className="w-8 sm:w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-[#b88636] to-[#b88636]" />
-            <span className="text-[#b88636] text-xs sm:text-sm">❦</span>
+            <span className="text-[#b88636] text-xs sm:text-sm">✦</span>
             <p className="font-cinzel text-[10.5px] sm:text-xs md:text-sm font-bold tracking-[0.28em] text-[#805527] uppercase">
               TWO FAMILIES • ONE SACRED BOND
             </p>
-            <span className="text-[#b88636] text-xs sm:text-sm">❦</span>
+            <span className="text-[#b88636] text-xs sm:text-sm">✦</span>
             <span className="w-8 sm:w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-[#b88636] to-[#b88636]" />
           </div>
 
@@ -232,20 +232,12 @@ export const FamilyDetails: React.FC<{ data: PelliPandiriData }> = ({ data }) =>
               </div>
             </motion.div>
 
-            <p className="font-serif text-[11px] font-bold text-[#8c5a2b] tracking-[0.2em] uppercase writing-vertical-lr my-2 opacity-85">
-              ॥ संगमः मङ्गलम् ॥
-            </p>
-
             <div className="w-px flex-1 bg-gradient-to-b from-[#b88636] via-[#b88636]/60 to-transparent" />
           </div>
 
-          <div className="lg:hidden flex items-center justify-center gap-3 my-2 w-full max-w-xs select-none">
+          <div className="lg:hidden flex items-center justify-center gap-2.5 my-2 w-full max-w-xs select-none">
             <span className="flex-1 h-px bg-gradient-to-r from-transparent to-[#b88636]/70" />
-            <span className="text-[#b88636] text-sm">❦</span>
-            <span className="text-[#8e3622] text-xs font-cinzel font-bold tracking-widest uppercase">
-              ॥ संगमः ॥
-            </span>
-            <span className="text-[#b88636] text-sm">❦</span>
+            <span className="text-[#b88636] text-xs">✦</span>
             <span className="flex-1 h-px bg-gradient-to-l from-transparent to-[#b88636]/70" />
           </div>
 

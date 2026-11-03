@@ -56,11 +56,11 @@ export const PreWeddingVideo: React.FC<{ data: PelliPandiriData }> = ({ data }) 
       >
         <div className="flex items-center justify-center gap-2 mb-2 select-none">
           <span className="w-8 sm:w-14 h-px bg-gradient-to-r from-transparent to-[#b88636]" />
-          <span className="text-[#b88636] text-xs">❦</span>
+          <span className="text-[#b88636] text-xs">✦</span>
           <span className="font-cinzel text-[10.5px] sm:text-xs font-bold tracking-[0.26em] text-[#805527] uppercase">
             A CINEMATIC MEMORY
           </span>
-          <span className="text-[#b88636] text-xs">❦</span>
+          <span className="text-[#b88636] text-xs">✦</span>
           <span className="w-8 sm:w-14 h-px bg-gradient-to-l from-transparent to-[#b88636]" />
         </div>
 

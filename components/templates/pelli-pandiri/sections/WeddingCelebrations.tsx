@@ -109,8 +109,12 @@ const EventMapPreview: React.FC<EventMapPreviewProps> = ({ activeEventId, events
       {events.map((e) => {
         const isCurrent = e.id === activeEventId;
         const q = e.mapQuery || `${e.venue}, ${e.address || ""}`;
-        const embedUrl = e.mapsEmbedUrl && e.mapsEmbedUrl.trim()
-          ? e.mapsEmbedUrl.trim()
+        let rawEmbed = (e.mapsEmbedUrl || "").trim();
+        const srcMatch = rawEmbed.match(/src=["']([^"']+)["']/);
+        if (srcMatch) rawEmbed = srcMatch[1];
+
+        const embedUrl = (rawEmbed.includes("google.com/maps/embed") || rawEmbed.includes("output=embed"))
+          ? rawEmbed
           : `https://maps.google.com/maps?q=${encodeURIComponent(q)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
         return (
@@ -144,7 +148,9 @@ const EventShowcase: React.FC<EventShowcaseProps> = ({ event, events }) => {
   const queryText = event.mapQuery || `${event.venue}, ${event.address || ""}`;
   const googleMapsUrl = event.mapsLink && event.mapsLink.trim()
     ? event.mapsLink.trim()
-    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(queryText)}`;
+    : event.mapsEmbedUrl && (event.mapsEmbedUrl.includes("maps.app.goo.gl") || event.mapsEmbedUrl.includes("google.com/maps"))
+      ? event.mapsEmbedUrl.trim()
+      : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(queryText)}`;
   const showMap = event.showMap !== false;
   const showDirections = event.showDirections !== false;
 
@@ -357,11 +363,11 @@ export const WeddingCelebrationsSection: React.FC<{ data: PelliPandiriData }> = 
         <div className="text-center mb-8 sm:mb-12 px-4 flex flex-col items-center">
           <div className="flex items-center justify-center gap-2 mb-2 select-none">
             <span className="w-8 sm:w-16 h-px bg-gradient-to-r from-transparent to-[#b88636]" />
-            <span className="text-[#b88636] text-xs">❦</span>
+            <span className="text-[#b88636] text-xs">✦</span>
             <span className="font-cinzel text-[10.5px] sm:text-xs font-bold tracking-[0.28em] text-[#805527] uppercase">
               AUSPICIOUS CEREMONIES
             </span>
-            <span className="text-[#b88636] text-xs">❦</span>
+            <span className="text-[#b88636] text-xs">✦</span>
             <span className="w-8 sm:w-16 h-px bg-gradient-to-l from-transparent to-[#b88636]" />
           </div>
 
