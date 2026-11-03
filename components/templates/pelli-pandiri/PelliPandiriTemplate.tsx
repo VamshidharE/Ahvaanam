@@ -28,7 +28,16 @@ export default function PelliPandiriTemplate({
 
   return (
     <PelliPandiriProvider value={{ data, clientId, isEmbedded }}>
-      <div className="pelli-pandiri-root min-h-screen bg-[#070b14] text-white selection:bg-[#c49a45] selection:text-black relative font-montserrat">
+      {/* High-priority preload for hero sky background to ensure instant load on fresh open */}
+      <link
+        rel="preload"
+        href={data.assets.skyBackground}
+        as="image"
+        type="image/webp"
+        // @ts-ignore
+        fetchpriority="high"
+      />
+      <div className="pelli-pandiri-root min-h-screen bg-[#d38d38] text-white selection:bg-[#c49a45] selection:text-black relative font-montserrat">
         {/* Interactive 3D Butterfly */}
         <ButterflyCompanion />
 

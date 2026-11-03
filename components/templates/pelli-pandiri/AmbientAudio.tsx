@@ -9,6 +9,7 @@ export const AmbientAudio: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const wasPlayingBeforeHideRef = useRef(false);
 
   const isEnabled = data.music?.enabled ?? true;
   const audioSrc = data.music?.themeMusic || "/templates/pelli-pandiri/audio/ambient.mp3";
@@ -28,6 +29,7 @@ export const AmbientAudio: React.FC = () => {
     audioRef.current = audio;
 
     // Autoplay attempt on mount (enabled by default)
+    audio.currentTime = 0;
     audio.play().then(() => {
       setIsPlaying(true);
     }).catch(() => {
@@ -37,6 +39,7 @@ export const AmbientAudio: React.FC = () => {
 
     const handleFirstInteraction = () => {
       if (audioRef.current && isEnabled) {
+        audioRef.current.currentTime = 0;
         audioRef.current.play().then(() => {
           setIsPlaying(true);
         }).catch(() => {});
@@ -52,6 +55,28 @@ export const AmbientAudio: React.FC = () => {
     window.addEventListener("touchstart", handleFirstInteraction, { passive: true });
     window.addEventListener("keydown", handleFirstInteraction, { passive: true });
 
+    const handleVisibilityChange = () => {
+      if (!audioRef.current) return;
+      if (document.hidden) {
+        // Tab is minimized or user switched apps/tabs
+        if (!audioRef.current.paused) {
+          wasPlayingBeforeHideRef.current = true;
+          audioRef.current.pause();
+          setIsPlaying(false);
+        }
+      } else {
+        // Tab is active/visible again
+        if (wasPlayingBeforeHideRef.current && isEnabled) {
+          wasPlayingBeforeHideRef.current = false;
+          audioRef.current.play().then(() => {
+            setIsPlaying(true);
+          }).catch(() => {});
+        }
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
     return () => {
       audio.pause();
       audioRef.current = null;
@@ -59,12 +84,14 @@ export const AmbientAudio: React.FC = () => {
       window.removeEventListener("scroll", handleFirstInteraction);
       window.removeEventListener("touchstart", handleFirstInteraction);
       window.removeEventListener("keydown", handleFirstInteraction);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [audioSrc, isEnabled]);
 
   const toggleMusic = () => {
     if (!audioRef.current) return;
     if (isPlaying) {
+      wasPlayingBeforeHideRef.current = false;
       audioRef.current.pause();
       setIsPlaying(false);
     } else {

@@ -114,15 +114,16 @@ export const ButterflyCompanion: React.FC = () => {
     const onScroll = () => {
       const now = performance.now();
       const dt = Math.max(1, now - lastScrollTime);
-      const dy = Math.abs(window.scrollY - lastScrollY);
-      scrollVelocity = dy / dt; // px/ms
+      const dy = window.scrollY - lastScrollY;
+      scrollVelocity = Math.abs(dy) / dt; // px/ms
       lastScrollY = window.scrollY;
       lastScrollTime = now;
       isScrolling = true;
 
-      // When user starts scrolling, disengage touch tracking immediately so butterfly doesn't chase thumb
-      if (isMobile) {
-        isUserInteracting = false;
+      // Dynamic scroll responsiveness: flutter and adapt position to user's scrolling gesture
+      if (Math.abs(dy) > 1.5) {
+        vel.y -= Math.min(Math.max(-5.0, dy * 0.16), 5.0);
+        vel.x += Math.sin(now * 0.01) * 1.6;
       }
 
       if (scrollTimeout) clearTimeout(scrollTimeout);
@@ -154,33 +155,25 @@ export const ButterflyCompanion: React.FC = () => {
 
     const onTouchStart = (e: TouchEvent) => {
       if (isReducedMotion || e.touches.length === 0) return;
-      if (!isScrolling) {
-        isUserInteracting = true;
-        lastInteractionTime = performance.now();
-        targetPos.x = e.touches[0].clientX;
-        targetPos.y = e.touches[0].clientY - 30;
-      }
-    };
-
-    const onTouchMove = (e: TouchEvent) => {
-      if (isReducedMotion || e.touches.length === 0) return;
-      // If user is actively scrolling page, let native scroll take precedence
-      if (isScrolling) {
-        isUserInteracting = false;
-        return;
-      }
-
       isUserInteracting = true;
       lastInteractionTime = performance.now();
       const touch = e.touches[0];
       targetPos.x = touch.clientX;
-      targetPos.y = touch.clientY - 30;
+      targetPos.y = touch.clientY - 35;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (isReducedMotion || e.touches.length === 0) return;
+      isUserInteracting = true;
+      lastInteractionTime = performance.now();
+      const touch = e.touches[0];
+      targetPos.x = touch.clientX;
+      targetPos.y = touch.clientY - 35;
     };
 
     const onTouchEnd = () => {
-      setTimeout(() => {
-        isUserInteracting = false;
-      }, 700);
+      // Retain interaction target for 2.2 seconds near last touch before resuming autonomous flight
+      lastInteractionTime = performance.now();
     };
 
     window.addEventListener("mousemove", onPointerMove, { passive: true });
@@ -248,12 +241,6 @@ export const ButterflyCompanion: React.FC = () => {
 
       frameCounter++;
 
-      // Adaptive throttle: During fast mobile scrolling, render every 2nd RAF frame (30fps)
-      // giving 100% composite headroom to the browser scroll engine while keeping wing flutter visible.
-      if (isMobile && isScrolling && scrollVelocity > 0.4 && frameCounter % 2 !== 0) {
-        return;
-      }
-
       const delta = Math.min((now - lastTime) / 1000, 0.1);
       lastTime = now;
 
@@ -275,9 +262,8 @@ export const ButterflyCompanion: React.FC = () => {
 
       // AUTONOMOUS FLIGHT (Mobile or idle desktop)
       if (!isUserInteracting) {
-        // During active mobile scroll, advance path at calm, stable speed (avoid jerky path jumps)
-        const timeRate = (isMobile && isScrolling) ? 0.5 : 1.0;
-        autoTime += delta * timeRate;
+        // Smooth ambient path progression
+        autoTime += delta;
 
         const cx = width * 0.5;
         const cy = height * 0.45;
@@ -296,14 +282,14 @@ export const ButterflyCompanion: React.FC = () => {
       const dist = Math.hypot(dx, dy);
 
       // Fluid, natural spring dynamics with organic momentum
-      const baseSpring = isUserInteracting ? 0.040 : 0.016;
-      const springK = (isMobile && isScrolling) ? 0.010 : baseSpring;
+      const baseSpring = isUserInteracting ? (isMobile ? 0.046 : 0.040) : 0.016;
+      const springK = baseSpring;
 
       vel.x += dx * springK;
       vel.y += dy * springK;
 
       // Natural velocity ceiling: swift and nimble, but with organic glide
-      const maxSpeed = isUserInteracting ? (isMobile ? 12.0 : 18.0) : 4.8;
+      const maxSpeed = isUserInteracting ? (isMobile ? 14.0 : 18.0) : 4.8;
       const currentSpeed = Math.hypot(vel.x, vel.y);
       if (currentSpeed > maxSpeed) {
         vel.x = (vel.x / currentSpeed) * maxSpeed;

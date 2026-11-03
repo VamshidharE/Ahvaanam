@@ -15,7 +15,11 @@ interface TempleBackgroundProps {
 export const TempleBackground: React.FC<TempleBackgroundProps> = ({ skyY, isMobile, data }) => {
   return (
     <motion.div
-      style={{ y: skyY }}
+      style={{
+        y: skyY,
+        background:
+          "linear-gradient(180deg, #d38d38 0%, #e8a855 25%, #f5be6b 50%, #ea9642 75%, #b55621 100%)",
+      }}
       className={`absolute inset-x-0 top-0 w-full z-10 pointer-events-none select-none will-change-transform ${
         isMobile ? "h-[220vh]" : "aspect-[940/1672]"
       }`}

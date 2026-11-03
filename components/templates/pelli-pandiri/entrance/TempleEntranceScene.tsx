@@ -119,8 +119,12 @@ export const TempleEntranceScene: React.FC<{ data: PelliPandiriData }> = ({ data
     <div
       ref={containerRef}
       id="hero"
-      style={{ height: "195vh" }}
-      className="relative w-full bg-[#0a0807]"
+      style={{
+        height: "195vh",
+        background:
+          "linear-gradient(180deg, #d38d38 0%, #e8a855 25%, #f5be6b 50%, #ea9642 75%, #b55621 100%)",
+      }}
+      className="relative w-full"
     >
       {/* Sticky Cinematic Viewport Stage */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center select-none">

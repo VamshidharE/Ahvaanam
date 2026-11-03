@@ -7,6 +7,138 @@ import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import { PelliPandiriData, PelliPandiriPhoto } from "../adapter";
 
 /* ═══════════════════════════════════════════════════ LIGHTBOX FULL-SCREEN VIEWER ═══════════════════════════════════════════════════ */
+interface MobileInteractiveGalleryProps {
+  photos: PelliPandiriPhoto[];
+  onPhotoClick: (index: number) => void;
+}
+
+const MobileInteractiveGallery: React.FC<MobileInteractiveGalleryProps> = ({ photos, onPhotoClick }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInteractingRef = useRef(false);
+  const resumeTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const dragStartRef = useRef<{ x: number; scrollLeft: number; moved: boolean }>({ x: 0, scrollLeft: 0, moved: false });
+
+  // Quadruple the array for seamless infinite looping scroll
+  const loopedPhotos = [...photos, ...photos, ...photos, ...photos];
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    let animId: number;
+    let lastTimestamp = performance.now();
+
+    const step = (now: number) => {
+      const delta = (now - lastTimestamp) / 1000;
+      lastTimestamp = now;
+
+      if (!isInteractingRef.current && el) {
+        // Continuous gentle auto-scroll: ~38px per second
+        el.scrollLeft += 38 * delta;
+
+        // Loop seamlessly halfway through
+        const halfScroll = el.scrollWidth / 2;
+        if (el.scrollLeft >= halfScroll) {
+          el.scrollLeft -= halfScroll;
+        } else if (el.scrollLeft <= 0) {
+          el.scrollLeft += halfScroll;
+        }
+      }
+
+      animId = requestAnimationFrame(step);
+    };
+
+    animId = requestAnimationFrame(step);
+    return () => {
+      cancelAnimationFrame(animId);
+      if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    };
+  }, []);
+
+  const handleInteractionStart = (clientX: number) => {
+    isInteractingRef.current = true;
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    if (containerRef.current) {
+      dragStartRef.current = {
+        x: clientX,
+        scrollLeft: containerRef.current.scrollLeft,
+        moved: false,
+      };
+    }
+  };
+
+  const handleInteractionMove = (clientX: number) => {
+    if (!isInteractingRef.current || !containerRef.current) return;
+    const dx = clientX - dragStartRef.current.x;
+    if (Math.abs(dx) > 4) {
+      dragStartRef.current.moved = true;
+      containerRef.current.scrollLeft = dragStartRef.current.scrollLeft - dx;
+    }
+  };
+
+  const handleInteractionEnd = () => {
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    // Smoothly resume auto-scrolling 1.8 seconds after user finishes sliding/swiping
+    resumeTimerRef.current = setTimeout(() => {
+      isInteractingRef.current = false;
+    }, 1800);
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      onMouseDown={(e) => handleInteractionStart(e.clientX)}
+      onMouseMove={(e) => handleInteractionMove(e.clientX)}
+      onMouseUp={handleInteractionEnd}
+      onMouseLeave={handleInteractionEnd}
+      onTouchStart={(e) => {
+        if (e.touches.length > 0) handleInteractionStart(e.touches[0].clientX);
+      }}
+      onTouchMove={(e) => {
+        if (e.touches.length > 0) handleInteractionMove(e.touches[0].clientX);
+      }}
+      onTouchEnd={handleInteractionEnd}
+      onTouchCancel={handleInteractionEnd}
+      className="lg:hidden w-full overflow-x-auto scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex gap-3.5 py-3 px-4 select-none cursor-grab active:cursor-grabbing will-change-scroll"
+      style={{ WebkitOverflowScrolling: "touch" }}
+    >
+      {loopedPhotos.map((photo, index) => (
+        <div
+          key={`${photo.id}-${index}`}
+          onClick={() => {
+            if (!dragStartRef.current.moved) {
+              onPhotoClick(index % photos.length);
+            }
+          }}
+          className="relative w-[210px] sm:w-[250px] aspect-[3/4] rounded-xl overflow-hidden shrink-0 shadow-[0_8px_22px_rgba(80,45,20,0.2)] border border-[#b88636]/80 cursor-pointer active:scale-98 transition-transform"
+        >
+          {/* Thin inner gold rim */}
+          <div className="absolute inset-1 rounded-lg border border-[#ffd700]/30 pointer-events-none z-10" />
+
+          {/* Image */}
+          <Image
+            src={photo.src}
+            alt={photo.alt}
+            fill
+            sizes="250px"
+            className="object-cover object-top pointer-events-none"
+            loading="eager"
+            unoptimized
+          />
+
+          {/* Caption bar */}
+          <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end justify-between p-2.5 z-10 pointer-events-none">
+            <span className="font-cormorant text-xs italic text-[#fffdf8] font-medium truncate">
+              {photo.alt}
+            </span>
+            <Maximize2 size={12} className="text-white shrink-0 ml-1" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 interface LightboxProps {
   photos: PelliPandiriPhoto[];
   currentIndex: number;
@@ -345,64 +477,11 @@ export const OurJourneyGallery: React.FC<{ data: PelliPandiriData }> = ({ data }
         </div>
 
         {/* 
-          3. MOBILE: CONTINUOUS AUTOMATIC SCROLLING LOOP
-          Seamless looping marquee of photographs with touch interaction to open lightbox
+          3. MOBILE: INTERACTIVE AUTO-SCROLLING CAROUSEL
+          Continuous gentle auto-scroll with full manual swipe/slide interruption and instant tap-to-open
         */}
         <div className="lg:hidden w-full overflow-hidden my-3">
-          <motion.div
-            className="flex items-center gap-3.5 py-3 w-max will-change-transform"
-            animate={
-              shouldReduceMotion
-                ? {}
-                : {
-                    x: ["0%", "-50%"],
-                  }
-            }
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 22,
-                ease: "linear",
-              },
-            }}
-          >
-            {loopedPhotos.map((photo, index) => (
-              <div
-                key={`${photo.id}-${index}`}
-                onClick={() => openLightbox(index % photos.length)}
-                className="relative w-[210px] sm:w-[250px] aspect-[3/4] rounded-xl overflow-hidden shrink-0 shadow-[0_8px_22px_rgba(80,45,20,0.2)] border border-[#b88636]/80 cursor-pointer active:scale-98 transition-transform"
-              >
-                {/* Thin inner gold rim */}
-                <div className="absolute inset-1 rounded-lg border border-[#ffd700]/30 pointer-events-none z-10" />
-
-                {/* Image */}
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  sizes="250px"
-                  className="object-cover object-top"
-                  loading="eager"
-                  unoptimized
-                />
-
-                {/* Caption bar */}
-                <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end justify-between p-2.5 z-10">
-                  <span className="font-cormorant text-xs italic text-[#fffdf8] font-medium truncate">
-                    {photo.alt}
-                  </span>
-                  <Maximize2 size={12} className="text-white shrink-0 ml-1" />
-                </div>
-              </div>
-            ))}
-          </motion.div>
-
-          <div className="flex items-center justify-center gap-1.5 mt-2 select-none">
-            <span className="font-cinzel text-[10px] font-semibold text-[#805527] uppercase tracking-wider">
-              Auto-scrolling moments • Tap to enlarge
-            </span>
-          </div>
+          <MobileInteractiveGallery photos={photos} onPhotoClick={openLightbox} />
         </div>
       </div>
 
@@ -413,7 +492,7 @@ export const OurJourneyGallery: React.FC<{ data: PelliPandiriData }> = ({ data }
             photos={photos}
             currentIndex={lightboxIndex}
             onClose={closeLightbox}
-            onNavigate={(newIndex) => setLightboxIndex(newIndex)}
+            onNavigate={(newIndex: number) => setLightboxIndex(newIndex)}
           />
         )}
       </AnimatePresence>
