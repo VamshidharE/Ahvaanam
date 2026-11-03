@@ -186,7 +186,7 @@ export const GrandCoupleShowcase: React.FC<{ data: PelliPandiriData }> = ({ data
               alt={`${firstName} & ${secondName} - Wedding Couple`}
               fill
               sizes="(max-width: 640px) 320px, (max-width: 1024px) 440px, 540px"
-              className="object-contain object-bottom filter contrast-[1.03] brightness-[1.01] drop-shadow-[0_16px_36px_rgba(60,20,10,0.35)]"
+              className="object-contain object-bottom filter contrast-[1.03] brightness-[1.01] md:drop-shadow-[0_16px_36px_rgba(60,20,10,0.35)]"
               priority
               unoptimized
             />

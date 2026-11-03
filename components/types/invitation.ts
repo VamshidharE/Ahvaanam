@@ -86,6 +86,13 @@ export interface WeddingEvent {
   venue: string;
   description: string;
   icon: string;
+  subTitle?: string;
+  dayOfWeek?: string;
+  startTime?: string;
+  endTime?: string;
+  muhurthamTime?: string;
+  address?: string;
+  navLabel?: string;
   image?: string;
   mapsEmbedUrl?: string;
   mapsLink?: string;

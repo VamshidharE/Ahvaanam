@@ -5,7 +5,6 @@ import Image from "next/image";
 import {
   useScroll,
   useTransform,
-  useMotionValue,
   useReducedMotion,
   motion,
 } from "framer-motion";
@@ -21,38 +20,43 @@ export const TempleEntranceScene: React.FC<{ data: PelliPandiriData }> = ({ data
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const shouldReduceMotion = useReducedMotion();
 
-  // Normalized scroll tracking across container
+  // Normalized scroll tracking directly across container
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  const progressMotionValue = useMotionValue(0);
-
+  // Safe resize listener: ignores mobile URL bar collapse/expansion during scrolling
   useEffect(() => {
-    const unsub = scrollYProgress.on("change", (latest) => {
-      progressMotionValue.set(latest);
-    });
-    return () => unsub();
-  }, [scrollYProgress, progressMotionValue]);
+    let lastW = window.innerWidth;
+    let lastH = window.innerHeight;
+    setIsMobile(lastW < 768);
+    setDimensions({ width: lastW, height: lastH });
 
-  useEffect(() => {
     const updateSize = () => {
-      setDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-      setIsMobile(window.innerWidth < 768);
+      const curW = window.innerWidth;
+      const curH = window.innerHeight;
+      const isMob = curW < 768;
+
+      // Ignore minor vertical height fluctuations caused by mobile address bar
+      if (Math.abs(curW - lastW) < 4 && Math.abs(curH - lastH) < (isMob ? 130 : 12)) {
+        return;
+      }
+
+      lastW = curW;
+      lastH = curH;
+      setDimensions({ width: curW, height: curH });
+      setIsMobile(isMob);
     };
-    updateSize();
-    window.addEventListener("resize", updateSize);
+
+    window.addEventListener("resize", updateSize, { passive: true });
     return () => window.removeEventListener("resize", updateSize);
-  }, [progressMotionValue]);
+  }, []);
 
   // 1. FULL-LENGTH SKY BACKGROUND SCROLL:
   // Dynamically computes exact pixel travel so that 100% of the background's full length appears,
-  // scrolling all the way from the top sky to the bottom landscape!
-  const skyY = useTransform(progressMotionValue, (p) => {
+  // scrolling all the way from the top sky to the bottom landscape using pure GPU translate3d!
+  const skyY = useTransform(scrollYProgress, (p) => {
     if (shouldReduceMotion) return 0;
     const isMob = dimensions.width < 768;
     const renderedBgHeight = isMob
@@ -69,14 +73,14 @@ export const TempleEntranceScene: React.FC<{ data: PelliPandiriData }> = ({ data
 
   // 2. UNLINKED TEXT LAYER:
   // Visible at 0% over the open sky, fades out cleanly as user starts scrolling toward the pandiri
-  const titleOpacity = useTransform(progressMotionValue, (p) => {
+  const titleOpacity = useTransform(scrollYProgress, (p) => {
     if (p <= 0.05) return 1;
     if (p >= 0.42) return 0;
     const t = (p - 0.05) / (0.42 - 0.05);
     return 1 - t;
   });
 
-  const titleY = useTransform(progressMotionValue, (p) => {
+  const titleY = useTransform(scrollYProgress, (p) => {
     if (shouldReduceMotion) return 0;
     if (p <= 0.05) return 0;
     if (p >= 0.42) return -45;
@@ -85,7 +89,7 @@ export const TempleEntranceScene: React.FC<{ data: PelliPandiriData }> = ({ data
   });
 
   // Scroll indicator prompt fade
-  const scrollIndicatorOpacity = useTransform(progressMotionValue, (p) => {
+  const scrollIndicatorOpacity = useTransform(scrollYProgress, (p) => {
     if (p <= 0.01) return 1;
     if (p >= 0.08) return 0;
     return 1 - (p - 0.01) / 0.07;
@@ -94,7 +98,7 @@ export const TempleEntranceScene: React.FC<{ data: PelliPandiriData }> = ({ data
   // 3. PELLI PANDIRI MANDAP STAGE:
   // - Starts with 88% of its own height pushed down below the viewport so only the top peaks peek in at 0%.
   // - Rises smoothly, continuously and settles firmly at bottom: 0 at 100% with zero dead scroll.
-  const pandiriTranslateY = useTransform(progressMotionValue, (p) => {
+  const pandiriTranslateY = useTransform(scrollYProgress, (p) => {
     if (shouldReduceMotion) return 0;
     const isMob = dimensions.width < 768;
     const pandiriHeight = isMob
@@ -120,7 +124,7 @@ export const TempleEntranceScene: React.FC<{ data: PelliPandiriData }> = ({ data
     >
       {/* Sticky Cinematic Viewport Stage */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center select-none">
-        {/* LAYER 1: Full-Screen Sunset Sky Backdrop & Foliage */}
+        {/* LAYER 1: Full-Screen Sunset Sky Backdrop */}
         <TempleBackground skyY={skyY} isMobile={isMobile} data={data} />
 
         {/* LAYER 2: Unlinked Invitation Text over Open Sky */}
@@ -154,19 +158,81 @@ export const TempleEntranceScene: React.FC<{ data: PelliPandiriData }> = ({ data
               alt="Telugu Pelli Pandiri – Sacred Wedding Mandap"
               fill
               sizes="(max-width: 768px) 145vw, 100vw"
-              className="object-contain object-bottom drop-shadow-[0_16px_48px_rgba(0,0,0,0.75)]"
+              className={`object-contain object-bottom ${isMobile ? "" : "drop-shadow-[0_16px_48px_rgba(0,0,0,0.75)]"}`}
               unoptimized
               priority
             />
 
+            {/* Mobile soft ambient ground shadow (replaces expensive transparent PNG filter) */}
+            {isMobile && (
+              <div className="absolute -bottom-2 inset-x-[15%] h-6 bg-black/45 blur-sm rounded-full pointer-events-none" />
+            )}
+
             {/* LAYER 4: COUPLE CUTOUT ENLARGED & GROUNDED ON MANDAP STEPS */}
             <WeddingCouple
-              progress={progressMotionValue}
+              progress={scrollYProgress}
               isMobile={isMobile}
               shouldReduceMotion={shouldReduceMotion}
               data={data}
             />
           </div>
+        </motion.div>
+
+        {/* LAYER 5: STATIONARY CORNER FOLIAGE FRAMING ENTRANCE (Non-scrolling framing) */}
+        <motion.div
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  rotate: [-0.9, 0.9, -0.9],
+                  y: [0, 2.5, 0],
+                }
+          }
+          transition={{
+            duration: 6.2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          style={{ transformOrigin: "top left" }}
+          className="absolute -top-1.5 -left-1.5 z-25 w-[150px] sm:w-[200px] md:w-[260px] lg:w-[320px] xl:w-[370px] aspect-[520/724] pointer-events-none select-none"
+        >
+          <Image
+            src={assets.cornerLeavesLeft}
+            alt=""
+            fill
+            sizes="(max-width: 768px) 200px, 370px"
+            className={`object-contain object-left-top ${isMobile ? "" : "drop-shadow-[0_8px_24px_rgba(0,0,0,0.45)]"}`}
+            priority
+            unoptimized
+          />
+        </motion.div>
+
+        <motion.div
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  rotate: [0.9, -0.9, 0.9],
+                  y: [0, 2.5, 0],
+                }
+          }
+          transition={{
+            duration: 6.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          style={{ transformOrigin: "top right" }}
+          className="absolute -top-1.5 -right-1.5 z-25 w-[150px] sm:w-[200px] md:w-[260px] lg:w-[320px] xl:w-[370px] aspect-[520/724] pointer-events-none select-none"
+        >
+          <Image
+            src={assets.cornerLeavesRight}
+            alt=""
+            fill
+            sizes="(max-width: 768px) 200px, 370px"
+            className={`object-contain object-right-top ${isMobile ? "" : "drop-shadow-[0_8px_24px_rgba(0,0,0,0.45)]"}`}
+            priority
+            unoptimized
+          />
         </motion.div>
 
         {/* LAYER 6: SCROLL INDICATOR PROMPT */}

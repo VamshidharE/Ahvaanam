@@ -37,10 +37,17 @@ const PETALS_DATA: PetalConfig[] = [
   { id: 18, leftPercent: 89, size: 14, duration: 9.0, delay: 7.3, driftX: -26, rotateEnd: 370, flipDuration: 3.7, petalType: "rose", opacity: 0.91 },
 ];
 
-export const FallingPetals: React.FC = () => {
+interface FallingPetalsProps {
+  isMobile?: boolean;
+}
+
+export const FallingPetals: React.FC<FallingPetalsProps> = ({ isMobile = false }) => {
   const shouldReduceMotion = useReducedMotion();
 
   if (shouldReduceMotion) return null;
+
+  // On mobile, render 8 well-spaced petals instead of 18 to cut particle rendering load by ~60%
+  const petals = isMobile ? PETALS_DATA.slice(0, 8) : PETALS_DATA;
 
   return (
     <div
@@ -70,7 +77,7 @@ export const FallingPetals: React.FC = () => {
         </defs>
       </svg>
 
-      {PETALS_DATA.map((p) => {
+      {petals.map((p) => {
         const fillId =
           p.petalType === "rose"
             ? "url(#pelliRoseGrad)"
@@ -99,7 +106,7 @@ export const FallingPetals: React.FC = () => {
               width: `${p.size}px`,
               height: `${p.size * 1.5}px`,
             }}
-            className="absolute will-change-transform"
+            className="absolute pointer-events-none select-none"
           >
             <motion.div
               animate={{ rotateY: [0, 180, 360] }}

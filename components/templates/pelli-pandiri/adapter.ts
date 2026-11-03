@@ -193,7 +193,7 @@ export function mapInvitationConfigToPelliPandiri(rawPayload: any, clientId: str
   // Portraits
   const groomPortrait = config.families?.groomPortrait || config.couple?.groom?.image || "/templates/pelli-pandiri/family/groom-family.jpg";
   const bridePortrait = config.families?.bridePortrait || config.couple?.bride?.image || "/templates/pelli-pandiri/family/bride-family.jpg";
-  const coupleCutout = config.couple?.coupleCutout || config.couple?.heroImage || config.hero?.heroImage || "/templates/pelli-pandiri/Couple.png";
+  const coupleCutout = config.couple?.coupleCutout || config.couple?.heroImage || config.hero?.heroImage || "/templates/pelli-pandiri/Couple.webp";
 
   // Invocations & Titles
   const rawMantra = config.hero?.welcomeMessage || config.hero?.mantra || config.mantra || "";
@@ -208,7 +208,11 @@ export function mapInvitationConfigToPelliPandiri(rawPayload: any, clientId: str
   const introductorySubMessage = config.hero?.subtitle || "invite you to celebrate the beginning of their beautiful journey together";
 
   // Wedding & Muhurtham details
-  const rawEvents = Array.isArray(config.events) ? config.events : [];
+  const rawEvents = (Array.isArray(config.events) && config.events.length > 0)
+    ? config.events
+    : (Array.isArray(rawPayload?.events) && rawPayload.events.length > 0)
+      ? rawPayload.events
+      : (Array.isArray(config.events) ? config.events : []);
   const mainWeddingEvt = rawEvents.find((e: any) => /wedding|muhurtham|vivah/i.test(e.title || e.name || e.id || "")) || rawEvents[0];
 
   const weddingDate = config.wedding?.date || mainWeddingEvt?.date || config.date || "Sunday, November 29, 2026";
@@ -218,8 +222,8 @@ export function mapInvitationConfigToPelliPandiri(rawPayload: any, clientId: str
   const venueObj = config.venue?.venues?.[0] || {};
   const venueName = venueObj.venueName || config.wedding?.venue || mainWeddingEvt?.venue || (typeof config.venue === "string" ? config.venue : "Ananda Kalyana Mandapam");
   const venueCity = venueObj.city || config.wedding?.city || "Thanjavur, Tamil Nadu";
-  const venueAddress = venueObj.address || mainWeddingEvt?.address || "Temple Sanctum Auditorium, South Rampart, Thanjavur";
-  const mapsLink = venueObj.mapsUrl || config.wedding?.mapsLink || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${venueName}, ${venueAddress || venueCity}`)}`;
+  const venueAddress = venueObj.address || mainWeddingEvt?.address || "";
+  const mapsLink = venueObj.mapsUrl || config.wedding?.mapsLink || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${venueName}${venueAddress ? ', ' + venueAddress : (venueCity ? ', ' + venueCity : '')}`)}`;
   const mapsEmbedUrl = venueObj.embedUrl || config.wedding?.mapsEmbedUrl || "";
 
   // Events Mapping
@@ -237,21 +241,33 @@ export function mapInvitationConfigToPelliPandiri(rawPayload: any, clientId: str
 
         const dateStr = evt.date || weddingDate;
         const shortDate = evt.shortDate || dateStr.split(",")[0] || dateStr;
+        const evtTime = evt.time || evt.startTime || "09:00 AM";
+
+        // CRITICAL: If evt.address is not provided, and evt.venue is provided (e.g. "VIDITH REDDY GARDEN, VELLULLA ROAD, METPALLY"),
+        // DO NOT fall back to any hardcoded address!
+        const evtAddress = (evt.address !== undefined && evt.address !== null)
+          ? evt.address.trim()
+          : (evt.venue ? "" : (venueAddress || ""));
+
+        const evtVenue = (evt.venue && evt.venue.trim()) ? evt.venue.trim() : venueName;
+        const computedMapQuery = evt.mapQuery || (evt.mapsEmbedUrl ? "" : `${evtVenue}${evtAddress && evtAddress !== evtVenue ? ', ' + evtAddress : ''}`);
 
         return {
           id: evt.id || `event-${idx}`,
           name: title,
           navLabel: evt.navLabel || title.split(" ")[0] || title,
           shortDate,
-          subTitle: evt.description || evt.subTitle || "",
+          subTitle: evt.subTitle !== undefined ? evt.subTitle : (evt.description || ""),
           date: dateStr,
           dayOfWeek: evt.dayOfWeek || "",
-          startTime: evt.startTime || evt.time || "09:00 AM",
-          endTime: evt.endTime || "",
-          muhurthamTime: evt.muhurthamTime || (tLower.includes("wedding") || tLower.includes("muhurtham") ? muhurthamTime : undefined),
-          venue: evt.venue || venueName,
-          address: evt.address || venueAddress,
-          mapQuery: evt.mapQuery || `${evt.venue || venueName}, ${evt.address || venueAddress}`,
+          startTime: evtTime,
+          endTime: "",
+          muhurthamTime: evt.muhurthamTime !== undefined
+            ? evt.muhurthamTime
+            : (tLower.includes("wedding") || tLower.includes("muhurtham") ? (config.wedding?.muhurthamTime || muhurthamTime) : undefined),
+          venue: evtVenue,
+          address: evtAddress,
+          mapQuery: computedMapQuery,
           mapsEmbedUrl: evt.mapsEmbedUrl || evt.googleMapsEmbed || "",
           mapsLink: evt.mapsLink || evt.directionsUrl || "",
           directionsUrl: evt.directionsUrl || evt.mapsLink || "",
@@ -416,8 +432,8 @@ export function mapInvitationConfigToPelliPandiri(rawPayload: any, clientId: str
   return {
     id: clientId || rawPayload?.id || "invitation",
     assets: {
-      skyBackground: "/templates/pelli-pandiri/sky-background-v2.png",
-      pelliPandiri: "/templates/pelli-pandiri/decoration/pelli-pandiri-sunset.png",
+      skyBackground: "/templates/pelli-pandiri/sky-background-v2.webp",
+      pelliPandiri: "/templates/pelli-pandiri/decoration/pelli-pandiri-sunset.webp",
       coupleCutout,
       coupleCutoutAlt: `${groomName} & ${brideName} — South Indian Wedding Couple`,
       templeArch: "/templates/pelli-pandiri/temple-gopuram-v2.png",
@@ -426,10 +442,10 @@ export function mapInvitationConfigToPelliPandiri(rawPayload: any, clientId: str
       toranamStringLeft: "/templates/pelli-pandiri/decoration/toranam-swag-left.png",
       toranamStringRight: "/templates/pelli-pandiri/decoration/toranam-swag-right.png",
       invitationBackground: "/templates/pelli-pandiri/decoration/invitation-background.png",
-      lordGanesha: "/templates/pelli-pandiri/decoration/lord-ganesha.png",
-      lotusMandala: "/templates/pelli-pandiri/decoration/Lotus-Mandala.png",
-      cornerLeavesLeft: "/templates/pelli-pandiri/decoration/corner-leaves-left.png",
-      cornerLeavesRight: "/templates/pelli-pandiri/decoration/corner-leaves-right.png",
+      lordGanesha: "/templates/pelli-pandiri/decoration/lord-ganesha.webp",
+      lotusMandala: "/templates/pelli-pandiri/decoration/Lotus-Mandala.webp",
+      cornerLeavesLeft: "/templates/pelli-pandiri/decoration/corner-leaves-left.webp",
+      cornerLeavesRight: "/templates/pelli-pandiri/decoration/corner-leaves-right.webp",
       cloudBed: "/templates/pelli-pandiri/decoration/couple-clouds-bed.png",
       sectionCloud: "/templates/pelli-pandiri/events/section-cloud-transition.png",
     },

@@ -16,7 +16,7 @@ export const WeddingCouple: React.FC<WeddingCoupleProps> = ({
   isMobile,
   data,
 }) => {
-  const coupleCutout = data?.assets?.coupleCutout || "/templates/pelli-pandiri/Couple.png";
+  const coupleCutout = data?.assets?.coupleCutout || "/templates/pelli-pandiri/Couple.webp";
   const coupleCutoutAlt = data?.assets?.coupleCutoutAlt || "Wedding Couple";
   const auraOpacity = 0.5;
 
@@ -46,10 +46,18 @@ export const WeddingCouple: React.FC<WeddingCoupleProps> = ({
           alt={coupleCutoutAlt}
           fill
           sizes="(max-width: 768px) 380px, 600px"
-          className="object-contain object-bottom filter contrast-[1.02] brightness-[1.01] drop-shadow-[0_12px_30px_rgba(0,0,0,0.65)]"
+          className={`object-contain object-bottom ${
+            isMobile
+              ? ""
+              : "filter contrast-[1.02] brightness-[1.01] drop-shadow-[0_12px_30px_rgba(0,0,0,0.65)]"
+          }`}
           unoptimized
           priority
         />
+        {/* Lightweight ambient ground shadow for mobile (avoids expensive real-time alpha silhouette drop-shadow) */}
+        {isMobile && (
+          <div className="absolute -bottom-2 w-3/4 h-6 rounded-full bg-black/40 blur-md pointer-events-none -z-10" />
+        )}
       </div>
     </div>
   );

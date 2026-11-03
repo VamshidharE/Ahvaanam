@@ -2133,235 +2133,260 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
     );
   };
 
-  const renderEventsSettings = () => (
-    <div className="space-y-6 text-left animate-fadeIn">
-      <div className="flex justify-between items-center border-b border-zinc-200/50 pb-2 w-full">
-        <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/50">Wedding Timelines</h3>
-        <button
-          onClick={() => {
-            updateInvitationData((prev) => {
-              const newEvent: WeddingEvent = {
-                id: `event-${Date.now()}`,
-                enabled: true,
-                title: "New Event Ceremony",
-                date: "2026-12-14",
-                time: "10:30 AM",
-                venue: "Venue Palace Hall, Bangalore",
-                description: "Join us for a celebratory ritual.",
-                icon: "Heart"
-              };
-              return { ...prev, events: [...prev.events, newEvent] };
-            });
-          }}
-          className="flex items-center gap-1 px-3 py-1.5 border border-zinc-200 hover:border-[#C49B27]/40 rounded-xl text-[9px] font-bold uppercase tracking-[1px] bg-white transition-colors shadow-xs"
-        >
-          <Plus size={11} /> Add Ceremony
-        </button>
-      </div>
+  const renderEventsSettings = () => {
+    const updateEventItem = (index: number, patch: Partial<WeddingEvent>) => {
+      updateInvitationData((prev: any) => {
+        const currentList = Array.isArray(prev.events) ? [...prev.events] : [];
+        if (currentList[index]) {
+          currentList[index] = { ...currentList[index], ...patch };
+        }
+        const next = { ...prev, events: currentList };
+        if (next.config) {
+          next.config = { ...next.config, events: currentList };
+        }
+        return next;
+      });
+    };
 
-      {invitationData.events.map((evt, index) => (
-        <div key={evt.id || index} className="card-minimal p-4 md:p-5 space-y-3 relative group w-full">
+    return (
+      <div className="space-y-6 text-left animate-fadeIn">
+        <div className="flex justify-between items-center border-b border-zinc-200/50 pb-2 w-full">
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/50">Wedding Timelines &amp; Ceremonies</h3>
+            <p className="text-[10px] text-zinc-400 mt-0.5">Edit celebration details, timings, venues, and map locations.</p>
+          </div>
           <button
-            type="button"
             onClick={() => {
-              updateInvitationData((prev) => {
-                const list = [...prev.events];
-                list.splice(index, 1);
-                return { ...prev, events: list };
+              updateInvitationData((prev: any) => {
+                const newEvent: WeddingEvent = {
+                  id: `event-${Date.now()}`,
+                  enabled: true,
+                  title: "New Ceremony",
+                  subTitle: "Auspicious wedding ritual and celebration",
+                  date: "Sunday, November 29, 2026",
+                  dayOfWeek: "Sunday Morning",
+                  time: "09:00 AM – 12:30 PM",
+                  startTime: "09:00 AM – 12:30 PM",
+                  muhurthamTime: "",
+                  venue: "Ananda Kalyana Mandapam",
+                  address: "",
+                  description: "Auspicious wedding ritual and celebration",
+                  icon: "Heart"
+                };
+                const nextList = [...(prev.events || []), newEvent];
+                const next = { ...prev, events: nextList };
+                if (next.config) {
+                  next.config = { ...next.config, events: nextList };
+                }
+                return next;
               });
             }}
-            className="absolute top-4 right-4 p-1.5 bg-red-500/5 border border-red-500/10 text-red-600 hover:bg-red-500 hover:text-white rounded-lg transition-colors"
-            title="Remove Event"
+            className="flex items-center gap-1 px-3 py-1.5 border border-zinc-200 hover:border-[#C49B27]/40 rounded-xl text-[9px] font-bold uppercase tracking-[1px] bg-white transition-colors shadow-xs"
           >
-            <Trash2 size={12} />
+            <Plus size={11} /> Add Ceremony
           </button>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
-            <div className="flex flex-col gap-1 w-full">
-              <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Event Title</label>
-              <input
-                type="text"
-                value={evt.title}
-                onChange={(e) => {
-                  updateInvitationData((prev) => {
-                    const list = [...prev.events];
-                    list[index] = { ...list[index], title: e.target.value };
-                    return { ...prev, events: list };
-                  });
-                }}
-                placeholder="e.g. Akshintalu / Haldi / Wedding"
-                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] font-bold w-full"
-              />
-            </div>
-
-            <div className="flex flex-col gap-1 w-full">
-              <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Ceremony Icon / Theme</label>
-              <select
-                value={
-                  evt.image?.includes("akshintalu") ? "/wedding/events/akshintalu.png" :
-                  evt.image?.includes("haldi") ? "/wedding/events/haldi.png" :
-                  evt.image?.includes("mehendi") ? "/wedding/events/mehendi.png" :
-                  evt.image?.includes("sangeeth") ? "/wedding/events/sangeeth.png" :
-                  evt.image?.includes("reception") ? "/wedding/events/reception.png" :
-                  evt.image?.includes("wedding") ? "/wedding/events/wedding.png" :
-                  evt.image ? "custom" : "auto"
-                }
-                onChange={(e) => {
-                  const val = e.target.value;
-                  updateInvitationData((prev) => {
-                    const list = [...prev.events];
-                    list[index] = {
-                      ...list[index],
-                      image: val === "auto" ? "" : val === "custom" ? list[index].image || "" : val
-                    };
-                    return { ...prev, events: list };
-                  });
-                }}
-                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] font-medium w-full"
-              >
-                <option value="auto">✨ Auto Detect from Title</option>
-                <option value="/wedding/events/akshintalu.png">🌾 Akshintalu / Talambralu</option>
-                <option value="/wedding/events/haldi.png">💛 Haldi Ceremony</option>
-                <option value="/wedding/events/mehendi.png">🌿 Mehendi Celebration</option>
-                <option value="/wedding/events/sangeeth.png">🎶 Sangeeth Night</option>
-                <option value="/wedding/events/wedding.png">💍 Wedding / Muhurtham</option>
-                <option value="/wedding/events/reception.png">🥂 Reception</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3 w-full">
-            <div className="flex flex-col gap-1 w-full">
-              <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Date</label>
-              <input
-                type="text"
-                value={evt.date}
-                onChange={(e) => {
-                  updateInvitationData((prev) => {
-                    const list = [...prev.events];
-                    list[index] = { ...list[index], date: e.target.value };
-                    return { ...prev, events: list };
-                  });
-                }}
-                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
-              />
-            </div>
-            <div className="flex flex-col gap-1 w-full">
-              <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Time</label>
-              <input
-                type="text"
-                value={evt.time}
-                onChange={(e) => {
-                  updateInvitationData((prev) => {
-                    const list = [...prev.events];
-                    list[index] = { ...list[index], time: e.target.value };
-                    return { ...prev, events: list };
-                  });
-                }}
-                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-1 w-full">
-            <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Venue Name & Address</label>
-            <input
-              type="text"
-              value={evt.venue}
-              onChange={(e) => {
-                updateInvitationData((prev) => {
-                  const list = [...prev.events];
-                  list[index] = { ...list[index], venue: e.target.value };
-                  return { ...prev, events: list };
+        {invitationData.events.map((evt, index) => (
+          <div key={evt.id || index} className="card-minimal p-4 md:p-5 space-y-3 relative group w-full">
+            <button
+              type="button"
+              onClick={() => {
+                updateInvitationData((prev: any) => {
+                  const list = [...(prev.events || [])];
+                  list.splice(index, 1);
+                  const next = { ...prev, events: list };
+                  if (next.config) {
+                    next.config = { ...next.config, events: list };
+                  }
+                  return next;
                 });
               }}
-              className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
-            />
-          </div>
+              className="absolute top-4 right-4 p-1.5 bg-red-500/5 border border-red-500/10 text-red-600 hover:bg-red-500 hover:text-white rounded-lg transition-colors cursor-pointer"
+              title="Remove Event"
+            >
+              <Trash2 size={12} />
+            </button>
 
-          <div className="flex flex-col gap-1 w-full">
-            <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Event Description</label>
-            <input
-              type="text"
-              value={evt.description}
-              onChange={(e) => {
-                updateInvitationData((prev) => {
-                  const list = [...prev.events];
-                  list[index] = { ...list[index], description: e.target.value };
-                  return { ...prev, events: list };
-                });
-              }}
-              className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
-            />
-          </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+              <div className="flex flex-col gap-1 w-full">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Event Title</label>
+                <input
+                  type="text"
+                  value={evt.title}
+                  onChange={(e) => updateEventItem(index, { title: e.target.value })}
+                  placeholder="e.g. Akshintalu / Haldi / Wedding"
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] font-bold w-full"
+                />
+              </div>
 
-          {/* Google Maps & Navigation */}
-          <div className="flex flex-col gap-2 w-full bg-[#FAF9F6] p-3 border border-zinc-200/60 rounded-xl mt-1">
-            <div className="flex items-center justify-between">
-              <label className="text-[9px] uppercase font-bold text-[#241E1C]/60 tracking-[1px]">Google Maps Embed Link / Place URL</label>
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1.5">
-                  <label htmlFor={`map-toggle-${evt.id || index}`} className="text-[8px] uppercase font-bold text-[#241E1C]/60 cursor-pointer">
-                    Show Map
-                  </label>
-                  <input
-                    type="checkbox"
-                    id={`map-toggle-${evt.id || index}`}
-                    checked={evt.showMap !== false}
-                    onChange={(e) => {
-                      updateInvitationData((prev) => {
-                        const list = [...prev.events];
-                        list[index] = { ...list[index], showMap: e.target.checked };
-                        return { ...prev, events: list };
-                      });
-                    }}
-                    className="w-3.5 h-3.5 rounded text-[#C49B27] accent-[#C49B27] cursor-pointer"
-                  />
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <label htmlFor={`dir-toggle-${evt.id || index}`} className="text-[8px] uppercase font-bold text-[#241E1C]/60 cursor-pointer">
-                    Show Directions Button
-                  </label>
-                  <input
-                    type="checkbox"
-                    id={`dir-toggle-${evt.id || index}`}
-                    checked={evt.showDirections !== false}
-                    onChange={(e) => {
-                      updateInvitationData((prev) => {
-                        const list = [...prev.events];
-                        list[index] = { ...list[index], showDirections: e.target.checked };
-                        return { ...prev, events: list };
-                      });
-                    }}
-                    className="w-3.5 h-3.5 rounded text-[#C49B27] accent-[#C49B27] cursor-pointer"
-                  />
-                </div>
+              <div className="flex flex-col gap-1 w-full">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Ceremony Icon / Theme</label>
+                <select
+                  value={
+                    evt.image?.includes("akshintalu") ? "/wedding/events/akshintalu.png" :
+                    evt.image?.includes("haldi") ? "/wedding/events/haldi.png" :
+                    evt.image?.includes("mehendi") ? "/wedding/events/mehendi.png" :
+                    evt.image?.includes("sangeeth") ? "/wedding/events/sangeeth.png" :
+                    evt.image?.includes("reception") ? "/wedding/events/reception.png" :
+                    evt.image?.includes("wedding") ? "/wedding/events/wedding.png" :
+                    evt.image ? "custom" : "auto"
+                  }
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    updateEventItem(index, {
+                      image: val === "auto" ? "" : val === "custom" ? evt.image || "" : val
+                    });
+                  }}
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] font-medium w-full"
+                >
+                  <option value="auto">✨ Auto Detect from Title</option>
+                  <option value="/wedding/events/akshintalu.png">🌾 Akshintalu / Talambralu</option>
+                  <option value="/wedding/events/haldi.png">💛 Haldi Ceremony</option>
+                  <option value="/wedding/events/mehendi.png">🌿 Mehendi Celebration</option>
+                  <option value="/wedding/events/sangeeth.png">🎶 Sangeeth Night</option>
+                  <option value="/wedding/events/wedding.png">💍 Wedding / Muhurtham</option>
+                  <option value="/wedding/events/reception.png">🥂 Reception</option>
+                </select>
               </div>
             </div>
-            <input
-              type="text"
-              value={evt.mapsEmbedUrl || ""}
-              placeholder="Paste Google Maps embed URL, place link, or share link..."
-              onChange={(e) => {
-                let val = e.target.value.trim();
-                const srcMatch = val.match(/src=["']([^"']+)["']/);
-                if (srcMatch) val = srcMatch[1];
-                updateInvitationData((prev) => {
-                  const list = [...prev.events];
-                  list[index] = { ...list[index], mapsEmbedUrl: val, mapsLink: val, directionsUrl: val };
-                  return { ...prev, events: list };
-                });
-              }}
-              className="bg-white border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] font-mono text-[11px] w-full"
-            />
-            <p className="text-[9px] text-zinc-400">
-              Paste your Google Maps embed code, place URL, or share link. The map and Get Directions button will automatically sync.
-            </p>
+
+            {/* Tagline / Subtitle */}
+            <div className="flex flex-col gap-1 w-full">
+              <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Ceremony Tagline / Subtitle</label>
+              <input
+                type="text"
+                value={evt.subTitle !== undefined ? evt.subTitle : (evt.description || "")}
+                onChange={(e) => updateEventItem(index, { subTitle: e.target.value, description: e.target.value })}
+                placeholder="e.g. Traditional ceremonies marking the sacred preparation and blessings of the..."
+                className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
+              />
+            </div>
+
+            {/* Date & Day of Week Tagline */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+              <div className="flex flex-col gap-1 w-full">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Date</label>
+                <input
+                  type="text"
+                  value={evt.date}
+                  onChange={(e) => updateEventItem(index, { date: e.target.value })}
+                  placeholder="e.g. Sunday, November 15, 2026"
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
+                />
+              </div>
+              <div className="flex flex-col gap-1 w-full">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Day / Date Tagline (Optional)</label>
+                <input
+                  type="text"
+                  value={evt.dayOfWeek || ""}
+                  onChange={(e) => updateEventItem(index, { dayOfWeek: e.target.value })}
+                  placeholder="e.g. Sunday Morning"
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
+                />
+              </div>
+            </div>
+
+            {/* Time & Muhurtham Details */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+              <div className="flex flex-col gap-1 w-full">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Ceremony Time</label>
+                <input
+                  type="text"
+                  value={evt.time || evt.startTime || ""}
+                  onChange={(e) => updateEventItem(index, { time: e.target.value, startTime: e.target.value, endTime: "" })}
+                  placeholder="e.g. 10:02 AM"
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
+                />
+              </div>
+              <div className="flex flex-col gap-1 w-full">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Muhurtham / Auspicious Timings (Optional)</label>
+                <input
+                  type="text"
+                  value={evt.muhurthamTime || ""}
+                  onChange={(e) => updateEventItem(index, { muhurthamTime: e.target.value })}
+                  placeholder="e.g. Sumuhurtham: 09:15 AM - 09:45 AM (Dhanur Lagna)"
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-serif text-[11px]"
+                />
+              </div>
+            </div>
+
+            {/* Venue Location (Primary & Optional Secondary Address) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+              <div className="flex flex-col gap-1 w-full">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Venue Name &amp; Location</label>
+                <input
+                  type="text"
+                  value={evt.venue || ""}
+                  onChange={(e) => updateEventItem(index, { venue: e.target.value })}
+                  placeholder="e.g. VIDITH REDDY GARDEN, VELLULLA ROAD, METPALLY"
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] font-semibold w-full"
+                />
+              </div>
+              <div className="flex flex-col gap-1 w-full">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1px]">Venue Address / Line 2 (Optional)</label>
+                <input
+                  type="text"
+                  value={evt.address || ""}
+                  onChange={(e) => updateEventItem(index, { address: e.target.value })}
+                  placeholder="Leave blank if already in venue name..."
+                  className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full"
+                />
+              </div>
+            </div>
+
+            {/* Google Maps & Navigation */}
+            <div className="flex flex-col gap-2 w-full bg-[#FAF9F6] p-3 border border-zinc-200/60 rounded-xl mt-1">
+              <div className="flex items-center justify-between">
+                <label className="text-[9px] uppercase font-bold text-[#241E1C]/60 tracking-[1px]">Google Maps Embed Link / Place URL</label>
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1.5">
+                    <label htmlFor={`map-toggle-${evt.id || index}`} className="text-[8px] uppercase font-bold text-[#241E1C]/60 cursor-pointer">
+                      Show Map
+                    </label>
+                    <input
+                      type="checkbox"
+                      id={`map-toggle-${evt.id || index}`}
+                      checked={evt.showMap !== false}
+                      onChange={(e) => updateEventItem(index, { showMap: e.target.checked })}
+                      className="w-3.5 h-3.5 rounded text-[#C49B27] accent-[#C49B27] cursor-pointer"
+                    />
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <label htmlFor={`dir-toggle-${evt.id || index}`} className="text-[8px] uppercase font-bold text-[#241E1C]/60 cursor-pointer">
+                      Show Directions Button
+                    </label>
+                    <input
+                      type="checkbox"
+                      id={`dir-toggle-${evt.id || index}`}
+                      checked={evt.showDirections !== false}
+                      onChange={(e) => updateEventItem(index, { showDirections: e.target.checked })}
+                      className="w-3.5 h-3.5 rounded text-[#C49B27] accent-[#C49B27] cursor-pointer"
+                    />
+                  </div>
+                </div>
+              </div>
+              <input
+                type="text"
+                value={evt.mapsEmbedUrl || ""}
+                placeholder="Paste Google Maps embed URL, place link, or share link..."
+                onChange={(e) => {
+                  let val = e.target.value.trim();
+                  const srcMatch = val.match(/src=["']([^"']+)["']/);
+                  if (srcMatch) val = srcMatch[1];
+                  updateEventItem(index, { mapsEmbedUrl: val, mapsLink: val, directionsUrl: val });
+                }}
+                className="bg-white border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] font-mono text-[11px] w-full"
+              />
+              <p className="text-[9px] text-zinc-400">
+                Paste your Google Maps embed code, place URL, or share link. The map preview and directions button will automatically sync with this location.
+              </p>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
-  );
+        ))}
+      </div>
+    );
+  };
 
   const renderStorySettings = () => {
     const isPelliPandiri = (invitationData.themeId || (invitationData as any).config?.themeId) === "pelli-pandiri";

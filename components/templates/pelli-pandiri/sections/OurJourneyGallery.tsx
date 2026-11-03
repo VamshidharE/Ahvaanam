@@ -350,7 +350,7 @@ export const OurJourneyGallery: React.FC<{ data: PelliPandiriData }> = ({ data }
         */}
         <div className="lg:hidden w-full overflow-hidden my-3">
           <motion.div
-            className="flex items-center gap-3.5 py-3 w-max"
+            className="flex items-center gap-3.5 py-3 w-max will-change-transform"
             animate={
               shouldReduceMotion
                 ? {}

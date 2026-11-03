@@ -250,7 +250,6 @@ const EventShowcase: React.FC<EventShowcaseProps> = ({ event, events }) => {
               <div>
                 <span className="font-cinzel text-xs sm:text-sm font-bold text-[#42100b] block leading-snug">
                   {event.startTime}
-                  {event.endTime ? ` – ${event.endTime}` : " Onwards"}
                 </span>
                 {event.muhurthamTime && (
                   <span className="text-[11px] sm:text-xs text-[#8e3622] font-cinzel font-semibold block mt-0.5">
@@ -270,7 +269,7 @@ const EventShowcase: React.FC<EventShowcaseProps> = ({ event, events }) => {
               <span className="font-cinzel text-xs sm:text-sm font-bold text-[#42100b] block leading-snug">
                 {event.venue}
               </span>
-              {event.address && (
+              {event.address && event.address.trim() && event.address.trim() !== event.venue.trim() && (
                 <span className="text-[11px] sm:text-xs text-[#744c2c] font-sans block mt-0.5 leading-snug">
                   {event.address}
                 </span>
@@ -348,7 +347,7 @@ export const WeddingCelebrationsSection: React.FC<{ data: PelliPandiriData }> = 
           className="relative w-[380px] h-[380px] sm:w-[520px] sm:h-[520px] md:w-[640px] md:h-[640px] opacity-80 sm:opacity-85 drop-shadow-[0_4px_28px_rgba(212,175,55,0.25)]"
         >
           <Image
-            src={data.assets.lotusMandala || "/templates/pelli-pandiri/decoration/Lotus-Mandala.png"}
+            src={data.assets.lotusMandala || "/templates/pelli-pandiri/decoration/Lotus-Mandala.webp"}
             alt="Sacred Lotus Mandala"
             fill
             sizes="(max-width: 640px) 380px, (max-width: 768px) 520px, 640px"
@@ -382,22 +381,24 @@ export const WeddingCelebrationsSection: React.FC<{ data: PelliPandiriData }> = 
           <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#b88636] to-transparent mt-2" />
         </div>
 
-        {/* Horizontal Event Nav Rail */}
-        <div className="w-full flex items-center justify-center mb-6 sm:mb-10 px-1 sm:px-4">
-          <div className="flex items-center justify-center gap-1.5 xs:gap-2 sm:gap-4 md:gap-6 overflow-x-hidden sm:overflow-visible py-1 sm:py-2 px-1 max-w-full scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {events.map((evt, idx) => (
-              <EventMarker
-                key={evt.id}
-                event={evt}
-                isActive={idx === activeIndex}
-                onClick={() => {
-                  setActiveIndex(idx);
-                  if (timerRef.current) clearInterval(timerRef.current);
-                }}
-              />
-            ))}
+        {/* Horizontal Event Nav Rail (Only displayed when there are multiple ceremonies) */}
+        {events.length > 1 && (
+          <div className="w-full flex items-center justify-center mb-6 sm:mb-10 px-1 sm:px-4">
+            <div className="flex items-center justify-center gap-1.5 xs:gap-2 sm:gap-4 md:gap-6 overflow-x-hidden sm:overflow-visible py-1 sm:py-2 px-1 max-w-full scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {events.map((evt, idx) => (
+                <EventMarker
+                  key={evt.id}
+                  event={evt}
+                  isActive={idx === activeIndex}
+                  onClick={() => {
+                    setActiveIndex(idx);
+                    if (timerRef.current) clearInterval(timerRef.current);
+                  }}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Selected Event Details & Map */}
         <EventShowcase event={currentEvent} events={events} />

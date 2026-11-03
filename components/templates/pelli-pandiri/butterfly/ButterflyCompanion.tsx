@@ -10,16 +10,15 @@ import { createButterfly, ButterflyInstance } from "./Butterfly3D";
  * A premium, genuine 3D butterfly companion rendered in WebGL that accompanies
  * guests as they explore the Ahvaanam wedding invitation.
  *
- * Features:
- * - Real 3D modeled anatomy: segmented body, antennae with gold tips, eyes, legs,
- *   and 4 independently flapping curved wings.
- * - Procedural translucent ivory/cream wing membranes with champagne-gold venation.
- * - Dynamic 3D banking, tilting, and yaw orientation in flight direction.
- * - Desktop: loosely trails cursor at variable distances with organic flutter.
- * - Mobile & Idle: graceful autonomous 3D flight path without blocking scrolling or touches.
- * - Respects prefers-reduced-motion with calm, stationary resting posture.
- * - Tab visibility detection to pause rendering and save 100% GPU/CPU when hidden.
- * - Non-blocking: fixed canvas with pointer-events-none.
+ * Performance-Optimized:
+ * - Desktop: Full 60fps, crisp 3D rendering, interactive cursor following, banking & flutter.
+ * - Mobile: Adaptive rendering (1.25x pixel ratio cap, avoiding 3x/4x DPR fill-rate exhaustion).
+ * - Mobile Scroll Awareness: Passive scroll tracking. During active scrolling, touch tracking is
+ *   decoupled so page scrolling never competes with butterfly flight. Frame rate adapts smoothly
+ *   to preserve 60fps scroll compositing on the main thread.
+ * - Anti-Jank Resize Guard: Ignores mobile dynamic URL bar fluctuations (50-80px) to prevent WebGL
+ *   framebuffer recreation during scrolling.
+ * - Reduced motion & tab visibility detection for 100% idle power savings.
  */
 export const ButterflyCompanion: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -28,24 +27,30 @@ export const ButterflyCompanion: React.FC = () => {
     const container = containerRef.current;
     if (!container) return;
 
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let isMobile = width < 768;
+
     // Check if WebGL is supported
     let renderer: THREE.WebGLRenderer;
     try {
       renderer = new THREE.WebGLRenderer({
         alpha: true,
-        antialias: true,
+        antialias: !isMobile, // On mobile high-DPI screens, MSAA is redundant and very costly
         powerPreference: "high-performance",
+        precision: isMobile ? "mediump" : "highp",
       });
     } catch {
-      // Graceful fallback if WebGL is unavailable
       console.warn("WebGL unsupported; ButterflyCompanion disabled.");
       return;
     }
 
-    let width = window.innerWidth;
-    let height = window.innerHeight;
+    // Adaptive pixel ratio: Desktop up to 2.0; Mobile capped at 1.25 (saves ~65% fill-rate)
+    const getTargetPixelRatio = (mob: boolean) =>
+      mob ? Math.min(window.devicePixelRatio || 1, 1.25) : Math.min(window.devicePixelRatio || 1, 2);
+
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setPixelRatio(getTargetPixelRatio(isMobile));
     renderer.domElement.style.width = "100%";
     renderer.domElement.style.height = "100%";
     renderer.domElement.style.display = "block";
@@ -71,10 +76,9 @@ export const ButterflyCompanion: React.FC = () => {
 
     // Instantiate 3D Butterfly
     const butterfly: ButterflyInstance = createButterfly();
+    butterfly.group.rotation.order = "ZXY";
     scene.add(butterfly.group);
 
-    // Scale according to screen size (subtle & elegant on both mobile and desktop)
-    const isMobile = width < 768;
     const baseScale = isMobile ? 0.72 : 0.88;
     butterfly.group.scale.set(baseScale, baseScale, baseScale);
 
@@ -100,44 +104,88 @@ export const ButterflyCompanion: React.FC = () => {
     let lastInteractionTime = performance.now();
     let autoTime = 0;
 
+    // SCROLL-ADAPTIVE STATE
+    let isScrolling = false;
+    let scrollTimeout: NodeJS.Timeout | null = null;
+    let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
+    let scrollVelocity = 0;
+    let lastScrollTime = performance.now();
+
+    const onScroll = () => {
+      const now = performance.now();
+      const dt = Math.max(1, now - lastScrollTime);
+      const dy = Math.abs(window.scrollY - lastScrollY);
+      scrollVelocity = dy / dt; // px/ms
+      lastScrollY = window.scrollY;
+      lastScrollTime = now;
+      isScrolling = true;
+
+      // When user starts scrolling, disengage touch tracking immediately so butterfly doesn't chase thumb
+      if (isMobile) {
+        isUserInteracting = false;
+      }
+
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        isScrolling = false;
+        scrollVelocity = 0;
+      }, 150);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
     // Pointer & Touch Listeners
     const onPointerMove = (e: MouseEvent) => {
-      if (isReducedMotion) return;
+      if (isReducedMotion || isMobile) return;
       isUserInteracting = true;
       lastInteractionTime = performance.now();
 
-      // Variable distance orbit offset so it never blocks the cursor or clicks
-      orbitAngle += 0.05;
-      const rx = 60 + Math.sin(orbitAngle * 0.7) * 15;
-      const ry = 42 + Math.cos(orbitAngle * 0.9) * 12;
+      // Fluid, natural orbiting envelope around cursor (free and organic, not rigidly glued)
+      orbitAngle += 0.038;
+      const rx = 60 + Math.sin(orbitAngle * 0.65) * 20;
+      const ry = 42 + Math.cos(orbitAngle * 0.85) * 16;
       targetPos.x = e.clientX + Math.cos(orbitAngle) * rx;
-      targetPos.y = e.clientY + Math.sin(orbitAngle) * ry - 24;
-      targetPos.z = Math.sin(orbitAngle * 1.2) * 20;
+      targetPos.y = e.clientY + Math.sin(orbitAngle) * ry - 22;
+      targetPos.z = Math.sin(orbitAngle * 1.1) * 18;
     };
 
     const onPointerLeave = () => {
       isUserInteracting = false;
     };
 
+    const onTouchStart = (e: TouchEvent) => {
+      if (isReducedMotion || e.touches.length === 0) return;
+      if (!isScrolling) {
+        isUserInteracting = true;
+        lastInteractionTime = performance.now();
+        targetPos.x = e.touches[0].clientX;
+        targetPos.y = e.touches[0].clientY - 30;
+      }
+    };
+
     const onTouchMove = (e: TouchEvent) => {
       if (isReducedMotion || e.touches.length === 0) return;
+      // If user is actively scrolling page, let native scroll take precedence
+      if (isScrolling) {
+        isUserInteracting = false;
+        return;
+      }
+
       isUserInteracting = true;
       lastInteractionTime = performance.now();
-
       const touch = e.touches[0];
       targetPos.x = touch.clientX;
-      targetPos.y = touch.clientY - 40;
+      targetPos.y = touch.clientY - 30;
     };
 
     const onTouchEnd = () => {
-      // Resume autonomous flight after brief pause
       setTimeout(() => {
         isUserInteracting = false;
-      }, 1200);
+      }, 700);
     };
 
     window.addEventListener("mousemove", onPointerMove, { passive: true });
     document.addEventListener("mouseleave", onPointerLeave, { passive: true });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
     window.addEventListener("touchmove", onTouchMove, { passive: true });
     window.addEventListener("touchend", onTouchEnd, { passive: true });
 
@@ -147,19 +195,35 @@ export const ButterflyCompanion: React.FC = () => {
     };
     reducedMotionQuery.addEventListener("change", onReducedMotionChange);
 
-    // Resize Handler
+    // Resize Handler with anti-jank mobile URL-bar guard
+    let lastRecordedW = width;
+    let lastRecordedH = height;
+
     const onResize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
+      const newWidth = window.innerWidth;
+      const newHeight = window.innerHeight;
+      const mob = newWidth < 768;
+
+      // Guard: On mobile, address bar collapsing/expanding alters height by ~60-80px.
+      // Avoid destroying and re-allocating WebGL framebuffer during scrolling.
+      if (Math.abs(newWidth - lastRecordedW) < 4 && Math.abs(newHeight - lastRecordedH) < (mob ? 130 : 12)) {
+        return;
+      }
+
+      lastRecordedW = newWidth;
+      lastRecordedH = newHeight;
+      width = newWidth;
+      height = newHeight;
+      isMobile = mob;
+
       renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setPixelRatio(getTargetPixelRatio(isMobile));
 
       camera.right = width;
       camera.bottom = -height;
       camera.updateProjectionMatrix();
 
-      const mobileNow = width < 768;
-      const newScale = mobileNow ? 0.72 : 0.88;
+      const newScale = isMobile ? 0.72 : 0.88;
       butterfly.group.scale.set(newScale, newScale, newScale);
     };
     window.addEventListener("resize", onResize, { passive: true });
@@ -168,6 +232,7 @@ export const ButterflyCompanion: React.FC = () => {
     let animId: number;
     let lastTime = performance.now();
     let isTabVisible = !document.hidden;
+    let frameCounter = 0;
 
     const onVisibilityChange = () => {
       isTabVisible = !document.hidden;
@@ -180,6 +245,14 @@ export const ButterflyCompanion: React.FC = () => {
     const animate = (now: number) => {
       animId = requestAnimationFrame(animate);
       if (!isTabVisible) return;
+
+      frameCounter++;
+
+      // Adaptive throttle: During fast mobile scrolling, render every 2nd RAF frame (30fps)
+      // giving 100% composite headroom to the browser scroll engine while keeping wing flutter visible.
+      if (isMobile && isScrolling && scrollVelocity > 0.4 && frameCounter % 2 !== 0) {
+        return;
+      }
 
       const delta = Math.min((now - lastTime) / 1000, 0.1);
       lastTime = now;
@@ -202,7 +275,10 @@ export const ButterflyCompanion: React.FC = () => {
 
       // AUTONOMOUS FLIGHT (Mobile or idle desktop)
       if (!isUserInteracting) {
-        autoTime += delta;
+        // During active mobile scroll, advance path at calm, stable speed (avoid jerky path jumps)
+        const timeRate = (isMobile && isScrolling) ? 0.5 : 1.0;
+        autoTime += delta * timeRate;
+
         const cx = width * 0.5;
         const cy = height * 0.45;
         const rx = Math.min(width * 0.38, 380);
@@ -219,19 +295,33 @@ export const ButterflyCompanion: React.FC = () => {
       const dy = targetPos.y - currentPos.y;
       const dist = Math.hypot(dx, dy);
 
-      const springK = isUserInteracting ? 0.048 : 0.024;
+      // Fluid, natural spring dynamics with organic momentum
+      const baseSpring = isUserInteracting ? 0.040 : 0.016;
+      const springK = (isMobile && isScrolling) ? 0.010 : baseSpring;
+
       vel.x += dx * springK;
       vel.y += dy * springK;
 
-      // Subtle organic flight flutter
-      const flutterX = Math.sin(now * 0.007) * 0.55;
-      const flutterY = Math.cos(now * 0.0055) * 0.55;
-      vel.x += flutterX;
-      vel.y += flutterY;
+      // Natural velocity ceiling: swift and nimble, but with organic glide
+      const maxSpeed = isUserInteracting ? (isMobile ? 12.0 : 18.0) : 4.8;
+      const currentSpeed = Math.hypot(vel.x, vel.y);
+      if (currentSpeed > maxSpeed) {
+        vel.x = (vel.x / currentSpeed) * maxSpeed;
+        vel.y = (vel.y / currentSpeed) * maxSpeed;
+      }
 
-      // Damping
-      vel.x *= 0.88;
-      vel.y *= 0.88;
+      // Organic buoyant lift & air-draft wander (gives free, living flight dynamics)
+      if (!isMobile || !isScrolling) {
+        const flutterX = Math.sin(now * 0.007) * 0.75 + Math.cos(now * 0.003) * 0.45;
+        const flutterY = Math.cos(now * 0.006) * 0.65 + Math.sin(now * 0.004) * 0.35;
+        vel.x += flutterX;
+        vel.y += flutterY;
+      }
+
+      // Fluid aerodynamic momentum damping (glides naturally rather than locking strictly)
+      const damping = (isMobile && isScrolling) ? 0.93 : (isUserInteracting ? 0.915 : 0.90);
+      vel.x *= damping;
+      vel.y *= damping;
 
       currentPos.x += vel.x;
       currentPos.y += vel.y;
@@ -242,36 +332,48 @@ export const ButterflyCompanion: React.FC = () => {
       goldPoint.position.set(currentPos.x - 30, -currentPos.y + 30, currentPos.z + 100);
 
       const speed = Math.hypot(vel.x, vel.y);
-      const isHovering = speed < 1.2 && dist < 35;
+      const isHovering = speed < 1.0 && dist < 45;
 
-      // 3D ORIENTATION & BANKING
-      if (speed > 0.3) {
-        // Yaw in screen space (vel.y positive is moving downwards, vel.x positive is right)
-        const targetYaw = Math.atan2(vel.y, vel.x) - Math.PI / 2;
+      // 3D ORIENTATION & NATURAL FLIGHT DYNAMICS
+      if (speed > 0.25) {
+        // Heading in world space:
+        // World coordinates: +X is Right, +Y is Up (-vel.y).
+        // Butterfly head is modeled along local +Y (angle +π/2).
+        // To point head in the direction of motion: targetHeading = moveAngle - π/2
+        const moveAngle = Math.atan2(-vel.y, vel.x);
+        const targetHeading = moveAngle - Math.PI / 2;
 
-        let diff = targetYaw - currentYaw;
+        let diff = targetHeading - currentYaw;
         while (diff < -Math.PI) diff += Math.PI * 2;
         while (diff > Math.PI) diff -= Math.PI * 2;
 
-        currentYaw += diff * Math.min(1, delta * 5.5);
+        // Smooth aerodynamic turn (carves natural curving flight path rather than rigid snap)
+        currentYaw += diff * Math.min(1, delta * 6.5);
 
-        // Bank into turns
-        const targetBank = THREE.MathUtils.clamp(-diff * 2.2, -0.65, 0.65);
+        // Fluid banking into turns (along local spine/Y axis, clamped to ±0.38 rad ~22deg)
+        const targetBank = THREE.MathUtils.clamp(-diff * 1.8, -0.38, 0.38);
         currentBank += (targetBank - currentBank) * Math.min(1, delta * 4.5);
 
-        // Pitch up when ascending, dip slightly when descending
-        const targetPitch = THREE.MathUtils.clamp(-vel.y * 0.028, -0.4, 0.4);
-        currentPitch += (targetPitch - currentPitch) * Math.min(1, delta * 4.0);
+        // Pitch along local X axis:
+        // When coming down from top (vel.y > 0), dip nose forward slightly (-0.3 rad)
+        // so the upper dorsal wing patterns remain beautifully visible to the viewer!
+        const targetPitch = vel.y > 0.6
+          ? THREE.MathUtils.clamp(-vel.y * 0.04, -0.32, -0.05)
+          : THREE.MathUtils.clamp(-vel.y * 0.02, 0, 0.18);
+        currentPitch += (targetPitch - currentPitch) * Math.min(1, delta * 3.0);
       } else {
-        currentBank += (0 - currentBank) * Math.min(1, delta * 3.0);
-        currentPitch += (0 - currentPitch) * Math.min(1, delta * 3.0);
+        currentBank += (0 - currentBank) * Math.min(1, delta * 2.5);
+        currentPitch += (0.05 - currentPitch) * Math.min(1, delta * 2.5);
       }
 
-      // Base three-quarter aesthetic tilt (-0.55 rad pitch towards viewer for natural depth)
+      // In "ZXY" rotation order:
+      // 1. Z rotates heading so head points forward in flight direction
+      // 2. X rotates pitch (nose up/down)
+      // 3. Y rotates roll/bank (along spine)
       butterfly.group.rotation.set(
-        -0.55 + currentPitch,
+        currentPitch,
         currentBank,
-        -currentYaw
+        currentYaw
       );
 
       // Animate wings
@@ -285,8 +387,11 @@ export const ButterflyCompanion: React.FC = () => {
     // Cleanup on unmount
     return () => {
       cancelAnimationFrame(animId);
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("mousemove", onPointerMove);
       document.removeEventListener("mouseleave", onPointerLeave);
+      window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("touchend", onTouchEnd);
       window.removeEventListener("resize", onResize);

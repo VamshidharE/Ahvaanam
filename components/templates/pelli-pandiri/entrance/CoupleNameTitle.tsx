@@ -58,11 +58,11 @@ export const CoupleNameTitle: React.FC<CoupleNameTitleProps> = ({
         </p>
 
         {/* Lord Ganesha Idol */}
-        <div className="relative w-14 h-16 sm:w-18 sm:h-20 md:w-22 md:h-26 my-1.5 flex items-center justify-center">
+        <div className="relative w-12 h-14 sm:w-15 sm:h-18 md:w-18 md:h-22 my-1 flex items-center justify-center">
           <img
-            src="/templates/pelli-pandiri/decoration/lord-ganesha.png"
+            src="/templates/pelli-pandiri/decoration/lord-ganesha.webp"
             alt="Lord Ganesha – Vignaharta"
-            className="w-full h-full object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.45)] drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)]"
+            className="w-full h-full object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.35)] drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)]"
           />
         </div>
       </motion.div>
