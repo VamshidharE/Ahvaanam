@@ -164,9 +164,9 @@ const DEFAULT_EVENT_ILLUSTRATIONS: Record<string, string> = {
   mehendi: "/templates/pelli-pandiri/events/event-haldi.png",
   sangeet: "/templates/pelli-pandiri/events/event-sangeet.png",
   sangeeth: "/templates/pelli-pandiri/events/event-sangeet.png",
-  wedding: "/templates/pelli-pandiri/events/event-muhurtham.png",
-  muhurtham: "/templates/pelli-pandiri/events/event-muhurtham.png",
-  reception: "/templates/pelli-pandiri/events/event-sangeet.png",
+  wedding: "/wedding/events/wedding.png",
+  muhurtham: "/wedding/events/wedding.png",
+  reception: "/wedding/events/reception.png",
 };
 
 export function mapInvitationConfigToPelliPandiri(rawPayload: any, clientId: string = ""): PelliPandiriData {
@@ -231,7 +231,7 @@ export function mapInvitationConfigToPelliPandiri(rawPayload: any, clientId: str
     ? rawEvents.map((evt: any, idx: number) => {
         const title = evt.title || evt.name || `Ceremony ${idx + 1}`;
         const tLower = title.toLowerCase();
-        let fallbackIll = "/templates/pelli-pandiri/events/event-muhurtham.png";
+        let fallbackIll = "/wedding/events/wedding.png";
         for (const [key, path] of Object.entries(DEFAULT_EVENT_ILLUSTRATIONS)) {
           if (tLower.includes(key)) {
             fallbackIll = path;
@@ -273,7 +273,10 @@ export function mapInvitationConfigToPelliPandiri(rawPayload: any, clientId: str
           directionsUrl: evt.directionsUrl || evt.mapsLink || "",
           showMap: evt.showMap !== false,
           showDirections: evt.showDirections !== false,
-          illustration: evt.image && evt.image.trim() ? evt.image : (evt.illustration || fallbackIll),
+          illustration: (() => {
+            const raw = evt.image && evt.image.trim() ? evt.image : (evt.illustration || fallbackIll);
+            return raw.includes("?") ? raw : `${raw}?v=2`;
+          })(),
           accentColor: evt.accentColor || "#8e3622",
           enabled: evt.enabled !== false,
         };
@@ -344,7 +347,7 @@ export function mapInvitationConfigToPelliPandiri(rawPayload: any, clientId: str
           venue: venueName,
           address: venueAddress,
           mapQuery: `${venueName}, ${venueAddress}`,
-          illustration: "/templates/pelli-pandiri/events/event-muhurtham.png",
+          illustration: "/wedding/events/wedding.png?v=2",
           accentColor: "#a3281d",
           enabled: true,
         },

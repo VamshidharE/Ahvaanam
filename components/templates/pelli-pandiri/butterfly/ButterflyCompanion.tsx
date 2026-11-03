@@ -179,8 +179,8 @@ export const ButterflyCompanion: React.FC = () => {
     };
 
     const onTouchEnd = () => {
-      // Resume autonomous flight smoothly after touch release
-      isUserInteracting = false;
+      // Retain the touch target for 1.8s so the butterfly promptly arrives at the tapped point
+      lastInteractionTime = performance.now();
     };
 
     window.addEventListener("mousemove", onPointerMove, { passive: true });
@@ -260,8 +260,8 @@ export const ButterflyCompanion: React.FC = () => {
         return;
       }
 
-      // Check interaction timeout
-      if (isUserInteracting && now - lastInteractionTime > 2000) {
+      // Check interaction timeout (1.8s idle resumes autonomous flight)
+      if (isUserInteracting && now - lastInteractionTime > 1800) {
         isUserInteracting = false;
       }
 
@@ -274,15 +274,16 @@ export const ButterflyCompanion: React.FC = () => {
         const dy = interactionTarget.y - pos.y;
         const dist = Math.hypot(dx, dy);
 
-        if (dist > 55) {
-          // Swift, direct flight toward guest's finger/cursor
+        if (dist > 36) {
+          // Swift, agile flight straight toward guest's finger or cursor
           targetHeading = Math.atan2(dy, dx);
-          targetSpeed = Math.min(isMobile ? 260 : 340, 150 + dist * 1.1);
+          // Scale speed dynamically with distance for quick arrival (up to 780-980 px/s)
+          targetSpeed = Math.min(isMobile ? 780 : 980, 220 + dist * 2.8);
         } else {
-          // Playfully orbit/glide in proximity without abruptly freezing
+          // Playfully orbit/flutter around cursor/finger tip without freezing
           const orbitAngle = Math.atan2(dy, dx) + Math.PI * 0.48;
           targetHeading = orbitAngle;
-          targetSpeed = isMobile ? 85 : 100;
+          targetSpeed = isMobile ? 120 : 140;
         }
       } else {
         // AUTONOMOUS FLIGHT: Graceful, continuous meandering wander
@@ -324,15 +325,17 @@ export const ButterflyCompanion: React.FC = () => {
       /* ═══════════════════════════════════════════════════════
          2. SMOOTH AERODYNAMIC TURNING & FORWARD MOTION
          ═══════════════════════════════════════════════════════ */
-      // Smoothly steer heading toward targetHeading
+      // Swift, agile turning toward user target (or gentle cruising in autonomous mode)
       const headingDiff = angleDifference(targetHeading, heading);
-      const maxTurnSpeed = isUserInteracting ? 5.5 : 2.6; // rad/sec
-      const turnStep = Math.max(-maxTurnSpeed * delta, Math.min(maxTurnSpeed * delta, headingDiff * 4.8 * delta));
+      const maxTurnSpeed = isUserInteracting ? 14.0 : 2.8; // rad/sec
+      const turnRate = isUserInteracting ? 12.0 : 4.8;
+      const turnStep = Math.max(-maxTurnSpeed * delta, Math.min(maxTurnSpeed * delta, headingDiff * turnRate * delta));
       heading += turnStep;
       turnVelocity = turnStep / Math.max(delta, 0.001);
 
-      // Smooth acceleration / deceleration
-      speed += (targetSpeed - speed) * Math.min(1, delta * 3.5);
+      // Fast, prompt acceleration when pursuing user gesture
+      const accelRate = isUserInteracting ? 9.5 : 3.5;
+      speed += (targetSpeed - speed) * Math.min(1, delta * accelRate);
 
       // FORWARD STEP: The butterfly always moves strictly along its current heading!
       // (This guarantees 0% chance of rotating in place or moving backwards)
@@ -353,7 +356,7 @@ export const ButterflyCompanion: React.FC = () => {
       // Since local model head is at +Y (PI/2), target yaw = -heading - PI/2.
       const targetYaw = -heading - Math.PI / 2;
       const yawDiff = angleDifference(targetYaw, currentYaw);
-      currentYaw += yawDiff * Math.min(1, delta * 7.5);
+      currentYaw += yawDiff * Math.min(1, delta * 12.0);
 
       // Roll / Bank into curve: turns left/right create natural aerodynamic body banking
       const targetBank = THREE.MathUtils.clamp(-turnVelocity * 0.08, -0.38, 0.38);
