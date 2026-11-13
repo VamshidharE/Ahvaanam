@@ -20,6 +20,11 @@ export async function POST(
   }
 
   try {
+    // Ignore demo events to prevent polluting real analytics
+    if (id.startsWith("demo-") || id === "demo") {
+      return NextResponse.json({ success: true, ignored: "demo_analytics" });
+    }
+
     // 2. Read request body (supports standard JSON & sendBeacon text)
     let payload: AnalyticsTrackPayload;
     try {

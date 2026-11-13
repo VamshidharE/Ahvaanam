@@ -18,6 +18,9 @@ export async function POST(
   }
 
   const { id } = await params;
+  if (id.startsWith("demo-") || id === "demo") {
+    return NextResponse.json({ error: "Demo templates cannot be modified through this endpoint." }, { status: 403 });
+  }
   const parsedId = slugSchema.safeParse(id);
   if (!parsedId.success) {
     return NextResponse.json({

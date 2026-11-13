@@ -1,0 +1,235 @@
+{
+  "themeId": "lotus-mandapam",
+  "status": "published",
+  "_status": "published",
+  "date": "2026-12-28",
+  "time": "9:12 AM",
+  "hero": {
+    "id": "hero",
+    "enabled": true,
+    "title": "The Wedding of",
+    "subtitle": "With the blessings of our families, we joyfully invite you to celebrate the wedding of",
+    "welcomeMessage": "\u0965 \u0936\u094d\u0930\u0940 \u0917\u0923\u0947\u0936\u093e\u092f \u0928\u092e\u0903 \u0965",
+    "heroImage": "/templates/emerald-palace/hero-temple-sunset.jpg",
+    "coupleImage": "/templates/emerald-palace/couple-hero.png",
+    "ctaText": "Scroll to Explore",
+    "musicAutoplay": false,
+    "showParticles": true
+  },
+  "couple": {
+    "id": "couple",
+    "enabled": true,
+    "primarySide": "groom",
+    "portraitImage": "/templates/emerald-palace/couple-portrait-large.jpg",
+    "groom": {
+      "name": "Arjun",
+      "surname": "Gupta",
+      "image": "/templates/emerald-palace/gallery-groom.jpg",
+      "bio": "A compassionate soul of vision and values, finding infinite beauty in love and traditions."
+    },
+    "bride": {
+      "name": "Divya",
+      "surname": "Rao",
+      "image": "/templates/emerald-palace/gallery-bride.jpg",
+      "bio": "A radiant spirit of grace and creativity, bringing joyous light into every gathering."
+    }
+  },
+  "families": {
+    "id": "families",
+    "enabled": true,
+    "title": "With the Blessings of Our Families",
+    "eyebrow": "The Union of Two Families",
+    "blessingQuote": "Together, our families welcome you to celebrate this beautiful union.",
+    "groomFamilyTitle": "The Gupta Family",
+    "brideFamilyTitle": "The Rao Family",
+    "groomParents": "Sri Ramesh Gupta & Smt. Lalitha Gupta",
+    "brideParents": "Sri Prabhakar Rao & Smt. Sushma Rao",
+    "groomFamilyImage": "/templates/emerald-palace/family-groom.jpg",
+    "brideFamilyImage": "/templates/emerald-palace/family-bride.jpg",
+    "groomFamilyFocalPoint": "center 20%",
+    "brideFamilyFocalPoint": "center 20%",
+    "groomPortrait": "/templates/emerald-palace/gallery-groom.jpg",
+    "bridePortrait": "/templates/emerald-palace/gallery-bride.jpg",
+    "groomFamily": [
+      {
+        "relation": "Parents",
+        "name": "Sri Ramesh Gupta & Smt. Lalitha Gupta"
+      },
+      {
+        "relation": "Sister",
+        "name": "Pooja Gupta"
+      }
+    ],
+    "brideFamily": [
+      {
+        "relation": "Parents",
+        "name": "Sri Prabhakar Rao & Smt. Sushma Rao"
+      },
+      {
+        "relation": "Brother",
+        "name": "Karthik Rao"
+      }
+    ]
+  },
+  "story": {
+    "id": "story",
+    "enabled": true,
+    "title": "Our Story",
+    "text": "From a chance meeting to a lifelong journey, our story has been one of friendship, laughter, and sacred promises. What began in quiet companionship blossomed into a deep love rooted in shared values, family traditions, and dreams of a forever together.",
+    "couplePhoto": "/templates/emerald-palace/story-candid.jpg",
+    "couplePhoto2": "/templates/emerald-palace/story-hands.jpg"
+  },
+  "events": [
+    {
+      "id": "pellikuthuru",
+      "title": "Pellikuthuru (Haldi)",
+      "subtitle": "Auspicious Turmeric Ceremony",
+      "date": "26 Dec 2026",
+      "time": "10:00 AM",
+      "venue": "Sri Venkateswara Kalyana Mandapam",
+      "address": "Main Road, Ibrahimpatnam, Hyderabad 501506",
+      "description": "Basking in the golden radiance of sacred turmeric paste, fragrant petals, and playful music as loved ones bless the couple.",
+      "dressCode": "Sunshine Yellow / Traditional Attire",
+      "icon": "haldi",
+      "image": "/templates/emerald-palace/event-haldi.jpg",
+      "enabled": true
+    },
+    {
+      "id": "sangeeth",
+      "title": "Sangeeth Night",
+      "subtitle": "A Musical Celebration of Dance",
+      "date": "26 Dec 2026",
+      "time": "7:00 PM",
+      "venue": "Sri Venkateswara Kalyana Mandapam",
+      "address": "Grand Ballroom, Ibrahimpatnam, Hyderabad",
+      "description": "An electric evening filled with celebratory performances, energetic dhol beats, festive music, and boundless joy.",
+      "dressCode": "Festive Glam / Royal Hues",
+      "icon": "sangeeth",
+      "image": "/templates/emerald-palace/event-sangeeth.jpg",
+      "enabled": true
+    },
+    {
+      "id": "wedding-muhurtam",
+      "title": "Wedding Muhurtam",
+      "subtitle": "The Sacred Vows & Pheras",
+      "date": "28 Dec 2026",
+      "time": "9:12 AM",
+      "venue": "Sri Venkateswara Kalyana Mandapam",
+      "address": "Main Temple Mandap, Ibrahimpatnam, Hyderabad",
+      "description": "Witness the sacred union amidst holy Vedic mantras, jasmine garlands, the sacred fire, and divine blessings.",
+      "dressCode": "Traditional South Indian Silks",
+      "icon": "muhurtam",
+      "auspiciousTime": "Sumuhurtham: 9:12 AM",
+      "image": "/templates/emerald-palace/event-muhurtam.jpg",
+      "enabled": true
+    },
+    {
+      "id": "reception",
+      "title": "Reception",
+      "subtitle": "Grand Celebratory Banquet",
+      "date": "28 Dec 2026",
+      "time": "6:30 PM",
+      "venue": "Sri Venkateswara Kalyana Mandapam Lawns",
+      "address": "Royal Courtyard Lawns, Ibrahimpatnam, Hyderabad",
+      "description": "A joyous evening of heartfelt congratulations, royal banquet dining, music, and celebrating the newlyweds.",
+      "dressCode": "Indo-Western / Formal Festive",
+      "icon": "reception",
+      "image": "/templates/emerald-palace/event-reception.jpg",
+      "enabled": true
+    }
+  ],
+  "video": {
+    "enabled": true,
+    "title": "Our Wedding Film",
+    "subtitle": "Relive the timeless moments, laughter, and sacred vows captured in cinematic motion.",
+    "url": "/wedding/procession/procession.mp4",
+    "poster": "/templates/emerald-palace/couple-portrait-large.jpg"
+  },
+  "venue": {
+    "enabled": true,
+    "title": "Wedding Venue",
+    "name": "Sri Venkateswara Kalyana Mandapam",
+    "city": "Ibrahimpatnam, Hyderabad",
+    "address": "Main Road, Ibrahimpatnam, Hyderabad 501506",
+    "mapsLink": "https://maps.google.com/?q=Sri+Venkateswara+Kalyana+Mandapam+Hyderabad",
+    "venues": [
+      {
+        "id": "venue-1",
+        "title": "Wedding Venue",
+        "venueName": "Sri Venkateswara Kalyana Mandapam",
+        "city": "Ibrahimpatnam, Hyderabad",
+        "address": "Main Road, Ibrahimpatnam, Hyderabad 501506",
+        "mapsUrl": "https://maps.google.com/?q=Sri+Venkateswara+Kalyana+Mandapam+Hyderabad"
+      }
+    ]
+  },
+  "reception": {
+    "enabled": true,
+    "title": "Reception",
+    "venue": "Sri Venkateswara Kalyana Mandapam Lawns",
+    "city": "Ibrahimpatnam, Hyderabad",
+    "address": "Main Road, Ibrahimpatnam, Hyderabad 501506",
+    "date": "28 Dec 2026",
+    "time": "6:30 PM",
+    "mapsLink": "https://maps.google.com/?q=Sri+Venkateswara+Kalyana+Mandapam+Hyderabad"
+  },
+  "gallery": [
+    {
+      "src": "/templates/emerald-palace/couple-portrait-large.jpg",
+      "alt": "Arjun & Divya Royal Portrait",
+      "caption": "Eternal Beginning"
+    },
+    {
+      "src": "/templates/emerald-palace/story-candid.jpg",
+      "alt": "Sunset Courtyard Candid",
+      "caption": "Joyous Laughter"
+    },
+    {
+      "src": "/templates/emerald-palace/gallery-bride.jpg",
+      "alt": "Divya Bridal Glow",
+      "caption": "Bridal Radiance"
+    },
+    {
+      "src": "/templates/emerald-palace/gallery-groom.jpg",
+      "alt": "Arjun Regal Groom",
+      "caption": "Royal Heritage"
+    },
+    {
+      "src": "/templates/emerald-palace/story-hands.jpg",
+      "alt": "Sacred Clasped Hands",
+      "caption": "Sacred Bond"
+    },
+    {
+      "src": "/templates/emerald-palace/event-muhurtam.jpg",
+      "alt": "Sacred Kalyana Mandapam",
+      "caption": "Divine Blessings"
+    }
+  ],
+  "rsvp": {
+    "id": "rsvp",
+    "enabled": true,
+    "title": "Will You Be Joining Us?",
+    "subtitle": "Please let us know your plans so we can make your celebration delightful.",
+    "message": "Looking forward to celebrating this auspicious union with you.",
+    "contacts": [
+      {
+        "type": "whatsapp",
+        "label": "RSVP WhatsApp",
+        "value": "+91 9866767100"
+      }
+    ]
+  },
+  "music": {
+    "file": "/wedding/rose-mandap/theme-music.MP3",
+    "enabled": true
+  },
+  "footer": {
+    "id": "footer",
+    "enabled": true,
+    "quote": "Looking forward to celebrating this auspicious union with you.",
+    "blessing": "With love & blessings from Gupta & Rao Families",
+    "designer": "Ahvaanam",
+    "service": "Digital Wedding Invitations",
+    "location": "Hyderabad, Telangana"
+  }
+}

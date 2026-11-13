@@ -55,28 +55,44 @@ export const configUpdateSchema = z.object({
   sectionOrder: z.array(z.string()).optional(),
 }).passthrough();
 
+export const ALLOWED_UPLOAD_MIME_TO_EXT: Record<string, string[]> = {
+  "image/jpeg": [".jpg", ".jpeg"],
+  "image/png": [".png"],
+  "image/webp": [".webp"],
+  "audio/mpeg": [".mp3"],
+  "audio/mp3": [".mp3"],
+  "audio/wav": [".wav"],
+  "audio/x-wav": [".wav"],
+  "audio/m4a": [".m4a"],
+  "audio/x-m4a": [".m4a"],
+  "audio/aac": [".aac"],
+  "audio/ogg": [".ogg", ".oga"],
+  "audio/mp4": [".m4a", ".mp4"],
+  "video/mp4": [".mp4"],
+  "video/webm": [".webm"],
+  "video/quicktime": [".mov"],
+  "video/ogg": [".ogv", ".ogg"],
+};
+
 export const uploadMetadataSchema = z.object({
-  size: z.number().max(25 * 1024 * 1024, "Payload Too Large. Maximum allowed size is 25 MB."),
+  size: z.number().max(100 * 1024 * 1024, "Payload Too Large. Maximum allowed size is 100 MB."),
   type: z.string().refine(
-    (type) => [
-      "image/jpeg",
-      "image/png",
-      "image/webp",
-      "audio/mpeg",
-      "audio/mp3",
-      "audio/wav",
-      "audio/x-wav",
-      "audio/m4a",
-      "audio/x-m4a",
-      "audio/aac",
-      "audio/ogg",
-      "audio/mp4"
-    ].includes(type.toLowerCase()),
+    (type) => Object.prototype.hasOwnProperty.call(ALLOWED_UPLOAD_MIME_TO_EXT, type.toLowerCase()),
     {
-      message: "Unsupported Media Type. Only JPEG, PNG, WEBP images and MP3, WAV, M4A, OGG audio files are allowed."
+      message: "Unsupported Media Type. Allowed: JPEG, PNG, WEBP images; MP3, WAV, M4A, OGG audio; MP4, WEBM, MOV videos."
     }
   ),
   name: z.string().min(1, "File name is required"),
+}).superRefine((data, ctx) => {
+  const isVideo = data.type.toLowerCase().startsWith("video/");
+  const maxBytes = isVideo ? 100 * 1024 * 1024 : 25 * 1024 * 1024;
+  if (data.size > maxBytes) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["size"],
+      message: `Payload Too Large. Maximum allowed size is ${isVideo ? "100 MB" : "25 MB"}.`,
+    });
+  }
 });
 
 export const loginSchema = z.object({

@@ -1,0 +1,1549 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Marcellus&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=Rozha+One&display=swap');
+
+/* =========================================================
+   EMERALD PALACE — WARM IVORY & BURGUNDY LUXURY PALETTE
+   ========================================================= */
+
+.lotus-mandapam-template,
+.emerald-palace-template,
+.lotus-opening-overlay,
+.emerald-opening-overlay {
+  --ep-ivory: #FFF6E9;
+  --ep-champagne: #F7E8D0;
+  --ep-burgundy: #781D36;
+  --ep-wine: #65182F;
+  --ep-blush: #E8A8AD;
+  --ep-dusty-rose: #D98F9B;
+  --ep-gold-champagne: #D6AD63;
+  --ep-gold-antique: #B88A3B;
+  --ep-brown-dark: #542D2A;
+
+  --ep-bg-ivory: #FFF6E9;
+  --ep-bg-champagne: #F7E8D0;
+  --ep-bg-burgundy: #781D36;
+  --ep-bg-wine: #65182F;
+
+  --ep-text-main: #542D2A;
+  --ep-text-muted: #7E5B58;
+  --ep-text-gold: #D6AD63;
+  --ep-text-burgundy: #781D36;
+
+  --ep-gold-glow: rgba(214, 173, 99, 0.35);
+  --ep-burgundy-glow: rgba(120, 29, 54, 0.25);
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-royal: 'Cinzel', 'Marcellus', Georgia, serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-mantra: 'Rozha One', 'Cormorant Garamond', serif;
+
+  font-family: var(--font-serif);
+  color: var(--ep-text-main);
+  background-color: var(--ep-ivory);
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
+  box-sizing: border-box;
+}
+
+.emerald-palace-template *,
+.lotus-opening-overlay,
+.emerald-opening-overlay * {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   KEYFRAME ANIMATIONS
+   ========================================================= */
+
+@keyframes epBellSway {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(3.5deg);
+  }
+  75% {
+    transform: rotate(-3.5deg);
+  }
+}
+
+@keyframes epPetalDrift {
+  0% {
+    transform: translate3d(0, -50px, 0) rotate(0deg) scale(0.7);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  85% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate3d(100px, 105vh, 0) rotate(420deg) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes epSlowZoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes epGentleBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@keyframes epGoldShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.ep-bell-sway {
+  transform-origin: top center;
+  animation: epBellSway 4s ease-in-out infinite;
+}
+
+.ep-slow-zoom {
+  animation: epSlowZoom 22s ease-in-out infinite;
+}
+
+.ep-scroll-bounce {
+  animation: epGentleBounce 2s ease-in-out infinite;
+}
+
+@keyframes epMandalaSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes epBougainvilleaSway {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(1.8deg) scale(1.015);
+  }
+}
+
+.ep-mandala-spin {
+  animation: epMandalaSpin 90s linear infinite;
+  will-change: transform;
+}
+
+.ep-bougainvillea-sway {
+  transform-origin: top right;
+  animation: epBougainvilleaSway 7s ease-in-out infinite;
+}
+
+@keyframes epHangingSway {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  33% {
+    transform: rotate(2deg);
+  }
+  66% {
+    transform: rotate(-2deg);
+  }
+}
+
+.ep-hanging-sway {
+  transform-origin: top center;
+  animation: epHangingSway 6.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.ep-hanging-sway-delayed {
+  transform-origin: top center;
+  animation: epHangingSway 8s ease-in-out infinite;
+  animation-delay: -3.5s;
+  will-change: transform;
+}
+
+@keyframes epGentleBreathe {
+  0%, 100% {
+    opacity: 0.82;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+.ep-kolam-breathe {
+  animation: epGentleBreathe 7s ease-in-out infinite;
+}
+
+/* =========================================================
+   INDEPENDENT LUXURY SECTION BACKGROUNDS
+   Each section has its own distinctive rich environment
+   ========================================================= */
+
+/* A. Family Section: Handmade cotton-rag paper with blind-embossed floral damask */
+.ep-bg-family-embossed {
+  background-color: #FFF6E9;
+  background-image: 
+    radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.65) 0%, transparent 68%),
+    url('/templates/emerald-palace/bg-family-embossed.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* B. Couple Section: Warm dimensional sandstone and royal parchment */
+.ep-bg-couple-sandstone {
+  background-color: #F8EEDC;
+  background-image: 
+    radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.6) 0%, transparent 65%),
+    url('/templates/emerald-palace/bg-couple-sandstone.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* C. Wedding Celebrations: South Indian festive temple courtyard with marigold petals */
+.ep-bg-celebrations-courtyard {
+  background-color: #FAF2E6;
+  background-image: 
+    radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 246, 233, 0.45) 80%),
+    url('/templates/emerald-palace/bg-celebrations-courtyard.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+
+/* D. Wedding Film: Kanchipuram deep wine silk fabric with gold zari slub weave */
+.ep-bg-film-silk {
+  background-color: #581426;
+  background-image: 
+    radial-gradient(circle at 50% 25%, rgba(135, 30, 58, 0.45) 0%, rgba(45, 10, 20, 0.94) 100%),
+    url('/templates/emerald-palace/bg-film-silk.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* E. Gallery: Refined fine art photographic gallery with textured handmade paper backing */
+.ep-bg-gallery-fineart {
+  background-color: #FFF8EE;
+  background-image: 
+    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 246, 233, 0.4) 75%),
+    url('/templates/emerald-palace/bg-family-embossed.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* F. Countdown & RSVP: Royal wedding stationery card section environment */
+.ep-bg-rsvp-stationery-section {
+  background-color: #F8EEDC;
+  background-image: 
+    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.65) 0%, transparent 70%),
+    url('/templates/emerald-palace/bg-couple-sandstone.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* G. Royal Footer: Rich Kanchipuram deep burgundy silk tapestry with candlelight glow */
+.ep-bg-footer-silk {
+  background-color: #4A1020;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(135, 30, 58, 0.55) 0%, rgba(35, 7, 15, 0.96) 100%),
+    url('/templates/emerald-palace/bg-footer-silk.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* Luxury RSVP Stationery Invitation Card */
+.ep-rsvp-card-stationery {
+  background-color: #FFFDF9;
+  background-image: 
+    linear-gradient(135deg, rgba(255, 253, 249, 0.93) 0%, rgba(255, 248, 238, 0.90) 100%),
+    url('/templates/emerald-palace/bg-rsvp-stationery.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid #D6AD63;
+  box-shadow: 
+    0 25px 60px rgba(84, 45, 42, 0.14),
+    0 0 0 1px rgba(223, 183, 89, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Gilded Dual-Tone Antique Gold Countdown Units */
+.ep-countdown-unit-gilded {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF8EE 100%);
+  border: 1.5px solid #DFB759;
+  box-shadow: 
+    0 4px 14px rgba(214, 173, 99, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(214, 173, 99, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.ep-countdown-unit-gilded::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #DFB759, transparent);
+}
+
+/* Legacy Fallbacks */
+.ep-bg-parchment {
+  background-color: #FFF8EE;
+  background-image: 
+    radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.75) 0%, transparent 65%),
+    url('/templates/emerald-palace/bg-family-embossed.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.ep-bg-ivory-damask {
+  background-color: #FFF6E9;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.8) 0%, transparent 70%),
+    url('/templates/emerald-palace/bg-family-embossed.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.ep-bg-burgundy-brocade {
+  background-color: #65182F;
+  background-image: 
+    radial-gradient(circle at 50% 20%, rgba(120, 29, 54, 0.5) 0%, rgba(55, 12, 25, 0.92) 100%),
+    url('/templates/emerald-palace/bg-film-silk.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* =========================================================
+   TOP NAVIGATION BAR
+   ========================================================= */
+
+.ep-navbar {
+  display: none !important;
+}
+
+@media (min-width: 768px) {
+  .ep-navbar {
+    display: flex !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    height: 60px;
+    background: #FFF6E9;
+    box-shadow: 0 2px 14px rgba(84, 45, 42, 0.07);
+    border-bottom: 1px solid rgba(214, 173, 99, 0.35);
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    transition: all 0.3s ease;
+  }
+}
+
+.ep-nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-royal);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--ep-burgundy);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+
+.ep-nav-links {
+  display: none;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .ep-nav-links {
+    display: flex;
+  }
+  .ep-nav-links-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 2rem;
+  }
+}
+
+.ep-nav-link {
+  font-family: var(--font-royal);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ep-text-main);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.ep-nav-link:hover {
+  color: var(--ep-burgundy);
+}
+
+.ep-nav-rsvp-btn {
+  font-family: var(--font-royal);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #781D36, #65182F);
+  color: #FFF6E9;
+  border: 1px solid rgba(214, 173, 99, 0.6);
+  padding: 0.45rem 1.25rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px rgba(120, 29, 54, 0.25);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ep-nav-rsvp-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(120, 29, 54, 0.35);
+  border-color: #D6AD63;
+}
+
+/* =========================================================
+   HERO SECTION
+   ========================================================= */
+
+/* =========================================================
+   CINEMATIC COUPLE-FOCUSED HERO SECTION
+   ========================================================= */
+
+.ep-hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0.75rem 0 0.75rem;
+  overflow: hidden;
+  background-color: #F7E8D0;
+}
+
+@media (min-width: 1024px) {
+  .ep-hero-section {
+    padding: 4.5rem 2rem 0 2rem;
+  }
+}
+
+.ep-hero-bg-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ep-hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+}
+
+.ep-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 246, 233, 0.08) 0%,
+    transparent 15%,
+    transparent 72%,
+    rgba(255, 246, 233, 0.25) 88%,
+    rgba(255, 246, 233, 0.95) 98%,
+    #FFF6E9 100%
+  );
+  pointer-events: none;
+}
+
+/* Hanging Corner Bougainvillea Branches */
+.ep-hero-bougainvillea-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  max-width: 38vw;
+  pointer-events: none;
+  z-index: 10;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.18));
+}
+
+@media (min-width: 640px) {
+  .ep-hero-bougainvillea-left {
+    width: 220px;
+  }
+}
+@media (min-width: 1024px) {
+  .ep-hero-bougainvillea-left {
+    width: 320px;
+  }
+}
+
+.ep-hero-bougainvillea-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 140px;
+  max-width: 38vw;
+  pointer-events: none;
+  z-index: 10;
+  transform: scaleX(-1);
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.18));
+}
+
+@media (min-width: 640px) {
+  .ep-hero-bougainvillea-right {
+    width: 220px;
+  }
+}
+@media (min-width: 1024px) {
+  .ep-hero-bougainvillea-right {
+    width: 320px;
+  }
+}
+
+/* Hanging Brass Bells */
+.ep-hero-bell-left {
+  position: absolute;
+  top: 0;
+  left: 0.75rem;
+  z-index: 12;
+  pointer-events: none;
+}
+
+@media (min-width: 640px) {
+  .ep-hero-bell-left {
+    left: 2.5rem;
+  }
+}
+
+.ep-hero-bell-right {
+  position: absolute;
+  top: 0;
+  right: 0.75rem;
+  z-index: 12;
+  pointer-events: none;
+}
+
+@media (min-width: 640px) {
+  .ep-hero-bell-right {
+    right: 2.5rem;
+  }
+}
+
+/* Dedicated Content Wrapper: Asymmetric 2-Column on Desktop, Stacked on Mobile */
+.ep-hero-content-wrapper {
+  position: relative;
+  z-index: 15;
+  width: 100%;
+  max-width: 82rem;
+  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .ep-hero-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-end;
+    gap: 3rem;
+    padding-bottom: 0;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Couple Cutout Column attached firmly to bottom of the section */
+.ep-hero-couple-col {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  order: 2;
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .ep-hero-couple-col {
+    order: 1;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-right: 1.5rem;
+  }
+}
+
+.ep-hero-couple-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 480px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+@media (min-width: 640px) {
+  .ep-hero-couple-stage {
+    max-width: 580px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ep-hero-couple-stage {
+    max-width: 580px;
+  }
+}
+
+/* Soft luminous warm glow behind couple separating them from background temple */
+.ep-hero-couple-aura {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 65%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 240, 215, 0.45) 0%,
+    rgba(214, 173, 99, 0.15) 50%,
+    transparent 75%
+  );
+  filter: blur(24px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Contact shadow grounding the feet right at the bottom edge */
+.ep-hero-couple-ground-shadow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 24px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(20, 8, 12, 0.65) 0%,
+    rgba(20, 8, 12, 0.25) 55%,
+    transparent 80%
+  );
+  filter: blur(8px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ep-hero-couple-pic {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  line-height: 0;
+}
+
+/* Couple cutout attached directly to bottom with calibrated desktop proportion */
+.ep-hero-couple-img {
+  width: auto;
+  max-width: 94vw;
+  height: 50vh;
+  max-height: 420px;
+  object-fit: contain;
+  object-position: bottom center;
+  vertical-align: bottom;
+  margin-bottom: 0;
+  filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.42));
+  transition: transform 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .ep-hero-couple-img {
+    height: 65vh;
+    max-height: 580px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ep-hero-couple-img {
+    height: 70vh;
+    max-height: 640px;
+    max-width: 100%;
+    filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.45));
+  }
+}
+
+/* Typography Column */
+.ep-hero-typography-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  order: 1;
+  width: 100%;
+  z-index: 20;
+  margin-top: 0.15rem;
+}
+
+@media (min-width: 1024px) {
+  .ep-hero-typography-col {
+    order: 2;
+    padding-bottom: 12vh;
+    align-items: center;
+    margin-top: 0;
+    padding-left: 2rem;
+  }
+}
+
+/* =========================================================
+   ROYAL ARCHED INVITATION TEXT BOX & COLORFUL TYPOGRAPHY
+   ========================================================= */
+
+.ep-hero-arch-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 76vw;
+  max-width: 255px;
+  padding: 0.75rem 0.85rem 0.65rem 0.85rem;
+  margin: 0 auto;
+  border-radius: 80px 80px 14px 14px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 252, 247, 0.78) 0%,
+    rgba(255, 248, 238, 0.72) 50%,
+    rgba(253, 242, 226, 0.78) 100%
+  );
+  border: 1.25px solid rgba(214, 173, 99, 0.85);
+  box-shadow: 
+    0 10px 24px rgba(45, 12, 20, 0.16),
+    0 2px 6px rgba(0, 0, 0, 0.08),
+    inset 0 0 16px rgba(214, 173, 99, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10;
+}
+
+/* Inset fine gold hairline contour inside the arch */
+.ep-hero-arch-card::before {
+  content: '';
+  position: absolute;
+  inset: 3.5px;
+  border-radius: 76px 76px 10px 10px;
+  border: 1px solid rgba(214, 173, 99, 0.45);
+  pointer-events: none;
+}
+
+@media (min-width: 640px) {
+  .ep-hero-arch-card {
+    width: auto;
+    max-width: 340px;
+    padding: 1.75rem 1.5rem 1.4rem 1.5rem;
+    border-radius: 120px 120px 18px 18px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 252, 247, 0.96) 0%,
+      rgba(255, 248, 238, 0.94) 50%,
+      rgba(253, 242, 226, 0.96) 100%
+    );
+    border: 1.5px solid #D6AD63;
+    box-shadow: 
+      0 16px 36px rgba(45, 12, 20, 0.22),
+      0 4px 12px rgba(0, 0, 0, 0.1),
+      inset 0 0 24px rgba(214, 173, 99, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .ep-hero-arch-card::before {
+    inset: 5px;
+    border-radius: 115px 115px 13px 13px;
+    border: 1px solid rgba(214, 173, 99, 0.55);
+  }
+}
+
+@media (min-width: 1024px) {
+  .ep-hero-arch-card {
+    max-width: 370px;
+    padding: 2rem 1.85rem 1.65rem 1.85rem;
+    border-radius: 140px 140px 22px 22px;
+    box-shadow: 
+      0 20px 48px rgba(45, 12, 20, 0.25),
+      0 6px 16px rgba(0, 0, 0, 0.12),
+      inset 0 0 28px rgba(214, 173, 99, 0.15);
+  }
+  .ep-hero-arch-card::before {
+    inset: 6px;
+    border-radius: 134px 134px 16px 16px;
+  }
+}
+
+/* Top decorative arch finial */
+.ep-hero-arch-finial {
+  margin-top: -0.25rem;
+  margin-bottom: 0.1rem;
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .ep-hero-arch-finial {
+    margin-top: -0.35rem;
+    margin-bottom: 0.15rem;
+  }
+}
+
+/* Sacred Ganesh Mantra - Deep Kumkum Crimson */
+.ep-hero-mantra {
+  font-family: var(--font-mantra);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #9E1B32;
+  margin-top: 0.05rem;
+  margin-bottom: 0.1rem;
+}
+
+@media (min-width: 640px) {
+  .ep-hero-mantra {
+    font-size: 1.05rem;
+    letter-spacing: 0.18em;
+    margin-top: 0.1rem;
+    margin-bottom: 0.15rem;
+  }
+}
+
+/* Family Lineage / Surnames - Burnished Antique Gold */
+.ep-hero-family-surname {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'Marcellus', 'Cinzel', serif;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8C6418;
+  margin: 0.1rem auto 0.15rem auto;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+@media (min-width: 640px) {
+  .ep-hero-family-surname {
+    font-size: 0.78rem;
+    letter-spacing: 0.26em;
+    gap: 0.45rem;
+    margin: 0.15rem auto 0.25rem auto;
+  }
+}
+
+.ep-hero-flourish-line {
+  height: 1px;
+  width: 1rem;
+  background: linear-gradient(90deg, transparent, #C99A38);
+}
+
+.ep-hero-flourish-line-rev {
+  height: 1px;
+  width: 1rem;
+  background: linear-gradient(90deg, #C99A38, transparent);
+}
+
+@media (min-width: 640px) {
+  .ep-hero-flourish-line,
+  .ep-hero-flourish-line-rev {
+    width: 1.75rem;
+  }
+}
+
+/* The Wedding Of - Rich Imperial Plum / Wine */
+.ep-hero-title-eyebrow {
+  font-family: 'Marcellus', 'Cinzel', serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #6A1428;
+  margin-top: 0.05rem;
+  margin-bottom: 0.1rem;
+}
+
+@media (min-width: 640px) {
+  .ep-hero-title-eyebrow {
+    font-size: 0.76rem;
+    letter-spacing: 0.34em;
+    margin-top: 0.1rem;
+    margin-bottom: 0.2rem;
+  }
+}
+
+/* One on One (Stacked) Couple Names in Deep Imperial Wine & Saree Rose */
+.ep-hero-couple-names {
+  font-family: 'Marcellus', 'Cinzel', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0.08rem 0 0.15rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.04rem;
+}
+
+@media (min-width: 640px) {
+  .ep-hero-couple-names {
+    font-size: 1.85rem;
+    letter-spacing: 0.16em;
+    line-height: 1.15;
+    margin: 0.15rem 0 0.35rem 0;
+    gap: 0.1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ep-hero-couple-names {
+    font-size: 2.15rem;
+    letter-spacing: 0.18em;
+  }
+}
+
+/* Primary Name - Imperial Velvet Wine */
+.ep-hero-name-part {
+  color: #5C1222;
+}
+
+/* Elegant Italic Ampersand - Radiant 24k Gold */
+.ep-hero-amp {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 0.72em;
+  line-height: 1;
+  color: #C8962E;
+  margin: 0.02rem 0;
+}
+
+@media (min-width: 640px) {
+  .ep-hero-amp {
+    font-size: 0.75em;
+    margin: 0.05rem 0;
+  }
+}
+
+/* Date Bar - Antique Bronze & Gold */
+.ep-hero-date-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.12rem;
+  margin-bottom: 0.15rem;
+}
+
+@media (min-width: 640px) {
+  .ep-hero-date-wrapper {
+    gap: 0.5rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.35rem;
+  }
+}
+
+.ep-hero-date-line {
+  height: 1px;
+  width: 1.25rem;
+  background: linear-gradient(90deg, transparent, #C99A38);
+}
+
+.ep-hero-date-line-rev {
+  height: 1px;
+  width: 1.25rem;
+  background: linear-gradient(90deg, #C99A38, transparent);
+}
+
+@media (min-width: 640px) {
+  .ep-hero-date-line,
+  .ep-hero-date-line-rev {
+    width: 2.25rem;
+  }
+}
+
+.ep-hero-date {
+  font-family: 'Marcellus', 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #7A5314;
+}
+
+@media (min-width: 640px) {
+  .ep-hero-date {
+    font-size: 0.88rem;
+    letter-spacing: 0.22em;
+  }
+}
+
+/* Supporting Invitation Line - Warm Rosewood / Espresso */
+.ep-hero-supporting-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #4A2825;
+  max-width: 20rem;
+  margin: 0.25rem auto 0 auto;
+}
+
+@media (min-width: 640px) {
+  .ep-hero-supporting-text {
+    font-size: 1rem;
+    max-width: 22rem;
+  }
+}
+
+/* Gallery Clean Grid - No Scroller */
+.ep-gallery-thumbnails-clean,
+.no-scrollbar {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  overflow: -moz-scrollbars-none !important;
+}
+
+.ep-gallery-thumbnails-clean::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Subtle Scroll to Explore Indicator */
+.ep-hero-scroll-indicator {
+  position: relative;
+  z-index: 25;
+  margin: 0.5rem auto 0.75rem auto;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  opacity: 0.85;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.ep-hero-scroll-indicator:hover {
+  opacity: 1;
+  transform: translateY(2px);
+}
+
+.ep-btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-royal);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #FDEAB2, #DFB759, #B88A3B);
+  color: #542D2A;
+  border: 1px solid rgba(120, 29, 54, 0.2);
+  padding: 0.65rem 1.65rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px rgba(184, 138, 59, 0.35);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.ep-btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(184, 138, 59, 0.45);
+}
+
+.ep-btn-burgundy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-royal);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #781D36, #65182F);
+  color: #FFF6E9;
+  border: 1px solid rgba(214, 173, 99, 0.6);
+  padding: 0.65rem 1.65rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px rgba(120, 29, 54, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.ep-btn-burgundy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(120, 29, 54, 0.45);
+  border-color: #D6AD63;
+}
+
+/* =========================================================
+   CONTENT SECTIONS & TYPOGRAPHY
+   ========================================================= */
+
+.ep-section {
+  position: relative;
+  width: 100%;
+  padding: 3rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .ep-section {
+    padding: 3.5rem 1.5rem;
+  }
+}
+
+.ep-section-heading {
+  font-family: var(--font-royal);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ep-burgundy);
+  letter-spacing: 0.08em;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .ep-section-heading {
+    font-size: 2rem;
+  }
+}
+
+.ep-section-subtitle {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--ep-text-muted);
+  text-align: center;
+  max-width: 32rem;
+  margin: 0 auto 1.5rem auto;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   WEDDING CELEBRATIONS (4 CARDS)
+   ========================================================= */
+
+.ep-celebrations-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.875rem;
+  width: 100%;
+  max-width: 58rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .ep-celebrations-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+.ep-event-card-ivory {
+  position: relative;
+  background: #FFFDF9;
+  border: 1.5px solid rgba(214, 173, 99, 0.55);
+  border-radius: 2rem 2rem 1.25rem 1.25rem;
+  padding: 1.5rem 0.875rem 1.25rem 0.875rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 8px 24px rgba(184, 138, 59, 0.12);
+  transition: all 0.3s ease;
+}
+
+.ep-event-card-ivory:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(184, 138, 59, 0.2);
+  border-color: #D6AD63;
+}
+
+/* Highlight Card: Wedding Muhurtam (Burgundy) */
+.ep-event-card-burgundy {
+  position: relative;
+  background: linear-gradient(165deg, #781D36, #65182F 85%);
+  border: 2px solid #DFB759;
+  border-radius: 2.25rem 2.25rem 1.25rem 1.25rem;
+  padding: 1.5rem 0.875rem 1.25rem 0.875rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #FFF6E9;
+  box-shadow: 0 12px 36px rgba(120, 29, 54, 0.35);
+  transition: all 0.3s ease;
+}
+
+.ep-event-card-burgundy:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 18px 42px rgba(120, 29, 54, 0.45);
+  border-color: #FFE8A3;
+}
+
+/* Inner decorative accent border on cards */
+.ep-card-inner-border {
+  position: absolute;
+  inset: 5px;
+  border: 1px dashed rgba(214, 173, 99, 0.4);
+  border-radius: 1.85rem 1.85rem 1rem 1rem;
+  pointer-events: none;
+}
+
+.ep-event-card-burgundy .ep-card-inner-border {
+  border-color: rgba(253, 234, 178, 0.4);
+}
+
+/* =========================================================
+   CINEMATIC MANDAP & VENUE
+   ========================================================= */
+
+.ep-mandap-scene {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+  .ep-mandap-scene {
+    min-height: 560px;
+    padding-bottom: 3.5rem;
+  }
+}
+
+.ep-mandap-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+.ep-mandap-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 246, 233, 0.2) 0%,
+    rgba(0, 0, 0, 0.1) 40%,
+    rgba(0, 0, 0, 0.35) 80%,
+    rgba(255, 246, 233, 0.85) 100%
+  );
+  pointer-events: none;
+}
+
+.ep-venue-plaque {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 440px;
+  background: #FFF6E9;
+  border: 1.5px solid #D6AD63;
+  border-radius: 2rem;
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  margin: 0 1rem;
+}
+
+/* =========================================================
+   OUR MOMENTS (GALLERY CAROUSEL)
+   ========================================================= */
+
+.ep-gallery-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 52rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.5rem 0;
+}
+
+.ep-gallery-nav-btn {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  background: #FFF6E9;
+  border: 1.5px solid #D6AD63;
+  color: var(--ep-burgundy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(184, 138, 59, 0.25);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.ep-gallery-nav-btn:hover {
+  background: var(--ep-burgundy);
+  color: #FFF6E9;
+  transform: scale(1.1);
+}
+
+.ep-photo-frame {
+  background: #FFFFFF;
+  padding: 0.45rem;
+  padding-bottom: 1.25rem;
+  border: 1px solid rgba(214, 173, 99, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  border-radius: 0.375rem;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.ep-photo-frame:hover {
+  transform: scale(1.04) rotate(0deg) !important;
+  box-shadow: 0 16px 36px rgba(120, 29, 54, 0.22);
+  border-color: #D6AD63;
+  z-index: 20;
+}
+
+/* =========================================================
+   LEAVE YOUR WISHES & RSVP
+   ========================================================= */
+
+.ep-wishes-section {
+  position: relative;
+  background: linear-gradient(165deg, #781D36, #65182F);
+  color: #FFF6E9;
+  padding: 4.5rem 1rem;
+  overflow: hidden;
+}
+
+.ep-wishes-input-bar {
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border: 1.5px solid #D6AD63;
+  border-radius: 9999px;
+  padding: 0.35rem 0.5rem 0.35rem 1.25rem;
+  width: 100%;
+  max-width: 32rem;
+  margin: 0 auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.ep-wishes-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: #542D2A;
+}
+
+.ep-wishes-input::placeholder {
+  color: #A38481;
+}
+
+.ep-wishes-send-btn {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  background: var(--ep-burgundy);
+  border: 1px solid #D6AD63;
+  color: #FFF6E9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.ep-wishes-send-btn:hover {
+  transform: scale(1.08);
+  background: #541424;
+}
+
+/* RSVP Buttons */
+.ep-rsvp-choice-btn {
+  font-family: var(--font-royal);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.65rem 1.15rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  text-decoration: none;
+}
+
+.ep-rsvp-choice-selected {
+  background: var(--ep-burgundy);
+  color: #FFF6E9;
+  border: 1.5px solid #D6AD63;
+  box-shadow: 0 4px 14px rgba(120, 29, 54, 0.3);
+}
+
+.ep-rsvp-choice-unselected {
+  background: #FFFDF9;
+  color: var(--ep-burgundy);
+  border: 1.5px solid rgba(214, 173, 99, 0.5);
+}
+
+.ep-rsvp-choice-unselected:hover {
+  border-color: #D6AD63;
+  background: #FDF4E5;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.ep-footer {
+  position: relative;
+  background: linear-gradient(180deg, #65182F, #542D2A);
+  color: #FFF6E9;
+  padding: 3.5rem 1rem 3rem 1rem;
+  text-align: center;
+  border-top: 1px solid rgba(214, 173, 99, 0.4);
+  overflow: hidden;
+}
+
+/* Floating Audio and Quick RSVP Buttons */
+.ep-floating-music-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 40;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  background: rgba(255, 246, 233, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid #D6AD63;
+  color: var(--ep-burgundy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.ep-floating-music-btn:hover {
+  transform: scale(1.1);
+  border-color: var(--ep-burgundy);
+}
+
+.ep-floating-rsvp-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-royal);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #781D36, #65182F);
+  color: #FFF6E9;
+  border: 1px solid #D6AD63;
+  padding: 0.6rem 1.25rem;
+  border-radius: 9999px;
+  box-shadow: 0 6px 20px rgba(120, 29, 54, 0.35);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ep-floating-rsvp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(120, 29, 54, 0.45);
+}

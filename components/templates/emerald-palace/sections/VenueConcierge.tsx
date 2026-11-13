@@ -2,153 +2,109 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { RoyalDivider } from "../assets/Ornaments";
+import { TraditionalAuspiciousMotif, TraditionalCornerKolam } from "../assets/Ornaments";
 import { useEmeraldPalace } from "../context";
 
 export function VenueConcierge() {
   const data = useEmeraldPalace();
 
   return (
-    <section className="ep-section" id="venue">
-      <div className="text-center mb-6">
-        <span className="ep-section-tag">Royal Destinations</span>
-        <h2 className="ep-section-title ep-gold-text">Venue &amp; Hospitality</h2>
-        <p className="ep-section-subtitle">
-          We look forward to welcoming you to the heritage city of lakes and royal palaces.
-        </p>
-        <RoyalDivider className="my-3 scale-90" />
-      </div>
+    <div className="relative w-full scroll-mt-16" id="venue">
+      {/* Full-width Cinematic Mandap Scene */}
+      <div className="ep-mandap-scene relative overflow-hidden min-h-[520px] sm:min-h-[620px] flex items-end justify-center pb-8 sm:pb-14">
+        {/* Background Image: Luxury South Indian Wedding Mandap with Slow Cinematic Zoom */}
+        <img
+          src="/templates/emerald-palace/mandap-venue.jpg"
+          alt="Luxury South Indian Kalyana Mandapam Stage"
+          className="ep-mandap-bg-img ep-slow-zoom absolute inset-0 w-full h-full object-cover object-center"
+          loading="lazy"
+        />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-        {/* Main Wedding Venue Card */}
+        {/* Cinematic Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/20 pointer-events-none" />
+
+        {/* Sophisticated Floating Venue Information Suite */}
         <motion.div
-          className="ep-royal-card flex flex-col justify-between"
-          initial={{ opacity: 0, y: 25 }}
+          className="relative z-10 w-full max-w-xl mx-4 bg-[#FFFDF9]/95 backdrop-blur-md rounded-3xl p-6 sm:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.5)] border border-[#D6AD63]/60 text-center"
+          initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.85 }}
         >
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-2xl">🏰</span>
-              <span className="text-xs uppercase tracking-[0.2em] text-[#9C7723] font-cinzel font-bold">
-                Wedding Venue
-              </span>
-            </div>
-            <h3 className="font-cinzel text-xl font-bold text-[#0C2B22] mb-1">
-              {data.wedding.venue}
-            </h3>
-            <p className="font-serif text-sm text-[#6B5C50] mb-4">
-              {data.wedding.address || data.wedding.city}
-            </p>
-
-            <div className="rounded-xl overflow-hidden border border-[#DFB759]/40 h-44 mb-4">
-              <iframe
-                title="Wedding Venue Map"
-                src={data.wedding.mapsEmbedUrl}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
+          {/* Subtle Hand-Drawn Corner Kolams */}
+          <div className="absolute top-2 left-2 w-6 h-6 opacity-50 pointer-events-none">
+            <TraditionalCornerKolam className="w-full h-full" />
+          </div>
+          <div className="absolute top-2 right-2 w-6 h-6 opacity-50 pointer-events-none scale-x-[-1]">
+            <TraditionalCornerKolam className="w-full h-full" />
+          </div>
+          <div className="absolute bottom-2 left-2 w-6 h-6 opacity-50 pointer-events-none scale-y-[-1]">
+            <TraditionalCornerKolam className="w-full h-full" />
+          </div>
+          <div className="absolute bottom-2 right-2 w-6 h-6 opacity-50 pointer-events-none scale-[-1]">
+            <TraditionalCornerKolam className="w-full h-full" />
           </div>
 
-          <a
-            href={data.wedding.mapsLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ep-btn-emerald w-full text-center text-xs"
-          >
-            <span>🧭 Open in Google Maps</span>
-          </a>
-        </motion.div>
+          {/* Sacred Auspicious Deepam & Kalash Emblem */}
+          <div className="w-12 h-12 mx-auto mb-2 opacity-85 pointer-events-none">
+            <TraditionalAuspiciousMotif className="w-full h-full object-contain" />
+          </div>
 
-        {/* Reception Venue Card (or Hospitality Card) */}
-        {data.reception?.enabled ? (
-          <motion.div
-            className="ep-royal-card flex flex-col justify-between"
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-          >
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-2xl">👑</span>
-                <span className="text-xs uppercase tracking-[0.2em] text-[#9C7723] font-cinzel font-bold">
-                  Reception Venue
+          {/* Location Pin Icon & Title */}
+          <div className="flex items-center justify-center gap-1.5 mb-2">
+            <span className="font-cinzel text-xs font-bold uppercase tracking-[0.25em] text-[#781D36]">
+              Auspicious Venue
+            </span>
+          </div>
+
+          {/* Venue Name */}
+          <h3 className="font-cinzel text-xl sm:text-2xl font-bold text-[#542D2A] mb-2 leading-snug">
+            {data.wedding.venue}
+          </h3>
+
+          {/* Full Address */}
+          <p className="font-serif text-xs sm:text-sm text-[#7E5B58] mb-5 max-w-md mx-auto leading-relaxed">
+            {data.wedding.address || data.wedding.city}
+          </p>
+
+          {/* Timings Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-6">
+            <div className="bg-[#FFF6E9] px-3.5 py-1.5 rounded-full border border-[#D6AD63]/40 text-left">
+              <span className="font-cinzel text-[10px] tracking-wider uppercase font-bold text-[#781D36] block">
+                Muhurtham
+              </span>
+              <span className="font-serif text-xs text-[#542D2A] font-semibold">
+                {data.wedding.date} • {data.wedding.time}
+              </span>
+            </div>
+            {data.reception?.enabled && (
+              <div className="bg-[#FFF6E9] px-3.5 py-1.5 rounded-full border border-[#D6AD63]/40 text-left">
+                <span className="font-cinzel text-[10px] tracking-wider uppercase font-bold text-[#781D36] block">
+                  Reception
+                </span>
+                <span className="font-serif text-xs text-[#542D2A] font-semibold">
+                  {data.reception.date} • {data.reception.time}
                 </span>
               </div>
-              <h3 className="font-cinzel text-xl font-bold text-[#0C2B22] mb-1">
-                {data.reception.venue}
-              </h3>
-              <p className="font-serif text-sm text-[#6B5C50] mb-4">
-                {data.reception.address || data.reception.city}
-              </p>
+            )}
+          </div>
 
-              <div className="rounded-xl overflow-hidden border border-[#DFB759]/40 h-44 mb-4">
-                <iframe
-                  title="Reception Venue Map"
-                  src={data.reception.mapsEmbedUrl}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
-            </div>
-
-            <a
-              href={data.reception.mapsLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ep-btn-emerald w-full text-center text-xs"
-            >
-              <span>🧭 Open in Google Maps</span>
-            </a>
-          </motion.div>
-        ) : (
-          <motion.div
-            className="ep-royal-card flex flex-col justify-between"
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-          >
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-2xl">🛎️</span>
-                <span className="text-xs uppercase tracking-[0.2em] text-[#9C7723] font-cinzel font-bold">
-                  Royal Hospitality &amp; Travel
-                </span>
-              </div>
-              <h3 className="font-cinzel text-xl font-bold text-[#0C2B22] mb-3">
-                Guest Assistance
-              </h3>
-              <p className="font-serif text-sm text-[#6B5C50] leading-relaxed mb-4">
-                Airport &amp; railway transfers will be arranged for outstation guests. Please share your flight or train arrival details with our hospitality concierge desk in advance.
-              </p>
-              <div className="bg-[#FAF5EB] p-4 rounded-xl border border-[#DFB759]/30 text-xs font-cinzel space-y-2">
-                <div className="text-[#0C2B22] font-semibold">📍 Nearest Airport: Maharana Pratap Airport (UDR)</div>
-                <div className="text-[#0C2B22] font-semibold">🚆 Nearest Railway: Udaipur City Station</div>
-              </div>
-            </div>
-
+          {/* Actions: View on Google Maps */}
+          <div className="flex items-center justify-center gap-3">
             <a
               href={data.wedding.mapsLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="ep-btn-emerald w-full text-center text-xs mt-4"
+              className="ep-btn-burgundy text-xs py-2.5 px-6"
+              aria-label="View Venue on Google Maps"
             >
-              <span>🧭 Open in Google Maps</span>
+              <span>📍 View on Google Maps</span>
+              <span>↗</span>
             </a>
-          </motion.div>
-        )}
+          </div>
+        </motion.div>
       </div>
-    </section>
+    </div>
   );
 }
 export default VenueConcierge;

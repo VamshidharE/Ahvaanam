@@ -168,5 +168,41 @@ export const TEMPLATE_REGISTRY: TemplateMetadata[] = [
     tags: ["traditional", "telugu", "temple", "pelli-pandiri", "butterfly", "royal", "gold"],
     supportedLanguages: ["en", "te", "hi"],
     enabled: true
+  },
+  {
+    id: "gopuram",
+    name: "Gopuram",
+    category: "wedding",
+    thumbnail: "/images/themes/gopuram.jpg",
+    premium: true,
+    previewImage: "/images/themes/gopuram.jpg",
+    description: "A majestic Dravidian temple gopuram invitation featuring a towering gopuram entrance, rising couple reveal, sunset skies, authentic sacred ambiance, and continuous parchment celebration sections.",
+    tags: ["traditional", "gopuram", "temple", "butterfly", "royal", "gold", "animated"],
+    supportedLanguages: ["en", "te", "hi"],
+    enabled: true
+  },
+  {
+    id: "lotus-mandapam",
+    name: "Lotus Mandapam",
+    category: "wedding",
+    thumbnail: "/templates/emerald-palace/hero-temple-sunset.jpg",
+    premium: true,
+    previewImage: "/templates/emerald-palace/hero-temple-sunset.jpg",
+    description: "A cinematic South Indian wedding invitation inspired by traditional temple architecture, lotus ponds and golden sunset scenery.",
+    tags: ["traditional", "lotus", "mandap", "temple", "royal", "south-indian", "gold", "burgundy", "cinematic"],
+    supportedLanguages: ["en", "te", "hi"],
+    enabled: true
+  },
+  {
+    id: "sacred-courtyard",
+    name: "The Sacred Courtyard",
+    category: "wedding",
+    thumbnail: "/templates/emerald-palace/hero-temple-sunset.jpg",
+    premium: true,
+    previewImage: "/templates/emerald-palace/hero-temple-sunset.jpg",
+    description: "A cinematic South Indian wedding invitation inspired by traditional temple architecture, lotus ponds and golden sunset scenery.",
+    tags: ["traditional", "lotus", "mandap", "temple", "royal", "south-indian", "gold", "burgundy", "cinematic"],
+    supportedLanguages: ["en", "te", "hi"],
+    enabled: true
   }
 ];

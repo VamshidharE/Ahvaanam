@@ -126,6 +126,14 @@ export interface FamiliesSection extends BaseSection {
   brideLocation?: string;
   subheading?: string;
   subtitle?: string;
+  eyebrow?: string;
+  blessingQuote?: string;
+  groomParents?: string;
+  brideParents?: string;
+  groomFamilyImage?: string;
+  brideFamilyImage?: string;
+  groomFamilyFocalPoint?: string;
+  brideFamilyFocalPoint?: string;
 }
 
 export interface VenueDetail {

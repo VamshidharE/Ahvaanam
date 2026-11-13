@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap');
+
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-cinzel-decor {
+  font-family: 'Cinzel Decorative', serif;
+}
+
+.font-cormorant {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #fff7d6 0%, #e8c766 30%, #c9933b 60%, #ffd978 85%, #f1f0e4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-subtle-glow {
+  text-shadow: 0 2px 20px rgba(226, 178, 80, 0.35), 0 0 40px rgba(201, 147, 59, 0.2);
+}
+
+.temple-glow {
+  filter: drop-shadow(0 15px 45px rgba(212, 175, 55, 0.25));
+}
+
+.writing-vertical-lr {
+  writing-mode: vertical-lr;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Gold map border pulse */
+@keyframes gold-border-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); border-color: rgba(201, 147, 59, 0.6); }
+  50%       { box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.25); border-color: rgba(212, 175, 55, 0.9); }
+}
+.gold-border-pulse {
+  animation: gold-border-pulse 2.8s ease-in-out infinite;
+}
+
+/* Ensure position: sticky works smoothly for hero scene */
+html:has(.gopuram-root),
+body:has(.gopuram-root) {
+  overflow-x: visible !important;
+}
+
+.gopuram-root {
+  overflow: visible !important;
+}

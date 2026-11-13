@@ -1,19 +1,21 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { RoyalDivider, RoyalCornerOrnament } from "../assets/Ornaments";
+import { motion, AnimatePresence } from "framer-motion";
+import { RoyalDivider } from "../assets/Ornaments";
 import { useEmeraldPalace } from "../context";
+import { emitAnalyticsInteraction } from "@/lib/analytics/useInvitationTracker";
 
 export function RoyalRSVP({ clientId }: { clientId?: string }) {
   const data = useEmeraldPalace();
 
+  const [attending, setAttending] = useState<"yes" | "maybe" | "no">("yes");
   const [guestName, setGuestName] = useState("");
-  const [attending, setAttending] = useState<"yes" | "no" | "">("yes");
   const [guestCount, setGuestCount] = useState("2");
-  const [blessingMessage, setBlessingMessage] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [message, setMessage] = useState("");
   const [isSending, setIsSending] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +23,6 @@ export function RoyalRSVP({ clientId }: { clientId?: string }) {
 
     setIsSending(true);
 
-    // If client ID is present, optionally push to RSVP endpoint safely
     if (clientId) {
       try {
         await fetch(`/api/invitation/${clientId}/rsvp`, {
@@ -31,177 +32,189 @@ export function RoyalRSVP({ clientId }: { clientId?: string }) {
             name: guestName,
             status: attending,
             guestCount: parseInt(guestCount, 10) || 1,
-            wishes: blessingMessage,
+            phone: phoneNumber,
+            wishes: message,
           }),
         });
       } catch (err) {
-        // Continue gracefully
+        // Fallback gracefully
       }
     }
 
-    // Direct WhatsApp message integration
-    const cleanPhone = (data.rsvp.whatsappNumber || "919876543210").replace(/[^0-9]/g, "");
-    const responseText = attending === "yes"
-      ? `Namaste! I/We (${guestName}, ${guestCount} Guests) will be delighted to attend the wedding celebrations of ${data.couple.bride} & ${data.couple.groom}! Warm wishes: "${blessingMessage || "Heartiest congratulations!"}"`
-      : `Namaste! Regretfully I/We (${guestName}) won't be able to attend in person, but sending our warmest blessings to ${data.couple.bride} & ${data.couple.groom}!`;
-    
+    emitAnalyticsInteraction("rsvp_submit", "rsvp");
+
+    // WhatsApp forwarding
+    const cleanPhone = (data.rsvp.whatsappNumber || "919866767100").replace(/[^0-9]/g, "");
+    let textStatus = "will be delighted to attend";
+    if (attending === "maybe") textStatus = "will try our best to attend";
+    if (attending === "no") textStatus = "regretfully won't be able to attend in person";
+
+    const responseText = `Namaste! I/We (${guestName}, ${guestCount} Guests) ${textStatus} the wedding celebrations of ${data.couple.bride} & ${data.couple.groom}! ${message ? `Message: "${message}"` : ""}`;
     const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(responseText)}`;
-    
+
     setTimeout(() => {
       setIsSending(false);
       setSubmitted(true);
       window.open(waUrl, "_blank");
-    }, 600);
+    }, 500);
   };
 
   return (
-    <section className="ep-section" id="rsvp">
-      <div className="text-center mb-6">
-        <span className="ep-section-tag">Gracious Response</span>
-        <h2 className="ep-section-title ep-gold-text">{data.rsvp.title}</h2>
-        <p className="ep-section-subtitle">{data.rsvp.message}</p>
+    <section className="ep-section bg-[#FFF6E9] scroll-mt-16" id="rsvp">
+      {/* Section Header */}
+      <div className="text-center mb-6 sm:mb-8">
+        <h2 className="ep-section-heading">Will You Be Joining Us?</h2>
+        <p className="ep-section-subtitle">
+          Please let us know your plans so we can make your celebration delightful.
+        </p>
         <RoyalDivider className="my-3 scale-90" />
       </div>
 
-      <motion.div
-        className="ep-royal-card max-w-xl mx-auto"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="ep-card-inner-border" />
-        <RoyalCornerOrnament position="tl" className="absolute top-2 left-2 opacity-60" />
-        <RoyalCornerOrnament position="tr" className="absolute top-2 right-2 opacity-60" />
-        <RoyalCornerOrnament position="bl" className="absolute bottom-2 left-2 opacity-60" />
-        <RoyalCornerOrnament position="br" className="absolute bottom-2 right-2 opacity-60" />
-
-        <div className="relative z-10 px-2 sm:px-4">
-          {submitted ? (
-            <div className="text-center py-8">
-              <div className="text-4xl mb-3">💌</div>
-              <h3 className="font-cinzel text-xl font-bold text-[#0C2B22] mb-2">
-                Thank You for Responding!
-              </h3>
-              <p className="font-serif text-sm text-[#6B5C50] leading-relaxed mb-6">
-                Your RSVP and heartfelt wishes have been conveyed to the family desk. We eagerly look forward to celebrating with you!
-              </p>
+      <div className="max-w-md mx-auto px-4">
+        {submitted ? (
+          <motion.div
+            className="bg-[#FFFDF9] border-2 border-[#D6AD63] rounded-3xl p-6 sm:p-8 text-center shadow-lg"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+          >
+            <div className="text-4xl mb-2">💌</div>
+            <h3 className="font-cinzel text-lg font-bold text-[#781D36] mb-2">
+              Thank You, {guestName}!
+            </h3>
+            <p className="font-serif text-sm text-[#7E5B58] mb-6 leading-relaxed">
+              Your response has been conveyed to the hospitality desk. We look forward to celebrating together!
+            </p>
+            <button
+              onClick={() => setSubmitted(false)}
+              className="ep-btn-gold text-xs py-2 px-5"
+            >
+              Update Response
+            </button>
+          </motion.div>
+        ) : (
+          <div className="space-y-6">
+            {/* 3 Choice Buttons */}
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
               <button
-                onClick={() => setSubmitted(false)}
-                className="ep-btn-gold text-xs"
+                type="button"
+                onClick={() => setAttending("yes")}
+                className={`ep-rsvp-choice-btn ${
+                  attending === "yes"
+                    ? "ep-rsvp-choice-selected"
+                    : "ep-rsvp-choice-unselected"
+                }`}
               >
-                Send Another Response
+                <span>✓</span>
+                <span>Yes, I'll Be There</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setAttending("maybe")}
+                className={`ep-rsvp-choice-btn ${
+                  attending === "maybe"
+                    ? "ep-rsvp-choice-selected"
+                    : "ep-rsvp-choice-unselected"
+                }`}
+              >
+                <span>□</span>
+                <span>Maybe</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setAttending("no")}
+                className={`ep-rsvp-choice-btn ${
+                  attending === "no"
+                    ? "ep-rsvp-choice-selected"
+                    : "ep-rsvp-choice-unselected"
+                }`}
+              >
+                <span>✕</span>
+                <span>Sorry, Can't Make It</span>
               </button>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4 text-left">
+
+            {/* Form Fields Card */}
+            <motion.form
+              onSubmit={handleSubmit}
+              className="bg-[#FFFDF9] border border-[#D6AD63]/60 rounded-3xl p-5 sm:p-6 shadow-md space-y-4"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
               <div>
-                <label className="block text-xs uppercase tracking-wider font-cinzel font-semibold text-[#0C2B22] mb-1.5">
-                  Guest Name(s) *
+                <label className="block font-cinzel text-[11px] uppercase tracking-wider text-[#781D36] font-semibold mb-1">
+                  Your Full Name *
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Dr. Rajesh & Mrs. Sunita Sharma"
                   value={guestName}
                   onChange={(e) => setGuestName(e.target.value)}
-                  className="ep-input"
+                  placeholder="e.g. Ramesh & Sangeeta Rao"
+                  className="w-full bg-[#FFF6E9] border border-[#D6AD63]/50 rounded-xl px-3.5 py-2 text-xs font-serif text-[#542D2A] outline-none focus:border-[#781D36]"
                 />
               </div>
 
-              <div>
-                <label className="block text-xs uppercase tracking-wider font-cinzel font-semibold text-[#0C2B22] mb-1.5">
-                  Will You Grace Us With Your Presence? *
-                </label>
+              {attending !== "no" && (
                 <div className="grid grid-cols-2 gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setAttending("yes")}
-                    className={`p-3 rounded-xl border text-xs font-cinzel font-bold tracking-wider transition-all ${
-                      attending === "yes"
-                        ? "bg-[#0C2B22] text-[#DFB759] border-[#DFB759] shadow-md"
-                        : "bg-white text-[#4A3B32] border-[#DFB759]/40 hover:bg-[#FAF5EB]"
-                    }`}
-                  >
-                    🌸 Joyfully Attending
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setAttending("no")}
-                    className={`p-3 rounded-xl border text-xs font-cinzel font-bold tracking-wider transition-all ${
-                      attending === "no"
-                        ? "bg-[#8B1E2F] text-white border-[#8B1E2F] shadow-md"
-                        : "bg-white text-[#4A3B32] border-[#DFB759]/40 hover:bg-[#FAF5EB]"
-                    }`}
-                  >
-                    🕊️ Regretfully Cannot
-                  </button>
-                </div>
-              </div>
-
-              {attending === "yes" && (
-                <div>
-                  <label className="block text-xs uppercase tracking-wider font-cinzel font-semibold text-[#0C2B22] mb-1.5">
-                    Number of Attending Guests
-                  </label>
-                  <select
-                    value={guestCount}
-                    onChange={(e) => setGuestCount(e.target.value)}
-                    className="ep-input"
-                  >
-                    <option value="1">1 Guest</option>
-                    <option value="2">2 Guests</option>
-                    <option value="3">3 Guests</option>
-                    <option value="4">4 Guests</option>
-                    <option value="5">5+ Guests (Family)</option>
-                  </select>
+                  <div>
+                    <label className="block font-cinzel text-[11px] uppercase tracking-wider text-[#781D36] font-semibold mb-1">
+                      Attending Guests
+                    </label>
+                    <select
+                      value={guestCount}
+                      onChange={(e) => setGuestCount(e.target.value)}
+                      className="w-full bg-[#FFF6E9] border border-[#D6AD63]/50 rounded-xl px-3 py-2 text-xs font-serif text-[#542D2A] outline-none"
+                    >
+                      <option value="1">1 Guest</option>
+                      <option value="2">2 Guests</option>
+                      <option value="3">3 Guests</option>
+                      <option value="4">4 Guests</option>
+                      <option value="5">5+ Family</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block font-cinzel text-[11px] uppercase tracking-wider text-[#781D36] font-semibold mb-1">
+                      Phone / WhatsApp
+                    </label>
+                    <input
+                      type="tel"
+                      value={phoneNumber}
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      placeholder="+91 98765..."
+                      className="w-full bg-[#FFF6E9] border border-[#D6AD63]/50 rounded-xl px-3 py-2 text-xs font-serif text-[#542D2A] outline-none focus:border-[#781D36]"
+                    />
+                  </div>
                 </div>
               )}
 
               <div>
-                <label className="block text-xs uppercase tracking-wider font-cinzel font-semibold text-[#0C2B22] mb-1.5">
-                  Blessings &amp; Message for the Couple
+                <label className="block font-cinzel text-[11px] uppercase tracking-wider text-[#781D36] font-semibold mb-1">
+                  Optional Note / Wishes
                 </label>
                 <textarea
-                  rows={3}
-                  placeholder="Share your warm wishes and blessings..."
-                  value={blessingMessage}
-                  onChange={(e) => setBlessingMessage(e.target.value)}
-                  className="ep-input resize-none"
+                  rows={2}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Leave a sweet blessing..."
+                  className="w-full bg-[#FFF6E9] border border-[#D6AD63]/50 rounded-xl px-3 py-2 text-xs font-serif text-[#542D2A] outline-none focus:border-[#781D36] resize-none"
                 />
               </div>
 
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  disabled={isSending}
-                  className="ep-btn-gold w-full text-center"
-                >
-                  {isSending ? "Confirming..." : `✦ ${data.rsvp.buttonText} ✦`}
-                </button>
-              </div>
-
-              {/* Contact Assistance */}
-              <div className="mt-6 pt-4 border-t border-[#DFB759]/30 text-center">
-                <p className="text-xs text-[#6B5C50] font-serif mb-2">
-                  For travel or accommodation queries:
-                </p>
-                <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-cinzel font-semibold text-[#0C2B22]">
-                  {data.rsvp.contacts.map((c, i) => (
-                    <a
-                      key={i}
-                      href={`tel:${c.value}`}
-                      className="hover:text-[#9C7723] transition-colors inline-flex items-center gap-1"
-                    >
-                      <span>📞 {c.label}: {c.value}</span>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </form>
-          )}
-        </div>
-      </motion.div>
+              <button
+                type="submit"
+                disabled={isSending}
+                className="ep-btn-burgundy w-full text-xs py-2.5"
+              >
+                <span>{isSending ? "Confirming..." : "Confirm & Send via WhatsApp"}</span>
+                <span>✨</span>
+              </button>
+            </motion.form>
+          </div>
+        )}
+      </div>
     </section>
   );
 }

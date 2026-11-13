@@ -33,6 +33,73 @@ export interface ThemeTokens {
 }
 
 const THEMES: Record<string, ThemeTokens> = {
+  "lotus-mandapam": {
+    id: "lotus-mandapam",
+    name: "Lotus Mandapam",
+    backgroundImage: "/templates/emerald-palace/hero-temple-sunset.jpg",
+    openingEffect: "envelope-unfold",
+    colors: {
+      background: "#FFF6E9",
+      text: "#542D2A",
+      accent: "#C99A38",
+      border: "rgba(201, 154, 56, 0.45)",
+      secondaryText: "#7E5B58",
+      cardBg: "rgba(255, 246, 233, 0.95)",
+    },
+    typography: {
+      fontHeading: "'Cinzel', Georgia, serif",
+      fontBody: "'Cormorant Garamond', Georgia, serif",
+    },
+    radius: {
+      card: "24px",
+      button: "12px",
+    },
+    shadows: {
+      card: "0 12px 36px rgba(84, 45, 42, 0.12)",
+      button: "0 4px 14px rgba(201, 154, 56, 0.4)",
+    },
+    gradients: {
+      backdrop: "radial-gradient(circle at 50% 0%, rgba(201, 154, 56, 0.15) 0%, rgba(255, 246, 233, 0) 70%)",
+    },
+    glass: {
+      background: "rgba(255, 246, 233, 0.85)",
+      blur: "12px",
+    },
+  },
+  "sacred-courtyard": {
+    id: "sacred-courtyard",
+    name: "The Sacred Courtyard",
+    backgroundImage: "/templates/emerald-palace/hero-temple-sunset.jpg",
+    openingEffect: "envelope-unfold",
+    colors: {
+      background: "#FFF6E9",
+      text: "#542D2A",
+      accent: "#C99A38",
+      border: "rgba(201, 154, 56, 0.45)",
+      secondaryText: "#7E5B58",
+      cardBg: "rgba(255, 246, 233, 0.95)",
+    },
+    typography: {
+      fontHeading: "'Cinzel', Georgia, serif",
+      fontBody: "'Cormorant Garamond', Georgia, serif",
+    },
+    radius: {
+      card: "24px",
+      button: "12px",
+    },
+    shadows: {
+      card: "0 12px 36px rgba(84, 45, 42, 0.12)",
+      button: "0 4px 14px rgba(201, 154, 56, 0.4)",
+    },
+    gradients: {
+      backdrop: "radial-gradient(circle at 50% 0%, rgba(201, 154, 56, 0.15) 0%, rgba(255, 246, 233, 0) 70%)",
+    },
+    glass: {
+      background: "rgba(255, 246, 233, 0.85)",
+      blur: "12px",
+    },
+  },
+
   "royal-temple": {
     id: "royal-temple",
     name: "Royal Temple",

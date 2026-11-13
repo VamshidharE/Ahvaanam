@@ -5,6 +5,7 @@ export interface EmeraldPalaceEvent {
   date: string;
   time: string;
   venue: string;
+  address?: string;
   description: string;
   dressCode?: string;
   image?: string;
@@ -25,13 +26,21 @@ export interface EmeraldPalaceData {
     showCountdown: boolean;
     showRSVP: boolean;
     showFooter: boolean;
+    showVideo?: boolean;
   };
   music: {
     themeMusic: string;
   };
+  hero: {
+    coupleImage: string;
+    bgImage: string;
+    eyebrow: string;
+    date: string;
+  };
   couple: {
     bride: string;
     groom: string;
+    portraitImage?: string;
     brideSurname?: string;
     groomSurname?: string;
     primarySide: "groom" | "bride";
@@ -85,12 +94,17 @@ export interface EmeraldPalaceData {
     groomFamilyTitle?: string;
     brideFamilyTitle?: string;
     blessingQuote?: string;
+    groomFamilyImage?: string;
+    brideFamilyImage?: string;
+    groomFamilyFocalPoint?: string;
+    brideFamilyFocalPoint?: string;
   };
   events: EmeraldPalaceEvent[];
   story: {
     title: string;
     text: string;
     couplePhoto: string;
+    couplePhoto2?: string;
     milestones?: Array<{ yearOrDate: string; title: string; desc: string }>;
   };
   gallery: Array<{
@@ -98,6 +112,13 @@ export interface EmeraldPalaceData {
     alt: string;
     caption?: string;
   }>;
+  video?: {
+    enabled: boolean;
+    title: string;
+    subtitle?: string;
+    url: string;
+    poster: string;
+  };
   rsvp: {
     title: string;
     message: string;
@@ -117,10 +138,25 @@ export interface EmeraldPalaceData {
   };
 }
 
+const formatWeddingDate = (raw: string) => {
+  if (!raw || typeof raw !== "string") return "28th Dec 2026";
+  const trimmed = raw.trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) {
+    const parts = trimmed.split("-");
+    const year = parts[0];
+    const monthIndex = parseInt(parts[1], 10) - 1;
+    const day = parseInt(parts[2], 10);
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const suffix = (day % 10 === 1 && day !== 11) ? "st" : (day % 10 === 2 && day !== 12) ? "nd" : (day % 10 === 3 && day !== 13) ? "rd" : "th";
+    return `${day}${suffix} ${months[monthIndex] || "Dec"} ${year}`;
+  }
+  return trimmed;
+};
+
 const isGenericPlaceholder = (val: any, placeholders: string[]) => {
   if (!val || typeof val !== "string") return true;
   const trimmed = val.trim().toLowerCase();
-  return placeholders.some((p) => trimmed === p.toLowerCase() || trimmed === "");
+  return placeholders.some((p) => trimmed === p.toLowerCase() || trimmed === "" || trimmed.includes("groom family") || trimmed.includes("bride family"));
 };
 
 export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalaceData {
@@ -130,218 +166,283 @@ export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalac
   // Primary Side
   const primarySide = (config.couple?.primarySide || config.primarySide || "groom") === "bride" ? "bride" : "groom";
 
-  // Couple names
+  // Couple names - elegant default fallback to Arjun & Divya with proper capitalization
+  const capitalize = (s: string) => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
   const rawGroom = config.couple?.groom?.name || config.groom?.name || config.groom || "";
   const rawBride = config.couple?.bride?.name || config.bride?.name || config.bride || "";
-  const groomName = isGenericPlaceholder(rawGroom, ["groom name", "host", "groom", ""]) ? "Devrat" : rawGroom;
-  const brideName = isGenericPlaceholder(rawBride, ["bride name", "guest", "bride", ""]) ? "Meera" : rawBride;
+  const groomName = capitalize(isGenericPlaceholder(rawGroom, ["groom name", "host", "groom", ""]) ? "Arjun" : rawGroom);
+  const brideName = capitalize(isGenericPlaceholder(rawBride, ["bride name", "guest", "bride", ""]) ? "Divya" : rawBride);
 
-  const rawGroomSurname = config.couple?.groom?.surname || config.groom?.surname || "";
-  const rawBrideSurname = config.couple?.bride?.surname || config.bride?.surname || "";
+  const rawGroomSurname = config.couple?.groom?.surname || config.groom?.surname || "Gupta";
+  const rawBrideSurname = config.couple?.bride?.surname || config.bride?.surname || "Rao";
 
-  const groomImage = config.couple?.groom?.image || config.groom?.image || config.families?.groomPortrait || "/images/couple.jpg";
-  const brideImage = config.couple?.bride?.image || config.bride?.image || config.families?.bridePortrait || "/images/couple.jpg";
+  const groomImage = config.couple?.groom?.image || config.groom?.image || config.families?.groomPortrait || "/wedding/family/groom.png";
+  const brideImage = config.couple?.bride?.image || config.bride?.image || config.families?.bridePortrait || "/wedding/family/bride.png";
   
-  const groomBio = config.couple?.groom?.bio || "Son of Mrs. Rajeshwari & Mr. Vikramaditya Rathore. A visionary architect who finds harmony between royal heritage and modern design.";
-  const brideBio = config.couple?.bride?.bio || "Daughter of Mrs. Gayatri & Mr. Harshavardhan Singh. A classical sitarist and heritage preservationist with a spirit as radiant as morning dawn.";
+  const groomParents = config.families?.groomParents || config.family?.groomParents || config.groomParents || "Sri Ramesh Gupta & Smt. Lalitha Gupta";
+  const brideParents = config.families?.brideParents || config.family?.brideParents || config.brideParents || "Sri Prabhakar Rao & Smt. Sushma Rao";
+
+  const groomBio = config.couple?.groom?.bio || "A compassionate soul of vision and values, finding infinite beauty in love and traditions.";
+  const brideBio = config.couple?.bride?.bio || "A radiant spirit of grace and creativity, bringing joyous light into every gathering.";
 
   // Monogram initials
-  const gInitial = (groomName.charAt(0) || "D").toUpperCase();
-  const bInitial = (brideName.charAt(0) || "M").toUpperCase();
+  const gInitial = (groomName.charAt(0) || "A").toUpperCase();
+  const bInitial = (brideName.charAt(0) || "D").toUpperCase();
   const monogram = primarySide === "bride" ? `${bInitial} & ${gInitial}` : `${gInitial} & ${bInitial}`;
 
   // Introduction
   const rawMantra = config.hero?.welcomeMessage || config.hero?.mantra || config.mantra || "";
   const mantra = isGenericPlaceholder(rawMantra, ["|| shree ganeshaay namah ||", ""]) 
-    ? "॥ ॐ श्री गणेशाय नमः ॥" 
+    ? "॥ श्री गणेशाय नमः ॥" 
     : rawMantra;
   
   const mantraMeaning = "Invoking the divine blessings of Lord Ganesha for auspiciousness, prosperity and eternal grace.";
 
   const rawEyebrow = config.hero?.title || "";
   const eyebrow = isGenericPlaceholder(rawEyebrow, ["together with our beloved families", "together with their families", ""]) 
-    ? "Royal Wedding Celebration" 
+    ? "The Wedding of" 
     : rawEyebrow;
 
   const rawMessage = config.hero?.subtitle || "";
   const message = isGenericPlaceholder(rawMessage, ["request the pleasure of your gracious presence as we begin our forever together.", ""])
-    ? "Cordially invite you to grace the auspicious wedding ceremonies and bless the union of their hearts"
+    ? "With the blessings of our families, we joyfully invite you to celebrate the wedding of"
     : rawMessage;
 
   const introFamilyTitle = primarySide === "bride"
-    ? (rawBrideSurname ? `The ${rawBrideSurname} Royal Family` : `${brideName}'s Family`)
-    : (rawGroomSurname ? `The ${rawGroomSurname} Royal Family` : `${groomName}'s Family`);
+    ? (rawBrideSurname ? `The ${rawBrideSurname} Family` : `${brideName}'s Family`)
+    : (rawGroomSurname ? `The ${rawGroomSurname} Family` : `${groomName}'s Family`);
 
   // Wedding Date and Time
-  const rawDate = config.hero?.date || config.wedding?.date || config.date || "Sunday, 28th November 2026";
-  const weddingDate = isGenericPlaceholder(rawDate, ["wedding date", "date", ""]) ? "Sunday, 28th November 2026" : rawDate;
+  const rawDate = config.hero?.date || config.wedding?.date || config.date || "28th Dec 2026";
+  const weddingDate = formatWeddingDate(isGenericPlaceholder(rawDate, ["wedding date", "date", ""]) ? "28th Dec 2026" : rawDate);
   const weddingDay = config.wedding?.day || "Sunday";
-  const weddingTime = config.wedding?.time || "10:30 AM onwards";
-  const muhurtham = config.wedding?.muhurtham || "Auspicious Sumuhurtham: 10:48 AM - 11:32 AM (Dhanur Lagnam)";
+  const weddingTime = config.wedding?.time || "9:12 AM";
+  const muhurtham = config.wedding?.muhurtham || "Sumuhurtham: 9:12 AM";
 
   // Countdown Target
-  const countdownTarget = config.wedding?.countdownTarget || "2026-11-28T10:30:00";
+  const countdownTarget = config.wedding?.countdownTarget || "2026-12-28T09:12:00";
 
   // Venue
-  const rawVenue = config.venue?.name || config.wedding?.venue || "The Grand Oberoi Udaivilas Palace";
-  const venue = isGenericPlaceholder(rawVenue, ["venue name", "venue", ""]) ? "The Grand Oberoi Udaivilas Palace" : rawVenue;
-  const city = config.venue?.city || config.wedding?.city || "Haridas Ji Ki Magri, Udaipur, Rajasthan";
-  const address = config.venue?.address || "Mulla Talai, Udaipur, Rajasthan 313001";
-  const mapsLink = config.venue?.mapsLink || config.wedding?.mapsLink || "https://maps.google.com/?q=The+Oberoi+Udaivilas+Udaipur";
-  const mapsEmbedUrl = config.venue?.mapsEmbedUrl || config.wedding?.mapsEmbedUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3628.026343516515!2d73.6669!3d24.5786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3967e56f4d2f0991%3A0xbbf54e951bf4f952!2sThe%20Oberoi%20Udaivilas%2C%20Udaipur!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin";
+  const rawVenue = config.venue?.name || config.wedding?.venue || "Sri Venkateswara Kalyana Mandapam";
+  const venue = isGenericPlaceholder(rawVenue, ["venue name", "venue", ""]) ? "Sri Venkateswara Kalyana Mandapam" : rawVenue;
+  const city = config.venue?.city || config.wedding?.city || "Ibrahimpatnam, Hyderabad";
+  const address = config.venue?.address || "Main Road, Ibrahimpatnam, Hyderabad 501506";
+  const mapsLink = config.venue?.mapsLink || config.wedding?.mapsLink || "https://maps.google.com/?q=Sri+Venkateswara+Kalyana+Mandapam+Hyderabad";
+  const mapsEmbedUrl = config.venue?.mapsEmbedUrl || config.wedding?.mapsEmbedUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15234.567890!2d78.64!3d17.20!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDEyJzAwLjAiTiA3OMKwMzgnMjQuMCJF!5e0!3m2!1sen!2sin!4v1700000000000";
 
   // Reception
   const hasReception = config.reception?.enabled !== false;
   const reception = {
     enabled: hasReception,
-    title: config.reception?.title || "Royal Grand Reception & Banquet",
-    venue: config.reception?.venue || "The Zenana Mahal Courtyard",
-    city: config.reception?.city || "City Palace Complex, Udaipur",
-    address: config.reception?.address || "City Palace Rd, Old City, Udaipur, Rajasthan",
-    date: config.reception?.date || "Monday, 29th November 2026",
-    time: config.reception?.time || "07:00 PM onwards",
-    mapsLink: config.reception?.mapsLink || "https://maps.google.com/?q=The+Zenana+Mahal+Udaipur",
+    title: config.reception?.title || "Reception",
+    venue: config.reception?.venue || "Sri Venkateswara Kalyana Mandapam Lawns",
+    city: config.reception?.city || "Ibrahimpatnam, Hyderabad",
+    address: config.reception?.address || address,
+    date: config.reception?.date || "28 Dec 2026",
+    time: config.reception?.time || "6:30 PM",
+    mapsLink: config.reception?.mapsLink || mapsLink,
     mapsEmbedUrl: config.reception?.mapsEmbedUrl || mapsEmbedUrl,
   };
 
-  // Events itinerary
+  // Events itinerary - 4 distinct events matching the reference
+  const defaultEventImages = [
+    "/templates/emerald-palace/event-haldi.jpg",
+    "/templates/emerald-palace/event-sangeeth.jpg",
+    "/templates/emerald-palace/event-muhurtam.jpg",
+    "/templates/emerald-palace/event-reception.jpg",
+  ];
+
   const rawEvents = config.events || [];
   let events: EmeraldPalaceEvent[] = [];
 
   if (Array.isArray(rawEvents) && rawEvents.length > 0) {
     events = rawEvents.map((e: any, idx: number) => ({
       id: e.id || `event-${idx}`,
-      title: e.title || `Royal Ceremony ${idx + 1}`,
+      title: e.title || (idx === 0 ? "Pellikuthuru (Haldi)" : idx === 1 ? "Sangeeth" : idx === 2 ? "Wedding Muhurtam" : "Reception"),
       subtitle: e.subtitle || "",
-      date: e.date || weddingDate,
-      time: e.time || "10:00 AM",
+      date: e.date || (idx < 2 ? "26 Dec 2026" : "28 Dec 2026"),
+      time: e.time || (idx === 0 ? "10:00 AM" : idx === 1 ? "7:00 PM" : idx === 2 ? "9:12 AM" : "6:30 PM"),
       venue: e.venue || venue,
-      description: e.description || "Join us in celebrating this joyous milestone filled with traditional music, dance and festive feasts.",
-      dressCode: e.dressCode || (idx === 0 ? "Pastel Yellow / Traditional Indian" : idx === 1 ? "Royal Velvet & Jewels" : "Regal Traditional / Sherwani & Lehengas"),
-      image: e.image || (idx % 2 === 0 ? "/images/categories/halfsaree.jpg" : "/images/categories/wedding.jpg"),
-      icon: e.icon || (idx === 0 ? "🌸" : idx === 1 ? "✨" : idx === 2 ? "🪔" : "👑"),
-      auspiciousTime: e.auspiciousTime || "",
+      address: e.address || e.venueAddress || address,
+      description: e.description || (idx === 0 ? "Turmeric and floral blessings" : idx === 1 ? "An evening of music and dance" : idx === 2 ? "Sacred union and wedding sumuhurtham" : "Grand celebratory dinner"),
+      dressCode: e.dressCode || (idx === 0 ? "Pastel Yellow" : idx === 1 ? "Festive Glam" : idx === 2 ? "Traditional Silk" : "Formal Festive"),
+      image: e.image || defaultEventImages[idx % defaultEventImages.length],
+      icon: e.icon || (idx === 0 ? "haldi" : idx === 1 ? "sangeeth" : idx === 2 ? "muhurtam" : "reception"),
+      auspiciousTime: e.auspiciousTime || (idx === 2 ? "9:12 AM" : ""),
       enabled: e.enabled !== false,
     }));
   } else {
-    // Default Royal 4-Event Itinerary
+    // Exact 4-Event Itinerary from Reference Mockup
     events = [
       {
-        id: "haldi-rasam",
-        title: "Haldi & Phoolon Ki Holi",
-        subtitle: "Auspicious Turmeric & Floral Blessings",
-        date: "Saturday, 27th Nov 2026",
-        time: "10:00 AM - 01:00 PM",
-        venue: "Chandani Courtyard, Udaivilas",
-        description: "Basking in the golden radiance of sacred turmeric paste, fragrant rose petals, and soulful folk melodies.",
-        dressCode: "Sunshine Yellow & Floral Chiffons",
-        icon: "🌼",
-        auspiciousTime: "10:30 AM Auspicious Muhurtham",
+        id: "pellikuthuru",
+        title: "Pellikuthuru (Haldi)",
+        subtitle: "Auspicious Turmeric Ceremony",
+        date: "26 Dec 2026",
+        time: "10:00 AM",
+        venue: venue,
+        address: address,
+        description: "Basking in the golden radiance of sacred turmeric paste, fragrant petals, and playful music.",
+        dressCode: "Sunshine Yellow / Traditional",
+        icon: "haldi",
+        image: "/templates/emerald-palace/event-haldi.jpg",
         enabled: true,
       },
       {
-        id: "sangeet-night",
-        title: "The Royal Sangeet & Jashn",
-        subtitle: "An Evening of Music, Dance & Revelry",
-        date: "Saturday, 27th Nov 2026",
-        time: "07:30 PM Onwards",
-        venue: "Mewar Royal Lawns, Udaivilas",
-        description: "A glamorous celebration under the starlit Udaipur skies with spectacular performances, sufi rhythms, and imperial cuisine.",
-        dressCode: "Glitz, Royal Emerald & Velvet Couture",
-        icon: "✨",
+        id: "sangeeth",
+        title: "Sangeeth",
+        subtitle: "A Night of Music & Celebration",
+        date: "26 Dec 2026",
+        time: "7:00 PM",
+        venue: venue,
+        address: address,
+        description: "An evening filled with energetic dances, melodious performances, and celebratory joy.",
+        dressCode: "Festive Glam / Royal Hues",
+        icon: "sangeeth",
+        image: "/templates/emerald-palace/event-sangeeth.jpg",
         enabled: true,
       },
       {
-        id: "wedding-muhurtham",
-        title: "Shubh Vivah & Pheras",
-        subtitle: "The Sacred Vows & Seven Steps",
-        date: "Sunday, 28th Nov 2026",
-        time: "10:00 AM - 02:00 PM",
-        venue: "The Lotus Mandap, Waterfront Pavilions",
-        description: "Witness the divine union amidst Vedic Vedic chants, sacred holy fire (Agni Sakshi), and auspicious blessings.",
-        dressCode: "Traditional Royal Silks & Sherwanis",
-        icon: "🪔",
-        auspiciousTime: "Sumuhurtham: 10:48 AM",
+        id: "wedding-muhurtam",
+        title: "Wedding Muhurtam",
+        subtitle: "The Sacred Vows & Pheras",
+        date: "28 Dec 2026",
+        time: "9:12 AM",
+        venue: venue,
+        address: address,
+        description: "Witness the sacred union amidst holy Vedic mantras, floral blessings, and divine grace.",
+        dressCode: "Traditional South Indian Silks",
+        icon: "muhurtam",
+        image: "/templates/emerald-palace/event-muhurtam.jpg",
+        auspiciousTime: "Sumuhurtham: 9:12 AM",
         enabled: true,
       },
       {
-        id: "royal-reception",
-        title: "The Royal Grand Reception",
-        subtitle: "Imperial Banquet & Gala",
-        date: "Monday, 29th Nov 2026",
-        time: "07:30 PM Onwards",
-        venue: "The Zenana Mahal Courtyard",
-        description: "A celebratory evening of toasts, live classical sitar and shehnai symphony, and an authentic royal Rajasthani royal feast.",
-        dressCode: "Black Tie / Royal Heritage Formals",
-        icon: "👑",
+        id: "reception",
+        title: "Reception",
+        subtitle: "Celebratory Banquet",
+        date: "28 Dec 2026",
+        time: "6:30 PM",
+        venue: venue,
+        address: address,
+        description: "A joyous evening of heartfelt congratulations, music, and an exquisite royal feast.",
+        dressCode: "Indo-Western / Formal Festive",
+        icon: "reception",
+        image: "/templates/emerald-palace/event-reception.jpg",
         enabled: true,
       },
     ];
   }
 
   // Family details
-  const brideParents = config.families?.brideParents || config.family?.brideParents || "Mrs. Gayatri & Mr. Harshavardhan Singh";
-  const groomParents = config.families?.groomParents || config.family?.groomParents || "Mrs. Rajeshwari & Mr. Vikramaditya Rathore";
+  const rawGroomFamilyImg =
+    config.family?.groomFamilyImage ||
+    config.families?.groomFamilyImage ||
+    config.family?.groomFamilyPhoto ||
+    config.families?.groomFamilyPhoto;
+
+  const rawBrideFamilyImg =
+    config.family?.brideFamilyImage ||
+    config.families?.brideFamilyImage ||
+    config.family?.brideFamilyPhoto ||
+    config.families?.brideFamilyPhoto;
+
+  const groomFamilyImage = rawGroomFamilyImg || "/templates/emerald-palace/family-groom.jpg";
+  const brideFamilyImage = rawBrideFamilyImg || "/templates/emerald-palace/family-bride.jpg";
+
+  const groomFamilyFocalPoint =
+    config.family?.groomFamilyFocalPoint ||
+    config.families?.groomFamilyFocalPoint ||
+    "center 20%";
+
+  const brideFamilyFocalPoint =
+    config.family?.brideFamilyFocalPoint ||
+    config.families?.brideFamilyFocalPoint ||
+    "center 20%";
+
+  const groomFamilyTitle =
+    config.family?.groomFamilyTitle ||
+    config.families?.groomFamilyTitle ||
+    (rawGroomSurname ? `The ${rawGroomSurname} Family` : `${groomName}'s Family`);
+
+  const brideFamilyTitle =
+    config.family?.brideFamilyTitle ||
+    config.families?.brideFamilyTitle ||
+    (rawBrideSurname ? `The ${rawBrideSurname} Family` : `${brideName}'s Family`);
+
+  const familyBlessingQuote =
+    config.family?.blessingQuote ||
+    config.families?.blessingQuote ||
+    "Together, our families welcome you to celebrate this beautiful union.";
 
   const brideFamily = Array.isArray(config.families?.brideFamily || config.family?.brideFamily)
     ? (config.families?.brideFamily || config.family?.brideFamily)
     : [
         { relation: "Parents", name: brideParents },
-        { relation: "Brother & Sister-in-law", name: "Yuvraj Ranveer & Princess Radhika" },
-        { relation: "Grandparents", name: "Late Smt. Devika Devi & Late Shri Bhupendra Singh" },
+        { relation: "Brother", name: "Karthik Rao" },
       ];
 
   const groomFamily = Array.isArray(config.families?.groomFamily || config.family?.groomFamily)
     ? (config.families?.groomFamily || config.family?.groomFamily)
     : [
         { relation: "Parents", name: groomParents },
-        { relation: "Sister & Brother-in-law", name: "Dr. Ananya & Kunwar Aditya Pratap" },
-        { relation: "Grandparents", name: "Smt. Shanti Devi & Shri Mahendra Singh Rathore" },
+        { relation: "Sister", name: "Pooja Gupta" },
       ];
 
   // Story
-  const storyTitle = config.story?.title || "How Destiny Orchestrated Our Forever";
-  const storyText = config.story?.text || "From our very first conversation over heritage architecture in Udaipur to countless shared sunsets across the Aravalli hills, our journey has been a symphony of laughter, shared dreams, and unwavering devotion. With the cherished blessings of our parents and divine grace, we joyfully invite you to celebrate the dawn of our eternal union.";
-  const couplePhoto = config.story?.couplePhoto || config.couple?.image || "/images/couple.jpg";
+  const storyTitle = config.story?.title || "Our Story";
+  const storyText = config.story?.text || "From a chance meeting to a lifelong journey, our story has been one of friendship, laughter, and shared dreams.";
+  const couplePhoto = config.story?.couplePhoto || "/templates/emerald-palace/story-candid.jpg";
+  const couplePhoto2 = config.story?.couplePhoto2 || "/templates/emerald-palace/story-hands.jpg";
 
   // Gallery
   const rawGallery = config.gallery || [];
   let gallery = Array.isArray(rawGallery) && rawGallery.length > 0
     ? rawGallery.map((item: any, i: number) => ({
-        src: typeof item === "string" ? item : item.src || item.url || "/images/couple.jpg",
-        alt: typeof item === "object" ? item.alt || `Royal Moment ${i + 1}` : `Royal Moment ${i + 1}`,
+        src: typeof item === "string" ? item : item.src || item.url || "/templates/emerald-palace/couple-portrait-large.jpg",
+        alt: typeof item === "object" ? item.alt || `Moment ${i + 1}` : `Moment ${i + 1}`,
         caption: typeof item === "object" ? item.caption || "" : "",
       }))
     : [
-        { src: "/images/couple.jpg", alt: "The Royal Couple", caption: "A quiet moment of serene romance" },
-        { src: "/images/categories/wedding.jpg", alt: "Celebration of Love", caption: "Tradition woven with contemporary grace" },
-        { src: "/images/categories/engagement.jpg", alt: "The Auspicious Ring Ceremony", caption: "When our promises were etched in eternity" },
-        { src: "/images/categories/halfsaree.jpg", alt: "Festive Joy", caption: "Joyous laughter and golden celebrations" },
+        { src: "/templates/emerald-palace/couple-portrait-large.jpg", alt: "Arjun & Divya Royal Portrait", caption: "Eternal Beginning" },
+        { src: "/templates/emerald-palace/story-candid.jpg", alt: "Sunset Courtyard Candid", caption: "Joyous Laughter" },
+        { src: "/templates/emerald-palace/gallery-bride.jpg", alt: "Divya Bridal Glow", caption: "Bridal Radiance" },
+        { src: "/templates/emerald-palace/gallery-groom.jpg", alt: "Arjun Regal Groom", caption: "Royal Heritage" },
+        { src: "/templates/emerald-palace/story-hands.jpg", alt: "Sacred Clasped Hands", caption: "Sacred Bond" },
+        { src: "/templates/emerald-palace/event-muhurtam.jpg", alt: "Sacred Kalyana Mandapam", caption: "Divine Blessings" },
       ];
+
+  // Video settings
+  const video = {
+    enabled: config.video?.enabled !== false,
+    title: config.video?.title || "Our Wedding Film",
+    subtitle: config.video?.subtitle || "Relive the timeless moments, laughter, and sacred vows captured in cinematic motion.",
+    url: config.video?.url || "/wedding/procession/procession.mp4",
+    poster: config.video?.poster || "/templates/emerald-palace/couple-portrait-large.jpg",
+  };
 
   // RSVP
   const rsvp = {
-    title: config.rsvp?.title || "Grace Us With Your Presence",
-    message: config.rsvp?.message || "Kindly confirm your presence by 15th November 2026 to help us make your royal stay comfortable and memorable.",
+    title: config.rsvp?.title || "Will You Be Joining Us?",
+    message: config.rsvp?.message || "Please let us know if you can join us for the celebrations.",
     buttonText: config.rsvp?.buttonText || "CONFIRM ATTENDANCE",
     contacts: Array.isArray(config.rsvp?.contacts) && config.rsvp.contacts.length > 0
       ? config.rsvp.contacts
       : [
-          { type: "phone", label: "Rathore Family Hospitality", value: "+91 98765 43210" },
-          { type: "phone", label: "Singh Family Concierge", value: "+91 98765 43211" },
+          { type: "phone", label: "Hospitality Desk", value: "+91 9866767100" },
         ],
-    whatsappNumber: config.rsvp?.whatsappNumber || "919876543210",
-    whatsappLabel: config.rsvp?.whatsappLabel || "Chat with Royal Hospitality Desk",
-    rsvpDeadline: config.rsvp?.deadline || "15th November 2026",
+    whatsappNumber: config.rsvp?.whatsappNumber || "919866767100",
+    whatsappLabel: config.rsvp?.whatsappLabel || "Confirm via WhatsApp",
+    rsvpDeadline: config.rsvp?.deadline || "20th December 2026",
   };
 
   // Footer
   const footer = {
-    quote: config.footer?.quote || "“In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine.”",
-    blessing: "With humble folded hands and joyful hearts, we look forward to welcoming you into our family celebration.",
-    designer: "Ahvaanam Bespoke Royal Invitations",
-    service: "Luxury Digital Wedding Suite",
-    location: "Udaipur • Rajasthan • India",
+    quote: config.footer?.quote || "Two souls with but a single thought, two hearts that beat as one.",
+    blessing: "Looking forward to celebrating this auspicious union with you.",
+    designer: "Ahvaanam",
+    service: "Luxury Wedding Suite",
+    location: "Hyderabad • India",
     contact: "care@ahvaanam.com",
   };
 
@@ -359,14 +460,30 @@ export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalac
     showFooter: config.sections?.showFooter !== false,
   };
 
+  // Hero settings
+  const rawCoupleHero =
+    config.hero?.coupleImage ||
+    config.hero?.coupleCutout ||
+    config.couple?.heroImage ||
+    config.couple?.cutoutImage;
+  const coupleHeroImage = rawCoupleHero || "/templates/emerald-palace/couple-hero.png";
+  const bgImage = config.hero?.backgroundImage || config.hero?.bgImage || "/templates/emerald-palace/hero-temple-sunset.jpg";
+
   return {
     sections,
     music: {
       themeMusic: config.music?.themeMusic || config.music?.file || "/wedding/rose-mandap/theme-music.MP3",
     },
+    hero: {
+      coupleImage: coupleHeroImage,
+      bgImage,
+      eyebrow,
+      date: weddingDate,
+    },
     couple: {
       bride: brideName,
       groom: groomName,
+      portraitImage: config.couple?.portraitImage || config.couple?.image || "/templates/emerald-palace/couple-portrait-large.jpg",
       brideSurname: rawBrideSurname,
       groomSurname: rawGroomSurname,
       primarySide,
@@ -400,29 +517,35 @@ export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalac
     },
     reception,
     family: {
-      title: config.family?.title || "The Royal Families & Lineage",
+      title: config.family?.title || config.families?.title || "With the Blessings of Our Families",
       brideParents,
       groomParents,
       brideFamily,
       groomFamily,
       groomPortrait: groomImage,
       bridePortrait: brideImage,
-      groomFamilyTitle: `The ${rawGroomSurname || "Rathore"} Dynasty`,
-      brideFamilyTitle: `The ${rawBrideSurname || "Singh"} Dynasty`,
-      blessingQuote: "Blessed by ancestors, cherished by elders, and celebrated by family and friends.",
+      groomFamilyTitle,
+      brideFamilyTitle,
+      blessingQuote: familyBlessingQuote,
+      groomFamilyImage,
+      brideFamilyImage,
+      groomFamilyFocalPoint,
+      brideFamilyFocalPoint,
     },
     events,
     story: {
       title: storyTitle,
       text: storyText,
       couplePhoto,
+      couplePhoto2,
       milestones: [
-        { yearOrDate: "December 2023", title: "First Encounter", desc: "A chance meeting amidst the grand architecture of Udaipur." },
-        { yearOrDate: "August 2024", title: "The Royal Proposal", desc: "Under a starlit sky at Lake Pichola, promises were whispered forever." },
-        { yearOrDate: "November 2026", title: "The Auspicious Union", desc: "Two families united into one glorious legacy." }
-      ]
+        { yearOrDate: "2024", title: "First Encounter", desc: "A chance meeting that blossomed into a beautiful friendship." },
+        { yearOrDate: "2025", title: "The Promise", desc: "Deciding on a forever filled with love and shared dreams." },
+        { yearOrDate: "2026", title: "The Sacred Muhurtam", desc: "Uniting our hearts and families in eternal celebration." },
+      ],
     },
     gallery,
+    video,
     rsvp,
     footer,
   };

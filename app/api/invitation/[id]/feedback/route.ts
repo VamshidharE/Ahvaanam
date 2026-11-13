@@ -16,6 +16,14 @@ export async function POST(
   }
 
   try {
+    // Demo sandbox protection: gracefully acknowledge demo feedback without writing to DB
+    if (id.startsWith("demo-") || id === "demo") {
+      return NextResponse.json({
+        success: true,
+        message: "Demo feedback acknowledged in read-only sandbox mode.",
+      });
+    }
+
     const adminDb = getAdminDb();
     const invite = await getInvitationById(id, adminDb);
     if (!invite) {

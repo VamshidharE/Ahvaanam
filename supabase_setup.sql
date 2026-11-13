@@ -304,5 +304,36 @@ GRANT ALL ON TABLE public.invitation_analytics_events TO service_role;
 GRANT SELECT, INSERT ON TABLE public.invitation_analytics_events TO anon;
 GRANT SELECT, INSERT ON TABLE public.invitation_analytics_events TO authenticated;
 
+-- 15. Create demo_showcases table for managing public demo showcases
+create table if not exists demo_showcases (
+  slug text primary key,
+  template_id text not null,
+  name text not null,
+  description text,
+  is_published boolean not null default true,
+  created_at timestamptz default now() not null,
+  updated_at timestamptz default now() not null
+);
+
+alter table demo_showcases enable row level security;
+
+-- Allow public read access to published demo showcases
+create policy "Allow public read access to published demo showcases" on demo_showcases
+  for select using (is_published = true);
+
+-- Allow service_role full access to demo showcases
+create policy "Allow service_role full access to demo showcases" on demo_showcases
+  for all using (true);
+
+-- Seed initial 4 production demo showcases
+insert into demo_showcases (slug, template_id, name, description, is_published)
+values
+  ('pelli-pandiri', 'pelli-pandiri', 'Pelli Pandiri', 'Traditional Telugu wedding invitation with temple entrance arch, 3D butterfly companion, auspicious toranam, and parchment scroll celebration sections.', true),
+  ('gopuram', 'gopuram', 'Gopuram', 'Majestic Dravidian temple gopuram invitation featuring a towering entrance, rising couple reveal, sunset skies, and continuous parchment celebration sections.', true),
+  ('rose-mandap', 'rose-mandap', 'Rose Mandap', 'Royal mandap architecture, hanging brass bells, couple artwork, falling petals, and live wedding procession animation.', true),
+  ('lotus-mandap', 'lotus-mandapam', 'Lotus Mandap', 'Cinematic South Indian wedding invitation inspired by traditional temple architecture, lotus ponds and golden sunset scenery.', true)
+on conflict (slug) do nothing;
+
+
 
 

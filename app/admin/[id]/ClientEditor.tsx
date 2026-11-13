@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { createClient } from "@/utils/supabase/client";
 import { isAdminUser } from "@/lib/auth/isAdmin";
+import { uploadMediaFile } from "@/lib/utils/uploadFile";
 
 // --- CONFETTI CANVAS EFFECT ---
 function ConfettiCanvas({ active }: { active: boolean }) {
@@ -121,21 +122,11 @@ function FileUploader({
     setUploading(true);
     setError(null);
 
-    const formData = new FormData();
-    formData.append("file", file);
-
     try {
-      const res = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!res.ok) throw new Error("Upload failed");
-
-      const data = await res.json();
-      onUploadSuccess(data.url);
+      const url = await uploadMediaFile(file);
+      onUploadSuccess(url);
     } catch (err: any) {
-      setError("Failed to upload file. Please try again.");
+      setError(err.message || "Failed to upload file. Please try again.");
     } finally {
       setUploading(false);
       if (fileInputRef.current) fileInputRef.current.value = "";
@@ -1618,15 +1609,44 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
             </div>
           </div>
 
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Section Eyebrow</label>
+              <input
+                type="text"
+                placeholder="The Union of Two Families"
+                value={families.eyebrow || ""}
+                onChange={(e) => updateInvitationData((prev: any) => ({
+                  ...prev,
+                  families: { ...prev.families, eyebrow: e.target.value }
+                }))}
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Section Title</label>
+              <input
+                type="text"
+                placeholder="With the Blessings of Our Families"
+                value={families.title || ""}
+                onChange={(e) => updateInvitationData((prev: any) => ({
+                  ...prev,
+                  families: { ...prev.families, title: e.target.value }
+                }))}
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+              />
+            </div>
+          </div>
+
           <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Section Title</label>
+            <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Combined Blessing / Welcome Message</label>
             <input
               type="text"
-              placeholder="Our Families"
-              value={families.title || ""}
+              placeholder="Together, our families welcome you to celebrate this beautiful union."
+              value={families.blessingQuote || ""}
               onChange={(e) => updateInvitationData((prev: any) => ({
                 ...prev,
-                families: { ...prev.families, title: e.target.value }
+                families: { ...prev.families, blessingQuote: e.target.value }
               }))}
               className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
             />
@@ -1652,6 +1672,99 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
             >
               <Plus size={12} /> Add Member
             </button>
+          </div>
+
+          {/* Groom Family Title & Parents */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Groom Family Title</label>
+              <input
+                type="text"
+                placeholder="The Gupta Family"
+                value={families.groomFamilyTitle || ""}
+                onChange={(e) => updateInvitationData((prev: any) => ({
+                  ...prev,
+                  families: { ...prev.families, groomFamilyTitle: e.target.value }
+                }))}
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Beloved Parents&apos; Names</label>
+              <input
+                type="text"
+                placeholder="Sri Ramesh Gupta & Smt. Lalitha Gupta"
+                value={families.groomParents || ""}
+                onChange={(e) => updateInvitationData((prev: any) => ({
+                  ...prev,
+                  families: { ...prev.families, groomParents: e.target.value }
+                }))}
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+              />
+            </div>
+          </div>
+
+          {/* Groom Family Photograph Upload & Controls */}
+          <div className="p-4 bg-black/25 border border-white/10 rounded-xl space-y-3">
+            <div className="flex justify-between items-center">
+              <label className="text-[10px] uppercase font-semibold text-yellow-500 tracking-[1px]">
+                Groom&apos;s Family Portrait Photograph
+              </label>
+              {families.groomFamilyImage && (
+                <button
+                  type="button"
+                  onClick={() => updateInvitationData((prev: any) => ({
+                    ...prev,
+                    families: { ...prev.families, groomFamilyImage: "" }
+                  }))}
+                  className="text-red-400 hover:text-red-300 text-[10px] font-semibold"
+                >
+                  Reset to Default
+                </button>
+              )}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+              {/* Image Preview Thumbnail */}
+              <div className="relative w-36 h-24 rounded-lg overflow-hidden border border-white/20 bg-black/40 flex-shrink-0">
+                <img
+                  src={families.groomFamilyImage || "/templates/emerald-palace/family-groom.jpg"}
+                  alt="Groom Family Preview"
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: families.groomFamilyFocalPoint || "center 20%" }}
+                />
+              </div>
+
+              <div className="flex-1 space-y-2.5 w-full">
+                <FileUploader
+                  label="Upload Groom Family Photo"
+                  onUploadSuccess={(url) => updateInvitationData((prev: any) => ({
+                    ...prev,
+                    families: { ...prev.families, groomFamilyImage: url }
+                  }))}
+                />
+
+                {/* Focal Point / Positioning Control */}
+                <div className="flex items-center gap-2">
+                  <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px] whitespace-nowrap">
+                    Crop / Focal Alignment:
+                  </label>
+                  <select
+                    value={families.groomFamilyFocalPoint || "center 20%"}
+                    onChange={(e) => updateInvitationData((prev: any) => ({
+                      ...prev,
+                      families: { ...prev.families, groomFamilyFocalPoint: e.target.value }
+                    }))}
+                    className="bg-black/40 border border-white/10 rounded-lg px-2.5 py-1 text-xs text-white outline-none focus:border-yellow-500 cursor-pointer"
+                  >
+                    <option value="center top">Top Focus (Heads)</option>
+                    <option value="center 20%">Upper Center (Recommended)</option>
+                    <option value="center center">Center</option>
+                    <option value="center 40%">Lower Center</option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
 
           {groomFamily.map((member: any, idx: number) => (
@@ -1717,6 +1830,99 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
             >
               <Plus size={12} /> Add Member
             </button>
+          </div>
+
+          {/* Bride Family Title & Parents */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Bride Family Title</label>
+              <input
+                type="text"
+                placeholder="The Rao Family"
+                value={families.brideFamilyTitle || ""}
+                onChange={(e) => updateInvitationData((prev: any) => ({
+                  ...prev,
+                  families: { ...prev.families, brideFamilyTitle: e.target.value }
+                }))}
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px]">Beloved Parents&apos; Names</label>
+              <input
+                type="text"
+                placeholder="Sri Prabhakar Rao & Smt. Sushma Rao"
+                value={families.brideParents || ""}
+                onChange={(e) => updateInvitationData((prev: any) => ({
+                  ...prev,
+                  families: { ...prev.families, brideParents: e.target.value }
+                }))}
+                className="bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-yellow-500 outline-none"
+              />
+            </div>
+          </div>
+
+          {/* Bride Family Photograph Upload & Controls */}
+          <div className="p-4 bg-black/25 border border-white/10 rounded-xl space-y-3">
+            <div className="flex justify-between items-center">
+              <label className="text-[10px] uppercase font-semibold text-yellow-500 tracking-[1px]">
+                Bride&apos;s Family Portrait Photograph
+              </label>
+              {families.brideFamilyImage && (
+                <button
+                  type="button"
+                  onClick={() => updateInvitationData((prev: any) => ({
+                    ...prev,
+                    families: { ...prev.families, brideFamilyImage: "" }
+                  }))}
+                  className="text-red-400 hover:text-red-300 text-[10px] font-semibold"
+                >
+                  Reset to Default
+                </button>
+              )}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+              {/* Image Preview Thumbnail */}
+              <div className="relative w-36 h-24 rounded-lg overflow-hidden border border-white/20 bg-black/40 flex-shrink-0">
+                <img
+                  src={families.brideFamilyImage || "/templates/emerald-palace/family-bride.jpg"}
+                  alt="Bride Family Preview"
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: families.brideFamilyFocalPoint || "center 20%" }}
+                />
+              </div>
+
+              <div className="flex-1 space-y-2.5 w-full">
+                <FileUploader
+                  label="Upload Bride Family Photo"
+                  onUploadSuccess={(url) => updateInvitationData((prev: any) => ({
+                    ...prev,
+                    families: { ...prev.families, brideFamilyImage: url }
+                  }))}
+                />
+
+                {/* Focal Point / Positioning Control */}
+                <div className="flex items-center gap-2">
+                  <label className="text-[10px] uppercase font-semibold text-white/50 tracking-[1px] whitespace-nowrap">
+                    Crop / Focal Alignment:
+                  </label>
+                  <select
+                    value={families.brideFamilyFocalPoint || "center 20%"}
+                    onChange={(e) => updateInvitationData((prev: any) => ({
+                      ...prev,
+                      families: { ...prev.families, brideFamilyFocalPoint: e.target.value }
+                    }))}
+                    className="bg-black/40 border border-white/10 rounded-lg px-2.5 py-1 text-xs text-white outline-none focus:border-yellow-500 cursor-pointer"
+                  >
+                    <option value="center top">Top Focus (Heads)</option>
+                    <option value="center 20%">Upper Center (Recommended)</option>
+                    <option value="center center">Center</option>
+                    <option value="center 40%">Lower Center</option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
 
           {brideFamily.map((member: any, idx: number) => (

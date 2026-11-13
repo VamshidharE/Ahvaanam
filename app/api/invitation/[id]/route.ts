@@ -69,6 +69,10 @@ export async function POST(
 
   const { id } = await params;
 
+  if (id.startsWith("demo-") || id === "demo") {
+    return NextResponse.json({ error: "Demo templates are read-only and cannot be modified." }, { status: 403 });
+  }
+
   try {
     const adminDb = getAdminDb();
     // 1. Fetch current owner metadata

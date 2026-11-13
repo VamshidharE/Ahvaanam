@@ -1,163 +1,82 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import {
-    Mail,
-    Phone,
-    MapPin,
-    ArrowRight,
-} from "lucide-react";
+import React from "react";
+import { Mail, Phone } from "lucide-react";
 import Link from "next/link";
-import { createClient } from "@/utils/supabase/client";
 
 export default function Footer() {
-    const [user, setUser] = useState<any>(null);
-    const supabase = createClient();
-
-    useEffect(() => {
-        supabase.auth.getUser().then(({ data: { user } }) => {
-            setUser(user);
-        });
-    }, []);
-
     return (
-        <footer className="relative overflow-hidden bg-[#FCFAF6] pt-28">
+        <footer className="relative overflow-hidden bg-[#FAF9F6] border-t border-[#E5A93C]/15">
+            {/* Subtle Warm Glow */}
+            <div className="absolute left-1/2 top-0 h-32 w-80 -translate-x-1/2 rounded-full bg-amber-200/20 blur-3xl pointer-events-none" />
 
-            {/* Background Glow */}
+            <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                {/* Main Compact Row: Logo on Left, Text in Centre, Contact on Right */}
+                <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-6 py-6 md:py-7">
+                    {/* Left: Ahvaanam Logo */}
+                    <div className="order-1 flex justify-center md:justify-start items-center">
+                        <Link href="/" className="inline-block transition-transform hover:scale-105">
+                            <img
+                                src="/images/logo.png"
+                                alt="Ahvaanam"
+                                className="h-8 md:h-9 w-auto object-contain"
+                            />
+                        </Link>
+                    </div>
 
-            <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-amber-200/20 blur-[120px]" />
-
-            <div className="relative mx-auto max-w-7xl px-6">
-
-                {/* Footer Content */}
-
-                <div className="grid gap-14 py-20 md:grid-cols-2 lg:grid-cols-4">
-
-                    {/* Brand */}
-
-                    <div>
-
-                        <img src="/images/logo.png" alt="Ahvaanam" className="h-8 md:h-9 w-auto object-contain" />
-
-                        <p className="mt-5 leading-8 text-slate-500">
-                            Craft beautiful digital invitations for weddings,
-                            birthdays, engagements and every celebration.
+                    {/* Centre: Tagline */}
+                    <div className="order-2 text-center">
+                        <p className="text-xs md:text-sm text-slate-500 leading-relaxed max-w-md mx-auto">
+                            Craft beautiful digital invitations for weddings, birthdays, engagements and every celebration.
                         </p>
-
-                        <div className="mt-8 flex gap-4">
-
-
-                        </div>
-
                     </div>
 
-                    {/* Product */}
+                    {/* Right: Contact Info */}
+                    <div className="order-3 flex flex-col sm:flex-row items-center justify-center md:justify-end gap-4 sm:gap-6 text-xs md:text-sm text-slate-600">
+                        <a
+                            href="mailto:topmtpl@gmail.com"
+                            className="flex items-center gap-2 hover:text-[#C49B27] transition-colors"
+                        >
+                            <span className="w-7 h-7 rounded-full bg-amber-500/10 flex items-center justify-center text-[#C49B27] shrink-0">
+                                <Mail size={14} />
+                            </span>
+                            <span>topmtpl@gmail.com</span>
+                        </a>
 
-                    <div>
-
-                        <h4 className="text-xl font-semibold">
-                            Product
-                        </h4>
-
-                        <div className="mt-6 flex flex-col gap-4 text-slate-500">
-
-                            <Link href="/dashboard" className="hover:text-amber-500 transition-colors">My Dashboard</Link>
-                            <Link href="/demo" className="hover:text-amber-500 transition-colors">Preview Demo</Link>
-                            <Link href="/services" className="hover:text-amber-500 transition-colors">Services</Link>
-                            <Link href="/how-it-works" className="hover:text-amber-500 transition-colors">How It Works</Link>
-
-                        </div>
-
+                        <a
+                            href="tel:+918688178323"
+                            className="flex items-center gap-2 hover:text-[#C49B27] transition-colors whitespace-nowrap"
+                        >
+                            <span className="w-7 h-7 rounded-full bg-amber-500/10 flex items-center justify-center text-[#C49B27] shrink-0">
+                                <Phone size={14} />
+                            </span>
+                            <span>+91 8688178323</span>
+                        </a>
                     </div>
-
-                    {/* Company */}
-
-                    <div>
-
-                        <h4 className="text-xl font-semibold">
-                            Company
-                        </h4>
-
-                        <div className="mt-6 flex flex-col gap-4 text-slate-500">
-
-                            <Link href="/about" className="hover:text-amber-500 transition-colors">About Us</Link>
-                            <Link href="/contact" className="hover:text-amber-500 transition-colors">Contact</Link>
-                            <Link href="/privacy" className="hover:text-amber-500 transition-colors">Privacy Policy</Link>
-                            <Link href="/terms" className="hover:text-amber-500 transition-colors">Terms of Service</Link>
-
-                        </div>
-
-                    </div>
-
-                    {/* Contact */}
-
-                    <div>
-
-                        <h4 className="text-xl font-semibold">
-                            Contact
-                        </h4>
-
-                        <div className="mt-6 space-y-5">
-
-                            <div className="flex items-center gap-3">
-
-                                <Mail
-                                    size={18}
-                                    className="text-amber-500"
-                                />
-
-                                <a href="mailto:topmtpl@gmail.com" className="text-slate-500 hover:text-amber-600 transition-colors">
-                                    topmtpl@gmail.com
-                                </a>
-
-                            </div>
-
-                            <div className="flex items-center gap-3">
-
-                                <Phone
-                                    size={18}
-                                    className="text-amber-500"
-                                />
-
-                                <a href="tel:+918688178323" className="text-slate-500 hover:text-amber-600 transition-colors">
-                                    +91 8688178323
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
                 </div>
-                {/* Bottom Bar */}
 
-                <div className="flex flex-col items-center justify-between gap-6 border-t border-amber-100 py-8 md:flex-row">
-
-                    <p className="text-sm text-slate-500">
+                {/* Bottom Bar: Copyright & Compact Navigation Links */}
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[#E5A93C]/15 py-4 text-xs text-slate-500">
+                    <p>
                         © {new Date().getFullYear()} Ahvaanam. All rights reserved.
                     </p>
 
-                    <div className="flex items-center gap-6 text-sm text-slate-500">
-                        <Link href="/privacy" className="transition hover:text-amber-600">
+                    <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+                        <Link href="/about" className="transition hover:text-[#C49B27]">
+                            About Us
+                        </Link>
+                        <Link href="/privacy" className="transition hover:text-[#C49B27]">
                             Privacy Policy
                         </Link>
-
-                        <Link href="/terms" className="transition hover:text-amber-600">
+                        <Link href="/terms" className="transition hover:text-[#C49B27]">
                             Terms
                         </Link>
-
-                        <Link href="/contact" className="transition hover:text-amber-600">
+                        <Link href="/contact" className="transition hover:text-[#C49B27]">
                             Support
                         </Link>
                     </div>
-
                 </div>
-
             </div>
-
         </footer>
-
     );
 }

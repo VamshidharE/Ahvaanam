@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { createClient } from "@/utils/supabase/client";
 import { isAdminUser } from "@/lib/auth/isAdmin";
+import { uploadMediaFile } from "@/lib/utils/uploadFile";
 
 // --- CONFETTI CANVAS EFFECT ---
 function ConfettiCanvas({ active }: { active: boolean }) {
@@ -121,22 +122,9 @@ function FileUploader({
     setUploading(true);
     setError(null);
 
-    const formData = new FormData();
-    formData.append("file", file);
-
     try {
-      const res = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || "Upload failed");
-      }
-
-      onUploadSuccess(data.url);
+      const url = await uploadMediaFile(file);
+      onUploadSuccess(url);
     } catch (err: any) {
       setError(err.message || "Upload failed. Try again.");
     } finally {
@@ -246,8 +234,10 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
     : [];
 
   const isPelliPandiri = (invitationData?.themeId || (invitationData as any)?.config?.themeId) === "pelli-pandiri";
+  const isGopuram = (invitationData?.themeId || (invitationData as any)?.config?.themeId) === "gopuram";
+  const isDedicatedTemplate = isPelliPandiri || isGopuram;
 
-  const tabsList = isPelliPandiri
+  const tabsList = isDedicatedTemplate
     ? [
         { id: "general", label: "General Config", icon: "Sliders" },
         { id: "couple", label: "Bride & Groom", icon: "Heart" },
@@ -486,7 +476,19 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
     });
   };
 
-  const sectionLabels: Record<string, string> = isPelliPandiri ? {
+  const sectionLabels: Record<string, string> = isGopuram ? {
+    hero: "Welcome Banner & Gopuram",
+    couple: "Grand Couple Showcase",
+    events: "Wedding Celebrations Schedule",
+    story: "Pre-Wedding Film",
+    gallery: "Moments We Treasure Gallery",
+    families: "Our Families Details",
+    rsvp: "RSVP & Muhurtham Timer",
+    footer: "Page Credits & Rating",
+    countdown: "Muhurtham Countdown",
+    venues: "Event Venues",
+    venue: "Event Venues"
+  } : isPelliPandiri ? {
     hero: "Welcome Banner & Mandap",
     couple: "Grand Couple Showcase",
     events: "Wedding Celebrations",
@@ -1222,8 +1224,9 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
         ? brideData.family
         : [];
 
-    if (isPelliPandiri) {
-      const coupleCutoutImage = invitationData.couple?.coupleCutout || invitationData.hero?.heroImage || "/templates/pelli-pandiri/Couple.png";
+    if (isPelliPandiri || isGopuram) {
+      const defaultCutout = isGopuram ? "/templates/gopuram/Couple.png" : "/templates/pelli-pandiri/Couple.png";
+      const coupleCutoutImage = invitationData.couple?.coupleCutout || invitationData.hero?.heroImage || defaultCutout;
 
       return (
         <div className="space-y-6 text-left animate-fadeIn">
@@ -1340,7 +1343,7 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
                       hero: { ...(prev.config.hero || {}), heroImage: e.target.value }
                     } : undefined
                   }))}
-                  placeholder="/templates/pelli-pandiri/Couple.png or upload below..."
+                  placeholder={isGopuram ? "/templates/gopuram/Couple.png or upload below..." : "/templates/pelli-pandiri/Couple.png or upload below..."}
                   className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] w-full font-mono text-[11px]"
                 />
                 <FileUploader
@@ -2390,13 +2393,16 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
 
   const renderStorySettings = () => {
     const isPelliPandiri = (invitationData.themeId || (invitationData as any).config?.themeId) === "pelli-pandiri";
+    const isGopuram = (invitationData.themeId || (invitationData as any).config?.themeId) === "gopuram";
 
-    if (isPelliPandiri) {
+    if (isPelliPandiri || isGopuram) {
+      const defaultVideo = isGopuram ? "/templates/gopuram/video/pre-wedding.mp4" : "/templates/pelli-pandiri/video/pre-wedding.mp4";
+      const defaultPoster = isGopuram ? "/templates/gopuram/video/pre-wedding-poster.jpg" : "/templates/pelli-pandiri/video/pre-wedding-poster.jpg";
       const videoConfig = (invitationData as any).video || (invitationData as any).config?.video || {};
       const videoHeading = videoConfig.heading || invitationData.story?.title || "A GLIMPSE OF US";
       const videoSubheading = videoConfig.subheading || invitationData.story?.subtitle || "Our story, captured in beautiful moments.";
-      const videoSrc = videoConfig.videoSrc || (invitationData.story as any)?.videoSrc || "/templates/pelli-pandiri/video/pre-wedding.mp4";
-      const posterSrc = videoConfig.posterSrc || (invitationData.story as any)?.posterSrc || "/templates/pelli-pandiri/video/pre-wedding-poster.jpg";
+      const videoSrc = videoConfig.videoSrc || (invitationData.story as any)?.videoSrc || defaultVideo;
+      const posterSrc = videoConfig.posterSrc || (invitationData.story as any)?.posterSrc || defaultPoster;
 
       return (
         <div className="space-y-6 text-left animate-fadeIn">
@@ -2875,9 +2881,11 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
     const groomFamily = families.groomFamily || [];
     const brideFamily = families.brideFamily || [];
 
-    if (isPelliPandiri) {
-      const groomPortrait = families.groomPortrait || invitationData.couple?.groom?.image || "/templates/pelli-pandiri/family/groom-family.jpg";
-      const bridePortrait = families.bridePortrait || invitationData.couple?.bride?.image || "/templates/pelli-pandiri/family/bride-family.jpg";
+    if (isPelliPandiri || isGopuram) {
+      const defaultGroomPortrait = isGopuram ? "/templates/gopuram/family/groom-family.jpg" : "/templates/pelli-pandiri/family/groom-family.jpg";
+      const defaultBridePortrait = isGopuram ? "/templates/gopuram/family/bride-family.jpg" : "/templates/pelli-pandiri/family/bride-family.jpg";
+      const groomPortrait = families.groomPortrait || invitationData.couple?.groom?.image || defaultGroomPortrait;
+      const bridePortrait = families.bridePortrait || invitationData.couple?.bride?.image || defaultBridePortrait;
 
       return (
         <div className="space-y-6 text-left animate-fadeIn">
@@ -2987,7 +2995,7 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
                     families: { ...prev.families, groomPortrait: e.target.value },
                     couple: { ...prev.couple, groom: { ...(prev.couple?.groom || {}), image: e.target.value } }
                   }))}
-                  placeholder="/templates/pelli-pandiri/family/groom-family.jpg or upload below..."
+                  placeholder={isGopuram ? "/templates/gopuram/family/groom-family.jpg or upload below..." : "/templates/pelli-pandiri/family/groom-family.jpg or upload below..."}
                   className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] flex-1 font-mono text-[11px]"
                 />
                 <FileUploader
@@ -3142,7 +3150,7 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
                     families: { ...prev.families, bridePortrait: e.target.value },
                     couple: { ...prev.couple, bride: { ...(prev.couple?.bride || {}), image: e.target.value } }
                   }))}
-                  placeholder="/templates/pelli-pandiri/family/bride-family.jpg or upload below..."
+                  placeholder={isGopuram ? "/templates/gopuram/family/bride-family.jpg or upload below..." : "/templates/pelli-pandiri/family/bride-family.jpg or upload below..."}
                   className="bg-[#FAF9F6] border border-zinc-200 rounded-xl px-3 py-2 text-xs text-[#241E1C] outline-none focus:border-[#C49B27] flex-1 font-mono text-[11px]"
                 />
                 <FileUploader
@@ -3804,7 +3812,7 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
         </div>
 
         {/* RSVP Contacts List - Only for other templates */}
-        {!isPelliPandiri && (
+        {!isDedicatedTemplate && (
           <div className="card-minimal p-4 md:p-5 space-y-4">
             <div className="flex justify-between items-center border-b border-zinc-100 pb-2 w-full">
               <h3 className="text-xs font-bold uppercase tracking-[1.5px] text-[#241E1C]/50">RSVP Contacts</h3>
@@ -4312,7 +4320,7 @@ function AdminPortalContent({ clientId }: { clientId: string }) {
                       ${isExpanded ? "max-h-[4000px] border-t border-zinc-100 p-4 md:p-5 space-y-5" : "max-h-0"}
                     `}>
                       {sect.id === "general" ? renderGeneralSettings() : (() => {
-                        if (isPelliPandiri) {
+                        if (isDedicatedTemplate) {
                           if (sect.id === "couple") return renderCoupleSettings();
                           if (sect.id === "events") return renderEventsSettings();
                           if (sect.id === "story") return renderStorySettings();

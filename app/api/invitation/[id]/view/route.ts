@@ -20,6 +20,11 @@ export async function POST(
   }
 
   try {
+    // Ignore demo views to prevent polluting client analytics
+    if (id.startsWith("demo-") || id === "demo") {
+      return NextResponse.json({ success: true, ignored: "demo_view" });
+    }
+
     // Check if the current viewer is an admin user (do not count admin visits as real client views)
     const supabaseUserClient = await createClient();
     const { data: { user } } = await supabaseUserClient.auth.getUser();

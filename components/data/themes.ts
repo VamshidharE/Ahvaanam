@@ -94,8 +94,8 @@ export const themes: ThemeMetadata[] = [
   {
     id: "emerald-palace",
     name: "Emerald Palace Royale",
-    tagline: "Regal Velvet & Imperial Gold",
-    description: "Royal Rajputana heritage court, multi-foil Jharokha archway, glowing wax seal envelope opening, antique brass lanterns, falling jasmine petals, and imperial banquet typography.",
-    colorHex: "#0C2B22",
+    tagline: "Warm Ivory & Imperial Burgundy",
+    description: "Cinematic temple sunset, cascading bougainvillea, ornamental ivory invitation plaque, royal mandap, and 4 auspicious wedding celebration panels.",
+    colorHex: "#781D36",
   },
 ];

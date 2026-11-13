@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 76" width="540" height="76" fill="none">
+  <defs>
+    <!-- Royal Midnight Blue Gradient -->
+    <linearGradient id="cartoucheBg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0a1a36" />
+      <stop offset="25%" stop-color="#10274c" />
+      <stop offset="50%" stop-color="#163566" />
+      <stop offset="75%" stop-color="#10274c" />
+      <stop offset="100%" stop-color="#0a1a36" />
+    </linearGradient>
+
+    <!-- Antique Gold Gradient for Outer Border -->
+    <linearGradient id="goldBorder" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b8860b" />
+      <stop offset="30%" stop-color="#f5d77f" />
+      <stop offset="50%" stop-color="#ffd700" />
+      <stop offset="70%" stop-color="#f5d77f" />
+      <stop offset="100%" stop-color="#b8860b" />
+    </linearGradient>
+
+    <!-- Inner Gold Line Gradient -->
+    <linearGradient id="goldInner" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffe699" />
+      <stop offset="100%" stop-color="#d4af37" />
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="cartoucheShadow" x="-10%" y="-10%" width="120%" height="130%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#050b17" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <!-- Group with shadow -->
+  <g filter="url(#cartoucheShadow)">
+    <!-- Main Cartouche Plaque Body -->
+    <!-- Symmetrical geometry with concave corner scoops and bracket ends -->
+    <path
+      d="
+        M 50 14
+        L 240 14
+        C 246 14, 252 6, 260 4
+        C 266 2, 270 0, 270 0
+        C 270 0, 274 2, 280 4
+        C 288 6, 294 14, 300 14
+        L 490 14
+        C 505 14, 515 22, 512 38
+        C 515 54, 505 62, 490 62
+        L 300 62
+        C 294 62, 288 70, 280 72
+        C 274 74, 270 76, 270 76
+        C 270 76, 266 74, 260 72
+        C 252 70, 246 62, 240 62
+        L 50 62
+        C 35 62, 25 54, 28 38
+        C 25 22, 35 14, 50 14
+        Z
+      "
+      fill="url(#cartoucheBg)"
+      stroke="url(#goldBorder)"
+      stroke-width="2.5"
+    />
+
+    <!-- Inner Fine Gold Hairline Contour -->
+    <path
+      d="
+        M 54 18
+        L 242 18
+        C 247 18, 252 11, 260 9
+        C 265 7, 270 5, 270 5
+        C 270 5, 275 7, 280 9
+        C 288 11, 293 18, 298 18
+        L 486 18
+        C 498 18, 506 25, 504 38
+        C 506 51, 498 58, 486 58
+        L 298 58
+        C 293 58, 288 65, 280 67
+        C 275 69, 270 71, 270 71
+        C 270 71, 265 69, 260 67
+        C 252 65, 247 58, 242 58
+        L 54 58
+        C 42 58, 34 51, 36 38
+        C 34 25, 42 18, 54 18
+        Z
+      "
+      fill="none"
+      stroke="url(#goldInner)"
+      stroke-width="1.2"
+      stroke-opacity="0.85"
+    />
+
+    <!-- Top Ornate Crest Palmette / Flourish Artwork -->
+    <g transform="translate(270, 7) scale(0.75)" fill="#ffd700">
+      <path d="M0 -6 C3 -2, 7 0, 10 4 C6 4, 3 3, 0 8 C-3 3, -6 4, -10 4 C-7 0, -3 -2, 0 -6 Z" />
+      <circle cx="0" cy="-7" r="1.5" />
+      <circle cx="-6" cy="-2" r="1" />
+      <circle cx="6" cy="-2" r="1" />
+    </g>
+
+    <!-- Bottom Pendant Flourish Drop -->
+    <g transform="translate(270, 69) scale(0.65)" fill="#ffd700">
+      <path d="M0 6 C2 2, 5 0, 7 -2 C4 -2, 2 -1, 0 -4 C-2 -1, -4 -2, -7 -2 C-5 0, -2 2, 0 6 Z" />
+      <circle cx="0" cy="7" r="1.2" />
+    </g>
+
+    <!-- Left End Gold 8-Point Rosette / Star -->
+    <g transform="translate(42, 38) scale(0.9)" fill="#ffd978">
+      <path d="M0 -7 L1.8 -2.2 L6.5 -2.7 L2.9 0.8 L4.9 5.2 L0.5 3 L-3.9 5.2 L-1.9 0.8 L-5.5 -2.7 L-0.8 -2.2 Z" />
+      <circle cx="0" cy="0" r="1.5" fill="#fff" />
+    </g>
+
+    <!-- Right End Gold 8-Point Rosette / Star -->
+    <g transform="translate(498, 38) scale(0.9)" fill="#ffd978">
+      <path d="M0 -7 L1.8 -2.2 L6.5 -2.7 L2.9 0.8 L4.9 5.2 L0.5 3 L-3.9 5.2 L-1.9 0.8 L-5.5 -2.7 L-0.8 -2.2 Z" />
+      <circle cx="0" cy="0" r="1.5" fill="#fff" />
+    </g>
+  </g>
+</svg>

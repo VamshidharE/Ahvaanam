@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { createClient } from "@/utils/supabase/client";
 import { isAdminUser } from "@/lib/auth/isAdmin";
+import DemoShowcaseSection from "./components/DemoShowcaseSection";
 
 interface ClientProfile {
   id: string;
@@ -492,6 +493,9 @@ export default function ClientDashboard() {
             </div>
           )}
         </div>
+
+        {/* Demo Showcase Management Section (Admin Only) */}
+        {isAdmin && <DemoShowcaseSection />}
 
         {/* Active Projects Grid */}
         <div className="space-y-4 text-left w-full animate-fadeIn">

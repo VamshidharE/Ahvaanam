@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import crypto from "crypto";
 import { createClient } from "@/utils/supabase/server";
-import { uploadMetadataSchema } from "@/lib/validation";
+import { ALLOWED_UPLOAD_MIME_TO_EXT, uploadMetadataSchema } from "@/lib/validation";
 
 export async function POST(request: Request) {
   const supabase = await createClient();
@@ -44,23 +44,8 @@ export async function POST(request: Request) {
     const mimeType = file.type.toLowerCase();
     const ext = path.extname(file.name).toLowerCase();
 
-    const allowedMimeToExt: Record<string, string[]> = {
-      "image/jpeg": [".jpg", ".jpeg"],
-      "image/png": [".png"],
-      "image/webp": [".webp"],
-      "audio/mpeg": [".mp3"],
-      "audio/mp3": [".mp3"],
-      "audio/wav": [".wav"],
-      "audio/x-wav": [".wav"],
-      "audio/m4a": [".m4a"],
-      "audio/x-m4a": [".m4a"],
-      "audio/aac": [".aac"],
-      "audio/ogg": [".ogg", ".oga"],
-      "audio/mp4": [".m4a", ".mp4"]
-    };
-
     // 2. Extension Match Verification
-    const validExts = allowedMimeToExt[mimeType];
+    const validExts = ALLOWED_UPLOAD_MIME_TO_EXT[mimeType];
     if (!validExts || !validExts.includes(ext)) {
       return NextResponse.json({ error: "MIME type and file extension mismatch." }, { status: 415 });
     }

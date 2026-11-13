@@ -282,6 +282,8 @@ export async function POST(request: Request) {
         config = createDefaultConfig("wedding", "rose-mandap").config;
       } else if (effectiveTheme === "pelli-pandiri") {
         config = createDefaultConfig("wedding", "pelli-pandiri").config;
+      } else if (effectiveTheme === "gopuram") {
+        config = createDefaultConfig("wedding", "gopuram").config;
       } else {
         config = JSON.parse(JSON.stringify(defaultTemplate));
       }

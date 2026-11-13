@@ -19,6 +19,14 @@ export async function POST(
   }
 
   try {
+    // Demo sandbox protection: gracefully acknowledge demo RSVPs without writing to DB
+    if (id.startsWith("demo-") || id === "demo") {
+      return NextResponse.json({
+        success: true,
+        message: "Demo RSVP acknowledged in read-only sandbox mode.",
+      });
+    }
+
     // 2. Load and verify invitation
     const invite = await getInvitationById(id).catch(() => null);
     if (!invite) {
