@@ -641,7 +641,7 @@ const WEDDING_FEATURES: TemplateFeatures = {
 
 // Default values factory
 const createWeddingDefaults = (themeId: string) => {
-  if (themeId === "lotus-mandapam" || themeId === "sacred-courtyard" || themeId === "emerald-palace") {
+  if (themeId === "lotus-mandap" || themeId === "lotus-mandapam" || themeId === "sacred-courtyard" || themeId === "emerald-palace") {
     return {
       themeId,
       sectionOrder: LOTUS_MANDAPAM_SECTIONS.map((s) => s.id),
@@ -1444,13 +1444,14 @@ const WEDDING_THEMES = [
   { id: "pelli-pandiri", name: "Pelli Pandiri", desc: "A grand traditional Telugu wedding invitation with temple entrance arch, sunset sky, 3D butterfly companion, auspicious toranam, and parchment scroll sections." },
   { id: "gopuram", name: "Gopuram", desc: "A majestic Dravidian temple gopuram invitation featuring a towering gopuram entrance, rising couple reveal, sunset skies, authentic sacred ambiance, and continuous parchment celebration sections." },
   { id: "emerald-palace", name: "Emerald Palace", desc: "Warm ivory and imperial burgundy royal wedding template with cinematic photographic presentation." },
-{ id: "lotus-mandapam", name: "Lotus Mandapam", desc: "A cinematic South Indian wedding invitation inspired by traditional temple architecture, lotus ponds and golden sunset scenery." },
+  { id: "lotus-mandap", name: "Lotus Mandap", desc: "A cinematic South Indian wedding invitation inspired by traditional temple architecture, lotus ponds and golden sunset scenery." },
+  { id: "lotus-mandapam", name: "Lotus Mandapam", desc: "A cinematic South Indian wedding invitation inspired by traditional temple architecture, lotus ponds and golden sunset scenery." },
   { id: "sacred-courtyard", name: "The Sacred Courtyard", desc: "A cinematic South Indian wedding invitation inspired by traditional temple architecture, lotus ponds and golden sunset scenery." },
 ];
 
 export const TEMPLATE_MANIFEST_REGISTRY: TemplateManifest[] = [
   ...WEDDING_THEMES.map((theme) => {
-    const isLotusMandapam = theme.id === "lotus-mandapam" || theme.id === "sacred-courtyard" || theme.id === "emerald-palace";
+    const isLotusMandapam = theme.id === "lotus-mandap" || theme.id === "lotus-mandapam" || theme.id === "sacred-courtyard" || theme.id === "emerald-palace";
     const isPelliPandiri = theme.id === "pelli-pandiri";
     const isGopuram = theme.id === "gopuram";
     const sections = isLotusMandapam ? LOTUS_MANDAPAM_SECTIONS : (isPelliPandiri ? PELLI_PANDIRI_SECTIONS : (isGopuram ? GOPURAM_SECTIONS : WEDDING_SECTIONS));

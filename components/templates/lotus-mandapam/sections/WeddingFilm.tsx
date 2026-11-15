@@ -59,7 +59,7 @@ export function WeddingFilm() {
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         {/* Header */}
         <span className="font-cinzel text-xs uppercase tracking-[0.25em] text-[#DFB759] font-bold">
-          Cinematic Highlights
+          {videoConfig.eyebrow || "Cinematic Highlights"}
         </span>
         <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#FFF6E9] mt-2 mb-3 font-bold tracking-tight">
           {videoConfig.title || "Our Wedding Film"}
@@ -84,6 +84,8 @@ export function WeddingFilm() {
                 src={posterUrl}
                 alt="Wedding Film Poster"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
 

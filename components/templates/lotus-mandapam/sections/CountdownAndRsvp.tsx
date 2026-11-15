@@ -18,7 +18,7 @@ export function CountdownAndRsvp({ clientId }: { clientId?: string }) {
   const [viewMode, setViewMode] = useState<"invite" | "rsvp">("invite");
 
   // --- Countdown State ---
-  const targetDateStr = data.wedding.countdownTarget || "2026-12-28T09:12:00";
+  const targetDateStr = data.countdown?.targetDate || data.wedding.countdownTarget || "2026-12-28T09:12:00";
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -52,45 +52,102 @@ export function CountdownAndRsvp({ clientId }: { clientId?: string }) {
   // --- RSVP State ---
   const [attending, setAttending] = useState<"yes" | "maybe" | "no">("yes");
   const [guestName, setGuestName] = useState("");
-  const [guestCount, setGuestCount] = useState("2");
+  const [guestCount, setGuestCount] = useState("1");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [rsvpNote, setRsvpNote] = useState("");
   const [isSendingRsvp, setIsSendingRsvp] = useState(false);
   const [rsvpSubmitted, setRsvpSubmitted] = useState(false);
+  const [visitorToken, setVisitorToken] = useState<string>("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      let token =
+        localStorage.getItem("ahvaanam_visitor_token") ||
+        sessionStorage.getItem("ahvaanam_visitor_token");
+      if (!token) {
+        token = `vt_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+        try {
+          localStorage.setItem("ahvaanam_visitor_token", token);
+          sessionStorage.setItem("ahvaanam_visitor_token", token);
+        } catch {}
+      }
+      setVisitorToken(token);
+    }
+  }, []);
+
+  const effectiveClientId =
+    clientId ||
+    (typeof window !== "undefined"
+      ? window.location.pathname.split("/").pop()
+      : undefined);
+
+  // Sync attendance with server
+  const syncAttendance = async (
+    name: string,
+    count: number,
+    phone?: string,
+    note?: string
+  ) => {
+    if (
+      !effectiveClientId ||
+      effectiveClientId.startsWith("preview") ||
+      effectiveClientId.startsWith("demo")
+    )
+      return;
+
+    try {
+      await fetch(`/api/invitation/${effectiveClientId}/rsvp`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          guest_name: name || "Unknown",
+          attending: true,
+          guest_count: count,
+          phone: phone || null,
+          message: note || null,
+          visitor_token: visitorToken || `vt_${Date.now()}`,
+        }),
+      });
+    } catch (err) {
+      // Silently catch in read-only / sandbox environments
+    }
+  };
+
+  const handleEnterRsvp = () => {
+    setViewMode("rsvp");
+    emitAnalyticsInteraction("rsvp_open", "rsvp");
+    // If any person clicks the button to enter this field and they don't add any wishes or send, mark them as 1 guest as unknown
+    syncAttendance("Unknown", 1);
+  };
+
+  const handleGuestCountChange = (newCount: string) => {
+    setGuestCount(newCount);
+    // If guests selected, then update it
+    const countNum = parseInt(newCount, 10) || 1;
+    syncAttendance(guestName.trim() || "Unknown", countNum, phoneNumber, rsvpNote);
+  };
 
   // Handle RSVP Submit
   const handleRsvpSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!guestName.trim()) return;
-
     setIsSendingRsvp(true);
 
-    if (clientId) {
-      try {
-        await fetch(`/api/invitation/${clientId}/rsvp`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: guestName,
-            status: attending,
-            guestCount: parseInt(guestCount, 10) || 1,
-            phone: phoneNumber,
-            wishes: rsvpNote,
-          }),
-        });
-      } catch (err) {
-        // Fallback gracefully
-      }
-    }
+    const displayName = guestName.trim() || "Unknown";
+    const countNum = parseInt(guestCount, 10) || 1;
 
+    await syncAttendance(displayName, countNum, phoneNumber, rsvpNote);
     emitAnalyticsInteraction("rsvp_submit", "rsvp");
 
     const cleanPhone = (data.rsvp.whatsappNumber || "919866767100").replace(/[^0-9]/g, "");
-    let textStatus = "will be delighted to attend";
-    if (attending === "maybe") textStatus = "will try our best to attend";
-    if (attending === "no") textStatus = "regretfully won't be able to attend in person";
+    let responseText = `Namaste! Sending warmest wishes and heartfelt blessings to the newlyweds, ${data.couple.bride} & ${data.couple.groom}!`;
+    if (displayName !== "Unknown") {
+      responseText += `\nFrom: ${displayName}`;
+    }
+    responseText += ` (${countNum} ${countNum === 1 ? "Guest" : "Guests"})`;
+    if (rsvpNote && rsvpNote.trim()) {
+      responseText += `\nWishes: "${rsvpNote.trim()}"`;
+    }
 
-    const responseText = `Namaste! I/We (${guestName}, ${guestCount} Guests) ${textStatus} the wedding celebrations of ${data.couple.bride} & ${data.couple.groom}! ${rsvpNote ? `Note: "${rsvpNote}"` : ""}`;
     const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(responseText)}`;
 
     setTimeout(() => {
@@ -141,7 +198,7 @@ export function CountdownAndRsvp({ clientId }: { clientId?: string }) {
                 ✦ Sumuhurtham Timepiece ✦
               </span>
               <h3 className="font-cinzel text-xl sm:text-2xl font-bold text-[#781D36] tracking-tight mb-1 uppercase">
-                Muhurtham Countdown
+                {data.countdown?.title || "Muhurtham Countdown"}
               </h3>
               <p className="font-serif text-xs sm:text-sm italic text-[#7E5B58] mb-4">
                 {data.wedding.date} • {data.wedding.time}
@@ -189,14 +246,6 @@ export function CountdownAndRsvp({ clientId }: { clientId?: string }) {
                   </span>
                 </div>
               </div>
-
-              {/* Venue Name Underneath */}
-              <div className="flex items-center justify-center gap-1.5 text-xs font-serif text-[#7E5B58] px-2">
-                <span className="text-[#781D36] text-xs">🏛️</span>
-                <span className="font-semibold text-[#542D2A] text-center">
-                  {data.wedding.venue}
-                </span>
-              </div>
             </div>
 
             {/* Subtle Vertical Divider (Desktop Only) */}
@@ -223,27 +272,20 @@ export function CountdownAndRsvp({ clientId }: { clientId?: string }) {
                       ✦ Sacred Invitation ✦
                     </span>
                     <h3 className="font-cinzel text-2xl sm:text-3xl font-bold text-[#781D36] mb-2 leading-tight uppercase">
-                      Celebrate With Us
+                      {data.rsvp?.title || "Celebrate With Us"}
                     </h3>
 
-                    <p className="font-serif text-sm sm:text-base text-[#542D2A] leading-relaxed italic mb-2">
-                      &ldquo;We request the honour of your esteemed presence to celebrate the holy matrimony and shower your divine blessings upon the newlyweds.&rdquo;
-                    </p>
-
-                    <p className="font-serif text-xs text-[#7E5B58] leading-relaxed mb-5">
-                      Your gracious presence will make our celebration complete and memorable.
+                    <p className="font-serif text-sm sm:text-base text-[#542D2A] leading-relaxed italic mb-5">
+                      &ldquo;{data.rsvp?.message || "We request the honour of your esteemed presence to celebrate the holy matrimony and shower your divine blessings upon the newlyweds."}&rdquo;
                     </p>
 
                     {/* Action Buttons: Confirm Presence & Circular WhatsApp Symbol */}
                     <div className="flex items-center gap-3 justify-center lg:justify-start">
                       <button
-                        onClick={() => {
-                          setViewMode("rsvp");
-                          emitAnalyticsInteraction("rsvp_open", "rsvp");
-                        }}
-                        className="flex-1 sm:flex-initial px-7 py-3 rounded-full bg-gradient-to-r from-[#781D36] via-[#65182F] to-[#541424] hover:from-[#65182F] hover:to-[#450F1D] text-[#FFF6E9] font-cinzel text-xs font-bold uppercase tracking-[0.2em] shadow-[0_4px_18px_rgba(120,29,54,0.35)] transition-all duration-200 hover:scale-105 border-2 border-[#DFB759] flex items-center justify-center gap-2"
+                        onClick={handleEnterRsvp}
+                        className="flex-1 sm:flex-initial px-7 py-3 rounded-full bg-gradient-to-r from-[#781D36] via-[#65182F] to-[#541424] hover:from-[#65182F] hover:to-[#450F1D] text-[#FFF6E9] font-cinzel text-xs font-bold uppercase tracking-[0.2em] shadow-[0_4px_18px_rgba(120,29,54,0.35)] transition-all duration-200 hover:scale-105 border-2 border-[#DFB759] flex items-center justify-center gap-2 cursor-pointer"
                       >
-                        <span>Confirm Your Presence</span>
+                        <span>{data.rsvp?.buttonText || "Confirm Your Presence"}</span>
                         <span>→</span>
                       </button>
 
@@ -284,7 +326,7 @@ export function CountdownAndRsvp({ clientId }: { clientId?: string }) {
                       </div>
                       <button
                         onClick={() => setViewMode("invite")}
-                        className="font-cinzel text-[11px] font-semibold text-[#781D36] hover:text-[#541424] flex items-center gap-1 transition-colors px-2 py-1 rounded-lg hover:bg-[#FFF6E9]"
+                        className="font-cinzel text-[11px] font-semibold text-[#781D36] hover:text-[#541424] flex items-center gap-1 transition-colors px-2 py-1 rounded-lg hover:bg-[#FFF6E9] cursor-pointer"
                       >
                         <span>← Back</span>
                       </button>
@@ -294,29 +336,28 @@ export function CountdownAndRsvp({ clientId }: { clientId?: string }) {
                       <div className="text-center py-4">
                         <div className="text-2xl mb-1.5">💌</div>
                         <h4 className="font-cinzel text-base font-bold text-[#781D36] mb-1">
-                          Thank You, {guestName}!
+                          Thank You{guestName && guestName.trim() ? `, ${guestName}` : ""}!
                         </h4>
                         <p className="font-serif text-xs text-[#7E5B58] mb-3 leading-relaxed">
-                          Your response has been confirmed. We eagerly look forward to welcoming you!
+                          Your wishes and response have been received with love. We eagerly look forward to celebrating with you!
                         </p>
                         <button
                           onClick={() => setRsvpSubmitted(false)}
-                          className="ep-btn-gold text-[10px] py-1 px-4"
+                          className="ep-btn-gold text-[10px] py-1 px-4 cursor-pointer"
                         >
                           Edit Response
                         </button>
                       </div>
                     ) : (
                       <form onSubmit={handleRsvpSubmit} className="space-y-3">
-                        {/* Name & Guests */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        {/* Row 1: Full Name, Phone, Number of Guests in one line */}
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-2.5">
                           <div>
                             <label className="block font-cinzel text-[9px] uppercase tracking-wider text-[#781D36] font-semibold mb-0.5">
-                              Full Name / Family *
+                              Full Name / Family
                             </label>
                             <input
                               type="text"
-                              required
                               value={guestName}
                               onChange={(e) => setGuestName(e.target.value)}
                               placeholder="Eg: Rajesh & Family"
@@ -324,26 +365,6 @@ export function CountdownAndRsvp({ clientId }: { clientId?: string }) {
                             />
                           </div>
 
-                          <div>
-                            <label className="block font-cinzel text-[9px] uppercase tracking-wider text-[#781D36] font-semibold mb-0.5">
-                              Number of Guests
-                            </label>
-                            <select
-                              value={guestCount}
-                              onChange={(e) => setGuestCount(e.target.value)}
-                              className="w-full bg-[#FFF6E9]/60 border border-[#D6AD63]/70 rounded-lg px-2.5 py-1.5 text-xs font-serif text-[#542D2A] outline-none focus:border-[#781D36] focus:bg-white transition-all shadow-inner"
-                            >
-                              <option value="1">1 Guest</option>
-                              <option value="2">2 Guests</option>
-                              <option value="3">3 Guests</option>
-                              <option value="4">4 Guests</option>
-                              <option value="5">5+ Guests</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        {/* Phone & Wishes */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                           <div>
                             <label className="block font-cinzel text-[9px] uppercase tracking-wider text-[#781D36] font-semibold mb-0.5">
                               Phone / WhatsApp
@@ -359,24 +380,42 @@ export function CountdownAndRsvp({ clientId }: { clientId?: string }) {
 
                           <div>
                             <label className="block font-cinzel text-[9px] uppercase tracking-wider text-[#781D36] font-semibold mb-0.5">
-                              Optional Wishes / Note
+                              Number of Guests
                             </label>
-                            <input
-                              type="text"
-                              value={rsvpNote}
-                              onChange={(e) => setRsvpNote(e.target.value)}
-                              placeholder="Leave a note..."
+                            <select
+                              value={guestCount}
+                              onChange={(e) => handleGuestCountChange(e.target.value)}
                               className="w-full bg-[#FFF6E9]/60 border border-[#D6AD63]/70 rounded-lg px-2.5 py-1.5 text-xs font-serif text-[#542D2A] outline-none focus:border-[#781D36] focus:bg-white transition-all shadow-inner"
-                            />
+                            >
+                              <option value="1">1 Guest</option>
+                              <option value="2">2 Guests</option>
+                              <option value="3">3 Guests</option>
+                              <option value="4">4 Guests</option>
+                              <option value="5">5+ Guests</option>
+                            </select>
                           </div>
+                        </div>
+
+                        {/* Row 2: Wishes / Note in next line */}
+                        <div>
+                          <label className="block font-cinzel text-[9px] uppercase tracking-wider text-[#781D36] font-semibold mb-0.5">
+                            Wishes / Note
+                          </label>
+                          <input
+                            type="text"
+                            value={rsvpNote}
+                            onChange={(e) => setRsvpNote(e.target.value)}
+                            placeholder="Leave your warm wishes or note..."
+                            className="w-full bg-[#FFF6E9]/60 border border-[#D6AD63]/70 rounded-lg px-2.5 py-1.5 text-xs font-serif text-[#542D2A] outline-none focus:border-[#781D36] focus:bg-white transition-all shadow-inner"
+                          />
                         </div>
 
                         <button
                           type="submit"
                           disabled={isSendingRsvp}
-                          className="w-full py-2 rounded-full bg-gradient-to-r from-[#781D36] to-[#65182F] hover:from-[#65182F] text-[#FFF6E9] font-cinzel text-xs font-bold uppercase tracking-[0.18em] shadow-md transition-all border border-[#DFB759]/60 flex items-center justify-center gap-1.5 mt-1"
+                          className="w-full py-2.5 rounded-full bg-gradient-to-r from-[#781D36] to-[#65182F] hover:from-[#65182F] text-[#FFF6E9] font-cinzel text-xs font-bold uppercase tracking-[0.18em] shadow-md transition-all border border-[#DFB759]/60 flex items-center justify-center gap-1.5 mt-2 cursor-pointer"
                         >
-                          <span>{isSendingRsvp ? "Transmitting..." : "Confirm RSVP via WhatsApp"}</span>
+                          <span>{isSendingRsvp ? "Sending Wishes..." : "Send Wishes"}</span>
                           <span>→</span>
                         </button>
                       </form>

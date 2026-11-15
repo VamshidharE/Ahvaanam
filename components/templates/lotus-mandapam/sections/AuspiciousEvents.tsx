@@ -62,12 +62,14 @@ export function AuspiciousEvents() {
           <TraditionalFloralCluster className="w-full h-full object-contain" />
         </div>
         <span className="font-cinzel text-xs uppercase tracking-[0.25em] text-[#781D36] font-bold">
-          Sacred Itinerary
+          {data.celebrationsMeta?.eyebrow || "Sacred Itinerary"}
         </span>
-        <h2 className="ep-section-heading mt-1">Wedding Celebrations</h2>
+        <h2 className="ep-section-heading mt-1">
+          {data.celebrationsMeta?.title || "Wedding Celebrations"}
+        </h2>
         <RoyalDivider className="my-3 scale-90" />
         <p className="font-serif text-sm text-[#7E5B58] italic">
-          Select each sacred ceremony below to view its celebrations, venue, and timings.
+          {data.celebrationsMeta?.subtitle || "Select each sacred ceremony below to view its celebrations, venue, and timings."}
         </p>
       </div>
 
@@ -212,6 +214,8 @@ export function AuspiciousEvents() {
                     }
                     alt={activeEvent.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    loading="lazy"
+                    decoding="async"
                   />
                   {/* Atmospheric gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
@@ -241,11 +245,6 @@ export function AuspiciousEvents() {
                   <span className="font-cinzel text-[10px] uppercase font-bold tracking-[0.2em] px-2.5 py-0.5 rounded-full bg-[#781D36] text-[#FFF6E9]">
                     Ceremony 0{activeIndex + 1} / 0{enabledEvents.length}
                   </span>
-                  {activeEvent.auspiciousTime && (
-                    <span className="font-serif text-xs italic text-[#B88A3B] font-semibold">
-                      ✦ {activeEvent.auspiciousTime}
-                    </span>
-                  )}
                 </div>
 
                 {/* Event Title */}

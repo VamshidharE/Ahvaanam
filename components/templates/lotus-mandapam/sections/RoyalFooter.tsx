@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { TraditionalAuspiciousMotif, TraditionalCornerKolam } from "../assets/Ornaments";
+import { TraditionalCornerKolam } from "../assets/Ornaments";
 import { useEmeraldPalace } from "../context";
 
 export function RoyalFooter() {
@@ -10,6 +10,10 @@ export function RoyalFooter() {
   const isBrideFirst = data.couple.primarySide === "bride";
   const firstName = isBrideFirst ? data.couple.bride : data.couple.groom;
   const secondName = isBrideFirst ? data.couple.groom : data.couple.bride;
+
+  const quoteText = data.footer?.quote || data.footer?.blessing || "";
+  const brandName = data.footer?.designer || "Ahvaanam";
+  const serviceSubtitle = data.footer?.service || "Luxury Digital Wedding Suite";
 
   return (
     <footer
@@ -25,40 +29,47 @@ export function RoyalFooter() {
       </div>
 
       <div className="relative z-10 max-w-xl mx-auto text-center flex flex-col items-center">
-        {/* Compact Auspicious Deepam Motif */}
-        <div className="w-10 h-10 mb-2 opacity-85 brightness-150 pointer-events-none filter drop-shadow-[0_0_12px_rgba(223,183,89,0.4)]">
-          <TraditionalAuspiciousMotif className="w-full h-full object-contain" />
-        </div>
-
-        {/* Subtle Gold Monogram Emblem */}
-        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#65182F] to-[#450F1D] border-2 border-[#DFB759] flex items-center justify-center shadow-lg mb-2">
-          <span className="font-cinzel text-xs font-bold text-[#FDEAB2] tracking-wider">
-            {data.couple.monogram || "A & D"}
-          </span>
-        </div>
-
         {/* Illuminated Royal Couple Names */}
         <h3 className="font-cinzel text-xl sm:text-2xl lg:text-3xl text-[#FDEAB2] font-bold tracking-wider uppercase leading-tight my-1 drop-shadow-[0_2px_14px_rgba(223,183,89,0.5)]">
           {firstName} &amp; {secondName}
         </h3>
 
-        {/* Wedding Date */}
-        <p className="font-cinzel text-[11px] uppercase tracking-[0.25em] text-[#D6AD63] font-bold mt-1 mb-2">
-          ✦ {data.wedding.date} ✦
-        </p>
-
-        {/* Short Closing Message */}
-        <p className="font-serif text-xs sm:text-sm text-[#FFF6E9]/90 italic max-w-sm mx-auto leading-relaxed mb-3">
-          &ldquo;{data.footer.blessing || "Looking forward to celebrating our sacred union with your esteemed presence."}&rdquo;
-        </p>
+        {/* Short Closing Message (dynamically synced with editor) */}
+        {quoteText && (
+          <p className="font-serif text-xs sm:text-sm text-[#FFF6E9]/90 italic max-w-md mx-auto leading-relaxed mb-3">
+            &ldquo;{quoteText}&rdquo;
+          </p>
+        )}
 
         {/* Fine Gold Divider */}
-        <div className="w-28 h-[1px] bg-gradient-to-r from-transparent via-[#DFB759]/80 to-transparent my-2" />
+        <div className="w-28 h-[1px] bg-gradient-to-r from-transparent via-[#DFB759]/80 to-transparent my-3" />
 
-        {/* Brand Credit */}
-        <span className="font-cinzel text-[9px] uppercase tracking-[0.22em] text-[#DFB759]/80 font-semibold">
-          Ahvaanam • Luxury Digital Wedding Suite
-        </span>
+        {/* Ahvaanam Official Brand Section & Website Link */}
+        <a
+          href="https://www.ahvaanam.in"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex flex-col items-center gap-1.5 transition-transform hover:scale-105 group"
+        >
+          {/* Ahvaanam Logo */}
+          <img
+            src="/images/logo.png"
+            alt="Ahvaanam"
+            className="h-7 sm:h-8 w-auto object-contain brightness-110 drop-shadow-[0_2px_8px_rgba(223,183,89,0.3)]"
+            loading="lazy"
+            decoding="async"
+          />
+
+          {/* Dynamic Editable Designer & Service Credits */}
+          <span className="font-cinzel text-[9px] uppercase tracking-[0.22em] text-[#DFB759]/90 font-semibold">
+            {brandName} • {serviceSubtitle}
+          </span>
+
+          {/* Ahvaanam Website Link */}
+          <span className="font-cinzel text-[10px] tracking-[0.2em] text-[#D6AD63] font-bold group-hover:text-[#FFF6E9] transition-colors underline-offset-4 group-hover:underline">
+            www.ahvaanam.in
+          </span>
+        </a>
       </div>
     </footer>
   );

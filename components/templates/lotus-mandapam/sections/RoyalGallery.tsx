@@ -11,14 +11,14 @@ export function RoyalGallery() {
     data.gallery && data.gallery.length > 0
       ? data.gallery
       : [
-          { src: "/templates/emerald-palace/couple-portrait-large.jpg", alt: "Arjun & Divya Royal Portrait", caption: "Eternal Beginning" },
-          { src: "/templates/emerald-palace/story-candid.jpg", alt: "Sunset Courtyard Candid", caption: "Joyous Laughter" },
-          { src: "/templates/emerald-palace/gallery-bride.jpg", alt: "Divya Bridal Glow", caption: "Bridal Radiance" },
-          { src: "/templates/emerald-palace/gallery-groom.jpg", alt: "Arjun Regal Groom", caption: "Royal Heritage" },
-          { src: "/templates/emerald-palace/story-hands.jpg", alt: "Sacred Clasped Hands", caption: "Sacred Bond" },
-          { src: "/templates/emerald-palace/event-muhurtam.jpg", alt: "Sacred Kalyana Mandapam", caption: "Divine Blessings" },
-          { src: "/templates/emerald-palace/event-haldi.jpg", alt: "Golden Haldi Moments", caption: "Turmeric Blessings" },
-          { src: "/templates/emerald-palace/event-sangeeth.jpg", alt: "Sangeeth Celebrations", caption: "Festive Joy" },
+          { src: "/templates/emerald-palace/couple-portrait-large.jpg", alt: "Royal Portrait" },
+          { src: "/templates/emerald-palace/story-candid.jpg", alt: "Sunset Moments" },
+          { src: "/templates/emerald-palace/gallery-bride.jpg", alt: "Bridal Portrait" },
+          { src: "/templates/emerald-palace/gallery-groom.jpg", alt: "Groom Portrait" },
+          { src: "/templates/emerald-palace/story-hands.jpg", alt: "Sacred Hands" },
+          { src: "/templates/emerald-palace/event-muhurtam.jpg", alt: "Kalyana Mandapam" },
+          { src: "/templates/emerald-palace/event-haldi.jpg", alt: "Haldi Moments" },
+          { src: "/templates/emerald-palace/event-sangeeth.jpg", alt: "Sangeeth Celebrations" },
         ];
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -92,10 +92,12 @@ export function RoyalGallery() {
         <span className="font-cinzel text-xs uppercase tracking-[0.25em] text-[#781D36] font-bold">
           Captured Memories
         </span>
-        <h2 className="ep-section-heading mt-1">Our Moments</h2>
+        <h2 className="ep-section-heading mt-1">
+          {data.galleryMeta?.title || (data.gallery as any)?.title || "Our Moments"}
+        </h2>
         <RoyalDivider className="my-3 scale-90" />
         <p className="font-serif text-sm text-[#7E5B58] italic">
-          Glimpses of joyous laughter, timeless traditions, and tender celebrations.
+          {data.galleryMeta?.subheading || (data.gallery as any)?.subheading || "Glimpses of joyous laughter, timeless traditions, and tender celebrations."}
         </p>
       </div>
 
@@ -114,14 +116,13 @@ export function RoyalGallery() {
                   src={photos[activeIndex]?.src}
                   alt={photos[activeIndex]?.alt || "Featured Moment"}
                   className="w-full h-full object-cover"
+                  decoding="async"
                   initial={{ opacity: 0, scale: 1.03 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.6, ease: "easeInOut" }}
                 />
               </AnimatePresence>
-
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
 
               {/* Navigation Chevrons on Main Frame */}
               <button
@@ -145,16 +146,8 @@ export function RoyalGallery() {
                 ›
               </button>
 
-              <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between text-[#FFF6E9] pointer-events-none">
-                <div>
-                  <span className="font-cinzel text-xs tracking-widest text-[#DFB759] uppercase block font-semibold">
-                    Moment {activeIndex + 1} of {photos.length}
-                  </span>
-                  <h4 className="font-serif text-lg font-semibold italic text-[#FFF6E9]">
-                    {photos[activeIndex]?.caption || photos[activeIndex]?.alt}
-                  </h4>
-                </div>
-                <div className="w-10 h-10 rounded-full bg-[#781D36]/80 backdrop-blur-sm border border-[#DFB759] flex items-center justify-center text-sm shadow-md">
+              <div className="absolute bottom-4 right-4 pointer-events-none">
+                <div className="w-9 h-9 rounded-full bg-black/40 backdrop-blur-sm border border-[#DFB759]/70 flex items-center justify-center text-xs text-white shadow-md">
                   🔍
                 </div>
               </div>
@@ -180,13 +173,8 @@ export function RoyalGallery() {
                   alt={p.alt}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   loading="lazy"
+                  decoding="async"
                 />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors" />
-                <div className="absolute bottom-1.5 left-2 right-2 truncate">
-                  <span className="font-serif text-[10px] text-white/95 drop-shadow-md italic">
-                    {p.caption || p.alt}
-                  </span>
-                </div>
               </div>
             ))}
           </div>
@@ -209,6 +197,7 @@ export function RoyalGallery() {
                 src={photos[activeIndex]?.src}
                 alt={photos[activeIndex]?.alt || "Wedding Moment"}
                 className="w-full h-full object-cover"
+                decoding="async"
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
@@ -216,20 +205,9 @@ export function RoyalGallery() {
               />
             </AnimatePresence>
 
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent pointer-events-none" />
-
-            {/* Caption & Zoom indicator */}
-            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white pointer-events-none">
-              <div>
-                <span className="font-cinzel text-[10px] tracking-widest text-[#DFB759] uppercase block font-bold">
-                  {activeIndex + 1} / {photos.length}
-                </span>
-                <p className="font-serif text-sm italic font-semibold text-white/95">
-                  {photos[activeIndex]?.caption || photos[activeIndex]?.alt}
-                </p>
-              </div>
-              <span className="w-8 h-8 rounded-full bg-[#781D36]/80 backdrop-blur-sm border border-[#DFB759] flex items-center justify-center text-xs">
+            {/* Subtle Zoom indicator */}
+            <div className="absolute bottom-3 right-3 pointer-events-none">
+              <span className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm border border-[#DFB759]/70 flex items-center justify-center text-xs text-white">
                 🔍
               </span>
             </div>
@@ -300,6 +278,7 @@ export function RoyalGallery() {
                 src={photos[lightboxIndex]?.src}
                 alt={photos[lightboxIndex]?.alt || "Lightbox View"}
                 className="max-h-[75vh] w-auto object-contain rounded-2xl shadow-2xl border border-white/20"
+                decoding="async"
               />
               <p className="font-serif italic text-white/90 text-sm mt-3 text-center">
                 {photos[lightboxIndex]?.caption || photos[lightboxIndex]?.alt}

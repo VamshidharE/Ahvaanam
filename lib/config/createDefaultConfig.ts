@@ -195,7 +195,7 @@ export function createDefaultConfig(categoryId: string, themeId?: string): Invit
   }
 
 
-  if (categoryId.toLowerCase() === "wedding" && (themeId === "lotus-mandapam" || themeId === "sacred-courtyard" || themeId === "emerald-palace") && cloned.config) {
+  if (categoryId.toLowerCase() === "wedding" && (themeId === "lotus-mandap" || themeId === "lotus-mandapam" || themeId === "sacred-courtyard" || themeId === "emerald-palace") && cloned.config) {
     cloned.themeId = themeId;
     const config = cloned.config as any;
     config.themeId = themeId;

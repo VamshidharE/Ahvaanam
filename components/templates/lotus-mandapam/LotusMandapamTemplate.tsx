@@ -16,6 +16,7 @@ import AuspiciousEvents from "./sections/AuspiciousEvents";
 import RoyalGallery from "./sections/RoyalGallery";
 import WeddingFilm from "./sections/WeddingFilm";
 import CountdownAndRsvp from "./sections/CountdownAndRsvp";
+import VenueConcierge from "./sections/VenueConcierge";
 import RoyalFooter from "./sections/RoyalFooter";
 import { emitAnalyticsInteraction } from "@/lib/analytics/useInvitationTracker";
 
@@ -139,6 +140,86 @@ export default function LotusMandapamTemplate({
     }
   };
 
+  // Section dynamic rendering lookup synced with Editor reordering
+  const renderSection = (id: string) => {
+    switch (id) {
+      case "hero":
+        if (data.sections.showHero === false) return null;
+        return (
+          <div key="hero" data-section-id="hero">
+            <EmeraldHero />
+          </div>
+        );
+      case "family":
+      case "families":
+        if (data.sections.showFamily === false && data.sections.showFamilies === false) return null;
+        return (
+          <div key="family" data-section-id="family">
+            <FamilyBlessings />
+          </div>
+        );
+      case "couple":
+        if (data.sections.showCouple === false) return null;
+        return (
+          <div key="couple" data-section-id="couple">
+            <CoupleSection />
+          </div>
+        );
+      case "events":
+        if (data.sections.showEvents === false) return null;
+        return (
+          <div key="events" data-section-id="events">
+            <AuspiciousEvents />
+          </div>
+        );
+      case "film":
+      case "story":
+      case "video":
+        if (data.video?.enabled === false && data.sections.showStory === false && data.sections.showVideo === false) return null;
+        return (
+          <div key="film" data-section-id="film">
+            <WeddingFilm />
+          </div>
+        );
+      case "gallery":
+        if (data.sections.showGallery === false) return null;
+        return (
+          <div key="gallery" data-section-id="gallery">
+            <RoyalGallery />
+          </div>
+        );
+      case "countdown":
+      case "rsvp":
+        if (data.sections.showRSVP === false && data.sections.showCountdown === false) return null;
+        return (
+          <div key="rsvp" data-section-id="rsvp">
+            <CountdownAndRsvp clientId={clientId} />
+          </div>
+        );
+      case "venue":
+      case "venues":
+        if (data.sections.showVenue === false) return null;
+        return (
+          <div key="venue" data-section-id="venue">
+            <VenueConcierge />
+          </div>
+        );
+      case "footer":
+        if (data.sections.showFooter === false) return null;
+        return (
+          <div key="footer" data-section-id="footer">
+            <RoyalFooter />
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
+  // Ensure hero is always rendered at the top if sectionOrder doesn't start with hero
+  const hasHeroInOrder = data.sectionOrder.includes("hero");
+  const renderedSet = new Set<string>();
+
   return (
     <EmeraldPalaceProvider data={data}>
       <div className="lotus-mandapam-template emerald-palace-template relative select-none min-h-screen bg-[#FFF6E9] text-[#542D2A]">
@@ -155,61 +236,39 @@ export default function LotusMandapamTemplate({
         {/* Fixed Top Navigation Bar */}
         <EmeraldNav />
 
-        {/* Main Content Layout */}
+        {/* Main Content Layout - Dynamically Rendered & Ordered */}
         <main className="relative z-10 w-full overflow-hidden">
-          {/* A. Hero Section – Cinematic Temple Experience */}
-          <div data-section-id="hero">
-            <EmeraldHero />
-          </div>
-
-          {/* B. Family Blessings – Restored Heritage Invitation */}
-          {data.sections.showFamily !== false && (
-            <div data-section-id="family">
-              <FamilyBlessings />
+          {/* Top Hero if not in sectionOrder */}
+          {!hasHeroInOrder && data.sections.showHero !== false && (
+            <div data-section-id="hero">
+              <EmeraldHero />
             </div>
           )}
 
-          {/* C. Couple Introduction – Sacred Union */}
-          {data.sections.showCouple && (
-            <div data-section-id="couple">
-              <CoupleSection />
-            </div>
-          )}
+          {/* Dynamic Sections in order */}
+          {data.sectionOrder.map((sectionId) => {
+            // Deduplicate combined sections
+            if (sectionId === "family" || sectionId === "families") {
+              if (renderedSet.has("family-done")) return null;
+              renderedSet.add("family-done");
+            }
+            if (sectionId === "film" || sectionId === "story" || sectionId === "video") {
+              if (renderedSet.has("film-done")) return null;
+              renderedSet.add("film-done");
+            }
+            if (sectionId === "countdown" || sectionId === "rsvp") {
+              if (renderedSet.has("rsvp-countdown-done")) return null;
+              renderedSet.add("rsvp-countdown-done");
+            }
+            if (sectionId === "venue" || sectionId === "venues") {
+              if (renderedSet.has("venue-done")) return null;
+              renderedSet.add("venue-done");
+            }
+            if (renderedSet.has(sectionId)) return null;
+            renderedSet.add(sectionId);
 
-          {/* D. Wedding Celebrations (4 Ornamental Event Cards with Map Preview & Directions) */}
-          {data.sections.showEvents && (
-            <div data-section-id="events">
-              <AuspiciousEvents />
-            </div>
-          )}
-
-          {/* E. Wedding Film – Cinematic Highlights */}
-          {data.video?.enabled !== false && (
-            <div data-section-id="film">
-              <WeddingFilm />
-            </div>
-          )}
-
-          {/* G. Our Moments – Interactive Photographic Gallery */}
-          {data.sections.showGallery && (
-            <div data-section-id="gallery">
-              <RoyalGallery />
-            </div>
-          )}
-
-          {/* H. Countdown and RSVP */}
-          {(data.sections.showRSVP !== false || data.sections.showCountdown !== false) && (
-            <div data-section-id="rsvp">
-              <CountdownAndRsvp clientId={clientId} />
-            </div>
-          )}
-
-          {/* I. Compact Footer */}
-          {data.sections.showFooter && (
-            <div data-section-id="footer">
-              <RoyalFooter />
-            </div>
-          )}
+            return renderSection(sectionId);
+          })}
         </main>
 
         {/* Background Theme Audio */}

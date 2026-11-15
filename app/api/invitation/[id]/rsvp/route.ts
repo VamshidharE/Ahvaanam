@@ -55,18 +55,32 @@ export async function POST(
     const adminDb = getAdminDb();
 
     // 4. Check if an RSVP for this visitor already exists, if so update it, otherwise insert
-    const { data: existingRsvp } = await adminDb
+    let existingRsvp: any = null;
+    const { data: rsvpByPhone } = await adminDb
       .from("rsvps")
-      .select("id")
+      .select("id, phone")
       .eq("invitation_id", id)
       .eq("phone", effectivePhone)
       .maybeSingle();
+
+    existingRsvp = rsvpByPhone;
+
+    if (!existingRsvp && visitor_token && visitor_token.trim() !== "") {
+      const { data: rsvpByToken } = await adminDb
+        .from("rsvps")
+        .select("id, phone")
+        .eq("invitation_id", id)
+        .eq("phone", `vt_${visitor_token.trim()}`)
+        .maybeSingle();
+      existingRsvp = rsvpByToken;
+    }
 
     if (existingRsvp) {
       const { error: updateError } = await adminDb
         .from("rsvps")
         .update({
           guest_name: guest_name || "Guest",
+          phone: effectivePhone,
           email: email || null,
           attending,
           guest_count: attending ? (guest_count || 1) : 1,
@@ -113,7 +127,9 @@ export async function POST(
         created_at: new Date().toISOString()
       };
 
-      const filteredRsvps = existingRsvps.filter((r: any) => r.phone !== effectivePhone);
+      const filteredRsvps = existingRsvps.filter(
+        (r: any) => r.phone !== effectivePhone && (!visitor_token || r.phone !== `vt_${visitor_token.trim()}`)
+      );
       const newRsvpsList = [updatedEntry, ...filteredRsvps.slice(0, 499)];
 
       await adminDb.from("invitations").update({

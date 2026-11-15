@@ -17,13 +17,15 @@ export function EmeraldHero() {
   const secondName = (rawSecondName || "Divya").trim();
 
   // Sacred Ganesh Mantra and Family Surnames
-  const ganeshMantra = (data.hero as any)?.welcomeMessage || "॥ श्री गणेशाय नमः ॥";
+  const ganeshMantra = (data.hero as any)?.welcomeMessage || data.introduction?.mantra || "॥ श्री गणेशाय नमः ॥";
   const groomSurname = typeof (data.couple?.groom as any) === "object" ? (data.couple.groom as any)?.surname : "Gupta";
   const brideSurname = typeof (data.couple?.bride as any) === "object" ? (data.couple.bride as any)?.surname : "Rao";
   const familySurnameText =
-    groomSurname && brideSurname
+    (data.hero as any)?.surname ||
+    (data.hero as any)?.title ||
+    (groomSurname && brideSurname
       ? `${groomSurname} & ${brideSurname} Families`
-      : "Gupta & Rao Families";
+      : "Gupta & Rao Families");
 
   const scrollToInvite = () => {
     const el = document.getElementById("couple");
@@ -94,6 +96,7 @@ export function EmeraldHero() {
                 alt={`${firstName} and ${secondName}`}
                 className="ep-hero-couple-img"
                 loading="eager"
+                decoding="async"
               />
             </picture>
           </div>
@@ -187,16 +190,14 @@ export function EmeraldHero() {
             </motion.div>
 
             {/* Supporting Invitation Line - Visible on tablet/desktop */}
-            {data.introduction?.message && (
-              <motion.p
-                className="ep-hero-supporting-text hidden sm:block"
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 0.95, y: 0 }}
-                transition={{ delay: 0.95, duration: 0.7 }}
-              >
-                Together with our families, we joyfully invite you to celebrate our special day.
-              </motion.p>
-            )}
+            <motion.p
+              className="ep-hero-supporting-text hidden sm:block"
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 0.95, y: 0 }}
+              transition={{ delay: 0.95, duration: 0.7 }}
+            >
+              {(data.hero as any)?.subtitle || data.introduction?.message || "Together with our families, we joyfully invite you to celebrate our special day."}
+            </motion.p>
           </div>
         </motion.div>
       </div>

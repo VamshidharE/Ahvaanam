@@ -43,39 +43,40 @@ async function parseJsonSafe(res: Response): Promise<any> {
 export async function uploadMediaFile(file: File): Promise<string> {
   const contentType = resolveMimeType(file);
 
-  const signedRes = await fetch("/api/upload/signed-url", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name: file.name,
-      type: contentType,
-      size: file.size,
-    }),
-  });
+  // 1. Try direct Supabase signed upload when available
+  try {
+    const signedRes = await fetch("/api/upload/signed-url", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: file.name,
+        type: contentType,
+        size: file.size,
+      }),
+    });
 
-  if (signedRes.ok) {
-    const { token, path, publicUrl } = await parseJsonSafe(signedRes);
-    const supabase = createClient();
-    const { error: storageErr } = await supabase.storage
-      .from("uploads")
-      .uploadToSignedUrl(path, token, file, {
-        contentType,
-        upsert: true,
-      });
+    if (signedRes.ok) {
+      const { token, path, publicUrl } = await parseJsonSafe(signedRes);
+      if (token && path && publicUrl) {
+        const supabase = createClient();
+        const { error: storageErr } = await supabase.storage
+          .from("uploads")
+          .uploadToSignedUrl(path, token, file, {
+            contentType,
+            upsert: true,
+          });
 
-    if (storageErr) {
-      throw new Error(storageErr.message || "Direct storage upload failed");
+        if (!storageErr) {
+          return publicUrl;
+        }
+        console.warn("Direct storage upload failed, falling back to /api/upload:", storageErr);
+      }
     }
-    return publicUrl;
+  } catch (directErr) {
+    console.warn("Direct signed storage attempt failed, falling back to /api/upload:", directErr);
   }
 
-  // Validation or auth errors (400, 401, 413, 415) should surface immediately
-  if (signedRes.status !== 501) {
-    const errData = await parseJsonSafe(signedRes);
-    throw new Error(errData?.details?.[0]?.message || errData?.error || "Upload failed");
-  }
-
-  // Fallback to multipart form upload (e.g. local filesystem dev without Supabase storage)
+  // 2. Fallback to multipart form upload (/api/upload handles Supabase admin & filesystem)
   const formData = new FormData();
   formData.append("file", file);
 

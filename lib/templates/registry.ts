@@ -182,6 +182,18 @@ export const TEMPLATE_REGISTRY: TemplateMetadata[] = [
     enabled: true
   },
   {
+    id: "lotus-mandap",
+    name: "Lotus Mandap",
+    category: "wedding",
+    thumbnail: "/templates/emerald-palace/hero-temple-sunset.jpg",
+    premium: true,
+    previewImage: "/templates/emerald-palace/hero-temple-sunset.jpg",
+    description: "A cinematic South Indian wedding invitation inspired by traditional temple architecture, lotus ponds and golden sunset scenery.",
+    tags: ["traditional", "lotus", "mandap", "temple", "royal", "south-indian", "gold", "burgundy", "cinematic"],
+    supportedLanguages: ["en", "te", "hi"],
+    enabled: true
+  },
+  {
     id: "lotus-mandapam",
     name: "Lotus Mandapam",
     category: "wedding",

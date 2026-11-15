@@ -18,27 +18,21 @@ export function CoupleSection() {
 
   const largePortrait =
     data.couple.portraitImage ||
-    data.family.groomPortrait ||
     "/templates/emerald-palace/couple-portrait-large.jpg";
 
   const groomName = data.couple.groom;
   const brideName = data.couple.bride;
 
-  const groomParents = data.family.groomParents.startsWith("S/o")
-    ? data.family.groomParents
-    : `S/o ${data.family.groomParents}`;
-
-  const brideParents = data.family.brideParents.startsWith("D/o")
-    ? data.family.brideParents
-    : `D/o ${data.family.brideParents}`;
+  const groomParents = data.family.groomParents || "";
+  const brideParents = data.family.brideParents || "";
 
   const firstPerson = isBrideFirst
-    ? { name: brideName, relation: brideParents, title: "The Bride", bio: data.couple.brideBio }
-    : { name: groomName, relation: groomParents, title: "The Groom", bio: data.couple.groomBio };
+    ? { name: brideName, surname: data.couple.brideSurname, relation: brideParents, title: "The Bride" }
+    : { name: groomName, surname: data.couple.groomSurname, relation: groomParents, title: "The Groom" };
 
   const secondPerson = isBrideFirst
-    ? { name: groomName, relation: groomParents, title: "The Groom", bio: data.couple.groomBio }
-    : { name: brideName, relation: brideParents, title: "The Bride", bio: data.couple.brideBio };
+    ? { name: groomName, surname: data.couple.groomSurname, relation: groomParents, title: "The Groom" }
+    : { name: brideName, surname: data.couple.brideSurname, relation: brideParents, title: "The Bride" };
 
   return (
     <section className="relative py-14 sm:py-20 px-4 sm:px-6 scroll-mt-16 ep-bg-couple-sandstone overflow-hidden border-b border-[#D6AD63]/30" id="couple">
@@ -59,11 +53,10 @@ export function CoupleSection() {
       {/* Centered Sacred Union Header */}
       <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12 px-4 relative z-10">
         <span className="font-cinzel text-xs uppercase tracking-[0.25em] text-[#781D36] font-bold">
-          Sacred Union
+          {data.couple.eyebrow || "Sacred Union"}
         </span>
         <h2 className="font-serif text-xl sm:text-2xl text-[#542D2A] mt-2 mb-3 leading-relaxed italic">
-          "With the blessings of our families,
-          <br className="hidden sm:inline" /> we joyfully invite you to celebrate the wedding of"
+          &ldquo;{data.couple.blessingQuote || "With the blessings of our families, we joyfully invite you to celebrate the wedding of"}&rdquo;
         </h2>
         <RoyalDivider className="my-3 scale-90" />
       </div>
@@ -86,14 +79,14 @@ export function CoupleSection() {
             <h3 className="font-script text-4xl sm:text-5xl lg:text-6xl text-[#781D36] my-1 leading-tight">
               {firstPerson.name}
             </h3>
+            {firstPerson.surname && (
+              <span className="font-cinzel text-[10px] uppercase tracking-[0.2em] text-[#781D36] font-bold block mb-1">
+                ✦ {firstPerson.surname.toLowerCase().includes("family") ? firstPerson.surname : `${firstPerson.surname} Family`} ✦
+              </span>
+            )}
             <p className="font-cinzel text-xs sm:text-sm font-semibold text-[#542D2A] leading-relaxed mt-1">
               {firstPerson.relation}
             </p>
-            {firstPerson.bio && (
-              <p className="font-serif text-xs text-[#7E5B58] mt-3 italic leading-relaxed hidden sm:block">
-                "{firstPerson.bio}"
-              </p>
-            )}
           </motion.div>
 
           {/* Center Column: Grand High-Resolution Couple Portrait */}
@@ -127,6 +120,7 @@ export function CoupleSection() {
                   alt={`${groomName} & ${brideName} Wedding Portrait`}
                   className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700 ease-out"
                   loading="lazy"
+                  decoding="async"
                 />
                 {/* Subtle warm sunset gradient vignette */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent pointer-events-none" />
@@ -159,14 +153,14 @@ export function CoupleSection() {
             <h3 className="font-script text-4xl sm:text-5xl lg:text-6xl text-[#781D36] my-1 leading-tight">
               {secondPerson.name}
             </h3>
+            {secondPerson.surname && (
+              <span className="font-cinzel text-[10px] uppercase tracking-[0.2em] text-[#781D36] font-bold block mb-1">
+                ✦ {secondPerson.surname.toLowerCase().includes("family") ? secondPerson.surname : `${secondPerson.surname} Family`} ✦
+              </span>
+            )}
             <p className="font-cinzel text-xs sm:text-sm font-semibold text-[#542D2A] leading-relaxed mt-1">
               {secondPerson.relation}
             </p>
-            {secondPerson.bio && (
-              <p className="font-serif text-xs text-[#7E5B58] mt-3 italic leading-relaxed hidden sm:block">
-                "{secondPerson.bio}"
-              </p>
-            )}
           </motion.div>
         </div>
       </div>

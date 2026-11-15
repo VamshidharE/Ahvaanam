@@ -16,6 +16,7 @@ TEMPLATE_REGISTRY.set(roseMandapDefinition.id, roseMandapDefinition);
 TEMPLATE_REGISTRY.set(royalTempleDefinition.id, royalTempleDefinition);
 TEMPLATE_REGISTRY.set(emeraldPalaceDefinition.id, emeraldPalaceDefinition);
 TEMPLATE_REGISTRY.set(lotusMandapamDefinition.id, lotusMandapamDefinition);
+TEMPLATE_REGISTRY.set("lotus-mandap", { ...lotusMandapamDefinition, id: "lotus-mandap" });
 TEMPLATE_REGISTRY.set(sacredCourtyardDefinition.id, sacredCourtyardDefinition);
 TEMPLATE_REGISTRY.set(pelliPandiriDefinition.id, pelliPandiriDefinition);
 TEMPLATE_REGISTRY.set(gopuramDefinition.id, gopuramDefinition);

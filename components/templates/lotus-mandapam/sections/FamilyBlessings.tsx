@@ -29,6 +29,22 @@ export function FamilyBlessings() {
     data.family.blessingQuote ||
     "Together, our families welcome you to celebrate this beautiful union.";
 
+  const groomMembers = React.useMemo(() => {
+    const list = [...(data.family.groomFamily || [])];
+    if (list.length === 0 && groomParents) {
+      list.push({ relation: "Parents", name: groomParents });
+    }
+    return list.filter((m) => m && m.name && m.name.trim());
+  }, [data.family.groomFamily, groomParents]);
+
+  const brideMembers = React.useMemo(() => {
+    const list = [...(data.family.brideFamily || [])];
+    if (list.length === 0 && brideParents) {
+      list.push({ relation: "Parents", name: brideParents });
+    }
+    return list.filter((m) => m && m.name && m.name.trim());
+  }, [data.family.brideFamily, brideParents]);
+
   const groomBlock = (
     <motion.div
       className="flex-1 flex flex-col w-full max-w-xl mx-auto lg:max-w-none"
@@ -47,16 +63,10 @@ export function FamilyBlessings() {
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
             style={{ objectPosition: groomFocal }}
             loading="lazy"
+            decoding="async"
           />
           {/* Subtle Warm Photographic Vignette */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent opacity-85 pointer-events-none" />
-
-          {/* Integrated Identification Badge */}
-          <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 pointer-events-none">
-            <span className="font-cinzel text-[10px] sm:text-xs uppercase tracking-[0.22em] text-[#FFF6E9] font-bold drop-shadow-md bg-black/45 backdrop-blur-md px-3 py-1 rounded-full border border-white/25">
-              Groom&apos;s Family
-            </span>
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 pointer-events-none" />
         </div>
 
         {/* Family Typography Suite */}
@@ -73,14 +83,49 @@ export function FamilyBlessings() {
           <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#781D36] tracking-tight mb-2.5">
             {groomTitle}
           </h3>
-          <div className="inline-block bg-[#FFF6E9]/90 border border-[#D6AD63]/40 rounded-full py-1.5 px-4 sm:px-6 shadow-sm">
-            <span className="font-cinzel text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-[#781D36] font-bold mr-2">
-              Parents
-            </span>
-            <span className="font-serif text-xs sm:text-sm md:text-base font-semibold text-[#542D2A]">
-              {groomParents}
-            </span>
+
+          {/* Family Members Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mt-2 max-w-md mx-auto">
+            {groomMembers.length > 0 ? (
+              groomMembers.map((m, idx) => (
+                <div
+                  key={idx}
+                  className="inline-flex items-center bg-[#FFF6E9]/90 border border-[#D6AD63]/40 rounded-full py-1.5 px-3.5 sm:px-5 shadow-sm"
+                >
+                  {m.relation && (
+                    <span className="font-cinzel text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-[#781D36] font-bold mr-2">
+                      {m.relation}
+                    </span>
+                  )}
+                  <span className="font-serif text-xs sm:text-sm font-semibold text-[#542D2A]">
+                    {m.name}
+                  </span>
+                </div>
+              ))
+            ) : (
+              <div className="inline-block bg-[#FFF6E9]/90 border border-[#D6AD63]/40 rounded-full py-1.5 px-4 sm:px-6 shadow-sm">
+                <span className="font-cinzel text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-[#781D36] font-bold mr-2">
+                  Parents
+                </span>
+                <span className="font-serif text-xs sm:text-sm md:text-base font-semibold text-[#542D2A]">
+                  {groomParents}
+                </span>
+              </div>
+            )}
           </div>
+
+          {/* Location Pin & Name */}
+          {data.family.groomLocation && (
+            <div className="flex items-center justify-center gap-1.5 mt-3 text-[#781D36]/80">
+              <svg className="w-3.5 h-3.5 text-[#B88A3B] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span className="font-serif text-xs sm:text-sm text-[#542D2A] font-medium tracking-wide">
+                {data.family.groomLocation}
+              </span>
+            </div>
+          )}
         </motion.div>
       </div>
     </motion.div>
@@ -104,16 +149,10 @@ export function FamilyBlessings() {
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
             style={{ objectPosition: brideFocal }}
             loading="lazy"
+            decoding="async"
           />
           {/* Subtle Warm Photographic Vignette */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent opacity-85 pointer-events-none" />
-
-          {/* Integrated Identification Badge */}
-          <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 pointer-events-none">
-            <span className="font-cinzel text-[10px] sm:text-xs uppercase tracking-[0.22em] text-[#FFF6E9] font-bold drop-shadow-md bg-black/45 backdrop-blur-md px-3 py-1 rounded-full border border-white/25">
-              Bride&apos;s Family
-            </span>
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 pointer-events-none" />
         </div>
 
         {/* Family Typography Suite */}
@@ -130,14 +169,49 @@ export function FamilyBlessings() {
           <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#781D36] tracking-tight mb-2.5">
             {brideTitle}
           </h3>
-          <div className="inline-block bg-[#FFF6E9]/90 border border-[#D6AD63]/40 rounded-full py-1.5 px-4 sm:px-6 shadow-sm">
-            <span className="font-cinzel text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-[#781D36] font-bold mr-2">
-              Parents
-            </span>
-            <span className="font-serif text-xs sm:text-sm md:text-base font-semibold text-[#542D2A]">
-              {brideParents}
-            </span>
+
+          {/* Family Members Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mt-2 max-w-md mx-auto">
+            {brideMembers.length > 0 ? (
+              brideMembers.map((m, idx) => (
+                <div
+                  key={idx}
+                  className="inline-flex items-center bg-[#FFF6E9]/90 border border-[#D6AD63]/40 rounded-full py-1.5 px-3.5 sm:px-5 shadow-sm"
+                >
+                  {m.relation && (
+                    <span className="font-cinzel text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-[#781D36] font-bold mr-2">
+                      {m.relation}
+                    </span>
+                  )}
+                  <span className="font-serif text-xs sm:text-sm font-semibold text-[#542D2A]">
+                    {m.name}
+                  </span>
+                </div>
+              ))
+            ) : (
+              <div className="inline-block bg-[#FFF6E9]/90 border border-[#D6AD63]/40 rounded-full py-1.5 px-4 sm:px-6 shadow-sm">
+                <span className="font-cinzel text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-[#781D36] font-bold mr-2">
+                  Parents
+                </span>
+                <span className="font-serif text-xs sm:text-sm md:text-base font-semibold text-[#542D2A]">
+                  {brideParents}
+                </span>
+              </div>
+            )}
           </div>
+
+          {/* Location Pin & Name */}
+          {data.family.brideLocation && (
+            <div className="flex items-center justify-center gap-1.5 mt-3 text-[#781D36]/80">
+              <svg className="w-3.5 h-3.5 text-[#B88A3B] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span className="font-serif text-xs sm:text-sm text-[#542D2A] font-medium tracking-wide">
+                {data.family.brideLocation}
+              </span>
+            </div>
+          )}
         </motion.div>
       </div>
     </motion.div>
@@ -166,10 +240,10 @@ export function FamilyBlessings() {
         {/* Section Header */}
         <div className="text-center mb-10 sm:mb-14 max-w-2xl mx-auto px-4">
           <span className="font-cinzel text-xs sm:text-sm uppercase tracking-[0.28em] text-[#B88A3B] font-bold block mb-2">
-            THE UNION OF TWO FAMILIES
+            {(data.family as any)?.eyebrow || "THE UNION OF TWO FAMILIES"}
           </span>
           <h2 className="font-cinzel text-2xl sm:text-3xl lg:text-4xl font-bold text-[#781D36] tracking-tight uppercase">
-            WITH THE BLESSINGS OF OUR FAMILIES
+            {data.family.title || "WITH THE BLESSINGS OF OUR FAMILIES"}
           </h2>
           {/* Refined Gold Hairline Divider */}
           <div className="flex items-center justify-center gap-3 my-3">

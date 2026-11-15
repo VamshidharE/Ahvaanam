@@ -12,14 +12,19 @@ export interface EmeraldPalaceEvent {
   icon?: string;
   auspiciousTime?: string;
   enabled: boolean;
+  mapsLink?: string;
+  mapsEmbedUrl?: string;
 }
 
 export interface EmeraldPalaceData {
+  sectionOrder: string[];
   sections: {
     showAnnouncement: boolean;
+    showHero: boolean;
     showCouple: boolean;
     showEvents: boolean;
     showFamily: boolean;
+    showFamilies: boolean;
     showStory: boolean;
     showGallery: boolean;
     showVenue: boolean;
@@ -27,6 +32,22 @@ export interface EmeraldPalaceData {
     showRSVP: boolean;
     showFooter: boolean;
     showVideo?: boolean;
+  };
+  celebrationsMeta?: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+  };
+  countdown?: {
+    title: string;
+    targetDate: string;
+    timezone: string;
+    venue?: string;
+  };
+  galleryMeta?: {
+    title: string;
+    subheading: string;
+    featuredImage?: string;
   };
   music: {
     themeMusic: string;
@@ -36,11 +57,20 @@ export interface EmeraldPalaceData {
     bgImage: string;
     eyebrow: string;
     date: string;
+    time?: string;
+    title?: string;
+    subtitle?: string;
+    welcomeMessage?: string;
+    surname?: string;
+    subText?: string;
+    ctaText?: string;
   };
   couple: {
     bride: string;
     groom: string;
     portraitImage?: string;
+    eyebrow?: string;
+    blessingQuote?: string;
     brideSurname?: string;
     groomSurname?: string;
     primarySide: "groom" | "bride";
@@ -85,6 +115,7 @@ export interface EmeraldPalaceData {
   };
   family: {
     title: string;
+    eyebrow?: string;
     brideParents: string;
     groomParents: string;
     brideFamily: Array<{ relation?: string; name: string }>;
@@ -98,6 +129,8 @@ export interface EmeraldPalaceData {
     brideFamilyImage?: string;
     groomFamilyFocalPoint?: string;
     brideFamilyFocalPoint?: string;
+    groomLocation?: string;
+    brideLocation?: string;
   };
   events: EmeraldPalaceEvent[];
   story: {
@@ -114,6 +147,7 @@ export interface EmeraldPalaceData {
   }>;
   video?: {
     enabled: boolean;
+    eyebrow?: string;
     title: string;
     subtitle?: string;
     url: string;
@@ -212,23 +246,76 @@ export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalac
     ? (rawBrideSurname ? `The ${rawBrideSurname} Family` : `${brideName}'s Family`)
     : (rawGroomSurname ? `The ${rawGroomSurname} Family` : `${groomName}'s Family`);
 
-  // Wedding Date and Time
-  const rawDate = config.hero?.date || config.wedding?.date || config.date || "28th Dec 2026";
+  // Find Muhurtham event if exists in rawEvents to sync countdown and date
+  const rawEventsList = config.events || [];
+  const muhurthamEvent = Array.isArray(rawEventsList)
+    ? rawEventsList.find((e: any) => e.id === "wedding-muhurtam" || e.id === "muhurtham" || (e.title && /muhur|wedding/i.test(e.title)))
+    : null;
+
+  // Countdown Target synchronization
+  let countdownTarget = config.countdown?.targetDate || config.wedding?.countdownTarget || config.countdownTarget || "";
+
+  const rawDate =
+    config.hero?.date ||
+    config.date ||
+    muhurthamEvent?.date ||
+    config.wedding?.date ||
+    (countdownTarget && countdownTarget.includes("T") ? countdownTarget.split("T")[0] : "28th Dec 2026");
+
   const weddingDate = formatWeddingDate(isGenericPlaceholder(rawDate, ["wedding date", "date", ""]) ? "28th Dec 2026" : rawDate);
   const weddingDay = config.wedding?.day || "Sunday";
-  const weddingTime = config.wedding?.time || "9:12 AM";
-  const muhurtham = config.wedding?.muhurtham || "Sumuhurtham: 9:12 AM";
 
-  // Countdown Target
-  const countdownTarget = config.wedding?.countdownTarget || "2026-12-28T09:12:00";
+  const weddingTime =
+    config.hero?.time ||
+    config.time ||
+    muhurthamEvent?.time ||
+    config.wedding?.time ||
+    (countdownTarget && countdownTarget.includes("T") ? countdownTarget.split("T")[1].substring(0, 5) : "9:12 AM");
 
-  // Venue
-  const rawVenue = config.venue?.name || config.wedding?.venue || "Sri Venkateswara Kalyana Mandapam";
-  const venue = isGenericPlaceholder(rawVenue, ["venue name", "venue", ""]) ? "Sri Venkateswara Kalyana Mandapam" : rawVenue;
-  const city = config.venue?.city || config.wedding?.city || "Ibrahimpatnam, Hyderabad";
-  const address = config.venue?.address || "Main Road, Ibrahimpatnam, Hyderabad 501506";
-  const mapsLink = config.venue?.mapsLink || config.wedding?.mapsLink || "https://maps.google.com/?q=Sri+Venkateswara+Kalyana+Mandapam+Hyderabad";
-  const mapsEmbedUrl = config.venue?.mapsEmbedUrl || config.wedding?.mapsEmbedUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15234.567890!2d78.64!3d17.20!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDEyJzAwLjAiTiA3OMKwMzgnMjQuMCJF!5e0!3m2!1sen!2sin!4v1700000000000";
+  const muhurtham = config.wedding?.muhurtham || (muhurthamEvent?.muhurthamTime || `Sumuhurtham: ${weddingTime}`);
+
+  if (!countdownTarget) {
+    const cleanDate = /^\d{4}-\d{2}-\d{2}$/.test(rawDate) ? rawDate : "2026-12-28";
+    countdownTarget = `${cleanDate}T09:12:00`;
+  }
+  // Venue Details - fully synced with Editor venues[0]
+  const venueObj = Array.isArray(config.venue?.venues) && config.venue.venues.length > 0
+    ? config.venue.venues[0]
+    : (typeof config.venue === "object" && config.venue !== null ? config.venue : {});
+
+  const venueString = typeof config.venue === "string" ? config.venue : "";
+
+  const venue =
+    venueObj.venueName ||
+    venueObj.name ||
+    venueString ||
+    config.wedding?.venue ||
+    "Sri Venkateswara Kalyana Mandapam";
+
+  const city =
+    venueObj.city ||
+    config.wedding?.city ||
+    "Ibrahimpatnam, Hyderabad";
+
+  const address =
+    venueObj.address ||
+    (typeof config.address === "string" ? config.address : "") ||
+    config.wedding?.address ||
+    "Main Road, Ibrahimpatnam, Hyderabad 501506";
+
+  const mapsQuery = encodeURIComponent(`${venue}, ${address}`);
+
+  const mapsLink =
+    venueObj.mapsUrl ||
+    venueObj.mapsLink ||
+    config.wedding?.mapsLink ||
+    `https://maps.google.com/?q=${mapsQuery}`;
+
+  const mapsEmbedUrl =
+    venueObj.embedUrl ||
+    venueObj.mapsEmbedUrl ||
+    config.wedding?.mapsEmbedUrl ||
+    `https://maps.google.com/maps?q=${mapsQuery}&t=&z=14&ie=UTF8&iwloc=&output=embed`;
 
   // Reception
   const hasReception = config.reception?.enabled !== false;
@@ -243,7 +330,6 @@ export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalac
     mapsLink: config.reception?.mapsLink || mapsLink,
     mapsEmbedUrl: config.reception?.mapsEmbedUrl || mapsEmbedUrl,
   };
-
   // Events itinerary - 4 distinct events matching the reference
   const defaultEventImages = [
     "/templates/emerald-palace/event-haldi.jpg",
@@ -256,21 +342,28 @@ export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalac
   let events: EmeraldPalaceEvent[] = [];
 
   if (Array.isArray(rawEvents) && rawEvents.length > 0) {
-    events = rawEvents.map((e: any, idx: number) => ({
-      id: e.id || `event-${idx}`,
-      title: e.title || (idx === 0 ? "Pellikuthuru (Haldi)" : idx === 1 ? "Sangeeth" : idx === 2 ? "Wedding Muhurtam" : "Reception"),
-      subtitle: e.subtitle || "",
-      date: e.date || (idx < 2 ? "26 Dec 2026" : "28 Dec 2026"),
-      time: e.time || (idx === 0 ? "10:00 AM" : idx === 1 ? "7:00 PM" : idx === 2 ? "9:12 AM" : "6:30 PM"),
-      venue: e.venue || venue,
-      address: e.address || e.venueAddress || address,
-      description: e.description || (idx === 0 ? "Turmeric and floral blessings" : idx === 1 ? "An evening of music and dance" : idx === 2 ? "Sacred union and wedding sumuhurtham" : "Grand celebratory dinner"),
-      dressCode: e.dressCode || (idx === 0 ? "Pastel Yellow" : idx === 1 ? "Festive Glam" : idx === 2 ? "Traditional Silk" : "Formal Festive"),
-      image: e.image || defaultEventImages[idx % defaultEventImages.length],
-      icon: e.icon || (idx === 0 ? "haldi" : idx === 1 ? "sangeeth" : idx === 2 ? "muhurtam" : "reception"),
-      auspiciousTime: e.auspiciousTime || (idx === 2 ? "9:12 AM" : ""),
-      enabled: e.enabled !== false,
-    }));
+    events = rawEvents.map((e: any, idx: number) => {
+      const eventVenue = (e.venue && !isGenericPlaceholder(e.venue, ["venue name", "venue", ""])) ? e.venue : venue;
+      const eventAddress = (e.address && !isGenericPlaceholder(e.address, ["address", ""])) ? e.address : address;
+      const query = encodeURIComponent(`${eventVenue}, ${eventAddress}`);
+      return {
+        id: e.id || `event-${idx}`,
+        title: e.title || (idx === 0 ? "Pellikuthuru (Haldi)" : idx === 1 ? "Sangeeth" : idx === 2 ? "Wedding Muhurtam" : "Reception"),
+        subtitle: e.subtitle || "",
+        date: e.date || (idx < 2 ? "26 Dec 2026" : "28 Dec 2026"),
+        time: e.time || (idx === 0 ? "10:00 AM" : idx === 1 ? "7:00 PM" : idx === 2 ? "9:12 AM" : "6:30 PM"),
+        venue: eventVenue,
+        address: eventAddress,
+        description: e.description || (idx === 0 ? "Turmeric and floral blessings" : idx === 1 ? "An evening of music and dance" : idx === 2 ? "Sacred union and wedding sumuhurtham" : "Grand celebratory dinner"),
+        dressCode: e.dressCode || (idx === 0 ? "Pastel Yellow" : idx === 1 ? "Festive Glam" : idx === 2 ? "Traditional Silk" : "Formal Festive"),
+        image: e.image || defaultEventImages[idx % defaultEventImages.length],
+        icon: e.icon || (idx === 0 ? "haldi" : idx === 1 ? "sangeeth" : idx === 2 ? "muhurtam" : "reception"),
+        auspiciousTime: e.auspiciousTime || (idx === 2 ? "9:12 AM" : ""),
+        enabled: e.enabled !== false,
+        mapsLink: e.mapsLink || `https://maps.google.com/?q=${query}`,
+        mapsEmbedUrl: e.mapsEmbedUrl || `https://maps.google.com/maps?q=${query}&t=&z=14&ie=UTF8&iwloc=&output=embed`,
+      };
+    });
   } else {
     // Exact 4-Event Itinerary from Reference Mockup
     events = [
@@ -389,6 +482,17 @@ export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalac
         { relation: "Sister", name: "Pooja Gupta" },
       ];
 
+  const groomLocation =
+    config.families?.groomLocation ||
+    config.family?.groomLocation ||
+    config.couple?.groom?.location ||
+    "";
+  const brideLocation =
+    config.families?.brideLocation ||
+    config.family?.brideLocation ||
+    config.couple?.bride?.location ||
+    "";
+
   // Story
   const storyTitle = config.story?.title || "Our Story";
   const storyText = config.story?.text || "From a chance meeting to a lifelong journey, our story has been one of friendship, laughter, and shared dreams.";
@@ -396,12 +500,20 @@ export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalac
   const couplePhoto2 = config.story?.couplePhoto2 || "/templates/emerald-palace/story-hands.jpg";
 
   // Gallery
-  const rawGallery = config.gallery || [];
-  let gallery = Array.isArray(rawGallery) && rawGallery.length > 0
-    ? rawGallery.map((item: any, i: number) => ({
+  const rawGallery = Array.isArray(config.gallery)
+    ? config.gallery
+    : Array.isArray(config.gallery?.images)
+      ? config.gallery.images
+      : [];
+  let galleryItems = [...rawGallery];
+  if (config.gallery?.featuredImage && !galleryItems.some((item: any) => (typeof item === "string" ? item : item.src || item.url) === config.gallery.featuredImage)) {
+    galleryItems.unshift(config.gallery.featuredImage);
+  }
+  let gallery = galleryItems.length > 0
+    ? galleryItems.map((item: any, i: number) => ({
         src: typeof item === "string" ? item : item.src || item.url || "/templates/emerald-palace/couple-portrait-large.jpg",
         alt: typeof item === "object" ? item.alt || `Moment ${i + 1}` : `Moment ${i + 1}`,
-        caption: typeof item === "object" ? item.caption || "" : "",
+        caption: typeof item === "object" ? item.caption || "" : (config.gallery?.captions?.[i] || ""),
       }))
     : [
         { src: "/templates/emerald-palace/couple-portrait-large.jpg", alt: "Arjun & Divya Royal Portrait", caption: "Eternal Beginning" },
@@ -414,18 +526,19 @@ export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalac
 
   // Video settings
   const video = {
-    enabled: config.video?.enabled !== false,
-    title: config.video?.title || "Our Wedding Film",
-    subtitle: config.video?.subtitle || "Relive the timeless moments, laughter, and sacred vows captured in cinematic motion.",
-    url: config.video?.url || "/wedding/procession/procession.mp4",
-    poster: config.video?.poster || "/templates/emerald-palace/couple-portrait-large.jpg",
+    enabled: config.video?.enabled !== false && config.story?.enabled !== false,
+    eyebrow: config.video?.eyebrow || config.story?.eyebrow || "Cinematic Highlights",
+    title: config.video?.title || config.story?.title || "Our Wedding Film",
+    subtitle: config.video?.subtitle || config.story?.subtitle || config.story?.text || "Relive the timeless moments, laughter, and sacred vows captured in cinematic motion.",
+    url: config.video?.url || config.story?.videoUrl || "/wedding/procession/procession.mp4",
+    poster: config.video?.poster || config.story?.videoPoster || config.story?.couplePhoto || "/templates/emerald-palace/couple-portrait-large.jpg",
   };
 
   // RSVP
   const rsvp = {
-    title: config.rsvp?.title || "Will You Be Joining Us?",
-    message: config.rsvp?.message || "Please let us know if you can join us for the celebrations.",
-    buttonText: config.rsvp?.buttonText || "CONFIRM ATTENDANCE",
+    title: config.rsvp?.title || "Kindly RSVP",
+    message: config.rsvp?.subtitle || config.rsvp?.message || "We request the honour of your esteemed presence to celebrate the holy matrimony and shower your divine blessings upon the newlyweds.",
+    buttonText: config.rsvp?.buttonText || config.hero?.ctaText || "Confirm Attendance",
     contacts: Array.isArray(config.rsvp?.contacts) && config.rsvp.contacts.length > 0
       ? config.rsvp.contacts
       : [
@@ -438,52 +551,85 @@ export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalac
 
   // Footer
   const footer = {
-    quote: config.footer?.quote || "Two souls with but a single thought, two hearts that beat as one.",
-    blessing: "Looking forward to celebrating this auspicious union with you.",
-    designer: "Ahvaanam",
-    service: "Luxury Wedding Suite",
-    location: "Hyderabad • India",
-    contact: "care@ahvaanam.com",
+    quote: config.footer?.quote || config.footer?.salutation || config.footer?.blessing || "Two souls with but a single thought, two hearts that beat as one.",
+    blessing: config.footer?.blessing || config.footer?.quote || config.footer?.salutation || "Looking forward to celebrating our sacred union with you.",
+    designer: config.footer?.designer || config.footer?.title || "Ahvaanam",
+    service: config.footer?.creditText || config.footer?.service || "Luxury Digital Wedding Suite",
+    location: config.footer?.location || "Hyderabad • India",
+    contact: config.footer?.contact || "care@ahvaanam.com",
   };
 
-  // Section visibility flags
+  // Celebrations / Events Meta
+  const celebrationsMeta = {
+    eyebrow: config.celebrationsMeta?.eyebrow || config.eventsMeta?.eyebrow || "Sacred Itinerary",
+    title: config.celebrationsMeta?.title || config.eventsMeta?.title || "Wedding Celebrations",
+    subtitle: config.celebrationsMeta?.subtitle || config.eventsMeta?.subtitle || "Select each sacred ceremony below to view its celebrations, venue, and timings.",
+  };
+
+  // Section visibility flags synced with Editor
+  const rawSections = config.sections || {};
   const sections = {
-    showAnnouncement: config.sections?.showAnnouncement !== false,
-    showCouple: config.sections?.showCouple !== false,
-    showEvents: config.sections?.showEvents !== false,
-    showFamily: config.sections?.showFamily !== false,
-    showStory: config.sections?.showStory !== false,
-    showGallery: config.sections?.showGallery !== false,
-    showVenue: config.sections?.showVenue !== false,
-    showCountdown: config.sections?.showCountdown !== false,
-    showRSVP: config.sections?.showRSVP !== false,
-    showFooter: config.sections?.showFooter !== false,
+    showAnnouncement: rawSections.showAnnouncement !== false,
+    showHero: config.hero?.enabled !== false && rawSections.showHero !== false,
+    showCouple: config.couple?.enabled !== false && rawSections.showCouple !== false,
+    showEvents: (config.events?.enabled !== false && config.eventsEnabled !== false && rawSections.showEvents !== false) && (Array.isArray(config.events) ? config.events.length > 0 : true),
+    showFamily: config.families?.enabled !== false && config.family?.enabled !== false && rawSections.showFamily !== false && rawSections.showFamilies !== false,
+    showFamilies: config.families?.enabled !== false && config.family?.enabled !== false && rawSections.showFamily !== false && rawSections.showFamilies !== false,
+    showStory: config.story?.enabled !== false && rawSections.showStory !== false,
+    showGallery: config.gallery?.enabled !== false && rawSections.showGallery !== false,
+    showVenue: config.venue?.enabled !== false && rawSections.showVenue !== false,
+    showCountdown: config.countdown?.enabled !== false && rawSections.showCountdown !== false,
+    showRSVP: config.rsvp?.enabled !== false && rawSections.showRSVP !== false,
+    showFooter: config.footer?.enabled !== false && rawSections.showFooter !== false,
+    showVideo: (config.video?.enabled !== false && config.story?.enabled !== false) && rawSections.showVideo !== false,
   };
 
-  // Hero settings
+  // Section Order with dynamic reordering support
+  const defaultOrder = ["hero", "families", "couple", "events", "story", "gallery", "rsvp", "footer"];
+  const rawOrder = Array.isArray(config.sectionOrder) && config.sectionOrder.length > 0 ? config.sectionOrder : defaultOrder;
+  const sectionOrder = rawOrder
+    .map((s: string) => (s === "family" ? "families" : s === "film" ? "story" : s === "countdown" ? "rsvp" : s === "venues" ? "venue" : s))
+    .filter((s: string, idx: number, arr: string[]) => arr.indexOf(s) === idx);
+
+  // Hero settings - Independent couple cutout
   const rawCoupleHero =
     config.hero?.coupleImage ||
     config.hero?.coupleCutout ||
-    config.couple?.heroImage ||
-    config.couple?.cutoutImage;
+    config.hero?.image;
   const coupleHeroImage = rawCoupleHero || "/templates/emerald-palace/couple-hero.png";
   const bgImage = config.hero?.backgroundImage || config.hero?.bgImage || "/templates/emerald-palace/hero-temple-sunset.jpg";
 
+  const defaultHeroSurname = (rawGroomSurname && rawBrideSurname)
+    ? `${rawGroomSurname} & ${rawBrideSurname} Families`
+    : (rawGroomSurname ? `The ${rawGroomSurname} Family` : "Gupta & Rao Families");
+  const heroSurname = config.hero?.surname || defaultHeroSurname;
+
   return {
+    sectionOrder,
     sections,
+    celebrationsMeta,
     music: {
       themeMusic: config.music?.themeMusic || config.music?.file || "/wedding/rose-mandap/theme-music.MP3",
     },
     hero: {
       coupleImage: coupleHeroImage,
       bgImage,
-      eyebrow,
+      eyebrow: config.hero?.subText || config.hero?.eyebrow || eyebrow,
       date: weddingDate,
+      time: weddingTime,
+      title: config.hero?.title || eyebrow,
+      subtitle: config.hero?.subtitle || message,
+      welcomeMessage: mantra,
+      surname: heroSurname,
+      subText: config.hero?.subText || "THE WEDDING OF",
+      ctaText: config.hero?.ctaText || "CONFIRM PRESENCE",
     },
     couple: {
       bride: brideName,
       groom: groomName,
       portraitImage: config.couple?.portraitImage || config.couple?.image || "/templates/emerald-palace/couple-portrait-large.jpg",
+      eyebrow: config.couple?.eyebrow || "Sacred Union",
+      blessingQuote: config.couple?.blessingQuote || config.couple?.quote || "With the blessings of our families, we joyfully invite you to celebrate the wedding of",
       brideSurname: rawBrideSurname,
       groomSurname: rawGroomSurname,
       primarySide,
@@ -517,7 +663,8 @@ export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalac
     },
     reception,
     family: {
-      title: config.family?.title || config.families?.title || "With the Blessings of Our Families",
+      title: config.family?.title || config.families?.title || "Warm Greetings",
+      eyebrow: config.family?.eyebrow || config.families?.eyebrow || "The Union of Two Families",
       brideParents,
       groomParents,
       brideFamily,
@@ -531,6 +678,8 @@ export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalac
       brideFamilyImage,
       groomFamilyFocalPoint,
       brideFamilyFocalPoint,
+      groomLocation,
+      brideLocation,
     },
     events,
     story: {
@@ -545,6 +694,17 @@ export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalac
       ],
     },
     gallery,
+    galleryMeta: {
+      title: config.gallery?.title || "Our Moments",
+      subheading: config.gallery?.subheading || config.gallery?.subtitle || "Captured in the sacred warmth of temple courtyards and sunset light.",
+      featuredImage: config.gallery?.featuredImage || (gallery.length > 0 ? gallery[0].src : ""),
+    },
+    countdown: {
+      title: config.countdown?.title || "Muhurtham Countdown",
+      targetDate: countdownTarget,
+      timezone: config.countdown?.timezone || "IST",
+      venue: config.countdown?.venue || venue,
+    },
     video,
     rsvp,
     footer,
