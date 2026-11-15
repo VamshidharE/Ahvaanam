@@ -129,7 +129,9 @@ export default function LotusMandapamTemplate({
       }
     };
 
-    attemptPlay();
+    if (isOpen) {
+      attemptPlay();
+    }
 
     const handleGesture = () => attemptPlay();
     const events = ["click", "touchstart", "touchend", "pointerdown", "scroll", "keydown"];
@@ -140,7 +142,7 @@ export default function LotusMandapamTemplate({
       events.forEach((evt) => window.removeEventListener(evt, handleGesture));
       document.removeEventListener("click", handleGesture);
     };
-  }, [musicEnabled, isEmbedded]);
+  }, [musicEnabled, isEmbedded, isOpen]);
 
   // Pause audio and suspend activity when page/window is minimized or switched away
   useEffect(() => {
@@ -294,7 +296,19 @@ export default function LotusMandapamTemplate({
         {/* Interactive Wax Seal Opening Envelope (skips if embedded in editor) */}
         <AnimatePresence>
           {!isOpen && (
-            <RoyalOpening onOpen={() => setIsOpen(true)} />
+            <RoyalOpening
+              onOpen={() => setIsOpen(true)}
+              onPlayAudio={() => {
+                const audio = audioRef.current;
+                if (audio && musicEnabled) {
+                  audio.volume = 0.5;
+                  audio
+                    .play()
+                    .then(() => setIsMusicPlaying(true))
+                    .catch(() => {});
+                }
+              }}
+            />
           )}
         </AnimatePresence>
 

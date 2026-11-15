@@ -4,13 +4,27 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useEmeraldPalace } from "../context";
 
-export function RoyalOpening({ onOpen }: { onOpen: () => void }) {
+export function RoyalOpening({
+  onOpen,
+  onPlayAudio,
+}: {
+  onOpen: () => void;
+  onPlayAudio?: () => void;
+}) {
   const data = useEmeraldPalace();
   const [isOpening, setIsOpening] = useState(false);
 
   const handleOpen = () => {
     if (isOpening) return;
     setIsOpening(true);
+
+    // Prime/start audio playback synchronously in user gesture callstack
+    if (onPlayAudio) {
+      try {
+        onPlayAudio();
+      } catch {}
+    }
+
     setTimeout(() => {
       onOpen();
     }, 700);
@@ -44,6 +58,8 @@ export function RoyalOpening({ onOpen }: { onOpen: () => void }) {
         transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] },
       }}
       onClick={handleOpen}
+      onTouchStart={handleOpen}
+      onPointerDown={handleOpen}
     >
       {/* Ambient Royal Gold Glow in Background */}
       <div

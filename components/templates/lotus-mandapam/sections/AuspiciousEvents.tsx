@@ -353,8 +353,8 @@ export function AuspiciousEvents() {
                       </div>
                     </div>
 
-                    {/* Map Preview Below the Address or Private Residence Placeholder */}
-                    {activeEvent.showMap !== false ? (
+                    {/* Map Preview Below the Address */}
+                    {activeEvent.showMap !== false && (
                       <div className="relative w-full h-28 sm:h-32 rounded-xl overflow-hidden border border-[#D6AD63]/30 shadow-inner bg-[#F7E8D0]/50">
                         <iframe
                           title={`${activeEvent.venue} Map Preview`}
@@ -367,20 +367,10 @@ export function AuspiciousEvents() {
                           loading="lazy"
                         />
                       </div>
-                    ) : (
-                      <div className="w-full h-28 sm:h-32 rounded-xl border border-[#D6AD63]/30 bg-[#F7E8D0]/30 flex flex-col items-center justify-center p-3 text-center shadow-inner">
-                        <span className="text-xl mb-1 text-[#781D36]">🏡</span>
-                        <span className="font-cinzel text-xs font-bold text-[#781D36] tracking-wider uppercase">
-                          Private Family Residence
-                        </span>
-                        <span className="font-serif text-[11px] text-[#7E5B58] italic mt-0.5">
-                          Intimate traditional ceremony with family &amp; loved ones
-                        </span>
-                      </div>
                     )}
 
-                    {/* Get Directions Button Below Map Preview or Gathering Pill */}
-                    {activeEvent.showDirections !== false ? (
+                    {/* Get Directions Button Below Map Preview */}
+                    {activeEvent.showDirections !== false && (
                       <a
                         href={activeEvent.mapsLink || `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
                         target="_blank"
@@ -391,12 +381,6 @@ export function AuspiciousEvents() {
                         <span>📍 Get Directions</span>
                         <span>↗</span>
                       </a>
-                    ) : (
-                      <div className="py-2 px-4 w-full rounded-xl border border-[#D6AD63]/30 bg-[#F7E8D0]/40 flex items-center justify-center gap-1.5 text-center">
-                        <span className="font-cinzel text-[10px] font-bold text-[#781D36] tracking-wider uppercase">
-                          Personal Attendance &bull; Family Gathering
-                        </span>
-                      </div>
                     )}
                   </div>
                 )}
