@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Star } from "lucide-react";
+import { Star, Send, Check } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { TraditionalCornerKolam } from "../assets/Ornaments";
 import { useEmeraldPalace } from "../context";
 
@@ -29,10 +30,16 @@ export function RoyalFooter({ clientId }: { clientId?: string }) {
   const [rating, setRating] = useState<number>(0);
   const [hoverRating, setHoverRating] = useState<number | null>(null);
   const [hasRated, setHasRated] = useState<boolean>(false);
+  const [feedbackId, setFeedbackId] = useState<string | null>(null);
+  const [feedbackText, setFeedbackText] = useState("");
+  const [showFeedbackInput, setShowFeedbackInput] = useState(false);
+  const [isSendingFeedback, setIsSendingFeedback] = useState(false);
+  const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
 
   const handleRate = async (star: number) => {
     setRating(star);
     setHasRated(true);
+    setShowFeedbackInput(true);
 
     if (
       effectiveClientId &&
@@ -40,18 +47,55 @@ export function RoyalFooter({ clientId }: { clientId?: string }) {
       !effectiveClientId.startsWith("demo")
     ) {
       try {
-        await fetch(`/api/invitation/${effectiveClientId}/feedback`, {
+        const res = await fetch(`/api/invitation/${effectiveClientId}/feedback`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
+            id: feedbackId || undefined,
             rating: star,
-            feedback: "Rated through invitation footer",
+            feedback: feedbackText.trim(),
           }),
         });
+        const resData = await res.json();
+        if (resData.feedback?.id) {
+          setFeedbackId(resData.feedback.id);
+        }
       } catch (e) {
         console.warn("Feedback submission error:", e);
       }
     }
+  };
+
+  const handleFeedbackSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!feedbackText.trim()) return;
+
+    setIsSendingFeedback(true);
+    if (
+      effectiveClientId &&
+      !effectiveClientId.startsWith("preview") &&
+      !effectiveClientId.startsWith("demo")
+    ) {
+      try {
+        const res = await fetch(`/api/invitation/${effectiveClientId}/feedback`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id: feedbackId || undefined,
+            rating: rating || 5,
+            feedback: feedbackText.trim(),
+          }),
+        });
+        const resData = await res.json();
+        if (resData.feedback?.id) {
+          setFeedbackId(resData.feedback.id);
+        }
+      } catch (e) {
+        console.warn("Feedback submission error:", e);
+      }
+    }
+    setIsSendingFeedback(false);
+    setFeedbackSubmitted(true);
   };
 
   return (
@@ -84,9 +128,13 @@ export function RoyalFooter({ clientId }: { clientId?: string }) {
         <div className="w-28 h-[1px] bg-gradient-to-r from-transparent via-[#DFB759]/80 to-transparent my-3" />
 
         {/* 5-Star Interactive Rating Widget */}
-        <div className="flex flex-col items-center my-2">
+        <div className="flex flex-col items-center my-2 w-full max-w-sm px-2">
           <span className="font-cinzel text-[10px] sm:text-[11px] font-bold tracking-[0.2em] text-[#DFB759] uppercase mb-1">
-            A Little Love For Ahvaanam ✨
+            {hasRated
+              ? rating === 5
+                ? "Thank you for the love! ❤️"
+                : "Thank you for your rating! ✨"
+              : "A Little Love For Ahvaanam ✨"}
           </span>
           <div className="flex items-center justify-center gap-1.5 py-0.5">
             {[1, 2, 3, 4, 5].map((star) => {
@@ -113,11 +161,52 @@ export function RoyalFooter({ clientId }: { clientId?: string }) {
               );
             })}
           </div>
-          {hasRated && (
-            <p className="text-[11px] font-serif italic text-[#FDEAB2] mt-1.5 animate-fadeIn">
-              Thank you for sharing your love with Ahvaanam! ❤️
-            </p>
-          )}
+
+          {/* Feedback Form - Revealed at the same place after pressing any star */}
+          <AnimatePresence>
+            {showFeedbackInput && !feedbackSubmitted && (
+              <motion.form
+                initial={{ opacity: 0, y: -6, height: 0 }}
+                animate={{ opacity: 1, y: 0, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.25 }}
+                onSubmit={handleFeedbackSubmit}
+                className="w-full flex items-center gap-1.5 mt-2 overflow-hidden"
+              >
+                <input
+                  type="text"
+                  placeholder="Share a wish or feedback... (optional)"
+                  value={feedbackText}
+                  onChange={(e) => setFeedbackText(e.target.value)}
+                  maxLength={200}
+                  className="flex-1 bg-black/40 text-[#FFF6E9] placeholder-[#DFB759]/50 text-xs py-1.5 px-3.5 rounded-full border border-[#D6AD63]/50 focus:border-[#DFB759] focus:outline-none focus:ring-1 focus:ring-[#DFB759] font-serif shadow-inner transition-colors"
+                />
+                <button
+                  type="submit"
+                  disabled={isSendingFeedback || !feedbackText.trim()}
+                  aria-label="Send feedback"
+                  className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-all ${
+                    feedbackText.trim()
+                      ? "bg-gradient-to-r from-[#DFB759] to-[#C49B27] text-[#542D2A] hover:scale-110 shadow-md cursor-pointer"
+                      : "bg-[#DFB759]/20 text-[#DFB759]/40 cursor-not-allowed"
+                  }`}
+                >
+                  <Send size={13} className={feedbackText.trim() ? "translate-x-0.5" : ""} />
+                </button>
+              </motion.form>
+            )}
+
+            {feedbackSubmitted && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="flex items-center gap-1.5 text-[11px] font-serif italic text-[#FDEAB2] mt-2"
+              >
+                <Check size={13} className="text-[#DFB759]" />
+                <span>Feedback received with love! Thank you! ❤️</span>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Fine Gold Divider */}

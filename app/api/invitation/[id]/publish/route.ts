@@ -3,6 +3,8 @@ import { createClient } from "@/utils/supabase/server";
 import { getInvitationById, getAdminDb } from "@/lib/db";
 import { slugSchema } from "@/lib/validation";
 import { isAdminUser } from "@/lib/auth/isAdmin";
+import { provisionClientAndSendOnboarding } from "@/lib/onboarding/provisionClient";
+import { getBaseUrl } from "@/lib/utils/baseUrl";
 
 export async function POST(
   request: Request,
@@ -56,7 +58,54 @@ export async function POST(
       return NextResponse.json({ error: error.message || "Failed to publish invitation" }, { status: 500 });
     }
 
-    return NextResponse.json({ success: true });
+    // 3. Automated Client Account Provisioning & Passwordless Email Onboarding
+    let requestBody: any = {};
+    try {
+      requestBody = await request.json();
+    } catch {
+      requestBody = {};
+    }
+
+    const clientEmail = (
+      requestBody.clientEmail ||
+      assignedClientEmail ||
+      ""
+    ).toLowerCase().trim();
+
+    let onboarding: any = null;
+
+    if (clientEmail) {
+      try {
+        const host = request.headers.get("x-forwarded-host") || request.headers.get("host");
+        const proto = request.headers.get("x-forwarded-proto") || (host && host.includes("localhost") ? "http" : "https");
+        let appBaseUrl = host ? `${proto}://${host}` : getBaseUrl();
+        if (process.env.NEXT_PUBLIC_APP_URL && !process.env.NEXT_PUBLIC_APP_URL.includes("localhost")) {
+          appBaseUrl = process.env.NEXT_PUBLIC_APP_URL.replace(/\/$/, "");
+        }
+
+        onboarding = await provisionClientAndSendOnboarding({
+          invitationId: id,
+          clientEmail,
+          adminDb,
+          appBaseUrl,
+          forceResend: Boolean(requestBody.forceResend),
+        });
+      } catch (onboardingErr: any) {
+        console.error(`[Ahvaanam Onboarding] Error during onboarding for invitation ${id}:`, onboardingErr?.message || onboardingErr);
+        onboarding = {
+          success: false,
+          error: onboardingErr?.message || "Internal onboarding failure",
+        };
+      }
+    } else {
+      console.log(`[Ahvaanam Onboarding] Invitation ${id} published without a client email. Skipped email onboarding.`);
+      onboarding = {
+        skipped: true,
+        reason: "No client email specified for this invitation.",
+      };
+    }
+
+    return NextResponse.json({ success: true, onboarding });
   } catch (error: any) {
     return NextResponse.json({ error: error.message || "Failed to publish invitation" }, { status: 500 });
   }

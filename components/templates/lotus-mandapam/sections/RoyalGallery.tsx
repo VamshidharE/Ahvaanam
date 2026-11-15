@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { RoyalDivider, TraditionalJasmineCreeper, TraditionalBotanicalVine, TraditionalCornerKolam, TraditionalSikkuKolam } from "../assets/Ornaments";
 import { useEmeraldPalace } from "../context";
@@ -23,15 +24,52 @@ export function RoyalGallery() {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isInView, setIsInView] = useState(false);
 
-  // Auto switch images into the bigger pane every 4.5 seconds
   useEffect(() => {
-    if (photos.length <= 1) return;
+    setMounted(true);
+  }, []);
+
+  // Monitor visibility of the gallery section so animations & timers pause off-screen
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setIsInView(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { rootMargin: "100px 0px", threshold: 0.05 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Auto switch images into the bigger pane every 4.5 seconds ONLY when visible and lightbox closed
+  useEffect(() => {
+    if (photos.length <= 1 || !isInView || lightboxIndex !== null) return;
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % photos.length);
     }, 4500);
     return () => clearInterval(interval);
-  }, [photos.length]);
+  }, [photos.length, isInView, lightboxIndex]);
+
+  // Preload adjacent images into memory to completely eliminate decoding delay and blank frames
+  useEffect(() => {
+    if (!photos.length || typeof window === "undefined") return;
+    const nextIdx = (activeIndex + 1) % photos.length;
+    const prevIdx = (activeIndex - 1 + photos.length) % photos.length;
+    [nextIdx, prevIdx].forEach((idx) => {
+      if (photos[idx]?.src) {
+        const img = new Image();
+        img.src = photos[idx].src;
+      }
+    });
+  }, [activeIndex, photos]);
 
   const prevSlide = () => {
     setActiveIndex((prev) => (prev === 0 ? photos.length - 1 : prev - 1));
@@ -53,22 +91,70 @@ export function RoyalGallery() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [lightboxIndex, photos.length]);
 
-  // Touch swipe support for mobile
-  const [touchStart, setTouchStart] = useState<number | null>(null);
+  // Lock body scroll and set class to hide floating buttons while lightbox is open
+  useEffect(() => {
+    if (lightboxIndex !== null) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      document.body.classList.add("ep-lightbox-open");
+      return () => {
+        document.body.style.overflow = prevOverflow;
+        document.body.classList.remove("ep-lightbox-open");
+      };
+    }
+  }, [lightboxIndex]);
+
+  // Touch swipe support for mobile gallery carousel (distinguishes horizontal swipe vs vertical scroll)
+  const touchRef = useRef<{ startX: number; startY: number } | null>(null);
   const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.touches[0].clientX);
+    touchRef.current = {
+      startX: e.touches[0].clientX,
+      startY: e.touches[0].clientY,
+    };
   };
   const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStart === null) return;
-    const touchEnd = e.changedTouches[0].clientX;
-    const diff = touchStart - touchEnd;
-    if (diff > 50) nextSlide();
-    else if (diff < -50) prevSlide();
-    setTouchStart(null);
+    if (!touchRef.current) return;
+    const endX = e.changedTouches[0].clientX;
+    const endY = e.changedTouches[0].clientY;
+    const deltaX = touchRef.current.startX - endX;
+    const deltaY = touchRef.current.startY - endY;
+    touchRef.current = null;
+
+    // Only trigger slide transition if horizontal swipe is intentional and exceeds vertical scroll
+    if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3) {
+      if (deltaX > 0) nextSlide();
+      else if (deltaX < 0) prevSlide();
+    }
+  };
+
+  // Touch swipe support for full-screen lightbox
+  const lightboxTouchRef = useRef<{ startX: number; startY: number } | null>(null);
+  const handleLightboxTouchStart = (e: React.TouchEvent) => {
+    lightboxTouchRef.current = {
+      startX: e.touches[0].clientX,
+      startY: e.touches[0].clientY,
+    };
+  };
+  const handleLightboxTouchEnd = (e: React.TouchEvent) => {
+    if (!lightboxTouchRef.current || lightboxIndex === null) return;
+    const endX = e.changedTouches[0].clientX;
+    const deltaX = lightboxTouchRef.current.startX - endX;
+    lightboxTouchRef.current = null;
+    if (Math.abs(deltaX) > 40) {
+      if (deltaX > 0) {
+        setLightboxIndex((prev) => (prev === null ? 0 : (prev + 1) % photos.length));
+      } else {
+        setLightboxIndex((prev) => (prev === null ? 0 : (prev - 1 + photos.length) % photos.length));
+      }
+    }
   };
 
   return (
-    <section className="relative py-14 sm:py-20 px-4 sm:px-6 scroll-mt-16 ep-bg-gallery-fineart overflow-hidden border-b border-[#D6AD63]/30" id="gallery">
+    <section
+      ref={sectionRef}
+      className="relative py-14 sm:py-20 px-4 sm:px-6 scroll-mt-16 ep-bg-gallery-fineart overflow-hidden border-b border-[#D6AD63]/30"
+      id="gallery"
+    >
       {/* Authentic South Indian Corner Kolam Artwork in Section Corners */}
       <div className="absolute -top-8 -left-8 w-36 sm:w-52 pointer-events-none opacity-30 z-0">
         <TraditionalCornerKolam className="w-full h-auto" />
@@ -102,27 +188,34 @@ export function RoyalGallery() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4">
-        {/* Desktop Asymmetric Photographic Mosaic with Auto-Switching */}
+        {/* Desktop Asymmetric Photographic Mosaic with Seamless Cross-Fading */}
         <div className="hidden lg:grid grid-cols-12 gap-5 items-stretch">
-          {/* Main Large Featured Photograph (7 cols) - Auto-switches */}
+          {/* Main Large Featured Photograph (7 cols) - Persistent Stacking to avoid blank frames */}
           <div
             className="col-span-7 relative group cursor-pointer overflow-hidden rounded-3xl shadow-2xl border-2 border-[#D6AD63]/50 bg-[#FFFDF9]"
             onClick={() => setLightboxIndex(activeIndex)}
           >
-            <div className="aspect-[4/3] w-full h-full relative overflow-hidden">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={activeIndex}
-                  src={photos[activeIndex]?.src}
-                  alt={photos[activeIndex]?.alt || "Featured Moment"}
-                  className="w-full h-full object-cover"
-                  decoding="async"
-                  initial={{ opacity: 0, scale: 1.03 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                />
-              </AnimatePresence>
+            <div className="aspect-[4/3] w-full h-full relative overflow-hidden bg-[#F7E8D0]/30">
+              {photos.map((p, idx) => {
+                const isActive = idx === activeIndex;
+                return (
+                  <div
+                    key={p.src || idx}
+                    className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
+                      isActive ? "opacity-100 z-10 pointer-events-auto" : "opacity-0 z-0 pointer-events-none"
+                    }`}
+                    style={{ willChange: "opacity" }}
+                  >
+                    <img
+                      src={p.src}
+                      alt={p.alt || "Featured Moment"}
+                      className="w-full h-full object-cover"
+                      loading={idx === 0 ? "eager" : "lazy"}
+                      decoding="async"
+                    />
+                  </div>
+                );
+              })}
 
               {/* Navigation Chevrons on Main Frame */}
               <button
@@ -146,7 +239,7 @@ export function RoyalGallery() {
                 ›
               </button>
 
-              <div className="absolute bottom-4 right-4 pointer-events-none">
+              <div className="absolute bottom-4 right-4 pointer-events-none z-20">
                 <div className="w-9 h-9 rounded-full bg-black/40 backdrop-blur-sm border border-[#DFB759]/70 flex items-center justify-center text-xs text-white shadow-md">
                   🔍
                 </div>
@@ -185,54 +278,64 @@ export function RoyalGallery() {
           className="lg:hidden relative flex flex-col items-center"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
+          style={{ touchAction: "pan-y" }}
         >
-          {/* Featured Large Mobile Card */}
+          {/* Featured Large Mobile Card with Persistent Cross-Fade Layers */}
           <div
             className="relative w-full max-w-sm aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-[#D6AD63]/60 cursor-pointer bg-[#FFFDF9]"
             onClick={() => setLightboxIndex(activeIndex)}
           >
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={activeIndex}
-                src={photos[activeIndex]?.src}
-                alt={photos[activeIndex]?.alt || "Wedding Moment"}
-                className="w-full h-full object-cover"
-                decoding="async"
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4 }}
-              />
-            </AnimatePresence>
+            <div className="relative w-full h-full overflow-hidden bg-[#F7E8D0]/30">
+              {photos.map((p, idx) => {
+                const isActive = idx === activeIndex;
+                return (
+                  <div
+                    key={p.src || idx}
+                    className={`absolute inset-0 transition-opacity duration-400 ease-in-out ${
+                      isActive ? "opacity-100 z-10 pointer-events-auto" : "opacity-0 z-0 pointer-events-none"
+                    }`}
+                    style={{ willChange: "opacity" }}
+                  >
+                    <img
+                      src={p.src}
+                      alt={p.alt || "Wedding Moment"}
+                      className="w-full h-full object-cover"
+                      loading={idx === 0 ? "eager" : "lazy"}
+                      decoding="async"
+                    />
+                  </div>
+                );
+              })}
 
-            {/* Subtle Zoom indicator */}
-            <div className="absolute bottom-3 right-3 pointer-events-none">
-              <span className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm border border-[#DFB759]/70 flex items-center justify-center text-xs text-white">
-                🔍
-              </span>
+              {/* Subtle Zoom indicator */}
+              <div className="absolute bottom-3 right-3 pointer-events-none z-20">
+                <span className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm border border-[#DFB759]/70 flex items-center justify-center text-xs text-white">
+                  🔍
+                </span>
+              </div>
+
+              {/* Left / Right Chevron Controls */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prevSlide();
+                }}
+                className="absolute left-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 text-white flex items-center justify-center backdrop-blur-sm border border-white/30 text-lg z-20"
+                aria-label="Previous image"
+              >
+                ‹
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextSlide();
+                }}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 text-white flex items-center justify-center backdrop-blur-sm border border-white/30 text-lg z-20"
+                aria-label="Next image"
+              >
+                ›
+              </button>
             </div>
-
-            {/* Left / Right Chevron Controls */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                prevSlide();
-              }}
-              className="absolute left-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 text-white flex items-center justify-center backdrop-blur-sm border border-white/30 text-lg"
-              aria-label="Previous image"
-            >
-              ‹
-            </button>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                nextSlide();
-              }}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 text-white flex items-center justify-center backdrop-blur-sm border border-white/30 text-lg"
-              aria-label="Next image"
-            >
-              ›
-            </button>
           </div>
 
           {/* Pagination Thumbnail Dots */}
@@ -253,40 +356,84 @@ export function RoyalGallery() {
         </div>
       </div>
 
-      {/* Lightbox Modal */}
-      <AnimatePresence>
-        {lightboxIndex !== null && (
-          <motion.div
-            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setLightboxIndex(null)}
-          >
-            <button
-              onClick={() => setLightboxIndex(null)}
-              className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl flex items-center justify-center transition-colors"
-              aria-label="Close Lightbox"
-            >
-              ✕
-            </button>
-            <div
-              className="relative max-w-4xl max-h-[85vh] w-full flex flex-col items-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={photos[lightboxIndex]?.src}
-                alt={photos[lightboxIndex]?.alt || "Lightbox View"}
-                className="max-h-[75vh] w-auto object-contain rounded-2xl shadow-2xl border border-white/20"
-                decoding="async"
-              />
-              <p className="font-serif italic text-white/90 text-sm mt-3 text-center">
-                {photos[lightboxIndex]?.caption || photos[lightboxIndex]?.alt}
-              </p>
-            </div>
-          </motion.div>
+      {/* Lightbox Modal with Full-Screen Swipe, Portal to Body & Scroll Lock */}
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {lightboxIndex !== null && (
+              <motion.div
+                className="fixed inset-0 z-[9999] bg-black/92 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 select-none"
+                style={{ width: "100vw", height: "100dvh" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                onClick={() => setLightboxIndex(null)}
+                onTouchStart={handleLightboxTouchStart}
+                onTouchEnd={handleLightboxTouchEnd}
+              >
+                {/* Top Bar with Counter & Close Button */}
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-30 pointer-events-none">
+                  <span className="font-cinzel text-xs tracking-widest text-[#DFB759] font-bold bg-black/40 px-3 py-1.5 rounded-full backdrop-blur-sm border border-white/10 pointer-events-auto">
+                    {lightboxIndex + 1} / {photos.length}
+                  </span>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setLightboxIndex(null);
+                    }}
+                    className="w-10 h-10 rounded-full bg-black/60 hover:bg-[#781D36] text-white text-lg flex items-center justify-center transition-colors pointer-events-auto border border-white/20 shadow-lg"
+                    aria-label="Close Lightbox"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                {/* Previous Photo Button */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLightboxIndex((prev) => (prev === null ? 0 : (prev - 1 + photos.length) % photos.length));
+                  }}
+                  className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/50 hover:bg-[#781D36] text-white text-xl sm:text-2xl flex items-center justify-center backdrop-blur-sm border border-white/20 transition-colors z-30 shadow-lg"
+                  aria-label="Previous photo"
+                >
+                  ‹
+                </button>
+
+                {/* Next Photo Button */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLightboxIndex((prev) => (prev === null ? 0 : (prev + 1) % photos.length));
+                  }}
+                  className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/50 hover:bg-[#781D36] text-white text-xl sm:text-2xl flex items-center justify-center backdrop-blur-sm border border-white/20 transition-colors z-30 shadow-lg"
+                  aria-label="Next photo"
+                >
+                  ›
+                </button>
+
+                {/* Main Lightbox Image Viewport */}
+                <div
+                  className="relative max-w-4xl max-h-[82vh] w-full flex flex-col items-center justify-center"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <img
+                    key={lightboxIndex}
+                    src={photos[lightboxIndex]?.src}
+                    alt={photos[lightboxIndex]?.alt || "Lightbox View"}
+                    className="max-h-[72vh] max-w-full w-auto object-contain rounded-2xl shadow-2xl border border-[#D6AD63]/30"
+                    decoding="async"
+                  />
+                  <p className="font-serif italic text-white/90 text-xs sm:text-sm mt-3 text-center px-4">
+                    {photos[lightboxIndex]?.caption || photos[lightboxIndex]?.alt}
+                  </p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </section>
   );
 }

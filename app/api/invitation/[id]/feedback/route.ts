@@ -16,11 +16,19 @@ export async function POST(
   }
 
   try {
+    const body = await request.json().catch(() => ({}));
+
     // Demo sandbox protection: gracefully acknowledge demo feedback without writing to DB
     if (id.startsWith("demo-") || id === "demo") {
       return NextResponse.json({
         success: true,
         message: "Demo feedback acknowledged in read-only sandbox mode.",
+        feedback: {
+          id: body.id || body.feedbackId || `demo_fb_${Date.now()}`,
+          rating: Number(body.rating) || 5,
+          feedback: body.feedback || "",
+          created_at: new Date().toISOString()
+        }
       });
     }
 
@@ -30,39 +38,95 @@ export async function POST(
       return NextResponse.json({ error: "Invitation not found" }, { status: 404 });
     }
 
-    const body = await request.json();
     const rating = Math.max(1, Math.min(5, Number(body.rating) || 5));
     const feedbackText = typeof body.feedback === "string" ? body.feedback.trim() : "";
     const guestName = typeof body.guestName === "string" && body.guestName.trim() ? body.guestName.trim() : "Anonymous Guest";
     const guestPhone = typeof body.phone === "string" && body.phone.trim() ? body.phone.trim() : null;
 
-    const feedbackEntry = {
-      id: `fb_${Date.now()}_${Math.floor(Math.random() * 10000)}`,
-      rating,
-      feedback: feedbackText,
-      guestName,
-      phone: guestPhone,
-      created_at: new Date().toISOString()
-    };
+    const targetId = body.id || body.feedbackId;
+    const isUpdate = typeof targetId === "string" && targetId.trim().length > 0;
 
-    // 1. Try to insert into dedicated invitation_feedbacks table if exists
-    try {
-      await adminDb.from("invitation_feedbacks").insert([{
-        invitation_id: id,
-        rating,
-        feedback: feedbackText,
-        guest_name: guestName,
-        phone: guestPhone,
-        created_at: feedbackEntry.created_at
-      }]);
-    } catch {
-      // ignore if table does not exist or column missing
+    let dbFeedbackId: string | null = isUpdate ? targetId : null;
+
+    // 1. Try table operation if table exists
+    if (isUpdate) {
+      try {
+        await adminDb.from("invitation_feedbacks").update({
+          rating,
+          feedback: feedbackText,
+          guest_name: guestName,
+          phone: guestPhone,
+        }).eq("id", targetId);
+      } catch {
+        // ignore if table does not exist or targetId not uuid
+      }
+    } else {
+      try {
+        const { data: insertedData } = await adminDb.from("invitation_feedbacks").insert([{
+          invitation_id: id,
+          rating,
+          feedback: feedbackText,
+          guest_name: guestName,
+          phone: guestPhone,
+          created_at: new Date().toISOString()
+        }]).select("id").single();
+
+        if (insertedData?.id) {
+          dbFeedbackId = insertedData.id;
+        }
+      } catch {
+        // ignore if table does not exist or column missing
+      }
     }
 
     // 2. Persist in invitation config as durable JSON array fallback
     const currentConfig = invite.config || {};
     const existingFeedbacks = Array.isArray(currentConfig._feedbacks) ? currentConfig._feedbacks : [];
-    const updatedFeedbacks = [feedbackEntry, ...existingFeedbacks.slice(0, 99)]; // retain last 100
+
+    let updatedFeedbacks: any[];
+    let returnedEntry: any;
+
+    if (isUpdate) {
+      let found = false;
+      updatedFeedbacks = existingFeedbacks.map((f: any) => {
+        if (f.id === targetId) {
+          found = true;
+          return {
+            ...f,
+            rating,
+            feedback: feedbackText,
+            guestName,
+            phone: guestPhone,
+            updated_at: new Date().toISOString()
+          };
+        }
+        return f;
+      });
+
+      if (!found) {
+        returnedEntry = {
+          id: targetId,
+          rating,
+          feedback: feedbackText,
+          guestName,
+          phone: guestPhone,
+          created_at: new Date().toISOString()
+        };
+        updatedFeedbacks = [returnedEntry, ...existingFeedbacks.slice(0, 99)];
+      } else {
+        returnedEntry = updatedFeedbacks.find((f: any) => f.id === targetId);
+      }
+    } else {
+      returnedEntry = {
+        id: dbFeedbackId || `fb_${Date.now()}_${Math.floor(Math.random() * 10000)}`,
+        rating,
+        feedback: feedbackText,
+        guestName,
+        phone: guestPhone,
+        created_at: new Date().toISOString()
+      };
+      updatedFeedbacks = [returnedEntry, ...existingFeedbacks.slice(0, 99)];
+    }
 
     await adminDb.from("invitations").update({
       config: {
@@ -71,7 +135,7 @@ export async function POST(
       }
     }).eq("id", id);
 
-    return NextResponse.json({ success: true, feedback: feedbackEntry });
+    return NextResponse.json({ success: true, feedback: returnedEntry });
   } catch (error: any) {
     return NextResponse.json({ error: error.message || "Failed to submit feedback" }, { status: 500 });
   }

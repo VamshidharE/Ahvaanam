@@ -53,34 +53,54 @@ export default function LotusMandapamTemplate({
     }
   }, []);
 
-  // Floating RSVP visibility calculation based on scroll progress
+  // Floating RSVP visibility calculation using IntersectionObserver (zero scroll layout thrashing)
   useEffect(() => {
     if (isEmbedded) return;
 
-    const handleScroll = () => {
-      const scrollY = window.scrollY || window.pageYOffset;
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollFraction = totalHeight > 0 ? scrollY / totalHeight : 0;
+    let isRsvpInView = false;
+    let isPastHero = false;
 
-      const rsvpEl = document.getElementById("rsvp");
-      let isRsvpVisible = false;
-      if (rsvpEl) {
-        const rect = rsvpEl.getBoundingClientRect();
-        isRsvpVisible = rect.top <= window.innerHeight * 0.85 && rect.bottom >= 0;
-      }
-
-      if (scrollFraction >= 0.15 && !isRsvpVisible) {
-        setShowFloatingRsvp(true);
-      } else {
-        setShowFloatingRsvp(false);
-      }
+    const updateFloating = () => {
+      const shouldShow = isPastHero && !isRsvpInView;
+      setShowFloatingRsvp((prev) => (prev !== shouldShow ? shouldShow : prev));
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+    // 1. Observe RSVP element to hide button when RSVP form is already in view
+    const rsvpEl = document.getElementById("rsvp");
+    let rsvpObserver: IntersectionObserver | null = null;
+    if (rsvpEl && typeof IntersectionObserver !== "undefined") {
+      rsvpObserver = new IntersectionObserver(
+        ([entry]) => {
+          isRsvpInView = entry.isIntersecting;
+          updateFloating();
+        },
+        { rootMargin: "0px 0px -10% 0px", threshold: 0 }
+      );
+      rsvpObserver.observe(rsvpEl);
+    }
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isEmbedded]);
+    // 2. Observe Hero element to show button only after user scrolls past the hero
+    const heroEl = document.getElementById("hero");
+    let heroObserver: IntersectionObserver | null = null;
+    if (heroEl && typeof IntersectionObserver !== "undefined") {
+      heroObserver = new IntersectionObserver(
+        ([entry]) => {
+          isPastHero = !entry.isIntersecting;
+          updateFloating();
+        },
+        { threshold: 0.1 }
+      );
+      heroObserver.observe(heroEl);
+    } else {
+      isPastHero = true;
+      updateFloating();
+    }
+
+    return () => {
+      if (rsvpObserver) rsvpObserver.disconnect();
+      if (heroObserver) heroObserver.disconnect();
+    };
+  }, [isEmbedded, isOpen]);
 
   const scrollToRsvp = () => {
     emitAnalyticsInteraction("rsvp_open", "rsvp");
@@ -270,7 +290,7 @@ export default function LotusMandapamTemplate({
 
   return (
     <EmeraldPalaceProvider data={data}>
-      <div className="lotus-mandapam-template emerald-palace-template relative select-none min-h-screen bg-[#FFF6E9] text-[#542D2A]">
+      <div className="lotus-mandapam-template emerald-palace-template relative select-none min-h-screen bg-[#FFF6E9] text-[#542D2A] w-full max-w-[100vw] overflow-x-hidden">
         {/* Interactive Wax Seal Opening Envelope (skips if embedded in editor) */}
         <AnimatePresence>
           {!isOpen && (

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { RoyalDivider, TraditionalFloralCluster, TraditionalCornerKolam, TraditionalPulliKolam } from "../assets/Ornaments";
 import { useEmeraldPalace } from "../context";
@@ -9,28 +9,58 @@ export function AuspiciousEvents() {
   const data = useEmeraldPalace();
   const enabledEvents = data.events.filter((e) => e.enabled !== false);
 
-  // Default to Muhurtam or first event
-  const defaultIndex = Math.max(
-    0,
-    enabledEvents.findIndex(
-      (e) =>
-        e.icon === "muhurtam" ||
-        e.title.toLowerCase().includes("muhurtam") ||
-        e.title.toLowerCase().includes("wedding")
-    )
-  );
-
-  const [activeIndex, setActiveIndex] = useState(defaultIndex >= 0 ? defaultIndex : 0);
+  // Always start sequentially from the first ceremony
+  const [activeIndex, setActiveIndex] = useState(0);
   const activeEvent = enabledEvents[activeIndex] || enabledEvents[0];
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [minCardHeight, setMinCardHeight] = useState<number | undefined>(undefined);
+  const [isInView, setIsInView] = useState(false);
 
-  // Auto switch events every 5.5 seconds
+  // Monitor visibility of celebrations section so auto-rotations pause off-screen
   useEffect(() => {
-    if (enabledEvents.length <= 1) return;
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setIsInView(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { rootMargin: "100px 0px", threshold: 0.05 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Stabilize card height across events so ceremonies without maps don't cause layout shift
+  useEffect(() => {
+    if (cardRef.current) {
+      const h = cardRef.current.offsetHeight;
+      if (h > 0) {
+        setMinCardHeight((prev) => (prev ? Math.max(prev, h) : h));
+      }
+    }
+  }, [activeIndex]);
+
+  // Reset measured height on screen resize/orientation change
+  useEffect(() => {
+    const handleResize = () => {
+      setMinCardHeight(undefined);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Auto switch events every 5.5 seconds ONLY when visible in viewport
+  useEffect(() => {
+    if (enabledEvents.length <= 1 || !isInView) return;
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % enabledEvents.length);
     }, 5500);
     return () => clearInterval(interval);
-  }, [enabledEvents.length]);
+  }, [enabledEvents.length, isInView]);
 
   const nextEvent = () => {
     setActiveIndex((prev) => (prev + 1) % enabledEvents.length);
@@ -53,7 +83,11 @@ export function AuspiciousEvents() {
   };
 
   return (
-    <section className="relative py-14 sm:py-20 px-4 sm:px-6 scroll-mt-16 ep-bg-celebrations-courtyard overflow-hidden border-b border-[#D6AD63]/30" id="events">
+    <section
+      ref={sectionRef}
+      className="relative py-14 sm:py-20 px-4 sm:px-6 scroll-mt-16 ep-bg-celebrations-courtyard overflow-hidden border-b border-[#D6AD63]/30"
+      id="events"
+    >
       {/* Authentic South Indian Kolam Artwork in Section Background */}
       <div className="absolute -top-8 -left-8 w-36 sm:w-52 pointer-events-none opacity-30 z-0">
         <TraditionalCornerKolam className="w-full h-auto" />
@@ -188,7 +222,11 @@ export function AuspiciousEvents() {
         </div>
 
         {/* Featured Event Card: 2-Column Desktop / Stacked Mobile */}
-        <div className="relative bg-[#FFFDF9] rounded-3xl p-4 sm:p-8 shadow-[0_20px_50px_rgba(120,29,54,0.12)] border border-[#D6AD63]/50 overflow-hidden">
+        <div
+          ref={cardRef}
+          style={{ minHeight: minCardHeight ? `${minCardHeight}px` : undefined }}
+          className="relative bg-[#FFFDF9] rounded-3xl p-4 sm:p-8 shadow-[0_20px_50px_rgba(120,29,54,0.12)] border border-[#D6AD63]/50 overflow-hidden min-h-[560px] sm:min-h-[600px] lg:min-h-[500px] flex flex-col justify-center"
+        >
           {/* Authentic Corner Kolam Linework on Event Card */}
           <div className="absolute top-2 left-2 w-8 h-8 opacity-45 pointer-events-none">
             <TraditionalCornerKolam className="w-full h-auto" />
@@ -204,7 +242,7 @@ export function AuspiciousEvents() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.35, ease: "easeInOut" }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-center"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-center w-full"
             >
               {/* Left Column: Large Featured Photograph (7 cols on desktop) */}
               <div className="lg:col-span-7 relative">

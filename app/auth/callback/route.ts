@@ -6,11 +6,16 @@ export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
   const token_hash = searchParams.get("token_hash");
-  const type = searchParams.get("type") as EmailOtpType | null;
+  const type = (searchParams.get("type") as EmailOtpType | null) || (token_hash ? "magiclink" : null);
   const errorDescription = searchParams.get("error_description") || searchParams.get("error");
   
   // Support both 'next' and 'redirect' query params, defaulting to '/dashboard'
   let next = searchParams.get("next") || searchParams.get("redirect") || "/dashboard";
+
+  // Prevent open redirect vulnerabilities
+  if (!next.startsWith("/") || next.startsWith("//")) {
+    next = "/dashboard";
+  }
 
   // If password recovery link, route the user to the reset password form page
   if (type === "recovery" || next.includes("reset-password")) {
@@ -30,10 +35,15 @@ export async function GET(request: Request) {
     if (!error) {
       return NextResponse.redirect(`${origin}${next}`);
     }
+    // Check if user already has an active session before falling back to login error
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      return NextResponse.redirect(`${origin}${next}`);
+    }
     return NextResponse.redirect(`${origin}/login?error=${encodeURIComponent(error.message)}`);
   }
 
-  // 2. Token Hash Verification (OTP / Email Confirmation / Password Recovery)
+  // 2. Token Hash Verification (OTP / Email Confirmation / Password Recovery / Magic Link)
   if (token_hash && type) {
     const { error } = await supabase.auth.verifyOtp({
       type,
@@ -42,7 +52,18 @@ export async function GET(request: Request) {
     if (!error) {
       return NextResponse.redirect(`${origin}${next}`);
     }
+    // If token verification failed (e.g. link was already clicked/used), check if user is already logged in
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      return NextResponse.redirect(`${origin}${next}`);
+    }
     return NextResponse.redirect(`${origin}/login?error=${encodeURIComponent(error.message)}`);
+  }
+
+  // Check if client already has an active session
+  const { data: { user } } = await supabase.auth.getUser();
+  if (user) {
+    return NextResponse.redirect(`${origin}${next}`);
   }
 
   // If redirected directly with recovery type or next parameter, redirect to next

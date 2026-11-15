@@ -41,7 +41,7 @@
   background-color: var(--ep-ivory);
   width: 100%;
   max-width: 100vw;
-  overflow-x: clip;
+  overflow-x: hidden !important;
   box-sizing: border-box;
 }
 
@@ -1547,4 +1547,29 @@
 .ep-floating-rsvp-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(120, 29, 54, 0.45);
+}
+
+/* Lightbox Active State: Cleanly hide floating buttons and lock background touch */
+body.ep-lightbox-open {
+  overflow: hidden !important;
+  touch-action: none !important;
+}
+
+body.ep-lightbox-open .ep-floating-rsvp-btn,
+body.ep-lightbox-open .ep-floating-music-btn {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  transform: scale(0.8) !important;
+  transition: opacity 0.25s ease, transform 0.25s ease !important;
+}
+
+/* Hardware-accelerated compositing for hero parallax layers on mobile */
+.ep-hero-bg-container,
+.ep-hero-couple-col,
+.ep-hero-typography-col {
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
