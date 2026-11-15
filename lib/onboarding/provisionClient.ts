@@ -1,5 +1,5 @@
 import { SupabaseClient } from "@supabase/supabase-js";
-import { sendEmail } from "@/lib/email/mailer";
+import { sendEmail } from "@/lib/email/send-email";
 import { getOnboardingEmailHtml, getOnboardingEmailText } from "@/lib/email/templates/onboardingEmail";
 
 export interface ProvisionClientParams {
@@ -119,9 +119,9 @@ export async function provisionClientAndSendOnboarding({
   const isWrapped = config && typeof config === "object" && "category" in config && "config" in config;
   const innerConfig = isWrapped ? (config.config || {}) : config;
 
-  // 2. Prevent duplicate onboarding emails on repeated publishing
+  // 2. Prevent duplicate onboarding emails on repeated publishing (only skip if actually delivered, not simulated)
   const existingDelivery = config.onboarding_email || innerConfig.onboarding_email;
-  if (!forceResend && existingDelivery?.status === "sent" && existingDelivery?.recipient === normalizedEmail) {
+  if (!forceResend && existingDelivery?.status === "sent" && existingDelivery?.recipient === normalizedEmail && !existingDelivery?.simulated) {
     console.log(`[Ahvaanam Onboarding] Onboarding email already sent to ${normalizedEmail} on ${existingDelivery.sent_at}. Skipping duplicate send.`);
     return {
       success: true,
@@ -268,7 +268,7 @@ export async function provisionClientAndSendOnboarding({
     dashboardUrl: magicLinkUrl,
   });
 
-  const emailSubject = "Your invitation is published! Access your Ahvaanam dashboard";
+  const emailSubject = "Your wedding invitation is published! Access your Ahvaanam dashboard.";
 
   const emailResult = await sendEmail({
     to: normalizedEmail,
