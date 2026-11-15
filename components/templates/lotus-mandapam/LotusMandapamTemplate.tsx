@@ -34,6 +34,7 @@ export default function LotusMandapamTemplate({
   const [isOpen, setIsOpen] = useState(false);
   const [isEmbedded, setIsEmbedded] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const wasPlayingBeforeHiddenRef = useRef(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [musicEnabled, setMusicEnabled] = useState(true);
   const [showFloatingRsvp, setShowFloatingRsvp] = useState(false);
@@ -98,6 +99,8 @@ export default function LotusMandapamTemplate({
     audio.volume = 0.5;
 
     const attemptPlay = () => {
+      // Do not auto-play if page/tab is currently minimized or hidden
+      if (typeof document !== "undefined" && document.hidden) return;
       if (audio && musicEnabled && audio.paused) {
         audio
           .play()
@@ -116,6 +119,51 @@ export default function LotusMandapamTemplate({
     return () => {
       events.forEach((evt) => window.removeEventListener(evt, handleGesture));
       document.removeEventListener("click", handleGesture);
+    };
+  }, [musicEnabled, isEmbedded]);
+
+  // Pause audio and suspend activity when page/window is minimized or switched away
+  useEffect(() => {
+    if (isEmbedded) return;
+
+    const handleVisibilityChange = () => {
+      const audio = audioRef.current;
+      if (!audio) return;
+
+      if (document.hidden) {
+        // Tab switched away or window minimized to background
+        if (!audio.paused) {
+          wasPlayingBeforeHiddenRef.current = true;
+          audio.pause();
+          setIsMusicPlaying(false);
+        }
+      } else {
+        // Tab restored or window brought back into focus
+        if (wasPlayingBeforeHiddenRef.current && musicEnabled) {
+          audio
+            .play()
+            .then(() => setIsMusicPlaying(true))
+            .catch(() => {});
+          wasPlayingBeforeHiddenRef.current = false;
+        }
+      }
+    };
+
+    const handlePageHide = () => {
+      const audio = audioRef.current;
+      if (audio && !audio.paused) {
+        wasPlayingBeforeHiddenRef.current = true;
+        audio.pause();
+        setIsMusicPlaying(false);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("pagehide", handlePageHide);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("pagehide", handlePageHide);
     };
   }, [musicEnabled, isEmbedded]);
 

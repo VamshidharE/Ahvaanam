@@ -112,11 +112,15 @@ export function EmeraldHero() {
         >
           {/* Royal Arched Invitation Card Frame */}
           <div className="ep-hero-arch-card">
-            {/* Top decorative arch finial / pinnacle */}
+            {/* Sacred Lord Ganesha Crest Finial */}
             <div className="ep-hero-arch-finial" aria-hidden="true">
-              <svg viewBox="0 0 24 16" className="w-5 h-3.5 text-[#C99A38]" fill="currentColor">
-                <path d="M12 0L14.5 5.5L20 7L15 11L16 16L12 13L8 16L9 11L4 7L9.5 5.5L12 0Z" />
-              </svg>
+              <img
+                src="/templates/lotus-mandapam/ganesh-logo.webp"
+                alt="Lord Ganesha"
+                className="w-11 sm:w-12 h-auto object-contain filter drop-shadow-[0_2px_6px_rgba(201,154,56,0.35)]"
+                loading="eager"
+                decoding="async"
+              />
             </div>
 
             {/* Sacred Ganesh Mantra - Auspicious Kumkum Crimson */}

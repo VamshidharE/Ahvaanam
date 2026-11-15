@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { VedicGaneshaCrest } from "../assets/Ornaments";
 import { useEmeraldPalace } from "../context";
 
 export function RoyalOpening({ onOpen }: { onOpen: () => void }) {
@@ -66,21 +65,20 @@ export function RoyalOpening({ onOpen }: { onOpen: () => void }) {
         {/* Inner Delicate Inset Gold Hairline Contour */}
         <div className="absolute inset-2 border border-[#D6AD63]/55 rounded-t-[132px] rounded-b-[18px] pointer-events-none" />
 
-        {/* Top Decorative Gold Finial Ornament */}
-        <div className="flex justify-center -mt-2 mb-2">
-          <svg viewBox="0 0 24 16" className="w-5 h-3.5 text-[#C99A38]" fill="currentColor">
-            <path d="M12 0L14.5 5.5L20 7L15 11L16 16L12 13L8 16L9 11L4 7L9.5 5.5L12 0Z" />
-          </svg>
-        </div>
-
-        {/* Sacred Vedic Ganesha Crest */}
+        {/* Sacred Lord Ganesha Crest */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.15, duration: 0.5 }}
-          className="mb-1.5 flex justify-center text-[#C99A38]"
+          className="flex justify-center -mt-1 mb-2.5"
         >
-          <VedicGaneshaCrest />
+          <img
+            src="/templates/lotus-mandapam/ganesh-logo.webp"
+            alt="Lord Ganesha"
+            className="w-14 sm:w-16 h-auto object-contain filter drop-shadow-[0_2px_8px_rgba(201,154,56,0.35)]"
+            loading="eager"
+            decoding="async"
+          />
         </motion.div>
 
         {/* Auspicious Kumkum Crimson Mantra */}
