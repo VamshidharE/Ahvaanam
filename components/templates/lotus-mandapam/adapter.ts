@@ -192,7 +192,19 @@ const formatWeddingDate = (raw: string) => {
 const isGenericPlaceholder = (val: any, placeholders: string[]) => {
   if (!val || typeof val !== "string") return true;
   const trimmed = val.trim().toLowerCase();
-  return placeholders.some((p) => trimmed === p.toLowerCase() || trimmed === "" || trimmed.includes("groom family") || trimmed.includes("bride family"));
+  if (!trimmed) return true;
+  return (
+    placeholders.some((p) => {
+      const target = p.trim().toLowerCase();
+      if (!target) return false;
+      return trimmed === target || (target.length >= 4 && trimmed.includes(target));
+    }) ||
+    trimmed.includes("groom family") ||
+    trimmed.includes("bride family") ||
+    trimmed.includes("123 ring road") ||
+    trimmed.includes("city, state") ||
+    trimmed.includes("leave blank if already")
+  );
 };
 
 export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalaceData {
@@ -299,13 +311,17 @@ export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalac
     config.wedding?.city ||
     "Ibrahimpatnam, Hyderabad";
 
-  const address =
+  const rawAddress =
     venueObj.address ||
     (typeof config.address === "string" ? config.address : "") ||
     config.wedding?.address ||
-    "Main Road, Ibrahimpatnam, Hyderabad 501506";
+    "";
 
-  const mapsQuery = encodeURIComponent(`${venue}, ${address}`);
+  const address = isGenericPlaceholder(rawAddress, ["123 ring road", "address", "city, state", ""])
+    ? ""
+    : rawAddress;
+
+  const mapsQuery = encodeURIComponent(address ? `${venue}, ${address}` : venue);
 
   const mapsLink =
     venueObj.mapsUrl ||
@@ -346,8 +362,27 @@ export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalac
   if (Array.isArray(rawEvents) && rawEvents.length > 0) {
     events = rawEvents.map((e: any, idx: number) => {
       const eventVenue = (e.venue && !isGenericPlaceholder(e.venue, ["venue name", "venue", ""])) ? e.venue : venue;
-      const eventAddress = (e.address && !isGenericPlaceholder(e.address, ["address", ""])) ? e.address : address;
-      const query = encodeURIComponent(`${eventVenue}, ${eventAddress}`);
+      // If event address was not entered or empty, DO NOT fall back to dummy/wedding address
+      const eventAddress = (e.address && typeof e.address === "string" && e.address.trim().length > 0 && !isGenericPlaceholder(e.address, ["address", "123 ring road", "city, state", "leave blank if already in venue name..."]))
+        ? e.address.trim()
+        : "";
+
+      const queryLocation = eventAddress ? `${eventVenue}, ${eventAddress}` : eventVenue;
+      const query = encodeURIComponent(queryLocation);
+
+      // Safe Embed URL (short links like maps.app.goo.gl or place links cannot be embedded in an iframe)
+      const isEmbedSafe = (url?: string) => {
+        if (!url || typeof url !== "string") return false;
+        const u = url.trim();
+        return (u.includes("/maps/embed") || u.includes("output=embed")) && !u.includes("maps.app.goo.gl") && !u.includes("goo.gl/maps");
+      };
+
+      const mapsEmbedUrl = isEmbedSafe(e.mapsEmbedUrl)
+        ? e.mapsEmbedUrl
+        : `https://maps.google.com/maps?q=${query}&t=&z=14&ie=UTF8&iwloc=&output=embed`;
+
+      const directLink = e.mapsLink || e.directionsUrl || (e.mapsEmbedUrl && !e.mapsEmbedUrl.includes("output=embed") ? e.mapsEmbedUrl : "");
+
       return {
         id: e.id || `event-${idx}`,
         title: e.title || (idx === 0 ? "Pellikuthuru (Haldi)" : idx === 1 ? "Sangeeth" : idx === 2 ? "Wedding Muhurtam" : "Reception"),
@@ -364,8 +399,8 @@ export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalac
         enabled: e.enabled !== false,
         showMap: e.showMap !== false,
         showDirections: e.showDirections !== false,
-        mapsLink: e.mapsLink || (e.directionsUrl ? e.directionsUrl : `https://maps.google.com/?q=${query}`),
-        mapsEmbedUrl: e.mapsEmbedUrl || `https://maps.google.com/maps?q=${query}&t=&z=14&ie=UTF8&iwloc=&output=embed`,
+        mapsLink: directLink || `https://maps.google.com/?q=${query}`,
+        mapsEmbedUrl: mapsEmbedUrl,
       };
     });
   } else {

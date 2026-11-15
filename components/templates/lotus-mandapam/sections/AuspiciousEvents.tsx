@@ -41,8 +41,16 @@ export function AuspiciousEvents() {
   };
 
   const mapsQuery = encodeURIComponent(
-    `${activeEvent.venue}, ${activeEvent.address || data.wedding.city}`
+    activeEvent.address && activeEvent.address.trim().length > 0
+      ? `${activeEvent.venue}, ${activeEvent.address}`
+      : activeEvent.venue
   );
+
+  const isEmbedSafe = (url?: string) => {
+    if (!url || typeof url !== "string") return false;
+    const u = url.trim();
+    return (u.includes("/maps/embed") || u.includes("output=embed")) && !u.includes("maps.app.goo.gl") && !u.includes("goo.gl/maps");
+  };
 
   return (
     <section className="relative py-14 sm:py-20 px-4 sm:px-6 scroll-mt-16 ep-bg-celebrations-courtyard overflow-hidden border-b border-[#D6AD63]/30" id="events">
@@ -312,7 +320,11 @@ export function AuspiciousEvents() {
                       <div className="relative w-full h-28 sm:h-32 rounded-xl overflow-hidden border border-[#D6AD63]/30 shadow-inner bg-[#F7E8D0]/50">
                         <iframe
                           title={`${activeEvent.venue} Map Preview`}
-                          src={activeEvent.mapsEmbedUrl || `https://maps.google.com/maps?q=${mapsQuery}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
+                          src={
+                            isEmbedSafe(activeEvent.mapsEmbedUrl)
+                              ? activeEvent.mapsEmbedUrl
+                              : `https://maps.google.com/maps?q=${mapsQuery}&t=&z=14&ie=UTF8&iwloc=&output=embed`
+                          }
                           className="w-full h-full border-0 pointer-events-none"
                           loading="lazy"
                         />
