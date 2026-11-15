@@ -225,7 +225,7 @@ export function AuspiciousEvents() {
         <div
           ref={cardRef}
           style={{ minHeight: minCardHeight ? `${minCardHeight}px` : undefined }}
-          className="relative bg-[#FFFDF9] rounded-3xl p-4 sm:p-8 shadow-[0_20px_50px_rgba(120,29,54,0.12)] border border-[#D6AD63]/50 overflow-hidden min-h-[560px] sm:min-h-[600px] lg:min-h-[500px] flex flex-col justify-center"
+          className="relative bg-[#FFFDF9] rounded-3xl p-4 sm:p-8 shadow-[0_20px_50px_rgba(120,29,54,0.12)] border border-[#D6AD63]/50 overflow-hidden min-h-[680px] sm:min-h-[720px] lg:min-h-[500px] flex flex-col justify-center"
         >
           {/* Authentic Corner Kolam Linework on Event Card */}
           <div className="absolute top-2 left-2 w-8 h-8 opacity-45 pointer-events-none">
@@ -285,7 +285,7 @@ export function AuspiciousEvents() {
               </div>
 
               {/* Right Column: Detailed Event Information (5 cols on desktop) */}
-              <div className="lg:col-span-5 flex flex-col justify-center text-left">
+              <div className="lg:col-span-5 flex flex-col justify-between text-left min-h-[380px] sm:min-h-[400px]">
                 {/* Event Order Pill */}
                 <div className="flex items-center gap-2 mb-2">
                   <span className="font-cinzel text-[10px] uppercase font-bold tracking-[0.2em] px-2.5 py-0.5 rounded-full bg-[#781D36] text-[#FFF6E9]">
@@ -353,8 +353,8 @@ export function AuspiciousEvents() {
                       </div>
                     </div>
 
-                    {/* Map Preview Below the Address */}
-                    {activeEvent.showMap !== false && (
+                    {/* Map Preview Below the Address or Private Residence Placeholder */}
+                    {activeEvent.showMap !== false ? (
                       <div className="relative w-full h-28 sm:h-32 rounded-xl overflow-hidden border border-[#D6AD63]/30 shadow-inner bg-[#F7E8D0]/50">
                         <iframe
                           title={`${activeEvent.venue} Map Preview`}
@@ -367,10 +367,20 @@ export function AuspiciousEvents() {
                           loading="lazy"
                         />
                       </div>
+                    ) : (
+                      <div className="w-full h-28 sm:h-32 rounded-xl border border-[#D6AD63]/30 bg-[#F7E8D0]/30 flex flex-col items-center justify-center p-3 text-center shadow-inner">
+                        <span className="text-xl mb-1 text-[#781D36]">🏡</span>
+                        <span className="font-cinzel text-xs font-bold text-[#781D36] tracking-wider uppercase">
+                          Private Family Residence
+                        </span>
+                        <span className="font-serif text-[11px] text-[#7E5B58] italic mt-0.5">
+                          Intimate traditional ceremony with family &amp; loved ones
+                        </span>
+                      </div>
                     )}
 
-                    {/* Get Directions Button Below Map Preview */}
-                    {activeEvent.showDirections !== false && (
+                    {/* Get Directions Button Below Map Preview or Gathering Pill */}
+                    {activeEvent.showDirections !== false ? (
                       <a
                         href={activeEvent.mapsLink || `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
                         target="_blank"
@@ -381,6 +391,12 @@ export function AuspiciousEvents() {
                         <span>📍 Get Directions</span>
                         <span>↗</span>
                       </a>
+                    ) : (
+                      <div className="py-2 px-4 w-full rounded-xl border border-[#D6AD63]/30 bg-[#F7E8D0]/40 flex items-center justify-center gap-1.5 text-center">
+                        <span className="font-cinzel text-[10px] font-bold text-[#781D36] tracking-wider uppercase">
+                          Personal Attendance &bull; Family Gathering
+                        </span>
+                      </div>
                     )}
                   </div>
                 )}

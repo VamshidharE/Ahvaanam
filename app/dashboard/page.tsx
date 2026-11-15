@@ -260,6 +260,27 @@ export default function ClientDashboard() {
     }
   };
 
+  const handleOpenRatings = async (profile: ClientProfile) => {
+    setRatingsProfile(profile);
+    try {
+      const res = await fetch(`/api/invitation/${profile.id}/feedback`);
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setRatingsProfile((prev) => {
+          if (!prev || prev.id !== profile.id) return prev;
+          return {
+            ...prev,
+            feedbacks: data.feedbacks || [],
+            avgRating: data.statistics?.averageRating || 0,
+            ratingCount: data.statistics?.totalRatings || 0,
+          };
+        });
+      }
+    } catch (err) {
+      console.error("Failed to fetch fresh ratings:", err);
+    }
+  };
+
   const handleExportCSV = (profileId: string, rsvps: any[]) => {
     if (!rsvps || rsvps.length === 0) return;
     const headers = ["Guest Name", "Phone", "Status", "Attending Guests", "Message", "Submitted Time"];
@@ -609,7 +630,7 @@ export default function ClientDashboard() {
                       </button>
                       {isAdmin && (
                         <button
-                          onClick={() => setRatingsProfile(profile)}
+                          onClick={() => handleOpenRatings(profile)}
                           className="p-2 bg-amber-500/5 border border-amber-500/20 text-[#C49B27] hover:bg-[#C49B27] hover:text-white rounded-lg transition-all cursor-pointer"
                           title="View Ratings & Reviews"
                         >

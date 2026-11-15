@@ -91,6 +91,7 @@ export async function getInvitations(
       updatedAt: row.updated_at || "",
       clientEmail: innerConfig.clientEmail || json.clientEmail || "",
       user_id: row.user_id || "",
+      config: row.config,
     };
   });
 }

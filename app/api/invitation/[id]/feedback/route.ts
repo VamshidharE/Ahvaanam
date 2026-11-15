@@ -55,7 +55,6 @@ export async function POST(
           rating,
           feedback: feedbackText,
           guest_name: guestName,
-          phone: guestPhone,
         }).eq("id", targetId);
       } catch {
         // ignore if table does not exist or targetId not uuid
@@ -67,7 +66,6 @@ export async function POST(
           rating,
           feedback: feedbackText,
           guest_name: guestName,
-          phone: guestPhone,
           created_at: new Date().toISOString()
         }]).select("id").single();
 
