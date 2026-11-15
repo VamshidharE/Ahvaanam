@@ -208,7 +208,7 @@ export default function LotusMandapamTemplate({
         if (data.sections.showFooter === false) return null;
         return (
           <div key="footer" data-section-id="footer">
-            <RoyalFooter />
+            <RoyalFooter clientId={clientId} />
           </div>
         );
       default:

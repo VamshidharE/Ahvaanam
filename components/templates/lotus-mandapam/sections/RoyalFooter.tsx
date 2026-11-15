@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import { Star } from "lucide-react";
 import { TraditionalCornerKolam } from "../assets/Ornaments";
 import { useEmeraldPalace } from "../context";
 
-export function RoyalFooter() {
+export function RoyalFooter({ clientId }: { clientId?: string }) {
   const data = useEmeraldPalace();
 
   const isBrideFirst = data.couple.primarySide === "bride";
@@ -18,6 +19,40 @@ export function RoyalFooter() {
     brandName && brandName.toLowerCase() !== "ahvaanam"
       ? `${brandName} • ${serviceSubtitle}`
       : serviceSubtitle;
+
+  const effectiveClientId =
+    clientId ||
+    (typeof window !== "undefined"
+      ? window.location.pathname.split("/").pop()
+      : undefined);
+
+  const [rating, setRating] = useState<number>(0);
+  const [hoverRating, setHoverRating] = useState<number | null>(null);
+  const [hasRated, setHasRated] = useState<boolean>(false);
+
+  const handleRate = async (star: number) => {
+    setRating(star);
+    setHasRated(true);
+
+    if (
+      effectiveClientId &&
+      !effectiveClientId.startsWith("preview") &&
+      !effectiveClientId.startsWith("demo")
+    ) {
+      try {
+        await fetch(`/api/invitation/${effectiveClientId}/feedback`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            rating: star,
+            feedback: "Rated through invitation footer",
+          }),
+        });
+      } catch (e) {
+        console.warn("Feedback submission error:", e);
+      }
+    }
+  };
 
   return (
     <footer
@@ -47,6 +82,46 @@ export function RoyalFooter() {
 
         {/* Fine Gold Divider */}
         <div className="w-28 h-[1px] bg-gradient-to-r from-transparent via-[#DFB759]/80 to-transparent my-3" />
+
+        {/* 5-Star Interactive Rating Widget */}
+        <div className="flex flex-col items-center my-2">
+          <span className="font-cinzel text-[10px] sm:text-[11px] font-bold tracking-[0.2em] text-[#DFB759] uppercase mb-1">
+            A Little Love For Ahvaanam ✨
+          </span>
+          <div className="flex items-center justify-center gap-1.5 py-0.5">
+            {[1, 2, 3, 4, 5].map((star) => {
+              const active = (hoverRating ?? rating) >= star;
+              return (
+                <button
+                  key={star}
+                  type="button"
+                  onClick={() => handleRate(star)}
+                  onMouseEnter={() => setHoverRating(star)}
+                  onMouseLeave={() => setHoverRating(null)}
+                  aria-label={`Rate ${star} stars`}
+                  className="p-1 text-[#DFB759]/60 hover:text-[#FFD700] transition-transform hover:scale-125 focus:outline-none cursor-pointer"
+                >
+                  <Star
+                    size={20}
+                    className={`transition-colors ${
+                      active
+                        ? "fill-[#FFD700] text-[#FFD700] drop-shadow-[0_0_8px_rgba(255,215,0,0.8)]"
+                        : "text-[#DFB759]/40"
+                    }`}
+                  />
+                </button>
+              );
+            })}
+          </div>
+          {hasRated && (
+            <p className="text-[11px] font-serif italic text-[#FDEAB2] mt-1.5 animate-fadeIn">
+              Thank you for sharing your love with Ahvaanam! ❤️
+            </p>
+          )}
+        </div>
+
+        {/* Fine Gold Divider */}
+        <div className="w-20 h-[1px] bg-gradient-to-r from-transparent via-[#DFB759]/50 to-transparent my-2" />
 
         {/* Ahvaanam Official Brand Section & Website Link */}
         <a
