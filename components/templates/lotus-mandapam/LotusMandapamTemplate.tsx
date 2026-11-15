@@ -337,10 +337,10 @@ export default function LotusMandapamTemplate({
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 15 }}
               transition={{ duration: 0.3 }}
-              aria-label="Confirm Attendance"
+              aria-label="Join Us"
             >
               <span>💌</span>
-              <span>RSVP</span>
+              <span>Join Us</span>
             </motion.button>
           )}
         </AnimatePresence>

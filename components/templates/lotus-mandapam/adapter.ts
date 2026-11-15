@@ -14,6 +14,8 @@ export interface EmeraldPalaceEvent {
   enabled: boolean;
   mapsLink?: string;
   mapsEmbedUrl?: string;
+  showMap?: boolean;
+  showDirections?: boolean;
 }
 
 export interface EmeraldPalaceData {
@@ -360,7 +362,9 @@ export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalac
         icon: e.icon || (idx === 0 ? "haldi" : idx === 1 ? "sangeeth" : idx === 2 ? "muhurtam" : "reception"),
         auspiciousTime: e.auspiciousTime || (idx === 2 ? "9:12 AM" : ""),
         enabled: e.enabled !== false,
-        mapsLink: e.mapsLink || `https://maps.google.com/?q=${query}`,
+        showMap: e.showMap !== false,
+        showDirections: e.showDirections !== false,
+        mapsLink: e.mapsLink || (e.directionsUrl ? e.directionsUrl : `https://maps.google.com/?q=${query}`),
         mapsEmbedUrl: e.mapsEmbedUrl || `https://maps.google.com/maps?q=${query}&t=&z=14&ie=UTF8&iwloc=&output=embed`,
       };
     });

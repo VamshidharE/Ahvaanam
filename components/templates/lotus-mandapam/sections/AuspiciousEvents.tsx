@@ -288,46 +288,52 @@ export function AuspiciousEvents() {
                 </div>
 
                 {/* Venue Location Card with Map Preview & Get Directions */}
-                <div className="p-3 rounded-2xl bg-[#FFF6E9] border border-[#D6AD63]/40 space-y-2.5 my-2">
-                  <div className="flex items-start gap-2.5">
-                    <span className="text-base text-[#781D36]">📍</span>
-                    <div className="flex-1">
-                      <span className="font-cinzel text-[10px] uppercase tracking-wider text-[#7E5B58] block font-bold">
-                        Venue Location
-                      </span>
-                      <span className="font-serif text-sm sm:text-base font-bold text-[#542D2A] block leading-snug">
-                        {activeEvent.venue}
-                      </span>
-                      {activeEvent.address && (
-                        <span className="font-serif text-xs text-[#7E5B58] block mt-0.5">
-                          {activeEvent.address}
+                {(activeEvent.venue || activeEvent.address) && (
+                  <div className="p-3 rounded-2xl bg-[#FFF6E9] border border-[#D6AD63]/40 space-y-2.5 my-2">
+                    <div className="flex items-start gap-2.5">
+                      <span className="text-base text-[#781D36]">📍</span>
+                      <div className="flex-1">
+                        <span className="font-cinzel text-[10px] uppercase tracking-wider text-[#7E5B58] block font-bold">
+                          Venue Location
                         </span>
-                      )}
+                        <span className="font-serif text-sm sm:text-base font-bold text-[#542D2A] block leading-snug">
+                          {activeEvent.venue}
+                        </span>
+                        {activeEvent.address && (
+                          <span className="font-serif text-xs text-[#7E5B58] block mt-0.5">
+                            {activeEvent.address}
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Map Preview Below the Address */}
-                  <div className="relative w-full h-28 sm:h-32 rounded-xl overflow-hidden border border-[#D6AD63]/30 shadow-inner bg-[#F7E8D0]/50">
-                    <iframe
-                      title={`${activeEvent.venue} Map Preview`}
-                      src={`https://maps.google.com/maps?q=${mapsQuery}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
-                      className="w-full h-full border-0 pointer-events-none"
-                      loading="lazy"
-                    />
-                  </div>
+                    {/* Map Preview Below the Address */}
+                    {activeEvent.showMap !== false && (
+                      <div className="relative w-full h-28 sm:h-32 rounded-xl overflow-hidden border border-[#D6AD63]/30 shadow-inner bg-[#F7E8D0]/50">
+                        <iframe
+                          title={`${activeEvent.venue} Map Preview`}
+                          src={activeEvent.mapsEmbedUrl || `https://maps.google.com/maps?q=${mapsQuery}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
+                          className="w-full h-full border-0 pointer-events-none"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
 
-                  {/* Get Directions Button Below Map Preview */}
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="ep-btn-burgundy text-xs py-2 px-4 w-full flex items-center justify-center gap-1.5 text-center font-bold"
-                    aria-label="Get Directions on Google Maps"
-                  >
-                    <span>📍 Get Directions</span>
-                    <span>↗</span>
-                  </a>
-                </div>
+                    {/* Get Directions Button Below Map Preview */}
+                    {activeEvent.showDirections !== false && (
+                      <a
+                        href={activeEvent.mapsLink || `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ep-btn-burgundy text-xs py-2 px-4 w-full flex items-center justify-center gap-1.5 text-center font-bold"
+                        aria-label="Get Directions on Google Maps"
+                      >
+                        <span>📍 Get Directions</span>
+                        <span>↗</span>
+                      </a>
+                    )}
+                  </div>
+                )}
 
                 {/* Event Description */}
                 {activeEvent.description && (
