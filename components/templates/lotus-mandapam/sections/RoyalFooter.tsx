@@ -13,7 +13,11 @@ export function RoyalFooter() {
 
   const quoteText = data.footer?.quote || data.footer?.blessing || "";
   const brandName = data.footer?.designer || "Ahvaanam";
-  const serviceSubtitle = data.footer?.service || "Luxury Digital Wedding Suite";
+  const serviceSubtitle = data.footer?.service || "Digital Wedding Invitations";
+  const brandDisplay =
+    brandName && brandName.toLowerCase() !== "ahvaanam"
+      ? `${brandName} • ${serviceSubtitle}`
+      : serviceSubtitle;
 
   return (
     <footer
@@ -62,7 +66,7 @@ export function RoyalFooter() {
 
           {/* Dynamic Editable Designer & Service Credits */}
           <span className="font-cinzel text-[9px] uppercase tracking-[0.22em] text-[#DFB759]/90 font-semibold">
-            {brandName} • {serviceSubtitle}
+            {brandDisplay}
           </span>
 
           {/* Ahvaanam Website Link */}

@@ -39,7 +39,24 @@ export function registerTemplate(definition: TemplateDefinition): void {
  */
 export function getTemplate(id: string): TemplateDefinition | undefined {
   if (!id) return undefined;
-  return TEMPLATE_REGISTRY.get(id);
+  const normalizedId = id.trim().toLowerCase();
+  
+  if (TEMPLATE_REGISTRY.has(normalizedId)) {
+    return TEMPLATE_REGISTRY.get(normalizedId);
+  }
+
+  // Alias fallbacks for lotus-mandap variants
+  if (
+    normalizedId === "lotus-mandap" ||
+    normalizedId === "lotus_mandap" ||
+    normalizedId === "lotus-mandapam" ||
+    normalizedId === "sacred-courtyard" ||
+    normalizedId === "sacred_courtyard"
+  ) {
+    return TEMPLATE_REGISTRY.get("lotus-mandapam") || TEMPLATE_REGISTRY.get("lotus-mandap");
+  }
+
+  return undefined;
 }
 
 /**
@@ -62,5 +79,5 @@ export function getTemplatesByCategory(category: string): TemplateDefinition[] {
  */
 export function hasTemplate(id: string): boolean {
   if (!id) return false;
-  return TEMPLATE_REGISTRY.has(id);
+  return !!getTemplate(id);
 }

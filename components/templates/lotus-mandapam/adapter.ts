@@ -554,7 +554,7 @@ export function mapInvitationConfigToEmeraldPalace(rawConfig: any): EmeraldPalac
     quote: config.footer?.quote || config.footer?.salutation || config.footer?.blessing || "Two souls with but a single thought, two hearts that beat as one.",
     blessing: config.footer?.blessing || config.footer?.quote || config.footer?.salutation || "Looking forward to celebrating our sacred union with you.",
     designer: config.footer?.designer || config.footer?.title || "Ahvaanam",
-    service: config.footer?.creditText || config.footer?.service || "Luxury Digital Wedding Suite",
+    service: config.footer?.creditText || config.footer?.service || "Digital Wedding Invitations",
     location: config.footer?.location || "Hyderabad • India",
     contact: config.footer?.contact || "care@ahvaanam.com",
   };
