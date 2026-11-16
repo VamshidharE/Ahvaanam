@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
@@ -11,41 +11,47 @@ import {
 
 const WEDDING_DESIGNS = [
   {
-    id: "royal-temple",
-    title: "Royal Temple Layout",
-    desc: "Ornate golden pillars, sacred mandap arches, and traditional gold leaf detailing.",
-    image: "/images/themes/royal-temple.jpg"
-  },
-  {
-    id: "palace-luxury",
-    title: "Palace Luxury Layout",
-    desc: "Grand palace gates, royal red velvet overlays, and intricate golden borders.",
-    image: "/images/themes/palace-luxury.jpg"
-  },
-  {
-    id: "grand-mandap",
-    title: "Grand Mandap Layout",
-    desc: "Luxurious floral mandap stages with traditional hanging lanterns.",
-    image: "/images/themes/grand-mandap.jpg"
-  },
-  {
-    id: "azure-serenity",
-    title: "Azure Serenity Layout",
-    desc: "Cinematic watercolor mist, drifting petals, and royal floating typography.",
-    image: "/images/themes/azure-serenity.jpg"
-  },
-  {
     id: "rose-mandap",
-    title: "Rose Mandap Layout",
+    title: "Rose Mandap",
     desc: "Royal mandap architecture, hanging brass bells, couple artwork, and live procession animation.",
     image: "/images/themes/rose-mandap.jpg"
+  },
+  {
+    id: "pelli-pandiri",
+    title: "Pelli Pandiri",
+    desc: "A grand traditional Telugu wedding invitation with temple entrance arch, sunset sky, 3D butterfly companion, and toranam.",
+    image: "/images/themes/pelli-pandiri.jpg"
+  },
+  {
+    id: "gopuram",
+    title: "Gopuram",
+    desc: "A majestic Dravidian temple gopuram invitation featuring a towering gopuram entrance, rising couple reveal, and sunset skies.",
+    image: "/images/themes/gopuram.jpg"
+  },
+  {
+    id: "lotus-mandap",
+    title: "Lotus Mandap",
+    desc: "A cinematic South Indian wedding invitation inspired by traditional temple architecture, lotus ponds and golden sunset scenery.",
+    image: "/images/themes/lotus-mandap.jpg"
   }
 ];
 
 export default function WeddingShowcase() {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const shouldReduceMotion = useReducedMotion();
-  const currentDesign = WEDDING_DESIGNS[activeSlideIndex];
+  const currentDesign = WEDDING_DESIGNS[activeSlideIndex] || WEDDING_DESIGNS[0];
+
+  // Auto-switch to next theme template every 4 seconds
+  useEffect(() => {
+    if (shouldReduceMotion || isPaused) return;
+
+    const timer = setInterval(() => {
+      setActiveSlideIndex((prev) => (prev + 1) % WEDDING_DESIGNS.length);
+    }, 4000);
+
+    return () => clearInterval(timer);
+  }, [shouldReduceMotion, isPaused]);
 
   // Feature Icons list
   const features = [
@@ -191,6 +197,8 @@ export default function WeddingShowcase() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.35, ease: "easeOut" }}
               className="relative w-full max-w-md"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
             >
               {/* Floating Animation Loop */}
               <motion.div

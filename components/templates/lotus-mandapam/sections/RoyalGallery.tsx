@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { RoyalDivider, TraditionalJasmineCreeper, TraditionalBotanicalVine, TraditionalCornerKolam, TraditionalSikkuKolam } from "../assets/Ornaments";
 import { useEmeraldPalace } from "../context";
+import { emitAnalyticsInteraction } from "@/lib/analytics/useInvitationTracker";
 
 export function RoyalGallery() {
   const data = useEmeraldPalace();
@@ -193,7 +194,11 @@ export function RoyalGallery() {
           {/* Main Large Featured Photograph (7 cols) - Persistent Stacking to avoid blank frames */}
           <div
             className="col-span-7 relative group cursor-pointer overflow-hidden rounded-3xl shadow-2xl border-2 border-[#D6AD63]/50 bg-[#FFFDF9]"
-            onClick={() => setLightboxIndex(activeIndex)}
+            onClick={() => {
+              setLightboxIndex(activeIndex);
+              emitAnalyticsInteraction("gallery_open", "gallery");
+              emitAnalyticsInteraction("gallery_image_view", "gallery", { src: photos[activeIndex]?.src, index: activeIndex });
+            }}
           >
             <div className="aspect-[4/3] w-full h-full relative overflow-hidden bg-[#F7E8D0]/30">
               {photos.map((p, idx) => {
@@ -254,6 +259,7 @@ export function RoyalGallery() {
                 key={idx}
                 onClick={() => {
                   setActiveIndex(idx);
+                  emitAnalyticsInteraction("gallery_image_view", "gallery", { src: p.src, index: idx });
                 }}
                 className={`relative group cursor-pointer overflow-hidden rounded-2xl shadow-md border transition-all duration-300 aspect-[4/3] bg-[#FFFDF9] ${
                   activeIndex === idx
@@ -283,7 +289,11 @@ export function RoyalGallery() {
           {/* Featured Large Mobile Card with Persistent Cross-Fade Layers */}
           <div
             className="relative w-full max-w-sm aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-[#D6AD63]/60 cursor-pointer bg-[#FFFDF9]"
-            onClick={() => setLightboxIndex(activeIndex)}
+            onClick={() => {
+              setLightboxIndex(activeIndex);
+              emitAnalyticsInteraction("gallery_open", "gallery");
+              emitAnalyticsInteraction("gallery_image_view", "gallery", { src: photos[activeIndex]?.src, index: activeIndex });
+            }}
           >
             <div className="relative w-full h-full overflow-hidden bg-[#F7E8D0]/30">
               {photos.map((p, idx) => {

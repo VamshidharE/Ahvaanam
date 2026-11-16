@@ -45,7 +45,7 @@ export default function ClientDashboard() {
   const [rsvpError, setRsvpError] = useState<string | null>(null);
 
   // Share states
-  const [customDomain, setCustomDomain] = useState("");
+  const [whatsappCopied, setWhatsappCopied] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
   const [downloadingQR, setDownloadingQR] = useState(false);
   const [qrImageCopied, setQrImageCopied] = useState(false);
@@ -222,7 +222,7 @@ export default function ClientDashboard() {
   const handleNativeShare = async (profile: ClientProfile) => {
     const url = getShareUrl(profile.id);
     const title = `${profile.groom} & ${profile.bride}'s Wedding Invitation`;
-    const text = `You're warmly invited to our wedding ❤️`;
+    const text = getWhatsAppShareMessage(profile);
     
     if (navigator.share) {
       try {
@@ -321,10 +321,6 @@ export default function ClientDashboard() {
     });
 
     fetchProfiles();
-    
-    if (typeof window !== "undefined") {
-      setCustomDomain(window.location.origin);
-    }
   }, []);
 
   const fetchProfiles = async () => {
@@ -384,8 +380,47 @@ export default function ClientDashboard() {
   };
 
   const getShareUrl = (id: string) => {
-    const base = customDomain.replace(/\/$/, "");
-    return `${base}/invites/${id}`;
+    let origin = "https://www.ahvaanam.in";
+    if (typeof window !== "undefined" && window.location.origin) {
+      const host = window.location.hostname;
+      if (host && !host.includes("localhost") && !host.includes("127.0.0.1")) {
+        origin = window.location.origin;
+      }
+    }
+    return `${origin.replace(/\/$/, "")}/invites/${id}`;
+  };
+
+  const getWhatsAppShareMessage = (profile: ClientProfile) => {
+    const groom = (profile.groom || "").trim();
+    const bride = (profile.bride || "").trim();
+    const couple = groom && bride ? `${groom} & ${bride}` : (groom || bride || "Our Wedding");
+    const url = getShareUrl(profile.id);
+
+    return [
+      "🌸 *WEDDING INVITATION* 🌸",
+      "",
+      "With joyful hearts and the blessings of our elders, we warmly invite you to celebrate our wedding:",
+      "",
+      `💍 *${couple.toUpperCase()}* 💍`,
+      profile.date ? `🗓️ *Date:* ${profile.date}` : "",
+      "",
+      "We would be deeply honored by your gracious presence and blessings on our special day.",
+      "",
+      "✨ *View our Interactive Digital Invitation:*",
+      url,
+      "",
+      "_(Click the link above for ceremony timings, interactive venue maps & RSVP)_",
+      "",
+      "With warm regards & love,",
+      `*${couple}* & Families`
+    ].filter((line, i, arr) => line !== "" || (i > 0 && arr[i - 1] !== "")).join("\n");
+  };
+
+  const handleCopyWhatsAppText = (profile: ClientProfile) => {
+    const text = getWhatsAppShareMessage(profile);
+    navigator.clipboard.writeText(text);
+    setWhatsappCopied(true);
+    setTimeout(() => setWhatsappCopied(false), 2000);
   };
 
   const handleCopyLink = (id: string) => {
@@ -424,15 +459,15 @@ export default function ClientDashboard() {
     <div className="min-h-screen bg-[#FAF9F6] text-[#241E1C] flex flex-col font-sans relative overflow-hidden">
       
       {/* --- HEADER --- */}
-      <header className="bg-white border-b border-zinc-200/50 backdrop-blur-md sticky top-0 z-40 px-8 h-16 flex items-center justify-between shadow-sm">
-        <div className="flex items-center cursor-pointer select-none relative z-10" onClick={() => window.location.href = "/"}>
-          <img src="/images/logo.png" alt="Ahvaanam" className="h-8 md:h-9 w-auto object-contain translate-y-0 drop-shadow-sm" />
+      <header className="bg-white border-b border-zinc-200/50 backdrop-blur-md sticky top-0 z-40 px-4 sm:px-8 h-16 flex items-center justify-between shadow-sm">
+        <div className="flex items-center cursor-pointer select-none relative z-10 shrink-0" onClick={() => window.location.href = "/"}>
+          <img src="/images/logo.png" alt="Ahvaanam" className="h-7 sm:h-9 w-auto object-contain translate-y-0 drop-shadow-sm" />
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           <a
             href="/"
-            className="text-[10px] text-[#241E1C]/60 hover:text-[#241E1C] transition-colors uppercase tracking-[1.5px] font-bold mr-2"
+            className="text-[9px] sm:text-[10px] text-[#241E1C]/60 hover:text-[#241E1C] transition-colors uppercase tracking-[1px] sm:tracking-[1.5px] font-bold mr-1 sm:mr-2 shrink-0"
           >
             Public Site
           </a>
@@ -440,32 +475,38 @@ export default function ClientDashboard() {
           {isAdmin && (
             <a
               href="/create"
-              className="flex items-center gap-2 bg-[#C49B27] hover:bg-[#B0871B] text-white px-5 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-[1.5px] transition-all shadow-sm hover:scale-105 active:scale-95 text-center"
+              className="flex items-center gap-1.5 sm:gap-2 bg-[#C49B27] hover:bg-[#B0871B] text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl text-[9px] sm:text-[10px] font-bold uppercase tracking-[1px] sm:tracking-[1.5px] transition-all shadow-sm hover:scale-105 active:scale-95 text-center shrink-0"
             >
-              <Plus size={14} /> Create Wedding Invitation
+              <Plus size={13} /> <span className="hidden sm:inline">Create Wedding Invitation</span><span className="sm:hidden">Create Invite</span>
             </a>
           )}
           
           <button
             onClick={handleLogout}
-            className="flex items-center justify-center p-2.5 bg-white border border-zinc-200 hover:bg-red-500/5 hover:border-red-500/20 text-[#241E1C]/80 hover:text-red-600 rounded-xl transition-all"
+            className="flex items-center justify-center p-2 sm:p-2.5 bg-white border border-zinc-200 hover:bg-red-500/5 hover:border-red-500/20 text-[#241E1C]/80 hover:text-red-600 rounded-xl transition-all shrink-0"
             title="Log Out"
           >
-            <LogOut size={15} />
+            <LogOut size={14} />
           </button>
         </div>
       </header>
 
       {/* --- MAIN PAGE CONTENT --- */}
-      <main className="flex-1 p-8 max-w-7xl mx-auto w-full z-10 space-y-8">
+      <main className="flex-1 p-4 sm:p-8 max-w-7xl mx-auto w-full z-10 space-y-6 sm:space-y-8 min-w-0">
         
         {/* Welcome Section */}
-        <div className="bg-white border border-amber-500/10 rounded-3xl p-8 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <div>
-            <h2 className="text-xl font-bold tracking-[0.5px] mb-1.5 flex items-center gap-2 [font-family:var(--cinzel),serif] text-[#241E1C]">
-              Welcome back {userEmail ? `, ${userEmail}` : ""} <Sparkles className="text-[#C49B27] animate-pulse" size={18} />
+        <div className="bg-white border border-amber-500/10 rounded-3xl p-5 sm:p-8 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4 w-full min-w-0 overflow-hidden">
+          <div className="w-full min-w-0">
+            <h2 className="text-base sm:text-xl font-bold tracking-[0.5px] mb-1.5 flex flex-wrap items-center gap-2 [font-family:var(--cinzel),serif] text-[#241E1C] break-words">
+              <span>Welcome back{userEmail ? "," : ""}</span>
+              {userEmail && (
+                <span className="text-[#C49B27] font-sans font-semibold text-xs sm:text-base break-all lowercase">
+                  {userEmail}
+                </span>
+              )}
+              <Sparkles className="text-[#C49B27] animate-pulse shrink-0" size={16} />
             </h2>
-            <p className="text-xs text-[#241E1C]/60 leading-relaxed max-w-xl">
+            <p className="text-xs text-[#241E1C]/60 leading-relaxed max-w-xl break-words">
               {isAdmin 
                 ? "Design, customize, and publish client wedding invitations. Complete drafts, manage RSVP data, and configure live portals."
                 : "Manage and monitor your digital wedding invitation, view live guest RSVPs, track page views, and download your QR share materials."}
@@ -698,144 +739,154 @@ export default function ClientDashboard() {
       {/* --- SHARE & QR MODAL --- */}
       {shareProfile && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white border border-zinc-200 w-full max-w-2xl rounded-3xl overflow-hidden shadow-xl relative text-left flex flex-col max-h-[90vh]">
-            <div className="p-6 border-b border-zinc-100 flex items-center justify-between shrink-0">
-              <div>
+          <div className="bg-white border border-zinc-200 w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl relative text-left flex flex-col max-h-[92vh]">
+            {/* Modal Header */}
+            <div className="px-6 py-5 border-b border-zinc-100 flex items-center justify-between shrink-0 bg-[#FAF9F6]/60">
+              <div className="min-w-0 pr-4">
                 <h3 className="text-sm font-bold flex items-center gap-2 text-[#241E1C] uppercase tracking-[0.5px]">
                   <Share2 className="text-[#C49B27]" size={16} /> Sharing Center
                 </h3>
-                <p className="text-[9px] text-[#241E1C]/45 uppercase tracking-[1.5px] font-bold mt-1 font-mono">
+                <p className="text-[10px] text-[#241E1C]/50 uppercase tracking-[1.5px] font-bold mt-0.5 font-mono truncate">
                   Export tools for /{shareProfile.id}
                 </p>
               </div>
               <button
                 onClick={() => setShareProfile(null)}
-                className="text-[#241E1C]/40 hover:text-[#241E1C] text-sm cursor-pointer p-1 font-bold"
+                className="w-8 h-8 rounded-full bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center text-[#241E1C]/60 hover:text-[#241E1C] text-sm cursor-pointer transition-colors"
+                title="Close"
               >
                 ✕
               </button>
             </div>
 
-            <div className="p-6 overflow-y-auto flex-1 grid md:grid-cols-2 gap-8">
+            <div className="p-6 overflow-y-auto flex-1 grid md:grid-cols-2 gap-6 items-start">
               {/* Left Column: QR Code & Actions */}
-              <div className="flex flex-col items-center justify-center space-y-4">
-                <div className="bg-[#FAF9F6] border border-zinc-200/80 p-6 rounded-3xl flex flex-col items-center gap-2 shadow-sm">
-                  <div className="bg-white p-3 rounded-2xl border border-zinc-100 shadow-inner">
-                    <img
-                      src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(getShareUrl(shareProfile.id))}`}
-                      alt="Wedding QR Code"
-                      className="w-48 h-48"
-                    />
-                  </div>
-                  <span className="text-[9px] text-[#C49B27] font-bold uppercase tracking-[1.5px] mt-1">
+              <div className="flex flex-col items-center justify-center space-y-3.5 bg-[#FAF9F6] border border-zinc-200/80 p-5 rounded-3xl">
+                <div className="bg-white p-3 rounded-2xl border border-zinc-200/80 shadow-sm">
+                  <img
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(getShareUrl(shareProfile.id))}`}
+                    alt="Wedding QR Code"
+                    className="w-44 h-44 object-contain"
+                  />
+                </div>
+                <div className="text-center">
+                  <span className="text-[9px] text-[#C49B27] font-bold uppercase tracking-[1.5px] block">
                     Scan to Open Invitation
                   </span>
+                  <span className="text-[8px] text-zinc-400 font-medium">High-resolution scannable code</span>
                 </div>
 
                 {/* QR Code Action Grid */}
-                <div className="w-full grid grid-cols-3 gap-2">
+                <div className="w-full grid grid-cols-3 gap-2 pt-1">
                   <button
                     onClick={() => handleDownloadQR(shareProfile.id)}
                     disabled={downloadingQR}
-                    className="flex flex-col items-center justify-center gap-1.5 p-2 bg-[#FAF9F6] hover:bg-zinc-150 border border-zinc-200 rounded-xl text-[8px] font-bold uppercase tracking-[0.5px] transition-all cursor-pointer disabled:opacity-50"
+                    className="flex flex-col items-center justify-center gap-1 py-2 px-1 bg-white hover:bg-zinc-50 border border-zinc-200 rounded-xl text-[8.5px] font-bold uppercase tracking-[0.5px] transition-all cursor-pointer shadow-xs disabled:opacity-50"
                   >
-                    <Download size={14} className="text-[#C49B27]" />
+                    <Download size={13} className="text-[#C49B27]" />
                     {downloadingQR ? "PNG..." : "PNG QR"}
                   </button>
                   <button
                     onClick={() => handleDownloadSVG(`https://api.qrserver.com/v1/create-qr-code/?size=500x500&format=svg&data=${encodeURIComponent(getShareUrl(shareProfile.id))}`, shareProfile.id)}
                     disabled={downloadingSVG}
-                    className="flex flex-col items-center justify-center gap-1.5 p-2 bg-[#FAF9F6] hover:bg-zinc-150 border border-zinc-200 rounded-xl text-[8px] font-bold uppercase tracking-[0.5px] transition-all cursor-pointer disabled:opacity-50"
+                    className="flex flex-col items-center justify-center gap-1 py-2 px-1 bg-white hover:bg-zinc-50 border border-zinc-200 rounded-xl text-[8.5px] font-bold uppercase tracking-[0.5px] transition-all cursor-pointer shadow-xs disabled:opacity-50"
                   >
-                    <Download size={14} className="text-sky-600" />
+                    <Download size={13} className="text-sky-600" />
                     {downloadingSVG ? "SVG..." : "SVG QR"}
                   </button>
                   <button
                     onClick={() => handleCopyQRImage(`https://api.qrserver.com/v1/create-qr-code/?size=500x500&format=png&data=${encodeURIComponent(getShareUrl(shareProfile.id))}`)}
-                    className={`flex flex-col items-center justify-center gap-1.5 p-2 border rounded-xl text-[8px] font-bold uppercase tracking-[0.5px] transition-all cursor-pointer ${
+                    className={`flex flex-col items-center justify-center gap-1 py-2 px-1 border rounded-xl text-[8.5px] font-bold uppercase tracking-[0.5px] transition-all cursor-pointer shadow-xs ${
                       qrImageCopied 
                         ? "bg-green-600 border-green-600 text-white" 
-                        : "bg-[#FAF9F6] border-zinc-200 text-zinc-650 hover:bg-zinc-150"
+                        : "bg-white border-zinc-200 text-[#241E1C] hover:bg-zinc-50"
                     }`}
                   >
-                    <Copy size={14} />
+                    <Copy size={13} />
                     {qrImageCopied ? "Copied!" : "Copy QR"}
                   </button>
                 </div>
               </div>
 
-              {/* Right Column: Sharing Links */}
-              <div className="flex flex-col justify-between space-y-6">
+              {/* Right Column: Sharing Links & Actions */}
+              <div className="flex flex-col space-y-4">
                 
-                {/* Domain & URL preview */}
-                <div className="space-y-4">
-                  <div className="w-full flex flex-col gap-1.5">
-                    <label className="text-[9px] uppercase font-bold text-[#241E1C]/50 tracking-[1.5px]">Production Domain Prefix</label>
-                    <input
-                      type="text"
-                      value={customDomain}
-                      onChange={(e) => setCustomDomain(e.target.value)}
-                      placeholder="e.g. https://myweddinginvite.com"
-                      className="bg-[#FAF9F6] border border-zinc-200 focus:border-[#C49B27] outline-none rounded-xl px-4 py-2.5 text-xs text-[#241E1C]"
-                    />
-                  </div>
-
-                  <div className="w-full bg-[#FAF9F6] border border-zinc-200 p-3 rounded-2xl font-mono text-[9px] text-[#241E1C]/60 truncate flex items-center justify-between">
-                    <span className="truncate mr-2">{getShareUrl(shareProfile.id)}</span>
-                    <a 
-                      href={getShareUrl(shareProfile.id)} 
-                      target="_blank" 
-                      className="text-[#C49B27] hover:underline flex items-center gap-0.5 shrink-0 font-bold uppercase"
-                    >
-                      Open <ExternalLink size={9} />
-                    </a>
+                {/* Clean Invitation Link Box */}
+                <div className="space-y-1.5">
+                  <label className="text-[9px] uppercase font-bold text-[#241E1C]/60 tracking-[1.5px] flex items-center justify-between">
+                    <span>Public Invitation Link</span>
+                    <span className="text-[8px] text-emerald-600 font-semibold lowercase">https ready</span>
+                  </label>
+                  <div className="w-full bg-[#FAF9F6] border border-zinc-200 p-2.5 rounded-2xl flex items-center justify-between gap-2 shadow-xs">
+                    <span className="font-mono text-[10px] text-[#241E1C]/80 truncate select-all">
+                      {getShareUrl(shareProfile.id)}
+                    </span>
+                    <div className="flex items-center gap-1 shrink-0">
+                      <button
+                        onClick={() => handleCopyLink(shareProfile.id)}
+                        className="p-1.5 text-zinc-500 hover:text-[#C49B27] transition-colors rounded-lg hover:bg-white cursor-pointer"
+                        title="Copy Link"
+                      >
+                        <Copy size={12} />
+                      </button>
+                      <a 
+                        href={getShareUrl(shareProfile.id)} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-[#C49B27] hover:underline flex items-center gap-0.5 font-bold uppercase text-[9px] px-2 py-1 rounded-lg hover:bg-white transition-colors"
+                      >
+                        Open <ExternalLink size={9} />
+                      </a>
+                    </div>
                   </div>
                 </div>
 
-                {/* Core Link Sharing Actions */}
-                <div className="space-y-3">
-                  {/* WhatsApp Share Button */}
+                {/* Primary WhatsApp Share */}
+                <div className="space-y-2 pt-1">
                   <a
-                    href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
-                      `You're warmly invited to our wedding ❤️\n\nView our invitation here:\n${getShareUrl(shareProfile.id)}\n\nWith love,\n${shareProfile.groom} & ${shareProfile.bride}`
-                    )}`}
+                    href={`https://api.whatsapp.com/send?text=${encodeURIComponent(getWhatsAppShareMessage(shareProfile))}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-3 bg-[#25D366] hover:bg-[#20ba59] text-white font-bold rounded-xl text-[10px] uppercase tracking-[1.5px] transition-all flex items-center justify-center gap-2 shadow-sm"
+                    className="w-full py-3 px-4 bg-[#25D366] hover:bg-[#20ba59] active:scale-[0.99] text-white font-bold rounded-2xl text-[10.5px] uppercase tracking-[1.5px] transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer"
                   >
-                    <MessageCircle size={15} /> Share on WhatsApp
+                    <MessageCircle size={16} /> Share on WhatsApp
                   </a>
 
-                  {/* Copy Link Button */}
+                  {/* Copy WhatsApp Message Text Button */}
                   <button
-                    onClick={() => handleCopyLink(shareProfile.id)}
-                    className={`w-full py-3 font-bold rounded-xl text-[10px] uppercase tracking-[1.5px] transition-all border flex items-center justify-center gap-2 shadow-sm cursor-pointer ${
-                      linkCopied 
-                        ? "bg-green-600 border-green-600 text-white" 
-                        : "bg-white border-zinc-200 text-[#241E1C] hover:bg-zinc-50"
-                    }`}
+                    onClick={() => handleCopyWhatsAppText(shareProfile)}
+                    className="w-full py-2.5 px-4 bg-[#FAF9F6] hover:bg-zinc-150 border border-zinc-200 text-[#241E1C]/80 hover:text-[#241E1C] font-bold rounded-2xl text-[9px] uppercase tracking-[1px] transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
-                    <Copy size={14} /> {linkCopied ? "Link Copied!" : "Copy Invitation Link"}
+                    <Copy size={12} /> {whatsappCopied ? "WhatsApp Text Copied!" : "Copy WhatsApp Message Text"}
+                  </button>
+                </div>
+
+                {/* Secondary Action Row: Copy Link, Save Card, Native Share */}
+                <div className="grid grid-cols-2 gap-2.5 pt-1">
+                  {/* Save Card button */}
+                  <button
+                    onClick={() => handleDownloadCard(shareProfile)}
+                    disabled={generatingCard}
+                    className="py-2.5 px-3 font-bold bg-[#C49B27] hover:bg-[#B0871B] active:scale-[0.99] text-white rounded-2xl text-[9.5px] uppercase tracking-[1px] transition-all flex items-center justify-center gap-1.5 shadow-sm cursor-pointer disabled:opacity-50"
+                  >
+                    <ImageIcon size={13} /> {generatingCard ? "Creating..." : "Save Card"}
                   </button>
 
-                  <div className="grid grid-cols-2 gap-3">
-                    {/* Native Share button */}
-                    <button
-                      onClick={() => handleNativeShare(shareProfile)}
-                      className="py-3 font-bold bg-[#FAF9F6] border border-zinc-200 hover:bg-zinc-150 text-[#241E1C] rounded-xl text-[10px] uppercase tracking-[1px] transition-all flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
-                    >
-                      <Share2 size={13} className="text-[#C49B27]" /> Native Share
-                    </button>
+                  {/* Native Share button */}
+                  <button
+                    onClick={() => handleNativeShare(shareProfile)}
+                    className="py-2.5 px-3 font-bold bg-white border border-zinc-200 hover:border-[#C49B27]/40 text-[#241E1C] rounded-2xl text-[9.5px] uppercase tracking-[1px] transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer"
+                  >
+                    <Share2 size={13} className="text-[#C49B27]" /> Native Share
+                  </button>
+                </div>
 
-                    {/* Download Card button */}
-                    <button
-                      onClick={() => handleDownloadCard(shareProfile)}
-                      disabled={generatingCard}
-                      className="py-3 font-bold bg-[#C49B27] hover:bg-[#B0871B] text-white rounded-xl text-[10px] uppercase tracking-[1px] transition-all flex items-center justify-center gap-1.5 shadow-sm cursor-pointer disabled:opacity-50"
-                    >
-                      <ImageIcon size={13} /> {generatingCard ? "Creating..." : "Save Card"}
-                    </button>
-                  </div>
+                {/* Visual Note on OpenGraph link preview */}
+                <div className="p-2.5 rounded-xl bg-amber-500/5 border border-amber-500/15 text-[8.5px] text-[#241E1C]/65 leading-relaxed flex items-start gap-1.5">
+                  <Sparkles size={12} className="text-[#C49B27] shrink-0 mt-0.5" />
+                  <span>
+                    When sharing on WhatsApp, recipients see your wedding cover image, couple names, and ceremony details automatically.
+                  </span>
                 </div>
 
               </div>

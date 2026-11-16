@@ -36,11 +36,16 @@ function getOrCreateSessionId(clientId: string): string {
 
 function resolveSectionId(target: HTMLElement): string | null {
   const explicit = target.getAttribute("data-section-id");
-  if (explicit) return explicit.toLowerCase();
+  if (explicit) {
+    const k = explicit.toLowerCase().trim();
+    if (k === "families") return "family";
+    return k;
+  }
 
   const id = (target.id || "").toLowerCase();
   if (id && id !== "root" && id !== "app") {
     if (id === "home") return "hero";
+    if (id === "families") return "family";
     return id;
   }
 
@@ -213,6 +218,12 @@ export function useInvitationTracker(clientId: string) {
 
     // 4. Section IntersectionObserver for section reach
     let observer: IntersectionObserver | null = null;
+    let domMutationObserver: MutationObserver | null = null;
+    let scan1: NodeJS.Timeout | null = null;
+    let scan2: NodeJS.Timeout | null = null;
+    let scan3: NodeJS.Timeout | null = null;
+    let scanRaf: number | null = null;
+
     try {
       if ("IntersectionObserver" in window) {
         observer = new IntersectionObserver(
@@ -242,23 +253,28 @@ export function useInvitationTracker(clientId: string) {
 
         // Find and observe all section elements
         const observeSections = () => {
-          const sectionEls = document.querySelectorAll(
-            "section, [data-section-id], .invitation-section, .venue-panel, .rsvp-section, footer, .wedding-hero"
-          );
-          sectionEls.forEach((el) => observer?.observe(el));
+          if (scanRaf) cancelAnimationFrame(scanRaf);
+          scanRaf = requestAnimationFrame(() => {
+            const sectionEls = document.querySelectorAll(
+              "section, [data-section-id], .invitation-section, .venue-panel, .rsvp-section, footer, .wedding-hero"
+            );
+            sectionEls.forEach((el) => observer?.observe(el));
+          });
         };
 
         observeSections();
-        // Periodic scan to catch late-rendered template sections
-        const scan1 = setTimeout(observeSections, 500);
-        const scan2 = setTimeout(observeSections, 1500);
-        const scan3 = setTimeout(observeSections, 3000);
+        // Periodic scans to catch late-rendered template sections
+        scan1 = setTimeout(observeSections, 400);
+        scan2 = setTimeout(observeSections, 1200);
+        scan3 = setTimeout(observeSections, 2500);
 
-        () => {
-          clearTimeout(scan1);
-          clearTimeout(scan2);
-          clearTimeout(scan3);
-        };
+        // Dynamic mutation observer so newly mounted template elements are discovered immediately
+        if (typeof MutationObserver !== "undefined") {
+          domMutationObserver = new MutationObserver(() => {
+            observeSections();
+          });
+          domMutationObserver.observe(document.body, { childList: true, subtree: true });
+        }
       }
     } catch {
       // IntersectionObserver fallback
@@ -301,12 +317,17 @@ export function useInvitationTracker(clientId: string) {
     return () => {
       clearInterval(heartbeatInterval);
       if (scrollTimeout) clearTimeout(scrollTimeout);
+      if (scan1) clearTimeout(scan1);
+      if (scan2) clearTimeout(scan2);
+      if (scan3) clearTimeout(scan3);
+      if (scanRaf) cancelAnimationFrame(scanRaf);
       activityEvents.forEach((evt) => window.removeEventListener(evt, handleUserActivity));
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("pagehide", handlePageExit);
       window.removeEventListener("beforeunload", handlePageExit);
       window.removeEventListener("ahvaanam_track_event", handleCustomTrackEvent);
       if (observer) observer.disconnect();
+      if (domMutationObserver) domMutationObserver.disconnect();
     };
   }, [clientId, sendPayload, trackInteraction]);
 

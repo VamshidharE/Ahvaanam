@@ -101,31 +101,37 @@ export const AmbientAudio: React.FC = () => {
         setIsPlaying(false);
       });
 
-      const handleFirstInteraction = () => {
-        if (audioRef.current && isEnabled) {
-          audioRef.current.currentTime = 0;
-          audioRef.current.play().then(() => {
-            setIsPlaying(true);
-          }).catch(() => {});
-        }
+      const cleanup = () => {
         window.removeEventListener("click", handleFirstInteraction);
         window.removeEventListener("scroll", handleFirstInteraction);
         window.removeEventListener("touchstart", handleFirstInteraction);
+        window.removeEventListener("touchend", handleFirstInteraction);
+        window.removeEventListener("touchmove", handleFirstInteraction);
+        window.removeEventListener("pointerup", handleFirstInteraction);
         window.removeEventListener("keydown", handleFirstInteraction);
+      };
+
+      const handleFirstInteraction = () => {
+        if (audioRef.current && isEnabled) {
+          audioRef.current.play().then(() => {
+            setIsPlaying(true);
+            cleanup();
+          }).catch(() => {});
+        }
       };
 
       window.addEventListener("click", handleFirstInteraction, { passive: true });
       window.addEventListener("scroll", handleFirstInteraction, { passive: true });
       window.addEventListener("touchstart", handleFirstInteraction, { passive: true });
+      window.addEventListener("touchend", handleFirstInteraction, { passive: true });
+      window.addEventListener("touchmove", handleFirstInteraction, { passive: true });
+      window.addEventListener("pointerup", handleFirstInteraction, { passive: true });
       window.addEventListener("keydown", handleFirstInteraction, { passive: true });
 
       return () => {
         audio.pause();
         audioRef.current = null;
-        window.removeEventListener("click", handleFirstInteraction);
-        window.removeEventListener("scroll", handleFirstInteraction);
-        window.removeEventListener("touchstart", handleFirstInteraction);
-        window.removeEventListener("keydown", handleFirstInteraction);
+        cleanup();
       };
     } else {
       // Default ambient tanpura drone on user gesture

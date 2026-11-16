@@ -139,8 +139,12 @@ export function getOnboardingEmailHtml(data: OnboardingEmailData): string {
                       border="0" 
                       style="display: block; margin: 0 auto; width: 186px; max-width: 100%; height: auto; border: 0;"
                     />
+                    <!-- Brand Tagline -->
+                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: 2.5px; color: #8F7238; text-transform: uppercase; margin-top: 10px;">
+                      Bespoke Digital Invitations
+                    </div>
                     <!-- Delicate Gold Foil Accent Flourish -->
-                    <div style="margin: 16px auto 0 auto; width: 90px; height: 1px; background: linear-gradient(90deg, transparent, #C5A059, transparent);"></div>
+                    <div style="margin: 12px auto 0 auto; width: 90px; height: 1px; background: linear-gradient(90deg, transparent, #C5A059, transparent);"></div>
                   </td>
                 </tr>
               </table>
@@ -240,7 +244,7 @@ export function getOnboardingEmailHtml(data: OnboardingEmailData): string {
                             RSVP &amp; Guest Responses
                           </div>
                           <div style="font-size: 12px; line-height: 1.45; color: #695D52;">
-                            Keep track of confirmations, headcounts, and guest attendance.
+                            Keep track of confirmations and guest attendance.
                           </div>
                         </td>
                       </tr>
@@ -355,7 +359,7 @@ export function getOnboardingEmailText(data: OnboardingEmailData): string {
   const productionInviteUrl = normalizeProductionInvitationUrl(data.invitationUrl);
 
   return `AHVAANAM
-INVITE BEAUTIFULLY
+BESPOKE DIGITAL INVITATIONS
 
 YOUR CELEBRATION IS READY TO BE SHARED.
 
@@ -373,7 +377,7 @@ YOUR CELEBRATION, AT YOUR FINGERTIPS:
 We've prepared a personal space for you to follow your invitation and stay connected with your guests.
 
 - Invitation Insights: Discover visitor activity and guest engagement in real time.
-- RSVP & Guest Responses: Keep track of confirmations, headcounts, and guest attendance.
+- RSVP & Guest Responses: Keep track of confirmations and guest attendance.
 - Blessings & Memories: Explore the heartfelt wishes and messages shared by loved ones.
 - Sharing & QR Tools: Access available sharing materials, download cards, and QR codes.
 

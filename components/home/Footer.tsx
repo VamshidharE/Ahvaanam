@@ -34,13 +34,13 @@ export default function Footer() {
                     {/* Right: Contact Info */}
                     <div className="order-3 flex flex-col sm:flex-row items-center justify-center md:justify-end gap-4 sm:gap-6 text-xs md:text-sm text-slate-600">
                         <a
-                            href="mailto:topmtpl@gmail.com"
+                            href="mailto:ahvaanam.studio@gmail.com"
                             className="flex items-center gap-2 hover:text-[#C49B27] transition-colors"
                         >
                             <span className="w-7 h-7 rounded-full bg-amber-500/10 flex items-center justify-center text-[#C49B27] shrink-0">
                                 <Mail size={14} />
                             </span>
-                            <span>topmtpl@gmail.com</span>
+                            <span>ahvaanam.studio@gmail.com</span>
                         </a>
 
                         <a

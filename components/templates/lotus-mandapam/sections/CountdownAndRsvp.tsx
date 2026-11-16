@@ -294,6 +294,7 @@ export function CountdownAndRsvp({ clientId }: { clientId?: string }) {
                           href={`https://wa.me/${cleanPhone}`}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={() => emitAnalyticsInteraction("whatsapp_click", "rsvp")}
                           className="w-12 h-12 rounded-full bg-[#25D366] hover:bg-[#20BD5A] text-white flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 flex-shrink-0 border-2 border-white/80 group"
                           aria-label="Contact via WhatsApp"
                           title="Contact via WhatsApp"

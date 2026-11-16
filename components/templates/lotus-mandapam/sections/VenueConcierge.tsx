@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { TraditionalAuspiciousMotif, TraditionalCornerKolam } from "../assets/Ornaments";
 import { useEmeraldPalace } from "../context";
+import { emitAnalyticsInteraction } from "@/lib/analytics/useInvitationTracker";
 
 export function VenueConcierge() {
   const data = useEmeraldPalace();
@@ -95,6 +96,7 @@ export function VenueConcierge() {
               href={data.wedding.mapsLink}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => emitAnalyticsInteraction("map_click", "venue", { url: data.wedding.mapsLink })}
               className="ep-btn-burgundy text-xs py-2.5 px-6"
               aria-label="View Venue on Google Maps"
             >

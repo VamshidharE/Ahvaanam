@@ -41,7 +41,7 @@ export default function PrivacyPolicyPage() {
 
           <h3 className="text-lg font-bold font-cinzel text-slate-800">Contact Us</h3>
           <p>
-            If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <a href="mailto:topmtpl@gmail.com" className="text-amber-600 hover:underline">topmtpl@gmail.com</a>.
+            If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <a href="mailto:ahvaanam.studio@gmail.com" className="text-amber-600 hover:underline">ahvaanam.studio@gmail.com</a>.
           </p>
         </div>
       </main>

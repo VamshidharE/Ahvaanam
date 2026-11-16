@@ -44,7 +44,7 @@ async function verifyRedesignedEmail() {
     "Invitation Insights",
     "RSVP &amp; Guest Responses",
     "Blessings &amp; Memories",
-    "Sharing &amp; Invitation Tools",
+    "Sharing &amp; QR Tools",
   ];
   for (const feature of expectedFeatures) {
     if (!html.includes(feature)) {

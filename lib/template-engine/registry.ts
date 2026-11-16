@@ -56,6 +56,16 @@ export function getTemplate(id: string): TemplateDefinition | undefined {
     return TEMPLATE_REGISTRY.get("lotus-mandapam") || TEMPLATE_REGISTRY.get("lotus-mandap");
   }
 
+  // Graceful fallback for any previously published invitations using older legacy themes
+  const legacyThemes = [
+    "floral-garden", "south-indian", "palace-luxury", "lotus-serenity", 
+    "marigold", "peacock", "heritage", "moonlight", "grand-mandap", 
+    "wedding-premium", "azure-serenity"
+  ];
+  if (legacyThemes.includes(normalizedId)) {
+    return TEMPLATE_REGISTRY.get("royal-temple");
+  }
+
   return undefined;
 }
 

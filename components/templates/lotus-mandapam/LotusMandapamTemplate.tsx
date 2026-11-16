@@ -110,7 +110,7 @@ export default function LotusMandapamTemplate({
     }
   };
 
-  // Audio Playback
+  // Audio Playback & Auto-start on Mobile
   useEffect(() => {
     if (isEmbedded || !musicEnabled) return;
 
@@ -118,29 +118,50 @@ export default function LotusMandapamTemplate({
     if (!audio) return;
     audio.volume = 0.5;
 
+    let isPlayingSuccessfully = false;
+
     const attemptPlay = () => {
       // Do not auto-play if page/tab is currently minimized or hidden
       if (typeof document !== "undefined" && document.hidden) return;
-      if (audio && musicEnabled && audio.paused) {
-        audio
-          .play()
-          .then(() => setIsMusicPlaying(true))
-          .catch(() => {});
-      }
+      if (!audio || !musicEnabled || !audio.paused || isPlayingSuccessfully) return;
+
+      audio
+        .play()
+        .then(() => {
+          isPlayingSuccessfully = true;
+          setIsMusicPlaying(true);
+          emitAnalyticsInteraction("music_play", "music");
+          cleanup();
+        })
+        .catch(() => {
+          // Keep gesture listeners active until unlocked by user touch
+        });
     };
 
+    // 1. Immediate attempt to play on start
+    attemptPlay();
+
+    // 2. Attempt again when envelope is opened
     if (isOpen) {
       attemptPlay();
     }
 
     const handleGesture = () => attemptPlay();
-    const events = ["click", "touchstart", "touchend", "pointerdown", "scroll", "keydown"];
+    const events = ["click", "touchstart", "touchend", "pointerup", "keydown"];
     events.forEach((evt) => window.addEventListener(evt, handleGesture, { passive: true }));
     document.addEventListener("click", handleGesture, { passive: true });
+    window.addEventListener("touchmove", handleGesture, { passive: true });
+    window.addEventListener("scroll", handleGesture, { passive: true });
 
-    return () => {
+    const cleanup = () => {
       events.forEach((evt) => window.removeEventListener(evt, handleGesture));
       document.removeEventListener("click", handleGesture);
+      window.removeEventListener("touchmove", handleGesture);
+      window.removeEventListener("scroll", handleGesture);
+    };
+
+    return () => {
+      cleanup();
     };
   }, [musicEnabled, isEmbedded, isOpen]);
 
@@ -304,7 +325,10 @@ export default function LotusMandapamTemplate({
                   audio.volume = 0.5;
                   audio
                     .play()
-                    .then(() => setIsMusicPlaying(true))
+                    .then(() => {
+                      setIsMusicPlaying(true);
+                      emitAnalyticsInteraction("music_play", "music");
+                    })
                     .catch(() => {});
                 }
               }}
@@ -359,6 +383,7 @@ export default function LotusMandapamTemplate({
           src={data.music.themeMusic || "/wedding/rose-mandap/theme-music.MP3"}
           loop
           preload="auto"
+          playsInline
         />
 
         {/* Floating Quick RSVP Button */}

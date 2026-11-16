@@ -178,21 +178,49 @@ export async function GET(
       }
     }
 
-    // Filter enabled sections
+    // Canonical section key normalizer for bulletproof matching across plural/singular & template aliases
+    const normalizeSectionKey = (key: string): string => {
+      const k = key.toLowerCase().replace(/[^a-z0-9]/g, "");
+      if (k === "family" || k === "families") return "family";
+      if (k === "film" || k === "story" || k === "video") return "film";
+      if (k === "countdown" || k === "rsvp") return "rsvp";
+      if (k === "venue" || k === "venues") return "venue";
+      if (k === "event" || k === "events") return "events";
+      return k;
+    };
+
+    // Filter enabled & supported sections dynamically
     const enabledSections = sectionKeys.filter((sId) => {
-      if (sId === "hero") return innerConfig.hero?.enabled ?? true;
-      if (sId === "couple" || sId === "groom" || sId === "bride" || sId === "celebrant" || sId === "hosts") return true;
-      if (sId === "events") return innerConfig.events?.enabled ?? true;
-      if (sId === "gallery") return innerConfig.gallery?.enabled ?? (innerConfig.gallery?.images?.length > 0);
-      if (sId === "venue") return innerConfig.venue?.enabled ?? true;
-      if (sId === "rsvp") return innerConfig.rsvp?.enabled ?? true;
-      if (sId === "footer") return innerConfig.footer?.enabled ?? true;
-      if (sId === "story") return innerConfig.story?.enabled ?? true;
-      if (sId === "countdown") return innerConfig.countdown?.enabled ?? true;
-      if (sId === "families" || sId === "family") return innerConfig.families?.enabled ?? innerConfig.family?.enabled ?? true;
-      if (sId === "announcement") return true;
-      if (sId === "procession") return true;
-      return true;
+      const k = normalizeSectionKey(sId);
+      if (k === "hero") return innerConfig.hero?.enabled !== false && innerConfig.sections?.showHero !== false;
+      if (k === "couple" || k === "groom" || k === "bride" || k === "celebrant" || k === "hosts") {
+        return innerConfig.sections?.showCouple !== false;
+      }
+      if (k === "events") return innerConfig.events?.enabled !== false && innerConfig.sections?.showEvents !== false;
+      if (k === "gallery") {
+        return innerConfig.gallery?.enabled !== false && innerConfig.sections?.showGallery !== false;
+      }
+      if (k === "venue") return innerConfig.venue?.enabled !== false && innerConfig.sections?.showVenue !== false;
+      if (k === "rsvp") return innerConfig.rsvp?.enabled !== false && innerConfig.sections?.showRSVP !== false;
+      if (k === "footer") return innerConfig.footer?.enabled !== false && innerConfig.sections?.showFooter !== false;
+      if (k === "film") {
+        return (
+          innerConfig.video?.enabled !== false &&
+          innerConfig.story?.enabled !== false &&
+          innerConfig.sections?.showStory !== false &&
+          innerConfig.sections?.showVideo !== false
+        );
+      }
+      if (k === "family") {
+        return (
+          innerConfig.families?.enabled !== false &&
+          innerConfig.family?.enabled !== false &&
+          innerConfig.sections?.showFamily !== false &&
+          innerConfig.sections?.showFamilies !== false
+        );
+      }
+      if (k === "announcement" || k === "procession") return true;
+      return false;
     });
 
     const sectionLabelMap: Record<string, string> = {
@@ -205,6 +233,7 @@ export async function GET(
       company: "Company Information",
       announcement: "Wedding Announcement",
       story: "Love Story",
+      film: "Wedding Film",
       events: "Ceremony Events",
       procession: "Baraat Procession",
       family: "Family & Loved Ones",
@@ -216,7 +245,7 @@ export async function GET(
       footer: "Footer & Signature",
     };
 
-    // Calculate view count per section from real events
+    // Calculate view count per section from real recorded events
     const sectionSessionsMap: Record<string, Set<string>> = {};
     enabledSections.forEach((sId) => {
       sectionSessionsMap[sId] = new Set<string>();
@@ -224,10 +253,9 @@ export async function GET(
 
     events.forEach((e) => {
       if (e.event_type === "section_view" && e.section_id) {
-        const normalized = e.section_id.toLowerCase().replace(/[^a-z0-9]/g, "");
+        const norm = normalizeSectionKey(e.section_id);
         for (const sId of enabledSections) {
-          const targetKey = sId.toLowerCase().replace(/[^a-z0-9]/g, "");
-          if (targetKey === normalized || normalized.includes(targetKey) || targetKey.includes(normalized)) {
+          if (normalizeSectionKey(sId) === norm) {
             sectionSessionsMap[sId]?.add(e.session_id);
             break;
           }
@@ -235,9 +263,8 @@ export async function GET(
       }
     });
 
-    // Build real section engagement list
+    // Build authentic section engagement metrics
     const sections: SectionEngagementItem[] = enabledSections.map((sId, index) => {
-      // Real recorded section views, or 100% for hero if at least 1 session opened
       const realCount =
         index === 0
           ? uniqueSessionsCount
@@ -258,18 +285,13 @@ export async function GET(
       };
     });
 
-    // Enforce monotonic hierarchy and compute real drop-offs
+    // Discover drop-offs cleanly without destructive monotonic clamping
     let maxDropOff = -1;
     let highestDropIndex = -1;
 
     for (let i = 0; i < sections.length; i++) {
       if (i > 0) {
-        if (sections[i].viewCount > sections[i - 1].viewCount) {
-          sections[i].viewCount = sections[i - 1].viewCount;
-          sections[i].percentage = sections[i - 1].percentage;
-        }
-
-        const drop = sections[i - 1].viewCount - sections[i].viewCount;
+        const drop = Math.max(0, sections[i - 1].viewCount - sections[i].viewCount);
         sections[i].dropOffFromPrevious = drop;
 
         if (drop > maxDropOff && drop > 0) {

@@ -20,5 +20,5 @@ export function getBaseUrl(): string {
   }
 
   // 3. Fallback default Ahvaanam production domain
-  return "https://ahvaanam-liart.vercel.app";
+  return "https://www.ahvaanam.in";
 }

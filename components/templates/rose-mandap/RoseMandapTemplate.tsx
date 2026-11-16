@@ -118,9 +118,10 @@ export default function RoseMandapTemplate({
           .play()
           .then(() => {
             setIsMusicPlaying(true);
+            cleanup();
           })
           .catch(() => {
-            // Will trigger on user interaction if browser enforces autoplay restrictions
+            // Keep gesture listeners active until unlocked by user interaction
           });
       }
     };
@@ -128,18 +129,26 @@ export default function RoseMandapTemplate({
     // 1. Immediate attempt on mount
     attemptPlay();
 
-    // 2. Register gesture listeners to start audio on first touch, click, pointerdown, or scroll
+    // 2. Register gesture listeners to start audio on first touch, click, pointerup, or scroll
     const handleGesture = () => {
       attemptPlay();
     };
 
-    const events = ["click", "touchstart", "touchend", "pointerdown", "scroll", "keydown"];
+    const events = ["click", "touchstart", "touchend", "pointerup", "keydown"];
     events.forEach((evt) => window.addEventListener(evt, handleGesture, { passive: true }));
     document.addEventListener("click", handleGesture, { passive: true });
+    window.addEventListener("touchmove", handleGesture, { passive: true });
+    window.addEventListener("scroll", handleGesture, { passive: true });
 
-    return () => {
+    const cleanup = () => {
       events.forEach((evt) => window.removeEventListener(evt, handleGesture));
       document.removeEventListener("click", handleGesture);
+      window.removeEventListener("touchmove", handleGesture);
+      window.removeEventListener("scroll", handleGesture);
+    };
+
+    return () => {
+      cleanup();
     };
   }, [musicEnabled]);
 
@@ -409,6 +418,7 @@ export default function RoseMandapTemplate({
           src={data.music?.themeMusic || "/theme-music.MP3"}
           loop
           preload="auto"
+          playsInline
         />
 
         {/* Floating Join Us Quick Access Button (Appears after 25% scroll, hides at RSVP section) */}

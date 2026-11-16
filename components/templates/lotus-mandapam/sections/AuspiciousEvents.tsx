@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { RoyalDivider, TraditionalFloralCluster, TraditionalCornerKolam, TraditionalPulliKolam } from "../assets/Ornaments";
 import { useEmeraldPalace } from "../context";
+import { emitAnalyticsInteraction } from "@/lib/analytics/useInvitationTracker";
 
 export function AuspiciousEvents() {
   const data = useEmeraldPalace();
@@ -409,6 +410,7 @@ export function AuspiciousEvents() {
                         href={activeEvent.mapsLink || `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => emitAnalyticsInteraction("map_click", "events", { title: activeEvent.title })}
                         className="ep-btn-burgundy text-xs py-2 px-4 w-full flex items-center justify-center gap-1.5 text-center font-bold"
                         aria-label="Get Directions on Google Maps"
                       >
