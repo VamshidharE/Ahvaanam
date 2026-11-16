@@ -102,7 +102,7 @@ export default function PremiumContactPage() {
                   </div>
                   <div>
                     <p className="text-[10px] uppercase font-bold text-[#241E1C]/40">Email Studio</p>
-                    <a href="mailto:topmtpl@gmail.com" className="font-semibold hover:text-[#C49B27] transition-colors">topmtpl@gmail.com</a>
+                    <a href="mailto:ahvaanam.studio@gmail.com" className="font-semibold hover:text-[#C49B27] transition-colors">ahvaanam.studio@gmail.com</a>
                   </div>
                 </div>
 
