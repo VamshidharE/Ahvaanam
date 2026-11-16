@@ -2,15 +2,15 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Clock, 
-  CheckCircle, 
-  ArrowLeft, 
-  MessageCircle, 
-  ChevronDown, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  CheckCircle,
+  ArrowLeft,
+  MessageCircle,
+  ChevronDown,
   Sparkles,
   ArrowRight
 } from "lucide-react";
@@ -78,7 +78,7 @@ export default function PremiumContactPage() {
 
       {/* Main Grid */}
       <main className="max-w-7xl mx-auto px-6 py-12 relative z-10 space-y-24">
-        
+
         {/* Hero Title */}
         <div className="text-center space-y-4">
           <span className="text-sm font-bold uppercase tracking-[4px] text-[#C49B27] block">Enquire Now</span>
@@ -88,14 +88,14 @@ export default function PremiumContactPage() {
 
         {/* Contact details & form block */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
+
           {/* Details Sidebar */}
           <div className="lg:col-span-5 space-y-8">
             <div className="rounded-3xl border border-white bg-white/70 p-8 shadow-xl backdrop-blur-md space-y-6">
               <h3 className="text-xl font-bold uppercase tracking-[1px] font-cinzel">Studio Info</h3>
-              
+
               <div className="space-y-5 text-sm">
-                
+
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-[#C49B27] shrink-0">
                     <Mail size={18} />
@@ -130,9 +130,9 @@ export default function PremiumContactPage() {
 
               <div className="w-full h-[1px] bg-amber-100" />
 
-              <a 
-                href="https://wa.me/918688178323" 
-                target="_blank" 
+              <a
+                href="https://wa.me/918688178323"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl bg-[#25D366] text-white font-bold text-xs uppercase tracking-[1px] shadow-[0_12px_24px_rgba(37,211,102,0.25)] hover:-translate-y-0.5 transition-transform"
               >
@@ -159,9 +159,9 @@ export default function PremiumContactPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="flex flex-col gap-1.5">
                       <label className="text-[9px] uppercase font-bold text-[#241E1C]/55 tracking-[1px]">Your Name</label>
-                      <input 
-                        type="text" 
-                        required 
+                      <input
+                        type="text"
+                        required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         className="bg-white/80 border border-zinc-200 focus:border-[#C49B27] outline-none rounded-xl px-4 py-3 text-xs text-[#241E1C]"
@@ -170,9 +170,9 @@ export default function PremiumContactPage() {
 
                     <div className="flex flex-col gap-1.5">
                       <label className="text-[9px] uppercase font-bold text-[#241E1C]/55 tracking-[1px]">Email Address</label>
-                      <input 
-                        type="email" 
-                        required 
+                      <input
+                        type="email"
+                        required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="bg-white/80 border border-zinc-200 focus:border-[#C49B27] outline-none rounded-xl px-4 py-3 text-xs text-[#241E1C]"
@@ -181,9 +181,9 @@ export default function PremiumContactPage() {
 
                     <div className="flex flex-col gap-1.5 sm:col-span-2">
                       <label className="text-[9px] uppercase font-bold text-[#241E1C]/55 tracking-[1px]">Phone / WhatsApp Number</label>
-                      <input 
-                        type="tel" 
-                        required 
+                      <input
+                        type="tel"
+                        required
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         className="bg-white/80 border border-zinc-200 focus:border-[#C49B27] outline-none rounded-xl px-4 py-3 text-xs text-[#241E1C]"
@@ -192,8 +192,8 @@ export default function PremiumContactPage() {
 
                     <div className="flex flex-col gap-1.5 sm:col-span-2">
                       <label className="text-[9px] uppercase font-bold text-[#241E1C]/55 tracking-[1px]">Event Requirements & details</label>
-                      <textarea 
-                        required 
+                      <textarea
+                        required
                         rows={4}
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
@@ -202,7 +202,7 @@ export default function PremiumContactPage() {
                     </div>
                   </div>
 
-                  <button 
+                  <button
                     type="submit"
                     className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-yellow-500 text-white font-bold py-4 rounded-xl text-xs uppercase tracking-[1.5px] shadow-[0_12px_30px_rgba(234,179,8,0.3)] hover:-translate-y-0.5 transition-transform"
                   >
@@ -226,8 +226,8 @@ export default function PremiumContactPage() {
 
           <div className="max-w-4xl mx-auto space-y-4">
             {FAQs.map((faq, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
                 className="border border-zinc-200 rounded-2xl bg-white/70 backdrop-blur-sm px-6 py-4 cursor-pointer hover:border-amber-300 transition-colors"
               >

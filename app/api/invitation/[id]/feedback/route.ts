@@ -44,18 +44,37 @@ export async function POST(
     const guestPhone = typeof body.phone === "string" && body.phone.trim() ? body.phone.trim() : null;
 
     const targetId = body.id || body.feedbackId;
-    const isUpdate = typeof targetId === "string" && targetId.trim().length > 0;
+    const deviceId = typeof body.deviceId === "string" ? body.deviceId.trim() : (typeof body.sessionId === "string" ? body.sessionId.trim() : "");
 
-    let dbFeedbackId: string | null = isUpdate ? targetId : null;
+    const currentConfig = invite.config || {};
+    const existingFeedbacks: any[] = Array.isArray(currentConfig._feedbacks) ? [...currentConfig._feedbacks] : [];
 
-    // 1. Try table operation if table exists
-    if (isUpdate) {
+    // Deduplication: Check if this user/device already rated this invitation
+    let matchedIndex = -1;
+    if (targetId) {
+      matchedIndex = existingFeedbacks.findIndex((f: any) => f.id === targetId);
+    }
+    if (matchedIndex === -1 && deviceId) {
+      matchedIndex = existingFeedbacks.findIndex((f: any) => f.deviceId && f.deviceId === deviceId);
+    }
+
+    const isUpdate = matchedIndex !== -1 || (typeof targetId === "string" && targetId.trim().length > 0);
+    const existingEntry = matchedIndex !== -1 ? existingFeedbacks[matchedIndex] : null;
+    const resolvedId = existingEntry?.id || targetId;
+
+    let dbFeedbackId: string | null = isUpdate ? resolvedId : null;
+
+    // 1. Database table sync
+    if (isUpdate && resolvedId) {
       try {
-        await adminDb.from("invitation_feedbacks").update({
-          rating,
-          feedback: feedbackText,
-          guest_name: guestName,
-        }).eq("id", targetId);
+        const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(resolvedId);
+        if (isUuid) {
+          await adminDb.from("invitation_feedbacks").update({
+            rating,
+            feedback: feedbackText,
+            guest_name: guestName,
+          }).eq("id", resolvedId);
+        }
       } catch {
         // ignore if table does not exist or targetId not uuid
       }
@@ -78,45 +97,38 @@ export async function POST(
     }
 
     // 2. Persist in invitation config as durable JSON array fallback
-    const currentConfig = invite.config || {};
-    const existingFeedbacks = Array.isArray(currentConfig._feedbacks) ? currentConfig._feedbacks : [];
-
     let updatedFeedbacks: any[];
     let returnedEntry: any;
 
-    if (isUpdate) {
-      let found = false;
-      updatedFeedbacks = existingFeedbacks.map((f: any) => {
-        if (f.id === targetId) {
-          found = true;
-          return {
-            ...f,
-            rating,
-            feedback: feedbackText,
-            guestName,
-            phone: guestPhone,
-            updated_at: new Date().toISOString()
-          };
-        }
-        return f;
-      });
-
-      if (!found) {
-        returnedEntry = {
-          id: targetId,
-          rating,
-          feedback: feedbackText,
-          guestName,
-          phone: guestPhone,
-          created_at: new Date().toISOString()
-        };
-        updatedFeedbacks = [returnedEntry, ...existingFeedbacks.slice(0, 99)];
-      } else {
-        returnedEntry = updatedFeedbacks.find((f: any) => f.id === targetId);
-      }
+    if (matchedIndex !== -1) {
+      // Update existing entry in place
+      existingFeedbacks[matchedIndex] = {
+        ...existingFeedbacks[matchedIndex],
+        id: dbFeedbackId || existingFeedbacks[matchedIndex].id,
+        deviceId: deviceId || existingFeedbacks[matchedIndex].deviceId || null,
+        rating,
+        feedback: feedbackText,
+        guestName,
+        phone: guestPhone,
+        updated_at: new Date().toISOString()
+      };
+      returnedEntry = existingFeedbacks[matchedIndex];
+      updatedFeedbacks = existingFeedbacks;
+    } else if (isUpdate) {
+      returnedEntry = {
+        id: resolvedId,
+        deviceId: deviceId || null,
+        rating,
+        feedback: feedbackText,
+        guestName,
+        phone: guestPhone,
+        created_at: new Date().toISOString()
+      };
+      updatedFeedbacks = [returnedEntry, ...existingFeedbacks.slice(0, 99)];
     } else {
       returnedEntry = {
         id: dbFeedbackId || `fb_${Date.now()}_${Math.floor(Math.random() * 10000)}`,
+        deviceId: deviceId || null,
         rating,
         feedback: feedbackText,
         guestName,

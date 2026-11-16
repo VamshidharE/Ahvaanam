@@ -127,7 +127,7 @@ export async function provisionClientAndSendOnboarding({
       success: true,
       emailSent: false,
       alreadySent: true,
-      userId: invite.user_id,
+      userId: invite.user_id ?? undefined,
       message: "Onboarding email was previously sent. Skipping duplicate send.",
     };
   }
@@ -221,14 +221,20 @@ export async function provisionClientAndSendOnboarding({
     console.error(`[Ahvaanam Onboarding] Failed to associate invitation ${invitationId} with user ${userId}:`, linkInviteError.message);
   }
 
-  // 6. Generate secure, one-time Supabase magic link
+  // 6. Generate secure, one-time Supabase magic link using deployed production domain
   let magicLinkUrl = "";
+  // Always use deployed production domain for email links (never expose localhost)
+  const productionBaseUrl = (
+    process.env.NEXT_PUBLIC_APP_URL ||
+    (appBaseUrl && !appBaseUrl.includes("localhost") ? appBaseUrl : "https://ahvaanam.in")
+  ).replace(/\/$/, "");
+
   try {
     const { data: linkData, error: linkError } = await adminDb.auth.admin.generateLink({
       type: "magiclink",
       email: normalizedEmail,
       options: {
-        redirectTo: `${appBaseUrl}/dashboard`,
+        redirectTo: `${productionBaseUrl}/dashboard`,
       },
     });
 
@@ -240,23 +246,23 @@ export async function provisionClientAndSendOnboarding({
     const tokenHash = linkData.properties.hashed_token;
     const verificationType = linkData.properties.verification_type || "magiclink";
 
-    magicLinkUrl = `${appBaseUrl}/auth/callback?token_hash=${encodeURIComponent(tokenHash)}&type=${encodeURIComponent(verificationType)}&next=/dashboard`;
+    magicLinkUrl = `${productionBaseUrl}/auth/callback?token_hash=${encodeURIComponent(tokenHash)}&type=${encodeURIComponent(verificationType)}&next=/dashboard`;
   } catch (linkGenErr: any) {
     console.error("[Ahvaanam Onboarding] Magic link generation failed:", linkGenErr.message);
     return {
       success: false,
       error: linkGenErr.message || "Failed to generate authentication magic link.",
-      userId,
+      userId: userId ?? undefined,
       isNewUser,
     };
   }
 
-  // 7. Render and send branded onboarding email from ahvaanam.studio@gmail.com
+  // 7. Render and send branded onboarding email
   const emailHtml = getOnboardingEmailHtml({
     clientName,
     invitationTitle,
     eventDate,
-    invitationUrl: `${appBaseUrl}/invites/${invitationId}`,
+    invitationUrl: `${productionBaseUrl}/invites/${invitationId}`,
     dashboardUrl: magicLinkUrl,
     isNewUser,
   });
@@ -264,7 +270,7 @@ export async function provisionClientAndSendOnboarding({
   const emailText = getOnboardingEmailText({
     clientName,
     invitationTitle,
-    invitationUrl: `${appBaseUrl}/invites/${invitationId}`,
+    invitationUrl: `${productionBaseUrl}/invites/${invitationId}`,
     dashboardUrl: magicLinkUrl,
   });
 
@@ -322,7 +328,7 @@ export async function provisionClientAndSendOnboarding({
     emailSent: emailResult.success,
     simulated: emailResult.simulated,
     isNewUser,
-    userId,
+    userId: userId ?? undefined,
     error: emailResult.error,
   };
 }

@@ -53,20 +53,54 @@ export function AuspiciousEvents() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Auto switch events every 5.5 seconds ONLY when visible in viewport
-  useEffect(() => {
+  // Relaxed pacing: 8.5 seconds normal auto-switch, 14 seconds extra delay when user interacts
+  const AUTO_SWITCH_DELAY = 8500;
+  const USER_INTERACTION_DELAY = 14000;
+
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const isUserInteractingRef = useRef(false);
+
+  const startAutoSwitchTimer = (delay: number) => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
     if (enabledEvents.length <= 1 || !isInView) return;
-    const interval = setInterval(() => {
+
+    timerRef.current = setTimeout(() => {
       setActiveIndex((prev) => (prev + 1) % enabledEvents.length);
-    }, 5500);
-    return () => clearInterval(interval);
-  }, [enabledEvents.length, isInView]);
+    }, delay);
+  };
+
+  // Auto switch events with extra reading delay upon user interaction
+  useEffect(() => {
+    const delay = isUserInteractingRef.current ? USER_INTERACTION_DELAY : AUTO_SWITCH_DELAY;
+    isUserInteractingRef.current = false;
+    startAutoSwitchTimer(delay);
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+    };
+  }, [activeIndex, isInView, enabledEvents.length]);
+
+  const handleUserSelect = (idx: number) => {
+    if (idx === activeIndex) {
+      startAutoSwitchTimer(USER_INTERACTION_DELAY);
+      return;
+    }
+    isUserInteractingRef.current = true;
+    setActiveIndex(idx);
+  };
 
   const nextEvent = () => {
+    isUserInteractingRef.current = true;
     setActiveIndex((prev) => (prev + 1) % enabledEvents.length);
   };
 
   const prevEvent = () => {
+    isUserInteractingRef.current = true;
     setActiveIndex((prev) => (prev - 1 + enabledEvents.length) % enabledEvents.length);
   };
 
@@ -134,7 +168,7 @@ export function AuspiciousEvents() {
             return (
               <button
                 key={ev.id || idx}
-                onClick={() => setActiveIndex(idx)}
+                onClick={() => handleUserSelect(idx)}
                 className="flex flex-col items-center gap-1.5 transition-all text-center"
                 aria-label={`Select ${ev.title}`}
               >
@@ -181,7 +215,7 @@ export function AuspiciousEvents() {
             return (
               <button
                 key={ev.id || idx}
-                onClick={() => setActiveIndex(idx)}
+                onClick={() => handleUserSelect(idx)}
                 className={`flex-shrink-0 flex items-center gap-3 p-1.5 pr-4 rounded-full transition-all duration-300 text-left border ${
                   isSelected
                     ? "bg-[#781D36] text-[#FFF6E9] border-[#DFB759] shadow-lg scale-105"

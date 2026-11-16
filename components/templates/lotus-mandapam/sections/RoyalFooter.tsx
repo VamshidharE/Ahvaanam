@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Star, Send, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TraditionalCornerKolam } from "../assets/Ornaments";
@@ -36,41 +36,139 @@ export function RoyalFooter({ clientId }: { clientId?: string }) {
   const [isSendingFeedback, setIsSendingFeedback] = useState(false);
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
 
-  const handleRate = async (star: number) => {
+  const feedbackIdRef = useRef<string | null>(null);
+  const pendingTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const storageKey = effectiveClientId ? `ahvaanam_feedback_${effectiveClientId}` : null;
+
+  const getOrCreateDeviceId = () => {
+    if (typeof window === "undefined") return "";
+    try {
+      let devId = localStorage.getItem("ahvaanam_device_id");
+      if (!devId) {
+        devId = "dev_" + Math.random().toString(36).substring(2, 11) + "_" + Date.now().toString(36);
+        localStorage.setItem("ahvaanam_device_id", devId);
+      }
+      return devId;
+    } catch {
+      return "";
+    }
+  };
+
+  // Restore previous rating from this device/session if already rated
+  useEffect(() => {
+    if (!storageKey || typeof window === "undefined") return;
+    try {
+      const raw = localStorage.getItem(storageKey);
+      if (raw) {
+        const saved = JSON.parse(raw);
+        if (saved.id) {
+          setFeedbackId(saved.id);
+          feedbackIdRef.current = saved.id;
+        }
+        if (saved.rating) {
+          setRating(saved.rating);
+          setHasRated(true);
+          setShowFeedbackInput(true);
+        }
+        if (saved.feedback) {
+          setFeedbackText(saved.feedback);
+        }
+        if (saved.submitted) {
+          setFeedbackSubmitted(true);
+        }
+      }
+    } catch {}
+  }, [storageKey]);
+
+  const handleRate = (star: number) => {
     setRating(star);
     setHasRated(true);
     setShowFeedbackInput(true);
 
-    if (
-      effectiveClientId &&
-      !effectiveClientId.startsWith("preview") &&
-      !effectiveClientId.startsWith("demo")
-    ) {
+    // Save locally immediately to guarantee instant response and state persistence
+    if (storageKey && typeof window !== "undefined") {
       try {
-        const res = await fetch(`/api/invitation/${effectiveClientId}/feedback`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            id: feedbackId || undefined,
+        const current = JSON.parse(localStorage.getItem(storageKey) || "{}");
+        localStorage.setItem(
+          storageKey,
+          JSON.stringify({
+            ...current,
+            id: feedbackIdRef.current || current.id,
             rating: star,
-            feedback: feedbackText.trim(),
-          }),
-        });
-        const resData = await res.json();
-        if (resData.feedback?.id) {
-          setFeedbackId(resData.feedback.id);
-        }
-      } catch (e) {
-        console.warn("Feedback submission error:", e);
-      }
+          })
+        );
+      } catch {}
     }
+
+    // Debounce network dispatch to collapse rapid taps into a single update
+    if (pendingTimerRef.current) {
+      clearTimeout(pendingTimerRef.current);
+    }
+
+    pendingTimerRef.current = setTimeout(async () => {
+      if (
+        effectiveClientId &&
+        !effectiveClientId.startsWith("preview") &&
+        !effectiveClientId.startsWith("demo")
+      ) {
+        const deviceId = getOrCreateDeviceId();
+        const activeId =
+          feedbackIdRef.current ||
+          (typeof window !== "undefined" && storageKey
+            ? JSON.parse(localStorage.getItem(storageKey) || "{}").id
+            : undefined);
+
+        try {
+          const res = await fetch(`/api/invitation/${effectiveClientId}/feedback`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              id: activeId || undefined,
+              deviceId,
+              rating: star,
+              feedback: feedbackText.trim(),
+            }),
+          });
+          const resData = await res.json();
+          if (resData.feedback?.id) {
+            setFeedbackId(resData.feedback.id);
+            feedbackIdRef.current = resData.feedback.id;
+            if (storageKey && typeof window !== "undefined") {
+              const current = JSON.parse(localStorage.getItem(storageKey) || "{}");
+              localStorage.setItem(
+                storageKey,
+                JSON.stringify({
+                  ...current,
+                  id: resData.feedback.id,
+                  rating: star,
+                })
+              );
+            }
+          }
+        } catch (e) {
+          console.warn("Feedback submission error:", e);
+        }
+      }
+    }, 280);
   };
 
   const handleFeedbackSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!feedbackText.trim()) return;
 
+    if (pendingTimerRef.current) {
+      clearTimeout(pendingTimerRef.current);
+    }
+
     setIsSendingFeedback(true);
+    const deviceId = getOrCreateDeviceId();
+    const activeId =
+      feedbackIdRef.current ||
+      (typeof window !== "undefined" && storageKey
+        ? JSON.parse(localStorage.getItem(storageKey) || "{}").id
+        : undefined);
+
     if (
       effectiveClientId &&
       !effectiveClientId.startsWith("preview") &&
@@ -81,7 +179,8 @@ export function RoyalFooter({ clientId }: { clientId?: string }) {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            id: feedbackId || undefined,
+            id: activeId || undefined,
+            deviceId,
             rating: rating || 5,
             feedback: feedbackText.trim(),
           }),
@@ -89,6 +188,18 @@ export function RoyalFooter({ clientId }: { clientId?: string }) {
         const resData = await res.json();
         if (resData.feedback?.id) {
           setFeedbackId(resData.feedback.id);
+          feedbackIdRef.current = resData.feedback.id;
+          if (storageKey && typeof window !== "undefined") {
+            localStorage.setItem(
+              storageKey,
+              JSON.stringify({
+                id: resData.feedback.id,
+                rating: rating || 5,
+                feedback: feedbackText.trim(),
+                submitted: true,
+              })
+            );
+          }
         }
       } catch (e) {
         console.warn("Feedback submission error:", e);

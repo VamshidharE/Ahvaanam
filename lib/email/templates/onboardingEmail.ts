@@ -32,9 +32,9 @@ function normalizeProductionInvitationUrl(url?: string): string {
 }
 
 /**
- * Builds a wedding-stationery-inspired, premium HTML email for Ahvaanam client onboarding.
- * Incorporates the actual Ahvaanam logo, warm ivory backdrop, refined gold accents,
- * and elegant serif headings. Strictly client-accessible content only.
+ * Builds an attractive, wedding-stationery-inspired luxury HTML email for Ahvaanam client onboarding.
+ * Features the actual brand logo, royal gold accents, elegant 2-column feature cards,
+ * and warm celebratory copy with zero admin-only metrics.
  */
 export function getOnboardingEmailHtml(data: OnboardingEmailData): string {
   const currentYear = new Date().getFullYear();
@@ -66,7 +66,7 @@ export function getOnboardingEmailHtml(data: OnboardingEmailData): string {
     body {
       margin: 0;
       padding: 0;
-      background-color: #F7F4EE;
+      background-color: #F5F0E6;
       -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
     }
@@ -91,160 +91,190 @@ export function getOnboardingEmailHtml(data: OnboardingEmailData): string {
       text-decoration: none;
     }
     @media screen and (max-width: 600px) {
-      .container-table {
-        width: 100% !important;
-        margin: 0 auto !important;
+      .outer-padding {
+        padding: 16px 8px !important;
       }
-      .content-padding {
+      .container-card {
+        width: 100% !important;
+      }
+      .card-body-padding {
         padding: 28px 20px !important;
       }
-      .feature-box {
-        padding: 12px 14px !important;
+      .feature-cell {
+        display: block !important;
+        width: 100% !important;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+        margin-bottom: 10px !important;
       }
     }
   </style>
 </head>
-<body style="margin: 0; padding: 0; background-color: #F7F4EE; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color: #2E2620;">
+<body style="margin: 0; padding: 0; background-color: #F5F0E6; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color: #2E2620;">
 
-  <!-- Outer Canvas -->
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #F7F4EE; padding: 32px 12px;">
+  <!-- Outer Background Canvas -->
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="outer-padding" style="background-color: #F5F0E6; padding: 36px 14px;">
     <tr>
       <td align="center">
 
-        <!-- Main Card Container -->
-        <table class="container-table" width="580" border="0" cellspacing="0" cellpadding="0" style="max-width: 580px; width: 100%; background-color: #FFFFFF; border: 1px solid #E6DCCD; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(46, 38, 32, 0.04);">
+        <!-- Outer Double-Border Envelope Container -->
+        <table class="container-card" width="580" border="0" cellspacing="0" cellpadding="0" style="max-width: 580px; width: 100%; background-color: #FFFDF9; border: 1px solid #D8C39D; border-radius: 10px; overflow: hidden; box-shadow: 0 8px 30px rgba(46, 38, 32, 0.07);">
           
-          <!-- Delicate Gold Top Accent -->
+          <!-- Top Royal Gold Foil Bar -->
           <tr>
-            <td height="3" style="background-color: #9B7829; line-height: 3px; font-size: 3px;">&nbsp;</td>
+            <td height="4" style="background: linear-gradient(90deg, #A88234 0%, #E3C37B 50%, #A88234 100%); line-height: 4px; font-size: 4px;">&nbsp;</td>
           </tr>
 
-          <!-- Header with Actual Ahvaanam Logo -->
+          <!-- Header Section with Actual Logo -->
           <tr>
-            <td align="center" style="padding: 36px 24px 20px 24px; background-color: #FCFBF8; border-bottom: 1px solid #F0E8DC;">
+            <td align="center" style="padding: 38px 24px 22px 24px; background-color: #FFFDF9;">
               <table border="0" cellspacing="0" cellpadding="0" align="center">
                 <tr>
                   <td align="center">
                     <img 
                       src="${logoUrl}" 
                       alt="Ahvaanam" 
-                      width="180" 
-                      height="41" 
+                      width="186" 
+                      height="43" 
                       border="0" 
-                      style="display: block; margin: 0 auto; width: 180px; max-width: 100%; height: auto; border: 0;"
+                      style="display: block; margin: 0 auto; width: 186px; max-width: 100%; height: auto; border: 0;"
                     />
-                    <div style="font-size: 10px; font-weight: 600; letter-spacing: 3.5px; color: #9A8877; text-transform: uppercase; margin-top: 10px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-                      BESPOKE DIGITAL CELEBRATIONS
-                    </div>
+                    <!-- Delicate Gold Foil Accent Flourish -->
+                    <div style="margin: 16px auto 0 auto; width: 90px; height: 1px; background: linear-gradient(90deg, transparent, #C5A059, transparent);"></div>
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
 
-          <!-- Main Body Content -->
+          <!-- Main Letter Content -->
           <tr>
-            <td class="content-padding" style="padding: 36px 38px 30px 38px; background-color: #FFFFFF;">
+            <td class="card-body-padding" style="padding: 32px 38px 30px 38px; background-color: #FFFFFF; border-top: 1px solid #F3EBDF;">
 
-              <!-- Main Heading -->
-              <h1 style="margin: 0 0 20px 0; font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; font-size: 24px; font-weight: 600; color: #2E2620; line-height: 1.35; text-align: center;">
+              <!-- Primary Invitation Announcement -->
+              <h1 style="margin: 0 0 16px 0; font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; font-size: 25px; font-weight: 600; color: #1F1A17; line-height: 1.35; text-align: center;">
                 Your celebration is ready to be shared.
               </h1>
 
-              <!-- Subtle Divider Line -->
-              <table width="60" border="0" cellspacing="0" cellpadding="0" align="center" style="margin: 0 auto 24px auto;">
-                <tr>
-                  <td height="1" style="background-color: #C8A85B; line-height: 1px; font-size: 1px;">&nbsp;</td>
-                </tr>
-              </table>
-
               <!-- Personalized Greeting -->
-              <div style="font-size: 15px; font-weight: 600; color: #2E2620; margin: 0 0 14px 0;">
+              <div style="font-size: 15px; font-weight: 600; color: #1F1A17; margin: 24px 0 12px 0;">
                 Dear ${clientName},
               </div>
 
-              <!-- Warm Body Statement -->
-              <p style="margin: 0 0 14px 0; font-size: 14px; line-height: 1.7; color: #554A40;">
-                There&#39;s something special about bringing your loved ones together. We&#39;re delighted to let you know that your invitation is now live on Ahvaanam!
+              <!-- Warm Opening Copy -->
+              <p style="margin: 0 0 14px 0; font-size: 14px; line-height: 1.7; color: #52473D;">
+                There&#39;s something truly special about bringing your loved ones together. We&#39;re delighted to let you know that your custom invitation is now live on Ahvaanam!
               </p>
-              <p style="margin: 0 0 24px 0; font-size: 14px; line-height: 1.7; color: #554A40;">
+              <p style="margin: 0 0 24px 0; font-size: 14px; line-height: 1.7; color: #52473D;">
                 Your celebration is ready to reach the people who matter most.
               </p>
 
-              <!-- Elegant Event Summary Card -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #FAF7F0; border: 1px solid #EAE0CE; border-left: 3px solid #9B7829; border-radius: 6px; margin: 0 0 28px 0;">
+              <!-- Elegant Wedding Stationery Summary Card -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #FAF5EB; border: 1px solid #DFC9A3; border-radius: 8px; margin: 0 0 32px 0;">
                 <tr>
-                  <td style="padding: 18px 22px;">
-                    <div style="font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #9B7829; text-transform: uppercase; margin-bottom: 6px;">
-                      YOUR INVITATION IS LIVE
-                    </div>
-                    <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 19px; font-weight: 600; color: #2E2620; line-height: 1.3; margin-bottom: 6px;">
+                  <td style="padding: 20px 22px;">
+                    <!-- Badge -->
+                    <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 8px;">
+                      <tr>
+                        <td style="background-color: #F2E8D3; border: 1px solid #DFC9A3; border-radius: 3px; padding: 3px 8px; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: #8F6C22; text-transform: uppercase;">
+                          ✦ &nbsp; YOUR INVITATION IS LIVE &nbsp; ✦
+                        </td>
+                      </tr>
+                    </table>
+
+                    <!-- Couple / Event Title -->
+                    <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 21px; font-weight: 600; color: #1F1A17; line-height: 1.3; margin-bottom: 8px;">
                       ${invitationTitle}
                     </div>
+
                     ${eventDate ? `
-                    <div style="font-size: 13px; color: #6C5F53; line-height: 1.5; margin-bottom: 6px;">
+                    <div style="font-size: 13px; color: #6E5F52; line-height: 1.5; margin-bottom: 10px;">
                       <strong>Event Date:</strong> ${eventDate}
                     </div>` : ""}
-                    <div style="font-size: 13px; color: #6C5F53; line-height: 1.5; word-break: break-all;">
-                      <strong>Invitation Link:</strong> <a href="${productionInviteUrl}" style="color: #9B7829; text-decoration: underline;" target="_blank">${productionInviteUrl}</a>
+
+                    <!-- Link Pill -->
+                    <div>
+                      <a href="${productionInviteUrl}" target="_blank" style="display: inline-block; padding: 7px 16px; background-color: #FFFFFF; border: 1px solid #D5BE95; border-radius: 4px; font-size: 12px; font-weight: 600; color: #8F6C22; text-decoration: none;">
+                        View Live Invitation &rarr;
+                      </a>
                     </div>
                   </td>
                 </tr>
               </table>
 
-              <!-- Dashboard Introduction Section -->
-              <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 19px; font-weight: 600; color: #2E2620; margin: 0 0 6px 0;">
-                Your celebration, at your fingertips.
+              <!-- Dashboard Feature Showcase -->
+              <div style="text-align: center; margin-bottom: 20px;">
+                <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 600; color: #1F1A17; margin-bottom: 6px;">
+                  Your celebration, at your fingertips.
+                </div>
+                <div style="font-size: 13px; line-height: 1.6; color: #63584E; max-width: 440px; margin: 0 auto;">
+                  We&#39;ve prepared a personal space for you to follow your invitation and stay connected with your guests in real time.
+                </div>
               </div>
-              <p style="margin: 0 0 20px 0; font-size: 14px; line-height: 1.6; color: #554A40;">
-                We&#39;ve prepared a personal space for you to follow your invitation and stay connected with your guests.
-              </p>
 
-              <!-- 4 Client-Accessible Features List -->
+              <!-- 2x2 Feature Matrix Cards -->
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 30px;">
+                <!-- Row 1 -->
                 <tr>
-                  <td style="padding-bottom: 12px;">
-                    <table border="0" cellspacing="0" cellpadding="0" width="100%" class="feature-box" style="background-color: #FAF8F5; border-radius: 6px; padding: 12px 16px;">
+                  <td width="50%" class="feature-cell" style="padding-right: 6px; padding-bottom: 12px;" valign="top">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #FAF7F2; border: 1px solid #ECE2D2; border-radius: 8px; padding: 14px 14px; min-height: 80px;">
                       <tr>
-                        <td valign="top" style="width: 20px; font-size: 12px; line-height: 1.6; color: #9B7829;">✦</td>
-                        <td style="font-size: 13px; line-height: 1.55; color: #40362E;">
-                          <strong style="color: #2E2620;">Invitation Insights</strong> &mdash; View invitation visits and guest engagement.
+                        <td valign="top" style="font-size: 18px; line-height: 1; padding-right: 10px;">📊</td>
+                        <td valign="top">
+                          <div style="font-size: 13px; font-weight: 700; color: #1F1A17; margin-bottom: 3px;">
+                            Invitation Insights
+                          </div>
+                          <div style="font-size: 12px; line-height: 1.45; color: #695D52;">
+                            Discover visitor activity and guest engagement in real time.
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td width="50%" class="feature-cell" style="padding-left: 6px; padding-bottom: 12px;" valign="top">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #FAF7F2; border: 1px solid #ECE2D2; border-radius: 8px; padding: 14px 14px; min-height: 80px;">
+                      <tr>
+                        <td valign="top" style="font-size: 18px; line-height: 1; padding-right: 10px;">💌</td>
+                        <td valign="top">
+                          <div style="font-size: 13px; font-weight: 700; color: #1F1A17; margin-bottom: 3px;">
+                            RSVP &amp; Guest Responses
+                          </div>
+                          <div style="font-size: 12px; line-height: 1.45; color: #695D52;">
+                            Keep track of confirmations, headcounts, and guest attendance.
+                          </div>
                         </td>
                       </tr>
                     </table>
                   </td>
                 </tr>
+                <!-- Row 2 -->
                 <tr>
-                  <td style="padding-bottom: 12px;">
-                    <table border="0" cellspacing="0" cellpadding="0" width="100%" class="feature-box" style="background-color: #FAF8F5; border-radius: 6px; padding: 12px 16px;">
+                  <td width="50%" class="feature-cell" style="padding-right: 6px;" valign="top">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #FAF7F2; border: 1px solid #ECE2D2; border-radius: 8px; padding: 14px 14px; min-height: 80px;">
                       <tr>
-                        <td valign="top" style="width: 20px; font-size: 12px; line-height: 1.6; color: #9B7829;">✦</td>
-                        <td style="font-size: 13px; line-height: 1.55; color: #40362E;">
-                          <strong style="color: #2E2620;">RSVP &amp; Guest Responses</strong> &mdash; Track attendance confirmations and guest responses.
+                        <td valign="top" style="font-size: 18px; line-height: 1; padding-right: 10px;">✨</td>
+                        <td valign="top">
+                          <div style="font-size: 13px; font-weight: 700; color: #1F1A17; margin-bottom: 3px;">
+                            Blessings &amp; Memories
+                          </div>
+                          <div style="font-size: 12px; line-height: 1.45; color: #695D52;">
+                            Explore the heartfelt wishes and messages shared by loved ones.
+                          </div>
                         </td>
                       </tr>
                     </table>
                   </td>
-                </tr>
-                <tr>
-                  <td style="padding-bottom: 12px;">
-                    <table border="0" cellspacing="0" cellpadding="0" width="100%" class="feature-box" style="background-color: #FAF8F5; border-radius: 6px; padding: 12px 16px;">
+                  <td width="50%" class="feature-cell" style="padding-left: 6px;" valign="top">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #FAF7F2; border: 1px solid #ECE2D2; border-radius: 8px; padding: 14px 14px; min-height: 80px;">
                       <tr>
-                        <td valign="top" style="width: 20px; font-size: 12px; line-height: 1.6; color: #9B7829;">✦</td>
-                        <td style="font-size: 13px; line-height: 1.55; color: #40362E;">
-                          <strong style="color: #2E2620;">Blessings &amp; Memories</strong> &mdash; Read messages and wishes shared by guests.
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <table border="0" cellspacing="0" cellpadding="0" width="100%" class="feature-box" style="background-color: #FAF8F5; border-radius: 6px; padding: 12px 16px;">
-                      <tr>
-                        <td valign="top" style="width: 20px; font-size: 12px; line-height: 1.6; color: #9B7829;">✦</td>
-                        <td style="font-size: 13px; line-height: 1.55; color: #40362E;">
-                          <strong style="color: #2E2620;">Sharing &amp; Invitation Tools</strong> &mdash; Access available invitation sharing materials and QR codes.
+                        <td valign="top" style="font-size: 18px; line-height: 1; padding-right: 10px;">📲</td>
+                        <td valign="top">
+                          <div style="font-size: 13px; font-weight: 700; color: #1F1A17; margin-bottom: 3px;">
+                            Sharing &amp; QR Tools
+                          </div>
+                          <div style="font-size: 12px; line-height: 1.45; color: #695D52;">
+                            Access available sharing materials, download cards, and QR codes.
+                          </div>
                         </td>
                       </tr>
                     </table>
@@ -252,15 +282,15 @@ export function getOnboardingEmailHtml(data: OnboardingEmailData): string {
                 </tr>
               </table>
 
-              <!-- Prominent CTA Button -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin: 0 0 16px 0;">
+              <!-- Prominent Gold CTA Button -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin: 0 0 14px 0;">
                 <tr>
                   <td align="center">
                     <table border="0" cellspacing="0" cellpadding="0">
                       <tr>
-                        <td align="center" style="background-color: #9B7829; border-radius: 6px;">
+                        <td align="center" style="background-color: #A37E30; border-radius: 6px;">
                           <!--[if mso]>
-                          <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${dashboardUrl}" style="height:48px;v-text-anchor:middle;width:260px;" arcsize="12%" stroke="f" fillcolor="#9B7829">
+                          <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${dashboardUrl}" style="height:50px;v-text-anchor:middle;width:280px;" arcsize="12%" stroke="f" fillcolor="#A37E30">
                           <w:anchorlock/>
                           <center style="color:#ffffff;font-family:sans-serif;font-size:13px;font-weight:bold;letter-spacing:1.5px;">EXPLORE YOUR DASHBOARD</center>
                           </v:roundrect>
@@ -269,7 +299,7 @@ export function getOnboardingEmailHtml(data: OnboardingEmailData): string {
                           <a 
                             href="${dashboardUrl}" 
                             target="_blank" 
-                            style="display: inline-block; padding: 15px 36px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; font-weight: 600; color: #FFFFFF; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; border-radius: 6px; border: 1px solid #85641C;"
+                            style="display: inline-block; padding: 16px 42px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; font-weight: 700; color: #FFFFFF; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; border-radius: 6px; border: 1px solid #8C6A20; box-shadow: 0 4px 15px rgba(163, 126, 48, 0.28);"
                           >
                             EXPLORE YOUR DASHBOARD
                           </a>
@@ -281,25 +311,27 @@ export function getOnboardingEmailHtml(data: OnboardingEmailData): string {
                 </tr>
               </table>
 
-              <!-- Security Message -->
-              <p style="text-align: center; font-size: 12px; line-height: 1.55; color: #8A7B6D; margin: 0 auto 18px auto; max-width: 460px;">
+              <!-- Passwordless Security Note -->
+              <p style="text-align: center; font-size: 12px; line-height: 1.6; color: #8A7B6D; margin: 0 auto 16px auto; max-width: 460px;">
                 Your dashboard is protected with secure passwordless access. Simply click the button above to get started. This one-time access link expires after 24 hours.
               </p>
 
             </td>
           </tr>
 
-          <!-- Minimal Premium Footer -->
+          <!-- Refined Prestigious Footer -->
           <tr>
-            <td align="center" style="padding: 24px 30px 28px 30px; background-color: #FAF7F0; border-top: 1px solid #EAE0CE; font-size: 12px; line-height: 1.6; color: #8E7E70;">
-              <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 14px; font-weight: 600; color: #2E2620; margin-bottom: 4px;">
-                Made with care for your most meaningful celebrations.
+            <td align="center" style="padding: 26px 30px 28px 30px; background-color: #FAF5EB; border-top: 1px solid #EAE0CE; font-size: 12px; line-height: 1.65; color: #8C7B6D;">
+              <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 15px; font-weight: 600; color: #1F1A17; margin-bottom: 5px;">
+                Honored to craft timeless memories for your celebration.
               </div>
-              <div style="margin-bottom: 6px; color: #6E6155;">
-                With love, Team Ahvaanam
+              <div style="margin-bottom: 10px; color: #6E5F52;">
+                With warm regards,<br>
+                <strong style="color: #1F1A17;">Team Ahvaanam</strong>
               </div>
-              <div style="font-size: 11px; color: #A6998F;">
-                Questions? Write to us at <a href="mailto:ahvaanam.studio@gmail.com" style="color: #9B7829; text-decoration: none; font-weight: 500;">ahvaanam.studio@gmail.com</a>
+              <div style="font-size: 11px; color: #9A8A7C;">
+                Questions or special requests? Reach us at 
+                <a href="mailto:ahvaanam.studio@gmail.com" style="color: #8F6C22; text-decoration: none; font-weight: 600;">ahvaanam.studio@gmail.com</a>
               </div>
             </td>
           </tr>
@@ -315,7 +347,7 @@ export function getOnboardingEmailHtml(data: OnboardingEmailData): string {
 }
 
 /**
- * Builds clean plain-text alternative matching the new concise copy.
+ * Builds clean plain-text alternative matching the new copy.
  */
 export function getOnboardingEmailText(data: OnboardingEmailData): string {
   const clientName = data.clientName?.trim() || "Valued Client";
@@ -323,35 +355,36 @@ export function getOnboardingEmailText(data: OnboardingEmailData): string {
   const productionInviteUrl = normalizeProductionInvitationUrl(data.invitationUrl);
 
   return `AHVAANAM
-BESPOKE DIGITAL CELEBRATIONS
+INVITE BEAUTIFULLY
 
 YOUR CELEBRATION IS READY TO BE SHARED.
 
 Dear ${clientName},
 
-There's something special about bringing your loved ones together. We're delighted to let you know that your invitation is now live on Ahvaanam!
+There's something truly special about bringing your loved ones together. We're delighted to let you know that your custom invitation is now live on Ahvaanam!
 
 Your celebration is ready to reach the people who matter most.
 
-YOUR INVITATION IS LIVE:
+✦ YOUR INVITATION IS LIVE ✦
 ${invitationTitle}
 ${data.eventDate ? `Event Date: ${data.eventDate}\n` : ""}Invitation Link: ${productionInviteUrl}
 
 YOUR CELEBRATION, AT YOUR FINGERTIPS:
 We've prepared a personal space for you to follow your invitation and stay connected with your guests.
 
-- Invitation Insights: View invitation visits and guest engagement.
-- RSVP & Guest Responses: Track attendance confirmations and guest responses.
-- Blessings & Memories: Read messages and wishes shared by guests.
-- Sharing & Invitation Tools: Access available invitation sharing materials and QR codes.
+- Invitation Insights: Discover visitor activity and guest engagement in real time.
+- RSVP & Guest Responses: Keep track of confirmations, headcounts, and guest attendance.
+- Blessings & Memories: Explore the heartfelt wishes and messages shared by loved ones.
+- Sharing & QR Tools: Access available sharing materials, download cards, and QR codes.
 
 EXPLORE YOUR DASHBOARD:
 ${data.dashboardUrl}
 
 Your dashboard is protected with secure passwordless access. Simply click the link above to get started. This one-time access link expires after 24 hours.
 
-Made with care for your most meaningful celebrations.
-With love, Team Ahvaanam
-Support: ahvaanam.studio@gmail.com
+Honored to craft timeless memories for your celebration.
+With warm regards,
+Team Ahvaanam
+Concierge: ahvaanam.studio@gmail.com
 `;
 }
